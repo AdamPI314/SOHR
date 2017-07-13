@@ -56,10 +56,12 @@ if __name__ == '__main__':
     data_B = concentration[::step1, 0] + concentration[::step1, 3] + 2*concentration[::step1, 5] + 2*concentration[::step1, 7]
     data = data_A - data_B
 
-    counter = 0
-    ax.plot(time, data, '-', color=colors[counter % len(colors)], linewidth=1.0, label='$N_A-N_B$')
 
-    ax.set_xbound(0, time[-1])
+    N1 = -10
+    counter = 0
+    ax.plot(time[N1:], data[N1:], '-', color=colors[counter % len(colors)], linewidth=1.0, label='$N_A-N_B$')
+
+    ax.set_xbound(time[N1], time[-1])
     ax.grid('on')
 
     ax.legend(loc=0, prop={'size': 10.0})

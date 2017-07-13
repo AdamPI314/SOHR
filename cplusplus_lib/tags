@@ -25,8 +25,6 @@ EdgeProperties_graph	./include/reactionNetwork/superReactionNetwork/superReactio
 EdgeProperties_tree	./include/search_algorithm/eppstein_algorithm/eppstein_algorithm.h	/^	struct EdgeProperties_tree$/;"	s	namespace:eppstein_algorithm
 GetHowLong	./include/time/myclock.cpp	/^double MyClock::GetHowLong(void)$/;"	f	class:MyClock
 GetHowLong	./include/time/myclock_us.cpp	/^double MyClock_us::GetHowLong()$/;"	f	class:MyClock_us
-Globaldebug	./include/tools/debug/debug.h	/^		Globaldebug(){}$/;"	f	class:Globaldebug
-Globaldebug	./include/tools/debug/debug.h	/^class Globaldebug{$/;"	c
 INFINITESIMAL_DT	./include/reactionNetwork/concreteReactionNetwork/concreteReactionNetwork.cpp	10;"	d	file:
 INFINITESIMAL_DT	./include/reactionNetwork/reactionNetworkODESolver/reactionNetworkODESolver.cpp	8;"	d	file:
 INFINITESIMAL_DT	./include/reactionNetwork/superReactionNetwork/superReactionNetwork.cpp	25;"	d	file:
@@ -146,6 +144,7 @@ Spline_interp	./include/cubicSpline/interp_1d.h	/^	Spline_interp(VecDoub_I &xv, 
 Spline_interp	./include/cubicSpline/interp_1d.h	/^struct Spline_interp : Base_interp$/;"	s
 TROE_centering	./include/relationshipParser/relationshipParser.h	/^		TROE_centering_t TROE_centering;$/;"	m	struct:relationshipParser_sr::reaction_info
 TROE_centering_t	./include/relationshipParser/relationshipParser.h	/^	typedef double TROE_centering_t[3];$/;"	t	namespace:relationshipParser_sr
+Test	./include/drivers/drivers.cpp	/^void driver::Test(const boost::mpi::communicator & world, const std::string & main_cwd)$/;"	f	class:driver
 Time	./include/time/myclock.h	/^	double Time;$/;"	m	class:MyClock
 Time	./include/time/myclock_us.h	/^	double Time;$/;"	m	class:MyClock_us
 Uchar	./include/cubicSpline/nr3.h	/^typedef unsigned char Uchar;$/;"	t
@@ -215,8 +214,6 @@ __CONCRETEREACTIONNETWORK_CPP_	./include/reactionNetwork/concreteReactionNetwork
 __CONCRETEREACTIONNETWORK_H_	./include/reactionNetwork/concreteReactionNetwork/concreteReactionNetwork.h	2;"	d
 __CSVREADER_CPP_	./include/fileIO/CSVFileReader/CSVReader.cpp	2;"	d	file:
 __CSVREADER_H_	./include/fileIO/CSVFileReader/CSVReader.h	2;"	d
-__DEBUG_CPP_	./include/tools/debug/debug.cpp	2;"	d	file:
-__DEBUG_H_	./include/tools/debug/debug.h	2;"	d
 __DLSODEPROPAGATOR_CPP_	./include/propagator/dlsodePropagator/dlsodePropagator.cpp	2;"	d	file:
 __DLSODEPROPAGATOR_H_	./include/propagator/dlsodePropagator/dlsodePropagator.h	2;"	d
 __DRIVERS_CPP_	./include/drivers/drivers.cpp	2;"	d	file:
@@ -244,6 +241,8 @@ __SOHRPROPAGATOR_CPP_	./include/propagator/SOHRPropagator/SOHRPropagator.cpp	2;"
 __SOHRPROPAGATOR_H_	./include/propagator/SOHRPropagator/SOHRPropagator.h	2;"	d
 __SRKIN_CPP_	./include/srkin/srkin.cpp	9;"	d	file:
 __SRKIN_H_	./include/srkin/srkin.h	9;"	d
+__SSAPROPAGATOR_CPP_	./include/propagator/ssaPropagator/ssaPropagator.cpp	2;"	d	file:
+__SSAPROPAGATOR_H_	./include/propagator/ssaPropagator/ssaPropagator.h	2;"	d
 __STATISTCIS_H_	./include/statistics/statistics.h	2;"	d
 __STATISTICS_CPP_	./include/statistics/statistics.cpp	2;"	d	file:
 __STATISTICS_GET_CONC_CPP_	./include/statistics/statistics_get_conc.cpp	2;"	d	file:
@@ -278,6 +277,8 @@ cal_reaction_rate	./include/srkin/srkin.cpp	/^	void srkin::cal_reaction_rate()$/
 cal_reaction_rate	./include/srkin/srkin.cpp	/^	void srkin::cal_reaction_rate(const double * T, const double * C, double * FWDK, double * REVK)$/;"	f	class:srkin_sr::srkin
 cal_reaction_rate	./include/srkin/srkin.cpp	/^	void srkin::cal_reaction_rate(const std::size_t reaction_ind)$/;"	f	class:srkin_sr::srkin
 cal_reaction_rate_coef	./include/srkin/srkin.cpp	/^	double srkin::cal_reaction_rate_coef(std::size_t reaction_ind, rsp::temperature_t T, rsp::pressure_t P)$/;"	f	class:srkin_sr::srkin
+cal_reaction_rate_discrete	./include/srkin/srkin.cpp	/^	void srkin_sr::srkin::cal_reaction_rate_discrete()$/;"	f	class:srkin_sr::srkin_sr::srkin
+cal_reaction_rate_discrete	./include/srkin/srkin.cpp	/^	void srkin_sr::srkin::cal_reaction_rate_discrete(const std::size_t reaction_ind)$/;"	f	class:srkin_sr::srkin_sr::srkin
 cal_spe_destruction_rate	./include/srkin/srkin.cpp	/^	rsp::reaction_rate_t srkin::cal_spe_destruction_rate(const std::size_t spe_ind)$/;"	f	class:srkin_sr::srkin
 cal_spe_destruction_rate	./include/srkin/srkin.cpp	/^	void srkin::cal_spe_destruction_rate(const double * T, const double * C, double * CDOT, double * DDOT)$/;"	f	class:srkin_sr::srkin
 calculate_path_weight_based_on_path_probability	./include/reactionNetwork/superReactionNetwork/superReactionNetwork.cpp	/^	double reactionNetwork_sr::superReactionNetwork::calculate_path_weight_based_on_path_probability(std::string path, std::string atom_followed, double start_time, double end_time)$/;"	f	class:reactionNetwork_sr::reactionNetwork_sr::superReactionNetwork
@@ -380,8 +381,10 @@ eppstein_algorithm	./include/search_algorithm/eppstein_algorithm/eppstein_algori
 eppstein_algorithm	./include/search_algorithm/eppstein_algorithm/eppstein_algorithm.h	/^namespace eppstein_algorithm$/;"	n
 eppstein_alogrithm	./include/reactionNetwork/superReactionNetwork/superReactionNetwork.cpp	/^	void superReactionNetwork::eppstein_alogrithm(const Vertex s, const Vertex t, double time_in, std::string atom)$/;"	f	class:reactionNetwork_sr::superReactionNetwork
 equilibrium_propagator_cp_s2m_pgt	./include/propagator/dlsodePropagator/dlsodePropagator.cpp	/^	void dlsodePropagator::equilibrium_propagator_cp_s2m_pgt(std::vector<double> uncertainties, double critical_temperature_t)$/;"	f	class:propagator_sr::dlsodePropagator
+equilibrium_propagator_cp_s2m_pgt	./include/propagator/ssaPropagator/ssaPropagator.cpp	/^	void ssaPropagator::equilibrium_propagator_cp_s2m_pgt(std::vector<double> uncertainties, double critical_temperature_t)$/;"	f	class:propagator_sr::ssaPropagator
 equilibrium_propagator_cp_s2m_pgt	./include/propagator/superPropagator/superPropagator.h	/^		virtual void equilibrium_propagator_cp_s2m_pgt(std::vector<double> uncertainties, double critical_temperature_t) {};$/;"	f	class:propagator_sr::superPropagator
 equilibrium_propagator_cv_s2m_pgt	./include/propagator/dlsodePropagator/dlsodePropagator.cpp	/^	void dlsodePropagator::equilibrium_propagator_cv_s2m_pgt(std::vector<double> uncertainties, double critical_temperature_t)$/;"	f	class:propagator_sr::dlsodePropagator
+equilibrium_propagator_cv_s2m_pgt	./include/propagator/ssaPropagator/ssaPropagator.cpp	/^	void ssaPropagator::equilibrium_propagator_cv_s2m_pgt(std::vector<double> uncertainties, double critical_temperature_t)$/;"	f	class:propagator_sr::ssaPropagator
 equilibrium_propagator_cv_s2m_pgt	./include/propagator/superPropagator/superPropagator.h	/^		virtual void equilibrium_propagator_cv_s2m_pgt(std::vector<double> uncertainties, double critical_temperature_t) {};$/;"	f	class:propagator_sr::superPropagator
 evaluate_concentration_at_time	./include/propagator/superPropagator/superPropagator.cpp	/^	double superPropagator::evaluate_concentration_at_time(double in_time, size_t index) const$/;"	f	class:propagator_sr::superPropagator
 evaluate_index_at_time	./include/propagator/SOHRPropagator/SOHRPropagator.cpp	/^	std::size_t SOHRPropagator::evaluate_index_at_time(rsp::my_time_t in_time) {$/;"	f	class:propagator_sr::SOHRPropagator
@@ -404,7 +407,6 @@ fileIO	./include/fileIO/fileIO/fileIO.h	/^namespace fileIO {\/*namespace fileIO*
 flux_analysis_w2f	./include/reactionNetwork/concreteReactionNetwork/concreteReactionNetwork.cpp	/^	void concreteReactionNetwork::flux_analysis_w2f(rsp::my_time_t in_time)$/;"	f	class:reactionNetwork_sr::concreteReactionNetwork
 forward	./include/relationshipParser/relationshipParser.h	/^	enum reaction_direction_t { forward = 1, backward = -1, both = 2 };$/;"	e	enum:relationshipParser_sr::reaction_direction_t
 from_vertex	./include/search_algorithm/eppstein_algorithm/eppstein_algorithm.h	/^		vertex_index_t from_vertex;$/;"	m	struct:eppstein_algorithm::VertexProperties_tree
-gdb	./include/tools/debug/debug.cpp	/^Globaldebug gdb;$/;"	v
 generate_path_by_running_monte_carlo_trajectory_all_elements_s2m	./include/reactionNetwork/superReactionNetwork/superReactionNetwork.cpp	/^	std::size_t reactionNetwork_sr::superReactionNetwork::generate_path_by_running_monte_carlo_trajectory_all_elements_s2m(std::vector<statistics>& statistics_v, std::size_t Ntrajectory, double end_time_ratio)$/;"	f	class:reactionNetwork_sr::reactionNetwork_sr::superReactionNetwork
 generate_path_by_running_monte_carlo_trajectory_s2m	./include/reactionNetwork/superReactionNetwork/superReactionNetwork.cpp	/^	void reactionNetwork_sr::superReactionNetwork::generate_path_by_running_monte_carlo_trajectory_s2m(std::vector<statistics > &statistics_v, std::size_t Ntrajectory, std::string atom_followed, double end_time_ratio)$/;"	f	class:reactionNetwork_sr::reactionNetwork_sr::superReactionNetwork
 generate_pathway_running_Monte_carlo_trajectory	./include/drivers/drivers.cpp	/^void driver::generate_pathway_running_Monte_carlo_trajectory(const boost::mpi::communicator & world, const std::string &main_cwd, const boost::property_tree::ptree &pt)$/;"	f	class:driver
@@ -439,7 +441,6 @@ get_spe_prob_min_at_a_time	./include/reactionNetwork/reactionNetworkODESolver/re
 get_species_conc_v	./include/srkin/srkin.cpp	/^	const std::vector<rsp::concentration_t>& srkin::get_species_conc_v() const$/;"	f	class:srkin_sr::srkin
 get_stage_number	./include/tools/block_decomposition/block_decomposition.cpp	/^int get_stage_number(int i, int N, int p)$/;"	f
 get_temperature	./include/srkin/srkin.cpp	/^	rsp::temperature_t srkin::get_temperature()$/;"	f	class:srkin_sr::srkin
-get_value	./include/tools/debug/debug.h	/^		bool get_value(std::string entry){$/;"	f	class:Globaldebug
 get_vm	./include/fileIO/commandLineConfigFileReader/clcf_parser.h	/^	bool get_vm(po::variables_map &vm_out) {$/;"	f	class:cf_parser
 get_vm	./include/fileIO/commandLineConfigFileReader/clcf_parser.h	/^	bool get_vm(po::variables_map &vm_out) {$/;"	f	class:clcf_parser
 get_volume	./include/srkin/srkin.cpp	/^	rsp::volume_t srkin::get_volume()$/;"	f	class:srkin_sr::srkin
@@ -584,6 +585,18 @@ override	./include/propagator/dlsodePropagator/dlsodePropagator.h	/^		void time_
 override	./include/propagator/dlsodePropagator/dlsodePropagator.h	/^		void time_propagator_s_ct_np_cc1_s2m_pgt(std::vector<double> uncertainties, double critical_time, double end_time) override;$/;"	m	class:propagator_sr::dlsodePropagator
 override	./include/propagator/dlsodePropagator/dlsodePropagator.h	/^		void time_propagator_s_ct_np_cc2_s2m_pgt(std::vector<double> uncertainties, double critical_time, double end_time) override;$/;"	m	class:propagator_sr::dlsodePropagator
 override	./include/propagator/dlsodePropagator/dlsodePropagator.h	/^		void time_propagator_s_ct_np_s2m_pgt(std::vector<double> uncertainties, double critical_time, double end_time) override;$/;"	m	class:propagator_sr::dlsodePropagator
+override	./include/propagator/ssaPropagator/ssaPropagator.h	/^		virtual void propagate_pgt() override;$/;"	m	class:propagator_sr::ssaPropagator
+override	./include/propagator/ssaPropagator/ssaPropagator.h	/^		void equilibrium_propagator_cp_s2m_pgt(std::vector<double> uncertainties, double critical_temperature_t) override;$/;"	m	class:propagator_sr::ssaPropagator
+override	./include/propagator/ssaPropagator/ssaPropagator.h	/^		void equilibrium_propagator_cv_s2m_pgt(std::vector<double> uncertainties, double critical_temperature_t) override;$/;"	m	class:propagator_sr::ssaPropagator
+override	./include/propagator/ssaPropagator/ssaPropagator.h	/^		void temperature_propagator_cp_s2m_pgt(std::vector<double> uncertainties, double critical_temperature_t, double end_temperature) override;$/;"	m	class:propagator_sr::ssaPropagator
+override	./include/propagator/ssaPropagator/ssaPropagator.h	/^		void temperature_propagator_cv_s2m_pgt(std::vector<double> uncertainties, double critical_temperature_t, double end_temperature) override;$/;"	m	class:propagator_sr::ssaPropagator
+override	./include/propagator/ssaPropagator/ssaPropagator.h	/^		void time_propagator_cp_ct_s2m_pgt(std::vector<double> uncertainties, double critical_time, double end_time) override;$/;"	m	class:propagator_sr::ssaPropagator
+override	./include/propagator/ssaPropagator/ssaPropagator.h	/^		void time_propagator_cp_s2m_pgt(std::vector<double> uncertainties, double critical_time, double end_time) override;$/;"	m	class:propagator_sr::ssaPropagator
+override	./include/propagator/ssaPropagator/ssaPropagator.h	/^		void time_propagator_cv_ct_s2m_pgt(std::vector<double> uncertainties, double critical_time, double end_time) override;$/;"	m	class:propagator_sr::ssaPropagator
+override	./include/propagator/ssaPropagator/ssaPropagator.h	/^		void time_propagator_cv_s2m_pgt(std::vector<double> uncertainties, double critical_time, double end_time) override;$/;"	m	class:propagator_sr::ssaPropagator
+override	./include/propagator/ssaPropagator/ssaPropagator.h	/^		void time_propagator_s_ct_np_cc1_s2m_pgt(std::vector<double> uncertainties, double critical_time, double end_time) override;$/;"	m	class:propagator_sr::ssaPropagator
+override	./include/propagator/ssaPropagator/ssaPropagator.h	/^		void time_propagator_s_ct_np_cc2_s2m_pgt(std::vector<double> uncertainties, double critical_time, double end_time) override;$/;"	m	class:propagator_sr::ssaPropagator
+override	./include/propagator/ssaPropagator/ssaPropagator.h	/^		void time_propagator_s_ct_np_s2m_pgt(std::vector<double> uncertainties, double critical_time, double end_time) override;$/;"	m	class:propagator_sr::ssaPropagator
 override	./include/reactionNetwork/concreteReactionNetwork/concreteReactionNetwork.h	/^		bool set_spe_prob_max_at_a_time(double init_time, double end_time, size_t index_t) override;$/;"	m	class:reactionNetwork_sr::concreteReactionNetwork
 override	./include/reactionNetwork/concreteReactionNetwork/concreteReactionNetwork.h	/^		bool set_spe_prob_min_at_a_time(double init_time, double end_time, size_t index_t) override;$/;"	m	class:reactionNetwork_sr::concreteReactionNetwork
 override	./include/reactionNetwork/concreteReactionNetwork/concreteReactionNetwork.h	/^		bool update_reaction_rate(double in_time) override;$/;"	m	class:reactionNetwork_sr::concreteReactionNetwork
@@ -667,14 +680,18 @@ product	./include/relationshipParser/relationshipParser.h	/^		std::vector<spe_in
 propagate_and_initiate_cublic_spline_pgt	./include/propagator/superPropagator/superPropagator.h	/^		void propagate_and_initiate_cublic_spline_pgt() {$/;"	f	class:propagator_sr::superPropagator
 propagate_pgt	./include/propagator/SOHRPropagator/SOHRPropagator.cpp	/^	void SOHRPropagator::propagate_pgt() {$/;"	f	class:propagator_sr::SOHRPropagator
 propagate_pgt	./include/propagator/dlsodePropagator/dlsodePropagator.cpp	/^	void dlsodePropagator::propagate_pgt()$/;"	f	class:propagator_sr::dlsodePropagator
+propagate_pgt	./include/propagator/ssaPropagator/ssaPropagator.cpp	/^	void ssaPropagator::propagate_pgt()$/;"	f	class:propagator_sr::ssaPropagator
 propagate_pgt	./include/propagator/superPropagator/superPropagator.h	/^		virtual void propagate_pgt() {};$/;"	f	class:propagator_sr::superPropagator
 propagator	./include/reactionNetwork/concreteReactionNetwork/concreteReactionNetwork.h	/^		pgt::superPropagator* propagator;$/;"	m	class:reactionNetwork_sr::concreteReactionNetwork
 propagator_sr	./include/propagator/SOHRPropagator/SOHRPropagator.cpp	/^namespace propagator_sr {$/;"	n	file:
 propagator_sr	./include/propagator/SOHRPropagator/SOHRPropagator.h	/^namespace propagator_sr {$/;"	n
 propagator_sr	./include/propagator/dlsodePropagator/dlsodePropagator.cpp	/^namespace propagator_sr {$/;"	n	file:
 propagator_sr	./include/propagator/dlsodePropagator/dlsodePropagator.h	/^namespace propagator_sr {$/;"	n
+propagator_sr	./include/propagator/ssaPropagator/ssaPropagator.cpp	/^namespace propagator_sr {$/;"	n	file:
+propagator_sr	./include/propagator/ssaPropagator/ssaPropagator.h	/^namespace propagator_sr {$/;"	n
 propagator_sr	./include/propagator/superPropagator/superPropagator.cpp	/^namespace propagator_sr {$/;"	n	file:
 propagator_sr	./include/propagator/superPropagator/superPropagator.h	/^namespace propagator_sr {$/;"	n
+rand	./include/propagator/ssaPropagator/ssaPropagator.h	/^		random_sr::random* rand;$/;"	m	class:propagator_sr::ssaPropagator
 rand	./include/reactionNetwork/superReactionNetwork/superReactionNetwork.h	/^		random_sr::random* rand;$/;"	m	class:reactionNetwork_sr::superReactionNetwork
 random	./include/random/random.h	/^		random(boost::uint32_t random_seed_in) :random_seed_for_this_core(random_seed_in) {$/;"	f	class:random_sr::random
 random	./include/random/random.h	/^	class random {$/;"	c	namespace:random_sr
@@ -682,6 +699,7 @@ random01	./include/random/random.h	/^		double random01()$/;"	f	class:random_sr::
 random_min_max	./include/random/random.h	/^		double random_min_max(double min_t, double max_t)$/;"	f	class:random_sr::random
 random_pick_next_reaction	./include/reactionNetwork/superReactionNetwork/superReactionNetwork.cpp	/^	rsp::index_int_t superReactionNetwork::random_pick_next_reaction(vertex_t curr_vertex)$/;"	f	class:reactionNetwork_sr::superReactionNetwork
 random_pick_next_spe	./include/reactionNetwork/superReactionNetwork/superReactionNetwork.cpp	/^	vertex_t superReactionNetwork::random_pick_next_spe(rsp::index_int_t reaction_index, std::string atom_followed)$/;"	f	class:reactionNetwork_sr::superReactionNetwork
+random_seed_for_this_core	./include/propagator/ssaPropagator/ssaPropagator.h	/^		boost::uint32_t random_seed_for_this_core;$/;"	m	class:propagator_sr::ssaPropagator
 random_seed_for_this_core	./include/random/random.h	/^		boost::uint32_t random_seed_for_this_core;$/;"	m	class:random_sr::random
 random_seed_for_this_core	./include/reactionNetwork/superReactionNetwork/superReactionNetwork.h	/^		boost::uint32_t random_seed_for_this_core;$/;"	m	class:reactionNetwork_sr::superReactionNetwork
 random_sr	./include/random/random.cpp	/^namespace random_sr {$/;"	n	file:
@@ -829,7 +847,6 @@ set_species_initial_concentration	./include/reactionNetwork/superReactionNetwork
 set_sys_min_time	./include/reactionNetwork/superReactionNetwork/superReactionNetwork.h	/^		void set_sys_min_time(rsp::my_time_t sys_min_time_in) { this->sys_min_time = sys_min_time_in; }$/;"	f	class:reactionNetwork_sr::superReactionNetwork
 set_temperature	./include/srkin/srkin.cpp	/^	void srkin::set_temperature(rsp::temperature_t t_in)$/;"	f	class:srkin_sr::srkin
 set_trapped_spe	./include/reactionNetwork/superReactionNetwork/superReactionNetwork.cpp	/^	void superReactionNetwork::set_trapped_spe()$/;"	f	class:reactionNetwork_sr::superReactionNetwork
-set_value	./include/tools/debug/debug.h	/^		void set_value(std::string entry, bool b){$/;"	f	class:Globaldebug
 set_volume	./include/srkin/srkin.cpp	/^	void srkin::set_volume(rsp::volume_t volume_in)$/;"	f	class:srkin_sr::srkin
 sety2	./include/cubicSpline/interp_1d.cpp	/^void Spline_interp::sety2(const Doub *xv, const Doub *yv, Doub yp1, Doub ypn)$/;"	f	class:Spline_interp
 shortest_distance	./include/reactionNetwork/superReactionNetwork/superReactionNetwork.h	/^		double shortest_distance;$/;"	m	class:reactionNetwork_sr::superReactionNetwork
@@ -846,6 +863,7 @@ size	./include/cubicSpline/nr3.h	/^inline int NRvector<T>::size() const$/;"	f	cl
 size	./include/fileIO/CSVFileReader/CSVReader.h	/^	std::size_t size() const$/;"	f	class:CSVRow
 size_t_matrix_t	./include/tools/matrix/matrix_sr.h	/^	typedef std::vector<std::vector<std::size_t> > size_t_matrix_t;$/;"	t	namespace:matrix_sr
 solve_ODEs_for_concentration_using_LSODE	./include/drivers/drivers.cpp	/^void driver::solve_ODEs_for_concentration_using_LSODE(const boost::mpi::communicator & world, std::string & main_cwd)$/;"	f	class:driver
+solve_ODEs_for_concentration_using_SSA	./include/drivers/drivers.cpp	/^void driver::solve_ODEs_for_concentration_using_SSA(const boost::mpi::communicator & world, std::string & main_cwd)$/;"	f	class:driver
 sort_print_to_file_stat	./include/statistics/statistics.cpp	/^void statistics::sort_print_to_file_stat(std::string str_out) {$/;"	f	class:statistics
 sort_print_to_file_stat	./include/statistics/statistics_get_conc.cpp	/^void statistics_get_conc::sort_print_to_file_stat(std::string str_out) {$/;"	f	class:statistics_get_conc
 spe_component	./include/relationshipParser/relationshipParser.h	/^		spe_component_t spe_component;$/;"	m	struct:relationshipParser_sr::spe_info_base
@@ -891,6 +909,10 @@ srkin	./include/srkin/srkin.cpp	/^	srkin::srkin(std::string cwd_sr_in, rsp::temp
 srkin	./include/srkin/srkin.h	/^	class srkin {$/;"	c	namespace:srkin_sr
 srkin_sr	./include/srkin/srkin.cpp	/^namespace srkin_sr {$/;"	n	file:
 srkin_sr	./include/srkin/srkin.h	/^namespace srkin_sr {$/;"	n
+ssaPropagator	./include/propagator/ssaPropagator/ssaPropagator.cpp	/^	ssaPropagator::ssaPropagator(std::vector<double> uncertainties, std::size_t random_seed_for_this_core, std::string cwd_in)$/;"	f	class:propagator_sr::ssaPropagator
+ssaPropagator	./include/propagator/ssaPropagator/ssaPropagator.h	/^	class ssaPropagator : public superPropagator, public srkin_sr::srkin {$/;"	c	namespace:propagator_sr
+ssa_update_dt_s_ct_np_pgt	./include/propagator/ssaPropagator/ssaPropagator.cpp	/^	void ssaPropagator::ssa_update_dt_s_ct_np_pgt(const double Temp, const double dt, double* c_t, std::vector<double>& reaction_rate_v_tmp, double& tau)$/;"	f	class:propagator_sr::ssaPropagator
+ssa_update_next_reaction_pgt	./include/propagator/ssaPropagator/ssaPropagator.cpp	/^	void ssaPropagator::ssa_update_next_reaction_pgt(double* c_t, const std::vector<double>& reaction_rates, double & tau)$/;"	f	class:propagator_sr::ssaPropagator
 stat_map	./include/statistics/statistics.h	/^	typedef std::map<std::string, int> stat_map;$/;"	t	class:statistics
 stat_map	./include/statistics/statistics_get_conc.h	/^	typedef std::map<std::string, int> stat_map;$/;"	t	class:statistics_get_conc
 statistics	./include/statistics/statistics.cpp	/^statistics::statistics() {$/;"	f	class:statistics
@@ -908,13 +930,14 @@ superReactionNetwork	./include/reactionNetwork/superReactionNetwork/superReactio
 superReactionNetwork	./include/reactionNetwork/superReactionNetwork/superReactionNetwork.h	/^	class superReactionNetwork :public Graph_bundled<VertexProperties_graph, EdgeProperties_graph> {$/;"	c	namespace:reactionNetwork_sr
 survival_probability	./include/relationshipParser/relationshipParser.h	/^		probability_t survival_probability;$/;"	m	struct:relationshipParser_sr::spe_info_base
 sys_min_time	./include/reactionNetwork/superReactionNetwork/superReactionNetwork.h	/^		rsp::my_time_t sys_min_time;$/;"	m	class:reactionNetwork_sr::superReactionNetwork
-tags_map	./include/tools/debug/debug.h	/^		std::map<std::string, bool> tags_map={{"stage_number", false},{"species_index", false}};$/;"	m	class:Globaldebug
 temperature_data_pgt	./include/propagator/superPropagator/superPropagator.h	/^		std::vector<rsp::temperature_t> temperature_data_pgt;$/;"	m	class:propagator_sr::superPropagator
 temperature_high	./include/relationshipParser/relationshipParser.h	/^		temperature_t temperature_high;$/;"	m	struct:relationshipParser_sr::spe_info
 temperature_low	./include/relationshipParser/relationshipParser.h	/^		temperature_t temperature_low;$/;"	m	struct:relationshipParser_sr::spe_info
 temperature_propagator_cp_s2m_pgt	./include/propagator/dlsodePropagator/dlsodePropagator.cpp	/^	void dlsodePropagator::temperature_propagator_cp_s2m_pgt(std::vector<double> uncertainties, double critical_temperature_t, double end_temperature)$/;"	f	class:propagator_sr::dlsodePropagator
+temperature_propagator_cp_s2m_pgt	./include/propagator/ssaPropagator/ssaPropagator.cpp	/^	void ssaPropagator::temperature_propagator_cp_s2m_pgt(std::vector<double> uncertainties, double critical_temperature_t, double end_temperature)$/;"	f	class:propagator_sr::ssaPropagator
 temperature_propagator_cp_s2m_pgt	./include/propagator/superPropagator/superPropagator.h	/^		virtual void temperature_propagator_cp_s2m_pgt(std::vector<double> uncertainties, double critical_temperature_t, double end_temperature) {};$/;"	f	class:propagator_sr::superPropagator
 temperature_propagator_cv_s2m_pgt	./include/propagator/dlsodePropagator/dlsodePropagator.cpp	/^	void dlsodePropagator::temperature_propagator_cv_s2m_pgt(std::vector<double> uncertainties, double critical_temperature_t, double end_temperature)$/;"	f	class:propagator_sr::dlsodePropagator
+temperature_propagator_cv_s2m_pgt	./include/propagator/ssaPropagator/ssaPropagator.cpp	/^	void ssaPropagator::temperature_propagator_cv_s2m_pgt(std::vector<double> uncertainties, double critical_temperature_t, double end_temperature)$/;"	f	class:propagator_sr::ssaPropagator
 temperature_propagator_cv_s2m_pgt	./include/propagator/superPropagator/superPropagator.h	/^		virtual void temperature_propagator_cv_s2m_pgt(std::vector<double> uncertainties, double critical_temperature_t, double end_temperature) {};$/;"	f	class:propagator_sr::superPropagator
 temperature_sk	./include/srkin/srkin.h	/^		rsp::temperature_t temperature_sk;$/;"	m	class:srkin_sr::srkin
 temperature_t	./include/relationshipParser/relationshipParser.h	/^	typedef double temperature_t;$/;"	t	namespace:relationshipParser_sr
@@ -930,24 +953,33 @@ time_initializer_based_on_guess_cv	./include/propagator/SOHRPropagator/SOHRPropa
 time_initializer_from_file	./include/propagator/SOHRPropagator/SOHRPropagator.cpp	/^	void SOHRPropagator::time_initializer_from_file(std::string filename_time, std::string filename_conc) {$/;"	f	class:propagator_sr::SOHRPropagator
 time_initializer_using_dlsode_cv	./include/propagator/SOHRPropagator/SOHRPropagator.cpp	/^	void SOHRPropagator::time_initializer_using_dlsode_cv(rsp::my_time_t critical_time, rsp::my_time_t end_time)$/;"	f	class:propagator_sr::SOHRPropagator
 time_initializer_using_dlsode_cv_ct	./include/propagator/SOHRPropagator/SOHRPropagator.cpp	/^	void SOHRPropagator::time_initializer_using_dlsode_cv_ct(rsp::my_time_t critical_time, rsp::my_time_t end_time)$/;"	f	class:propagator_sr::SOHRPropagator
+time_initializer_using_dlsode_s_ct_np	./include/propagator/SOHRPropagator/SOHRPropagator.cpp	/^	void SOHRPropagator::time_initializer_using_dlsode_s_ct_np(rsp::my_time_t critical_time, rsp::my_time_t end_time)$/;"	f	class:propagator_sr::SOHRPropagator
 time_initializer_using_dlsode_s_ct_np_cc1	./include/propagator/SOHRPropagator/SOHRPropagator.cpp	/^	void SOHRPropagator::time_initializer_using_dlsode_s_ct_np_cc1(rsp::my_time_t critical_time, rsp::my_time_t end_time)$/;"	f	class:propagator_sr::SOHRPropagator
 time_pressure_pgt	./include/propagator/superPropagator/superPropagator.h	/^		Linear_interp* time_pressure_pgt;$/;"	m	class:propagator_sr::superPropagator
 time_propagator_cp_ct_s2m_pgt	./include/propagator/dlsodePropagator/dlsodePropagator.cpp	/^	void dlsodePropagator::time_propagator_cp_ct_s2m_pgt(std::vector<double> uncertainties, double critical_time, double end_time)$/;"	f	class:propagator_sr::dlsodePropagator
+time_propagator_cp_ct_s2m_pgt	./include/propagator/ssaPropagator/ssaPropagator.cpp	/^	void ssaPropagator::time_propagator_cp_ct_s2m_pgt(std::vector<double> uncertainties, double critical_time, double end_time)$/;"	f	class:propagator_sr::ssaPropagator
 time_propagator_cp_ct_s2m_pgt	./include/propagator/superPropagator/superPropagator.h	/^		virtual void time_propagator_cp_ct_s2m_pgt(std::vector<double> uncertainties, double critical_time, double end_time) {};$/;"	f	class:propagator_sr::superPropagator
 time_propagator_cp_s2m_pgt	./include/propagator/dlsodePropagator/dlsodePropagator.cpp	/^	void dlsodePropagator::time_propagator_cp_s2m_pgt(std::vector<double> uncertainties, double critical_time, double end_time)$/;"	f	class:propagator_sr::dlsodePropagator
+time_propagator_cp_s2m_pgt	./include/propagator/ssaPropagator/ssaPropagator.cpp	/^	void ssaPropagator::time_propagator_cp_s2m_pgt(std::vector<double> uncertainties, double critical_time, double end_time)$/;"	f	class:propagator_sr::ssaPropagator
 time_propagator_cp_s2m_pgt	./include/propagator/superPropagator/superPropagator.h	/^		virtual void time_propagator_cp_s2m_pgt(std::vector<double> uncertainties, double critical_time, double end_time) {};$/;"	f	class:propagator_sr::superPropagator
 time_propagator_cv_ct_s2m_pgt	./include/propagator/dlsodePropagator/dlsodePropagator.cpp	/^	void dlsodePropagator::time_propagator_cv_ct_s2m_pgt(std::vector<double> uncertainties, double critical_time, double end_time)$/;"	f	class:propagator_sr::dlsodePropagator
+time_propagator_cv_ct_s2m_pgt	./include/propagator/ssaPropagator/ssaPropagator.cpp	/^	void ssaPropagator::time_propagator_cv_ct_s2m_pgt(std::vector<double> uncertainties, double critical_time, double end_time)$/;"	f	class:propagator_sr::ssaPropagator
 time_propagator_cv_ct_s2m_pgt	./include/propagator/superPropagator/superPropagator.h	/^		virtual void time_propagator_cv_ct_s2m_pgt(std::vector<double> uncertainties, double critical_time, double end_time) {};$/;"	f	class:propagator_sr::superPropagator
 time_propagator_cv_s2m_pgt	./include/propagator/dlsodePropagator/dlsodePropagator.cpp	/^	void dlsodePropagator::time_propagator_cv_s2m_pgt(std::vector<double> uncertainties, double critical_time, double end_time)$/;"	f	class:propagator_sr::dlsodePropagator
+time_propagator_cv_s2m_pgt	./include/propagator/ssaPropagator/ssaPropagator.cpp	/^	void ssaPropagator::time_propagator_cv_s2m_pgt(std::vector<double> uncertainties, double critical_time, double end_time)$/;"	f	class:propagator_sr::ssaPropagator
 time_propagator_cv_s2m_pgt	./include/propagator/superPropagator/superPropagator.h	/^		virtual void time_propagator_cv_s2m_pgt(std::vector<double> uncertainties, double critical_time, double end_time) {};$/;"	f	class:propagator_sr::superPropagator
 time_propagator_s_ct_np_cc1_s2m_pgt	./include/propagator/SOHRPropagator/SOHRPropagator.cpp	/^	void SOHRPropagator::time_propagator_s_ct_np_cc1_s2m_pgt(std::vector<double> uncertainties, double critical_time, double end_time)$/;"	f	class:propagator_sr::SOHRPropagator
 time_propagator_s_ct_np_cc1_s2m_pgt	./include/propagator/dlsodePropagator/dlsodePropagator.cpp	/^	void dlsodePropagator::time_propagator_s_ct_np_cc1_s2m_pgt(std::vector<double> uncertainties, double critical_time, double end_time)$/;"	f	class:propagator_sr::dlsodePropagator
+time_propagator_s_ct_np_cc1_s2m_pgt	./include/propagator/ssaPropagator/ssaPropagator.cpp	/^	void ssaPropagator::time_propagator_s_ct_np_cc1_s2m_pgt(std::vector<double> uncertainties, double critical_time, double end_time)$/;"	f	class:propagator_sr::ssaPropagator
 time_propagator_s_ct_np_cc1_s2m_pgt	./include/propagator/superPropagator/superPropagator.h	/^		virtual void time_propagator_s_ct_np_cc1_s2m_pgt(std::vector<double> uncertainties, double critical_time, double end_time) {};$/;"	f	class:propagator_sr::superPropagator
 time_propagator_s_ct_np_cc2_s2m_pgt	./include/propagator/SOHRPropagator/SOHRPropagator.cpp	/^	void SOHRPropagator::time_propagator_s_ct_np_cc2_s2m_pgt(std::vector<double> uncertainties, double critical_time, double end_time)$/;"	f	class:propagator_sr::SOHRPropagator
 time_propagator_s_ct_np_cc2_s2m_pgt	./include/propagator/dlsodePropagator/dlsodePropagator.cpp	/^	void dlsodePropagator::time_propagator_s_ct_np_cc2_s2m_pgt(std::vector<double> uncertainties, double critical_time, double end_time)$/;"	f	class:propagator_sr::dlsodePropagator
+time_propagator_s_ct_np_cc2_s2m_pgt	./include/propagator/ssaPropagator/ssaPropagator.cpp	/^	void ssaPropagator::time_propagator_s_ct_np_cc2_s2m_pgt(std::vector<double> uncertainties, double critical_time, double end_time)$/;"	f	class:propagator_sr::ssaPropagator
 time_propagator_s_ct_np_cc2_s2m_pgt	./include/propagator/superPropagator/superPropagator.h	/^		virtual void time_propagator_s_ct_np_cc2_s2m_pgt(std::vector<double> uncertainties, double critical_time, double end_time) {};$/;"	f	class:propagator_sr::superPropagator
+time_propagator_s_ct_np_s2m_find_one_transition_pgt	./include/propagator/ssaPropagator/ssaPropagator.cpp	/^	void ssaPropagator::time_propagator_s_ct_np_s2m_find_one_transition_pgt(std::vector<double> uncertainties, double critical_time, double end_time)$/;"	f	class:propagator_sr::ssaPropagator
 time_propagator_s_ct_np_s2m_pgt	./include/propagator/SOHRPropagator/SOHRPropagator.cpp	/^	void SOHRPropagator::time_propagator_s_ct_np_s2m_pgt(std::vector<double> uncertainties, double critical_time,$/;"	f	class:propagator_sr::SOHRPropagator
 time_propagator_s_ct_np_s2m_pgt	./include/propagator/dlsodePropagator/dlsodePropagator.cpp	/^	void dlsodePropagator::time_propagator_s_ct_np_s2m_pgt(std::vector<double> uncertainties, double critical_time, double end_time)$/;"	f	class:propagator_sr::dlsodePropagator
+time_propagator_s_ct_np_s2m_pgt	./include/propagator/ssaPropagator/ssaPropagator.cpp	/^	void ssaPropagator::time_propagator_s_ct_np_s2m_pgt(std::vector<double> uncertainties, double critical_time, double end_time)$/;"	f	class:propagator_sr::ssaPropagator
 time_propagator_s_ct_np_s2m_pgt	./include/propagator/superPropagator/superPropagator.h	/^		virtual void time_propagator_s_ct_np_s2m_pgt(std::vector<double> uncertainties, double critical_time, double end_time) {};$/;"	f	class:propagator_sr::superPropagator
 time_single_source_additional_concentration_pointer_rnos	./include/reactionNetwork/reactionNetworkODESolver/reactionNetworkODESolver.h	/^		Linear_interp* time_single_source_additional_concentration_pointer_rnos = nullptr;$/;"	m	class:reactionNetworkODESolver_sr::reactionNetworkODESolver
 time_temperature_pgt	./include/propagator/superPropagator/superPropagator.h	/^		Linear_interp* time_temperature_pgt;$/;"	m	class:propagator_sr::superPropagator
@@ -1000,7 +1032,6 @@ y2	./include/cubicSpline/interp_1d.h	/^	VecDoub y2;$/;"	m	struct:Spline_interp
 yes_turn_on_floating_exceptions	./include/cubicSpline/nr3.h	/^turn_on_floating_exceptions yes_turn_on_floating_exceptions;$/;"	v
 yy	./include/cubicSpline/interp_1d.h	/^	const Doub *xx, *yy;$/;"	m	struct:Base_interp
 ~Base_interp	./include/cubicSpline/interp_1d.h	/^	virtual ~Base_interp() {};$/;"	f	struct:Base_interp
-~Globaldebug	./include/tools/debug/debug.h	/^		~Globaldebug(){}$/;"	f	class:Globaldebug
 ~MyClock_us	./include/time/myclock_us.h	/^	~MyClock_us() {};$/;"	f	class:MyClock_us
 ~NRMat3d	./include/cubicSpline/nr3.h	/^NRMat3d<T>::~NRMat3d()$/;"	f	class:NRMat3d
 ~NRmatrix	./include/cubicSpline/nr3.h	/^NRmatrix<T>::~NRmatrix()$/;"	f	class:NRmatrix
@@ -1015,6 +1046,7 @@ yy	./include/cubicSpline/interp_1d.h	/^	const Doub *xx, *yy;$/;"	m	struct:Base_i
 ~reactionNetworkODESolver	./include/reactionNetwork/reactionNetworkODESolver/reactionNetworkODESolver.cpp	/^	reactionNetworkODESolver::~reactionNetworkODESolver() {$/;"	f	class:reactionNetworkODESolver_sr::reactionNetworkODESolver
 ~sidetrack_tree	./include/search_algorithm/eppstein_algorithm/eppstein_algorithm.cpp	/^	sidetrack_tree::~sidetrack_tree()$/;"	f	class:eppstein_algorithm::sidetrack_tree
 ~srkin	./include/srkin/srkin.cpp	/^	srkin::~srkin()$/;"	f	class:srkin_sr::srkin
+~ssaPropagator	./include/propagator/ssaPropagator/ssaPropagator.cpp	/^	ssaPropagator::~ssaPropagator()$/;"	f	class:propagator_sr::ssaPropagator
 ~statistics	./include/statistics/statistics.cpp	/^statistics::~statistics() {$/;"	f	class:statistics
 ~statistics_get_conc	./include/statistics/statistics_get_conc.cpp	/^statistics_get_conc::~statistics_get_conc() {$/;"	f	class:statistics_get_conc
 ~superPropagator	./include/propagator/superPropagator/superPropagator.cpp	/^	superPropagator::~superPropagator()$/;"	f	class:propagator_sr::superPropagator
