@@ -1,0 +1,52 @@
+
+ CHEMKIN INTERPRETER OUTPUT: CHEMKIN-II Version 3.6 Apr. 1994
+                              DOUBLE PRECISION
+
+                          --------------------
+                          ELEMENTS     ATOMIC
+                          CONSIDERED   WEIGHT
+                          --------------------
+                           1. BR      79.9009    
+                           2. H       1.00797    
+                          --------------------
+ -------------------------------------------------------------------------------
+                         C
+                       P H
+                       H A
+                       A R
+ SPECIES               S G MOLECULAR TEMPERATURE   ELEMENT COUNT
+ CONSIDERED            E E WEIGHT    LOW    HIGH   BR H  
+ -------------------------------------------------------------------------------
+   1. H                G 0   1.00797  200.0 6000.0  0  1
+   2. H2               G 0   2.01594  200.0 6000.0  0  2
+   3. HBR              G 0  80.90887  200.0 6000.0  1  1
+   4. BR2              G 0 159.80180  200.0 6000.0  2  0
+   5. BR               G 0  79.90090  200.0 6000.0  1  0
+ -------------------------------------------------------------------------------
+
+
+
+                                                      (k = A T**b exp(-E/RT))
+      REACTIONS CONSIDERED                              A        b        E
+
+   1. H+H+M=H2+M                                    7.00E+17   -1.0        0.0
+         H2               Enhanced by    0.000E+00
+   2. H+H+H2=H2+H2                                  1.00E+17   -0.6        0.0
+   3. H+BR+M=HBR+M                                  1.90E+21   -1.9        0.0
+         HBR              Enhanced by    2.700E+00
+   4. HBR+H=BR+H2                                   1.30E+10    1.1      163.0
+   5. BR+BR+M=BR2+M                                 1.50E+14    0.0    -1700.0
+         BR2              Enhanced by    0.000E+00
+   6. BR+BR+BR2=BR2+BR2                             1.10E+15    0.0    -2206.0
+   7. BR2+H=HBR+BR                                  4.60E+07    2.0    -1804.0
+
+  NOTE:  A units mole-cm-sec-K, E units cal/mole
+
+
+
+ NO ERRORS FOUND ON INPUT...CHEMKIN LINKING FILE WRITTEN.
+
+ WORKING SPACE REQUIREMENTS ARE
+    INTEGER:      160
+    REAL:         215
+    CHARACTER:      7

@@ -1,0 +1,40 @@
+
+ CHEMKIN INTERPRETER OUTPUT: CHEMKIN-II Version 3.6 Apr. 1994
+                              DOUBLE PRECISION
+
+                          --------------------
+                          ELEMENTS     ATOMIC
+                          CONSIDERED   WEIGHT
+                          --------------------
+                           1. X       1.00000    
+                          --------------------
+ -------------------------------------------------------------------------------
+                         C
+                       P H
+                       H A
+                       A R
+ SPECIES               S G MOLECULAR TEMPERATURE   ELEMENT COUNT
+ CONSIDERED            E E WEIGHT    LOW    HIGH   X  
+ -------------------------------------------------------------------------------
+   1. A                G 0   1.00000  300.0 5000.0  1
+   2. B                G 0   2.00000  300.0 5000.0  2
+ -------------------------------------------------------------------------------
+
+
+
+                                                      (k = A T**b exp(-E/RT))
+      REACTIONS CONSIDERED                              A        b        E
+
+   1. 2A=>B                                         1.00E+00    0.0        0.0
+   2. B=>2A                                         1.00E-01    0.0        0.0
+
+  NOTE:  A units mole-cm-sec-K, E units cal/mole
+
+
+
+ NO ERRORS FOUND ON INPUT...CHEMKIN LINKING FILE WRITTEN.
+
+ WORKING SPACE REQUIREMENTS ARE
+    INTEGER:       37
+    REAL:          68
+    CHARACTER:      3

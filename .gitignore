@@ -50,7 +50,7 @@ fortran_lib/fortran_lib.u2d
 
 # Executables
 *.exe
-*.out
+#*.out
 *.app
 
 
