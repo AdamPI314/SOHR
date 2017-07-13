@@ -8,6 +8,7 @@
 *.user
 *.userosscache
 *.sln.docstates
+RxnNetwork_PI
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
