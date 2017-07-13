@@ -9,17 +9,17 @@
 *.userosscache
 *.sln.docstates
 RxnNetwork_PI
+timing.cpp
+fortran_routine_block_alias.h
+fortran_lib.u2d
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
-cplusplus_lib/include/time/timing.cpp
-cplusplus_lib/include/tools/misc/fortran_routine_block_alias.h
 
 # User-specific directories
 cplusplus_lib/output/
 fortran_lib/Debug
 fortran_lib/Release
-fortran_lib/fortran_lib.u2d
 
 # Prerequisites
 *.d
