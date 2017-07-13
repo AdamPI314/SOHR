@@ -5,7 +5,7 @@
 #include <iostream>
 #include <limits>
 
-#include "../tools/debug/debug.h"
+#include "../tools/my_debug/my_debug.h"
 #include <boost/filesystem.hpp>
 
 #define PRINT_PRECISION 10

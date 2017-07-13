@@ -158,7 +158,7 @@
     <ClCompile Include="include\time\myclock_us.cpp" />
     <ClCompile Include="include\time\timing.cpp" />
     <ClCompile Include="include\tools\block_decomposition\block_decomposition.cpp" />
-    <ClCompile Include="include\tools\debug\debug.cpp" />
+    <ClCompile Include="include\tools\my_debug\my_debug.cpp" />
     <ClCompile Include="include\tools\map_reduce\map_reduce.cpp" />
     <ClCompile Include="include\tools\matrix\matrix_sr.cpp" />
     <ClCompile Include="main.cpp" />
@@ -189,7 +189,7 @@
     <ClInclude Include="include\time\myclock_us.h" />
     <ClInclude Include="include\time\timing.h" />
     <ClInclude Include="include\tools\block_decomposition\block_decomposition.h" />
-    <ClInclude Include="include\tools\debug\debug.h" />
+    <ClInclude Include="include\tools\my_debug\my_debug.h" />
     <ClInclude Include="include\tools\map_reduce\map_reduce.h" />
     <ClInclude Include="include\tools\matrix\matrix_sr.h" />
     <ClInclude Include="include\tools\misc\fortran_routine_block_alias.h" />

@@ -90,13 +90,13 @@
     <ClCompile Include="include\drivers\drivers.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="include\tools\debug\debug.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="include\propagator\SOHRPropagator\SOHRPropagator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="include\propagator\ssaPropagator\ssaPropagator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="include\tools\my_debug\my_debug.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -191,13 +191,13 @@
     <ClInclude Include="include\drivers\drivers.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\tools\debug\debug.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\propagator\SOHRPropagator\SOHRPropagator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\propagator\ssaPropagator\ssaPropagator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\tools\my_debug\my_debug.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

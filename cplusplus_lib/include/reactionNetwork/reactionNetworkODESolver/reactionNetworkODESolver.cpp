@@ -3,7 +3,7 @@
 
 #include "reactionNetworkODESolver.h"
 #include "../../pathwayHandler/pathwayHandler.h"
-#include "../../../include/tools/debug/debug.h"
+#include "../../../include/tools/my_debug/my_debug.h"
 //infinitesimal dt
 #define INFINITESIMAL_DT 1.0E-14
 #define PRINT_PRECISION 15

@@ -6,7 +6,7 @@
  */
 
 #include "include/drivers/drivers.h"
-#include "include/tools/debug/debug.h"
+#include "include/tools/my_debug/my_debug.h"
 
 int main(int argc, char **argv) {
 
