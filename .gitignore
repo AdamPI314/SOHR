@@ -12,7 +12,6 @@
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 
-
 # User-specific directories
 cplusplus_lib/output/
 fortran_lib/Debug
