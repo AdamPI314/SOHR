@@ -1,0 +1,1 @@
+/opt/anaconda/bin/python plot_LSODE_SOHR_iterations.py >log.txt &

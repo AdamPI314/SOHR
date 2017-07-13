@@ -1,0 +1,45 @@
+! Authors: Shirong Bai
+! Address: Dept. of Chemistry and BioChemistry, University of Colorado at Boulder, Boulder, CO 80309 
+!
+
+ELEMENTS
+X /1.00/
+O /1.00/
+END
+
+SPECIES
+! Here AB is the bulk, nearly constant source pool
+AB
+! O is the genome binding site, the number of copies of the genmome is assumed to be one 
+O A B A2 B2 OA2 OB2 
+END
+
+REACTIONS
+
+! ************ Reactions **********************
+! Dimerization and reverse process
+! https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.109.248107
+! http://pubs.acs.org/doi/abs/10.1021/jp045523y
+! Cell volume Vc=2.0e-15L=2.0e-18m^3 or 7.0e-16L
+2A=>A2            5.00  0.00 0.00
+2B=>B2            5.00  0.00 0.00
+A2=>2A            5.00  0.00 0.00
+B2=>2B            5.00  0.00 0.00
+
+! Binding to DNA, which is O. When A2 is bounded, will promote A's transcription 
+! and repress B's transcription, and vice versa. 
+O+A2=>OA2            5.00  0.00 0.00
+O+B2=>OB2            5.00  0.00 0.00
+OA2=>O+A2            1.00  0.00 0.00
+OB2=>O+B2            1.00  0.00 0.00
+
+! Transcription, here AB is the bulk, nearly constant source pool
+O+AB=>O+A            1.00  0.00 0.00
+O+AB=>O+B            1.00  0.00 0.00
+OA2+AB=>OA2+A            1.00  0.00 0.00
+OB2+AB=>OB2+B            1.00  0.00 0.00
+
+! Sink of proteins, termination, go back to bulk source pool
+A=>AB            0.25  0.00 0.00
+B=>AB            0.25  0.00 0.00
+END

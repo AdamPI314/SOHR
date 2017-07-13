@@ -1,0 +1,150 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+argparser	../plot_concentration_v2.py	/^    argparser = argparse.ArgumentParser()$/;"	kind:variable	line:14
+argparser	../plot_drc_v1.py	/^    argparser = argparse.ArgumentParser()$/;"	kind:variable	line:14
+argparser	../plot_int_drc_v1.py	/^    argparser = argparse.ArgumentParser()$/;"	kind:variable	line:14
+argparser	../plot_rate_v1.py	/^    argparser = argparse.ArgumentParser()$/;"	kind:variable	line:14
+args	../plot_concentration_v2.py	/^    args = argparser.parse_args()$/;"	kind:variable	line:21
+args	../plot_drc_v1.py	/^    args = argparser.parse_args()$/;"	kind:variable	line:21
+args	../plot_int_drc_v1.py	/^    args = argparser.parse_args()$/;"	kind:variable	line:21
+args	../plot_rate_v1.py	/^    args = argparser.parse_args()$/;"	kind:variable	line:21
+colors	../plot_concentration_v2.py	/^    colors = ('b', 'g', 'r', 'c', 'm', 'y', 'k')$/;"	kind:variable	line:50
+colors	../plot_drc_v1.py	/^    colors = ('b', 'g', 'r', 'c', 'm', 'y', 'k')$/;"	kind:variable	line:50
+colors	../plot_int_drc_v1.py	/^    colors = ('b', 'g', 'r', 'c', 'm', 'y', 'k')$/;"	kind:variable	line:50
+colors	../plot_rate_v1.py	/^    colors = ('b', 'g', 'r', 'c', 'm', 'y', 'k')$/;"	kind:variable	line:50
+concatenate_concentration	../concatenate_results.py	/^def concatenate_concentration(file_dir, p_iter_N=3):$/;"	kind:function	line:22
+concatenate_pressure	../concatenate_results.py	/^def concatenate_pressure(file_dir, p_iter_N=3):$/;"	kind:function	line:57
+concatenate_results.py	../concatenate_results.py	1;"	kind:file	line:1
+concatenate_temperature	../concatenate_results.py	/^def concatenate_temperature(file_dir, p_iter_N=3):$/;"	kind:function	line:45
+concatenate_time	../concatenate_results.py	/^def concatenate_time(file_dir, p_iter_N=3):$/;"	kind:function	line:7
+concentration_dlsode	../plot_concentration_v2.py	/^    concentration_dlsode = np.loadtxt(os.path.join($/;"	kind:variable	line:60
+concentration_dlsode	../plot_rate_v1.py	/^    concentration_dlsode = np.loadtxt(os.path.join($/;"	kind:variable	line:59
+concentration_srode	../plot_concentration_v2.py	/^    concentration_srode = np.loadtxt($/;"	kind:variable	line:63
+concentration_srode	../plot_rate_v1.py	/^    concentration_srode = np.loadtxt($/;"	kind:variable	line:61
+delete_non_dlsode_files	../job_drivers.py	/^def delete_non_dlsode_files(file_dir):$/;"	kind:function	line:6
+delete_srode_temp_files	../job_drivers.py	/^def delete_srode_temp_files(file_dir):$/;"	kind:function	line:28
+delimiter	../plot_concentration_v2.py	/^        delimiter=",",$/;"	kind:variable	line:65
+delimiter	../plot_drc_v1.py	/^        delimiter=",",$/;"	kind:variable	line:63
+delimiter	../plot_int_drc_v1.py	/^        delimiter=",",$/;"	kind:variable	line:63
+delimiter	../plot_rate_v1.py	/^        delimiter=",",$/;"	kind:variable	line:63
+dpi	../plot_concentration_v2.py	/^                dpi=500)$/;"	kind:variable	line:104
+dpi	../plot_drc_v1.py	/^                dpi=500)$/;"	kind:variable	line:102
+dpi	../plot_int_drc_v1.py	/^                dpi=500)$/;"	kind:variable	line:102
+dpi	../plot_rate_v1.py	/^                dpi=500)$/;"	kind:variable	line:101
+drc_dlsode	../plot_drc_v1.py	/^    drc_dlsode = np.loadtxt(os.path.join($/;"	kind:variable	line:59
+drc_srode	../plot_drc_v1.py	/^    drc_srode = np.loadtxt($/;"	kind:variable	line:61
+dtype	../plot_concentration_v2.py	/^        dtype=float)$/;"	kind:variable	line:66
+dtype	../plot_drc_v1.py	/^        dtype=float)$/;"	kind:variable	line:64
+dtype	../plot_int_drc_v1.py	/^        dtype=float)$/;"	kind:variable	line:64
+dtype	../plot_rate_v1.py	/^        dtype=float)$/;"	kind:variable	line:64
+file_dir	../main_driver.py	/^    file_dir = os.path.abspath(os.path.join(os.path.realpath(sys.argv[0]), os.pardir, os.pardir, os.pardir, os.pardir))$/;"	kind:variable	line:12
+file_dir	../plot_concentration_v2.py	/^    file_dir = os.path.abspath(os.path.join(os.path.realpath($/;"	kind:variable	line:23
+file_dir	../plot_drc_v1.py	/^    file_dir = os.path.abspath(os.path.join(os.path.realpath($/;"	kind:variable	line:23
+file_dir	../plot_int_drc_v1.py	/^    file_dir = os.path.abspath(os.path.join(os.path.realpath($/;"	kind:variable	line:23
+file_dir	../plot_rate_v1.py	/^    file_dir = os.path.abspath(os.path.join(os.path.realpath($/;"	kind:variable	line:23
+file_dir	../read_last_line.py	/^    file_dir = os.path.abspath(os.path.join(os.path.realpath(sys.argv[0]), os.pardir, os.pardir, os.pardir, os.pardir))$/;"	kind:variable	line:40
+file_dir	../read_write_configuration.py	/^    file_dir = os.path.abspath(os.path.join(os.path.realpath(sys.argv[0]), os.pardir, os.pardir, os.pardir, os.pardir))$/;"	kind:variable	line:23
+file_dir	../update_settings.py	/^    file_dir = os.path.abspath(os.path.join(os.path.realpath(sys.argv[0]), os.pardir, os.pardir, os.pardir, os.pardir))$/;"	kind:variable	line:64
+fn1	../read_last_line.py	/^    fn1 = os.path.join(file_dir, 'output', 'concentration_srode_fraction_3.csv')$/;"	kind:variable	line:41
+fn1	../read_write_configuration.py	/^    fn1 = os.path.join(file_dir, "input", "setting.json")$/;"	kind:variable	line:26
+fn2	../read_last_line.py	/^    fn2 = os.path.join(file_dir, 'output', 'temperature_srode_fraction_3.csv')$/;"	kind:variable	line:49
+fn2	../read_write_configuration.py	/^    fn2 = os.path.join(file_dir, "input", "test.json")$/;"	kind:variable	line:38
+fn3	../read_last_line.py	/^    fn3 = os.path.join(file_dir, 'output', 'pressure_srode_fraction_3.csv')$/;"	kind:variable	line:53
+get_last_row	../read_last_line.py	/^def get_last_row(csv_filename):$/;"	kind:function	line:7
+inputData	../plot_concentration_v2.py	/^            inputData = json.load(settingFileHandler)$/;"	kind:variable	line:31
+inputData	../plot_drc_v1.py	/^            inputData = json.load(settingFileHandler)$/;"	kind:variable	line:31
+inputData	../plot_int_drc_v1.py	/^            inputData = json.load(settingFileHandler)$/;"	kind:variable	line:31
+inputData	../plot_rate_v1.py	/^            inputData = json.load(settingFileHandler)$/;"	kind:variable	line:31
+int_drc_dlsode	../plot_int_drc_v1.py	/^    int_drc_dlsode = np.loadtxt(os.path.join($/;"	kind:variable	line:59
+int_drc_srode	../plot_int_drc_v1.py	/^    int_drc_srode = np.loadtxt($/;"	kind:variable	line:61
+iteration	../plot_concentration_v2.py	/^        iteration = args.i$/;"	kind:variable	line:34
+iteration	../plot_concentration_v2.py	/^        iteration = inputData["SOHR_init"]["iterationNumber"]$/;"	kind:variable	line:32
+iteration	../plot_concentration_v2.py	/^    iteration = 0$/;"	kind:variable	line:28
+iteration	../plot_drc_v1.py	/^        iteration = args.i$/;"	kind:variable	line:34
+iteration	../plot_drc_v1.py	/^        iteration = inputData["SOHR_init"]["iterationNumber"]$/;"	kind:variable	line:32
+iteration	../plot_drc_v1.py	/^    iteration = 0$/;"	kind:variable	line:28
+iteration	../plot_int_drc_v1.py	/^        iteration = args.i$/;"	kind:variable	line:34
+iteration	../plot_int_drc_v1.py	/^        iteration = inputData["SOHR_init"]["iterationNumber"]$/;"	kind:variable	line:32
+iteration	../plot_int_drc_v1.py	/^    iteration = 0$/;"	kind:variable	line:28
+iteration	../plot_rate_v1.py	/^        iteration = args.i$/;"	kind:variable	line:34
+iteration	../plot_rate_v1.py	/^        iteration = inputData["SOHR_init"]["iterationNumber"]$/;"	kind:variable	line:32
+iteration	../plot_rate_v1.py	/^    iteration = 0$/;"	kind:variable	line:28
+job_drivers.py	../job_drivers.py	1;"	kind:file	line:1
+label	../plot_concentration_v2.py	/^            label='dlsode ' + labels[args.s])$/;"	kind:variable	line:78
+label	../plot_concentration_v2.py	/^            label='srode ' + labels[args.s])$/;"	kind:variable	line:81
+label	../plot_drc_v1.py	/^            label='dlsode ' + labels[args.s])$/;"	kind:variable	line:76
+label	../plot_drc_v1.py	/^            label='srode ' + labels[args.s])$/;"	kind:variable	line:79
+label	../plot_int_drc_v1.py	/^            label='dlsode ' + labels[args.s])$/;"	kind:variable	line:76
+label	../plot_int_drc_v1.py	/^            label='srode ' + labels[args.s])$/;"	kind:variable	line:79
+label	../plot_rate_v1.py	/^            label='dlsode ' + labels[args.r])$/;"	kind:variable	line:75
+label	../plot_rate_v1.py	/^            label='srode ' + labels[args.r])$/;"	kind:variable	line:78
+labels	../plot_concentration_v2.py	/^    labels = ['$O_2$', '$H_2O$', '$H_2$',$/;"	kind:variable	line:67
+labels	../plot_drc_v1.py	/^    labels = ['$O_2$', '$H_2O$', '$H_2$',$/;"	kind:variable	line:65
+labels	../plot_int_drc_v1.py	/^    labels = ['$O_2$', '$H_2O$', '$H_2$',$/;"	kind:variable	line:65
+labels	../plot_rate_v1.py	/^    labels = ["R"+str(i) for i in range(np.shape(concentration_dlsode)[1])]$/;"	kind:variable	line:66
+linestyles	../plot_concentration_v2.py	/^    linestyles = Line2D.lineStyles.keys()$/;"	kind:variable	line:51
+linestyles	../plot_drc_v1.py	/^    linestyles = Line2D.lineStyles.keys()$/;"	kind:variable	line:51
+linestyles	../plot_int_drc_v1.py	/^    linestyles = Line2D.lineStyles.keys()$/;"	kind:variable	line:51
+linestyles	../plot_rate_v1.py	/^    linestyles = Line2D.lineStyles.keys()$/;"	kind:variable	line:51
+linewidth	../plot_concentration_v2.py	/^            linewidth=2.5,$/;"	kind:variable	line:80
+linewidth	../plot_drc_v1.py	/^            linewidth=2.5,$/;"	kind:variable	line:78
+linewidth	../plot_int_drc_v1.py	/^            linewidth=2.5,$/;"	kind:variable	line:78
+linewidth	../plot_rate_v1.py	/^            linewidth=2.5,$/;"	kind:variable	line:77
+lr1	../read_last_line.py	/^    lr1 = get_last_row(fn1)$/;"	kind:variable	line:43
+lr1_d	../read_last_line.py	/^    lr1_d = dict()$/;"	kind:variable	line:44
+lr2	../read_last_line.py	/^    lr2 = get_last_row(fn2)[0]$/;"	kind:variable	line:50
+lr3	../read_last_line.py	/^    lr3 = get_last_row(fn3)[0]$/;"	kind:variable	line:54
+main_driver.py	../main_driver.py	1;"	kind:file	line:1
+make_a_figure	../job_drivers.py	/^def make_a_figure(file_dir, ind):$/;"	kind:function	line:79
+make_figures	../job_drivers.py	/^def make_figures(file_dir):$/;"	kind:function	line:105
+markers	../plot_concentration_v2.py	/^    markers = []$/;"	kind:variable	line:36
+markers	../plot_drc_v1.py	/^    markers = []$/;"	kind:variable	line:36
+markers	../plot_int_drc_v1.py	/^    markers = []$/;"	kind:variable	line:36
+markers	../plot_rate_v1.py	/^    markers = []$/;"	kind:variable	line:36
+path_ode_run	../job_drivers.py	/^def path_ode_run(file_dir):$/;"	kind:function	line:50
+plot_LSODE_SOHR_iterations.py	../plot_LSODE_SOHR_iterations.py	1;"	kind:file	line:1
+plot_SOHR_LSODE_iteration	../plot_LSODE_SOHR_iterations.py	/^def plot_SOHR_LSODE_iteration(speIndex):$/;"	kind:function	line:14
+plot_concentration_v2.py	../plot_concentration_v2.py	1;"	kind:file	line:1
+plot_drc_v1.py	../plot_drc_v1.py	1;"	kind:file	line:1
+plot_int_drc_v1.py	../plot_int_drc_v1.py	1;"	kind:file	line:1
+plot_rate_v1.py	../plot_rate_v1.py	1;"	kind:file	line:1
+read_concentration	../read_last_line.py	/^def read_concentration(fn1):$/;"	kind:function	line:21
+read_configuration	../read_write_configuration.py	/^def read_configuration(fn):$/;"	kind:function	line:6
+read_iteration_Number	../read_write_configuration.py	/^def read_iteration_Number(fn1):$/;"	kind:function	line:16
+read_last_line.py	../read_last_line.py	1;"	kind:file	line:1
+read_pressure	../read_last_line.py	/^def read_pressure(fn3):$/;"	kind:function	line:34
+read_temperature	../read_last_line.py	/^def read_temperature(fn2):$/;"	kind:function	line:29
+read_time	../read_last_line.py	/^def read_time(fn0):$/;"	kind:function	line:16
+read_write_configuration.py	../read_write_configuration.py	1;"	kind:file	line:1
+run_dlsode	../job_drivers.py	/^def run_dlsode(file_dir):$/;"	kind:function	line:72
+s_str	../plot_concentration_v2.py	/^    s_str = ""$/;"	kind:variable	line:71
+s_str	../plot_drc_v1.py	/^    s_str = ""$/;"	kind:variable	line:69
+s_str	../plot_int_drc_v1.py	/^    s_str = ""$/;"	kind:variable	line:69
+s_str	../plot_rate_v1.py	/^    s_str = ""$/;"	kind:variable	line:68
+send_email	../job_drivers.py	/^def send_email(file_dir):$/;"	kind:function	line:110
+setting_d	../read_write_configuration.py	/^    setting_d = read_configuration(fn1)$/;"	kind:variable	line:28
+spe_names	../plot_concentration_v2.py	/^    spe_names = ['O2', 'H2O', 'H2', 'H2O2', 'H', 'OH', 'HO2', 'O']$/;"	kind:variable	line:69
+spe_names	../plot_drc_v1.py	/^    spe_names = ['O2', 'H2O', 'H2', 'H2O2', 'H', 'OH', 'HO2', 'O']$/;"	kind:variable	line:67
+spe_names	../plot_int_drc_v1.py	/^    spe_names = ['O2', 'H2O', 'H2', 'H2O2', 'H', 'OH', 'HO2', 'O']$/;"	kind:variable	line:67
+styles	../plot_concentration_v2.py	/^    styles = markers + [$/;"	kind:variable	line:43
+styles	../plot_drc_v1.py	/^    styles = markers + [$/;"	kind:variable	line:43
+styles	../plot_int_drc_v1.py	/^    styles = markers + [$/;"	kind:variable	line:43
+styles	../plot_rate_v1.py	/^    styles = markers + [$/;"	kind:variable	line:43
+time_dlsode	../plot_concentration_v2.py	/^    time_dlsode = np.loadtxt(os.path.join($/;"	kind:variable	line:54
+time_dlsode	../plot_drc_v1.py	/^    time_dlsode = np.loadtxt(os.path.join($/;"	kind:variable	line:54
+time_dlsode	../plot_int_drc_v1.py	/^    time_dlsode = np.loadtxt(os.path.join($/;"	kind:variable	line:54
+time_dlsode	../plot_rate_v1.py	/^    time_dlsode = np.loadtxt(os.path.join($/;"	kind:variable	line:54
+time_e	../main_driver.py	/^    time_e = time.time()$/;"	kind:variable	line:48
+time_i	../main_driver.py	/^    time_i = time.time()$/;"	kind:variable	line:10
+time_srode	../plot_concentration_v2.py	/^    time_srode = np.loadtxt(os.path.join($/;"	kind:variable	line:57
+time_srode	../plot_drc_v1.py	/^    time_srode = np.loadtxt(os.path.join($/;"	kind:variable	line:57
+time_srode	../plot_int_drc_v1.py	/^    time_srode = np.loadtxt(os.path.join($/;"	kind:variable	line:57
+time_srode	../plot_rate_v1.py	/^    time_srode = np.loadtxt(os.path.join($/;"	kind:variable	line:57
+update_dlsode_settings	../update_settings.py	/^def update_dlsode_settings(file_dir, time=None):$/;"	kind:function	line:7
+update_settings	../update_settings.py	/^def update_settings(file_dir, t_iter_N=None, dt=None):$/;"	kind:function	line:27
+update_settings.py	../update_settings.py	1;"	kind:file	line:1
+write_configuration	../read_write_configuration.py	/^def write_configuration(sd, fn):$/;"	kind:function	line:12

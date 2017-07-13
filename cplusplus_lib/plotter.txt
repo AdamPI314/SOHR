@@ -1,0 +1,1 @@
+/opt/anaconda/bin/python ./tools/data_analysis/genetic_toggle_switch/plot_ssa_delta.py >>log.txt &

@@ -1,0 +1,85 @@
+{
+  "dir": {
+    "include-path": "."
+  },
+  "system": {
+    "condition": "other",
+    "initializer": "guess"
+  },
+  "job": {
+    "job_type": "solve_ODEs_for_concentration_using_LSODE"
+  },
+  "propagator": {
+    "type": "srode",
+    "dlsode_type": "time_propagator_s_ct_np_cc_s2m_pgt",
+    "convert_molar_concentration_to_mole_fraction": "no",
+    "normalize_initial_concentration": "no"
+  },
+  "time": {
+    "min_time": 0,
+    "max_time": 1e3,
+    "critical_time": 1e3,
+    "sys_min_time": 1e-10,
+    "path_beg_time": 0,
+    "path_end_time": 1e3 
+  },
+  "chem_init": {
+    "pressure_atm": 1,
+    "init_temperature": 1,
+    "species_index_concentration": {
+      "0": 30.0,
+	  "2": 100,
+	  "7": 5000
+    }
+  },
+  "lsode_init": {
+    "dt": 1e-5,
+    "atol": 1e-8,
+    "rtol": 1e-8,
+    "mf": 22,
+    "jt": 2,
+    "itask": 1,
+    "iopt": 0,
+    "itol": 1,
+    "istate": 1,
+    "deltaN1": 100000,
+    "deltaN2": 1
+  },
+  "T": {
+    "critical_temperature": 888,
+    "end_temperature": 905,
+    "target_temperature": 900
+  },
+  "speciation": {
+    "number_of_Ks": 3
+  },
+  "pathway": {
+    "init_spe": 0,
+    "atom_followed": "X",
+    "super_atom": "Y",
+    "tau": 1.0,
+    "topN": [ 5, 5 ],
+    "pathwayEndWith": "S1",
+    "trajectoryNumber": 1000,
+    "trajectoryNumberVector": [ 1000, 1000, 1000, 1000, 1000 ],
+    "dead_species": [ ],
+    "trapped_species": { },
+    "fast_reaction": { },
+    "non_zero_rate_reaction": [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13],
+    "max_path_length": [ 5, 5, 5, 5, 5 ]
+  },
+  "search_algorithm": {
+    "max_level": 1,
+    "top_k": 25
+  },
+  "SOHR_init": {
+	"single_source_species": -1,
+    "timeN1": 10,
+    "timeN2": 1,
+    "deltaConcentration": 1.0e-50,
+    "massConservationFactor": 1.0,
+    "iterationNumber": 3,
+    "timeIterationNumber": 0,
+    "P2C": [ 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0 ]
+  }
+}

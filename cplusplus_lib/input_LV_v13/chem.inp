@@ -1,0 +1,24 @@
+! Authors: Shirong Bai
+! Address: Dept. of Chemistry and BioChemistry, University of Colorado at Boulder, Boulder, CO 80309 
+!
+! This mechanism can be found in the website below:
+! http://www.idea.wsu.edu/OscilChem/
+
+
+ELEMENTS
+X /1.00/
+END
+
+SPECIES
+A X Y B
+END
+
+REACTIONS
+
+! ************ Reactions **********************
+
+A+X=>2X             0.50  0.00 0.00
+X+Y=>2Y             1.30  0.00 0.00
+Y=>B             0.67  0.00 0.00
+
+END

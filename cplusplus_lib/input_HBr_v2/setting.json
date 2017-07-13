@@ -1,0 +1,56 @@
+{
+    "dir": {
+        "include-path": "."
+    },
+	"propagator":{
+		"type": "lsode"
+	},
+    "time": {
+        "min_time": 0,
+        "max_time": 1.0,
+        "critical_time": 1.0,
+        "sys_min_time": 1e-10,
+        "path_beg_time": 0,
+        "path_end_time": 1.0 
+    },
+    "chem_init": {
+        "pressure_atm": 5.54651,
+        "init_temperature": 1000,
+        "species_index_concentration": {
+            "1": 1.0,
+            "3": 1.0 
+        }
+    },
+    "lsode_init": {
+        "dt": 1e-6,
+        "atol": 1e-10,
+        "rtol": 1e-10,
+        "mf": 22,
+        "jt": 2,
+        "itask": 1,
+        "iopt": 0,
+        "itol": 1,
+        "istate": 1,
+        "deltaN1": 10000,
+        "deltaN2": 10000
+    },
+    "T": {
+        "critical_temperature": 888,
+        "end_temperature": 905,
+        "target_temperature": 900 
+    },
+    "pathway": {
+        "init_spe": 0,
+        "atom_followed": "X",
+        "dead_species": [3],
+        "trapped_species": {},
+        "fast_reaction": {}
+    },
+    "srode_init": {
+        "timeN1": 1000,
+        "timeN2": 3,
+        "number2Concentration": 0.003,
+        "iterationN1": 1000,
+        "iterationN2": 1 
+    }
+}

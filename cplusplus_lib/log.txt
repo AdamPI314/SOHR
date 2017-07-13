@@ -1,0 +1,1 @@
+/usr/bin/mpirun -np 3 ./RxnNetwork_PI -c /home/invictus/Documents/summer_2017_boulder/SRC_EXE_DIR/RxnNetwork_TDDM_alpha_29.5.5/cplusplus_lib/input/cmd.cfg

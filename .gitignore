@@ -12,6 +12,47 @@
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 
+
+# User-specific directories
+cplusplus_lib/output/
+fortran_lib/Debug
+fortran_lib/Release
+fortran_lib/fortran_lib.u2d
+
+# Prerequisites
+*.d
+
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Fortran module files
+*.mod
+*.smod
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
+
+
 # Build results
 [Dd]ebug/
 [Dd]ebugPublic/

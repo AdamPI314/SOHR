@@ -1,0 +1,7 @@
+-x
+c++
+-I/usr/lib/openmpi/include
+-I/usr/lib/openmpi/include/openmpi
+-I/usr/local/include
+-Wall
+-std=c++11
