@@ -46,7 +46,7 @@
     "deltaN2": 1
   },
   "ssa_init": {
-    "dt": 1e3,
+    "dt": 1e2,
     "deltaN1": 1,
     "deltaN2": 1
   },

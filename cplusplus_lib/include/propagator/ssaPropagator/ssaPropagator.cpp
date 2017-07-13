@@ -255,6 +255,14 @@ namespace propagator_sr {
 		// Read 'Temperature(K)' and 'Pressure(atm)', and MOLAR FRACTION for species.
 		double Temp, Pressure;
 		read_configuration(Temp, Pressure, nkk, c_t);
+
+		// linear combination prefactors
+		std::vector<double> pre_factor = { 0, 0, 1, -1, 2, -2, 2, -2 };
+		double initial_state = 0.0, final_state = 0.0;
+		for (int i = 0; i < nkk; ++i)
+			initial_state += pre_factor[i] * c_t[i];
+		final_state = initial_state;
+
 		//time step
 		double dt = this->pgt_pt.get<double>("ssa_init.dt");
 		std::size_t deltaN1 = this->pgt_pt.get<std::size_t>("ssa_init.deltaN1");
@@ -332,7 +340,13 @@ namespace propagator_sr {
 			ti += tau;
 			//in case print_Count is too big
 			print_count = (print_count + 1) % INT_MAX;
-		} while ((end_time - time_data_pgt.back()) > 0.001*dt);
+
+			// update final state
+			final_state = 0.0;
+			for (int i = 0; i < nkk; ++i)
+				final_state += pre_factor[i] * c_t[i];
+
+		} while ((end_time - time_data_pgt.back()) > 0.001*dt && final_state >= -1 * initial_state*0.6);
 
 		delete[] c_t;
 	}
