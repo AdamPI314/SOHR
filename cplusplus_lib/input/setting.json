@@ -11,7 +11,7 @@
   },
   "propagator": {
     "type": "ssa",
-    "sub_type": "time_propagator_s_ct_np_s2m_pgt",
+    "sub_type": "time_propagator_s_ct_np_s2m_find_one_transition_pgt",
     "convert_molar_concentration_to_mole_fraction": "no",
     "normalize_initial_concentration": "no"
   },
