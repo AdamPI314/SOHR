@@ -388,6 +388,9 @@ namespace propagator_sr {
 
 		//time, temperature, pressure, concentration, reaction rate and drc
 		this->time_data_pgt.assign(time_data_list_pgt.begin(), time_data_list_pgt.end());
+		for (auto &x : this->time_data_pgt)
+			x -= time_data_list_pgt.front();
+
 		this->temperature_data_pgt.assign(temperature_data_list_pgt.begin(), temperature_data_list_pgt.end());
 		this->pressure_data_pgt.assign(pressure_data_list_pgt.begin(), pressure_data_list_pgt.end());
 		for (int i = 0; i < nkk; ++i)
