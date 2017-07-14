@@ -384,7 +384,7 @@ namespace propagator_sr {
 			for (int i = 0; i < nkk; ++i)
 				final_state += pre_factor[i] * c_t[i];
 
-		} while ((end_time - time_data_list_pgt.back()) > 0.001*dt && final_state >= -1 * initial_state*0.8);
+		} while ((end_time - time_data_list_pgt.back()) > 0.001*dt && final_state > -1 * initial_state*1.0);
 
 		//time, temperature, pressure, concentration, reaction rate and drc
 		this->time_data_pgt.assign(time_data_list_pgt.begin(), time_data_list_pgt.end());
