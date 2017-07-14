@@ -10,7 +10,7 @@ if __name__ == '__main__':
     file_dir = os.path.abspath(os.path.join(os.path.realpath(sys.argv[0]), os.pardir, os.pardir, os.pardir, os.pardir))
 
     counter = 0 
-    totalN = 1 
+    totalN = 2 
 
     while counter < totalN:
         # run jobs
