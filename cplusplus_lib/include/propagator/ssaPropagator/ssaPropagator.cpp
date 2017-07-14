@@ -316,7 +316,7 @@ namespace propagator_sr {
 					}
 				}
 
-				for (size_t i = 0; i < num_reaction; i++)
+				for (int i = 0; i < num_reaction; i++)
 				{
 					reaction_rate_data_list_pgt[i].pop_front();
 					reaction_rate_data_list_pgt[i].push_back(reaction_rate_v_tmp[i]);
@@ -353,7 +353,7 @@ namespace propagator_sr {
 					}
 				}
 
-				for (size_t i = 0; i < num_reaction; i++)
+				for (int i = 0; i < num_reaction; i++)
 				{
 					reaction_rate_data_list_pgt[i].pop_front();
 					reaction_rate_data_list_pgt[i].push_back(reaction_rate_v_tmp[i]);
