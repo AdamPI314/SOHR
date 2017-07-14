@@ -275,6 +275,15 @@ namespace propagator_sr {
 		reaction_rate_data_pgt.resize(num_reaction); std::vector<double> reaction_rate_v_tmp(num_reaction, 0.0);
 		spe_drc_data_pgt.resize(nkk);
 
+		int fixed_size = this->pgt_pt.get<int>("ssa_init.fixed_size");
+		std::list<double> time_data_list_pgt(fixed_size, 0.0);
+		std::list<double> temperature_data_list_pgt(fixed_size, 0.0);
+		std::list<double> pressure_data_list_pgt(fixed_size, 0.0);
+
+		std::vector<std::list<double> > concentration_data_list_pgt(nkk, std::list<double>(fixed_size, 0.0));
+		std::vector<std::list<double> > reaction_rate_data_list_pgt(num_reaction, std::list<double>(fixed_size, 0.0));
+		std::vector<std::list<double> > spe_drc_data_list_pgt(nkk, std::list<double>(fixed_size, 0.0));
+
 		//initialization of srkin
 		this->set_temperature(Temp);
 		this->set_species_conc_v(c_t);
@@ -290,47 +299,76 @@ namespace propagator_sr {
 			//[ print out
 			if (((ti >= critical_time) && (print_count%deltaN2 == 0)) || ((end_time - ti) < 0.001*dt)) {
 				//use the default dt to print out stuff
-				time_data_pgt.push_back(ti);
+				time_data_list_pgt.pop_front();
+				time_data_list_pgt.push_back(ti);
 
 				//destruction rate const
 				for (int i = 0; i < nkk; ++i) {
 					if (c_t[i] == 0)
-						spe_drc_data_pgt[i].push_back(0.0);
+					{
+						spe_drc_data_list_pgt[i].pop_front();
+						spe_drc_data_list_pgt[i].push_back(0.0);
+					}
 					else
-						spe_drc_data_pgt[i].push_back(this->cal_spe_destruction_rate(i) / c_t[i]);
+					{
+						spe_drc_data_list_pgt[i].pop_front();
+						spe_drc_data_list_pgt[i].push_back(this->cal_spe_destruction_rate(i) / c_t[i]);
+					}
 				}
 
 				for (size_t i = 0; i < num_reaction; i++)
-					reaction_rate_data_pgt[i].push_back(reaction_rate_v_tmp[i]);
+				{
+					reaction_rate_data_list_pgt[i].pop_front();
+					reaction_rate_data_list_pgt[i].push_back(reaction_rate_v_tmp[i]);
+				}
 
 				//print concentration and temperature
 				for (int i = 0; i < nkk; ++i)
-					concentration_data_pgt[i].push_back(c_t[i]);
+				{
+					concentration_data_list_pgt[i].pop_front();
+					concentration_data_list_pgt[i].push_back(c_t[i]);
+				}
 
-				temperature_data_pgt.push_back(Temp);
-				pressure_data_pgt.push_back(Pressure);
+				temperature_data_list_pgt.pop_front();
+				temperature_data_list_pgt.push_back(Temp);
+				pressure_data_list_pgt.pop_front();
+				pressure_data_list_pgt.push_back(Pressure);
 			}
 			else if ((print_count%deltaN1 == 0) || ((end_time - ti) < 0.001*dt)) {
 				//print out every * dt
-				time_data_pgt.push_back(ti);
+				time_data_list_pgt.pop_front();
+				time_data_list_pgt.push_back(ti);
 
 				//destruction rate const
 				for (int i = 0; i < nkk; ++i) {
 					if (c_t[i] == 0)
-						spe_drc_data_pgt[i].push_back(0.0);
+					{
+						spe_drc_data_list_pgt[i].pop_front();
+						spe_drc_data_list_pgt[i].push_back(0.0);
+					}
 					else
-						spe_drc_data_pgt[i].push_back(this->cal_spe_destruction_rate(i) / c_t[i]);
+					{
+						spe_drc_data_list_pgt[i].pop_front();
+						spe_drc_data_list_pgt[i].push_back(this->cal_spe_destruction_rate(i) / c_t[i]);
+					}
 				}
 
 				for (size_t i = 0; i < num_reaction; i++)
-					reaction_rate_data_pgt[i].push_back(reaction_rate_v_tmp[i]);
+				{
+					reaction_rate_data_list_pgt[i].pop_front();
+					reaction_rate_data_list_pgt[i].push_back(reaction_rate_v_tmp[i]);
+				}
 
 				//print concentration and temperature
-				for (int i = 0; i < nkk; ++i)
-					concentration_data_pgt[i].push_back(c_t[i]);
+				for (int i = 0; i < nkk; ++i) {
+					concentration_data_list_pgt[i].pop_front();
+					concentration_data_list_pgt[i].push_back(c_t[i]);
+				}
 
-				temperature_data_pgt.push_back(Temp);
-				pressure_data_pgt.push_back(Pressure);
+				temperature_data_list_pgt.pop_front();
+				temperature_data_list_pgt.push_back(Temp);
+				pressure_data_list_pgt.pop_front();
+				pressure_data_list_pgt.push_back(Pressure);
 			}
 			//] print out
 
@@ -346,7 +384,18 @@ namespace propagator_sr {
 			for (int i = 0; i < nkk; ++i)
 				final_state += pre_factor[i] * c_t[i];
 
-		} while ((end_time - time_data_pgt.back()) > 0.001*dt && final_state >= -1 * initial_state*0.6);
+		} while ((end_time - time_data_list_pgt.back()) > 0.001*dt && final_state >= -1 * initial_state*0.6);
+
+		//time, temperature, pressure, concentration, reaction rate and drc
+		this->time_data_pgt.assign(time_data_list_pgt.begin(), time_data_list_pgt.end());
+		this->temperature_data_pgt.assign(temperature_data_list_pgt.begin(), temperature_data_list_pgt.end());
+		this->pressure_data_pgt.assign(pressure_data_list_pgt.begin(), pressure_data_list_pgt.end());
+		for (int i = 0; i < nkk; ++i)
+			this->concentration_data_pgt[i].assign(concentration_data_list_pgt[i].begin(), concentration_data_list_pgt[i].end());
+		for (int i = 0; i < num_reaction; ++i)
+			this->reaction_rate_data_pgt[i].assign(reaction_rate_data_list_pgt[i].begin(), reaction_rate_data_list_pgt[i].end());
+		for (int i = 0; i < nkk; ++i)
+			this->spe_drc_data_pgt[i].assign(spe_drc_data_list_pgt[i].begin(), spe_drc_data_list_pgt[i].end());
 
 		delete[] c_t;
 	}
