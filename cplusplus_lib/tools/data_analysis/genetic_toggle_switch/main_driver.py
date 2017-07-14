@@ -20,6 +20,9 @@ if __name__ == '__main__':
             print("RuntimeError")
             exit()
 
+        # make a figure
+        job_drivers.make_a_figure(file_dir, counter)
+
         # organize files. concatenate into one file
         cr.concatenate_time(file_dir, counter)
         cr.concatenate_concentration(file_dir, counter)

@@ -10,7 +10,7 @@ from matplotlib.lines import Line2D
 import json
 from matplotlib import ticker
 
-if __name__ == '__main__':
+def plot_ssa(file_dir, counter):
     file_dir = os.path.abspath(os.path.join(os.path.realpath(sys.argv[0]), os.pardir, os.pardir, os.pardir, os.pardir))
     print(file_dir)
 
@@ -82,6 +82,6 @@ if __name__ == '__main__':
 
     fig.tight_layout()
 
-    fig.savefig(os.path.join(file_dir, "output", "ssa_delta.jpg"), dpi=500)
+    fig.savefig(os.path.join(file_dir, "output", "ssa_delta" + str(counter+1) + ".jpg"), dpi=500)
     plt.close()
     print("Job Finished.")

@@ -1,5 +1,6 @@
 import subprocess
 import os
+from plot_ssa_delta import plot_ssa
 
 
 def delete_temp_files(file_dir):
@@ -45,6 +46,9 @@ def path_make_run(file_dir):
     outFile.close()
     errorFile.close()
 
+def make_a_figure(file_dir, counter):
+    os.chdir(file_dir)
+    plot_ssa(file_dir, counter)
 
 def send_email(file_dir):
     os.chdir(file_dir)
