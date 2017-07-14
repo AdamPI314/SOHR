@@ -227,7 +227,7 @@ namespace propagator_sr {
 		spe_drc_data_pgt.clear();
 
 		//number of reaction in reaction network space
-		std::size_t num_reaction = this->reaction_v_sk.size();
+		int num_reaction = this->reaction_v_sk.size();
 
 		//set new rate constant
 		int I_t = 1;	double R_A = 0.0;
