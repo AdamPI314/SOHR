@@ -252,21 +252,21 @@ namespace propagator_sr {
 	void superPropagator::w2f_pgt(std::string tag)
 	{
 		// time
-		std::ofstream fout((this->cwd_pgt + std::string("/output/time_dlsode_") + tag + std::string(".csv")).c_str());
+		std::ofstream fout((this->cwd_pgt + std::string("/output/time_") + tag + std::string(".csv")).c_str());
 		for (size_t i = 0; i < time_data_pgt.size(); ++i) {
 			fout << std::setprecision(std::numeric_limits<double>::max_digits10 + 1) << time_data_pgt[i] << std::endl;
 		}
 		fout.clear(); fout.close();
 
 		// temperature
-		fout.open((this->cwd_pgt + std::string("/output/temperature_dlsode_") + tag + std::string(".csv")).c_str());
+		fout.open((this->cwd_pgt + std::string("/output/temperature_") + tag + std::string(".csv")).c_str());
 		for (size_t i = 0; i < temperature_data_pgt.size(); ++i) {
 			fout << std::setprecision(std::numeric_limits<double>::max_digits10 + 1) << temperature_data_pgt[i] << std::endl;
 		}
 		fout.clear(); fout.close();
 
 		// pressure
-		fout.open((this->cwd_pgt + std::string("/output/pressure_dlsode_") + tag + std::string(".csv")).c_str());
+		fout.open((this->cwd_pgt + std::string("/output/pressure_") + tag + std::string(".csv")).c_str());
 		for (size_t i = 0; i < pressure_data_pgt.size(); ++i) {
 			//fout<<pressure_data_pgt[i]/1013250<<"\t"<<pressure_data_pgt[i]<<std::endl;
 			fout << std::setprecision(std::numeric_limits<double>::max_digits10 + 1) << pressure_data_pgt[i] / 1013250 << "\t" << pressure_data_pgt[i] / 1000000 << "\t" << pressure_data_pgt[i] << std::endl;
@@ -274,7 +274,7 @@ namespace propagator_sr {
 		fout.clear(); fout.close();
 
 		// concentration, 8 species
-		fout.open((this->cwd_pgt + std::string("/output/concentration_dlsode_") + tag + std::string(".csv")).c_str());
+		fout.open((this->cwd_pgt + std::string("/output/concentration_") + tag + std::string(".csv")).c_str());
 		for (size_t i = 0; i < concentration_data_pgt[0].size(); ++i) {
 			for (size_t j = 0; j < concentration_data_pgt.size(); ++j) {
 				fout << std::setprecision(std::numeric_limits<double>::max_digits10 + 1) << concentration_data_pgt[j][i];
@@ -286,7 +286,7 @@ namespace propagator_sr {
 		fout.clear(); fout.close();
 
 		//// int_drc, cumulative destructive rate constant
-		//fout.open((this->cwd_pgt + std::string("/output/int_drc_dlsode_") + tag + std::string(".csv")).c_str());
+		//fout.open((this->cwd_pgt + std::string("/output/int_drc_") + tag + std::string(".csv")).c_str());
 		//for (size_t i = 0; i < spe_drc_int_data_pgt[0].size(); ++i) {
 			//for (size_t j = 0; j < spe_drc_int_data_pgt.size(); ++j) {
 				//fout << std::setprecision(std::numeric_limits<double>::max_digits10+1) << spe_drc_int_data_pgt[j][i];
@@ -298,7 +298,7 @@ namespace propagator_sr {
 		//fout.clear(); fout.close();
 
 		// destruction rate constant,pseudo first order destructive rate constant
-		fout.open((this->cwd_pgt + std::string("/output/drc_dlsode_") + tag + std::string(".csv")).c_str());
+		fout.open((this->cwd_pgt + std::string("/output/drc_") + tag + std::string(".csv")).c_str());
 		for (size_t i = 0; i < spe_drc_data_pgt[0].size(); ++i) {
 			for (size_t j = 0; j < spe_drc_data_pgt.size(); ++j) {
 				fout << std::setprecision(std::numeric_limits<double>::max_digits10+1) << spe_drc_data_pgt[j][i];
@@ -310,7 +310,7 @@ namespace propagator_sr {
 		fout.clear(); fout.close();
 
 		////species production rate
-		//fout.open((this->cwd_pgt + std::string("/output/spe_production_rate_dlsode_") + tag + std::string(".csv")).c_str());
+		//fout.open((this->cwd_pgt + std::string("/output/spe_production_rate_") + tag + std::string(".csv")).c_str());
 		//std::cout << spe_production_rate_data_pgt.size() << std::endl;
 		//std::cout << spe_production_rate_data_pgt[0].size() << std::endl;
 		//for (size_t i = 0; i < spe_production_rate_data_pgt[0].size(); ++i) {
@@ -324,7 +324,7 @@ namespace propagator_sr {
 		//fout.clear(); fout.close();
 
 		// reaction rate
-		fout.open((this->cwd_pgt + std::string("/output/reaction_rate_dlsode_") + tag + std::string(".csv")).c_str());
+		fout.open((this->cwd_pgt + std::string("/output/reaction_rate_") + tag + std::string(".csv")).c_str());
 		for (size_t i = 0; i < reaction_rate_data_pgt[0].size(); ++i) {
 			for (size_t j = 0; j < reaction_rate_data_pgt.size(); ++j) {
 				fout << std::setprecision(std::numeric_limits<double>::max_digits10+1) << reaction_rate_data_pgt[j][i];
@@ -335,105 +335,7 @@ namespace propagator_sr {
 		}
 		fout.clear(); fout.close();
 
-		//	fout.open((this->cwd_pgt+std::string("/output/rate_const_pre_factor_dlsode_")+tag+std::string(".csv")).c_str());
-		//	int I_t=1;	double R_A=0.0;
-		//	//cout<<"\nPre-exponential Constant:"<<endl;
-		//	for(;static_cast<int>(I_t)<=chemkin_cpp::chemkin::nii(); ++I_t){
-		//		chemkin::ckraex(&I_t, &R_A);
-		//		//cout<<I_t<<","<<R_A<<"\n";
-		//		fout<<I_t<<","<<R_A<<"\n";
-		//	}
-		//	fout.clear(); fout.close();
-	}
-
-	void propagator_sr::superPropagator::w2f_sohr(std::string ind_s)
-
-	{
-		// time
-		std::ofstream fout((this->cwd_pgt + std::string("/output/time_SOHR_") + ind_s + std::string(".csv")).c_str());
-		for (size_t i = 0; i < time_data_pgt.size(); ++i) {
-			fout << std::setprecision(std::numeric_limits<double>::max_digits10 + 1) << time_data_pgt[i] << std::endl;
-		}
-		fout.clear(); fout.close();
-
-		// temperature
-		fout.open((this->cwd_pgt + std::string("/output/temperature_SOHR_") + ind_s + std::string(".csv")).c_str());
-		for (size_t i = 0; i < temperature_data_pgt.size(); ++i) {
-			fout << std::setprecision(std::numeric_limits<double>::max_digits10 + 1) << temperature_data_pgt[i] << std::endl;
-		}
-		fout.clear(); fout.close();
-
-		// pressure
-		fout.open((this->cwd_pgt + std::string("/output/pressure_SOHR_") + ind_s + std::string(".csv")).c_str());
-		for (size_t i = 0; i < pressure_data_pgt.size(); ++i) {
-			//fout<<pressure_data_pgt[i]/1013250<<"\t"<<pressure_data_pgt[i]<<std::endl;
-			fout << std::setprecision(std::numeric_limits<double>::max_digits10 + 1) << pressure_data_pgt[i] / 1013250 << "," << pressure_data_pgt[i] / 1000000 << "," << pressure_data_pgt[i] << std::endl;
-		}
-		fout.clear(); fout.close();
-
-		// concentration, 8 species
-		fout.open((this->cwd_pgt + std::string("/output/concentration_SOHR_") + ind_s + std::string(".csv")).c_str());
-		for (size_t i = 0; i < concentration_data_pgt[0].size(); ++i) {
-			for (size_t j = 0; j < concentration_data_pgt.size(); ++j) {
-				fout << std::setprecision(std::numeric_limits<double>::max_digits10 + 1) << concentration_data_pgt[j][i];
-				if (j < (concentration_data_pgt.size() - 1))
-					fout << ",";
-			}
-			fout << endl;
-		}
-		fout.clear(); fout.close();
-
-		//// int_drc, cumulative destructive rate constant
-		//fout.open((this->cwd_pgt + std::string("/output/int_drc_SOHR_") + ind_s + std::string(".csv")).c_str());
-		//for (size_t i = 0; i < spe_drc_int_data_pgt[0].size(); ++i) {
-			//for (size_t j = 0; j < spe_drc_int_data_pgt.size(); ++j) {
-				//fout << std::setprecision(std::numeric_limits<double>::max_digits10+1) << spe_drc_int_data_pgt[j][i];
-				//if (j < spe_drc_int_data_pgt.size() - 1)
-					//fout << ",";
-			//}
-			//fout << endl;
-		//}
-		//fout.clear(); fout.close();
-
-		//// destruction rate constant,pseudo first order destructive rate constant
-		//fout.open((this->cwd_pgt + std::string("/output/drc_SOHR_") + ind_s + std::string(".csv")).c_str());
-		//for (size_t i = 0; i < spe_drc_data_pgt[0].size(); ++i) {
-			//for (size_t j = 0; j < spe_drc_data_pgt.size(); ++j) {
-				//fout << std::setprecision(std::numeric_limits<double>::max_digits10+1) << spe_drc_data_pgt[j][i];
-				//if (j < spe_drc_data_pgt.size() - 1)
-					//fout << ",";
-			//}
-			//fout << endl;
-		//}
-		//fout.clear(); fout.close();
-
-		////species production rate
-		//fout.open((this->cwd_pgt + std::string("/output/spe_production_rate_SOHR_") + ind_s + std::string(".csv")).c_str());
-		//std::cout << spe_production_rate_data_pgt.size() << std::endl;
-		//std::cout << spe_production_rate_data_pgt[0].size() << std::endl;
-		//for (size_t i = 0; i < spe_production_rate_data_pgt[0].size(); ++i) {
-		//	for (size_t j = 0; j < spe_production_rate_data_pgt.size(); ++j) {
-		//		fout << std::setprecision(std::numeric_limits<double>::max_digits10+1) << spe_production_rate_data_pgt[j][i];
-		//		if (j < spe_production_rate_data_pgt.size() - 1)
-		//			fout << ",";
-		//	}
-		//	fout << endl;
-		//}
-		//fout.clear(); fout.close();
-
-		//// reaction rate
-		//fout.open((this->cwd_pgt + std::string("/output/reaction_rate_SOHR_") + ind_s + std::string(".csv")).c_str());
-		//for (size_t i = 0; i < reaction_rate_data_pgt[0].size(); ++i) {
-			//for (size_t j = 0; j < reaction_rate_data_pgt.size(); ++j) {
-				//fout << std::setprecision(std::numeric_limits<double>::max_digits10+1) << reaction_rate_data_pgt[j][i];
-				//if (j < reaction_rate_data_pgt.size() - 1)
-					//fout << ",";
-			//}
-			//fout << std::endl;
-		//}
-		//fout.clear(); fout.close();
-
-		//	fout.open((this->cwd_pgt+std::string("/output/rate_const_pre_factor_SOHR_")+ind_s+std::string(".csv")).c_str());
+		//	fout.open((this->cwd_pgt+std::string("/output/rate_const_pre_factor_")+tag+std::string(".csv")).c_str());
 		//	int I_t=1;	double R_A=0.0;
 		//	//cout<<"\nPre-exponential Constant:"<<endl;
 		//	for(;static_cast<int>(I_t)<=chemkin_cpp::chemkin::nii(); ++I_t){

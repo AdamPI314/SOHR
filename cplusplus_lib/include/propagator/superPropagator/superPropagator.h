@@ -132,8 +132,6 @@ namespace propagator_sr {
 		void print_pgt();
 		//Write some interesting stuff to file
 		void w2f_pgt(std::string tag="");
-		// Write for sohr
-		void w2f_sohr(std::string ind_s="");
 		//write species concentration to file
 		void spe_concentration_w2f_pgt(double in_time, std::string str) const;
 		//print conc at specific time into file name "conc.csv", mostly for speciation

@@ -295,7 +295,7 @@ void driver::ODE_solver_MC_trajectory_single_core(const boost::mpi::communicator
 		double end_time = 1.0 * path_end_time;
 
 		rnkODEs_obj.ODE_pathway_sim_N(init_time, end_time, pt.get<int>("pathway.trajectoryNumber"));
-		rnkODEs_obj.w2f_pgt("SOHR");
+		rnkODEs_obj.w2f_sohr();
 	}
 }
 
@@ -387,7 +387,7 @@ void driver::ODE_solver_MC_trajectory_s_ct_np_parallel(const boost::mpi::communi
 	}
 
 	if (world.rank() == 0) {
-		rnkODEs_obj.w2f_pgt("SOHR");
+		rnkODEs_obj.w2f_sohr();
 	}
 
 }
@@ -492,7 +492,7 @@ void driver::ODE_solver_MC_trajectory_cv_parallel(const boost::mpi::communicator
 
 	if (world.rank() == 0) {
 		//rnkODEs.convert_molar_concentration_to_mole_fraction();
-		rnkODEs.w2f_pgt("SOHR");
+		rnkODEs.w2f_sohr();
 	}
 }
 
@@ -586,7 +586,7 @@ void driver::ODE_solver_path_integral_parallel_s_ct_np_v1(const boost::mpi::comm
 	}
 
 	if (world.rank() == 0) {
-		rnkODEs_obj.w2f_pgt("SOHR_0");
+		rnkODEs_obj.w2f_sohr("0");
 	}
 }
 
@@ -687,7 +687,7 @@ void driver::ODE_solver_path_integral_parallel_s_ct_np_v2(const boost::mpi::comm
 	}
 
 	if (world.rank() == 0) {
-		rnkODEs_obj.w2f_pgt("SOHR_0");
+		rnkODEs_obj.w2f_sohr("0");
 	}
 }
 
@@ -804,7 +804,7 @@ void driver::ODE_solver_path_integral_parallel_s_ct_np_v3(const boost::mpi::comm
 	}
 
 	if (world.rank() == 0) {
-		rnkODEs_obj.w2f_pgt("SOHR_0");
+		rnkODEs_obj.w2f_sohr("0");
 	}
 }
 
@@ -929,7 +929,7 @@ void driver::ODE_solver_path_integral_parallel_s_ct_np_cc1_v1(const boost::mpi::
 
 		//write out every iteration
 		if (world.rank() == 0) {
-			//rnkODEs_obj.w2f_pgt("SOHR_0");
+			//rnkODEs_obj.w2f_sohr("0");
 			rnkODEs_obj.w2f_pgt(std::string("SOHR_M_") + boost::lexical_cast<std::string>(ni + 1));
 		}
 
