@@ -82,6 +82,6 @@ def plot_ssa(file_dir, counter):
 
     fig.tight_layout()
 
-    fig.savefig(os.path.join(file_dir, "output", "ssa_delta" + str(counter+1) + ".jpg"), dpi=500)
+    fig.savefig(os.path.join(file_dir, "output", "ssa_delta_" + str(counter+1) + ".jpg"), dpi=500)
     plt.close()
     print("Job Finished.")
