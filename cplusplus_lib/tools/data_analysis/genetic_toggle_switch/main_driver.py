@@ -10,15 +10,15 @@ if __name__ == '__main__':
     file_dir = os.path.abspath(os.path.join(os.path.realpath(sys.argv[0]), os.pardir, os.pardir, os.pardir, os.pardir))
 
     counter = 0 
-    totalN = 2 
+    totalN = 1 
 
     while counter < totalN:
-        # # run jobs
-        # try:
-        #     job_drivers.path_make_run(file_dir)
-        # except RuntimeError:
-        #     print("RuntimeError")
-        #     exit()
+        # run jobs
+        try:
+            job_drivers.path_make_run(file_dir)
+        except RuntimeError:
+            print("RuntimeError")
+            exit()
 
         # organize files. concatenate into one file
         cr.concatenate_time(file_dir, counter)
@@ -29,7 +29,7 @@ if __name__ == '__main__':
         counter += 1
 
     # send email
-    # job_drivers.send_email(file_dir)
+    job_drivers.send_email(file_dir)
 
     time_e = time.time()
     print("running time:\t" + str("{:.2f}".format((time_e - time_i)/3600.0)) + " hours\n")

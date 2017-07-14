@@ -36,11 +36,11 @@ if __name__ == '__main__':
     linestyles = Line2D.lineStyles.keys()
 
     # time
-    time = np.loadtxt(os.path.join(file_dir, "output", "time_dlsode_M.csv"), delimiter=",")
+    time = np.loadtxt(os.path.join(file_dir, "output", "time_ssa_number.csv"), delimiter=",")
     print(np.shape(time))
 
     # concentration
-    concentration = np.loadtxt(os.path.join(file_dir, "output", "concentration_dlsode_M.csv"), delimiter=",")
+    concentration = np.loadtxt(os.path.join(file_dir, "output", "concentration_ssa_number.csv"), delimiter=",")
     print(np.shape(concentration))
 
     # colors = ('b', 'g', 'r', 'c', 'm', 'y', 'k')

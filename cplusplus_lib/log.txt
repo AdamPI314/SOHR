@@ -1,1 +1,8 @@
 /usr/bin/mpirun -np 3 ./RxnNetwork_PI -c /home/invictus/Documents/summer_2017_boulder/SRC_EXE_DIR/SOHR/cplusplus_lib/input/cmd.cfg
+/home/invictus/Documents/summer_2017_boulder/SRC_EXE_DIR/SOHR/cplusplus_lib
+('iterationNumber', 3)
+/home/invictus/Documents/summer_2017_boulder/SRC_EXE_DIR/SOHR/cplusplus_lib
+('iterationNumber', 3)
+(100,)
+(100, 8)
+Job Finished.

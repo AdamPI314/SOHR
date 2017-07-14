@@ -1,1 +1,1 @@
-make run >log.txt &
+/opt/anaconda/bin/python ./tools/data_analysis/genetic_toggle_switch/main_driver.py >>log.txt &
