@@ -106,7 +106,7 @@ namespace propagator_sr {
 		spe_drc_data_pgt.clear();
 
 		//number of reaction in reaction network space
-		std::size_t num_reaction = this->reaction_v_sk.size();
+		int num_reaction = this->reaction_v_sk.size();
 
 		//set new rate constant
 		int I_t = 1;	double R_A = 0.0;
@@ -171,7 +171,7 @@ namespace propagator_sr {
 						spe_drc_data_pgt[i].push_back(this->cal_spe_destruction_rate(i) / c_t[i]);
 				}
 
-				for (size_t i = 0; i < num_reaction; i++)
+				for (int i = 0; i < num_reaction; i++)
 					reaction_rate_data_pgt[i].push_back(reaction_rate_v_tmp[i]);
 
 				//print concentration and temperature
@@ -193,7 +193,7 @@ namespace propagator_sr {
 						spe_drc_data_pgt[i].push_back(this->cal_spe_destruction_rate(i) / c_t[i]);
 				}
 
-				for (size_t i = 0; i < num_reaction; i++)
+				for (int i = 0; i < num_reaction; i++)
 					reaction_rate_data_pgt[i].push_back(reaction_rate_v_tmp[i]);
 
 				//print concentration and temperature
