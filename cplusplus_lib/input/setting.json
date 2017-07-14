@@ -47,7 +47,7 @@
   },
   "ssa_init": {
     "dt": 1e-6,
-    "fixed_size": 100,
+    "fixed_size": 10000,
     "deltaN1": 1,
     "deltaN2": 1
   },
