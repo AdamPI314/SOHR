@@ -276,6 +276,7 @@ namespace propagator_sr {
 		spe_drc_data_pgt.resize(nkk);
 
 		int fixed_size = this->pgt_pt.get<int>("ssa_init.fixed_size");
+		double order_parameter_ratio = this->pgt_pt.get<double>("ssa_init.order_parameter_ratio");
 		std::list<double> time_data_list_pgt(fixed_size, 0.0);
 		std::list<double> temperature_data_list_pgt(fixed_size, 0.0);
 		std::list<double> pressure_data_list_pgt(fixed_size, 0.0);
@@ -384,7 +385,7 @@ namespace propagator_sr {
 			for (int i = 0; i < nkk; ++i)
 				final_state += pre_factor[i] * c_t[i];
 
-		} while ((end_time - time_data_list_pgt.back()) > 0.001*dt && final_state > -1 * initial_state*0.2);
+		} while ((end_time - time_data_list_pgt.back()) > 0.001*dt && final_state > -1 * initial_state*order_parameter_ratio);
 
 		//time, temperature, pressure, concentration, reaction rate and drc
 		this->time_data_pgt.assign(time_data_list_pgt.begin(), time_data_list_pgt.end());
