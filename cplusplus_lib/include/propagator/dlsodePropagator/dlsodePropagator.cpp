@@ -75,7 +75,7 @@ namespace propagator_sr {
 			}
 		}//for]
 
-		 //Rates of each reactions
+		//Rates of each reactions
 		for (std::size_t i = 0; i < reaction_rate_data_pgt.size(); ++i) {//for1
 			reaction_rate_tmp = 0.0;
 			//check reactionNetwork_chemkin_index_map
@@ -91,7 +91,7 @@ namespace propagator_sr {
 
 		}//for1
 
-		 //print concentration and temperature
+		//print concentration and temperature
 		for (int i = 0; i < nkk; ++i)
 			concentration_data_pgt[i].push_back(c_t[i]);
 
@@ -114,7 +114,7 @@ namespace propagator_sr {
 		std::size_t num_reaction = std::distance(reactionNetwork_chemkin_index_map.begin(), reactionNetwork_chemkin_index_map.end());
 
 
-		//set new rate constant	
+		//set new rate constant
 		int I_t = 1;	double R_A = 0.0;
 		//cout<<"\nPre-exponential Constant, old and new: "<<endl;
 		for (; static_cast<size_t>(I_t) <= uncertainties.size(); ++I_t) {
@@ -175,7 +175,7 @@ namespace propagator_sr {
 		double* FWDR_t = new double[nii]; double* REVR_t = new double[nii];
 
 		concentration_data_pgt.resize(nkk);
-		reaction_rate_data_pgt.resize(num_reaction); double reaction_rate_tmp = 0.0;
+		reaction_rate_data_pgt.resize(num_reaction);
 		spe_drc_data_pgt.resize(nkk);
 		//spe_production_rate_data_pgt.resize(nkk);
 
@@ -192,7 +192,7 @@ namespace propagator_sr {
 			//molar concentration
 			chemkincpp_sr::chemkin::ckytcr(&ckstore.rhomass, &Temp, y_t, c_t);
 
-			//Returns the molar creation and destruction rates of the species given mass density, temperature(s) 
+			//Returns the molar creation and destruction rates of the species given mass density, temperature(s)
 			//and mass fractions
 			chemkincpp_sr::chemkin::ckcdyr(&ckstore.rhomass, &Temp, y_t, CDOT_t, DDOT_t);
 
@@ -208,7 +208,7 @@ namespace propagator_sr {
 				update_temporary_data_pgt(nkk, neq, ti, c_t, CDOT_t, DDOT_t, FWDR_t, REVR_t, xgst);
 			}
 			else if ((print_Count%lsodestore.deltaN1 == 0) || ((end_time - ti) < 0.001*dt)) {
-				//print out every * dt		
+				//print out every * dt
 				update_temporary_data_pgt(nkk, neq, ti, c_t, CDOT_t, DDOT_t, FWDR_t, REVR_t, xgst);
 			}
 			//] print out
@@ -248,7 +248,7 @@ namespace propagator_sr {
 		std::size_t num_reaction = std::distance(reactionNetwork_chemkin_index_map.begin(), reactionNetwork_chemkin_index_map.end());
 
 
-		//set new rate constant	
+		//set new rate constant
 		int I_t = 1;	double R_A = 0.0;
 		//cout<<"\nPre-exponential Constant, old and new: "<<endl;
 		for (; static_cast<size_t>(I_t) <= uncertainties.size(); ++I_t) {
@@ -309,7 +309,7 @@ namespace propagator_sr {
 		double* FWDR_t = new double[nii]; double* REVR_t = new double[nii];
 
 		concentration_data_pgt.resize(nkk);
-		reaction_rate_data_pgt.resize(num_reaction); double reaction_rate_tmp = 0.0;
+		reaction_rate_data_pgt.resize(num_reaction);
 		spe_drc_data_pgt.resize(nkk);
 		//spe_production_rate_data_pgt.resize(nkk);
 
@@ -323,7 +323,7 @@ namespace propagator_sr {
 			//molar concentration
 			chemkincpp_sr::chemkin::ckytcr(&ckstore.rhomass, &Temp, y_t, c_t);
 
-			//Returns the molar creation and destruction rates of the species given mass density, temperature(s) 
+			//Returns the molar creation and destruction rates of the species given mass density, temperature(s)
 			//and mass fractions
 			chemkincpp_sr::chemkin::ckcdyr(&ckstore.rhomass, &Temp, y_t, CDOT_t, DDOT_t);
 
@@ -374,7 +374,7 @@ namespace propagator_sr {
 		std::size_t num_reaction = std::distance(reactionNetwork_chemkin_index_map.begin(), reactionNetwork_chemkin_index_map.end());
 
 
-		//set new rate constant	
+		//set new rate constant
 		int I_t = 1;	double R_A = 0.0;
 		//cout<<"\nPre-exponential Constant, old and new: "<<endl;
 		for (; static_cast<size_t>(I_t) <= uncertainties.size(); ++I_t) {
@@ -435,7 +435,7 @@ namespace propagator_sr {
 		double* FWDR_t = new double[nii]; double* REVR_t = new double[nii];
 
 		concentration_data_pgt.resize(nkk);
-		reaction_rate_data_pgt.resize(num_reaction); double reaction_rate_tmp = 0.0;
+		reaction_rate_data_pgt.resize(num_reaction);
 		spe_drc_data_pgt.resize(nkk);
 		//spe_production_rate_data_pgt.resize(nkk);
 
@@ -448,7 +448,7 @@ namespace propagator_sr {
 			chemkincpp_sr::chemkin::ckpy(&ckstore.rhomass, &Temp, y_t, &ckstore.pressure);
 			chemkincpp_sr::chemkin::ckytcr(&ckstore.rhomass, &Temp, y_t, c_t);
 
-			//Returns the molar creation and destruction rates of the species given mass density, temperature(s) 
+			//Returns the molar creation and destruction rates of the species given mass density, temperature(s)
 			//and mass fractions
 			chemkincpp_sr::chemkin::ckcdyr(&ckstore.rhomass, &Temp, y_t, CDOT_t, DDOT_t);
 
@@ -497,7 +497,7 @@ namespace propagator_sr {
 		//number of reaction in reaction network space
 		std::size_t num_reaction = std::distance(reactionNetwork_chemkin_index_map.begin(), reactionNetwork_chemkin_index_map.end());
 
-		//set new rate constant	
+		//set new rate constant
 		int I_t = 1;	double R_A = 0.0;
 		//cout<<"\nPre-exponential Constant, old and new: "<<endl;
 		for (; static_cast<size_t>(I_t) <= uncertainties.size(); ++I_t) {
@@ -558,7 +558,7 @@ namespace propagator_sr {
 		double* FWDR_t = new double[nii]; double* REVR_t = new double[nii];
 
 		concentration_data_pgt.resize(nkk);
-		reaction_rate_data_pgt.resize(num_reaction); double reaction_rate_tmp = 0.0;
+		reaction_rate_data_pgt.resize(num_reaction);
 		spe_drc_data_pgt.resize(nkk);
 
 		//while (Temp<end_temperature)
@@ -572,7 +572,7 @@ namespace propagator_sr {
 			chemkincpp_sr::chemkin::ckpy(&ckstore.rhomass, &Temp, y_t, &ckstore.pressure);
 			chemkincpp_sr::chemkin::ckytcr(&ckstore.rhomass, &Temp, y_t, c_t);
 
-			//Returns the molar creation and destruction rates of the species given mass density, temperature(s) 
+			//Returns the molar creation and destruction rates of the species given mass density, temperature(s)
 			//and mass fractions
 			chemkincpp_sr::chemkin::ckcdyr(&ckstore.rhomass, &Temp, y_t, CDOT_t, DDOT_t);
 
@@ -684,7 +684,7 @@ namespace propagator_sr {
 		double* FWDR_t = new double[nii]; double* REVR_t = new double[nii];
 
 		concentration_data_pgt.resize(nkk);
-		reaction_rate_data_pgt.resize(num_reaction); double reaction_rate_tmp = 0.0;
+		reaction_rate_data_pgt.resize(num_reaction);
 		spe_drc_data_pgt.resize(nkk);
 
 		while (tout < end_time)
@@ -808,7 +808,7 @@ namespace propagator_sr {
 		double* FWDR_t = new double[nii]; double* REVR_t = new double[nii];
 
 		concentration_data_pgt.resize(nkk);
-		reaction_rate_data_pgt.resize(num_reaction); double reaction_rate_tmp = 0.0;
+		reaction_rate_data_pgt.resize(num_reaction);
 		spe_drc_data_pgt.resize(nkk);
 
 		//while (Temp<end_temperature)
@@ -934,7 +934,7 @@ namespace propagator_sr {
 		double* FWDR_t = new double[nii]; double* REVR_t = new double[nii];
 
 		concentration_data_pgt.resize(nkk);
-		reaction_rate_data_pgt.resize(num_reaction); double rxn_rate_tmp = 0.0;
+		reaction_rate_data_pgt.resize(num_reaction);
 		spe_drc_data_pgt.resize(nkk);
 
 		//while (Temp<end_temperature)
@@ -1060,7 +1060,7 @@ namespace propagator_sr {
 		double* FWDR_t = new double[nii]; double* REVR_t = new double[nii];
 
 		concentration_data_pgt.resize(nkk);
-		reaction_rate_data_pgt.resize(num_reaction); double rxn_rate_tmp = 0.0;
+		reaction_rate_data_pgt.resize(num_reaction);
 		spe_drc_data_pgt.resize(nkk);
 
 		//while (tout < end_time)
@@ -1176,7 +1176,7 @@ namespace propagator_sr {
 		double* FWDR_t = new double[nii]; double* REVR_t = new double[nii];
 
 		concentration_data_pgt.resize(nkk);
-		reaction_rate_data_pgt.resize(num_reaction); double rxn_rate_tmp = 0.0;
+		reaction_rate_data_pgt.resize(num_reaction);
 		spe_drc_data_pgt.resize(nkk);
 
 		//"imaginary pressure"
@@ -1217,7 +1217,7 @@ namespace propagator_sr {
 			print_Count = (print_Count + 1) % 1000000;
 		} while ((end_time - time_data_pgt.back()) > 0.001*dt);
 
-		//delete[] x_t; 
+		//delete[] x_t;
 		delete[] xgst;
 		delete[] c_t;
 		delete[] CDOT_t; delete[] DDOT_t;
@@ -1290,7 +1290,7 @@ namespace propagator_sr {
 		double* FWDR_t = new double[nii]; double* REVR_t = new double[nii];
 
 		concentration_data_pgt.resize(nkk);
-		reaction_rate_data_pgt.resize(num_reaction); double rxn_rate_tmp = 0.0;
+		reaction_rate_data_pgt.resize(num_reaction);
 		spe_drc_data_pgt.resize(nkk);
 
 		//while (tout < end_time)
@@ -1330,7 +1330,7 @@ namespace propagator_sr {
 			print_Count = (print_Count + 1) % 1000000;
 		} while ((end_time - time_data_pgt.back()) > 0.001*dt);
 
-		//delete[] x_t; 
+		//delete[] x_t;
 		delete[] xgst;
 		delete[] c_t;
 		delete[] CDOT_t; delete[] DDOT_t;
@@ -1403,7 +1403,7 @@ namespace propagator_sr {
 		double* FWDR_t = new double[nii]; double* REVR_t = new double[nii];
 
 		concentration_data_pgt.resize(nkk);
-		reaction_rate_data_pgt.resize(num_reaction); double rxn_rate_tmp = 0.0;
+		reaction_rate_data_pgt.resize(num_reaction);
 		spe_drc_data_pgt.resize(nkk);
 
 		//while (tout < end_time)
@@ -1443,7 +1443,7 @@ namespace propagator_sr {
 			print_Count = (print_Count + 1) % 1000000;
 		} while ((end_time - time_data_pgt.back()) > 0.001*dt);
 
-		//delete[] x_t; 
+		//delete[] x_t;
 		delete[] xgst;
 		delete[] c_t;
 		delete[] CDOT_t; delete[] DDOT_t;
