@@ -160,48 +160,14 @@ namespace propagator_sr {
 		{
 			//[ print out
 			if (((ti >= critical_time) && (print_count%deltaN2 == 0)) || ((end_time - ti) < 0.001*dt)) {
-				//use the default dt to print out stuff
-				time_data_pgt.push_back(ti);
-
-				//destruction rate const
-				for (int i = 0; i < nkk; ++i) {
-					if (c_t[i] == 0)
-						spe_drc_data_pgt[i].push_back(0.0);
-					else
-						spe_drc_data_pgt[i].push_back(this->cal_spe_destruction_rate(i) / c_t[i]);
-				}
-
-				for (int i = 0; i < num_reaction; i++)
-					reaction_rate_data_pgt[i].push_back(reaction_rate_v_tmp[i]);
-
-				//print concentration and temperature
-				for (int i = 0; i < nkk; ++i)
-					concentration_data_pgt[i].push_back(c_t[i]);
-
-				temperature_data_pgt.push_back(Temp);
-				pressure_data_pgt.push_back(Pressure);
+				update_temporary_data_pgt(nkk, num_reaction,
+					ti, Temp, Pressure,
+					c_t, reaction_rate_v_tmp);
 			}
 			else if ((print_count%deltaN1 == 0) || ((end_time - ti) < 0.001*dt)) {
-				//print out every * dt
-				time_data_pgt.push_back(ti);
-
-				//destruction rate const
-				for (int i = 0; i < nkk; ++i) {
-					if (c_t[i] == 0)
-						spe_drc_data_pgt[i].push_back(0.0);
-					else
-						spe_drc_data_pgt[i].push_back(this->cal_spe_destruction_rate(i) / c_t[i]);
-				}
-
-				for (int i = 0; i < num_reaction; i++)
-					reaction_rate_data_pgt[i].push_back(reaction_rate_v_tmp[i]);
-
-				//print concentration and temperature
-				for (int i = 0; i < nkk; ++i)
-					concentration_data_pgt[i].push_back(c_t[i]);
-
-				temperature_data_pgt.push_back(Temp);
-				pressure_data_pgt.push_back(Pressure);
+				update_temporary_data_pgt(nkk, num_reaction,
+					ti, Temp, Pressure,
+					c_t, reaction_rate_v_tmp);
 			}
 			//] print out
 
@@ -214,6 +180,30 @@ namespace propagator_sr {
 		} while ((end_time - time_data_pgt.back()) > 0.001*dt);
 
 		delete[] c_t;
+	}
+
+	void ssaPropagator::update_temporary_data_pgt(const int nkk, const int num_reaction, const double ti, const double Temp, const double Pressure, const double * const c_t, const std::vector<double>& reaction_rate_v_tmp)
+	{
+		//use the default dt to print out stuff
+		time_data_pgt.push_back(ti);
+
+		//destruction rate const
+		for (int i = 0; i < nkk; ++i) {
+			if (c_t[i] == 0)
+				spe_drc_data_pgt[i].push_back(0.0);
+			else
+				spe_drc_data_pgt[i].push_back(this->cal_spe_destruction_rate(i) / c_t[i]);
+		}
+
+		for (int i = 0; i < num_reaction; i++)
+			reaction_rate_data_pgt[i].push_back(reaction_rate_v_tmp[i]);
+
+		//print concentration and temperature
+		for (int i = 0; i < nkk; ++i)
+			concentration_data_pgt[i].push_back(c_t[i]);
+
+		temperature_data_pgt.push_back(Temp);
+		pressure_data_pgt.push_back(Pressure);
 	}
 
 	void ssaPropagator::time_propagator_s_ct_np_s2m_find_one_transition_pgt(std::vector<double> uncertainties, double critical_time, double end_time)
@@ -299,77 +289,28 @@ namespace propagator_sr {
 		{
 			//[ print out
 			if (((ti >= critical_time) && (print_count%deltaN2 == 0)) || ((end_time - ti) < 0.001*dt)) {
-				//use the default dt to print out stuff
-				time_data_list_pgt.pop_front();
-				time_data_list_pgt.push_back(ti);
-
-				//destruction rate const
-				for (int i = 0; i < nkk; ++i) {
-					if (c_t[i] == 0)
-					{
-						spe_drc_data_list_pgt[i].pop_front();
-						spe_drc_data_list_pgt[i].push_back(0.0);
-					}
-					else
-					{
-						spe_drc_data_list_pgt[i].pop_front();
-						spe_drc_data_list_pgt[i].push_back(this->cal_spe_destruction_rate(i) / c_t[i]);
-					}
-				}
-
-				for (int i = 0; i < num_reaction; i++)
-				{
-					reaction_rate_data_list_pgt[i].pop_front();
-					reaction_rate_data_list_pgt[i].push_back(reaction_rate_v_tmp[i]);
-				}
-
-				//print concentration and temperature
-				for (int i = 0; i < nkk; ++i)
-				{
-					concentration_data_list_pgt[i].pop_front();
-					concentration_data_list_pgt[i].push_back(c_t[i]);
-				}
-
-				temperature_data_list_pgt.pop_front();
-				temperature_data_list_pgt.push_back(Temp);
-				pressure_data_list_pgt.pop_front();
-				pressure_data_list_pgt.push_back(Pressure);
+				update_temporary_data_pgt(
+					time_data_list_pgt,
+					temperature_data_list_pgt,
+					pressure_data_list_pgt,
+					concentration_data_list_pgt,
+					reaction_rate_data_list_pgt,
+					spe_drc_data_list_pgt,
+					nkk, num_reaction,
+					ti, Temp, Pressure,
+					c_t, reaction_rate_v_tmp);
 			}
 			else if ((print_count%deltaN1 == 0) || ((end_time - ti) < 0.001*dt)) {
-				//print out every * dt
-				time_data_list_pgt.pop_front();
-				time_data_list_pgt.push_back(ti);
-
-				//destruction rate const
-				for (int i = 0; i < nkk; ++i) {
-					if (c_t[i] == 0)
-					{
-						spe_drc_data_list_pgt[i].pop_front();
-						spe_drc_data_list_pgt[i].push_back(0.0);
-					}
-					else
-					{
-						spe_drc_data_list_pgt[i].pop_front();
-						spe_drc_data_list_pgt[i].push_back(this->cal_spe_destruction_rate(i) / c_t[i]);
-					}
-				}
-
-				for (int i = 0; i < num_reaction; i++)
-				{
-					reaction_rate_data_list_pgt[i].pop_front();
-					reaction_rate_data_list_pgt[i].push_back(reaction_rate_v_tmp[i]);
-				}
-
-				//print concentration and temperature
-				for (int i = 0; i < nkk; ++i) {
-					concentration_data_list_pgt[i].pop_front();
-					concentration_data_list_pgt[i].push_back(c_t[i]);
-				}
-
-				temperature_data_list_pgt.pop_front();
-				temperature_data_list_pgt.push_back(Temp);
-				pressure_data_list_pgt.pop_front();
-				pressure_data_list_pgt.push_back(Pressure);
+				update_temporary_data_pgt(
+					time_data_list_pgt,
+					temperature_data_list_pgt,
+					pressure_data_list_pgt,
+					concentration_data_list_pgt,
+					reaction_rate_data_list_pgt,
+					spe_drc_data_list_pgt,
+					nkk, num_reaction,
+					ti, Temp, Pressure,
+					c_t, reaction_rate_v_tmp);
 			}
 			//] print out
 
@@ -386,6 +327,16 @@ namespace propagator_sr {
 				final_state += pre_factor[i] * c_t[i];
 
 		} while ((end_time - time_data_list_pgt.back()) > 0.001*dt && final_state > -1 * initial_state*order_parameter_ratio);
+		// data of the last time step is not saved, save it here
+		update_temporary_data_pgt(
+			time_data_list_pgt,
+			temperature_data_list_pgt,
+			pressure_data_list_pgt,
+			concentration_data_list_pgt,
+			reaction_rate_data_list_pgt,
+			spe_drc_data_list_pgt,
+			nkk, num_reaction, ti, Temp, Pressure,
+			c_t, reaction_rate_v_tmp);
 
 		//time, temperature, pressure, concentration, reaction rate and drc
 		this->time_data_pgt.assign(time_data_list_pgt.begin(), time_data_list_pgt.end());
@@ -402,6 +353,44 @@ namespace propagator_sr {
 			this->spe_drc_data_pgt[i].assign(spe_drc_data_list_pgt[i].begin(), spe_drc_data_list_pgt[i].end());
 
 		delete[] c_t;
+	}
+
+	void ssaPropagator::update_temporary_data_pgt(std::list<double>& time_list, std::list<double>& temperature_list, std::list<double>& pressure_list, std::vector<std::list<double>>& concentration_list, std::vector<std::list<double>>& reaction_rate_list, std::vector<std::list<double>>& spe_drc_list, const int nkk, const int num_reaction, const double ti, const double Temp, const double Pressure, const double * const c_t, const std::vector<double>& reaction_rate_v_tmp)
+	{
+		//print out every * dt
+		time_list.pop_front();
+		time_list.push_back(ti);
+
+		//destruction rate const
+		for (int i = 0; i < nkk; ++i) {
+			if (c_t[i] == 0)
+			{
+				spe_drc_list[i].pop_front();
+				spe_drc_list[i].push_back(0.0);
+			}
+			else
+			{
+				spe_drc_list[i].pop_front();
+				spe_drc_list[i].push_back(this->cal_spe_destruction_rate(i) / c_t[i]);
+			}
+		}
+
+		for (int i = 0; i < num_reaction; i++)
+		{
+			reaction_rate_list[i].pop_front();
+			reaction_rate_list[i].push_back(reaction_rate_v_tmp[i]);
+		}
+
+		//print concentration and temperature
+		for (int i = 0; i < nkk; ++i) {
+			concentration_list[i].pop_front();
+			concentration_list[i].push_back(c_t[i]);
+		}
+
+		temperature_list.pop_front();
+		temperature_list.push_back(Temp);
+		pressure_list.pop_front();
+		pressure_list.push_back(Pressure);
 	}
 
 	void ssaPropagator::time_propagator_s_ct_np_cc1_s2m_pgt(std::vector<double> uncertainties, double critical_time, double end_time)

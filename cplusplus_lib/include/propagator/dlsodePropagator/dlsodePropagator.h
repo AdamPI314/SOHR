@@ -25,6 +25,15 @@ namespace propagator_sr {
 		* Read in the initial condition and kinetic law, solve the first order equations, with end_time as stopping criteria
 		* s2m means storing to memory
 		*/
+		void update_temporary_data_pgt(const int nkk, const int neq,
+			const double ti,
+			const double * const c_t, 
+			const double * const CDOT_t,
+			const double * const DDOT_t,
+			const double * const FWDR_t,
+			const double * const REVR_t,
+			const double * const xgst);
+
 		void time_propagator_cv_s2m_pgt(std::vector<double> uncertainties, double critical_time, double end_time) override;
 		/* constant volume-->cv
 		* constant temperature-->ct

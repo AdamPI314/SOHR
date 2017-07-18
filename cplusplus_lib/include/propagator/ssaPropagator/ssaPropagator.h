@@ -87,7 +87,20 @@ namespace propagator_sr {
 		* http://www.idea.wsu.edu/OscilChem/
 		*/
 		void time_propagator_s_ct_np_s2m_pgt(std::vector<double> uncertainties, double critical_time, double end_time) override;
+		void update_temporary_data_pgt(const int nkk, const int num_reaction, 
+			const double ti, const double Temp, const double Pressure,
+			const double * const c_t, const std::vector<double> &reaction_rate_v_tmp);
+
 		void time_propagator_s_ct_np_s2m_find_one_transition_pgt(std::vector<double> uncertainties, double critical_time, double end_time);
+		void update_temporary_data_pgt(std::list<double> &time_list, 
+			std::list<double> &temperature_list, 
+			std::list<double> &pressure_list,
+			std::vector<std::list<double> > &concentration_list,
+			std::vector<std::list<double> > &reaction_rate_list,
+			std::vector<std::list<double> > &spe_drc_list,
+			const int nkk, const int num_reaction, 
+			const double ti, const double Temp, const double Pressure,
+			const double * const c_t, const std::vector<double> &reaction_rate_v_tmp);
 
 		// cc-->constant concentration, hold the concentration of the first species to be constant
 		void time_propagator_s_ct_np_cc1_s2m_pgt(std::vector<double> uncertainties, double critical_time, double end_time) override;
