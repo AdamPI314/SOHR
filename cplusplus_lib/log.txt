@@ -204,3 +204,83 @@ running time:	0.79 hours
 Job Finished.
 running time:	0.66 hours
 
+/home/invictus/Documents/summer_2017_boulder/SRC_EXE_DIR/SOHR/cplusplus_lib
+('iterationNumber', 3)
+(10000000,)
+(10000000, 8)
+Job Finished.
+running time:	0.77 hours
+
+/home/invictus/Documents/summer_2017_boulder/SRC_EXE_DIR/SOHR/cplusplus_lib
+('iterationNumber', 3)
+(10000000,)
+(10000000, 8)
+Job Finished.
+running time:	0.59 hours
+
+/home/invictus/Documents/summer_2017_boulder/SRC_EXE_DIR/SOHR/cplusplus_lib
+('iterationNumber', 3)
+(10000000,)
+(10000000, 8)
+Job Finished.
+/home/invictus/Documents/summer_2017_boulder/SRC_EXE_DIR/SOHR/cplusplus_lib
+('iterationNumber', 3)
+(10000000,)
+(10000000, 8)
+Job Finished.
+/home/invictus/Documents/summer_2017_boulder/SRC_EXE_DIR/SOHR/cplusplus_lib
+('iterationNumber', 3)
+(10000000,)
+(10000000, 8)
+Job Finished.
+/home/invictus/Documents/summer_2017_boulder/SRC_EXE_DIR/SOHR/cplusplus_lib
+('iterationNumber', 3)
+(10000000,)
+(10000000, 8)
+Job Finished.
+/home/invictus/Documents/summer_2017_boulder/SRC_EXE_DIR/SOHR/cplusplus_lib
+('iterationNumber', 3)
+(10000000,)
+(10000000, 8)
+Job Finished.
+/home/invictus/Documents/summer_2017_boulder/SRC_EXE_DIR/SOHR/cplusplus_lib
+('iterationNumber', 3)
+(10000000,)
+(10000000, 8)
+Job Finished.
+/home/invictus/Documents/summer_2017_boulder/SRC_EXE_DIR/SOHR/cplusplus_lib
+('iterationNumber', 3)
+(10000000,)
+(10000000, 8)
+Job Finished.
+/home/invictus/Documents/summer_2017_boulder/SRC_EXE_DIR/SOHR/cplusplus_lib
+('iterationNumber', 3)
+(10000000,)
+(10000000, 8)
+Job Finished.
+/home/invictus/Documents/summer_2017_boulder/SRC_EXE_DIR/SOHR/cplusplus_lib
+('iterationNumber', 3)
+(10000000,)
+(10000000, 8)
+Job Finished.
+/home/invictus/Documents/summer_2017_boulder/SRC_EXE_DIR/SOHR/cplusplus_lib
+('iterationNumber', 3)
+(10000000,)
+(10000000, 8)
+Job Finished.
+running time:	8.31 hours
+
+/home/invictus/Documents/summer_2017_boulder/SRC_EXE_DIR/SOHR/cplusplus_lib/tools/data_analysis/genetic_toggle_switch/plot_ssa_delta.py
+/home/invictus/Documents/summer_2017_boulder/SRC_EXE_DIR/SOHR/cplusplus_lib/tools/data_analysis/genetic_toggle_switch/plot_ssa_delta.py/../../..
+/home/invictus/Documents/summer_2017_boulder/SRC_EXE_DIR/SOHR/cplusplus_lib/tools
+/home/invictus/Documents/summer_2017_boulder/SRC_EXE_DIR/SOHR/cplusplus_lib
+/home/invictus/Documents/summer_2017_boulder/SRC_EXE_DIR/SOHR/cplusplus_lib
+('iterationNumber', 3)
+(10000000,)
+(10000000, 8)
+Job Finished.
+/home/invictus/Documents/summer_2017_boulder/SRC_EXE_DIR/SOHR/cplusplus_lib
+('iterationNumber', 3)
+(10000000,)
+(10000000, 8)
+Job Finished.

@@ -10,7 +10,7 @@ if __name__ == '__main__':
     file_dir = os.path.abspath(os.path.join(os.path.realpath(sys.argv[0]), os.pardir, os.pardir, os.pardir, os.pardir))
 
     counter = 0 
-    totalN = 1 
+    totalN = 10 
 
     while counter < totalN:
         # run jobs
@@ -25,9 +25,10 @@ if __name__ == '__main__':
 
         # organize files. concatenate into one file
         cr.concatenate_time(file_dir, counter)
-        cr.concatenate_concentration(file_dir, counter)
-        cr.concatenate_temperature(file_dir, counter)
-        cr.concatenate_pressure(file_dir, counter)
+        cr.concatenate_ssa_number(file_dir, counter)
+        # cr.concatenate_concentration(file_dir, counter)
+        # cr.concatenate_temperature(file_dir, counter)
+        # cr.concatenate_pressure(file_dir, counter)
 
         counter += 1
 

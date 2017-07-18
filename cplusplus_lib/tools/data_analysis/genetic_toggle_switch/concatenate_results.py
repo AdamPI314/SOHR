@@ -19,7 +19,18 @@ def concatenate_concentration(file_dir, counter=0):
                    delimiter=',')
     else:
         with open(os.path.join(file_dir, 'output', 'concentration_ssa_number_all.csv'), 'ab') as fp:
-            np.savetxt(fp, concentration, delimiter=',')
+            np.savetxt(fp, concentration, fmt='%.15e', delimiter=',')
+
+
+def concatenate_ssa_number(file_dir, counter=0):
+    concentration = np.loadtxt(
+        os.path.join(file_dir, 'output', 'concentration_ssa_number.csv'), delimiter=',')
+    if counter == 0:
+        np.savetxt(os.path.join(file_dir, 'output', 'concentration_ssa_number_all.csv'), concentration,
+                   fmt='%d', delimiter=',')
+    else:
+        with open(os.path.join(file_dir, 'output', 'concentration_ssa_number_all.csv'), 'ab') as fp:
+            np.savetxt(fp, concentration, fmt='%d', delimiter=',')
 
 
 def concatenate_temperature(file_dir, counter=3):

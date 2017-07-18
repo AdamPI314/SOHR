@@ -85,3 +85,7 @@ def plot_ssa(file_dir, _fileCounter):
     fig.savefig(os.path.join(file_dir, "output", "ssa_delta_" + str(_fileCounter+1) + ".jpg"), dpi=500)
     plt.close()
     print("Job Finished.")
+
+if __name__ == '__main__':
+    file_dir = os.path.abspath(os.path.join(os.path.realpath(sys.argv[0]), os.pardir, os.pardir, os.pardir, os.pardir))
+    plot_ssa(file_dir, 98)
