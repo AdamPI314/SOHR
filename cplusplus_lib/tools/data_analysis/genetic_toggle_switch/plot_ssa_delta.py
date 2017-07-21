@@ -57,7 +57,8 @@ def plot_ssa(file_dir, _fileCounter):
     data = data_A - data_B
 
 
-    N1 = -10
+    # N1 = -10
+    N1 = 0 
     counter = 0
     ax.plot(time[N1:]-time[N1], data[N1:], '-', color=colors[counter % len(colors)], linewidth=1.0, label='$N_A-N_B$')
 
