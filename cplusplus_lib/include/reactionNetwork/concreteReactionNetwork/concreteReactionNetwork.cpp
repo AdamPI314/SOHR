@@ -32,6 +32,9 @@ namespace reactionNetwork_sr {
 			this->propagator = new pgt::superPropagator(uncertainties, this->cwd);
 		}
 
+		// As soon as the reference trajectory is calculated, should set the fast reactions' rate to be zero
+		//set the reaction rate of fast reactions to be zero
+		this->propagator->set_fast_reaction_rate_to_zero_pgt();
 	}
 
 	concreteReactionNetwork::~concreteReactionNetwork()

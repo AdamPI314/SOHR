@@ -505,7 +505,7 @@ namespace propagator_sr {
 		//set fast reactions, read fast inter-conversion reaction pairs from "setting.json"
 		set_fast_reaction_pgt();
 		//set the reaction rate of fast reactions to be zero
-		set_fast_reaction_rate_to_zero_pgt();
+		//set_fast_reaction_rate_to_zero_pgt();
 	}
 
 	void propagator_sr::superPropagator::convert_molar_concentration_to_mole_fraction()

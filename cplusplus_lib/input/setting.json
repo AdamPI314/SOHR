@@ -3,25 +3,25 @@
     "include-path": "."
   },
   "system": {
-    "condition": "s_ct_np",
+    "condition": "cv",
     "initializer": "dlsode"
   },
   "job": {
-    "job_type": "solve_ODEs_for_concentration_using_SSA"
+    "job_type": "generate_pathway_running_Monte_carlo_trajectory"
   },
   "propagator": {
-    "type": "ssa",
-    "sub_type": "time_propagator_s_ct_np_s2m_find_one_transition_pgt",
+    "type": "dlsode",
+    "sub_type": "time_propagator_cv_s2m_pgt",
     "convert_molar_concentration_to_mole_fraction": "no",
     "normalize_initial_concentration": "no"
   },
   "time": {
     "min_time": 0,
-    "max_time": 1,
-    "critical_time": 1,
+    "max_time": 1e-5,
+    "critical_time": 1e-5,
     "sys_min_time": 1e-10,
     "path_beg_time": 0,
-    "path_end_time": 1
+    "path_end_time": 1e-5
   },
   "chem_init": {
     "pressure_atm": 80,
