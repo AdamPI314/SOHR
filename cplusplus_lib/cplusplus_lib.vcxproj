@@ -153,7 +153,7 @@
     <ClCompile Include="include\search_algorithm\eppstein_algorithm\eppstein_algorithm.cpp" />
     <ClCompile Include="include\srkin\srkin.cpp" />
     <ClCompile Include="include\statistics\statistics.cpp" />
-    <ClCompile Include="include\statistics\statistics_get_conc.cpp" />
+    <ClCompile Include="include\statistics\statistics_get_concentration.cpp" />
     <ClCompile Include="include\time\myclock.cpp" />
     <ClCompile Include="include\time\myclock_us.cpp" />
     <ClCompile Include="include\time\timing.cpp" />
@@ -184,7 +184,7 @@
     <ClInclude Include="include\search_algorithm\eppstein_algorithm\eppstein_algorithm.h" />
     <ClInclude Include="include\srkin\srkin.h" />
     <ClInclude Include="include\statistics\statistics.h" />
-    <ClInclude Include="include\statistics\statistics_get_conc.h" />
+    <ClInclude Include="include\statistics\statistics_get_concentration.h" />
     <ClInclude Include="include\time\myclock.h" />
     <ClInclude Include="include\time\myclock_us.h" />
     <ClInclude Include="include\time\timing.h" />

@@ -120,7 +120,7 @@ void driver::generate_pathway_running_Monte_carlo_trajectory(const boost::mpi::c
 
 	if (world.rank() == 0) {
 		stat_test.insert_unordered_map(result);
-		stat_test.sort_print_to_file_stat(main_cwd + std::string("/output/pathway_stat.csv"));
+		stat_test.sort_print_to_file_stat(main_cwd + std::string("/output/pathway_stat.csv"), 1);
 	}
 }
 

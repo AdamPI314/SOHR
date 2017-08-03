@@ -1,5 +1,5 @@
-#ifndef __STATISTICS_GET_CONC_H_
-#define __STATISTICS_GET_CONC_H_
+#ifndef __STATISTICS_GET_CONCENTRATION_H_
+#define __STATISTICS_GET_CONCENTRATION_H_
 #include <string>
 #include <iostream>
 #include <fstream>
@@ -11,10 +11,10 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//This class is written to deal with statistics_get_conc stuff.
+//This class is written to deal with statistics_get_concentration stuff.
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-class statistics_get_conc {
+class statistics_get_concentration {
 private:
 	typedef std::map<std::string, int> stat_map;
 	typedef std::pair<std::string, int> str_int_p;
@@ -33,15 +33,15 @@ public:
 	str_int_v pathway_ordered_stat;
 	//std::ofstream out_file;
 public:
-	statistics_get_conc(std::string str_in, std::string str_out);
-	~statistics_get_conc();
+	statistics_get_concentration(std::string str_in, std::string str_out, int path_len = 1);
+	~statistics_get_concentration();
 public:
 	//Read in file
 	void read_in_file(std::string str_in);
 	//Insert pathway
 	void insert_pathway_stat(std::string in_pathway);
-	//Sort by counting number and print to file
-	void sort_print_to_file_stat(std::string str_out = "./output/pathway_stat.dat");
+	//Sort by counting number and print to file, print only if pathway count >= path_len
+	void sort_print_to_file_stat(std::string str_out = "./output/pathway_stat.dat", int path_len = 1);
 };
 
 

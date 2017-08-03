@@ -14,7 +14,7 @@
 #include "../time/myclock_us.h"
 #include "../pathwayHandler/pathwayHandler.h"
 #include "../statistics/statistics.h"
-#include "../statistics/statistics_get_conc.h"
+#include "../statistics/statistics_get_concentration.h"
 #include "../fileIO/CSVFileReader/CSVReader.h"
 #include "../fileIO/commandLineConfigFileReader/clcf_parser.h"
 #include "../tools/block_decomposition/block_decomposition.h"
