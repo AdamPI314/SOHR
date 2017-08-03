@@ -78,6 +78,7 @@
       1000,
       1000
     ],
+    "trajectory_count_limit": 5,
     "dead_species": [],
     "trapped_species": {
       "6": 36,

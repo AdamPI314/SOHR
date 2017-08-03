@@ -103,6 +103,8 @@ void driver::generate_pathway_running_Monte_carlo_trajectory(const boost::mpi::c
 	double init_time = 0.0 * path_end_time;
 	double end_time = pt.get<double>("pathway.tau")* path_end_time;
 
+	int trajectory_count_limit = pt.get<int>("pathway.trajectory_count_limit");
+
 	//statistics
 	statistics stat_test;
 	std::string str_t;
@@ -120,7 +122,7 @@ void driver::generate_pathway_running_Monte_carlo_trajectory(const boost::mpi::c
 
 	if (world.rank() == 0) {
 		stat_test.insert_unordered_map(result);
-		stat_test.sort_print_to_file_stat(main_cwd + std::string("/output/pathway_stat.csv"), 1);
+		stat_test.sort_print_to_file_stat(main_cwd + std::string("/output/pathway_stat.csv"), trajectory_count_limit);
 	}
 }
 
