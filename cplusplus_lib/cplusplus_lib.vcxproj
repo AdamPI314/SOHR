@@ -199,19 +199,7 @@
     <ClInclude Include="include\tools\misc\tree_bundled.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="input_Dijkstra_algorithm\chem.bin" />
-    <None Include="input_Dimerization\chem.bin" />
-    <None Include="input_Dimerization_v2\chem.bin" />
-    <None Include="input_Eppstein_algorithm\chem.bin" />
-    <None Include="input_H2_O2_v1\chem.bin" />
-    <None Include="input_H2_O2_v1\chem_Dicp507.bin" />
-    <None Include="input_HBrO\chem.bin" />
-    <None Include="input_HBr\chem.bin" />
-    <None Include="input_HBr_v2\chem.bin" />
-    <None Include="input_LV_v3\chem.bin" />
-    <None Include="input_LV_v4\chem.bin" />
-    <None Include="input_LV_v5\chem.bin" />
-    <None Include="input_LV_v7\chem.bin" />
+    <None Include="input\chem.bin" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
