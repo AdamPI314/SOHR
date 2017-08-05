@@ -3,8 +3,8 @@
 #include <stdlib.h>
 #include "timing.h"
 
-#define __WINDOWS_
-//#define __LINUX_
+//#define __WINDOWS_
+#define __LINUX_
 
 #ifdef __LINUX_
 #include <sys/time.h>
