@@ -17,18 +17,19 @@
   },
   "time": {
     "min_time": 0,
-    "max_time": 2e-4,
-    "critical_time": 2e-4,
+    "max_time": 1e-5,
+    "critical_time": 1e-5,
     "sys_min_time": 1e-10,
     "path_beg_time": 0,
-    "path_end_time": 2e-4
+    "path_end_time": 1e-5
   },
   "chem_init": {
-    "pressure_atm": 5.54651,
-    "init_temperature": 1000,
+    "pressure_atm": 80,
+    "init_temperature": 800,
     "species_index_concentration": {
-      "1": 1.0,
-      "3": 1.0
+      "16": 0.773613047566551,
+      "23": 0.2075213730639949,
+      "114": 0.018865579369454
     }
   },
   "lsode_init": {
@@ -41,8 +42,8 @@
     "iopt": 0,
     "itol": 1,
     "istate": 1,
-    "deltaN1": 10,
-    "deltaN2": 10
+    "deltaN1": 100,
+    "deltaN2": 100
   },
   "ssa_init": {
     "dt": 1e-6,
@@ -60,8 +61,8 @@
     "number_of_Ks": 3
   },
   "pathway": {
-    "init_spe": 0,
-    "atom_followed": "X",
+    "init_spe": 127,
+    "atom_followed": "C",
     "super_atom": "Q",
     "tau": 1.0,
     "topN": [
@@ -78,12 +79,58 @@
       1000
     ],
     "trajectory_count_limit": 5,
-    "dead_species": [
-      3
+    "dead_species": [],
+    "trapped_species": {
+      "6": 36,
+      "18": 39,
+      "41": 47,
+      "68": 45,
+      "80": 95,
+      "86": 89,
+      "104": 108,
+      "111": 109,
+      "115": 124,
+      "116": 125,
+      "117": 126,
+      "118": 127,
+      "134": 143,
+      "138": 147,
+      "139": 148,
+      "140": 149,
+      "141": 132,
+      "142": 133,
+      "144": 135,
+      "145": 136,
+      "146": 137
+    },
+    "fast_reaction": {
+      "198": 199,
+      "370": 371,
+      "934": 935,
+      "1092": 1093,
+      "1136": 1137,
+      "1142": 1143,
+      "1370": 1371,
+      "1386": 1387,
+      "1608": 1609,
+      "1610": 1611,
+      "1612": 1613,
+      "1614": 1615,
+      "1714": 1715,
+      "1716": 1717,
+      "1718": 1719,
+      "1720": 1721,
+      "1722": 1723,
+      "1724": 1725,
+      "1726": 1727,
+      "1728": 1729,
+      "1731": 1730
+    },
+    "non_zero_rate_reaction": [
+      0,
+      1,
+      2
     ],
-    "trapped_species": {},
-    "fast_reaction": {},
-    "non_zero_rate_reaction": [],
     "max_path_length": [
       5,
       5,
@@ -98,8 +145,8 @@
   },
   "SOHR_init": {
     "single_source_species": -1,
-    "timeN1": 1000,
-    "timeN2": 3,
+    "timeN1": 100000,
+    "timeN2": 10,
     "deltaConcentration": 1.0e-50,
     "massConservationFactor": 1.0,
     "iterationNumber": 3,
