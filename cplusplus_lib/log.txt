@@ -1,1 +1,1 @@
-/usr/bin/mpirun -np 3 ./RxnNetwork_PI -c /home/invictus/Documents/summer_2017_boulder/SRC_EXE_DIR/SOHR/cplusplus_lib/input/cmd.cfg
+python: can't open file 'main_driver.py': [Errno 2] No such file or directory
