@@ -7,7 +7,7 @@
         "initializer": "dlsode"
     },
     "job": {
-        "job_type": "evaluate_path_integral_over_time"
+        "job_type": "generate_pathway_running_Monte_carlo_trajectory"
     },
     "propagator": {
         "type": "dlsode",
