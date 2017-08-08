@@ -396,8 +396,7 @@ namespace reactionNetworkODESolver_sr {
 		rnk::when_where_t when_where(curr_time, curr_vertex);
 
 		//if current species is not a dead species, not found
-		if (!(std::find(this->dead_species.begin(), this->dead_species.end(), curr_vertex) !=
-			this->dead_species.end())) {//if1
+		if (std::find(this->dead_species.begin(), this->dead_species.end(), curr_vertex) == this->dead_species.end()) {//if1
 			rsp::index_int_t next_reaction_index = random_pick_next_reaction(curr_vertex);
 			//random pick next spe
 			rnk::vertex_t next_vertex = random_pick_next_spe(next_reaction_index);
