@@ -158,7 +158,7 @@ int main(int argc, char **argv) {
 
 	/*************************************************************************************************/
 	/*
-	* 12. Dijkstra algorithm, finding the shortest path
+	* 12. Dijkstra based algorithm, actually it is eppstein's k-shortest path algorightm
 	*/
 	/*************************************************************************************************/
 	else if (pt.get<std::string>("job.job_type") == std::string("k_shortest_path_algorithms"))

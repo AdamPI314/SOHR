@@ -1,8 +1,8 @@
 #ifndef __FORTRAN_ROUTINE_BLOCK_ALIAS_H_
 #define __FORTRAN_ROUTINE_BLOCK_ALIAS_H_
 
-//#define __WINDOWS_
-#define __LINUX_
+#define __WINDOWS_
+//#define __LINUX_
 
 #ifdef __WINDOWS_
 #define ckstrt CKSTRT

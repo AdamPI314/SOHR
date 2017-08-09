@@ -50,16 +50,17 @@ namespace reactionNetwork_sr {
 
 		//initialize graph
 		initGraph(edgeVector, edgePro);
-		//set dead species
-		set_dead_spe();
-		//set trapped spe, read trapped species pairs from "setting.cfg"
-		set_trapped_spe();
 
 		update_vertex_info(vertex_info);
 		set_spe_out_reaction_info();
 		set_reaction_out_spe_info();
 
 		set_out_spe_index_branching_ratio_map_map();
+
+		//set dead species
+		set_dead_spe();
+		//set trapped spe
+		set_trapped_spe();
 
 		initiate_M_matrix();
 		initiate_R_matrix();
@@ -210,13 +211,6 @@ namespace reactionNetwork_sr {
 	void superReactionNetwork::set_species_initial_concentration()
 	{
 		//read with json_parser as property_tree
-		//nice and easy
-		//BOOST_FOREACH(boost::property_tree::ptree::value_type const& key1, this->pt.get_child("chem_init.species_index_concentration")) {
-		//	this->species_network_v[boost::lexical_cast<std::size_t>(key1.first)].spe_conc = key1.second.get_value<double>();
-		//}
-		//for (auto key1 : this->pt.get_child("chem_init.species_index_concentration")) {
-		//	this->species_network_v[boost::lexical_cast<std::size_t>(key1.first)].spe_conc = key1.second.get_value<double>();
-		//}
 		for (auto key1 : this->rnk_pt.get_child("chem_init.species_index_concentration")) {
 			this->species_network_v[boost::lexical_cast<std::size_t>(key1.first)].spe_conc = key1.second.get_value<double>()*this->rnk_pt.get<double>("SOHR_init.massConservationFactor");
 		}
@@ -255,12 +249,6 @@ namespace reactionNetwork_sr {
 		//86 and 89 are dead species, they transform to each other very fast
 		std::vector<std::size_t> dead_spe_index;
 
-		//read with json_parser as property_tree
-		//nice and easy
-		//BOOST_FOREACH(boost::property_tree::ptree::value_type const& key1, this->pt.get_child("pathway.dead_species")) {
-		//	//std::cout<<key1.second.get_value<std::size_t>()<<std::endl;
-		//	dead_spe_index.push_back(key1.second.get_value<std::size_t>());
-		//}
 		for (auto key1 : this->rnk_pt.get_child("pathway.dead_species")) {
 			//std::cout<<key1.second.get_value<std::size_t>()<<std::endl;
 			dead_spe_index.push_back(key1.second.get_value<std::size_t>());
@@ -273,15 +261,12 @@ namespace reactionNetwork_sr {
 	{
 		std::vector<std::vector<std::size_t> > Matrix(2, std::vector<std::size_t>());
 
-		//read with json_parser as property_tree
-		//nice and easy
-		//BOOST_FOREACH(boost::property_tree::ptree::value_type const& key1, this->pt.get_child("pathway.trapped_species")) {
-		//	Matrix[0].push_back(boost::lexical_cast<std::size_t>(key1.first));
-		//	Matrix[1].push_back(key1.second.get_value<std::size_t>());
-		//}
-		for (auto key1 : this->rnk_pt.get_child("pathway.trapped_species")) {
-			Matrix[0].push_back(boost::lexical_cast<std::size_t>(key1.first));
-			Matrix[1].push_back(key1.second.get_value<std::size_t>());
+		for (auto key1 : this->rnk_pt.get_child("pathway.fast_reaction")) {
+			auto s1 = (reaction_network_v[key1.second.get_value<std::size_t>()].out_spe_index_weight_v_map.begin())->second.front().first;
+			auto s2 = (reaction_network_v[boost::lexical_cast<std::size_t>(key1.first)].out_spe_index_weight_v_map.begin())->second.front().first;
+
+			Matrix[0].push_back(s1);
+			Matrix[1].push_back(s2);
 		}
 		this->trapped_spe = Matrix;
 	}

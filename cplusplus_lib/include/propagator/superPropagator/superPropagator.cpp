@@ -7,7 +7,6 @@
 #include <limits>
 
 #include <boost/property_tree/json_parser.hpp> //for json_reader
-#include <boost/foreach.hpp> //for BOOST_FOREACH
 #include <boost/optional/optional.hpp> //for optional
 
 #include "../../tools/misc/fortran_routine_block_alias.h"
@@ -77,18 +76,23 @@ namespace propagator_sr {
 		temperature_time_pgt = (Linear_interp*)0;
 	}
 
-	void superPropagator::set_fast_reaction_pgt()
+	void superPropagator::set_fast_reactions_pgt()
 	{
 		std::vector<std::size_t> fast_reaction_index;
 		//read with json_parser as property_tree
 		//nice and easy
-		BOOST_FOREACH(boost::property_tree::ptree::value_type const& key1, this->pgt_pt.get_child("pathway.fast_reaction")) {
+		for (auto &key1 : this->pgt_pt.get_child("pathway.fast_reaction")) {
 			fast_reaction_index.push_back(boost::lexical_cast<std::size_t>(key1.first));
 			fast_reaction_index.push_back(key1.second.get_value<std::size_t>());
 		}
 		//	std::copy(fast_reaction_index.begin(), fast_reaction_index.end(), std::ostream_iterator<std::size_t>(std::cout, "\t"));
 
 		this->fast_reaction_pgt = fast_reaction_index;
+	}
+
+	std::vector<std::size_t> superPropagator::get_fast_reactions_pgt()
+	{
+		return this->fast_reaction_pgt;
 	}
 
 	void superPropagator::set_fast_reaction_rate_to_zero_pgt()
@@ -301,7 +305,7 @@ namespace propagator_sr {
 		fout.open((this->cwd_pgt + std::string("/output/drc_") + tag + std::string(".csv")).c_str());
 		for (size_t i = 0; i < spe_drc_data_pgt[0].size(); ++i) {
 			for (size_t j = 0; j < spe_drc_data_pgt.size(); ++j) {
-				fout << std::setprecision(std::numeric_limits<double>::max_digits10+1) << spe_drc_data_pgt[j][i];
+				fout << std::setprecision(std::numeric_limits<double>::max_digits10 + 1) << spe_drc_data_pgt[j][i];
 				if (j < spe_drc_data_pgt.size() - 1)
 					fout << ",";
 			}
@@ -327,7 +331,7 @@ namespace propagator_sr {
 		fout.open((this->cwd_pgt + std::string("/output/reaction_rate_") + tag + std::string(".csv")).c_str());
 		for (size_t i = 0; i < reaction_rate_data_pgt[0].size(); ++i) {
 			for (size_t j = 0; j < reaction_rate_data_pgt.size(); ++j) {
-				fout << std::setprecision(std::numeric_limits<double>::max_digits10+1) << reaction_rate_data_pgt[j][i];
+				fout << std::setprecision(std::numeric_limits<double>::max_digits10 + 1) << reaction_rate_data_pgt[j][i];
 				if (j < reaction_rate_data_pgt.size() - 1)
 					fout << ",";
 			}
@@ -392,7 +396,7 @@ namespace propagator_sr {
 
 		//read with json_parser as property_tree
 		//nice and easy
-		BOOST_FOREACH(boost::property_tree::ptree::value_type const& key1, this->pgt_pt.get_child("chem_init.species_index_concentration")) {
+		for (auto &key1 : this->pgt_pt.get_child("chem_init.species_index_concentration")) {
 			x[boost::lexical_cast<std::size_t>(key1.first)] = key1.second.get_value<double>();
 		}
 
@@ -442,8 +446,7 @@ namespace propagator_sr {
 		fout << std::endl << "  Please make sure that the values of constants 'lrw' and 'liw' in the Fortran subroutine 'cpplsode'"
 			"\n  are larger than 'lrw_lsode' and 'liw_lsode' respectively." << std::endl;
 
-		//	if(this->vm.count("lsode_init.jt")){
-		boost::optional< boost::property_tree::ptree& > Ischild = this->pgt_pt.get_child_optional("lsode_init.jt");
+		auto Ischild = this->pgt_pt.get_child_optional("lsode_init.jt");
 		if (Ischild) {
 			fout << "\n" << "  you are using the 12 November 2003 version of DLSODA: Livermore Solver for Ordinary Differential Equations,\n" <<
 				"  with Automatic method switching for stiff and nonstiff problems\n";
@@ -503,7 +506,7 @@ namespace propagator_sr {
 		boost::property_tree::read_json(this->cwd_pgt + std::string("/input/setting.json"), pgt_pt, std::locale());
 
 		//set fast reactions, read fast inter-conversion reaction pairs from "setting.json"
-		set_fast_reaction_pgt();
+		set_fast_reactions_pgt();
 		//set the reaction rate of fast reactions to be zero
 		//set_fast_reaction_rate_to_zero_pgt();
 	}
@@ -585,7 +588,7 @@ namespace propagator_sr {
 		}
 		//Removes all elements from the vector (which are destroyed), leaving the container with a size of 0.
 		spe_drc_pgt.clear();
-		//creat the cubic spline and link it to std::vector<Linear_interp*> spe_drc_pgt;
+		//create the cubic spline and link it to std::vector<Linear_interp*> spe_drc_pgt;
 		for (std::size_t i = 0; i < spe_drc_data_pgt.size(); ++i)
 		{
 			spe_drc_pgt.push_back(new Linear_interp(time_data_pgt, spe_drc_data_pgt[i]));

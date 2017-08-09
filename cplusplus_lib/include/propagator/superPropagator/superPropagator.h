@@ -117,9 +117,12 @@ namespace propagator_sr {
 
 	public:
 		//fast reaction, local reaction with fast inter-conversion rate
-		void set_fast_reaction_pgt();
+		void set_fast_reactions_pgt();
+		std::vector<std::size_t> get_fast_reactions_pgt();
+
 		//set the reaction rate of fast reactions to be zero
 		void set_fast_reaction_rate_to_zero_pgt();
+		//set fast transition A=B's pseudo-first order rate constant
 
 	public:
 		//return target temperature

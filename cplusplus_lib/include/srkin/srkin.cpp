@@ -11,7 +11,6 @@
 #include "srkin.h"
 #include <boost/property_tree/ptree.hpp> //for property_tree
 #include <boost/property_tree/json_parser.hpp> //for json_reader
-#include <boost/foreach.hpp> //for BOOST_FOREACH
 #include <boost/optional/optional.hpp> //for optional
 
 namespace srkin_sr {
@@ -54,7 +53,7 @@ namespace srkin_sr {
 
 		//read with json_parser as property_tree
 		//nice and easy
-		BOOST_FOREACH(boost::property_tree::ptree::value_type const& key1, pt.get_child("chem_init.species_index_concentration")) {
+		for (auto &key1 : pt.get_child("chem_init.species_index_concentration")) {
 			species_conc_v_sk[boost::lexical_cast<std::size_t>(key1.first)] = key1.second.get_value<double>();
 		}
 

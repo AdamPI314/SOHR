@@ -1,0 +1,9 @@
+Merge fast transitions, for example A=B first order reaction, assume the forward and backward reactions are both
+very fast, if we keep this fast transition in the network, this will result in long path in a short time range
+Here is how we do it, the idea is to treat these two species as a single one
+One philosophy is to minimize the change
+1) set fast reaction rates to be zeros
+2) append B's out nodes to A's out nodes list
+3) Reactions flow into B are redirected to A
+4) No change to B's pseudo-first order rate constant, and the corresponding integral over time, keep them in memory, not a big deal
+but Change A's k in a way that first get rid of k_{AB}, and append B_{B's out but to A} to A

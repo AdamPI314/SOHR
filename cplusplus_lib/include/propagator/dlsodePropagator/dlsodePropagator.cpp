@@ -183,8 +183,6 @@ namespace propagator_sr {
 		do
 		{
 			//////////////////////////////////////////////////////////////////////////
-			//Calculate useful stuff
-			//////////////////////////////////////////////////////////////////////////
 			//convert mass fractions to molar fractions
 			chemkincpp_sr::chemkin::ckytx(y_t, x_t);
 			//Returns the pressure of the gas mixture given mass density, temperature(s) and mass fractions.
@@ -199,8 +197,6 @@ namespace propagator_sr {
 			//Returns the forward and reverse reaction rates for reactions given pressure, temperature(s) and mole fractions.
 			chemkincpp_sr::chemkin::ckkfkr(&ckstore.pressure, &Temp, x_t, FWDR_t, REVR_t);
 
-			//////////////////////////////////////////////////////////////////////////
-			//print out
 			//////////////////////////////////////////////////////////////////////////
 			//destruction relative rate Constant of species
 			//[ print out
@@ -246,7 +242,6 @@ namespace propagator_sr {
 
 		//number of reaction in reaction network space
 		std::size_t num_reaction = std::distance(reactionNetwork_chemkin_index_map.begin(), reactionNetwork_chemkin_index_map.end());
-
 
 		//set new rate constant
 		int I_t = 1;	double R_A = 0.0;

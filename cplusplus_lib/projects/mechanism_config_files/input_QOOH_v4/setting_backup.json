@@ -6,9 +6,6 @@
     "condition": "cv",
     "initializer": "dlsode"
   },
-  "network": {
-    "merge_fast_1st_order_transitions": "yes"
-  },
   "job": {
     "job_type": "generate_pathway_running_Monte_carlo_trajectory"
   },
@@ -20,11 +17,11 @@
   },
   "time": {
     "min_time": 0,
-    "max_time": 0.000351,
-    "critical_time": 0.000351,
+    "max_time": 3.51e-4,
+    "critical_time": 3.51e-4,
     "sys_min_time": 1e-10,
     "path_beg_time": 0,
-    "path_end_time": 0.000351
+    "path_end_time": 3.51e-4
   },
   "chem_init": {
     "pressure_atm": 80,
@@ -36,7 +33,7 @@
     }
   },
   "lsode_init": {
-    "dt": 1e-08,
+    "dt": 1e-8,
     "atol": 1e-10,
     "rtol": 1e-10,
     "mf": 22,
@@ -49,7 +46,7 @@
     "deltaN2": 50
   },
   "ssa_init": {
-    "dt": 1e-06,
+    "dt": 1e-6,
     "fixed_size": 10000,
     "order_parameter_ratio": 0.5,
     "deltaN1": 1,
@@ -72,7 +69,7 @@
       5,
       5
     ],
-    "pathwayEndWith": "ALL",
+    "pathwayEndWith": "S1",
     "trajectoryNumber": 1000000,
     "trajectoryNumberVector": [
       1000,
@@ -83,6 +80,29 @@
     ],
     "trajectory_count_limit": 5,
     "dead_species": [],
+    "trapped_species": {
+      "6": 36,
+      "18": 39,
+      "41": 47,
+      "68": 45,
+      "80": 95,
+      "86": 89,
+      "104": 108,
+      "111": 109,
+      "115": 124,
+      "116": 125,
+      "117": 126,
+      "118": 127,
+      "134": 143,
+      "138": 147,
+      "139": 148,
+      "140": 149,
+      "141": 132,
+      "142": 133,
+      "144": 135,
+      "145": 136,
+      "146": 137
+    },
     "fast_reaction": {
       "198": 199,
       "370": 371,
@@ -127,7 +147,7 @@
     "single_source_species": -1,
     "timeN1": 100000,
     "timeN2": 10,
-    "deltaConcentration": 1e-50,
+    "deltaConcentration": 1.0e-50,
     "massConservationFactor": 1.0,
     "iterationNumber": 3,
     "timeIterationNumber": 0,
