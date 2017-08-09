@@ -5,6 +5,8 @@
 
 #include <numeric>
 #include <limits>
+#include <unordered_set>
+#include <unordered_map>
 
 #include <boost/property_tree/json_parser.hpp> //for json_reader
 #include <boost/optional/optional.hpp> //for optional
@@ -12,6 +14,7 @@
 #include "../../tools/misc/fortran_routine_block_alias.h"
 #include "../../tools/misc/global_extern_vars.h"
 #include "../../chemkinCpp/chemkincpp.h"
+#include "../../tools/union_find/unionFind.h"
 
 //put it in the end, because it has "cubicSpline/interp_1d.h", which has to be after all boost libraries
 #include "superPropagator.h"
@@ -100,6 +103,33 @@ namespace propagator_sr {
 		for (std::size_t i = 0; i < this->fast_reaction_pgt.size(); ++i) {
 			std::fill(reaction_rate_data_pgt[fast_reaction_pgt[i]].begin(), reaction_rate_data_pgt[fast_reaction_pgt[i]].end(), 0.0);
 		}
+	}
+
+	void superPropagator::set_drc_of_species_trapped_in_fast_reactions(const std::vector<std::vector<std::size_t>>& trapped_species)
+	{
+		// since there might be groups of trapped species, such as A=B, B=C, C=D, A,B,C,D belongs to the same fast transition group
+		// use union find here
+		std::unordered_set<int> unique_species;
+		for (auto x : trapped_species) {
+			for (auto y : x) {
+				unique_species.insert(y);
+			}
+		}
+		std::unordered_map<int, int> hash1;
+		std::unordered_map<int, int> hash2;
+		int counter = 0;
+		for (auto x : unique_species) {
+			hash1.emplace(counter, x);
+			hash2.emplace(x, counter++);
+		}
+
+		UnionFind uf(hash1.size());
+		for (auto x : trapped_species) {
+			uf.unite(hash2[x[0]], hash2[x[1]]);
+		}
+		
+
+		std::cout << "test.";
 	}
 
 	rsp::temperature_t superPropagator::return_target_temperature() const

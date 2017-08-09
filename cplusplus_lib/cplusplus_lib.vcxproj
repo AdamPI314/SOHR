@@ -161,6 +161,7 @@
     <ClCompile Include="include\tools\my_debug\my_debug.cpp" />
     <ClCompile Include="include\tools\map_reduce\map_reduce.cpp" />
     <ClCompile Include="include\tools\matrix\matrix_sr.cpp" />
+    <ClCompile Include="include\tools\union_find\unionFind.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -197,6 +198,7 @@
     <ClInclude Include="include\tools\misc\graph_bundled.h" />
     <ClInclude Include="include\tools\misc\misc_template.h" />
     <ClInclude Include="include\tools\misc\tree_bundled.h" />
+    <ClInclude Include="include\tools\union_find\unionFind.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="input\chem.bin" />

@@ -32,10 +32,6 @@ namespace reactionNetwork_sr {
 			this->propagator = new pgt::superPropagator(uncertainties, this->cwd);
 		}
 
-		// As soon as the reference trajectory is calculated, should set the fast reactions' rate to be zero
-		//set the reaction rate of fast reactions to be zero
-		this->propagator->set_fast_reaction_rate_to_zero_pgt();
-
 		if (this->rnk_pt.get<std::string>("network.merge_fast_1st_order_transitions") == std::string("yes"))
 			this->merge_fast_1st_order_transitions();
 
@@ -48,6 +44,11 @@ namespace reactionNetwork_sr {
 
 	void concreteReactionNetwork::merge_fast_1st_order_transitions()
 	{
+		//set the reaction rate of fast reactions to be zero
+		this->propagator->set_fast_reaction_rate_to_zero_pgt();
+
+		this->propagator->set_drc_of_species_trapped_in_fast_reactions(this->trapped_spe);
+
 		std::cout << "test.";
 	}
 

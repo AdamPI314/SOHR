@@ -122,7 +122,9 @@ namespace propagator_sr {
 
 		//set the reaction rate of fast reactions to be zero
 		void set_fast_reaction_rate_to_zero_pgt();
-		//set fast transition A=B's pseudo-first order rate constant
+		//set fast transition A=B's pseudo-first order rate constant given list of trapped species pair
+		void set_drc_of_species_trapped_in_fast_reactions(const std::vector<std::vector<std::size_t>> &trapped_species);
+
 
 	public:
 		//return target temperature
@@ -134,7 +136,7 @@ namespace propagator_sr {
 		//Print some interesting stuff to study...
 		void print_pgt();
 		//Write some interesting stuff to file
-		void w2f_pgt(std::string tag="");
+		void w2f_pgt(std::string tag = "");
 		//write species concentration to file
 		void spe_concentration_w2f_pgt(double in_time, std::string str) const;
 		//print conc at specific time into file name "conc.csv", mostly for speciation
