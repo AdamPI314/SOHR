@@ -126,7 +126,7 @@ namespace reactionNetwork_sr {
 			for (auto &y : x.out_spe_index_weight_v_map) {
 				for (auto &z : y.second) {
 					// not root node, got to check wether it is a trapped species first
-					if (unique_trapped_species.find(z.first) != unique_trapped_species.end() && hash1[uf.root(hash2[z.first])] != z.first) {
+					if (unique_trapped_species.find(z.first) != unique_trapped_species.end() && hash1[uf.root(hash2[z.first])] != (int)z.first) {
 						z.first = hash1[uf.root(hash2[z.first])];
 					}
 				}
