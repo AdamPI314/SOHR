@@ -69,11 +69,10 @@
         "super_atom": "Q",
         "tau": 1.0,
         "topN": [
-            5,
             5
         ],
         "pathwayEndWith": "ALL",
-        "trajectoryNumber": 1000000,
+        "trajectoryNumber": 10000,
         "trajectoryNumberVector": [
             1000,
             1000,
