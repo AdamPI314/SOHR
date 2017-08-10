@@ -33,7 +33,10 @@ namespace reactionNetwork_sr {
 		// 4) No change to B's pseudo-first order rate constant, and the corresponding integral over time, keep them in memory, not a big deal
 		// but Change A's k in a way that first get rid of k_{AB}, and append B_{B's out but to A} to A
 		// re-call initiate_cubic_spline()
-		void merge_fast_1st_order_transitions();
+		void merge_fast_transitions();
+		void merge_trapped_species_name();
+		void redirect_Bs_flow_into_As();
+		void append_Bs_out_to_As_out();
 
 	public:
 		/*

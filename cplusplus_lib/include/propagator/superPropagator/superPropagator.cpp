@@ -6,6 +6,7 @@
 #include <numeric>
 #include <limits>
 #include <unordered_set>
+#include <set>
 #include <unordered_map>
 
 #include <boost/property_tree/json_parser.hpp> //for json_reader
@@ -105,31 +106,60 @@ namespace propagator_sr {
 		}
 	}
 
-	void superPropagator::set_drc_of_species_trapped_in_fast_reactions(const std::vector<std::vector<std::size_t>>& trapped_species)
+	void superPropagator::set_drc_of_species_trapped_in_fast_reactions(const std::vector<rsp::spe_info_base> &species_network_v, const std::vector<std::vector<std::size_t>>& trapped_species)
 	{
 		// since there might be groups of trapped species, such as A=B, B=C, C=D, A,B,C,D belongs to the same fast transition group
 		// use union find here
-		std::unordered_set<int> unique_species;
+		std::unordered_set<int> unique_trapped_species;
 		for (auto x : trapped_species) {
 			for (auto y : x) {
-				unique_species.insert(y);
+				unique_trapped_species.insert(y);
 			}
 		}
+		std::set<int> unique_fast_reactions;
+		for (auto r : this->fast_reaction_pgt) {
+			unique_fast_reactions.insert(r);
+		}
+
 		std::unordered_map<int, int> hash1;
 		std::unordered_map<int, int> hash2;
 		int counter = 0;
-		for (auto x : unique_species) {
+		for (auto x : unique_trapped_species) {
 			hash1.emplace(counter, x);
 			hash2.emplace(x, counter++);
 		}
 
 		UnionFind uf(hash1.size());
-		for (auto x : trapped_species) {
-			uf.unite(hash2[x[0]], hash2[x[1]]);
+		for (std::size_t i = 0; i < trapped_species[0].size(); ++i) {
+			uf.unite(hash2[trapped_species[0][i]], hash2[trapped_species[1][i]]);
 		}
-		
 
-		std::cout << "test.";
+		// for all species, cancel all neighbors fast transitions
+		for (auto x : unique_trapped_species) {
+			for (auto y : species_network_v[x].reaction_k_index_s_coef_v) {
+				auto rxn_ind = y.first;
+				auto s_coef = y.second;
+				if (unique_fast_reactions.find(rxn_ind) != unique_fast_reactions.end()) {
+					for (std::size_t i = 0; i < this->time_data_pgt.size(); ++i) {
+						if (this->concentration_data_pgt[x][i] != 0) {
+							auto drc_tmp = s_coef *this->reaction_rate_data_pgt[rxn_ind][i] / this->concentration_data_pgt[x][i];
+							if (this->spe_drc_data_pgt[x][i] > drc_tmp)
+								this->spe_drc_data_pgt[x][i] -= drc_tmp;
+						}
+					}
+				}
+			}
+		}
+
+		// add to main node, for example, A,B,C quick transition group, Add B and C's drc to A's
+		for (auto s : unique_trapped_species) {
+			if (hash1[uf.root(hash2[s])] != s) {
+				for (std::size_t i = 0; i < this->time_data_pgt.size(); ++i) {
+					this->spe_drc_data_pgt[hash1[uf.root(hash2[s])]][i] += this->spe_drc_data_pgt[s][i];
+				}
+ 			}
+		}
+		// done
 	}
 
 	rsp::temperature_t superPropagator::return_target_temperature() const

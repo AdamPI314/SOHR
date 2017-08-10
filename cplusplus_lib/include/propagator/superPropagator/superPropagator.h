@@ -123,7 +123,7 @@ namespace propagator_sr {
 		//set the reaction rate of fast reactions to be zero
 		void set_fast_reaction_rate_to_zero_pgt();
 		//set fast transition A=B's pseudo-first order rate constant given list of trapped species pair
-		void set_drc_of_species_trapped_in_fast_reactions(const std::vector<std::vector<std::size_t>> &trapped_species);
+		void set_drc_of_species_trapped_in_fast_reactions(const std::vector<rsp::spe_info_base> &species_network_v, const std::vector<std::vector<std::size_t>> &trapped_species);
 
 
 	public:

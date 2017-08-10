@@ -261,13 +261,18 @@ namespace reactionNetwork_sr {
 	{
 		std::vector<std::vector<std::size_t> > Matrix(2, std::vector<std::size_t>());
 
-		for (auto key1 : this->rnk_pt.get_child("pathway.fast_reaction")) {
-			auto s1 = (reaction_network_v[key1.second.get_value<std::size_t>()].out_spe_index_weight_v_map.begin())->second.front().first;
-			auto s2 = (reaction_network_v[boost::lexical_cast<std::size_t>(key1.first)].out_spe_index_weight_v_map.begin())->second.front().first;
+		//for (auto key1 : this->rnk_pt.get_child("pathway.fast_reaction")) {
+		//	auto s1 = (reaction_network_v[key1.second.get_value<std::size_t>()].out_spe_index_weight_v_map.begin())->second.front().first;
+		//	auto s2 = (reaction_network_v[boost::lexical_cast<std::size_t>(key1.first)].out_spe_index_weight_v_map.begin())->second.front().first;
 
-			Matrix[0].push_back(s1);
-			Matrix[1].push_back(s2);
+		//	Matrix[0].push_back(s1);
+		//	Matrix[1].push_back(s2);
+		//}
+		for (auto key1 : this->rnk_pt.get_child("pathway.trapped_species")) {
+			Matrix[0].push_back(boost::lexical_cast<std::size_t>(key1.first));
+			Matrix[1].push_back(key1.second.get_value<std::size_t>());
 		}
+
 		this->trapped_spe = Matrix;
 	}
 

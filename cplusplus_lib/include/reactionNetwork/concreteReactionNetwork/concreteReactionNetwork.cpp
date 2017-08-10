@@ -5,6 +5,7 @@
 #include <boost/property_tree/xml_parser.hpp> //for write_xml
 
 #include "concreteReactionNetwork.h"
+#include "../../tools/union_find/unionFind.h"
 
 //infinitesimal dt
 #define INFINITESIMAL_DT 1.0E-14
@@ -33,7 +34,7 @@ namespace reactionNetwork_sr {
 		}
 
 		if (this->rnk_pt.get<std::string>("network.merge_fast_1st_order_transitions") == std::string("yes"))
-			this->merge_fast_1st_order_transitions();
+			this->merge_fast_transitions();
 
 	}
 
@@ -42,14 +43,140 @@ namespace reactionNetwork_sr {
 		delete this->propagator;
 	}
 
-	void concreteReactionNetwork::merge_fast_1st_order_transitions()
+	void concreteReactionNetwork::merge_fast_transitions()
 	{
+		this->propagator->set_drc_of_species_trapped_in_fast_reactions(this->species_network_v, this->trapped_spe);
+
 		//set the reaction rate of fast reactions to be zero
 		this->propagator->set_fast_reaction_rate_to_zero_pgt();
 
-		this->propagator->set_drc_of_species_trapped_in_fast_reactions(this->trapped_spe);
+		//re construct the cubic spline
+		this->propagator->initiate_cubic_spline();
 
-		std::cout << "test.";
+		//merge species names, for example, change main node's name to 'A+B'
+		this->merge_trapped_species_name();
+
+		//reaction produces B redirect to A
+		this->redirect_Bs_flow_into_As();
+
+		//Append B's sink reactions to A's sink reaction list
+		this->append_Bs_out_to_As_out();
+
+	}
+
+	void concreteReactionNetwork::merge_trapped_species_name()
+	{
+		// since there might be groups of trapped species, such as A=B, B=C, C=D, A,B,C,D belongs to the same fast transition group
+		// use union find here
+		std::unordered_set<int> unique_trapped_species;
+		for (auto x : trapped_spe) {
+			for (auto y : x) {
+				unique_trapped_species.insert(y);
+			}
+		}
+
+		std::unordered_map<int, int> hash1;
+		std::unordered_map<int, int> hash2;
+		int counter = 0;
+		for (auto x : unique_trapped_species) {
+			hash1.emplace(counter, x);
+			hash2.emplace(x, counter++);
+		}
+
+		UnionFind uf(hash1.size());
+		for (std::size_t i = 0; i < trapped_spe[0].size(); ++i) {
+			uf.unite(hash2[trapped_spe[0][i]], hash2[trapped_spe[1][i]]);
+		}
+
+		for (auto s : unique_trapped_species) {
+			// not the main nodes
+			if (hash1[uf.root(hash2[s])] != s) {
+				this->species_network_v[hash1[uf.root(hash2[s])]].spe_name += (std::string("+") + this->species_network_v[s].spe_name);
+			}
+		}
+
+	}
+
+	void concreteReactionNetwork::redirect_Bs_flow_into_As()
+	{
+		// since there might be groups of trapped species, such as A=B, B=C, C=D, A,B,C,D belongs to the same fast transition group
+		// use union find here
+		std::unordered_set<int> unique_trapped_species;
+		for (auto x : trapped_spe) {
+			for (auto y : x) {
+				unique_trapped_species.insert(y);
+			}
+		}
+
+		std::unordered_map<int, int> hash1;
+		std::unordered_map<int, int> hash2;
+		int counter = 0;
+		for (auto x : unique_trapped_species) {
+			hash1.emplace(counter, x);
+			hash2.emplace(x, counter++);
+		}
+
+		UnionFind uf(hash1.size());
+		for (std::size_t i = 0; i < trapped_spe[0].size(); ++i) {
+			uf.unite(hash2[trapped_spe[0][i]], hash2[trapped_spe[1][i]]);
+		}
+
+		// check all reactions
+		for (auto &x : this->reaction_network_v) {
+			for (auto &y : x.out_spe_index_weight_v_map) {
+				for (auto &z : y.second) {
+					// not root node, got to check wether it is a trapped species first
+					if (unique_trapped_species.find(z.first) != unique_trapped_species.end() && hash1[uf.root(hash2[z.first])] != z.first) {
+						z.first = hash1[uf.root(hash2[z.first])];
+					}
+				}
+			}//out_spe_index_weight_v_map
+
+			for (auto &y : x.out_spe_index_branching_ratio_map_map) {
+				auto &idx_w_m = y.second;
+				for (auto s : unique_trapped_species) {
+					if (idx_w_m.find(s) != idx_w_m.end() && hash1[uf.root(hash2[s])] != s) {
+						// delete old one, insert new one
+						idx_w_m.emplace(hash1[uf.root(hash2[s])], idx_w_m.at(s));
+						idx_w_m.erase(s);
+					}
+				}
+			}//out_spe_index_branching_ratio_map_map
+		}
+
+	}
+
+	void concreteReactionNetwork::append_Bs_out_to_As_out()
+	{
+		// since there might be groups of trapped species, such as A=B, B=C, C=D, A,B,C,D belongs to the same fast transition group
+		// use union find here
+		std::unordered_set<int> unique_trapped_species;
+		for (auto x : trapped_spe) {
+			for (auto y : x) {
+				unique_trapped_species.insert(y);
+			}
+		}
+
+		std::unordered_map<int, int> hash1;
+		std::unordered_map<int, int> hash2;
+		int counter = 0;
+		for (auto x : unique_trapped_species) {
+			hash1.emplace(counter, x);
+			hash2.emplace(x, counter++);
+		}
+
+		UnionFind uf(hash1.size());
+		for (std::size_t i = 0; i < trapped_spe[0].size(); ++i) {
+			uf.unite(hash2[trapped_spe[0][i]], hash2[trapped_spe[1][i]]);
+		}
+
+		for (auto s : unique_trapped_species) {
+			if (hash1[uf.root(hash2[s])] != s) {
+				for (auto x : this->species_network_v[s].reaction_k_index_s_coef_v) {
+					this->species_network_v[hash1[uf.root(hash2[s])]].reaction_k_index_s_coef_v.push_back(x);
+				}
+			}
+		}
 	}
 
 	bool concreteReactionNetwork::set_init_spe_concentration(rsp::my_time_t in_time)
