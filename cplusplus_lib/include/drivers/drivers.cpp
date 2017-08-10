@@ -175,7 +175,7 @@ void driver::evaluate_path_integral_over_time(const boost::mpi::communicator & w
 	std::vector<std::vector<double> > prob_Mat_reduce(pathway_vec.size(), std::vector<double>(time_Mat[0].size(), 0.0));
 
 	////create rxn_network, generate pathway
-	size_t trajectoryNumber_total = pt.get<std::size_t>("pathway.trajectoryNumber");;
+	size_t trajectoryNumber_total = pt.get<std::size_t>("pathway.trajectoryNumber");
 	size_t P = world.size();
 	size_t trajectoryNumber_local = get_num_block_decomposition_2(world.rank(), trajectoryNumber_total, P);
 
@@ -193,7 +193,7 @@ void driver::evaluate_path_integral_over_time(const boost::mpi::communicator & w
 			for (size_t k = 0; k < trajectoryNumber_local; ++k) {
 				rnk_obj.parse_pathway_to_vector(pathway_vec[i], spe_vec, reaction_vec);
 				pathway_prob_db_t = rnk_obj.pathway_prob_input_pathway_sim_once(0.0, time_Mat[i][j] * path_end_time,
-					spe_vec, reaction_vec, "H");
+					spe_vec, reaction_vec, pt.get<std::string>("pathway.atom_followed"));
 				prob_Mat[i][j] += pathway_prob_db_t / trajectoryNumber_total;
 			}
 		}
@@ -206,13 +206,13 @@ void driver::evaluate_path_integral_over_time(const boost::mpi::communicator & w
 	}
 
 	if (world.rank() == 0) {
-		//print target time to file
-		std::ofstream target_time((main_cwd + std::string("/output/target_time.csv")).c_str());
-		target_time << path_end_time;
-		target_time.close();
+		////print target time to file
+		//std::ofstream target_time((main_cwd + std::string("/output/target_time.csv")).c_str());
+		//target_time << path_end_time;
+		//target_time.close();
 
-		//write concentration of spe to file
-		rnk_obj.spe_concentration_w2f_rnk(pt.get<double>("pathway.tau") * path_end_time, main_cwd + std::string("/output/spe_conc.csv"));
+		////write concentration of spe to file
+		//rnk_obj.spe_concentration_w2f_rnk(pt.get<double>("pathway.tau") * path_end_time, main_cwd + std::string("/output/spe_conc.csv"));
 
 		std::ofstream fout((main_cwd + std::string("/output/pathway_prob.csv")).c_str(), std::ofstream::out);
 		for (size_t i = 0; i < prob_Mat_reduce.size(); ++i) {
