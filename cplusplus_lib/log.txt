@@ -1,4 +1,3 @@
 /home/invictus/Documents/summer_2017_boulder/SRC_EXE_DIR/SOHR/cplusplus_lib
-hello
 running time:	0.04 hours
 
