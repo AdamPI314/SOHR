@@ -2189,34 +2189,34 @@ namespace reactionNetwork_sr {
 			}
 		}
 
-		//treat the special case when the next species is a trapped species
-		std::vector<std::size_t>::iterator it0 = std::find(this->trapped_spe[0].begin(), this->trapped_spe[0].end(), next_spe);
-		std::vector<std::size_t>::iterator it1 = std::find(this->trapped_spe[1].begin(), this->trapped_spe[1].end(), next_spe);
-		std::size_t index_t = std::min(std::distance(trapped_spe[0].begin(), it0), std::distance(trapped_spe[1].begin(), it1));
-		//if is is a trapped species
-		if (index_t != trapped_spe[0].size()) {
-			std::size_t index_01_t = (index_t == (std::size_t)std::distance(trapped_spe[0].begin(), it0)) ? 0 : 1;
+		////treat the special case when the next species is a trapped species
+		//std::vector<std::size_t>::iterator it0 = std::find(this->trapped_spe[0].begin(), this->trapped_spe[0].end(), next_spe);
+		//std::vector<std::size_t>::iterator it1 = std::find(this->trapped_spe[1].begin(), this->trapped_spe[1].end(), next_spe);
+		//std::size_t index_t = std::min(std::distance(trapped_spe[0].begin(), it0), std::distance(trapped_spe[1].begin(), it1));
+		////if is is a trapped species
+		//if (index_t != trapped_spe[0].size()) {
+		//	std::size_t index_01_t = (index_t == (std::size_t)std::distance(trapped_spe[0].begin(), it0)) ? 0 : 1;
 
-			//it comes directly without internal conversion
-			if ((prob_target_reaction != 0)) {
-				//std::cout<<"bingo1!"<<std::endl;
-			}
-			//it comes indirectly, from internal conversion
-			else {
-				next_spe = trapped_spe[1 - index_01_t][index_t];
-				//std::cout<<"trapped spe:\t"<<next_spe<<"\n";
-				for (std::size_t i = 0; i < reaction_network_v[next_reaction].out_spe_index_weight_v_map[atom_followed].size(); ++i) {
-					//found next spe
-					if (reaction_network_v[next_reaction].out_spe_index_weight_v_map[atom_followed][i].first == next_spe) {
-						prob_target_reaction = reaction_network_v[next_reaction].out_spe_index_weight_v_map[atom_followed][i].second;
-					}
+		//	//it comes directly without internal conversion
+		//	if ((prob_target_reaction != 0)) {
+		//		//std::cout<<"bingo1!"<<std::endl;
+		//	}
+		//	//it comes indirectly, from internal conversion
+		//	else {
+		//		next_spe = trapped_spe[1 - index_01_t][index_t];
+		//		//std::cout<<"trapped spe:\t"<<next_spe<<"\n";
+		//		for (std::size_t i = 0; i < reaction_network_v[next_reaction].out_spe_index_weight_v_map[atom_followed].size(); ++i) {
+		//			//found next spe
+		//			if (reaction_network_v[next_reaction].out_spe_index_weight_v_map[atom_followed][i].first == next_spe) {
+		//				prob_target_reaction = reaction_network_v[next_reaction].out_spe_index_weight_v_map[atom_followed][i].second;
+		//			}
 
-				}//for
-			}//else
+		//		}//for
+		//	}//else
 
-			//for trapped species, each of them has species branching ratio of 0.5
-			prob_target_reaction *= 0.5;
-		}
+		//	//for trapped species, each of them has species branching ratio of 0.5
+		//	prob_target_reaction *= 0.5;
+		//}
 
 		double spe_branching_ratio = prob_target_reaction / prob_total;
 
@@ -2258,31 +2258,31 @@ namespace reactionNetwork_sr {
 		if (this->reaction_network_v[next_reaction].out_spe_index_branching_ratio_map_map[atom_followed].count(next_spe) > 0)
 			spe_branching_ratio = this->reaction_network_v[next_reaction].out_spe_index_branching_ratio_map_map[atom_followed][next_spe];
 
-		//treat the special case when the next species is a trapped species
-		std::vector<std::size_t>::iterator it0 = std::find(this->trapped_spe[0].begin(), this->trapped_spe[0].end(), next_spe);
-		std::vector<std::size_t>::iterator it1 = std::find(this->trapped_spe[1].begin(), this->trapped_spe[1].end(), next_spe);
-		std::size_t index_t = std::min(std::distance(trapped_spe[0].begin(), it0), std::distance(trapped_spe[1].begin(), it1));
-		//if is is a trapped species
-		if (index_t != trapped_spe[0].size()) {
-			std::size_t index_01_t = (index_t == (std::size_t)std::distance(trapped_spe[0].begin(), it0)) ? 0 : 1;
+		////treat the special case when the next species is a trapped species
+		//std::vector<std::size_t>::iterator it0 = std::find(this->trapped_spe[0].begin(), this->trapped_spe[0].end(), next_spe);
+		//std::vector<std::size_t>::iterator it1 = std::find(this->trapped_spe[1].begin(), this->trapped_spe[1].end(), next_spe);
+		//std::size_t index_t = std::min(std::distance(trapped_spe[0].begin(), it0), std::distance(trapped_spe[1].begin(), it1));
+		////if is is a trapped species
+		//if (index_t != trapped_spe[0].size()) {
+		//	std::size_t index_01_t = (index_t == (std::size_t)std::distance(trapped_spe[0].begin(), it0)) ? 0 : 1;
 
-			//it comes directly without internal conversion, we are good
-			if ((spe_branching_ratio != 0)) {
-				//std::cout<<"bingo1!"<<std::endl;
-			}
-			//it comes indirectly, from internal conversion
-			else {
-				next_spe = trapped_spe[1 - index_01_t][index_t];
-				//std::cout<<"trapped spe:\t"<<next_spe<<"\n";
-				if (this->reaction_network_v[next_reaction].out_spe_index_branching_ratio_map_map[atom_followed].count(next_spe) > 0)
-					spe_branching_ratio = this->reaction_network_v[next_reaction].out_spe_index_branching_ratio_map_map[atom_followed][next_spe];
-				else
-					spe_branching_ratio = 0.0;
-			}//else
+		//	//it comes directly without internal conversion, we are good
+		//	if ((spe_branching_ratio != 0)) {
+		//		//std::cout<<"bingo1!"<<std::endl;
+		//	}
+		//	//it comes indirectly, from internal conversion
+		//	else {
+		//		next_spe = trapped_spe[1 - index_01_t][index_t];
+		//		//std::cout<<"trapped spe:\t"<<next_spe<<"\n";
+		//		if (this->reaction_network_v[next_reaction].out_spe_index_branching_ratio_map_map[atom_followed].count(next_spe) > 0)
+		//			spe_branching_ratio = this->reaction_network_v[next_reaction].out_spe_index_branching_ratio_map_map[atom_followed][next_spe];
+		//		else
+		//			spe_branching_ratio = 0.0;
+		//	}//else
 
-			//for trapped species, each of them has species branching ratio of 0.5
-			spe_branching_ratio *= 0.5;
-		}
+		//	//for trapped species, each of them has species branching ratio of 0.5
+		//	spe_branching_ratio *= 0.5;
+		//}
 
 		return reaction_branching_ratio*spe_branching_ratio;
 	}
@@ -2348,16 +2348,16 @@ namespace reactionNetwork_sr {
 			//random pick next spe
 			vertex_t next_vertex = random_pick_next_spe(next_reaction_index, atom_followed);
 
-			//treat the special case when the next species is a trapped species
-			std::vector<std::size_t>::iterator it0 = std::find(this->trapped_spe[0].begin(), this->trapped_spe[0].end(), next_vertex);
-			std::vector<std::size_t>::iterator it1 = std::find(this->trapped_spe[1].begin(), this->trapped_spe[1].end(), next_vertex);
-			std::size_t index_t = std::min(std::distance(trapped_spe[0].begin(), it0), std::distance(trapped_spe[1].begin(), it1));
-			//		std::cout<<index_t<<std::endl;
+			////treat the special case when the next species is a trapped species
+			//std::vector<std::size_t>::iterator it0 = std::find(this->trapped_spe[0].begin(), this->trapped_spe[0].end(), next_vertex);
+			//std::vector<std::size_t>::iterator it1 = std::find(this->trapped_spe[1].begin(), this->trapped_spe[1].end(), next_vertex);
+			//std::size_t index_t = std::min(std::distance(trapped_spe[0].begin(), it0), std::distance(trapped_spe[1].begin(), it1));
+			////		std::cout<<index_t<<std::endl;
 
-			if (index_t != trapped_spe[0].size()) {
-				//find, choose one randomly from trapped_spe[0] or trapped_spe[1], in the same column
-				next_vertex = trapped_spe[rand->return_0_or_1_evenly_randomly()][index_t];
-			}
+			//if (index_t != trapped_spe[0].size()) {
+			//	//find, choose one randomly from trapped_spe[0] or trapped_spe[1], in the same column
+			//	next_vertex = trapped_spe[rand->return_0_or_1_evenly_randomly()][index_t];
+			//}
 
 			when_where.first = time;
 			when_where.second = next_vertex;
