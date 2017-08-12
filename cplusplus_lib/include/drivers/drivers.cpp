@@ -111,7 +111,7 @@ void driver::generate_pathway_running_Monte_carlo_trajectory(const boost::mpi::c
 
 	// generate pathway one trajectory
 	for (int i = 0; i < local_N; ++i) {
-		str_t = rnk_obj.pathway_sim_once(init_time, end_time, rnk_obj.return_initial_spe()); //vertex 2 is H2
+		str_t = rnk_obj.pathway_sim_once(init_time, end_time, rnk_obj.return_initial_spe(), pt.get<std::string>("pathway.atom_followed")); //vertex 2 is H2
 		stat_test.insert_pathway_stat(str_t);
 	}
 
@@ -137,9 +137,10 @@ void driver::evaluate_path_integral_over_time(const boost::mpi::communicator & w
 
 	//calculate the uncertainties only in the first node
 	if (world.rank() == 0) {
-		//fileIO::fileIO::read_generate_uncertainties_w2f_nominal(uncertainties, main_cwd+std::string("/input/uncertainties.inp"));
-		fileIO::fileIO::read_generate_uncertainties_w2f_random(uncertainties,
+		fileIO::fileIO::read_generate_uncertainties_w2f_nominal(uncertainties,
 			main_cwd + std::string("/input/uncertainties.inp"));
+		//fileIO::fileIO::read_generate_uncertainties_w2f_random(uncertainties,
+		//	main_cwd + std::string("/input/uncertainties.inp"));
 
 		//get the pathway name only on the processor 0
 		std::vector<std::string> pathway_vec_t;
