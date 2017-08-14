@@ -152,6 +152,7 @@ void driver::evaluate_path_integral_over_time(const boost::mpi::communicator & w
 			topN_vec.push_back(key1.second.get_value<size_t>());
 		}
 		std::size_t topN = topN_vec.front();
+		topN = (topN <= pathway_vec_t.size()) ? topN : pathway_vec_t.size();
 
 		if (pt.get<std::string>("pathway.pathwayEndWith") == "ALL") {
 			pathway_vec.assign(pathway_vec_t.begin(), pathway_vec_t.begin() + topN);
