@@ -64,8 +64,8 @@
         "number_of_Ks": 3
     },
     "pathway": {
-        "init_spe": 114,
-        "atom_followed": "C",
+        "init_spe": 10,
+        "atom_followed": "O",
         "super_atom": "Q",
         "tau": 1.0,
         "topN": [
