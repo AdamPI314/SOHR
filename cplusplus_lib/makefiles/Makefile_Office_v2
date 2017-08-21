@@ -62,9 +62,6 @@
 # -L<library path> - specify a lib directory
 # -l<library> - link with library lib<library>.a
 
-# Cantera makefile template
-include /usr/include/cantera/Cantera.mak
-
 #num of processors
 P=3
 
@@ -85,10 +82,10 @@ BOOST_MPI_OPTIONS= -lboost_mpi -lboost_serialization -lboost_program_options -lb
 BOOST_REGEX_DIR= ./include/regex/src
 
 # The link options, directory and libs
-MY_LIBS   = $(BOOST_ROOT_LIB) $(OPENMPI_ROOT_LIB) $(CANTERA_LIBS) -lgfortran $(BOOST_MPI_OPTIONS)
+MY_LIBS   = $(BOOST_ROOT_LIB) $(OPENMPI_ROOT_LIB) -lgfortran $(BOOST_MPI_OPTIONS)
 
-# The pre-processor options used by the cpp (man cpp for more)
-CPPFLAGS  = -Wall -fopenmp $(BOOST_ROOT_INCLUDE) $(OPENMPI_ROOT_INCLUDE) $(CANTERA_INCLUDES) -std=c++11
+# The pre-processor options used by the cpp (man cpp for more).
+CPPFLAGS  = -Wall -fopenmp $(BOOST_ROOT_INCLUDE) $(OPENMPI_ROOT_INCLUDE) -std=c++11
 
 # The options used in linking as well as in any direct use of ld.
 LDFLAGS   = 
