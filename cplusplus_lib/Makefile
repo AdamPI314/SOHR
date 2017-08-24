@@ -96,11 +96,13 @@ LDFLAGS   =
 
 # The directories in which source files reside.
 # If not specified, only the current directory will be serached.
-SRCDIRS   = . ./include ./include/drivers ./include/tools/debug ./include/relationshipParser ./include/srkin ./include/time ./include/chemkinCpp ./include/statistics ./include/cubicSpline ./include/fileIO/commandLineConfigFileReader ./include/fileIO/CSVFileReader ./include/fileIO/fileIO ./include/pathwayHandler ./include/propagator/superPropagator ./include/propagator/dlsodePropagator ./include/propagator/ssaPropagator ./include/propagator/SOHRPropagator ./include/tools/map_reduce ./include/tools/block_decomposition ./include/tools/sr_libs ./include/tools/matrix ./include/tools/union_find ./include/random ./include/reactionNetwork/superReactionNetwork ./include/reactionNetwork/concreteReactionNetwork ./include/reactionNetwork/reactionNetworkODESolver ./include/search_algorithm/eppstein_algorithm $(BOOST_REGEX_DIR)
+
 # Fortran Source directory
 FSRC_ROOT_DIR = ../fortran_lib/fortran_lib
-FSRCDIRS   = $(FSRC_ROOT_DIR) $(FSRC_ROOT_DIR)/dlsode $(FSRC_ROOT_DIR)/chemkin
+FSRCDIRS   = $(FSRC_ROOT_DIR) $(FSRC_ROOT_DIR)/dlsode $(FSRC_ROOT_DIR)/chemkin $(FSRC_ROOT_DIR)/cantera
 
+# CXX Source directory
+SRCDIRS   = . ./include ./include/drivers ./include/tools/debug ./include/relationshipParser ./include/srkin ./include/time ./include/mechanism ./include/statistics ./include/cubicSpline ./include/fileIO/commandLineConfigFileReader ./include/fileIO/CSVFileReader ./include/fileIO/fileIO ./include/pathwayHandler ./include/propagator/superPropagator ./include/propagator/dlsodePropagator ./include/propagator/ssaPropagator ./include/propagator/SOHRPropagator ./include/tools/map_reduce ./include/tools/block_decomposition ./include/tools/sr_libs ./include/tools/matrix ./include/tools/union_find ./include/random ./include/reactionNetwork/superReactionNetwork ./include/reactionNetwork/concreteReactionNetwork ./include/reactionNetwork/reactionNetworkODESolver ./include/search_algorithm/eppstein_algorithm $(FSRC_ROOT_DIR)/cantera $(BOOST_REGEX_DIR)
 
 # The executable file name.
 # If not specified, current directory name or `a.out' will be used.
@@ -124,7 +126,7 @@ HDREXTS = .h .H .hh .hpp .HPP .h++ .hxx .hp
 CFLAGS  = -g -Ofast
 CXXFLAGS= -g -Ofast
 # -w: ignore waring, add cantera libs
-FFLAGS	= -ffpe-trap=invalid,zero,overflow,underflow -w -Ofast $(CANTERA_INCLUDES) $(CANTERA_FORTRAN_LIBS)
+FFLAGS	= -cpp -ffpe-trap=invalid,zero,overflow,underflow -w -Ofast $(CANTERA_INCLUDES) $(CANTERA_FORTRAN_LIBS)
 
 # The C program compiler.
 #CC     = gcc
