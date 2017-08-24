@@ -1,4 +1,4 @@
-#ifdef __USE_CANTERA_
+#ifdef __GFORTRAN__
 
       Subroutine canteraInitialize()
 
