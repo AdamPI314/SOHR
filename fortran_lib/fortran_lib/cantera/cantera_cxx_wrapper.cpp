@@ -180,18 +180,10 @@ extern "C" {
 		}
 	}
 
-	void setmassfraction_(doublereal* Y) {
-		try {
-			_gas->setMassFractions(*Y);
-		}
-		catch (CanteraError& err) {
-			handleError(err);
-		}
-	}
 
-	void setstate_tr_(doublereal* T, doublereal* rho) {
+	void setstate_rty_(doublereal* rho, doublereal* T, doublereal* Y) {
 		try {
-			_gas->setState_TR(*T, *rho);
+			_gas->setState_RTY(*rho, *T, *Y);
 		}
 		catch (CanteraError& err) {
 			handleError(err);
