@@ -1,5 +1,5 @@
 #ifdef __GFORTRAN__
-      
+
 c
 c     This example shows how to implement subroutines that emulate those
 c     of the Chemkin CKLIB library. This may be useful to port an
@@ -40,12 +40,11 @@ c     CTINDX: get the number of elements, species, and reactions
 
 c     CTWYP: get the net molar production rates, given the pressure,
 c     temperature, and array of mass fractions.
-
       subroutine ctwyp(p,t,y,ickwrk,rckwrk,wdot)
       implicit double precision (a-h,o-z)
       double precision y(*), rckwrk(*), wdot(*)
       integer ickwrk(*)
-      
+
 c     set the state
       psi = 0.1*p
       call setState_TPY(t, psi, y)
@@ -56,11 +55,33 @@ c     get the net production rates
 c     convert SI -> cgs
       nsp = nSpecies()
       do k = 1, nsp
-         wdot(k) = 1.0d3*wdot(k)
+          wdot(k) = 1.0d3*wdot(k)
+      end do
+      return
+      end
+
+      !CTWYR: get the net molar production rates, given mass density,
+      !temperature and mass fraction
+      subroutine ctwyr(rho,t,y,ickwrk,rckwrk,wdot)
+      implicit double precision (a-h,o-z)
+      double precision y(*), rckwrk(*), wdot(*)
+      integer ickwrk(*)
+
+      !set the state, density from cgs to SI
+      rho_cantera = 1000*rho   
+      call setState_TR(t, rho)
+      call setmassfraction(y)
+
+      !get the net production rates
+      call getNetProductionRates(wdot)
+
+      !convert SI -> cgs
+      nsp = nSpecies()
+      do k = 1, nsp
+          wdot(k) = 1.0d3*wdot(k)
       end do
       return
       end
 
 
-      
 #endif
