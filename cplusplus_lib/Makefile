@@ -63,7 +63,8 @@
 # -l<library> - link with library lib<library>.a
 
 # Cantera makefile template
-include /usr/include/cantera/Cantera.mak
+# include /usr/include/cantera/Cantera.mak
+include /opt/cantera/v2.4.0/include/cantera/Cantera.mak
 
 #num of processors
 P=3
@@ -122,8 +123,8 @@ HDREXTS = .h .H .hh .hpp .HPP .h++ .hxx .hp
 # Users can override those variables from the command line.
 CFLAGS  = -g -Ofast
 CXXFLAGS= -g -Ofast
-# -w: ignore waring
-FFLAGS	= -w -Ofast
+# -w: ignore waring, add cantera libs
+FFLAGS	= -ffpe-trap=invalid,zero,overflow,underflow -w -Ofast $(CANTERA_INCLUDES) $(CANTERA_FORTRAN_LIBS)
 
 # The C program compiler.
 #CC     = gcc

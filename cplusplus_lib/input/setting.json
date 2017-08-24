@@ -10,7 +10,7 @@
         "merge_fast_1st_order_transitions": "yes"
     },
     "job": {
-        "job_type": "evaluate_path_integral_over_time"
+        "job_type": "solve_ODEs_for_concentration_using_LSODE"
     },
     "propagator": {
         "type": "dlsode",
