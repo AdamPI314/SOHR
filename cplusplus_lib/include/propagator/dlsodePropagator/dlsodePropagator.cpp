@@ -209,8 +209,8 @@ namespace propagator_sr {
 			}
 			//] print out
 
-			//cppdlsodev(&ti, &tout, &neq, xgst);
-			cppdlsodav(&ti, &tout, &neq, xgst);
+			//ckcppdlsodev(&ti, &tout, &neq, xgst);
+			ckcppdlsodav(&ti, &tout, &neq, xgst);
 			//update mass fractions
 			for (int i = 0; i < nkk; ++i)
 				y_t[i] = xgst[i];
@@ -334,8 +334,8 @@ namespace propagator_sr {
 			}
 			//] print out
 
-			//cppdlsodevt(&ti, &tout, &neq, xgst);
-			cppdlsodavt(&ti, &tout, &neq, xgst);
+			//ckcppdlsodevt(&ti, &tout, &neq, xgst);
+			ckcppdlsodavt(&ti, &tout, &neq, xgst);
 			//update mass fractions
 			for (int i = 0; i < nkk; ++i)
 				y_t[i] = xgst[i];
@@ -459,8 +459,8 @@ namespace propagator_sr {
 			}
 			//] print out
 
-			//cppdlsodev(&ti, &tout, &neq, xgst);
-			cppdlsodav(&ti, &tout, &neq, xgst);
+			//ckcppdlsodev(&ti, &tout, &neq, xgst);
+			ckcppdlsodav(&ti, &tout, &neq, xgst);
 			//update mass fractions
 			for (int i = 0; i < nkk; ++i)
 				y_t[i] = xgst[i];
@@ -583,8 +583,8 @@ namespace propagator_sr {
 			}
 			//] print out
 
-			//cppdlsodev(&ti, &tout, &neq, xgst);
-			cppdlsodav(&ti, &tout, &neq, xgst);
+			//ckcppdlsodev(&ti, &tout, &neq, xgst);
+			ckcppdlsodav(&ti, &tout, &neq, xgst);
 			//update mass fractions
 			for (int i = 0; i < nkk; ++i)
 				y_t[i] = xgst[i];
@@ -708,8 +708,8 @@ namespace propagator_sr {
 			}
 			//] print out
 
-			//cppdlsodep(&ti, &tout, &neq, xgst);
-			cppdlsodap(&ti, &tout, &neq, xgst);
+			//ckcppdlsodep(&ti, &tout, &neq, xgst);
+			ckcppdlsodap(&ti, &tout, &neq, xgst);
 			//update mass fractions
 			for (int i = 0; i < nkk; ++i)
 				y_t[i] = xgst[i];
@@ -834,8 +834,8 @@ namespace propagator_sr {
 			}
 			//] print out
 
-			//cppdlsodep(&ti, &tout, &neq, xgst);
-			cppdlsodap(&ti, &tout, &neq, xgst);
+			//ckcppdlsodep(&ti, &tout, &neq, xgst);
+			ckcppdlsodap(&ti, &tout, &neq, xgst);
 			//update mass fractions
 			for (int i = 0; i < nkk; ++i)
 				y_t[i] = xgst[i];
@@ -959,8 +959,8 @@ namespace propagator_sr {
 			}
 			//] print out
 
-			//cppdlsodep(&ti, &tout, &neq, xgst);
-			cppdlsodap(&ti, &tout, &neq, xgst);
+			//ckcppdlsodep(&ti, &tout, &neq, xgst);
+			ckcppdlsodap(&ti, &tout, &neq, xgst);
 			//update mass fractions
 			for (int i = 0; i < nkk; ++i)
 				y_t[i] = xgst[i];
@@ -1085,8 +1085,8 @@ namespace propagator_sr {
 			}
 			//] print out
 
-			//cppdlsodept(&ti, &tout, &neq, xgst);
-			cppdlsodapt(&ti, &tout, &neq, xgst);
+			//ckcppdlsodept(&ti, &tout, &neq, xgst);
+			ckcppdlsodapt(&ti, &tout, &neq, xgst);
 			//update mass fractions
 			for (int i = 0; i < nkk; ++i)
 				y_t[i] = xgst[i];
@@ -1198,8 +1198,8 @@ namespace propagator_sr {
 			}
 			//] print out
 
-			//cppdlsodest(&ti, &tout, &neq, xgst);
-			cppdlsodast(&ti, &tout, &neq, xgst);
+			//ckcppdlsodest(&ti, &tout, &neq, xgst);
+			ckcppdlsodast(&ti, &tout, &neq, xgst);
 			//update  molar concentration
 			for (int i = 0; i < nkk; ++i)
 				c_t[i] = xgst[i];
@@ -1311,8 +1311,8 @@ namespace propagator_sr {
 			}
 			//] print out
 
-			//cppdlsodest(&ti, &tout, &neq, xgst);
-			cppdlsodastcc1(&ti, &tout, &neq, xgst);
+			//ckcppdlsodest(&ti, &tout, &neq, xgst);
+			ckcppdlsodastcc1(&ti, &tout, &neq, xgst);
 			//update  molar concentration
 			for (int i = 0; i < nkk; ++i)
 				c_t[i] = xgst[i];
@@ -1424,8 +1424,8 @@ namespace propagator_sr {
 			}
 			//] print out
 
-			//cppdlsodest(&ti, &tout, &neq, xgst);
-			cppdlsodastcc2(&ti, &tout, &neq, xgst);
+			//ckcppdlsodest(&ti, &tout, &neq, xgst);
+			ckcppdlsodastcc2(&ti, &tout, &neq, xgst);
 			//update  molar concentration
 			for (int i = 0; i < nkk; ++i)
 				c_t[i] = xgst[i];

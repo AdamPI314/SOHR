@@ -1,4 +1,4 @@
-      Subroutine cppdlsodeV(ti,tout,neq,xgst)
+      Subroutine ckcppdlsodeV(ti,tout,neq,xgst)
       ! at constant volume
       ! 'ti' is the initial value of the independent variable.
       ! 'tout' is the first point where output is desired (.ne. ti).
@@ -36,7 +36,7 @@
       Return
       End
 
-      Subroutine cppdlsodeVT(ti,tout,neq,xgst)
+      Subroutine ckcppdlsodeVT(ti,tout,neq,xgst)
       ! at constant volume and constant temperature
       ! 'ti' is the initial value of the independent variable.
       ! 'tout' is the first point where output is desired (.ne. ti).
@@ -60,7 +60,7 @@
       Return
       End
 
-      Subroutine cppdlsodeP(ti,tout,neq,xgst)
+      Subroutine ckcppdlsodeP(ti,tout,neq,xgst)
       ! at constant pressure
       ! 'ti' is the initial value of the independent variable.
       ! 'tout' is the first point where output is desired (.ne. ti).
@@ -84,7 +84,7 @@
       Return
       End
 
-      Subroutine cppdlsodePT(ti,tout,neq,xgst)
+      Subroutine ckcppdlsodePT(ti,tout,neq,xgst)
       ! at constant pressure and constant temperature
       ! 'ti' is the initial value of the independent variable.
       ! 'tout' is the first point where output is desired (.ne. ti).
@@ -108,7 +108,7 @@
       Return
       End
 
-      Subroutine cppdlsodeST(ti,tout,neq,ct)
+      Subroutine ckcppdlsodeST(ti,tout,neq,ct)
       ! surface reaction
       ! at constant temperature
       ! 'ti' is the initial value of the independent variable.
@@ -133,7 +133,7 @@
       Return
       End
 
-      Subroutine cppdlsodaV(ti,tout,neq,xgst)
+      Subroutine ckcppdlsodaV(ti,tout,neq,xgst)
       ! at constant volume
       ! 'ti' is the initial value of the independent variable.
       ! 'tout' is the first point where output is desired (.ne. ti).
@@ -159,7 +159,7 @@
       Return
       End
 
-      Subroutine cppdlsodaVT(ti,tout,neq,xgst)
+      Subroutine ckcppdlsodaVT(ti,tout,neq,xgst)
       ! at constant volume and temperature
       ! 'ti' is the initial value of the independent variable.
       ! 'tout' is the first point where output is desired (.ne. ti).
@@ -185,7 +185,7 @@
       Return
       End
 
-      Subroutine cppdlsodaP(ti,tout,neq,xgst)
+      Subroutine ckcppdlsodaP(ti,tout,neq,xgst)
       ! at constant pressure
       ! 'ti' is the initial value of the independent variable.
       ! 'tout' is the first point where output is desired (.ne. ti).
@@ -211,7 +211,7 @@
       Return
       End
 
-      Subroutine cppdlsodaPT(ti,tout,neq,xgst)
+      Subroutine ckcppdlsodaPT(ti,tout,neq,xgst)
       ! at constant pressure and constant temperature
       ! 'ti' is the initial value of the independent variable.
       ! 'tout' is the first point where output is desired (.ne. ti).
@@ -237,7 +237,7 @@
       Return
       End
 
-      Subroutine cppdlsodaST(ti,tout,neq,ct)
+      Subroutine ckcppdlsodaST(ti,tout,neq,ct)
       ! surface reaction
       ! at constant temperature
       ! 'ti' is the initial value of the independent variable.
@@ -264,7 +264,7 @@
       Return
       End
 
-      Subroutine cppdlsodaSTCC1(ti,tout,neq,ct)
+      Subroutine ckcppdlsodaSTCC1(ti,tout,neq,ct)
       ! hold the concentration of the first species to be constant
       ! surface reaction
       ! at constant temperature
@@ -292,7 +292,7 @@
       Return
       End
 
-      Subroutine cppdlsodaSTCC2(ti,tout,neq,ct)
+      Subroutine ckcppdlsodaSTCC2(ti,tout,neq,ct)
       ! hold the concentration of the first species to be constant
       ! surface reaction
       ! at constant temperature

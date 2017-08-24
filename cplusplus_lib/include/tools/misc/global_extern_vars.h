@@ -72,18 +72,18 @@ extern "C"
 	void ckxtcp(const double *P, const double *T, const double *X, const int *ICKWRK, const double *RCKWRK, double *C);
 
 	void ckytcr(const double *RHO, const double *T, const double *Y, const int *ICKWRK, const double *RCKWRK, double *C);
-	void cppdlsodev(const double *ti, const double *tout, const int *neq, double *xgst);
-	void cppdlsodav(const double *ti, const double *tout, const int *neq, double *xgst);
-	void cppdlsodevt(const double *ti, const double *tout, const int *neq, double *xgst);
-	void cppdlsodavt(const double *ti, const double *tout, const int *neq, double *xgst);
-	void cppdlsodep(const double *ti, const double *tout, const int *neq, double *xgst);
-	void cppdlsodap(const double *ti, const double *tout, const int *neq, double *xgst);
-	void cppdlsodept(const double *ti, const double *tout, const int *neq, double *xgst);
-	void cppdlsodapt(const double *ti, const double *tout, const int *neq, double *xgst);
-	void cppdlsodest(const double *ti, const double *tout, const int *neq, double *ct);
-	void cppdlsodast(const double *ti, const double *tout, const int *neq, double *ct);
-	void cppdlsodastcc1(const double *ti, const double *tout, const int *neq, double *ct);
-	void cppdlsodastcc2(const double *ti, const double *tout, const int *neq, double *ct);
+	void ckcppdlsodev(const double *ti, const double *tout, const int *neq, double *xgst);
+	void ckcppdlsodav(const double *ti, const double *tout, const int *neq, double *xgst);
+	void ckcppdlsodevt(const double *ti, const double *tout, const int *neq, double *xgst);
+	void ckcppdlsodavt(const double *ti, const double *tout, const int *neq, double *xgst);
+	void ckcppdlsodep(const double *ti, const double *tout, const int *neq, double *xgst);
+	void ckcppdlsodap(const double *ti, const double *tout, const int *neq, double *xgst);
+	void ckcppdlsodept(const double *ti, const double *tout, const int *neq, double *xgst);
+	void ckcppdlsodapt(const double *ti, const double *tout, const int *neq, double *xgst);
+	void ckcppdlsodest(const double *ti, const double *tout, const int *neq, double *ct);
+	void ckcppdlsodast(const double *ti, const double *tout, const int *neq, double *ct);
+	void ckcppdlsodastcc1(const double *ti, const double *tout, const int *neq, double *ct);
+	void ckcppdlsodastcc2(const double *ti, const double *tout, const int *neq, double *ct);
 	void ckkfkr(const double *P, const double *T, const double *X, const int *ICKWRK, const double *RCKWRK, double *FWDK, double *REVK);
 	// Shirong Bai wrote a fortron subroutine to calculate the reaction rates given temperature and molar concentration
 	// Applicable for reactions with rate constant independent of pressure
@@ -105,6 +105,9 @@ extern "C"
 	void canterainitialize();
 	void ctindx(const int *ICKWRK, const double *RCKWRK, int *MM, int *KK, int *II);
 	void ctwyp(const double *P, const double *T, const double *Y, const int *ICKWRK, const double *RCKWRK, double *WDOT);
+	void ctwyr(const double *rho, const double *T, const double *Y, const int *ICKWRK, const double *RCKWRK, double *WDOT);
+	void canteracppdlsodev(const double *ti, const double *tout, const int *neq, double *xgst);
+	void canteracppdlsodav(const double *ti, const double *tout, const int *neq, double *xgst);
 
 #endif // __USE_CANTERA_
 

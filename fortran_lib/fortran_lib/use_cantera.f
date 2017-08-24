@@ -30,7 +30,8 @@
       ttr=xgst(neq)
 
       call ckwt(ICKWRK,RCKWRK,wt)
-      call ckwyr(rhomass,ttr,xgst,ickwrk,rckwrk,wdot)
+      !only change this routine, minimize change from chemkin --> cantera
+      call ctwyr(rhomass,ttr,xgst,ickwrk,rckwrk,wdot)
 
       do i=1,nkk
           derstr(i)=wt(i)*wdot(i)/rhomass

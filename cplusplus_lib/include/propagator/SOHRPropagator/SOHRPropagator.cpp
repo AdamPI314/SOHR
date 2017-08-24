@@ -315,8 +315,8 @@ namespace propagator_sr {
 			}
 			//] print out
 
-			//cppdlsodest_(&ti, &tout, &neq, xgst);
-			//cppdlsodast_(&ti, &tout, &neq, xgst); /*currently used*/
+			//ckcppdlsodest_(&ti, &tout, &neq, xgst);
+			//ckcppdlsodast_(&ti, &tout, &neq, xgst); /*currently used*/
 			//update  molar concentration
 			for (int i = 0; i < nkk; ++i)
 				c_t[i] = xgst[i];
@@ -558,8 +558,8 @@ namespace propagator_sr {
 			}
 			//] print out
 
-			//cppdlsodest_(&ti, &tout, &neq, xgst);
-			//cppdlsodast_(&ti, &tout, &neq, xgst); /*currently used*/
+			//ckcppdlsodest_(&ti, &tout, &neq, xgst);
+			//ckcppdlsodast_(&ti, &tout, &neq, xgst); /*currently used*/
 			//update  molar concentration
 			for (int i = 0; i < nkk; ++i)
 				c_t[i] = xgst[i];
@@ -780,8 +780,8 @@ namespace propagator_sr {
 			}
 			//] print out
 
-			//cppdlsodev(&ti, &tout, &neq, xgst);
-			cppdlsodav(&ti, &tout, &neq, xgst);
+			//ckcppdlsodev(&ti, &tout, &neq, xgst);
+			ckcppdlsodav(&ti, &tout, &neq, xgst);
 			//update mass fractions
 			for (int i = 0; i < nkk; ++i)
 				y_t[i] = xgst[i];
@@ -992,8 +992,8 @@ namespace propagator_sr {
 			}
 			//] print out
 
-			//cppdlsodev(&ti, &tout, &neq, xgst);
-			cppdlsodavt(&ti, &tout, &neq, xgst);
+			//ckcppdlsodev(&ti, &tout, &neq, xgst);
+			ckcppdlsodavt(&ti, &tout, &neq, xgst);
 			//update mass fractions
 			for (int i = 0; i < nkk; ++i)
 				y_t[i] = xgst[i];
@@ -1202,8 +1202,8 @@ namespace propagator_sr {
 			}
 			//] print out
 
-			//cppdlsodest(&ti, &tout, &neq, xgst);
-			cppdlsodast(&ti, &tout, &neq, xgst);
+			//ckcppdlsodest(&ti, &tout, &neq, xgst);
+			ckcppdlsodast(&ti, &tout, &neq, xgst);
 			//update  molar concentration
 			for (int i = 0; i < nkk; ++i)
 				c_t[i] = xgst[i];
@@ -1413,8 +1413,8 @@ namespace propagator_sr {
 			}
 			//] print out
 
-			//cppdlsodest(&ti, &tout, &neq, xgst);
-			cppdlsodastcc1(&ti, &tout, &neq, xgst);
+			//ckcppdlsodest(&ti, &tout, &neq, xgst);
+			ckcppdlsodastcc1(&ti, &tout, &neq, xgst);
 			//update  molar concentration
 			for (int i = 0; i < nkk; ++i)
 				c_t[i] = xgst[i];
