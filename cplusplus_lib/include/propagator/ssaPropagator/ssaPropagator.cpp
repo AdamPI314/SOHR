@@ -2,7 +2,7 @@
 #define __SSAPROPAGATOR_CPP_
 
 #include "ssaPropagator.h"
-#include "../../chemkinCpp/chemkincpp.h"
+#include "../../mechanism/mechanism.h"
 
 #include "../../tools/misc/fortran_routine_block_alias.h"
 #include "../../tools/misc/global_extern_vars.h"
@@ -112,11 +112,11 @@ namespace propagator_sr {
 		int I_t = 1;	double R_A = 0.0;
 		//cout<<"\nPre-exponential Constant, old and new: "<<endl;
 		for (; static_cast<size_t>(I_t) <= uncertainties.size(); ++I_t) {
-			chemkincpp_sr::chemkin::ckraex(&I_t, &R_A);
+			mechanism::kinetics::ckraex(&I_t, &R_A);
 			//cout<<I_t<<" "<<R_A<<"\t";
 			//C/C++ style index to Fortran style index
 			I_t = -I_t; R_A *= uncertainties[abs(I_t) - 1];
-			chemkincpp_sr::chemkin::ckraex(&I_t, &R_A);
+			mechanism::kinetics::ckraex(&I_t, &R_A);
 			////To see whether it changed or not
 			I_t = abs(I_t);
 			//chemkincpp_sr::chemkin::ckraex(&I_t, &R_A);
@@ -223,11 +223,11 @@ namespace propagator_sr {
 		int I_t = 1;	double R_A = 0.0;
 		//cout<<"\nPre-exponential Constant, old and new: "<<endl;
 		for (; static_cast<size_t>(I_t) <= uncertainties.size(); ++I_t) {
-			chemkincpp_sr::chemkin::ckraex(&I_t, &R_A);
+			mechanism::kinetics::ckraex(&I_t, &R_A);
 			//cout<<I_t<<" "<<R_A<<"\t";
 			//C/C++ style index to Fortran style index
 			I_t = -I_t; R_A *= uncertainties[abs(I_t) - 1];
-			chemkincpp_sr::chemkin::ckraex(&I_t, &R_A);
+			mechanism::kinetics::ckraex(&I_t, &R_A);
 			////To see whether it changed or not
 			I_t = abs(I_t);
 			//chemkincpp_sr::chemkin::ckraex(&I_t, &R_A);

@@ -23,7 +23,7 @@
 #include "../tools/misc/global_extern_vars.h"
 #include "../tools/misc/graph_bundled.h"
 #include "../fileIO/fileIO/fileIO.h"
-#include "../chemkinCpp/chemkincpp.h"
+#include "../mechanism/mechanism.h"
 #include "../relationshipParser/relationshipParser.h"
 #include "../reactionNetwork/reactionNetworkODESolver/reactionNetworkODESolver.h"
 #include "../tools/matrix/matrix_sr.h"

@@ -15,7 +15,7 @@
 #include "../tools/misc/global_extern_vars.h"
 #include "../tools/misc/misc_template.h"
 
-namespace chemkincpp_sr {
+namespace mechanism {
 	/*
 	 * reaction network reaction index and ChemKin reaction index lookup table, the reason the ChemKin index is a vector is there might exist duplicated reaction
 	 * ChemKin has its own index of reaction, our reaction network redefine reaction index, here is the corresponding relation between them
@@ -23,7 +23,7 @@ namespace chemkincpp_sr {
 	 * negative index represents backward reaction
 	 */
 
-	class chemkin {
+	class kinetics {
 	private:
 
 		/*
@@ -35,8 +35,8 @@ namespace chemkincpp_sr {
 		static const int nkk(void) { return ::ckstrt.nkk; }
 		static const int nii(void) { return ::ckstrt.nii; }
 	public:
-		chemkin();
-		~chemkin();
+		kinetics();
+		~kinetics();
 
 	public:
 		static void chemkin_init() { ::chemkininitialize(); }

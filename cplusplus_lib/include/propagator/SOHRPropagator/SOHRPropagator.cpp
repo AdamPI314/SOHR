@@ -3,7 +3,7 @@
 
 #include <numeric>
 #include "SOHRPropagator.h"
-#include "../../chemkinCpp/chemkincpp.h"
+#include "../../mechanism/mechanism.h"
 
 #include "../../tools/misc/fortran_routine_block_alias.h"
 #include "../../tools/misc/global_extern_vars.h"
@@ -135,8 +135,8 @@ namespace propagator_sr {
 		// xgst[0]~xgst[nkk-1] are the MASS molar concentration of each species. xgst[nkk] is the temperature.
 		//in which nkk is number of species
 		//number of equations neq=nkk+1
-		const int nkk = chemkincpp_sr::chemkin::nkk(), neq =
-			chemkincpp_sr::chemkin::nkk() + 1, nii = chemkincpp_sr::chemkin::nii();
+		const int nkk = mechanism::kinetics::nkk(), neq =
+			mechanism::kinetics::nkk() + 1, nii = mechanism::kinetics::nii();
 		//initial conditions for lsode.
 		double *xgst = new double[neq];
 		for (int i = 0; i < neq; ++i) xgst[i] = 0.0;
@@ -160,7 +160,7 @@ namespace propagator_sr {
 		// 1Pa= 10 dyn/cm**2
 		// P = nRT
 		double ru, ruc, pa;
-		chemkincpp_sr::chemkin::ckrp(&ru, &ruc, &pa);
+		mechanism::kinetics::ckrp(&ru, &ruc, &pa);
 		//ckstore.pressure = pressure_data_pgt[0];
 		ckstore.pressure = std::accumulate(c_t, c_t + nkk, 0.0)*ru*Temp;
 
@@ -359,8 +359,8 @@ namespace propagator_sr {
 		// xgst[0]~xgst[nkk-1] are the MASS molar concentration of each species. xgst[nkk] is the temperature.
 		//in which nkk is number of species
 		//number of equations neq=nkk+1
-		const int nkk = chemkincpp_sr::chemkin::nkk(), neq =
-			chemkincpp_sr::chemkin::nkk() + 1, nii = chemkincpp_sr::chemkin::nii();
+		const int nkk = mechanism::kinetics::nkk(), neq =
+			mechanism::kinetics::nkk() + 1, nii = mechanism::kinetics::nii();
 		//initial conditions for lsode.
 		double *xgst = new double[neq];
 		for (int i = 0; i < neq; ++i) xgst[i] = 0.0;
@@ -387,7 +387,7 @@ namespace propagator_sr {
 		for (int i = 0; i < nkk; ++i) { x_t[i] /= sum; }
 
 		// Convert mole fraction to molar concentration given pressure and temperature
-		chemkincpp_sr::chemkin::ckxtcp(&ckstore.pressure, &Temp, x_t, c_t);
+		mechanism::kinetics::ckxtcp(&ckstore.pressure, &Temp, x_t, c_t);
 
 		/*
 		 * notice here that if initial concentration is zero, then the pseudo-first order rate coefficient
@@ -401,12 +401,12 @@ namespace propagator_sr {
 		}
 
 		//convert molar concentration to mass fractions
-		chemkincpp_sr::chemkin::ckcty(c_t, y_t);
+		mechanism::kinetics::ckcty(c_t, y_t);
 		//Returns the mass density of the gas mixture given pressure, temperature(s) and mass fractions
 		//The simulation is done in the constant volume condition. So 'ckstore.rhomass' is constant in the simulation.
-		chemkincpp_sr::chemkin::ckrhoy(&ckstore.pressure, &Temp, y_t, &ckstore.rhomass);
+		mechanism::kinetics::ckrhoy(&ckstore.pressure, &Temp, y_t, &ckstore.rhomass);
 
-		chemkincpp_sr::chemkin::ckytx(y_t, x_t);
+		mechanism::kinetics::ckytx(y_t, x_t);
 
 		//add temperature to initial conditions for lsode.
 		xgst[neq - 1] = Temp;
@@ -458,12 +458,12 @@ namespace propagator_sr {
 
 			//Returns the molar creation and destruction rates of the species given mass density, temperature(s)
 			//and mass fractions
-			chemkincpp_sr::chemkin::ckcdyr(&ckstore.rhomass, &Temp, y_t, CDOT_t, DDOT_t);
+			mechanism::kinetics::ckcdyr(&ckstore.rhomass, &Temp, y_t, CDOT_t, DDOT_t);
 
 			////convert molar concentration to mole fraction
 			//chemkincpp_sr::chemkin::ckctx(c_t, x_t);
 			//Returns the forward and reverse reaction rates for reactions given pressure, temperature(s) and mole fractions.
-			chemkincpp_sr::chemkin::ckkfkr(&ckstore.pressure, &Temp, x_t, FWDR_t, REVR_t);
+			mechanism::kinetics::ckkfkr(&ckstore.pressure, &Temp, x_t, FWDR_t, REVR_t);
 
 			if (tout >= critical_time) {
 				tout += dt2;
@@ -608,11 +608,11 @@ namespace propagator_sr {
 		int I_t = 1;	double R_A = 0.0;
 		//cout<<"\nPre-exponential Constant, old and new: "<<endl;
 		for (; static_cast<size_t>(I_t) <= uncertainties.size(); ++I_t) {
-			chemkincpp_sr::chemkin::ckraex(&I_t, &R_A);
+			mechanism::kinetics::ckraex(&I_t, &R_A);
 			//cout<<I_t<<" "<<R_A<<"\t";
 			//C/C++ sytle index to Fortran style index
 			I_t = -I_t; R_A *= uncertainties[abs(I_t) - 1];
-			chemkincpp_sr::chemkin::ckraex(&I_t, &R_A);
+			mechanism::kinetics::ckraex(&I_t, &R_A);
 			////To see whether it changed or not
 			I_t = abs(I_t);
 			//chemkincpp_sr::chemkin::ckraex(&I_t, &R_A);
@@ -622,7 +622,7 @@ namespace propagator_sr {
 		// xgst[0]~xgst[nkk-1] are the MASS FRACTION of each species. xgst[nkk] is the temperature.
 		//in which nkk is number of species
 		//number of equations neq=nkk+1
-		const int nkk = chemkincpp_sr::chemkin::nkk(), neq = chemkincpp_sr::chemkin::nkk() + 1, nii = chemkincpp_sr::chemkin::nii();
+		const int nkk = mechanism::kinetics::nkk(), neq = mechanism::kinetics::nkk() + 1, nii = mechanism::kinetics::nii();
 
 		//initial conditions for lsode.
 		double* xgst = new double[neq];	for (int i = 0; i < neq; ++i) xgst[i] = 0.0;
@@ -646,10 +646,10 @@ namespace propagator_sr {
 		this->initialize_lsode(dt);
 
 		//convert mole fractions to mass fractions
-		chemkincpp_sr::chemkin::ckxty(x_t, y_t);
+		mechanism::kinetics::ckxty(x_t, y_t);
 		//Returns the mass density of the gas mixture given pressure, temperature(s) and mass fractions
 		//The simulation is done in the constant volume condition. So 'ckstore.rhomass' is constant in the simulation.
-		chemkincpp_sr::chemkin::ckrhoy(&ckstore.pressure, &Temp, y_t, &ckstore.rhomass);
+		mechanism::kinetics::ckrhoy(&ckstore.pressure, &Temp, y_t, &ckstore.rhomass);
 
 		//initialize the 1st order ode.
 		for (int i = 0; i < nkk; ++i)
@@ -676,18 +676,18 @@ namespace propagator_sr {
 			//Calculate useful stuff
 			//////////////////////////////////////////////////////////////////////////
 			//convert mass fractions to molar fractions
-			chemkincpp_sr::chemkin::ckytx(y_t, x_t);
+			mechanism::kinetics::ckytx(y_t, x_t);
 			//Returns the pressure of the gas mixture given mass density, temperature(s) and mass fractions.
-			chemkincpp_sr::chemkin::ckpy(&ckstore.rhomass, &Temp, y_t, &ckstore.pressure);
+			mechanism::kinetics::ckpy(&ckstore.rhomass, &Temp, y_t, &ckstore.pressure);
 			//molar concentration
-			chemkincpp_sr::chemkin::ckytcr(&ckstore.rhomass, &Temp, y_t, c_t);
+			mechanism::kinetics::ckytcr(&ckstore.rhomass, &Temp, y_t, c_t);
 
 			//Returns the molar creation and destruction rates of the species given mass density, temperature(s) 
 			//and mass fractions
-			chemkincpp_sr::chemkin::ckcdyr(&ckstore.rhomass, &Temp, y_t, CDOT_t, DDOT_t);
+			mechanism::kinetics::ckcdyr(&ckstore.rhomass, &Temp, y_t, CDOT_t, DDOT_t);
 
 			//Returns the forward and reverse reaction rates for reactions given pressure, temperature(s) and mole fractions.
-			chemkincpp_sr::chemkin::ckkfkr(&ckstore.pressure, &Temp, x_t, FWDR_t, REVR_t);
+			mechanism::kinetics::ckkfkr(&ckstore.pressure, &Temp, x_t, FWDR_t, REVR_t);
 
 			//////////////////////////////////////////////////////////////////////////
 			//print out
@@ -820,11 +820,11 @@ namespace propagator_sr {
 		int I_t = 1;	double R_A = 0.0;
 		//cout<<"\nPre-exponential Constant, old and new: "<<endl;
 		for (; static_cast<size_t>(I_t) <= uncertainties.size(); ++I_t) {
-			chemkincpp_sr::chemkin::ckraex(&I_t, &R_A);
+			mechanism::kinetics::ckraex(&I_t, &R_A);
 			//cout<<I_t<<" "<<R_A<<"\t";
 			//C/C++ sytle index to Fortran style index
 			I_t = -I_t; R_A *= uncertainties[abs(I_t) - 1];
-			chemkincpp_sr::chemkin::ckraex(&I_t, &R_A);
+			mechanism::kinetics::ckraex(&I_t, &R_A);
 			////To see whether it changed or not
 			I_t = abs(I_t);
 			//chemkincpp_sr::chemkin::ckraex(&I_t, &R_A);
@@ -834,7 +834,7 @@ namespace propagator_sr {
 		// xgst[0]~xgst[nkk-1] are the MASS FRACTION of each species. xgst[nkk] is the temperature.
 		//in which nkk is number of species
 		//number of equations neq=nkk+1
-		const int nkk = chemkincpp_sr::chemkin::nkk(), neq = chemkincpp_sr::chemkin::nkk() + 1, nii = chemkincpp_sr::chemkin::nii();
+		const int nkk = mechanism::kinetics::nkk(), neq = mechanism::kinetics::nkk() + 1, nii = mechanism::kinetics::nii();
 
 		//initial conditions for lsode.
 		double* xgst = new double[neq];	for (int i = 0; i < neq; ++i) xgst[i] = 0.0;
@@ -858,10 +858,10 @@ namespace propagator_sr {
 		this->initialize_lsode(dt);
 
 		//convert mole fractions to mass fractions
-		chemkincpp_sr::chemkin::ckxty(x_t, y_t);
+		mechanism::kinetics::ckxty(x_t, y_t);
 		//Returns the mass density of the gas mixture given pressure, temperature(s) and mass fractions
 		//The simulation is done in the constant volume condition. So 'ckstore.rhomass' is constant in the simulation.
-		chemkincpp_sr::chemkin::ckrhoy(&ckstore.pressure, &Temp, y_t, &ckstore.rhomass);
+		mechanism::kinetics::ckrhoy(&ckstore.pressure, &Temp, y_t, &ckstore.rhomass);
 
 		//initialize the 1st order ode.
 		for (int i = 0; i < nkk; ++i)
@@ -888,18 +888,18 @@ namespace propagator_sr {
 			//Calculate useful stuff
 			//////////////////////////////////////////////////////////////////////////
 			//convert mass fractions to molar fractions
-			chemkincpp_sr::chemkin::ckytx(y_t, x_t);
+			mechanism::kinetics::ckytx(y_t, x_t);
 			//Returns the pressure of the gas mixture given mass density, temperature(s) and mass fractions.
-			chemkincpp_sr::chemkin::ckpy(&ckstore.rhomass, &Temp, y_t, &ckstore.pressure);
+			mechanism::kinetics::ckpy(&ckstore.rhomass, &Temp, y_t, &ckstore.pressure);
 			//molar concentration
-			chemkincpp_sr::chemkin::ckytcr(&ckstore.rhomass, &Temp, y_t, c_t);
+			mechanism::kinetics::ckytcr(&ckstore.rhomass, &Temp, y_t, c_t);
 
 			//Returns the molar creation and destruction rates of the species given mass density, temperature(s) 
 			//and mass fractions
-			chemkincpp_sr::chemkin::ckcdyr(&ckstore.rhomass, &Temp, y_t, CDOT_t, DDOT_t);
+			mechanism::kinetics::ckcdyr(&ckstore.rhomass, &Temp, y_t, CDOT_t, DDOT_t);
 
 			//Returns the forward and reverse reaction rates for reactions given pressure, temperature(s) and mole fractions.
-			chemkincpp_sr::chemkin::ckkfkr(&ckstore.pressure, &Temp, x_t, FWDR_t, REVR_t);
+			mechanism::kinetics::ckkfkr(&ckstore.pressure, &Temp, x_t, FWDR_t, REVR_t);
 
 			//////////////////////////////////////////////////////////////////////////
 			//print out
@@ -1030,11 +1030,11 @@ namespace propagator_sr {
 		int I_t = 1;	double R_A = 0.0;
 		//cout<<"\nPre-exponential Constant, old and new: "<<endl;
 		for (; static_cast<size_t>(I_t) <= uncertainties.size(); ++I_t) {
-			chemkincpp_sr::chemkin::ckraex(&I_t, &R_A);
+			mechanism::kinetics::ckraex(&I_t, &R_A);
 			//cout<<I_t<<" "<<R_A<<"\t";
 			//C/C++ style index to Fortran style index
 			I_t = -I_t; R_A *= uncertainties[abs(I_t) - 1];
-			chemkincpp_sr::chemkin::ckraex(&I_t, &R_A);
+			mechanism::kinetics::ckraex(&I_t, &R_A);
 			////To see whether it changed or not
 			I_t = abs(I_t);
 			//chemkincpp_sr::chemkin::ckraex(&I_t, &R_A);
@@ -1044,7 +1044,7 @@ namespace propagator_sr {
 		// xgst[0]~xgst[nkk-1] are the MASS molar concentration of each species. xgst[nkk] is the temperature.
 		//in which nkk is number of species
 		//number of equations neq=nkk+1
-		const int nkk = chemkincpp_sr::chemkin::nkk(), neq = chemkincpp_sr::chemkin::nkk() + 1, nii = chemkincpp_sr::chemkin::nii();
+		const int nkk = mechanism::kinetics::nkk(), neq = mechanism::kinetics::nkk() + 1, nii = mechanism::kinetics::nii();
 		//initial conditions for lsode.
 		double* xgst = new double[neq];	for (int i = 0; i < neq; ++i) xgst[i] = 0.0;
 
@@ -1114,7 +1114,7 @@ namespace propagator_sr {
 			// Shirong Bai wrote a fortron subroutine to calculate the reaction rates given temperature and molar concentration
 			// Applicable for reactions with rate constant independent of pressure
 			// where sr stands for Shirong
-			chemkincpp_sr::chemkin::ckkfkrsr(&Temp, c_t, FWDR_t, REVR_t);
+			mechanism::kinetics::ckkfkrsr(&Temp, c_t, FWDR_t, REVR_t);
 
 			//[ print out
 			//int NPrecision=16;
@@ -1241,11 +1241,11 @@ namespace propagator_sr {
 		int I_t = 1;	double R_A = 0.0;
 		//cout<<"\nPre-exponential Constant, old and new: "<<endl;
 		for (; static_cast<size_t>(I_t) <= uncertainties.size(); ++I_t) {
-			chemkincpp_sr::chemkin::ckraex(&I_t, &R_A);
+			mechanism::kinetics::ckraex(&I_t, &R_A);
 			//cout<<I_t<<" "<<R_A<<"\t";
 			//C/C++ style index to Fortran style index
 			I_t = -I_t; R_A *= uncertainties[abs(I_t) - 1];
-			chemkincpp_sr::chemkin::ckraex(&I_t, &R_A);
+			mechanism::kinetics::ckraex(&I_t, &R_A);
 			////To see whether it changed or not
 			I_t = abs(I_t);
 			//chemkincpp_sr::chemkin::ckraex(&I_t, &R_A);
@@ -1255,7 +1255,7 @@ namespace propagator_sr {
 		// xgst[0]~xgst[nkk-1] are the MASS molar concentration of each species. xgst[nkk] is the temperature.
 		//in which nkk is number of species
 		//number of equations neq=nkk+1
-		const int nkk = chemkincpp_sr::chemkin::nkk(), neq = chemkincpp_sr::chemkin::nkk() + 1, nii = chemkincpp_sr::chemkin::nii();
+		const int nkk = mechanism::kinetics::nkk(), neq = mechanism::kinetics::nkk() + 1, nii = mechanism::kinetics::nii();
 		//initial conditions for lsode.
 		double* xgst = new double[neq];	for (int i = 0; i < neq; ++i) xgst[i] = 0.0;
 
@@ -1325,7 +1325,7 @@ namespace propagator_sr {
 			// Shirong Bai wrote a fortron subroutine to calculate the reaction rates given temperature and molar concentration
 			// Applicable for reactions with rate constant independent of pressure
 			// where sr stands for Shirong
-			chemkincpp_sr::chemkin::ckkfkrsr(&Temp, c_t, FWDR_t, REVR_t);
+			mechanism::kinetics::ckkfkrsr(&Temp, c_t, FWDR_t, REVR_t);
 
 			//[ print out
 			//int NPrecision=16;
@@ -1450,7 +1450,7 @@ namespace propagator_sr {
 
 	void SOHRPropagator::update_spe_drc_based_on_spe_concentration_s_ct_np() {
 		//in which nkk is number of species
-		const int nkk = chemkincpp_sr::chemkin::nkk();
+		const int nkk = mechanism::kinetics::nkk();
 
 		//molar concentration.
 		double *c_t = new double[nkk];
@@ -1497,7 +1497,7 @@ namespace propagator_sr {
 
 	void SOHRPropagator::update_reaction_rate_based_on_spe_concentration_s_ct_np() {
 		//in which nkk is number of species
-		const int nkk = chemkincpp_sr::chemkin::nkk(), nii = chemkincpp_sr::chemkin::nii();
+		const int nkk = mechanism::kinetics::nkk(), nii = mechanism::kinetics::nii();
 
 		////molar fraction
 		//double *x_t = new double[nkk];
@@ -1553,7 +1553,7 @@ namespace propagator_sr {
 	void SOHRPropagator::update_pressure_based_on_spe_concentration_cv()
 	{
 		//in which nkk is number of species
-		const int nkk = chemkincpp_sr::chemkin::nkk();
+		const int nkk = mechanism::kinetics::nkk();
 
 		//mass fractions
 		double* y_t = new double[nkk];
@@ -1566,10 +1566,10 @@ namespace propagator_sr {
 		ckstore.pressure = pressure_data_pgt[0];
 
 		//convert molar concentration to mass fractions
-		chemkincpp_sr::chemkin::ckcty(c_t, y_t);
+		mechanism::kinetics::ckcty(c_t, y_t);
 		//Returns the mass density of the gas mixture given pressure, temperature(s) and mass fractions
 		//The simulation is done in the constant volume condition. So 'ckstore.rhomass' is constant in the simulation.
-		chemkincpp_sr::chemkin::ckrhoy(&ckstore.pressure, &Temp, y_t, &ckstore.rhomass);
+		mechanism::kinetics::ckrhoy(&ckstore.pressure, &Temp, y_t, &ckstore.rhomass);
 
 		//update pressure, not temperature
 		for (std::size_t k = 0; k < this->time_data_pgt.size(); ++k) {
@@ -1579,12 +1579,12 @@ namespace propagator_sr {
 			}
 
 			//convert molar concentration to mass fractions
-			chemkincpp_sr::chemkin::ckcty(c_t, y_t);
+			mechanism::kinetics::ckcty(c_t, y_t);
 
 			//get temperature
 			Temp = temperature_data_pgt[k];
 			//Returns the pressure of the gas mixture given mass density, temperature(s) and mass fractions.
-			chemkincpp_sr::chemkin::ckpy(&ckstore.rhomass, &Temp, y_t, &ckstore.pressure);
+			mechanism::kinetics::ckpy(&ckstore.rhomass, &Temp, y_t, &ckstore.pressure);
 
 			//update pressures
 			pressure_data_pgt[k] = ckstore.pressure;
@@ -1594,7 +1594,7 @@ namespace propagator_sr {
 	void SOHRPropagator::update_temperature_pressure_based_on_spe_concentration_cv()
 	{
 		//in which nkk is number of species
-		const int nkk = chemkincpp_sr::chemkin::nkk();
+		const int nkk = mechanism::kinetics::nkk();
 
 		//mass fractions
 		double* y_t = new double[nkk];
@@ -1608,10 +1608,10 @@ namespace propagator_sr {
 		ckstore.pressure = pressure_data_pgt[0];
 
 		//convert molar concentration to mass fractions
-		chemkincpp_sr::chemkin::ckcty(c_t, y_t);
+		mechanism::kinetics::ckcty(c_t, y_t);
 		//Returns the mass density of the gas mixture given pressure, temperature(s) and mass fractions
 		//The simulation is done in the constant volume condition. So 'ckstore.rhomass' is constant in the simulation.
-		chemkincpp_sr::chemkin::ckrhoy(&ckstore.pressure, &Temp, y_t, &ckstore.rhomass);
+		mechanism::kinetics::ckrhoy(&ckstore.pressure, &Temp, y_t, &ckstore.rhomass);
 
 		//update temperature and pressure
 		for (std::size_t k = 1; k < this->time_data_pgt.size(); ++k) {
@@ -1622,17 +1622,17 @@ namespace propagator_sr {
 			//previous temperature
 			Temp = temperature_data_pgt[k - 1];
 			//convert molar concentration to mass fractions
-			chemkincpp_sr::chemkin::ckcty(c_t, y_t);
-			chemkincpp_sr::chemkin::calculate_t_dot_cv(y_t, &Temp, &Temp_dot);
+			mechanism::kinetics::ckcty(c_t, y_t);
+			mechanism::kinetics::calculate_t_dot_cv(y_t, &Temp, &Temp_dot);
 
 			//new temperature
 			Temp += Temp_dot*(time_data_pgt[k] - time_data_pgt[k - 1]);
 			temperature_data_pgt[k] = Temp;
 
 			//convert molar concentration to mass fractions
-			chemkincpp_sr::chemkin::ckcty(c_t, y_t);
+			mechanism::kinetics::ckcty(c_t, y_t);
 			//Returns the pressure of the gas mixture given mass density, temperature(s) and mass fractions.
-			chemkincpp_sr::chemkin::ckpy(&ckstore.rhomass, &Temp, y_t, &ckstore.pressure);
+			mechanism::kinetics::ckpy(&ckstore.rhomass, &Temp, y_t, &ckstore.pressure);
 
 			//update pressures
 			pressure_data_pgt[k] = ckstore.pressure;
@@ -1645,7 +1645,7 @@ namespace propagator_sr {
 	void SOHRPropagator::update_spe_drc_reaction_rate_based_on_spe_concentration_cv()
 	{
 		//in which nkk is number of species
-		const int nkk = chemkincpp_sr::chemkin::nkk(), nii = chemkincpp_sr::chemkin::nii();
+		const int nkk = mechanism::kinetics::nkk(), nii = mechanism::kinetics::nii();
 
 		//molar fraction.
 		double *x_t = new double[nkk];
@@ -1677,10 +1677,10 @@ namespace propagator_sr {
 		ckstore.pressure = pressure_data_pgt[0];
 
 		//convert molar concentration to mass fractions
-		chemkincpp_sr::chemkin::ckcty(c_t, y_t);
+		mechanism::kinetics::ckcty(c_t, y_t);
 		//Returns the mass density of the gas mixture given pressure, temperature(s) and mass fractions
 		//The simulation is done in the constant volume condition. So 'ckstore.rhomass' is constant in the simulation.
-		chemkincpp_sr::chemkin::ckrhoy(&ckstore.pressure, &Temp, y_t, &ckstore.rhomass);
+		mechanism::kinetics::ckrhoy(&ckstore.pressure, &Temp, y_t, &ckstore.rhomass);
 
 		double reaction_rate_tmp = 0.0;
 		for (std::size_t k = 0; k < this->time_data_pgt.size(); ++k) {
@@ -1694,21 +1694,21 @@ namespace propagator_sr {
 			}
 
 			//convert molar concentration to mass fractions
-			chemkincpp_sr::chemkin::ckcty(c_t, y_t);
+			mechanism::kinetics::ckcty(c_t, y_t);
 			//Returns the pressure of the gas mixture given mass density, temperature(s) and mass fractions.
-			chemkincpp_sr::chemkin::ckpy(&ckstore.rhomass, &Temp, y_t, &ckstore.pressure);
+			mechanism::kinetics::ckpy(&ckstore.rhomass, &Temp, y_t, &ckstore.pressure);
 
 			////update pressures
 			//pressure_data_pgt[k] = ckstore.pressure;
 
 			//Returns the molar creation and destruction rates of the species given mass density, temperature(s)
 			//and mass fractions
-			chemkincpp_sr::chemkin::ckcdyr(&ckstore.rhomass, &Temp, y_t, CDOT_t, DDOT_t);
+			mechanism::kinetics::ckcdyr(&ckstore.rhomass, &Temp, y_t, CDOT_t, DDOT_t);
 
 			//convert molar concentration to mole fraction
-			chemkincpp_sr::chemkin::ckctx(c_t, x_t);
+			mechanism::kinetics::ckctx(c_t, x_t);
 			//Returns the forward and reverse reaction rates for reactions given pressure, temperature(s) and mole fractions.
-			chemkincpp_sr::chemkin::ckkfkr(&ckstore.pressure, &Temp, x_t, FWDR_t, REVR_t);
+			mechanism::kinetics::ckkfkr(&ckstore.pressure, &Temp, x_t, FWDR_t, REVR_t);
 
 			//update drc at every time point
 			//destruction relative rate Constant of species

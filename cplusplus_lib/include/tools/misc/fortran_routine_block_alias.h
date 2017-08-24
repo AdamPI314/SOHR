@@ -1,30 +1,7 @@
 #ifndef __FORTRAN_ROUTINE_BLOCK_ALIAS_H_
 #define __FORTRAN_ROUTINE_BLOCK_ALIAS_H_
 
-#ifdef _WIN64
-    #define __WINDOWS_
-#elif _WIN32
-    #define __WINDOWS_
-
-#elif __APPLE__
-    #include "TargetConditionals.h"
-    #if TARGET_OS_IPHONE && TARGET_IPHONE_SIMULATOR
-        // define something for simulator   
-    #elif TARGET_OS_IPHONE
-        // define something for iphone  
-    #else
-        #define TARGET_OS_OSX 1
-        // define something for OSX
-    #endif
-
-#elif __linux
-    #define __LINUX_
-#elif __unix 
-    // all unices not caught above
-#elif __posix
-    // POSIX
-#endif
-
+#include "global_macros.h"
 
 #ifdef __WINDOWS_
 #define ckstrt CKSTRT

@@ -95,6 +95,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>C:\Program Files (x86)\Microsoft SDKs\MPI\Include;C:\Program Files\boost\boost_1_59_0\include\boost-1_59;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>-D_SCL_SECURE_NO_WARNINGS %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -134,12 +135,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="include\chemkinCpp\chemkincpp.cpp" />
     <ClCompile Include="include\cubicSpline\interp_1d.cpp" />
     <ClCompile Include="include\drivers\drivers.cpp" />
     <ClCompile Include="include\fileIO\commandLineConfigFileReader\clcf_parser.cpp" />
     <ClCompile Include="include\fileIO\CSVFileReader\CSVReader.cpp" />
     <ClCompile Include="include\fileIO\fileIO\fileIO.cpp" />
+    <ClCompile Include="include\mechanism\mechanism.cpp" />
     <ClCompile Include="include\pathwayHandler\pathwayHandler.cpp" />
     <ClCompile Include="include\propagator\dlsodePropagator\dlsodePropagator.cpp" />
     <ClCompile Include="include\propagator\SOHRPropagator\SOHRPropagator.cpp" />
@@ -165,13 +166,13 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="include\chemkinCpp\chemkincpp.h" />
     <ClInclude Include="include\cubicSpline\interp_1d.h" />
     <ClInclude Include="include\cubicSpline\nr3.h" />
     <ClInclude Include="include\drivers\drivers.h" />
     <ClInclude Include="include\fileIO\commandLineConfigFileReader\clcf_parser.h" />
     <ClInclude Include="include\fileIO\CSVFileReader\CSVReader.h" />
     <ClInclude Include="include\fileIO\fileIO\fileIO.h" />
+    <ClInclude Include="include\mechanism\mechanism.h" />
     <ClInclude Include="include\pathwayHandler\pathwayHandler.h" />
     <ClInclude Include="include\propagator\dlsodePropagator\dlsodePropagator.h" />
     <ClInclude Include="include\propagator\SOHRPropagator\SOHRPropagator.h" />
@@ -190,6 +191,7 @@
     <ClInclude Include="include\time\myclock_us.h" />
     <ClInclude Include="include\time\timing.h" />
     <ClInclude Include="include\tools\block_decomposition\block_decomposition.h" />
+    <ClInclude Include="include\tools\misc\global_macros.h" />
     <ClInclude Include="include\tools\my_debug\my_debug.h" />
     <ClInclude Include="include\tools\map_reduce\map_reduce.h" />
     <ClInclude Include="include\tools\matrix\matrix_sr.h" />
