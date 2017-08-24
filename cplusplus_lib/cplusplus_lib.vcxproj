@@ -135,6 +135,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\fortran_lib\fortran_lib\cantera\cantera_cxx_wrapper.cpp" />
     <ClCompile Include="include\cubicSpline\interp_1d.cpp" />
     <ClCompile Include="include\drivers\drivers.cpp" />
     <ClCompile Include="include\fileIO\commandLineConfigFileReader\clcf_parser.cpp" />

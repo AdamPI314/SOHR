@@ -93,4 +93,12 @@
 #endif
 
 
+#ifdef __USE_CANTERA_
+
+#define canterainitialize canterainitialize_
+#define ctindx ctindx_
+#define ctwyp ctwyp_
+
+#endif
+
 #endif

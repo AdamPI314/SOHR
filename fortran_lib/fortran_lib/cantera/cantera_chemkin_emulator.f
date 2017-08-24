@@ -1,3 +1,5 @@
+#ifdef __GFORTRAN__
+      
 c
 c     This example shows how to implement subroutines that emulate those
 c     of the Chemkin CKLIB library. This may be useful to port an
@@ -13,40 +15,6 @@ c     Only a few subroutines are implemented here, but the same idea can
 c     be applied to create Cantera-based versions of any other
 c     subroutines in the CKLIB library.
 c
-
-c-----------------------------------------------------------------------
-c     example driver program
-
-      program ctck
-      implicit double precision (a-h,o-z)
-      double precision rckwrk(1)
-      integer ickwrk(1)
-      parameter (MAXSP = 200)
-      double precision y(MAXSP), wdot(MAXSP)
-
-c     Read in the reaction mechanism. Since this is done differently
-c     than in Chemkin, this function does not correspond to any CKLIB
-c     subroutine. 
-      call newIdealGasMix('chem.xml','gas','')
-
-c     get the number of elements, species, and reactions
-      call ctindx(ickwrk, rckwrk, mm, kk, ii)
-
-      do k = 1, kk
-         y(k) = 1.0/kk
-      end do
-
-c     compute the net production rates in cgs units
-      p = 8.0d6
-      t = 700.0d0
-      
-      call ctwyp(p, t, y, ickwrk, rckwrk, wdot)
-      do k = 1, kk
-         write(*,*) k, y(k), wdot(k)
-      end do
-
-      stop
-      end
 
 c----------------------------------------------------------------------
 c
@@ -93,3 +61,6 @@ c     convert SI -> cgs
       return
       end
 
+
+      
+#endif

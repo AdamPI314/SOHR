@@ -36,6 +36,8 @@
 		<File RelativePath=".\fortran_lib\dlsode\test.f"/></Filter>
 		<Filter Name="lsode">
 		<File RelativePath=".\fortran_lib\lsode\lsode.f"/></Filter>
+		<Filter Name="cantera">
+		<File RelativePath=".\fortran_lib\cantera\cantera_chemkin_emulator.f"/></Filter>
 		<File RelativePath=".\fortran_lib\math.f"/>
 		<File RelativePath=".\fortran_lib\ode_solver.f"/>
 		<File RelativePath=".\fortran_lib\use_cantera.f"/>
