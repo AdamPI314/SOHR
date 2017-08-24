@@ -3,8 +3,31 @@
 #include <stdlib.h>
 #include "timing.h"
 
-//#define __WINDOWS_
-#define __LINUX_
+
+#ifdef _WIN64
+    #define __WINDOWS_
+#elif _WIN32
+    #define __WINDOWS_
+
+#elif __APPLE__
+    #include "TargetConditionals.h"
+    #if TARGET_OS_IPHONE && TARGET_IPHONE_SIMULATOR
+        // define something for simulator   
+    #elif TARGET_OS_IPHONE
+        // define something for iphone  
+    #else
+        #define TARGET_OS_OSX 1
+        // define something for OSX
+    #endif
+
+#elif __linux
+    #define __LINUX_
+#elif __unix 
+    // all unices not caught above
+#elif __posix
+    // POSIX
+#endif
+
 
 #ifdef __LINUX_
 #include <sys/time.h>
