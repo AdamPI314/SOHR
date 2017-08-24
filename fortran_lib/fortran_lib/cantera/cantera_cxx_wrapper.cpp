@@ -183,7 +183,7 @@ extern "C" {
 
 	void setstate_rty_(doublereal* rho, doublereal* T, doublereal* Y) {
 		try {
-			_gas->setState_RTY(*rho, *T, *Y);
+			_gas->setState_RTY(*rho, *T, Y);
 		}
 		catch (CanteraError& err) {
 			handleError(err);
