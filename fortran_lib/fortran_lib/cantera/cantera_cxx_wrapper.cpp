@@ -190,209 +190,210 @@ extern "C" {
 	}
 
 	void setstate_tr_(doublereal* T, doublereal* rho) {
-		_gas->setState_TR(*T, *rho);
-	}
-	catch (CanteraError& err) {
-		handleError(err);
-	}
-}
-
-//-------------- thermodynamic properties ----------------------
-
-/// Temperature (K)
-doublereal temperature_()
-{
-	return _gas->temperature();
-}
-
-/// Pressure (Pa)
-doublereal pressure_()
-{
-	return _gas->pressure();
-}
-
-/// Density (kg/m^3)
-doublereal density_()
-{
-	return _gas->density();
-}
-
-/// Mean molar mass (kg/kmol).
-doublereal meanmolarmass_()
-{
-	return _gas->meanMolecularWeight();
-}
-
-/// Molar enthalpy (J/kmol)
-doublereal enthalpy_mole_()
-{
-	return _gas->enthalpy_mole();
-}
-
-/// Molar internal energy (J/kmol)
-doublereal intenergy_mole_()
-{
-	return _gas->intEnergy_mole();
-}
-
-/// Molar entropy (J/kmol-K)
-doublereal entropy_mole_()
-{
-	return _gas->entropy_mole();
-}
-
-/// Molar heat capacity at constant P (J/kmol-K)
-doublereal cp_mole_()
-{
-	return _gas->cp_mole();
-}
-
-/// Molar Gibbs function (J/kmol)
-doublereal gibbs_mole_()
-{
-	return _gas->gibbs_mole();
-}
-
-doublereal enthalpy_mass_()
-{
-	return _gas->enthalpy_mass();
-}
-
-doublereal intenergy_mass_()
-{
-	return _gas->intEnergy_mass();
-}
-
-doublereal entropy_mass_()
-{
-	return _gas->entropy_mass();
-}
-
-doublereal cp_mass_()
-{
-	return _gas->cp_mass();
-}
-
-doublereal cv_mass_()
-{
-	return _gas->cv_mass();
-}
-
-doublereal gibbs_mass_()
-{
-	return _gas->gibbs_mass();
-}
-
-void gotmolefractions_(doublereal* x)
-{
-	_gas->getMoleFractions(x);
-}
-
-void gotmassfractions_(doublereal* y)
-{
-	_gas->getMassFractions(y);
-}
-
-void equilibrate_(char* opt, ftnlen lenopt)
-{
-	try {
-		if (lenopt != 2) {
-			throw CanteraError("equilibrate",
-				"two-character string required.");
+		try {
+			_gas->setState_TR(*T, *rho);
 		}
-		string optstr = string(opt, 2);
-		_gas->equilibrate(optstr);
+		catch (CanteraError& err) {
+			handleError(err);
+		}
 	}
-	catch (CanteraError& err) {
-		handleError(err);
+
+	//-------------- thermodynamic properties ----------------------
+
+	/// Temperature (K)
+	doublereal temperature_()
+	{
+		return _gas->temperature();
 	}
-}
 
-//---------------- kinetics -------------------------
-
-void getreactioneqn_(integer* i, char* eqn, ftnlen n)
-{
-	int irxn = *i - 1;
-	std::fill(eqn, eqn + n, ' ');
-	string e = _gas->reactionString(irxn);
-	int ns = e.size();
-	unsigned int nmx = (ns > n ? n : ns);
-	copy(e.begin(), e.begin() + nmx, eqn);
-}
-
-void getnetproductionrates_(doublereal* wdot)
-{
-	_gas->getNetProductionRates(wdot);
-}
-
-void getcreationrates_(doublereal* cdot)
-{
-	_gas->getCreationRates(cdot);
-}
-
-void getdestructionrates_(doublereal* ddot)
-{
-	_gas->getDestructionRates(ddot);
-}
-
-void getnetratesofprogress_(doublereal* q)
-{
-	_gas->getNetRatesOfProgress(q);
-}
-
-void getfwdratesofprogress_(doublereal* q)
-{
-	_gas->getFwdRatesOfProgress(q);
-}
-
-void getrevratesofprogress_(doublereal* q)
-{
-	_gas->getRevRatesOfProgress(q);
-}
-
-//-------------------- transport properties --------------------
-
-double viscosity_()
-{
-	try {
-		return _trans->viscosity();
+	/// Pressure (Pa)
+	doublereal pressure_()
+	{
+		return _gas->pressure();
 	}
-	catch (CanteraError& err) {
-		handleError(err);
-		return 0.0;
-	}
-}
 
-double thermalconductivity_()
-{
-	try {
-		return _trans->thermalConductivity();
+	/// Density (kg/m^3)
+	doublereal density_()
+	{
+		return _gas->density();
 	}
-	catch (CanteraError& err) {
-		handleError(err);
-		return 0.0;
-	}
-}
 
-void getmixdiffcoeffs_(double* diff)
-{
-	try {
-		_trans->getMixDiffCoeffs(diff);
+	/// Mean molar mass (kg/kmol).
+	doublereal meanmolarmass_()
+	{
+		return _gas->meanMolecularWeight();
 	}
-	catch (CanteraError& err) {
-		handleError(err);
-	}
-}
 
-void getthermaldiffcoeffs_(double* dt)
-{
-	try {
-		_trans->getThermalDiffCoeffs(dt);
+	/// Molar enthalpy (J/kmol)
+	doublereal enthalpy_mole_()
+	{
+		return _gas->enthalpy_mole();
 	}
-	catch (CanteraError& err) {
-		handleError(err);
+
+	/// Molar internal energy (J/kmol)
+	doublereal intenergy_mole_()
+	{
+		return _gas->intEnergy_mole();
 	}
-}
+
+	/// Molar entropy (J/kmol-K)
+	doublereal entropy_mole_()
+	{
+		return _gas->entropy_mole();
+	}
+
+	/// Molar heat capacity at constant P (J/kmol-K)
+	doublereal cp_mole_()
+	{
+		return _gas->cp_mole();
+	}
+
+	/// Molar Gibbs function (J/kmol)
+	doublereal gibbs_mole_()
+	{
+		return _gas->gibbs_mole();
+	}
+
+	doublereal enthalpy_mass_()
+	{
+		return _gas->enthalpy_mass();
+	}
+
+	doublereal intenergy_mass_()
+	{
+		return _gas->intEnergy_mass();
+	}
+
+	doublereal entropy_mass_()
+	{
+		return _gas->entropy_mass();
+	}
+
+	doublereal cp_mass_()
+	{
+		return _gas->cp_mass();
+	}
+
+	doublereal cv_mass_()
+	{
+		return _gas->cv_mass();
+	}
+
+	doublereal gibbs_mass_()
+	{
+		return _gas->gibbs_mass();
+	}
+
+	void gotmolefractions_(doublereal* x)
+	{
+		_gas->getMoleFractions(x);
+	}
+
+	void gotmassfractions_(doublereal* y)
+	{
+		_gas->getMassFractions(y);
+	}
+
+	void equilibrate_(char* opt, ftnlen lenopt)
+	{
+		try {
+			if (lenopt != 2) {
+				throw CanteraError("equilibrate",
+					"two-character string required.");
+			}
+			string optstr = string(opt, 2);
+			_gas->equilibrate(optstr);
+		}
+		catch (CanteraError& err) {
+			handleError(err);
+		}
+	}
+
+	//---------------- kinetics -------------------------
+
+	void getreactioneqn_(integer* i, char* eqn, ftnlen n)
+	{
+		int irxn = *i - 1;
+		std::fill(eqn, eqn + n, ' ');
+		string e = _gas->reactionString(irxn);
+		int ns = e.size();
+		unsigned int nmx = (ns > n ? n : ns);
+		copy(e.begin(), e.begin() + nmx, eqn);
+	}
+
+	void getnetproductionrates_(doublereal* wdot)
+	{
+		_gas->getNetProductionRates(wdot);
+	}
+
+	void getcreationrates_(doublereal* cdot)
+	{
+		_gas->getCreationRates(cdot);
+	}
+
+	void getdestructionrates_(doublereal* ddot)
+	{
+		_gas->getDestructionRates(ddot);
+	}
+
+	void getnetratesofprogress_(doublereal* q)
+	{
+		_gas->getNetRatesOfProgress(q);
+	}
+
+	void getfwdratesofprogress_(doublereal* q)
+	{
+		_gas->getFwdRatesOfProgress(q);
+	}
+
+	void getrevratesofprogress_(doublereal* q)
+	{
+		_gas->getRevRatesOfProgress(q);
+	}
+
+	//-------------------- transport properties --------------------
+
+	double viscosity_()
+	{
+		try {
+			return _trans->viscosity();
+		}
+		catch (CanteraError& err) {
+			handleError(err);
+			return 0.0;
+		}
+	}
+
+	double thermalconductivity_()
+	{
+		try {
+			return _trans->thermalConductivity();
+		}
+		catch (CanteraError& err) {
+			handleError(err);
+			return 0.0;
+		}
+	}
+
+	void getmixdiffcoeffs_(double* diff)
+	{
+		try {
+			_trans->getMixDiffCoeffs(diff);
+		}
+		catch (CanteraError& err) {
+			handleError(err);
+		}
+	}
+
+	void getthermaldiffcoeffs_(double* dt)
+	{
+		try {
+			_trans->getThermalDiffCoeffs(dt);
+		}
+		catch (CanteraError& err) {
+			handleError(err);
+		}
+	}
 
 }
 
