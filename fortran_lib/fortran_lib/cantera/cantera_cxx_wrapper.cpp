@@ -1,6 +1,6 @@
 #include "../../../cplusplus_lib/include/tools/misc/global_macros.h"
 
-#ifdef ___CANTERA_AVAILABLE_
+#ifdef __CANTERA_AVAILABLE_
 
 
 /*!
