@@ -35,7 +35,9 @@
 
       do i=1,nkk
           derstr(i)=wt(i)*wdot(i)/rhomass
+          write(*,*) wdot(i)
       end do
+      stop 1
 
       call ckums(ttr,ickwrk,rckwrk,h)
       call ckcvbs(ttr,xgst,ickwrk,rckwrk,cvbs)

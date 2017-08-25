@@ -55,7 +55,7 @@ c     get the net production rates
 c     convert SI -> cgs
       nsp = nSpecies()
       do k = 1, nsp
-          wdot(k) = 1.0d3*wdot(k)
+          wdot(k) = 1.0d-3*wdot(k)
       end do
       return
       end
@@ -77,7 +77,7 @@ c     convert SI -> cgs
       !convert SI -> cgs
       nsp = nSpecies()
       do k = 1, nsp
-          wdot(k) = 1.0d3*wdot(k)
+          wdot(k) = 1.0d-3*wdot(k)
       end do
       return
       end
@@ -101,8 +101,8 @@ c     convert SI -> cgs
       !convert SI -> cgs
       nsp = nSpecies()
       do k = 1, nsp
-          cdot(k) = 1.0d3*cdot(k)
-          ddot(k) = 1.0d3*ddot(k)
+          cdot(k) = 1.0d-3*cdot(k)
+          ddot(k) = 1.0d-3*ddot(k)
       end do
 
       return
@@ -128,8 +128,8 @@ c     convert SI -> cgs
       !convert SI -> cgs
       nrxn = nReactions()
       do k = 1, nrxn
-          fwdk(k) = 1.0d3*fwdk(k)
-          revk(k) = 1.0d3*revk(k)
+          fwdk(k) = 1.0d-3*fwdk(k)
+          revk(k) = 1.0d-3*revk(k)
       end do
 
       return
