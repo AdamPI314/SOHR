@@ -22,7 +22,7 @@ namespace ODE {
 	void solver::cppdlsodev(const double * ti, const double * tout, const int * neq, double * xgst)
 	{
 #ifdef __USE_CANTERA_
-		::ctcppdlsodev(ti, tout, neq, xgst);
+		::canteracppdlsodev(ti, tout, neq, xgst);
 #else
 		::ckcppdlsodev(ti, tout, neq, xgst);
 #endif
@@ -31,7 +31,7 @@ namespace ODE {
 	void solver::cppdlsodav(const double * ti, const double * tout, const int * neq, double * xgst)
 	{
 #ifdef __USE_CANTERA_
-		::ctcppdlsodav(ti, tout, neq, xgst);
+		::canteracppdlsodav(ti, tout, neq, xgst);
 #else
 		::ckcppdlsodav(ti, tout, neq, xgst);
 #endif
