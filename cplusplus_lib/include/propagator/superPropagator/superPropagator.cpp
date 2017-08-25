@@ -204,7 +204,7 @@ namespace propagator_sr {
 		cout << "Final temperature:\t" << temperature_data_pgt.back() << endl;
 
 		int MM_t, KK_t, II_t, NFIT_t;
-		mechanism::kinetics::ckindx(&MM_t, &KK_t, &II_t, &NFIT_t);
+		mechanism::kinetics::indx(&MM_t, &KK_t, &II_t, &NFIT_t);
 		cout << "mechanism total element count: " << MM_t << endl;
 		cout << "mechanism total species count: " << KK_t << endl;
 		cout << "mechanism total reaction count: " << II_t << endl;
@@ -223,24 +223,24 @@ namespace propagator_sr {
 
 
 		//convert mole fractions to mass fractions
-		mechanism::kinetics::ckxty(x_t, y_t);
+		mechanism::kinetics::xty(x_t, y_t);
 		//Returns the mass density of the gas mixture given pressure, temperature(s) and mass fractions
 		//The simulation is done in the constant volume condition. So 'ckstore_.rhomass' is constant in the simulation.
-		mechanism::kinetics::ckrhoy(&Pressure, &Temp, y_t, &ckstore.rhomass);
+		mechanism::kinetics::rhoy(&Pressure, &Temp, y_t, &ckstore.rhomass);
 
 		//Returns the pressure of the gas mixture given mass density, temperature(s) and mass fractions.
-		mechanism::kinetics::ckpy(&ckstore.rhomass, &Temp, y_t, &Pressure);
+		mechanism::kinetics::py(&ckstore.rhomass, &Temp, y_t, &Pressure);
 
 		//molar concentration.
 		double* c_t = new double[nkk];
-		mechanism::kinetics::ckytcr(&ckstore.rhomass, &Temp, y_t, c_t);
+		mechanism::kinetics::ytcr(&ckstore.rhomass, &Temp, y_t, c_t);
 		std::cout << "molar concentration:" << std::endl;
 		std::copy(c_t, c_t + nkk, std::ostream_iterator<double>(cout, " ")); cout << endl;
 
 		//species creation rates and destruction rates.
 		double* CDOT_t = new double[nkk]; double* DDOT_t = new double[nkk];
 		//Returns the molar creation and destruction rates of the species given mass density, temperature(s) and mass fractions
-		mechanism::kinetics::ckcdyr(&ckstore.rhomass, &Temp, y_t, CDOT_t, DDOT_t);
+		mechanism::kinetics::cdyr(&ckstore.rhomass, &Temp, y_t, CDOT_t, DDOT_t);
 		std::cout << "molar creation and destruction rates, subroutine ckcdyr:" << std::endl;
 		std::copy(CDOT_t, CDOT_t + neq, std::ostream_iterator<double>(cout, " ")); cout << endl;
 		std::copy(DDOT_t, DDOT_t + neq, std::ostream_iterator<double>(cout, " ")); cout << endl;
@@ -250,7 +250,7 @@ namespace propagator_sr {
 		std::copy(CDOT_t, CDOT_t + neq, std::ostream_iterator<double>(cout, " ")); cout << endl;
 		std::copy(DDOT_t, DDOT_t + neq, std::ostream_iterator<double>(cout, " ")); cout << endl;
 		//The difference is how to treat the auto-catylytic reactions
-		mechanism::kinetics::ckcdc(&Temp, c_t, CDOT_t, DDOT_t);
+		mechanism::kinetics::cdc(&Temp, c_t, CDOT_t, DDOT_t);
 		//this->cal_spe_destruction_rate(&Temp, c_t, CDOT_t, DDOT_t);
 		std::cout << "molar creation and destruction rates, subroutine ckcdc:" << std::endl;
 		std::copy(CDOT_t, CDOT_t + neq, std::ostream_iterator<double>(cout, " ")); cout << endl;
@@ -263,7 +263,7 @@ namespace propagator_sr {
 		std::cout << "Pressure:\t" << Pressure << std::endl;
 		double init = 0.0;
 		std::cout << "molar concentration:\t" << std::accumulate(c_t, c_t + nkk, init) << std::endl;
-		mechanism::kinetics::ckkfkr(&Pressure, &Temp, x_t, FWDR_t, REVR_t);
+		mechanism::kinetics::kfkr(&Pressure, &Temp, x_t, FWDR_t, REVR_t);
 		std::cout << "forward and reverse reaction rates:" << std::endl;
 		std::copy(FWDR_t, FWDR_t + nii, std::ostream_iterator<double>(cout, " ")); cout << endl;
 		std::copy(REVR_t, REVR_t + nii, std::ostream_iterator<double>(cout, " ")); cout << endl;
@@ -271,7 +271,7 @@ namespace propagator_sr {
 		//forward reaction rates constant, reverse reaction rates constant.
 		double* RKFT_t = new double[nii]; double* RKRT_t = new double[nii];
 		//Returns the forward and reverse reaction rates Constant for reactions given pressure and temperature(s).
-		mechanism::kinetics::ckkfrt(&Pressure, &Temp, RKFT_t, RKRT_t);
+		mechanism::kinetics::kfrt(&Pressure, &Temp, RKFT_t, RKRT_t);
 		std::cout << "forward and reverse reaction rate constant:" << std::endl;
 		std::copy(RKFT_t, RKFT_t + nii, std::ostream_iterator<double>(cout, " ")); cout << endl;
 		std::copy(RKRT_t, RKRT_t + nii, std::ostream_iterator<double>(cout, " ")); cout << endl;
@@ -281,13 +281,13 @@ namespace propagator_sr {
 
 		cout << "nii: " << nii << endl;
 		int I_t = 25;	double R_A = 0.0;
-		mechanism::kinetics::ckraex(&I_t, &R_A);
+		mechanism::kinetics::raex(&I_t, &R_A);
 		cout << R_A << endl;
 		I_t = -25; R_A *= 5.0;
-		mechanism::kinetics::ckraex(&I_t, &R_A);
+		mechanism::kinetics::raex(&I_t, &R_A);
 		cout << R_A << endl;
 		//Returns the forward and reverse reaction rates Constant for reactions given pressure and temperature(s).
-		mechanism::kinetics::ckkfrt(&Pressure, &Temp, RKFT_t, RKRT_t);
+		mechanism::kinetics::kfrt(&Pressure, &Temp, RKFT_t, RKRT_t);
 		std::copy(RKFT_t, RKFT_t + nii, std::ostream_iterator<double>(cout, " ")); cout << endl;
 		std::copy(RKRT_t, RKRT_t + nii, std::ostream_iterator<double>(cout, " ")); cout << endl;
 
@@ -296,7 +296,7 @@ namespace propagator_sr {
 		double *RB2_t = new double[nii];
 		double *RE2_t = new double[nii];
 
-		mechanism::kinetics::ckabe(RA2_t, RB2_t, RE2_t);
+		mechanism::kinetics::abe(RA2_t, RB2_t, RE2_t);
 		cout << "RA: " << endl;
 		std::copy(RA2_t, RA2_t + nii, std::ostream_iterator<double>(cout, " ")); cout << endl;
 		cout << "RB: " << endl;
@@ -579,7 +579,7 @@ namespace propagator_sr {
 			for (int i = 0; i < nkk; ++i) {
 				c_t[i] = concentration_data_pgt[i][k];
 			}
-			mechanism::kinetics::ckctx(c_t, x_t);
+			mechanism::kinetics::ctx(c_t, x_t);
 			//convert molar concentration to mole fraction
 			for (int i = 0; i < nkk; ++i) {
 				concentration_data_pgt[i][k] = x_t[i];
@@ -605,7 +605,7 @@ namespace propagator_sr {
 			for (int i = 0; i < nkk; ++i)
 				x_t[i] /= total;
 			//convert mole fraction to molar concentration
-			mechanism::kinetics::ckxtcp(&pressure, &temperature, x_t, c_t);
+			mechanism::kinetics::xtcp(&pressure, &temperature, x_t, c_t);
 			for (int i = 0; i < nkk; ++i) {
 				concentration_data_pgt[i][k] = c_t[i];
 			}

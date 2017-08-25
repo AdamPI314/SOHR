@@ -40,28 +40,28 @@ namespace mechanism {
 
 	public:
 		static void chemkin_init() { ::chemkininitialize(); }
-		static void ckrp(double *ru, double *ruc, double *pa);
-		static void ckindx(int* MM, int* KK, int* II, int* NFIT);
-		static void ckxty(const double *X, double *Y);
-		static void ckytx(const double *Y, double *X);
-		static void ckctx(const double *C, double *X);
-		static void ckcty(const double *C, double *Y);
-		static void ckxtcp(const double *P, const double *T, const double *X, double *C);
+		static void rp(double *ru, double *ruc, double *pa);
+		static void indx(int* MM, int* KK, int* II, int* NFIT);
+		static void xty(const double *X, double *Y);
+		static void ytx(const double *Y, double *X);
+		static void ctx(const double *C, double *X);
+		static void cty(const double *C, double *Y);
+		static void xtcp(const double *P, const double *T, const double *X, double *C);
 
-		static void ckrhoy(const double *P, const double *T, const double *Y, double *RHO);
-		static void ckpy(const double *RHO, const double *T, const double *Y, double *P);
-		static void ckytcr(const double *RHO, const double *T, const double *Y, double *C);
-		static void ckcdyr(const double *RHO, const double *T, const double *Y, double *CDOT, double *DDOT);
-		static void ckkfkr(const double *P, const double *T, const double *X, double *FWDK, double *REVK);
+		static void rhoy(const double *P, const double *T, const double *Y, double *RHO);
+		static void py(const double *RHO, const double *T, const double *Y, double *P);
+		static void ytcr(const double *RHO, const double *T, const double *Y, double *C);
+		static void cdyr(const double *RHO, const double *T, const double *Y, double *CDOT, double *DDOT);
+		static void kfkr(const double *P, const double *T, const double *X, double *FWDK, double *REVK);
 		// Shirong Bai wrote a fortron subroutine to calculate the reaction rates given temperature and molar concentration
 		// Applicable for reactions with rate constant independent of pressure
 		// where sr stands for Shirong
-		static void ckkfkrsr(const double *T, const double *C, double *FWDK, double *REVK);
+		static void kfkrsr(const double *T, const double *C, double *FWDK, double *REVK);
 
-		static void ckkfrt(const double *P, const double *T, double *RKFT, double *RKRT);
-		static void ckraex(const int *I, double *RA);
-		static void ckabe(double *RA, double *RB, double *RE);
-		static void ckcdc(const double *T, const double *C, double *CDOT, double *DDOT);
+		static void kfrt(const double *P, const double *T, double *RKFT, double *RKRT);
+		static void raex(const int *I, double *RA);
+		static void abe(double *RA, double *RB, double *RE);
+		static void cdc(const double *T, const double *C, double *CDOT, double *DDOT);
 		//calculate temperature derivative
 		static void calculate_t_dot_cv(const double *Y, const double *t, double *tdot) { ::calculatetdotv(Y, t, tdot); }
 	};

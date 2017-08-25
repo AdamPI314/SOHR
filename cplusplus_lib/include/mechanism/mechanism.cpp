@@ -9,6 +9,7 @@
 #define __CHEMKINCPP_CPP_
 
 #include "mechanism.h"
+#include "../../include/tools/misc/global_macros.h"
 
 namespace mechanism {
 	kinetics::kinetics()
@@ -20,76 +21,85 @@ namespace mechanism {
 	}
 
 
-	void kinetics::ckrp(double * ru, double * ruc, double * pa)
+	void kinetics::rp(double * ru, double * ruc, double * pa)
 	{
 		::ckrp(::chemkin.ickwrk, ::chemkin.rckwrk, ru, ruc, pa);
 	}
 
-	void kinetics::ckindx(int* MM, int* KK, int* II, int* NFIT) {
+	void kinetics::indx(int* MM, int* KK, int* II, int* NFIT) {
 		::ckindx(::chemkin.ickwrk, ::chemkin.rckwrk, MM, KK, II, NFIT);
 	}
 
-	void kinetics::ckxty(const double *X, double *Y) {
+	void kinetics::xty(const double *X, double *Y) {
 		::ckxty(X, ::chemkin.ickwrk, ::chemkin.rckwrk, Y);
 	}
 
-	void kinetics::ckytx(const double *Y, double *X) {
+	void kinetics::ytx(const double *Y, double *X) {
 		::ckytx(Y, ::chemkin.ickwrk, ::chemkin.rckwrk, X);
 	}
 
-	void kinetics::ckctx(const double *C, double *X) {
+	void kinetics::ctx(const double *C, double *X) {
 		::ckctx(C, ::chemkin.ickwrk, ::chemkin.rckwrk, X);
 	}
 
-	void kinetics::ckcty(const double * C, double * Y)
+	void kinetics::cty(const double * C, double * Y)
 	{
 		::ckcty(C, ::chemkin.ickwrk, ::chemkin.rckwrk, Y);
 	}
 
-	void kinetics::ckxtcp(const double *P, const double *T, const double *X, double *C) {
+	void kinetics::xtcp(const double *P, const double *T, const double *X, double *C) {
 		::ckxtcp(P, T, X, ::chemkin.ickwrk, ::chemkin.rckwrk, C);
 	}
 
-	void kinetics::ckrhoy(const double *P, const double *T, const double *Y, double *RHO) {
+	void kinetics::rhoy(const double *P, const double *T, const double *Y, double *RHO) {
 		::ckrhoy(P, T, Y, ::chemkin.ickwrk, ::chemkin.rckwrk, RHO);
 	}
 
-	void kinetics::ckpy(const double *RHO, const double *T, const double *Y, double *P) {
+	void kinetics::py(const double *RHO, const double *T, const double *Y, double *P) {
 		::ckpy(RHO, T, Y, ::chemkin.ickwrk, ::chemkin.rckwrk, P);
 	}
 
-	void kinetics::ckytcr(const double *RHO, const double *T, const double *Y, double *C) {
+	void kinetics::ytcr(const double *RHO, const double *T, const double *Y, double *C) {
 		::ckytcr(RHO, T, Y, ::chemkin.ickwrk, ::chemkin.rckwrk, C);
 	}
 
-	void kinetics::ckcdyr(const double *RHO, const double *T, const double *Y, double *CDOT, double *DDOT) {
+	void kinetics::cdyr(const double *RHO, const double *T, const double *Y, double *CDOT, double *DDOT) {
+#ifdef __USE_CANTERA_
+		::ctcdyr(RHO, T, Y, ::chemkin.ickwrk, ::chemkin.rckwrk, CDOT, DDOT);
+#else
 		::ckcdyr(RHO, T, Y, ::chemkin.ickwrk, ::chemkin.rckwrk, CDOT, DDOT);
+#endif // __USE_CANTERA_
 	}
 
-	void kinetics::ckkfkr(const double *P, const double *T, const double *X, double *FWDK, double *REVK) {
+	void kinetics::kfkr(const double *P, const double *T, const double *X, double *FWDK, double *REVK) {
 		::ckkfkr(P, T, X, ::chemkin.ickwrk, ::chemkin.rckwrk, FWDK, REVK);
+#ifdef __USE_CANTERA_
+		::ctkfkr(P, T, X, ::chemkin.ickwrk, ::chemkin.rckwrk, FWDK, REVK);
+#else
+		::ckkfkr(P, T, X, ::chemkin.ickwrk, ::chemkin.rckwrk, FWDK, REVK);
+#endif // __USE_CANTERA_
 	}
 
 	// Shirong Bai wrote a fortron subroutine to calculate the reaction rates given temperature and molar concentration
 	// Applicable for reactions with rate constant independent of pressure
 	// where sr stands for Shirong
-	void kinetics::ckkfkrsr(const double *T, const double *C, double *FWDK, double *REVK) {
+	void kinetics::kfkrsr(const double *T, const double *C, double *FWDK, double *REVK) {
 		::ckkfkrsr(T, C, ::chemkin.ickwrk, ::chemkin.rckwrk, FWDK, REVK);
 	}
 
-	void kinetics::ckkfrt(const double *P, const double *T, double *RKFT, double *RKRT) {
+	void kinetics::kfrt(const double *P, const double *T, double *RKFT, double *RKRT) {
 		::ckkfrt(P, T, ::chemkin.ickwrk, ::chemkin.rckwrk, RKFT, RKRT);
 	}
 
-	void kinetics::ckraex(const int *I, double *RA) {
+	void kinetics::raex(const int *I, double *RA) {
 		::ckraex(I, ::chemkin.rckwrk, RA);
 	}
 
-	void kinetics::ckabe(double *RA, double *RB, double *RE) {
+	void kinetics::abe(double *RA, double *RB, double *RE) {
 		::ckabe(::chemkin.ickwrk, ::chemkin.rckwrk, RA, RB, RE);
 	}
 
-	void kinetics::ckcdc(const double *T, const double *C, double *CDOT, double *DDOT) {
+	void kinetics::cdc(const double *T, const double *C, double *CDOT, double *DDOT) {
 		::ckcdc(T, C, ::chemkin.ickwrk, ::chemkin.rckwrk, CDOT, DDOT);
 	}
 
