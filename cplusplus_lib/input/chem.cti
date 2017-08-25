@@ -14,8 +14,7 @@ units(length='cm', time='s', quantity='mol', act_energy='cal/mol')
 ideal_gas(name='gas',
           elements="H O",
           species="""O2    H2O   H2    H2O2  H     OH    HO2   O""",
-          reactions='all',
-          initial_state=state(temperature=300.0, pressure=OneAtm))
+          reactions='all')
 
 #-------------------------------------------------------------------------------
 # Species data

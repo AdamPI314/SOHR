@@ -68,7 +68,7 @@ c     convert SI -> cgs
       integer ickwrk(*)
 
       !set the state, density from cgs to SI
-      rho_cantera = 1000*rho
+      rho_cantera = 1.0d3*rho
       call setState_TRY(t, rho_cantera, y)
 
       !get the net production rates
@@ -90,7 +90,7 @@ c     convert SI -> cgs
       integer ickwrk(*)
 
       !set the state, density from cgs to SI
-      rho_cantera = 1000*rho
+      rho_cantera = 1.0d3*rho
       call setState_TRY(t, rho_cantera, y)
 
       !get the creation/production rates

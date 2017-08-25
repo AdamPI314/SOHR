@@ -7,10 +7,6 @@
     <elementArray datasrc="elements.xml">H O</elementArray>
     <speciesArray datasrc="#species_data">O2    H2O   H2    H2O2  H     OH    HO2   O</speciesArray>
     <reactionArray datasrc="#reaction_data"/>
-    <state>
-      <temperature units="K">300.0</temperature>
-      <pressure units="Pa">101325.0</pressure>
-    </state>
     <thermo model="IdealGas"/>
     <kinetics model="GasKinetics"/>
     <transport model="None"/>
