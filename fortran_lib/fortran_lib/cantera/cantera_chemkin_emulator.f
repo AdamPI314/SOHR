@@ -109,4 +109,30 @@ c     convert SI -> cgs
       end
 
 
+      !Returns the forward and reverse reaction rates for reactions
+      !given pressure, temperature(s) and mole fractions.
+      subroutine ctkfkr(p,t,x,ickwrk,rckwrk,fwdk,revk)
+      implicit double precision (a-h,o-z)
+      double precision x(*), rckwrk(*), fwdk(*), revk(*)
+      integer ickwrk(*)
+
+      !set the state
+      psi = 0.1*p
+      call setState_TPX(t, psi, x)
+
+      !get the forward reaction rates
+      call getfwdratesofprogress(fwdk)
+      !get the backward reaction rates
+      call getrevratesofprogress(revk)
+
+      !convert SI -> cgs
+      nrxn = nReactions()
+      do k = 1, nrxn
+          fwdk(k) = 1.0d3*fwdk(k)
+          revk(k) = 1.0d3*revk(k)
+      end do
+
+      return
+      end
+
 #endif
