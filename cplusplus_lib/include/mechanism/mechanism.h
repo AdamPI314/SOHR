@@ -40,6 +40,7 @@ namespace mechanism {
 
 	public:
 		static void chemkin_init() { ::chemkininitialize(); }
+		static void cantera_init();
 		static void rp(double *ru, double *ruc, double *pa);
 		static void indx(int* MM, int* KK, int* II, int* NFIT);
 		static void xty(const double *X, double *Y);

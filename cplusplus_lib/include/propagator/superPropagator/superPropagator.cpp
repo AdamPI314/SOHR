@@ -157,7 +157,7 @@ namespace propagator_sr {
 				for (std::size_t i = 0; i < this->time_data_pgt.size(); ++i) {
 					this->spe_drc_data_pgt[hash1[uf.root(hash2[s])]][i] += this->spe_drc_data_pgt[s][i];
 				}
- 			}
+			}
 		}
 		// done
 	}
@@ -555,6 +555,11 @@ namespace propagator_sr {
 	{
 		//initiate chemkin
 		mechanism::kinetics::chemkin_init();
+
+#ifdef __USE_CANTERA_
+		mechanism::kinetics::cantera_init();
+#endif // __USE_CANTERA_
+
 
 		//Read the file named "chem.out", read in the chemical reactions index
 		rsp::relationshipParser::read_reactionNetwork_chemkin_index_map(reactionNetwork_chemkin_index_map, this->cwd_pgt + std::string("/input/chem.out"));

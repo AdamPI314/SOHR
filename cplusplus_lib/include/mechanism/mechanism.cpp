@@ -21,6 +21,13 @@ namespace mechanism {
 	}
 
 
+	void kinetics::cantera_init()
+	{
+#ifdef __USE_CANTERA_
+		::canterainitialize();
+#endif
+	}
+
 	void kinetics::rp(double * ru, double * ruc, double * pa)
 	{
 		::ckrp(::chemkin.ickwrk, ::chemkin.rckwrk, ru, ruc, pa);

@@ -142,6 +142,7 @@
     <ClCompile Include="include\fileIO\CSVFileReader\CSVReader.cpp" />
     <ClCompile Include="include\fileIO\fileIO\fileIO.cpp" />
     <ClCompile Include="include\mechanism\mechanism.cpp" />
+    <ClCompile Include="include\odeSolver\odesolver.cpp" />
     <ClCompile Include="include\pathwayHandler\pathwayHandler.cpp" />
     <ClCompile Include="include\propagator\dlsodePropagator\dlsodePropagator.cpp" />
     <ClCompile Include="include\propagator\SOHRPropagator\SOHRPropagator.cpp" />
@@ -174,6 +175,7 @@
     <ClInclude Include="include\fileIO\CSVFileReader\CSVReader.h" />
     <ClInclude Include="include\fileIO\fileIO\fileIO.h" />
     <ClInclude Include="include\mechanism\mechanism.h" />
+    <ClInclude Include="include\odeSolver\odesolver.h" />
     <ClInclude Include="include\pathwayHandler\pathwayHandler.h" />
     <ClInclude Include="include\propagator\dlsodePropagator\dlsodePropagator.h" />
     <ClInclude Include="include\propagator\SOHRPropagator\SOHRPropagator.h" />

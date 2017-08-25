@@ -2,7 +2,7 @@
 #define __SUPERPROPAGATOR_H_
 
 #include "../../tools/misc/misc_template.h"
-
+#include "../../odeSolver/odesolver.h"
 #include "../../relationshipParser/relationshipParser.h"
 #include <boost/property_tree/ptree.hpp> //for property_tree
 
