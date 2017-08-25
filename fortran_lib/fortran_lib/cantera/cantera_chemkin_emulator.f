@@ -69,7 +69,7 @@ c     convert SI -> cgs
 
       !set the state, density from cgs to SI
       rho_cantera = 1000*rho
-      call setState_TRY(t, rho, y)
+      call setState_TRY(t, rho_cantera, y)
 
       !get the net production rates
       call getNetProductionRates(wdot)
@@ -91,7 +91,7 @@ c     convert SI -> cgs
 
       !set the state, density from cgs to SI
       rho_cantera = 1000*rho
-      call setState_TRY(t, rho, y)
+      call setState_TRY(t, rho_cantera, y)
 
       !get the creation/production rates
       call getcreationrates(cdot)
