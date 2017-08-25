@@ -99,8 +99,12 @@
 #define ctindx ctindx_
 #define ctwyp ctwyp_
 #define ctwyr ctwyr_
+#define ctcdyr ctcdyr_
+#define ctkfkr ctkfkr_
+
 #define canteracppdlsodev canteracppdlsodev_
 #define canteracppdlsodav canteracppdlsodav_
+
 
 #endif
 

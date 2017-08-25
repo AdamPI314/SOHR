@@ -106,6 +106,10 @@ extern "C"
 	void ctindx(const int *ICKWRK, const double *RCKWRK, int *MM, int *KK, int *II);
 	void ctwyp(const double *P, const double *T, const double *Y, const int *ICKWRK, const double *RCKWRK, double *WDOT);
 	void ctwyr(const double *rho, const double *T, const double *Y, const int *ICKWRK, const double *RCKWRK, double *WDOT);
+	void ctcdyr(const double *rho, const double *T, const double *Y, const int *ICKWRK, const double *RCKWRK, double *CDOT, double *DDOT);
+	void ctkfkr(const double *P, const double *T, const double *X, const int *ICKWRK, const double *RCKWRK, double *FWDK, double *REVK);
+
+
 	void canteracppdlsodev(const double *ti, const double *tout, const int *neq, double *xgst);
 	void canteracppdlsodav(const double *ti, const double *tout, const int *neq, double *xgst);
 
