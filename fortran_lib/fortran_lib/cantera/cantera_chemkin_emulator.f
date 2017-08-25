@@ -84,7 +84,7 @@ c     convert SI -> cgs
 
       !Returns the molar creation and destruction rates of the species
       !given mass density, temperature(s) and mass fractions
-      ctcdyr(rho, t, y, ickwrk, rckwrk, cdot, ddot)
+      subroutine ctcdyr(rho, t, y, ickwrk, rckwrk, cdot, ddot)
       implicit double precision (a-h,o-z)
       double precision y(*), rckwrk(*), cdot(*), ddot(*)
       integer ickwrk(*)
