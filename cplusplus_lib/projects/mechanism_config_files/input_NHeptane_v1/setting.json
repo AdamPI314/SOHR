@@ -6,8 +6,11 @@
         "condition": "cv",
         "initializer": "dlsode"
     },
+    "network": {
+        "merge_fast_1st_order_transitions": "yes"
+    },
     "job": {
-        "job_type": "generate_pathway_running_Monte_carlo_trajectory"
+        "job_type": "solve_ODEs_for_concentration_using_LSODE"
     },
     "propagator": {
         "type": "dlsode",
@@ -42,8 +45,8 @@
         "iopt": 0,
         "itol": 1,
         "istate": 1,
-        "deltaN1": 50,
-        "deltaN2": 50
+        "deltaN1": 10,
+        "deltaN2": 10
     },
     "ssa_init": {
         "dt": 1e-06,
@@ -61,16 +64,15 @@
         "number_of_Ks": 3
     },
     "pathway": {
-        "init_spe": 114,
-        "atom_followed": "C",
+        "init_spe": 10,
+        "atom_followed": "O",
         "super_atom": "Q",
         "tau": 1.0,
         "topN": [
-            5,
-            5
+            1000
         ],
         "pathwayEndWith": "ALL",
-        "trajectoryNumber": 1000000,
+        "trajectoryNumber": 10000,
         "trajectoryNumberVector": [
             1000,
             1000,
@@ -101,31 +103,33 @@
             "1724": 1725,
             "1726": 1727,
             "1728": 1729,
-            "1731": 1730
+            "1731": 1730,
+            "616": 617
         },
-		"trapped_species": {
-			"6": 36,
-			"18": 39,
-			"41": 47,
-			"68": 45,
-			"80": 95,
-			"86": 89,
-			"104": 108,
-			"111": 109,
-			"115": 124,
-			"116": 125,
-			"117": 126,
-			"118": 127,
-			"134": 143,
-			"138": 147,
-			"139": 148,
-			"140": 149,
-			"141": 132,
-			"142": 133,
-			"144": 135,
-			"145": 136,
-			"146": 137
-		},
+        "trapped_species": {
+            "6": 36,
+            "18": 39,
+            "41": 47,
+            "68": 45,
+            "80": 95,
+            "86": 89,
+            "104": 108,
+            "111": 109,
+            "115": 124,
+            "116": 125,
+            "117": 126,
+            "118": 127,
+            "134": 143,
+            "138": 147,
+            "139": 148,
+            "140": 149,
+            "141": 132,
+            "142": 133,
+            "144": 135,
+            "145": 136,
+            "146": 137,
+            "90": 92
+        },
         "non_zero_rate_reaction": [
             0,
             1,

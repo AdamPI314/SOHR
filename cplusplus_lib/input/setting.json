@@ -20,25 +20,24 @@
     },
     "time": {
         "min_time": 0,
-        "max_time": 0.000351,
-        "critical_time": 0.000351,
-        "sys_min_time": 1e-10,
+        "max_time": 1.0e-7,
+        "critical_time": 1.0e-7,
+        "sys_min_time": 1e-15,
         "path_beg_time": 0,
-        "path_end_time": 0.000351
+        "path_end_time": 1.0e-7
     },
     "chem_init": {
-        "pressure_atm": 80,
-        "init_temperature": 800,
+        "pressure_atm": 10,
+        "init_temperature": 2000,
         "species_index_concentration": {
-            "16": 0.773613047566551,
-            "23": 0.2075213730639949,
-            "114": 0.018865579369454
+            "0": 1,
+            "2": 2
         }
     },
     "lsode_init": {
-        "dt": 1e-08,
-        "atol": 1e-10,
-        "rtol": 1e-10,
+        "dt": 1e-09,
+        "atol": 1e-15,
+        "rtol": 1e-15,
         "mf": 22,
         "jt": 2,
         "itask": 1,
@@ -56,92 +55,28 @@
         "deltaN2": 1
     },
     "T": {
-        "critical_temperature": 888,
-        "end_temperature": 955,
-        "target_temperature": 950
+        "critical_temperature": 1100,
+        "end_temperature": 1900,
+        "target_temperature": 1800
     },
     "speciation": {
         "number_of_Ks": 3
     },
     "pathway": {
-        "init_spe": 10,
-        "atom_followed": "O",
-        "super_atom": "Q",
+        "init_spe": 2,
+        "atom_followed": "H",
+        "super_atom": "X",
         "tau": 1.0,
-        "topN": [
-            1000
-        ],
-        "pathwayEndWith": "ALL",
-        "trajectoryNumber": 10000,
-        "trajectoryNumberVector": [
-            1000,
-            1000,
-            1000,
-            1000,
-            1000
-        ],
+        "topN": [25, 25, 25, 25, 25, 25, 25, 25],
+        "pathwayEndWith": "S1",
+        "trajectoryNumber": 1000,
+        "trajectoryNumberVector": [1000, 1000, 1000, 1000, 1000],
         "trajectory_count_limit": 5,
         "dead_species": [],
-        "fast_reaction": {
-            "198": 199,
-            "370": 371,
-            "934": 935,
-            "1092": 1093,
-            "1136": 1137,
-            "1142": 1143,
-            "1370": 1371,
-            "1386": 1387,
-            "1608": 1609,
-            "1610": 1611,
-            "1612": 1613,
-            "1614": 1615,
-            "1714": 1715,
-            "1716": 1717,
-            "1718": 1719,
-            "1720": 1721,
-            "1722": 1723,
-            "1724": 1725,
-            "1726": 1727,
-            "1728": 1729,
-            "1731": 1730,
-            "616": 617
-        },
-        "trapped_species": {
-            "6": 36,
-            "18": 39,
-            "41": 47,
-            "68": 45,
-            "80": 95,
-            "86": 89,
-            "104": 108,
-            "111": 109,
-            "115": 124,
-            "116": 125,
-            "117": 126,
-            "118": 127,
-            "134": 143,
-            "138": 147,
-            "139": 148,
-            "140": 149,
-            "141": 132,
-            "142": 133,
-            "144": 135,
-            "145": 136,
-            "146": 137,
-            "90": 92
-        },
-        "non_zero_rate_reaction": [
-            0,
-            1,
-            2
-        ],
-        "max_path_length": [
-            5,
-            5,
-            5,
-            5,
-            5
-        ]
+        "fast_reaction": {},
+        "trapped_species": {},
+        "non_zero_rate_reaction": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37],
+        "max_path_length": [10, 11, 12, 13, 14, 15, 15, 15, 15, 15]
     },
     "search_algorithm": {
         "max_level": 1,
@@ -149,16 +84,12 @@
     },
     "SOHR_init": {
         "single_source_species": -1,
-        "timeN1": 100000,
+        "timeN1": 100,
         "timeN2": 10,
         "deltaConcentration": 1e-50,
         "massConservationFactor": 1.0,
-        "iterationNumber": 3,
+        "iterationNumber": 5,
         "timeIterationNumber": 0,
-        "P2C": [
-            1.0,
-            1.0,
-            1.0
-        ]
+        "P2C": [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0]
     }
 }
