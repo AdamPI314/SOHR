@@ -21,7 +21,8 @@
 
 #elif __linux
     #define __LINUX_
-	#define __USE_CANTERA_
+	#define ___CANTERA_AVAILABLE_
+	//#define __USE_CANTERA_
 #elif __unix 
     // all unices not caught above
 #elif __posix

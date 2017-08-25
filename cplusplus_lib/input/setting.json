@@ -20,18 +20,18 @@
     },
     "time": {
         "min_time": 0,
-        "max_time": 1.0e-7,
-        "critical_time": 1.0e-7,
-        "sys_min_time": 1e-15,
+        "max_time": 4.375545109e-3,
+        "critical_time": 4.375545109e-3,
+        "sys_min_time": 1e-10,
         "path_beg_time": 0,
-        "path_end_time": 1.0e-7
+        "path_end_time": 4.375545109e-3
     },
     "chem_init": {
-        "pressure_atm": 10,
-        "init_temperature": 2000,
+        "pressure_atm": 5.54651,
+        "init_temperature": 1000,
         "species_index_concentration": {
-            "0": 1,
-            "2": 2
+            "0": 0.3333333333333333,
+            "2": 0.6666666666666666
         }
     },
     "lsode_init": {
