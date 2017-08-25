@@ -182,7 +182,6 @@ namespace propagator_sr {
 		//while (tout < end_time)
 		do
 		{
-			//////////////////////////////////////////////////////////////////////////
 			//convert mass fractions to molar fractions
 			mechanism::kinetics::ckytx(y_t, x_t);
 			//Returns the pressure of the gas mixture given mass density, temperature(s) and mass fractions.
@@ -197,7 +196,6 @@ namespace propagator_sr {
 			//Returns the forward and reverse reaction rates for reactions given pressure, temperature(s) and mole fractions.
 			mechanism::kinetics::ckkfkr(&ckstore.pressure, &Temp, x_t, FWDR_t, REVR_t);
 
-			//////////////////////////////////////////////////////////////////////////
 			//destruction relative rate Constant of species
 			//[ print out
 			if (((tout >= critical_time) && (print_Count%lsodestore.deltaN2 == 0)) || ((end_time - ti) < 0.001*dt)) {

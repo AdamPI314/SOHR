@@ -82,5 +82,31 @@ c     convert SI -> cgs
       return
       end
 
+      !Returns the molar creation and destruction rates of the species
+      !given mass density, temperature(s) and mass fractions
+      ctcdyr(rho, t, y, ickwrk, rckwrk, cdot, ddot)
+      implicit double precision (a-h,o-z)
+      double precision y(*), rckwrk(*), cdot(*), ddot(*)
+      integer ickwrk(*)
+
+      !set the state, density from cgs to SI
+      rho_cantera = 1000*rho
+      call setState_TRY(t, rho, y)
+
+      !get the creation/production rates
+      call getcreationrates(cdot)
+      !get the destruction rates
+      call getdestructionrates(ddot)
+
+      !convert SI -> cgs
+      nsp = nSpecies()
+      do k = 1, nsp
+          cdot(k) = 1.0d3*cdot(k)
+          ddot(k) = 1.0d3*ddot(k)
+      end do
+
+      return
+      end
+
 
 #endif
