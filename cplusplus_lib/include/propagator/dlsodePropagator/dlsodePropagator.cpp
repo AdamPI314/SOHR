@@ -5,6 +5,8 @@
 
 #include "dlsodePropagator.h"
 #include "../../mechanism/mechanism.h"
+#include "../../fileIO/CSVFileReader/CSVReader.h"
+#include "../../fileIO/fileIO/fileIO.h"
 
 #include "../../tools/misc/fortran_routine_block_alias.h"
 #include "../../tools/misc/global_extern_vars.h"
@@ -27,10 +29,15 @@ namespace propagator_sr {
 	{
 		if (pgt_pt.get<std::string>("propagator.primary_type") == std::string("from_file")) {
 			// search file, if found, read and return, can not find, keep going
-			if (boost::filesystem::exists("myfile.txt")) {
+			if (boost::filesystem::exists(this->cwd_pgt + "/output/time_dlsode_M.csv")) {
+				propagator_from_file(std::string("_M"));
+				integrate_propensity_function_pgt();
 				return;
 			}
-			else if (boost::filesystem::exists("myfile.txt")) {
+			else if (boost::filesystem::exists(this->cwd_pgt + "/output/time_dlsode_fraction.csv")) {
+				propagator_from_file(std::string("_fraction"));
+				integrate_propensity_function_pgt();
+				convert_mole_fraction_to_molar_concentration();
 				return;
 			}
 		}
@@ -61,6 +68,75 @@ namespace propagator_sr {
 
 		if (pgt_pt.get<std::string>("propagator.convert_molar_concentration_to_mole_fraction") == std::string("yes"))
 			convert_molar_concentration_to_mole_fraction();
+
+	}
+
+	void dlsodePropagator::propagator_from_file(std::string tag)
+	{
+		time_data_pgt.clear();
+		temperature_data_pgt.clear();
+		pressure_data_pgt.clear();
+
+		concentration_data_pgt.clear();
+		reaction_rate_data_pgt.clear();
+		spe_drc_data_pgt.clear();
+
+		std::size_t topN = std::numeric_limits<std::size_t>::max() - 100;
+		// time
+		std::vector<std::vector<double> > time_Mat;
+		time_Mat = fileIO::fileIO::read_topN_line_csv_matrix(this->cwd_pgt + "/output/time_dlsode" + tag + ".csv", topN);
+		this->time_data_pgt.resize(time_Mat.size());
+		for (std::size_t i = 0; i < time_Mat.size(); ++i)
+			this->time_data_pgt[i] = time_Mat[i][0];
+		time_Mat.resize(0); time_Mat.clear();
+		// pressure
+		std::vector<std::vector<double> > pressure_Mat;
+		pressure_Mat = fileIO::fileIO::read_topN_line_csv_matrix(this->cwd_pgt + "/output/pressure_dlsode" + tag + ".csv", topN);
+		this->pressure_data_pgt.resize(pressure_Mat.size());
+		for (std::size_t i = 0; i < pressure_Mat.size(); ++i)
+			this->pressure_data_pgt[i] = pressure_Mat[i][0];
+		pressure_Mat.resize(0); pressure_Mat.clear();
+		// temperature
+		std::vector<std::vector<double> > temperature_Mat;
+		temperature_Mat = fileIO::fileIO::read_topN_line_csv_matrix(this->cwd_pgt + "/output/temperature_dlsode" + tag + ".csv", topN);
+		this->temperature_data_pgt.resize(temperature_Mat.size());
+		for (std::size_t i = 0; i < temperature_Mat.size(); ++i)
+			this->temperature_data_pgt[i] = temperature_Mat[i][0];
+		temperature_Mat.resize(0); temperature_Mat.clear();
+		// concentration
+		std::vector<std::vector<double> > concentration_Mat;
+		concentration_Mat = fileIO::fileIO::read_topN_line_csv_matrix(this->cwd_pgt + "/output/concentration_dlsode" + tag + ".csv", topN);
+		this->concentration_data_pgt.resize(concentration_Mat[0].size());
+		for (std::size_t i = 0; i < concentration_Mat[0].size(); ++i) {
+			this->concentration_data_pgt[i].resize(concentration_Mat.size());
+			for (std::size_t j = 0; j < concentration_Mat.size(); ++j) {
+				this->concentration_data_pgt[i][j] = concentration_Mat[j][i];
+			}
+		}
+		concentration_Mat.resize(0); concentration_Mat.clear();
+		// drc
+		std::vector<std::vector<double> > drc_Mat;
+		drc_Mat = fileIO::fileIO::read_topN_line_csv_matrix(this->cwd_pgt + "/output/drc_dlsode" + tag + ".csv", topN);
+		this->spe_drc_data_pgt.resize(drc_Mat[0].size());
+		for (std::size_t i = 0; i < drc_Mat[0].size(); ++i) {
+			this->spe_drc_data_pgt[i].resize(drc_Mat.size());
+			for (std::size_t j = 0; j < drc_Mat.size(); ++j) {
+				this->spe_drc_data_pgt[i][j] = drc_Mat[j][i];
+			}
+		}
+		drc_Mat.resize(0); drc_Mat.clear();
+		// reaction rate
+		std::vector<std::vector<double> > reaction_rate_Mat;
+		reaction_rate_Mat = fileIO::fileIO::read_topN_line_csv_matrix(this->cwd_pgt + "/output/reaction_rate_dlsode" + tag + ".csv", topN);
+		this->reaction_rate_data_pgt.resize(reaction_rate_Mat[0].size());
+		for (std::size_t i = 0; i < reaction_rate_Mat[0].size(); ++i) {
+			this->reaction_rate_data_pgt[i].resize(reaction_rate_Mat.size());
+			for (std::size_t j = 0; j < reaction_rate_Mat.size(); ++j) {
+				this->reaction_rate_data_pgt[i][j] = reaction_rate_Mat[j][i];
+			}
+		}
+		reaction_rate_Mat.resize(0); reaction_rate_Mat.clear();
+
 
 	}
 

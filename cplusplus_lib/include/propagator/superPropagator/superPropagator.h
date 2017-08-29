@@ -200,6 +200,8 @@ namespace propagator_sr {
 		void convert_molar_concentration_to_mole_fraction();
 		void convert_mole_fraction_to_molar_concentration();
 
+		virtual void propagator_from_file(std::string tag="") {};
+
 		/*
 		* constant volume-->cv
 		*/

@@ -379,7 +379,7 @@ namespace propagator_sr {
 		fout.open((this->cwd_pgt + std::string("/output/pressure_") + tag + std::string(".csv")).c_str());
 		for (size_t i = 0; i < pressure_data_pgt.size(); ++i) {
 			//fout<<pressure_data_pgt[i]/1013250<<"\t"<<pressure_data_pgt[i]<<std::endl;
-			fout << std::setprecision(std::numeric_limits<double>::max_digits10 + 1) << pressure_data_pgt[i] / 1013250 << "\t" << pressure_data_pgt[i] / 1000000 << "\t" << pressure_data_pgt[i] << std::endl;
+			fout << std::setprecision(std::numeric_limits<double>::max_digits10 + 1) << pressure_data_pgt[i] << "," << pressure_data_pgt[i] / 1013250 << "," << pressure_data_pgt[i] / 1000000 << std::endl;
 		}
 		fout.clear(); fout.close();
 
