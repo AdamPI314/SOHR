@@ -1,0 +1,235 @@
+"""
+ Authors: J. Li, Z. Zhao, A. Kazakov, F.L. Dryer,
+ Address: Dept. of Mechanical and Aerospace Engineering, Princeton University, Princeton, NJ 08544
+
+ This C1 mechanism is based on the CH3OH mechanism of Held and Dryer (IJCK,1998, 30, 805)
+ with following important revision:
+ 1.  H2/O2 subset is updated to that of Li et al. (IJCK, in press, 2004)
+
+
+"""
+
+units(length='cm', time='s', quantity='mol', act_energy='cal/mol')
+
+ideal_gas(name='gas',
+          elements="H O",
+          species="""O2    H2O   H2    H2O2  H     OH    HO2   O""",
+          reactions='all',
+          initial_state=state(temperature=300.0, pressure=OneAtm))
+
+#-------------------------------------------------------------------------------
+# Species data
+#-------------------------------------------------------------------------------
+
+species(name='O2',
+        atoms='O:2',
+        thermo=(NASA([200.00, 1000.00],
+                     [ 3.78245636E+00, -2.99673416E-03,  9.84730201E-06,
+                      -9.68129509E-09,  3.24372837E-12, -1.06394356E+03,
+                       3.65767573E+00]),
+                NASA([1000.00, 6000.00],
+                     [ 3.66096065E+00,  6.56365811E-04, -1.41149627E-07,
+                       2.05797935E-11, -1.29913436E-15, -1.21597718E+03,
+                       3.41536279E+00])),
+        note='REFELEMENTTPIS89')
+
+species(name='H2O',
+        atoms='O:1 H:2',
+        thermo=(NASA([200.00, 1000.00],
+                     [ 4.19863520E+00, -2.03640170E-03,  6.52034160E-06,
+                      -5.48792690E-09,  1.77196800E-12, -3.02937260E+04,
+                      -8.49009010E-01]),
+                NASA([1000.00, 6000.00],
+                     [ 2.67703890E+00,  2.97318160E-03, -7.73768890E-07,
+                       9.44335140E-11, -4.26899910E-15, -2.98858940E+04,
+                       6.88255000E+00])),
+        note='L5/89')
+
+species(name='H2',
+        atoms='H:2',
+        thermo=(NASA([200.00, 1000.00],
+                     [ 2.34433112E+00,  7.98052075E-03, -1.94781510E-05,
+                       2.01572094E-08, -7.37611761E-12, -9.17935173E+02,
+                       6.83010238E-01]),
+                NASA([1000.00, 6000.00],
+                     [ 2.93286575E+00,  8.26608026E-04, -1.46402364E-07,
+                       1.54100414E-11, -6.88804800E-16, -8.13065581E+02,
+                      -1.02432865E+00])),
+        note='REFELEMENTtpis78')
+
+species(name='H2O2',
+        atoms='O:2 H:2',
+        thermo=(NASA([200.00, 1000.00],
+                     [ 4.31515149E+00, -8.47390622E-04,  1.76404323E-05,
+                      -2.26762944E-08,  9.08950158E-12, -1.77067437E+04,
+                       3.27373319E+00]),
+                NASA([1000.00, 6000.00],
+                     [ 4.57977305E+00,  4.05326003E-03, -1.29844730E-06,
+                       1.98211400E-10, -1.13968792E-14, -1.80071775E+04,
+                       6.64970694E-01])),
+        note='DOROFEEVAeT8/03')
+
+species(name='H',
+        atoms='H:1',
+        thermo=(NASA([200.00, 1000.00],
+                     [ 2.50000000E+00,  0.00000000E+00,  0.00000000E+00,
+                       0.00000000E+00,  0.00000000E+00,  2.54736600E+04,
+                      -4.46682850E-01]),
+                NASA([1000.00, 6000.00],
+                     [ 2.50000000E+00,  0.00000000E+00,  0.00000000E+00,
+                       0.00000000E+00,  0.00000000E+00,  2.54736600E+04,
+                      -4.46682850E-01])),
+        note='L6/94')
+
+species(name='OH',
+        atoms='O:1 H:1',
+        thermo=(NASA([200.00, 1000.00],
+                     [ 3.99198424E+00, -2.40106655E-03,  4.61664033E-06,
+                      -3.87916306E-09,  1.36319502E-12,  3.36889836E+03,
+                      -1.03998477E-01]),
+                NASA([1000.00, 6000.00],
+                     [ 2.83853033E+00,  1.10741289E-03, -2.94000209E-07,
+                       4.20698729E-11, -2.42289890E-15,  3.69780808E+03,
+                       5.84494652E+00])),
+        note='HYDROXYLRADIIU3/03')
+
+species(name='HO2',
+        atoms='O:2 H:1',
+        thermo=(NASA([200.00, 1000.00],
+                     [ 4.30179807E+00, -4.74912097E-03,  2.11582905E-05,
+                      -2.42763914E-08,  9.29225225E-12,  2.64018485E+02,
+                       3.71666220E+00]),
+                NASA([1000.00, 5000.00],
+                     [ 4.17228741E+00,  1.88117627E-03, -3.46277286E-07,
+                       1.94657549E-11,  1.76256905E-16,  3.10206839E+01,
+                       2.95767672E+00])),
+        note='T1/09')
+
+species(name='O',
+        atoms='O:1',
+        thermo=(NASA([200.00, 1000.00],
+                     [ 3.16826710E+00, -3.27931884E-03,  6.64306396E-06,
+                      -6.12806624E-09,  2.11265971E-12,  2.91222592E+04,
+                       2.05193346E+00]),
+                NASA([1000.00, 6000.00],
+                     [ 2.54363697E+00, -2.73162486E-05, -4.19029520E-09,
+                       4.95481845E-12, -4.79553694E-16,  2.92260120E+04,
+                       4.92229457E+00])),
+        note='L1/90')
+
+#-------------------------------------------------------------------------------
+# Reaction data
+#-------------------------------------------------------------------------------
+#  ************ H2-O2 Chain Reactions **********************
+#  Hessler, J. Phys. Chem. A, 102:4517 (1998)
+
+# Reaction 1
+reaction('H + O2 <=> O + OH', [3.547000e+15, -0.406, 16599.0])
+#  Sutherland et al., 21st Symposium, p. 929 (1986)
+
+# Reaction 2
+reaction('O + H2 <=> H + OH', [5.080000e+04, 2.67, 6290.0])
+#  Michael and Sutherland, J. Phys. Chem. 92:3853 (1988)
+
+# Reaction 3
+reaction('H2 + OH <=> H2O + H', [2.160000e+08, 1.51, 3430.0])
+#  Sutherland et al., 23rd Symposium, p. 51 (1990)
+
+# Reaction 4
+reaction('O + H2O <=> OH + OH', [2.970000e+06, 2.02, 13400.0])
+#  *************** H2-O2 Dissociation Reactions ******************
+#  Tsang and Hampson, J. Phys. Chem. Ref. Data, 15:1087 (1986)
+
+# Reaction 5
+three_body_reaction('H2 + M <=> H + H + M', [4.577000e+19, -1.4, 104380.0],
+                    efficiencies='H2:2.5 H2O:12.0')
+#  Tsang and Hampson, J. Phys. Chem. Ref. Data, 15:1087 (1986)
+
+# Reaction 6
+three_body_reaction('O + O + M <=> O2 + M', [6.165000e+15, -0.5, 0.0],
+                    efficiencies='H2:2.5 H2O:12.0')
+#  Tsang and Hampson, J. Phys. Chem. Ref. Data, 15:1087 (1986)
+
+# Reaction 7
+three_body_reaction('O + H + M <=> OH + M', [4.714000e+18, -1.0, 0.0],
+                    efficiencies='H2:2.5 H2O:12.0')
+#  Tsang and Hampson, J. Phys. Chem. Ref. Data, 15:1087 (1986)
+# H+OH+M=H2O+M              2.212E+22 -2.00  0.000E+00
+
+# Reaction 8
+three_body_reaction('H + OH + M <=> H2O + M', [3.800000e+22, -2.0, 0.0],
+                    efficiencies='H2:2.5 H2O:12.0')
+# ************** Formation and Consumption of HO2******************
+#  Cobos et al., J. Phys. Chem. 89:342 (1985) for kinf
+#  Michael, et al., J. Phys. Chem. A, 106:5297 (2002) for k0
+# ******************************************************************************
+#  MAIN BATH GAS IS N2 (comment this reaction otherwise)
+
+# Reaction 9
+falloff_reaction('H + O2 (+ M) <=> HO2 (+ M)',
+                 kf=[1.475000e+12, 0.6, 0.0],
+                 kf0=[6.366000e+20, -1.72, 524.8],
+                 efficiencies='H2:2.0 H2O:11.0 O2:0.78',
+                 falloff=Troe(A=0.8, T3=1e-30, T1=1e+30))
+# ******************************************************************************
+#  MAIN BATH GAS IS AR OR HE (comment this reaction otherwise)
+# H+O2(+M)=HO2(+M)      1.475E+12  0.60  0.00E+00
+#     LOW/9.042E+19  -1.50  4.922E+02/
+#     TROE/0.5 1E-30  1E+30/
+#     H2/3.0/ H2O/16/ O2/1.1/
+#  Tsang and Hampson, J. Phys. Chem. Ref. Data, 15:1087 (1986) [modified]
+
+# Reaction 10
+reaction('HO2 + H <=> H2 + O2', [1.660000e+13, 0.0, 823.0])
+#  Tsang and Hampson, J. Phys. Chem. Ref. Data, 15:1087 (1986) [modified]
+
+# Reaction 11
+reaction('HO2 + H <=> OH + OH', [7.079000e+13, 0.0, 295.0])
+#  Baulch et al., J. Phys. Chem. Ref Data, 21:411 (1992)
+
+# Reaction 12
+reaction('HO2 + O <=> O2 + OH', [3.250000e+13, 0.0, 0.0])
+#  Keyser, J. Phys. Chem. 92:1193 (1988)
+
+# Reaction 13
+reaction('HO2 + OH <=> H2O + O2', [2.890000e+13, 0.0, -497.0])
+#  ***************Formation and Consumption of H2O2******************
+#  Hippler et al., J. Chem. Phys. 93:1755 (1990)
+
+# Reaction 14
+reaction('HO2 + HO2 <=> H2O2 + O2', [4.200000e+14, 0.0, 11982.0],
+         options='duplicate')
+
+# Reaction 15
+reaction('HO2 + HO2 <=> H2O2 + O2', [1.300000e+11, 0.0, -1629.3],
+         options='duplicate')
+#  Brouwer et al., J. Chem. Phys. 86:6171 (1987) for kinf
+#  Warnatz, J. in Combustion chemistry (1984) for k0
+
+# Reaction 16
+falloff_reaction('H2O2 (+ M) <=> OH + OH (+ M)',
+                 kf=[2.951000e+14, 0.0, 48430.0],
+                 kf0=[1.202000e+17, 0.0, 45500.0],
+                 efficiencies='H2:2.5 H2O:12.0',
+                 falloff=Troe(A=0.5, T3=1e-30, T1=1e+30))
+#  Tsang and Hampson, J. Phys. Chem. Ref. Data, 15:1087 (1986)
+
+# Reaction 17
+reaction('H2O2 + H <=> H2O + OH', [2.410000e+13, 0.0, 3970.0])
+#  Tsang and Hampson, J. Phys. Chem. Ref. Data, 15:1087 (1986)
+
+# Reaction 18
+reaction('H2O2 + H <=> HO2 + H2', [4.820000e+13, 0.0, 7950.0])
+#  Tsang and Hampson, J. Phys. Chem. Ref. Data, 15:1087 (1986)
+
+# Reaction 19
+reaction('H2O2 + O <=> OH + HO2', [9.550000e+06, 2.0, 3970.0])
+#  Hippler and Troe, J. Chem. Phys. Lett. 192:333 (1992)
+
+# Reaction 20
+reaction('H2O2 + OH <=> HO2 + H2O', [1.000000e+12, 0.0, 0.0],
+         options='duplicate')
+
+# Reaction 21
+reaction('H2O2 + OH <=> HO2 + H2O', [5.800000e+14, 0.0, 9557.0],
+         options='duplicate')

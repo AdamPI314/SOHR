@@ -20,24 +20,22 @@
     },
     "time": {
         "min_time": 0,
-        "max_time": 0.8,
-        "critical_time": 0.8,
+        "max_time": 4.375545109e-3,
+        "critical_time": 4.375545109e-3,
         "sys_min_time": 1e-10,
         "path_beg_time": 0,
-        "path_end_time": 0.8
+        "path_end_time": 4.375545109e-3
     },
     "chem_init": {
-        "pressure_atm": 9.86923,
-        "init_temperature": 650,
+        "pressure_atm": 1.0,
+        "init_temperature": 1000,
         "species_index_concentration": {
-            "62": 0.2,
-            "9": 1.0,
-            "2": 3.72787,
-            "1": 0.0445909 
+            "0": 0.3333333333333333,
+            "2": 0.6666666666666666
         }
     },
     "lsode_init": {
-        "dt": 1e-07,
+        "dt": 1e-09,
         "atol": 1e-15,
         "rtol": 1e-15,
         "mf": 22,
@@ -46,8 +44,8 @@
         "iopt": 0,
         "itol": 1,
         "istate": 1,
-        "deltaN1": 10000,
-        "deltaN2": 10000
+        "deltaN1": 10,
+        "deltaN2": 10
     },
     "ssa_init": {
         "dt": 1e-06,
