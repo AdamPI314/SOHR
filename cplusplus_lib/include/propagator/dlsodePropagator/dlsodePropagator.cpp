@@ -1,6 +1,8 @@
 #ifndef __DLSODEPROPAGATOR_CPP_
 #define __DLSODEPROPAGATOR_CPP_
 
+#include <boost/filesystem.hpp>
+
 #include "dlsodePropagator.h"
 #include "../../mechanism/mechanism.h"
 
@@ -23,6 +25,16 @@ namespace propagator_sr {
 
 	void dlsodePropagator::propagate_pgt()
 	{
+		if (pgt_pt.get<std::string>("propagator.primary_type") == std::string("from_file")) {
+			// search file, if found, read and return, can not find, keep going
+			if (boost::filesystem::exists("myfile.txt")) {
+				return;
+			}
+			else if (boost::filesystem::exists("myfile.txt")) {
+				return;
+			}
+		}
+
 		std::string sub_job_type = pgt_pt.get<std::string>("propagator.sub_type");
 		if (sub_job_type == std::string("temperature_propagator_cv_s2m_pgt"))
 			temperature_propagator_cv_s2m_pgt(uncertainties, this->pgt_pt.get<double>("T.critical_temperature"), this->pgt_pt.get<double>("T.end_temperature"));

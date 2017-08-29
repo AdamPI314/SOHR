@@ -858,10 +858,8 @@
  483. npropyloo+C2H6=npropylooh+C2H5                1.70E+13    0.0    20460.0
  484. ipropyloo+propanal=ipropylooh+propionyl       2.00E+11    0.0     9500.0
  485. npropyloo+propanal=npropylooh+propionyl       2.00E+11    0.0     9500.0
- 486. ipropyloo+acetylperoxy                        1.40E+16   -1.6     1860.0
-      =ipropyloxy+acetyloxy+O2                                  
- 487. npropyloo+acetylperoxy                        1.40E+16   -1.6     1860.0
-      =npropyloxy+acetyloxy+O2                                  
+ 486. ipropyloo+acetylperoxy=ipropyloxy+acetyloxy+O2                       1.40E+16   -1.6     1860.0            
+ 487. npropyloo+acetylperoxy=npropyloxy+acetyloxy+O2                       1.40E+16   -1.6     1860.0                                  
  488. ipropyloo+CH3CH2OO=ipropyloxy+ethoxy+O2       1.40E+16   -1.6     1860.0
  489. npropyloo+CH3CH2OO=npropyloxy+ethoxy+O2       1.40E+16   -1.6     1860.0
  490. ipropyloo+ipropyloo=O2+ipropyloxy+ipropyloxy  1.40E+16   -1.6     1860.0
@@ -888,7 +886,7 @@
  511. propen1ol+HO2=CH2O+C2H3+H2O2                  1.00E+13    0.0    15000.0
  512. propen1ol+CH3OO=CH2O+C2H3+CH3OOH              1.00E+13    0.0    19000.0
  513. propen1ol+CH3=CH2O+C2H3+CH4                   2.00E+11    0.0    10000.0
- 514. C3H6+OH=allyl+H2O                             ********    1.7      925.0
+ 514. C3H6+OH=allyl+H2O                             5.07E+07    1.7      925.0
       Declared duplicate reaction...
  515. C3H6+OH=allyl+H2O                             1.88E+07    2.0      684.0
       Declared duplicate reaction...
@@ -900,7 +898,7 @@
       Declared duplicate reaction...
  519. C3H6+OH=propen2yl+H2O                         5.70E-11    2.6    -3086.0
       Declared duplicate reaction...
- 520. C3H6+OH=allyl-alcohol+H                       ********   -0.5    10996.0
+ 520. C3H6+OH=allyl-alcohol+H                       5.07E+07   -0.5    10996.0
       Declared duplicate reaction...
  521. C3H6+OH=allyl-alcohol+H                       2.29E+13    0.1    10580.0
       Declared duplicate reaction...

@@ -55,7 +55,7 @@ namespace relationshipParser_sr {
 			repeated_group += std::string("(\\d+)\\s*");
 		}
 		//regular expression with repeated group
-		std::string pattern_tmp = std::string("\\s*\\d+\\.\\s([\\w\\(\\),\\-]+)\\s+([GLS])\\s(\\d+|\\d+\\.\\d+)\\s+(\\d+\\.\\d+)\\s+(\\d+\\.\\d+)\\s(\\d+\\.\\d+)\\s+") + repeated_group;
+		std::string pattern_tmp = std::string("\\s*\\d+\\.\\s([\\w\\(\\)\\-\\_,]+)\\s+([GLS])\\s(\\d+|\\d+\\.\\d+)\\s+(\\d+\\.\\d+)\\s+(\\d+\\.\\d+)\\s(\\d+\\.\\d+)\\s+") + repeated_group;
 		const char* pattern2 = pattern_tmp.c_str();
 		//boost::regex regexPattern2(pattern2, boost::regex::extended);
 		//cannot use extended mode here, use the default mode
@@ -155,8 +155,8 @@ namespace relationshipParser_sr {
 		/*
 		* search reactions and their rate coefficient
 		*/
-		std::string pattern1_reaction_body = "([\\w+\\(\\)\\-,]+(?:=>|<=|=|<=>)+[\\w+\\(\\)\\-,]+)\\s+([\\d.E+\\-]+)\\s+([\\d.+\\-]+)\\s+([\\d.+\\-]+)";
-		std::string pattern1_reaction_Enhanced_by = "([\\w+\\(\\)\\-,]+)\\s+(Enhanced by)\\s+([\\d.E+\\-]+)";
+		std::string pattern1_reaction_body = "([\\w+\\(\\)\\-\\_,]+(?:=>|<=|=|<=>)+[\\w+\\(\\)\\-\\_,]+)\\s+([\\d.E+\\-]+)\\s+([\\d.+\\-]+)\\s+([\\d.+\\-]+)";
+		std::string pattern1_reaction_Enhanced_by = "([\\w+\\(\\)\\-\\_,]+)\\s+(Enhanced by)\\s+([\\d.E+\\-]+)";
 		std::string pattern1_reaction_low_pressure_limit = "(Low pressure limit):\\s+([\\d.E+\\-]+)\\s+([\\d.E+\\-]+)\\s+([\\d.E+\\-]+)";
 		std::string pattern1_reaction_TROE_centering = "(TROE centering):\\s+([\\d.E+\\-]+)\\s+([\\d.E+\\-]+)\\s+([\\d.E+\\-]+)";
 
@@ -232,11 +232,11 @@ namespace relationshipParser_sr {
 		reaction_v.push_back(reaction_info_tp);
 
 		//parse species to species transition, A->B, record the transition reaction, s_coef_reactant and s_coef_product
-		const char* pattern2_reactant = "([\\w\\(\\)\\-,]+)(\\+|[\\w\\(\\)\\-,]+)*(?:<=>|=>|<=|=)"; boost::regex regexPattern2_reactant(pattern2_reactant);
-		const char* pattern2_product = "(?:<=>|=|=>|<=)([\\w\\(\\)\\-,]+)(?:\\+([\\w\\(\\)\\-,]+))*"; boost::regex regexPattern2_product(pattern2_product);
-		const char* pattern2_spe = "(?!\\bM\\b)((?:[\\w\\-,]|\\(\\w\\))+)"; boost::regex regexPattern2_spe(pattern2_spe);
+		const char* pattern2_reactant = "([\\w\\(\\)\\-\\_,]+)(\\+|[\\w\\(\\)\\-\\_,]+)*(?:<=>|=>|<=|=)"; boost::regex regexPattern2_reactant(pattern2_reactant);
+		const char* pattern2_product = "(?:<=>|=|=>|<=)([\\w\\(\\)\\-\\_,]+)(?:\\+([\\w\\(\\)\\-\\_,]+))*"; boost::regex regexPattern2_product(pattern2_product);
+		const char* pattern2_spe = "(?!\\bM\\b)((?:[\\w\\-\\_,]|\\(\\w\\))+)"; boost::regex regexPattern2_spe(pattern2_spe);
 		//if matched species start from a number, parse the number the the species, like 2H, 2H2O2
-		const char* pattern2_num_spe = "^(\\d+)([\\w\\(\\)\\-,]+)"; boost::regex regexPattern2_num_spe(pattern2_num_spe);
+		const char* pattern2_num_spe = "^(\\d+)([\\w\\(\\)\\-\\_,]+)"; boost::regex regexPattern2_num_spe(pattern2_num_spe);
 
 
 		//	std::size_t edge_counter=0;
@@ -483,9 +483,9 @@ namespace relationshipParser_sr {
 		std::string str_t;
 
 		//reaction pattern without index
-		const char* pattern1 = "[\\w+\\(\\)\\-,]+(?:=>|<=|=|<=>)+[\\w+\\(\\)\\-,]+";
+		const char* pattern1 = "[\\w+\\(\\)\\-\\_,]+(?:=>|<=|=|<=>)+[\\w+\\(\\)\\-\\_,]+";
 		boost::regex regexPattern1(pattern1);
-		const char* pattern1_index = "\\d+\\.\\s+[\\w+\\(\\)\\-,]+(?:=>|<=|=|<=>)+[\\w+\\(\\)\\-,]+";
+		const char* pattern1_index = "\\d+\\.\\s+[\\w+\\(\\)\\-\\_,]+(?:=>|<=|=|<=>)+[\\w+\\(\\)\\-\\_,]+";
 		boost::regex regexPattern1_index(pattern1_index);
 		//reaction pattern with index
 

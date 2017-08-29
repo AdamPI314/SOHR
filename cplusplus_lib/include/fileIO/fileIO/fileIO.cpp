@@ -43,9 +43,9 @@ bool fileIO::fileIO::read_chem_out_index(reaction_network_chemkin_index_t & reac
 	std::string str_t;
 
 	//reaction pattern without index
-	const char* pattern1 = "[\\w+\\(\\)\\-,]+(?:=>|<=|=|<=>)+[\\w+\\(\\)\\-,]+";
+	const char* pattern1 = "[\\w+\\(\\)\\-\\_,]+(?:=>|<=|=|<=>)+[\\w+\\(\\)\\-\\_,]+";
 	boost::regex regexPattern1(pattern1);
-	const char* pattern1_index = "\\d+\\.\\s+[\\w+\\(\\)\\-,]+(?:=>|<=|=|<=>)+[\\w+\\(\\)\\-,]+";
+	const char* pattern1_index = "\\d+\\.\\s+[\\w+\\(\\)\\-\\_,]+(?:=>|<=|=|<=>)+[\\w+\\(\\)\\-\\_,]+";
 	boost::regex regexPattern1_index(pattern1_index);
 	//reaction pattern with index
 
