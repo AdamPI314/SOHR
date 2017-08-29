@@ -64,7 +64,7 @@ c     convert SI -> cgs
       !temperature and mass fraction
       subroutine ctwyr(rho,t,y,ickwrk,rckwrk,wdot)
       implicit double precision (a-h,o-z)
-      double precision y(*), rckwrk(*), wdot(*)
+      double precision y(*), rckwrk(*), wdot(*) 
       integer ickwrk(*)
 
       !set the state, density from cgs to SI
@@ -79,6 +79,7 @@ c     convert SI -> cgs
       do k = 1, nsp
           wdot(k) = 1.0d-3*wdot(k)
       end do
+
       return
       end
 

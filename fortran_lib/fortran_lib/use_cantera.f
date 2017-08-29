@@ -4,7 +4,7 @@
       ! Read in the reaction mechanism. Since this is done differently
       ! than in Chemkin, this function does not correspond to any CKLIB
       ! subroutine.
-      call newIdealGasMix('./input/chem.xml','gas','')
+      call newIdealGasMix('./input/chem.cti','gas','')
 
       Return
       End
@@ -35,9 +35,7 @@
 
       do i=1,nkk
           derstr(i)=wt(i)*wdot(i)/rhomass
-          write(*,*) wdot(i)
       end do
-      stop 1
 
       call ckums(ttr,ickwrk,rckwrk,h)
       call ckcvbs(ttr,xgst,ickwrk,rckwrk,cvbs)

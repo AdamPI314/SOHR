@@ -210,7 +210,6 @@ namespace propagator_sr {
 
 		concentration_data_pgt.resize(nkk);
 		reaction_rate_data_pgt.resize(num_reaction);
-		double reaction_rate_tmp = 0.0;
 		spe_drc_data_pgt.resize(nkk);
 
 		do {
@@ -357,7 +356,6 @@ namespace propagator_sr {
 
 		concentration_data_pgt.resize(nkk);
 		reaction_rate_data_pgt.resize(num_reaction);
-		double reaction_rate_tmp = 0.0;
 		spe_drc_data_pgt.resize(nkk);
 
 		do {
@@ -492,7 +490,7 @@ namespace propagator_sr {
 		double* FWDR_t = new double[nii]; double* REVR_t = new double[nii];
 
 		concentration_data_pgt.resize(nkk);
-		reaction_rate_data_pgt.resize(num_reaction); double reaction_rate_tmp = 0.0;
+		reaction_rate_data_pgt.resize(num_reaction);
 		spe_drc_data_pgt.resize(nkk);
 		//spe_production_rate_data_pgt.resize(nkk);
 
@@ -624,7 +622,7 @@ namespace propagator_sr {
 		double* FWDR_t = new double[nii]; double* REVR_t = new double[nii];
 
 		concentration_data_pgt.resize(nkk);
-		reaction_rate_data_pgt.resize(num_reaction); double reaction_rate_tmp = 0.0;
+		reaction_rate_data_pgt.resize(num_reaction);
 		spe_drc_data_pgt.resize(nkk);
 		//spe_production_rate_data_pgt.resize(nkk);
 
@@ -755,7 +753,7 @@ namespace propagator_sr {
 		double* FWDR_t = new double[nii]; double* REVR_t = new double[nii];
 
 		concentration_data_pgt.resize(nkk);
-		reaction_rate_data_pgt.resize(num_reaction); double rxn_rate_tmp = 0.0;
+		reaction_rate_data_pgt.resize(num_reaction);
 		spe_drc_data_pgt.resize(nkk);
 
 		//"imaginary pressure"
@@ -890,7 +888,7 @@ namespace propagator_sr {
 		double* FWDR_t = new double[nii]; double* REVR_t = new double[nii];
 
 		concentration_data_pgt.resize(nkk);
-		reaction_rate_data_pgt.resize(num_reaction); double rxn_rate_tmp = 0.0;
+		reaction_rate_data_pgt.resize(num_reaction);
 		spe_drc_data_pgt.resize(nkk);
 
 		//"imaginary pressure"

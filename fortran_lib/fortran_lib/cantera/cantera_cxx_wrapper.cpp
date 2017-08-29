@@ -334,6 +334,16 @@ extern "C" {
 		_gas->getRevRatesOfProgress(q);
 	}
 
+	void getfwdrateconstants_(doublereal* q)
+	{
+		_gas->getFwdRateConstants(q);
+	}
+
+	void getrevrateconstants_(doublereal* q)
+	{
+		_gas->getRevRateConstants(q);
+	}
+
 	//-------------------- transport properties --------------------
 
 	double viscosity_()
