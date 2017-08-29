@@ -31,7 +31,7 @@ void driver::parse_parameters(const int argc, char ** argv, po::variables_map & 
 
 }
 
-void driver::solve_ODEs_for_concentration_using_LSODE(const boost::mpi::communicator & world, std::string & main_cwd)
+void driver::solve_ODEs_for_concentration_using_LSODE(const boost::mpi::communicator & world, std::string & main_cwd, const boost::property_tree::ptree &pt)
 {
 	std::vector<double> uncertainties;
 
@@ -48,7 +48,10 @@ void driver::solve_ODEs_for_concentration_using_LSODE(const boost::mpi::communic
 
 	if (world.rank() == 0) {
 		pgt::dlsodePropagator pgt_obj(uncertainties, main_cwd);
-		pgt_obj.w2f_pgt("dlsode_M");
+		if (pt.get<std::string>("propagator.convert_molar_concentration_to_mole_fraction") == std::string("yes"))
+			pgt_obj.w2f_pgt("dlsode_fraction");
+		else
+			pgt_obj.w2f_pgt("dlsode_M");
 		//pgt_obj.convert_molar_concentration_to_mole_fraction();
 		//pgt_obj.w2f_pgt("fraction");
 		//std::cout << "target time\t:" << pgt_test.return_temperature_target_time() << std::endl;
@@ -56,7 +59,7 @@ void driver::solve_ODEs_for_concentration_using_LSODE(const boost::mpi::communic
 	}
 }
 
-void driver::solve_ODEs_for_concentration_using_SSA(const boost::mpi::communicator & world, std::string & main_cwd)
+void driver::solve_ODEs_for_concentration_using_SSA(const boost::mpi::communicator & world, std::string & main_cwd, const boost::property_tree::ptree &pt)
 {
 	std::vector<double> uncertainties;
 

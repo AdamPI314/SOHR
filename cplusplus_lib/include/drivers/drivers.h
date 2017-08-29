@@ -53,9 +53,9 @@ namespace driver {
 	void parse_parameters(const int argc, char **argv, po::variables_map &vm, std::string &main_cwd, boost::property_tree::ptree &pt);
 
 	/*1. Solve ODEs for concentrations using LSODE*/
-	void solve_ODEs_for_concentration_using_LSODE(const boost::mpi::communicator &world, std::string &main_cwd);
+	void solve_ODEs_for_concentration_using_LSODE(const boost::mpi::communicator &world, std::string &main_cwd, const boost::property_tree::ptree &pt);
 	//Gillespie Stochastic Simulation Algorithm
-	void solve_ODEs_for_concentration_using_SSA(const boost::mpi::communicator &world, std::string &main_cwd);
+	void solve_ODEs_for_concentration_using_SSA(const boost::mpi::communicator &world, std::string &main_cwd, const boost::property_tree::ptree &pt);
 
 	/*2. Generate pathway first, it might take some time, depends on what kinds of pathway you want*/
 	void generate_pathway_running_Monte_carlo_trajectory(const boost::mpi::communicator &world, const std::string &main_cwd, const boost::property_tree::ptree &pt);
