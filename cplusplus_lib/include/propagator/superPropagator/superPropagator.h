@@ -114,6 +114,15 @@ namespace propagator_sr {
 	public:
 		//initialize the pointer, kind of template method
 		void initialize_cubic_spline_pointer();
+	public:
+		void update_temporary_data_pgt(const int nkk, const int neq,
+			const double ti,
+			const double * const c_t,
+			const double * const CDOT_t,
+			const double * const DDOT_t,
+			const double * const FWDR_t,
+			const double * const REVR_t,
+			const double * const xgst);
 
 	public:
 		//fast reaction, local reaction with fast inter-conversion rate

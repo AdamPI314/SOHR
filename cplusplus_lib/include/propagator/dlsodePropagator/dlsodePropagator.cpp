@@ -53,52 +53,6 @@ namespace propagator_sr {
 	}
 
 
-	void dlsodePropagator::update_temporary_data_pgt(const int nkk, const int neq, const double ti, const double * const c_t, const double * const CDOT_t, const double * const DDOT_t, const double * const FWDR_t, const double * const REVR_t, const double * const xgst)
-	{
-		double reaction_rate_tmp = 0.0;
-		//use the default dt to print out stuff
-		time_data_pgt.push_back(ti);
-
-		//destruction rate const
-		for (int i = 0; i < nkk; ++i)//[for
-		{
-			if (c_t[i] <= 0.0)
-			{
-				spe_drc_data_pgt[i].push_back(c_t[i]);
-				//spe_production_rate_data_pgt[i].push_back(CDOT_t[i]);
-			}
-			else
-			{
-				//just need the destruction rate const of species
-				spe_drc_data_pgt[i].push_back(DDOT_t[i] / c_t[i]);
-				//spe_production_rate_data_pgt[i].push_back(CDOT_t[i]);
-			}
-		}//for]
-
-		//Rates of each reactions
-		for (std::size_t i = 0; i < reaction_rate_data_pgt.size(); ++i) {//for1
-			reaction_rate_tmp = 0.0;
-			//check reactionNetwork_chemkin_index_map
-			for (std::size_t j = 0; j < reactionNetwork_chemkin_index_map[i].size(); ++j) {//for2
-				if (reactionNetwork_chemkin_index_map[i][j] > 0)
-					//Fortran style index to C/C++ style index
-					reaction_rate_tmp += FWDR_t[reactionNetwork_chemkin_index_map[i][j] - 1];
-				else if (reactionNetwork_chemkin_index_map[i][j] < 0)
-					//Fortran style index to C/C++ style index
-					reaction_rate_tmp += REVR_t[abs(reactionNetwork_chemkin_index_map[i][j]) - 1];
-			}//for2
-			reaction_rate_data_pgt[i].push_back(reaction_rate_tmp);
-
-		}//for1
-
-		//print concentration and temperature
-		for (int i = 0; i < nkk; ++i)
-			concentration_data_pgt[i].push_back(c_t[i]);
-
-		temperature_data_pgt.push_back(xgst[neq - 1]);
-		pressure_data_pgt.push_back(ckstore.pressure);
-	}
-
 	void dlsodePropagator::time_propagator_cv_s2m_pgt(std::vector<double> uncertainties, double critical_time, double end_time)
 	{
 		time_data_pgt.clear();
