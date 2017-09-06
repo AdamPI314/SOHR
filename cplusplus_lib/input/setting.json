@@ -16,7 +16,7 @@
         "primary_type": "from_file",
         "type": "dlsode",
         "sub_type": "time_propagator_cv_s2m_pgt",
-        "convert_molar_concentration_to_mole_fraction": "yes",
+        "convert_molar_concentration_to_mole_fraction": "no",
         "normalize_initial_concentration": "yes"
     },
     "time": {
