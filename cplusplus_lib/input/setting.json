@@ -67,7 +67,7 @@
     },
     "pathway": {
         "init_spe": 62,
-        "atom_followed": "H",
+        "atom_followed": "C",
         "super_atom": "X",
         "tau": 0.9,
         "topN": [
