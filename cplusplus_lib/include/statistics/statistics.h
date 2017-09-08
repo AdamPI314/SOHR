@@ -47,7 +47,7 @@ public:
 		pathway_unordered_stat = pathway_unordered_stat_in;
 	}
 	//Sort by counting number and print to file, only print the pathway with counter >= path_len
-	void sort_print_to_file_stat(std::string str_out = "./output/pathway_stat.dat", int path_len = 1);
+	void sort_print_to_file_stat(std::string str_out = "./output/pathway_stat.csv", int path_len = 1);
 	// sort and return a vector of pair<str, int>
 	str_int_v return_sorted_path_count();
 };
