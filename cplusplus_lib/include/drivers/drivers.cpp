@@ -2210,7 +2210,7 @@ void driver::M_matrix_R_matrix(const boost::mpi::communicator & world, const std
 
 }
 
-void driver::Test(const boost::mpi::communicator & world, const std::string & main_cwd)
+void driver::MISC(const boost::mpi::communicator & world, const std::string & main_cwd)
 {
 	std::vector<double> uncertainties;
 	//calculate the uncertainties only in the first node

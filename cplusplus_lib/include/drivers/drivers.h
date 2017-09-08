@@ -144,9 +144,9 @@ namespace driver {
 	void M_matrix_R_matrix(const boost::mpi::communicator &world, const std::string &main_cwd);
 
 	/*
-	* For TEST purpose.
+	* Miscellaneous routines, For TEST purpose.
 	*/
-	void Test(const boost::mpi::communicator &world, const std::string &main_cwd);
+	void MISC(const boost::mpi::communicator &world, const std::string &main_cwd);
 } /* namespace driver*/
 
 #endif

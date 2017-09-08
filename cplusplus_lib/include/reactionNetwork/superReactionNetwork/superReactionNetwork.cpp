@@ -557,7 +557,7 @@ namespace reactionNetwork_sr {
 		 //test edge_index and edge number inside graph
 		 //edge_iterator is not random access iterator, doesn't support offset dereference operator a[n]
 		 //only support a++ or a-- and dereference *a operator
-		//std::cout << "Test edge index:" << std::endl;
+		//std::cout << "MISC edge index:" << std::endl;
 		////	edge_range_t er_t= getEdges();
 		//size_t edge_index_t = 2;
 		//edge_iter iter_e = this->edge_index_to_edge_iterator[edge_index_t];

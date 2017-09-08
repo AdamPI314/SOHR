@@ -173,11 +173,11 @@ int main(int argc, char **argv) {
 		driver::M_matrix_R_matrix(world, main_cwd);
 	/*************************************************************************************************/
 	/*
-	* Test
+	* MISC
 	*/
 	/*************************************************************************************************/
 	else if (pt.get<std::string>("job.job_type") == std::string("Test"))
-		driver::Test(world, main_cwd);
+		driver::MISC(world, main_cwd);
 
 
 	return EXIT_SUCCESS;
