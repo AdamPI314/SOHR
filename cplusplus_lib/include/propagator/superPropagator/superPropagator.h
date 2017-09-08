@@ -147,9 +147,9 @@ namespace propagator_sr {
 		//Write some interesting stuff to file
 		void w2f_pgt(std::string tag = "");
 		//write species concentration to file
-		void spe_concentration_w2f_pgt(double in_time, std::string str) const;
+		void spe_concentration_w2f_pgt(double in_time, std::string tag = "") const;
 		//print conc at specific time into file name "conc.csv", mostly for speciation
-		void spe_concentration_w2f_pgt(std::vector<double> time_in, std::string str) const;
+		void spe_concentration_w2f_pgt(std::vector<double> time_in, std::string tag = "") const;
 
 		//just for test at this moment
 		void print_final_concentration_of_a_spe_pgt(std::size_t index = 0) {

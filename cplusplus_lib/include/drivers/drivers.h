@@ -52,6 +52,9 @@ namespace driver {
 	/*0. Parse parameters*/
 	void parse_parameters(const int argc, char **argv, po::variables_map &vm, std::string &main_cwd, boost::property_tree::ptree &pt);
 
+	/*0.1. write concentration at a time to file*/
+	void write_concentration_at_time_to_file(const boost::mpi::communicator &world, std::string &main_cwd, const boost::property_tree::ptree &pt);
+
 	/*1. Solve ODEs for concentrations using LSODE*/
 	void solve_ODEs_for_concentration_using_LSODE(const boost::mpi::communicator &world, std::string &main_cwd, const boost::property_tree::ptree &pt);
 	//Gillespie Stochastic Simulation Algorithm
