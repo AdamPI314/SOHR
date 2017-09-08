@@ -10,7 +10,7 @@
         "merge_fast_1st_order_transitions": "yes"
     },
     "job": {
-        "job_type": "solve_ODEs_for_concentration_using_LSODE"
+        "job_type": "evaluate_path_integral_over_time"
     },
     "propagator": {
         "primary_type": "from_file",
@@ -69,9 +69,9 @@
         "init_spe": 62,
         "atom_followed": "C",
         "super_atom": "X",
-        "tau": 0.9,
+        "tau": 0.5,
         "topN": [
-            5000
+            50000
         ],
         "pathwayEndWith": "ALL",
         "trajectoryNumber": 10000,
