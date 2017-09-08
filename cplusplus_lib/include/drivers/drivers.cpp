@@ -49,11 +49,11 @@ void driver::write_concentration_at_time_to_file(const boost::mpi::communicator 
 		if (pt.get<std::string>("propagator.convert_molar_concentration_to_mole_fraction") == std::string("yes")) {
 			pgt_obj.convert_molar_concentration_to_mole_fraction();
 			pgt_obj.spe_concentration_w2f_pgt(pt.get<double>("time.path_end_time") * pt.get<double>("pathway.tau"),
-				pt.get<std::string>("pathway.tau") + std::string("dlsode_fraction"));
+				pt.get<std::string>("pathway.tau") + std::string("_dlsode_fraction"));
 		}
 		else
 			pgt_obj.spe_concentration_w2f_pgt(pt.get<double>("time.path_end_time") * pt.get<double>("pathway.tau"),
-				pt.get<std::string>("pathway.tau") + std::string("dlsode_M"));
+				pt.get<std::string>("pathway.tau") + std::string("_dlsode_M"));
 	}
 }
 

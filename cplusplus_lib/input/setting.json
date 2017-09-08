@@ -10,7 +10,7 @@
         "merge_fast_1st_order_transitions": "yes"
     },
     "job": {
-        "job_type": "evaluate_path_integral_over_time"
+        "job_type": "write_concentration_at_time_to_file"
     },
     "propagator": {
         "primary_type": "from_file",
