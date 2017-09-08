@@ -10,7 +10,7 @@
         "merge_fast_1st_order_transitions": "yes"
     },
     "job": {
-        "job_type": "write_concentration_at_time_to_file"
+        "job_type": "solve_ODEs_for_concentration_using_LSODE"
     },
     "propagator": {
         "primary_type": "from_file",
