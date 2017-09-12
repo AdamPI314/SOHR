@@ -4,7 +4,7 @@
       ! Read in the reaction mechanism. Since this is done differently
       ! than in Chemkin, this function does not correspond to any CKLIB
       ! subroutine.
-      call newIdealGasMix('./input/chem.cti','gas','')
+      call newIdealGasMix('./input/chem.xml','gas','')
 
       Return
       End

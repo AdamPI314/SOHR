@@ -174,7 +174,8 @@ void driver::evaluate_path_integral_over_time(const boost::mpi::communicator & w
 
 		//get the pathway name only on the processor 0
 		std::vector<std::string> pathway_vec_t;
-		pathwayHandler::get_pathway(main_cwd + std::string("/input/pathway_name.csv"), pathway_vec_t, 10000); //all pathways
+		pathwayHandler::get_pathway(main_cwd + std::string("/input/pathway_name.csv"), pathway_vec_t, 
+                        std::numeric_limits<int>::max()-1000); //all pathways
 
 
 		std::vector<std::size_t> topN_vec;
@@ -553,7 +554,8 @@ void driver::ODE_solver_path_integral_parallel_s_ct_np_v1(const boost::mpi::comm
 		topN = topN_vec.front();
 
 		//get the pathway name only on the processor 0
-		pathwayHandler::get_pathway(main_cwd + std::string("/input/pathway_name.csv"), pathway_vec, 1000000); //topN pathways
+		pathwayHandler::get_pathway(main_cwd + std::string("/input/pathway_name.csv"), pathway_vec, 
+                        std::numeric_limits<int>::max()-1000); //topN pathways
 		iterationNumber = pt.get<std::size_t>("SOHR_init.iterationNumber");
 
 	}
@@ -867,7 +869,8 @@ void driver::ODE_solver_path_integral_parallel_s_ct_np_cc1_v1(const boost::mpi::
 		topN = topN_vec.front();
 
 		//get the pathway name only on the processor 0
-		pathwayHandler::get_pathway(main_cwd + std::string("/input/pathway_name.csv"), pathway_vec, 1000000); //topN pathways
+		pathwayHandler::get_pathway(main_cwd + std::string("/input/pathway_name.csv"), pathway_vec, 
+                        std::numeric_limits<int>::max()-1000); //topN pathways
 		//single source species
 		if (pt.get<int>("SOHR_init.single_source_species") >= 0) {
 			std::string sss = pt.get<std::string>("pathway.atom_followed") + std::string("S") + pt.get<std::string>("SOHR_init.single_source_species");

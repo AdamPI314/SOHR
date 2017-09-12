@@ -71,7 +71,7 @@
         "super_atom": "X",
         "tau": 0.5,
         "topN": [
-            50000
+            20000
         ],
         "pathwayEndWith": "ALL",
         "trajectoryNumber": 10000,
