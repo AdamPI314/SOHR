@@ -1,1 +1,1 @@
-/opt/anaconda/bin/python ./tools/data_analysis/genetic_toggle_switch/main_driver.py >>log.txt &
+/opt/anaconda/bin/python ./projects/catalytic_cycle/main_driver.py 1>log.txt 2>&1 &
