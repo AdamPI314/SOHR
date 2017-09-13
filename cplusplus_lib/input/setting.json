@@ -10,7 +10,7 @@
         "merge_fast_1st_order_transitions": "yes"
     },
     "job": {
-        "job_type": "write_concentration_at_time_to_file"
+        "job_type": "generate_pathway_running_Monte_carlo_trajectory"
     },
     "propagator": {
         "primary_type": "from_file",
@@ -47,8 +47,8 @@
         "iopt": 0,
         "itol": 1,
         "istate": 1,
-        "deltaN1": 10000,
-        "deltaN2": 10000
+        "deltaN1": 5000,
+        "deltaN2": 5000
     },
     "ssa_init": {
         "dt": 1e-06,
@@ -69,12 +69,12 @@
         "init_spe": 62,
         "atom_followed": "C",
         "super_atom": "X",
-        "tau": 0.3,
+        "tau": 0.5,
         "topN": [
             10
         ],
         "pathwayEndWith": "ALL",
-        "trajectoryNumber": 10000,
+        "trajectoryNumber": 10000000,
         "trajectoryNumberVector": [
             1000,
             1000,
