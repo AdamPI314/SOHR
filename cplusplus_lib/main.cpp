@@ -178,7 +178,7 @@ int main(int argc, char **argv) {
 	* MISC
 	*/
 	/*************************************************************************************************/
-	else if (pt.get<std::string>("job.job_type") == std::string("Test"))
+	else if (pt.get<std::string>("job.job_type") == std::string("MISC"))
 		driver::MISC(world, main_cwd);
 
 

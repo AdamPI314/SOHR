@@ -327,21 +327,21 @@ namespace relationshipParser_sr {
 			index_int_t reaction_v_ind = static_cast<index_int_t>(abs(itr->second[0])) - 1;
 			fout << "reactants\t";
 			for (index_int_t i = 0; i < reaction_v[reaction_v_ind].reactant.size(); ++i) {
-				fout << species_v[reaction_v[reaction_v_ind].reactant[i].first].spe_name << "\t";
+				fout << reaction_v[reaction_v_ind].reactant[i].first << "\t" << species_v[reaction_v[reaction_v_ind].reactant[i].first].spe_name << "\t";
 			}
 			fout << "products\t";
 			for (index_int_t i = 0; i < reaction_v[reaction_v_ind].product.size(); ++i) {
-				fout << species_v[reaction_v[reaction_v_ind].product[i].first].spe_name << "\t";
+				fout << reaction_v[reaction_v_ind].product[i].first << "\t" << species_v[reaction_v[reaction_v_ind].product[i].first].spe_name << "\t";
 			}
 			fout << std::endl;
 
 			fout << "net_reactants\t";
 			for (index_int_t i = 0; i < reaction_v[reaction_v_ind].net_reactant.size(); ++i) {
-				fout << species_v[reaction_v[reaction_v_ind].net_reactant[i].first].spe_name << "\t";
+				fout << reaction_v[reaction_v_ind].net_reactant[i].first << "\t" << species_v[reaction_v[reaction_v_ind].net_reactant[i].first].spe_name << "\t";
 			}
 			fout << "net_products\t";
 			for (index_int_t i = 0; i < reaction_v[reaction_v_ind].net_product.size(); ++i) {
-				fout << species_v[reaction_v[reaction_v_ind].net_product[i].first].spe_name << "\t";
+				fout << reaction_v[reaction_v_ind].net_product[i].first << "\t" << species_v[reaction_v[reaction_v_ind].net_product[i].first].spe_name << "\t";
 			}
 			fout << std::endl;
 		}

@@ -2256,7 +2256,7 @@ void driver::MISC(const boost::mpi::communicator & world, const std::string & ma
 	if (world.rank() == 0) {
 		rnk::concreteReactionNetwork rnk_concrete(uncertainties, world.rank(), main_cwd);
 		rnk_concrete.print();
-		std::cout << "Test\n";
+		std::cout << "MISC\n";
 	}
 }
 

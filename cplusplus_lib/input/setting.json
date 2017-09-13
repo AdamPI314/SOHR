@@ -71,7 +71,7 @@
         "super_atom": "X",
         "tau": 0.5,
         "topN": [
-            10
+            1000
         ],
         "pathwayEndWith": "ALL",
         "trajectoryNumber": 10000000,
@@ -84,8 +84,22 @@
         ],
         "trajectory_count_limit": 1,
         "dead_species": [],
-        "fast_reaction": {},
-        "trapped_species": {},
+        "fast_reaction": {
+            "1068": 1069,
+            "1096": 1097,
+            "132": 133,
+            "1116": 1117,
+            "348": 349,
+            "1080": 1081
+        },
+        "trapped_species": {
+            "60": 78,
+            "61": 80,
+            "25": 27,
+            "87": 90,
+            "39": 50,
+            "78": 87
+        },
         "non_zero_rate_reaction": [],
         "max_path_length": [
             10,
