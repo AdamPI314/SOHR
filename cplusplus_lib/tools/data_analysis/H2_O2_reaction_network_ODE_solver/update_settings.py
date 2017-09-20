@@ -17,7 +17,7 @@ def update_dlsode_settings(file_dir, time=None):
 
     settings_0['time']['critical_time'] = time_n
     settings_0['time']['max_time'] = time_n
-    settings_0['time']['path_end_time'] = time_n
+    settings_0['time']['tau'] = time_n
 
     settings_0['job']['job_type'] = "solve_ODEs_for_concentration_using_LSODE"
     rwc.write_configuration(settings_0, os.path.join(file_dir, 'input', 'setting.json'))
@@ -55,7 +55,7 @@ def update_settings(file_dir, t_iter_N=None, dt=None):
     if dt is not None:
         curr_settings['time']['critical_time'] = dt
         curr_settings['time']['max_time'] = dt
-        curr_settings['time']['path_end_time'] = dt
+        curr_settings['time']['tau'] = dt
 
     rwc.write_configuration(curr_settings, os.path.join(file_dir, 'input', 'setting.json'))
 

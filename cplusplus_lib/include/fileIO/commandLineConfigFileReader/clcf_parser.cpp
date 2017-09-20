@@ -140,10 +140,8 @@ cf_parser::cf_parser() :config("Configuration")
 			"critical time")
 		("time.sys_min_time", po::value<my_time_t>()->default_value(1.0e-10),
 			"system minimum time")
-		("time.path_beg_time", po::value<my_time_t>()->default_value(0.0),
-			"pathway begin time")
-		("time.path_end_time", po::value<my_time_t>()->default_value(1.0),
-			"pathway end time")
+		("time.tau", po::value<my_time_t>()->default_value(1.0),
+			"system reference time tau")
 
 		//chem_init section
 		("chem_init.pressure_atm", po::value<double>()->default_value(5.54651),

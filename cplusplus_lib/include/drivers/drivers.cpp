@@ -48,11 +48,11 @@ void driver::write_concentration_at_time_to_file(const boost::mpi::communicator 
 		pgt::dlsodePropagator pgt_obj(uncertainties, main_cwd);
 		if (pt.get<std::string>("propagator.convert_molar_concentration_to_mole_fraction") == std::string("yes")) {
 			pgt_obj.convert_molar_concentration_to_mole_fraction();
-			pgt_obj.spe_concentration_w2f_pgt(pt.get<double>("time.path_end_time") * pt.get<double>("pathway.tau"),
+			pgt_obj.spe_concentration_w2f_pgt(pt.get<double>("time.tau") * pt.get<double>("pathway.tau"),
 				pt.get<std::string>("pathway.tau") + std::string("_dlsode_fraction"));
 		}
 		else
-			pgt_obj.spe_concentration_w2f_pgt(pt.get<double>("time.path_end_time") * pt.get<double>("pathway.tau"),
+			pgt_obj.spe_concentration_w2f_pgt(pt.get<double>("time.tau") * pt.get<double>("pathway.tau"),
 				pt.get<std::string>("pathway.tau") + std::string("_dlsode_M"));
 	}
 }
@@ -128,10 +128,10 @@ void driver::generate_pathway_running_Monte_carlo_trajectory(const boost::mpi::c
 	//rnk_obj.print_network();
 
 	//double target_time_db = rnk_obj.return_temperature_target_time();
-	double path_end_time = pt.get<double>("time.path_end_time");
+	double tau = pt.get<double>("time.tau");
 
-	double init_time = 0.0 * path_end_time;
-	double end_time = pt.get<double>("pathway.tau")* path_end_time;
+	double init_time = 0.0 * tau;
+	double end_time = pt.get<double>("pathway.tau")* tau;
 
 	int trajectory_count_limit = pt.get<int>("pathway.trajectory_count_limit");
 
@@ -215,7 +215,7 @@ void driver::evaluate_path_integral_over_time(const boost::mpi::communicator & w
 	//different seed for different core/CPU
 	rnk::concreteReactionNetwork rnk_obj(uncertainties, world.rank(), main_cwd);
 
-	double path_end_time = pt.get<double>("time.path_end_time");
+	double tau = pt.get<double>("time.tau");
 
 	// evaluate path integral on each core
 	double pathway_prob_db_t = 0.0;
@@ -225,7 +225,7 @@ void driver::evaluate_path_integral_over_time(const boost::mpi::communicator & w
 		for (size_t j = 0; j < prob_Mat[0].size(); ++j) {
 			for (size_t k = 0; k < trajectoryNumber_local; ++k) {
 				rnk_obj.parse_pathway_to_vector(pathway_vec[i], spe_vec, reaction_vec);
-				pathway_prob_db_t = rnk_obj.pathway_prob_input_pathway_sim_once(0.0, time_Mat[i][j] * path_end_time,
+				pathway_prob_db_t = rnk_obj.pathway_prob_input_pathway_sim_once(0.0, time_Mat[i][j] * tau,
 					spe_vec, reaction_vec, pt.get<std::string>("pathway.atom_followed"));
 				prob_Mat[i][j] += pathway_prob_db_t / trajectoryNumber_total;
 			}
@@ -241,11 +241,11 @@ void driver::evaluate_path_integral_over_time(const boost::mpi::communicator & w
 	if (world.rank() == 0) {
 		////print target time to file
 		//std::ofstream target_time((main_cwd + std::string("/output/target_time.csv")).c_str());
-		//target_time << path_end_time;
+		//target_time << tau;
 		//target_time.close();
 
 		////write concentration of spe to file
-		//rnk_obj.spe_concentration_w2f_rnk(pt.get<double>("pathway.tau") * path_end_time, main_cwd + std::string("/output/spe_conc.csv"));
+		//rnk_obj.spe_concentration_w2f_rnk(pt.get<double>("pathway.tau") * tau, main_cwd + std::string("/output/spe_conc.csv"));
 
 		std::ofstream fout((main_cwd + std::string("/output/pathway_prob.csv")).c_str(), std::ofstream::out);
 		for (size_t i = 0; i < prob_Mat_reduce.size(); ++i) {
@@ -325,9 +325,9 @@ void driver::ODE_solver_MC_trajectory_single_core(const boost::mpi::communicator
 	if (world.rank() == 0) {
 		rnkODEs::reactionNetworkODESolver rnkODEs_obj(uncertainties, world.rank(), main_cwd);
 
-		double path_end_time = pt.get<double>("time.path_end_time");
-		double init_time = 0.0 * path_end_time;
-		double end_time = 1.0 * path_end_time;
+		double tau = pt.get<double>("time.tau");
+		double init_time = 0.0 * tau;
+		double end_time = 1.0 * tau;
 
 		rnkODEs_obj.ODE_pathway_sim_N(init_time, end_time, pt.get<int>("pathway.trajectoryNumber"));
 		rnkODEs_obj.w2f_pgt("SOHR");
@@ -351,8 +351,8 @@ void driver::ODE_solver_MC_trajectory_s_ct_np_parallel(const boost::mpi::communi
 
 		iterationNumber = pt.get<std::size_t>("SOHR_init.iterationNumber");
 		trajectoryNumber_total = pt.get<std::size_t>("pathway.trajectoryNumber");
-		init_time = 0.0*pt.get<double>("time.path_end_time");
-		end_time = pt.get<double>("pathway.tau")*pt.get<double>("time.path_end_time");
+		init_time = 0.0*pt.get<double>("time.tau");
+		end_time = pt.get<double>("pathway.tau")*pt.get<double>("time.tau");
 	}
 
 	//broadcast
@@ -443,8 +443,8 @@ void driver::ODE_solver_MC_trajectory_cv_parallel(const boost::mpi::communicator
 
 		iterationNumber = pt.get<std::size_t>("SOHR_init.iterationNumber");
 		trajectoryNumber_total = pt.get<std::size_t>("pathway.trajectoryNumber");
-		init_time = 0.0*pt.get<double>("time.path_end_time");
-		end_time = pt.get<double>("pathway.tau")*pt.get<double>("time.path_end_time");
+		init_time = 0.0*pt.get<double>("time.tau");
+		end_time = pt.get<double>("pathway.tau")*pt.get<double>("time.tau");
 	}
 
 	//broadcast
@@ -2172,7 +2172,7 @@ void driver::k_shortest_path_algorithms(const boost::mpi::communicator & world, 
 		//configurations, read configuration file named "setting.json"
 		//boost::property_tree::ptree pt;
 		//boost::property_tree::read_json(main_cwd + std::string("/input/setting.json"), pt, std::locale());
-		//auto target_time_db = pt.get<double>("time.path_end_time");
+		//auto target_time_db = pt.get<double>("time.tau");
 		//auto max_level = pt.get<std::size_t>("search_algorithm.max_level");
 
 	}

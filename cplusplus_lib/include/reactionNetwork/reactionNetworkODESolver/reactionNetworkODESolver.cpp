@@ -151,8 +151,8 @@ namespace reactionNetworkODESolver_sr {
 
 			if (reaction_time < sys_min_time)
 				return sys_min_time;
-			else if (reaction_time > path_end_time)
-				return path_end_time;
+			else if (reaction_time > tau)
+				return tau;
 			else
 				return reaction_time;
 		}
@@ -411,7 +411,7 @@ namespace reactionNetworkODESolver_sr {
 
 	void reactionNetworkODESolver::ODE_pathway_sim_once(double init_time, double end_time, rnk::vertex_t init_vertex) {
 		//set the pathway end time
-		set_path_end_time(end_time);
+		set_tau(end_time);
 
 		rnk::when_where_t when_where(init_time, init_vertex);
 		std::size_t preceding_spe_index = 0;
@@ -419,13 +419,13 @@ namespace reactionNetworkODESolver_sr {
 		std::size_t current_spe_index = 0;
 		std::size_t current_time_index = 0;
 
-		while (when_where.first < this->path_end_time) {
+		while (when_where.first < this->tau) {
 			preceding_time_index = this->evaluate_index_at_time(when_where.first);
 			preceding_spe_index = when_where.second;
 
 			when_where = ODE_pathway_move_one_step(when_where.first, when_where.second);
 
-			if (when_where.first < this->return_path_end_time()) {
+			if (when_where.first < this->return_tau()) {
 				current_time_index = this->evaluate_index_at_time(when_where.first);
 				current_spe_index = when_where.second;
 				//preceding species in [preceding time, current_time], still preceding species

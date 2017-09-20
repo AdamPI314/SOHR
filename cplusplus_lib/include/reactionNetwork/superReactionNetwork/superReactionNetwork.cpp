@@ -85,8 +85,7 @@ namespace reactionNetwork_sr {
 		set_min_time(this->rnk_pt.get<cf_parser::my_time_t>("time.min_time"));
 		set_max_time(this->rnk_pt.get<cf_parser::my_time_t>("time.max_time"));
 		set_sys_min_time(this->rnk_pt.get<cf_parser::my_time_t>("time.sys_min_time"));
-		set_path_beg_time(this->rnk_pt.get<cf_parser::my_time_t>("time.path_beg_time"));
-		set_path_end_time(this->rnk_pt.get<cf_parser::my_time_t>("time.path_end_time"));
+		set_tau(this->rnk_pt.get<cf_parser::my_time_t>("time.tau"));
 
 		return true;
 	}
@@ -234,9 +233,9 @@ namespace reactionNetwork_sr {
 		return this->max_time;
 	}
 
-	rsp::my_time_t superReactionNetwork::return_path_end_time() const
+	rsp::my_time_t superReactionNetwork::return_tau() const
 	{
-		return this->rnk_pt.get<rsp::my_time_t>("time.path_end_time");
+		return this->rnk_pt.get<rsp::my_time_t>("time.tau");
 	}
 
 	rsp::index_int_t superReactionNetwork::return_initial_spe() const
@@ -2085,7 +2084,7 @@ namespace reactionNetwork_sr {
 	void reactionNetwork_sr::superReactionNetwork::set_is_reaction_rate_nonzero_from_previous_iteration()
 	{
 		// time, half of pathway end time
-		double time = 0.5 * this->rnk_pt.get<double>("time.path_end_time");
+		double time = 0.5 * this->rnk_pt.get<double>("time.tau");
 		this->update_reaction_rate(time);
 		for (std::size_t i = 0; i < this->reaction_network_v.size(); ++i) {
 			if (this->reaction_network_v[i].reaction_rate > 0)
@@ -2306,7 +2305,7 @@ namespace reactionNetwork_sr {
 
 		//if current species is not a dead species, not found
 		if (std::find(this->dead_species.begin(), this->dead_species.end(), curr_vertex) == this->dead_species.end()) {//if1
-			if (time < path_end_time) {//if2
+			if (time < tau) {//if2
 
 				rsp::index_int_t next_reaction_index = random_pick_next_reaction(curr_vertex);
 				//random pick next spe
@@ -2361,7 +2360,7 @@ namespace reactionNetwork_sr {
 
 			when_where.first = time;
 			when_where.second = next_vertex;
-			if (time < path_end_time) {//if2
+			if (time < tau) {//if2
 				curr_pathway_local += "R";
 				curr_pathway_local += boost::lexical_cast<std::string>(next_reaction_index);
 
@@ -2377,7 +2376,7 @@ namespace reactionNetwork_sr {
 	std::string superReactionNetwork::pathway_sim_once(double init_time, double end_time, vertex_t init_vertex, std::string atom_followed)
 	{
 		//set the pathway end time
-		set_path_end_time(end_time);
+		set_tau(end_time);
 		std::string curr_pathway_local;
 		when_where_t when_where(init_time, init_vertex);
 
@@ -2385,7 +2384,7 @@ namespace reactionNetwork_sr {
 		curr_pathway_local += "S";
 		curr_pathway_local += boost::lexical_cast<std::string>(init_vertex);
 
-		while (when_where.first < path_end_time) {
+		while (when_where.first < tau) {
 			//when_where=pathway_move_one_step(when_where.first, when_where.second, curr_pathway_local);
 			when_where = pathway_move_one_step_v2(when_where.first, when_where.second, curr_pathway_local, atom_followed);
 		}
@@ -2395,12 +2394,12 @@ namespace reactionNetwork_sr {
 
 	double superReactionNetwork::pathway_prob_sim_move_one_step(double when_time, vertex_t curr_spe, std::size_t next_reaction, vertex_t next_spe, double & pathway_prob, std::string atom_followed)
 	{
-		if (when_time >= (path_end_time - INFINITESIMAL_DT)) {
+		if (when_time >= (tau - INFINITESIMAL_DT)) {
 			return when_time;
 
 		}
 
-		this->set_spe_prob_max_at_a_time(when_time, path_end_time, curr_spe);
+		this->set_spe_prob_max_at_a_time(when_time, tau, curr_spe);
 
 		double u_1;
 		if (species_network_v[curr_spe].prob_max > 0.0) {
@@ -2420,7 +2419,7 @@ namespace reactionNetwork_sr {
 	double superReactionNetwork::pathway_prob_input_pathway_sim_once(double const init_time, const double pathway_end_time, const std::vector<size_t> &spe_vec, const std::vector<size_t> &reaction_vec, std::string atom_followed)
 	{
 		//set pathway end time
-		set_path_end_time(pathway_end_time);
+		set_tau(pathway_end_time);
 
 		////parse pathway to spe and reaction vector
 		//std::vector<size_t> spe_vec; std::vector<size_t> reaction_vec;
@@ -2831,16 +2830,16 @@ namespace reactionNetwork_sr {
 					continue;
 				if (k == 0) {
 					std::string path_name = std::string("S") + boost::lexical_cast<std::string>(si);
-					prob_path_map_v[si].insert(std::make_pair(calculate_path_weight_based_on_path_probability(path_name, atom_followed, 0.0, end_time_ratio*this->rnk_pt.get<double>("time.path_end_time")), path_name));
+					prob_path_map_v[si].insert(std::make_pair(calculate_path_weight_based_on_path_probability(path_name, atom_followed, 0.0, end_time_ratio*this->rnk_pt.get<double>("time.tau")), path_name));
 					continue;
 				}
 				//in the mean time, we should change the matrix element so that it doesn't contain too many elements
 				//become too big-->lots of memory
 				for (std::size_t sj = 0; sj < this->species_network_v.size(); ++sj) {
 					// be a little cautious, a little open, 10*topN
-					auto vs = this->get_path_string_update_matrix_element_i_j_topN(pRmn, si, sj, atom_followed, 10 * topN, 0.0, end_time_ratio*this->rnk_pt.get<double>("time.path_end_time"));
+					auto vs = this->get_path_string_update_matrix_element_i_j_topN(pRmn, si, sj, atom_followed, 10 * topN, 0.0, end_time_ratio*this->rnk_pt.get<double>("time.tau"));
 					for (auto s : vs) {
-						double prob = calculate_path_weight_based_on_path_probability(s, atom_followed, 0.0, end_time_ratio*this->rnk_pt.get<double>("time.path_end_time"));
+						double prob = calculate_path_weight_based_on_path_probability(s, atom_followed, 0.0, end_time_ratio*this->rnk_pt.get<double>("time.tau"));
 						if (prob_path_map_v[sj].size() < topN) {
 							prob_path_map_v[sj].insert(std::make_pair(prob, s));
 						}
@@ -2863,7 +2862,7 @@ namespace reactionNetwork_sr {
 			for (auto si : species_without_initial_concentration) {
 				for (std::size_t sj = 0; sj < this->species_network_v.size(); ++sj)
 					// be a little cautious, a little open, 10*topN
-					this->get_path_string_update_matrix_element_i_j_topN(pRmn, si, sj, atom_followed, 10 * topN, 0.0, end_time_ratio*this->rnk_pt.get<double>("time.path_end_time"));
+					this->get_path_string_update_matrix_element_i_j_topN(pRmn, si, sj, atom_followed, 10 * topN, 0.0, end_time_ratio*this->rnk_pt.get<double>("time.tau"));
 			}
 
 		}
@@ -3097,7 +3096,7 @@ namespace reactionNetwork_sr {
 			// contain atom_followed
 			std::string str_tmp;
 			for (std::size_t ti = 0; ti < Ntrajectory; ++ti) {
-				str_tmp = this->pathway_sim_once(0.0, end_time_ratio*this->rnk_pt.get<double>("time.path_end_time"), si, atom_followed);
+				str_tmp = this->pathway_sim_once(0.0, end_time_ratio*this->rnk_pt.get<double>("time.tau"), si, atom_followed);
 				// put the atom followed in front
 				statistics_v[si].insert_pathway_stat(atom_followed + str_tmp);
 			} // for

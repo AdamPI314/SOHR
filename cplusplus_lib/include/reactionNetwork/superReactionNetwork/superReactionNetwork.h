@@ -156,10 +156,8 @@ namespace reactionNetwork_sr {
 		rsp::my_time_t sys_min_time;
 
 	protected:
-		//pathway begin time
-		rsp::my_time_t path_beg_time;
-		//pathway end time
-		rsp::my_time_t path_end_time;
+		//reference time of the whole system, to a combustion system, tau is the ignition delay time
+		rsp::my_time_t tau;
 
 
 	protected:
@@ -213,14 +211,13 @@ namespace reactionNetwork_sr {
 		void set_min_time(rsp::my_time_t min_time_in) { this->min_time = min_time_in; }
 		void set_max_time(rsp::my_time_t max_time_in) { this->max_time = max_time_in; }
 		void set_sys_min_time(rsp::my_time_t sys_min_time_in) { this->sys_min_time = sys_min_time_in; }
-		void set_path_beg_time(rsp::my_time_t beg_time_in) { this->path_beg_time = beg_time_in; }
-		void set_path_end_time(rsp::my_time_t end_time_in) { this->path_end_time = end_time_in; }
+		void set_tau(rsp::my_time_t end_time_in) { this->tau = end_time_in; }
 
 		rsp::my_time_t get_max_time() const;
 
 	public:
 		//return path end time from file
-		rsp::my_time_t return_path_end_time() const;
+		rsp::my_time_t return_tau() const;
 
 		//return initial species
 		rsp::index_int_t return_initial_spe() const;
@@ -447,12 +444,12 @@ namespace reactionNetwork_sr {
 	public:
 		/*
 		* reaction time from importance sampling, exact time
-		* if reaction_time> path_end_time, let it be, don't cut it off
+		* if reaction_time> tau, let it be, don't cut it off
 		*/
 		virtual double reaction_time_from_importance_sampling_without_cutoff(rsp::my_time_t curr_time, vertex_t curr_spe, double Y) = 0;
 		/*
 		* reaction time from importance sampling, exact time
-		* if reaction_time> path_end_time, cut it off
+		* if reaction_time> tau, cut it off
 		*/
 		virtual double reaction_time_from_importance_sampling(rsp::my_time_t curr_time, vertex_t curr_spe, double Y) = 0;
 

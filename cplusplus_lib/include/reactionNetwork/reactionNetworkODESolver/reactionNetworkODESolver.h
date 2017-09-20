@@ -60,12 +60,12 @@ namespace reactionNetworkODESolver_sr {
 	public:
 		/*
 		* reaction time from importance sampling, exact time
-		* if reaction_time> path_end_time, let it be, don't cut it off
+		* if reaction_time> tau, let it be, don't cut it off
 		*/
 		double reaction_time_from_importance_sampling_without_cutoff(rsp::my_time_t curr_time, rnk::vertex_t curr_spe, double Y) override;
 		/*
 		* reaction time from importance sampling, exact time
-		* if reaction_time> path_end_time, cut it off
+		* if reaction_time> tau, cut it off
 		*/
 		double reaction_time_from_importance_sampling(rsp::my_time_t curr_time, rnk::vertex_t curr_spe, double Y) override;
 
