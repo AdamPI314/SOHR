@@ -2256,6 +2256,8 @@ void driver::MISC(const boost::mpi::communicator & world, const std::string & ma
 	if (world.rank() == 0) {
 		rnk::concreteReactionNetwork rnk_concrete(uncertainties, world.rank(), main_cwd);
 		rnk_concrete.print();
+		double target_time_db = rnk_concrete.return_temperature_target_time();
+		std::cout << std::setprecision(15) << "time at target temperature is:\t" << target_time_db << std::endl; 
 		std::cout << "MISC\n";
 	}
 }

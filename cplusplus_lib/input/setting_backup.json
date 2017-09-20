@@ -24,7 +24,8 @@
         "max_time": 0.8000000998554411,
         "critical_time": 0.8000000998554411,
         "sys_min_time": 1e-10,
-        "tau": 0.8000000998554411
+        "path_beg_time": 0,
+        "path_end_time": 0.8000000998554411
     },
     "chem_init": {
         "pressure_atm": 9.86923,
