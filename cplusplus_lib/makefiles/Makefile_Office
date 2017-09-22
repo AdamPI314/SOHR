@@ -62,6 +62,10 @@
 # -L<library path> - specify a lib directory
 # -l<library> - link with library lib<library>.a
 
+# Cantera makefile template
+# include /usr/include/cantera/Cantera.mak
+include /opt/cantera/v2.4.0/include/cantera/Cantera.mak
+
 #num of processors
 P=3
 
@@ -82,21 +86,23 @@ BOOST_MPI_OPTIONS= -lboost_mpi -lboost_serialization -lboost_program_options -lb
 BOOST_REGEX_DIR= ./include/regex/src
 
 # The link options, directory and libs
-MY_LIBS   = $(BOOST_ROOT_LIB) $(OPENMPI_ROOT_LIB) -lgfortran $(BOOST_MPI_OPTIONS)
+MY_LIBS   = $(BOOST_ROOT_LIB) $(OPENMPI_ROOT_LIB) $(CANTERA_LIBS) -lgfortran $(BOOST_MPI_OPTIONS)
 
-# The pre-processor options used by the cpp (man cpp for more).
-CPPFLAGS  = -Wall -fopenmp $(BOOST_ROOT_INCLUDE) $(OPENMPI_ROOT_INCLUDE) -std=c++11
+# The pre-processor options used by the cpp (man cpp for more)
+CPPFLAGS  = -Wall -fopenmp $(BOOST_ROOT_INCLUDE) $(OPENMPI_ROOT_INCLUDE) $(CANTERA_INCLUDES) -std=c++11
 
 # The options used in linking as well as in any direct use of ld.
 LDFLAGS   = 
 
 # The directories in which source files reside.
 # If not specified, only the current directory will be serached.
-SRCDIRS   = . ./include ./include/drivers ./include/tools/debug ./include/relationshipParser ./include/srkin ./include/time ./include/chemkinCpp ./include/statistics ./include/cubicSpline ./include/fileIO/commandLineConfigFileReader ./include/fileIO/CSVFileReader ./include/fileIO/fileIO ./include/pathwayHandler ./include/propagator/superPropagator ./include/propagator/dlsodePropagator ./include/propagator/ssaPropagator ./include/propagator/SOHRPropagator ./include/tools/map_reduce ./include/tools/block_decomposition ./include/tools/sr_libs ./include/tools/matrix ./include/random ./include/reactionNetwork/superReactionNetwork ./include/reactionNetwork/concreteReactionNetwork ./include/reactionNetwork/reactionNetworkODESolver ./include/search_algorithm/eppstein_algorithm $(BOOST_REGEX_DIR)
+
 # Fortran Source directory
 FSRC_ROOT_DIR = ../fortran_lib/fortran_lib
-FSRCDIRS   = $(FSRC_ROOT_DIR) $(FSRC_ROOT_DIR)/dlsode $(FSRC_ROOT_DIR)/chemkin
+FSRCDIRS   = $(FSRC_ROOT_DIR) $(FSRC_ROOT_DIR)/dlsode $(FSRC_ROOT_DIR)/chemkin $(FSRC_ROOT_DIR)/cantera
 
+# CXX Source directory
+SRCDIRS   = . ./src ./src/drivers ./src/tools/debug ./src/relationshipParser ./src/srkin ./src/time ./src/mechanism ./src/odeSolver ./src/statistics ./src/cubicSpline ./src/fileIO/commandLineConfigFileReader ./src/fileIO/CSVFileReader ./src/fileIO/fileIO ./src/pathwayHandler ./src/propagator/superPropagator ./src/propagator/dlsodePropagator ./src/propagator/ssaPropagator ./src/propagator/SOHRPropagator ./src/tools/map_reduce ./src/tools/block_decomposition ./src/tools/sr_libs ./src/tools/matrix ./src/tools/union_find ./src/random ./src/reactionNetwork/superReactionNetwork ./src/reactionNetwork/concreteReactionNetwork ./src/reactionNetwork/reactionNetworkODESolver ./src/search_algorithm/eppstein_algorithm $(FSRC_ROOT_DIR)/cantera $(BOOST_REGEX_DIR)
 
 # The executable file name.
 # If not specified, current directory name or `a.out' will be used.
@@ -119,8 +125,8 @@ HDREXTS = .h .H .hh .hpp .HPP .h++ .hxx .hp
 # Users can override those variables from the command line.
 CFLAGS  = -g -Ofast
 CXXFLAGS= -g -Ofast
-# -w: ignore waring
-FFLAGS	= -w -Ofast
+# -w: ignore waring, add cantera libs
+FFLAGS	= -cpp -ffpe-trap=invalid,zero,overflow,underflow -w -Ofast $(CANTERA_INCLUDES) $(CANTERA_FORTRAN_LIBS)
 
 # The C program compiler.
 #CC     = gcc

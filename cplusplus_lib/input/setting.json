@@ -10,7 +10,7 @@
         "merge_fast_1st_order_transitions": "yes"
     },
     "job": {
-        "job_type": "MISC"
+        "job_type": "evaluate_path_integral_over_time"
     },
     "propagator": {
         "primary_type": "from_file",
@@ -24,7 +24,7 @@
         "max_time": 0.8000000998554411,
         "critical_time": 0.8000000998554411,
         "sys_min_time": 1e-10,
-        "tau": 0.8000000998554411
+        "tau": 0.777705872994694
     },
     "chem_init": {
         "pressure_atm": 9.86923,
@@ -68,7 +68,7 @@
         "init_spe": 62,
         "atom_followed": "C",
         "super_atom": "X",
-        "tau": 0.5,
+        "tau": 0.9,
         "topN": [
             10000
         ],

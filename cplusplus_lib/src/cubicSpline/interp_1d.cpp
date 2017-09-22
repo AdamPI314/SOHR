@@ -1,8 +1,8 @@
 #ifndef _INTERP_1D_CPP_
 #define _INTERP_1D_CPP_
 
-#include "../include/cubicSpline/interp_1d.h"
-//#include "../include/cubicSpline/nr3.h"
+#include "../../include/cubicSpline/interp_1d.h"
+//#include "../../include/cubicSpline/nr3.h"
 
 //struct Base_interp
 //{
