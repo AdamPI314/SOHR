@@ -135,40 +135,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\fortran_lib\fortran_lib\cantera\cantera_cxx_wrapper.cpp" />
-    <ClCompile Include="include\cubicSpline\interp_1d.cpp" />
-    <ClCompile Include="include\drivers\drivers.cpp" />
-    <ClCompile Include="include\fileIO\commandLineConfigFileReader\clcf_parser.cpp" />
-    <ClCompile Include="include\fileIO\CSVFileReader\CSVReader.cpp" />
-    <ClCompile Include="include\fileIO\fileIO\fileIO.cpp" />
-    <ClCompile Include="include\mechanism\mechanism.cpp" />
-    <ClCompile Include="include\odeSolver\odesolver.cpp" />
-    <ClCompile Include="include\pathwayHandler\pathwayHandler.cpp" />
-    <ClCompile Include="include\propagator\dlsodePropagator\dlsodePropagator.cpp" />
-    <ClCompile Include="include\propagator\SOHRPropagator\SOHRPropagator.cpp" />
-    <ClCompile Include="include\propagator\ssaPropagator\ssaPropagator.cpp" />
-    <ClCompile Include="include\propagator\superPropagator\superPropagator.cpp" />
-    <ClCompile Include="include\random\random.cpp" />
-    <ClCompile Include="include\reactionNetwork\concreteReactionNetwork\concreteReactionNetwork.cpp" />
-    <ClCompile Include="include\reactionNetwork\reactionNetworkODESolver\reactionNetworkODESolver.cpp" />
-    <ClCompile Include="include\reactionNetwork\superReactionNetwork\superReactionNetwork.cpp" />
-    <ClCompile Include="include\relationshipParser\relationshipParser.cpp" />
-    <ClCompile Include="include\search_algorithm\eppstein_algorithm\eppstein_algorithm.cpp" />
-    <ClCompile Include="include\srkin\srkin.cpp" />
-    <ClCompile Include="include\statistics\statistics.cpp" />
-    <ClCompile Include="include\statistics\statistics_get_concentration.cpp" />
-    <ClCompile Include="include\time\myclock.cpp" />
-    <ClCompile Include="include\time\myclock_us.cpp" />
-    <ClCompile Include="include\time\timing.cpp" />
-    <ClCompile Include="include\tools\block_decomposition\block_decomposition.cpp" />
-    <ClCompile Include="include\tools\my_debug\my_debug.cpp" />
-    <ClCompile Include="include\tools\map_reduce\map_reduce.cpp" />
-    <ClCompile Include="include\tools\matrix\matrix_sr.cpp" />
-    <ClCompile Include="include\tools\union_find\unionFind.cpp" />
-    <ClCompile Include="main.cpp" />
+    <None Include="input\chem.bin" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\cubicSpline\interp_1d.h" />
+    <ClInclude Include="include\cubicSpline\interp_linear.h" />
     <ClInclude Include="include\cubicSpline\nr3.h" />
     <ClInclude Include="include\drivers\drivers.h" />
     <ClInclude Include="include\fileIO\commandLineConfigFileReader\clcf_parser.h" />
@@ -194,19 +165,48 @@
     <ClInclude Include="include\time\myclock_us.h" />
     <ClInclude Include="include\time\timing.h" />
     <ClInclude Include="include\tools\block_decomposition\block_decomposition.h" />
-    <ClInclude Include="include\tools\misc\global_macros.h" />
-    <ClInclude Include="include\tools\my_debug\my_debug.h" />
     <ClInclude Include="include\tools\map_reduce\map_reduce.h" />
     <ClInclude Include="include\tools\matrix\matrix_sr.h" />
     <ClInclude Include="include\tools\misc\fortran_routine_block_alias.h" />
     <ClInclude Include="include\tools\misc\global_extern_vars.h" />
+    <ClInclude Include="include\tools\misc\global_macros.h" />
     <ClInclude Include="include\tools\misc\graph_bundled.h" />
     <ClInclude Include="include\tools\misc\misc_template.h" />
     <ClInclude Include="include\tools\misc\tree_bundled.h" />
+    <ClInclude Include="include\tools\my_debug\my_debug.h" />
     <ClInclude Include="include\tools\union_find\unionFind.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="input\chem.bin" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="src\cubicSpline\interp_1d.cpp" />
+    <ClCompile Include="src\drivers\drivers.cpp" />
+    <ClCompile Include="src\fileIO\commandLineConfigFileReader\clcf_parser.cpp" />
+    <ClCompile Include="src\fileIO\CSVFileReader\CSVReader.cpp" />
+    <ClCompile Include="src\fileIO\fileIO\fileIO.cpp" />
+    <ClCompile Include="src\mechanism\mechanism.cpp" />
+    <ClCompile Include="src\odeSolver\odesolver.cpp" />
+    <ClCompile Include="src\pathwayHandler\pathwayHandler.cpp" />
+    <ClCompile Include="src\propagator\dlsodePropagator\dlsodePropagator.cpp" />
+    <ClCompile Include="src\propagator\SOHRPropagator\SOHRPropagator.cpp" />
+    <ClCompile Include="src\propagator\ssaPropagator\ssaPropagator.cpp" />
+    <ClCompile Include="src\propagator\superPropagator\superPropagator.cpp" />
+    <ClCompile Include="src\random\random.cpp" />
+    <ClCompile Include="src\reactionNetwork\concreteReactionNetwork\concreteReactionNetwork.cpp" />
+    <ClCompile Include="src\reactionNetwork\reactionNetworkODESolver\reactionNetworkODESolver.cpp" />
+    <ClCompile Include="src\reactionNetwork\superReactionNetwork\superReactionNetwork.cpp" />
+    <ClCompile Include="src\relationshipParser\relationshipParser.cpp" />
+    <ClCompile Include="src\search_algorithm\eppstein_algorithm\eppstein_algorithm.cpp" />
+    <ClCompile Include="src\srkin\srkin.cpp" />
+    <ClCompile Include="src\statistics\statistics.cpp" />
+    <ClCompile Include="src\statistics\statistics_get_concentration.cpp" />
+    <ClCompile Include="src\time\myclock.cpp" />
+    <ClCompile Include="src\time\myclock_us.cpp" />
+    <ClCompile Include="src\time\timing.cpp" />
+    <ClCompile Include="src\tools\block_decomposition\block_decomposition.cpp" />
+    <ClCompile Include="src\tools\map_reduce\map_reduce.cpp" />
+    <ClCompile Include="src\tools\matrix\matrix_sr.cpp" />
+    <ClCompile Include="src\tools\my_debug\my_debug.cpp" />
+    <ClCompile Include="src\tools\union_find\unionFind.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
