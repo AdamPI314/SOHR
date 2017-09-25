@@ -166,6 +166,7 @@
     <ClInclude Include="include\time\timing.h" />
     <ClInclude Include="include\tools\block_decomposition\block_decomposition.h" />
     <ClInclude Include="include\tools\map_reduce\map_reduce.h" />
+    <ClInclude Include="include\tools\matrix\eigen_unsym.h" />
     <ClInclude Include="include\tools\matrix\matrix_sr.h" />
     <ClInclude Include="include\tools\misc\fortran_routine_block_alias.h" />
     <ClInclude Include="include\tools\misc\global_extern_vars.h" />

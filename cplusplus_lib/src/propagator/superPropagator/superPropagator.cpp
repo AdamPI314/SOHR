@@ -18,7 +18,9 @@
 #include "../../../include/tools/union_find/unionFind.h"
 
 //put it in the end, because it has "cubicSpline/interp_1d.h", which has to be after all boost libraries
+#include "../../../include/tools/matrix/matrix_sr.h"
 #include "../../../include/propagator/superPropagator/superPropagator.h"
+
 
 namespace propagator_sr {
 	superPropagator::superPropagator(std::vector<double> uncertainties_in, std::string cwd_in)
@@ -92,13 +94,13 @@ namespace propagator_sr {
 			if (c_t[i] <= 0.0)
 			{
 				spe_drc_data_pgt[i].push_back(c_t[i]);
-				//spe_production_rate_data_pgt[i].push_back(CDOT_t[i]);
+				//spe_production_rate_data_pgt[time_i].push_back(CDOT_t[time_i]);
 			}
 			else
 			{
 				//just need the destruction rate const of species
 				spe_drc_data_pgt[i].push_back(DDOT_t[i] / c_t[i]);
-				//spe_production_rate_data_pgt[i].push_back(CDOT_t[i]);
+				//spe_production_rate_data_pgt[time_i].push_back(CDOT_t[time_i]);
 			}
 		}//for]
 
@@ -152,7 +154,7 @@ namespace propagator_sr {
 		}
 	}
 
-	void superPropagator::set_drc_of_species_trapped_in_fast_reactions(const std::vector<rsp::spe_info_base> &species_network_v, const std::vector<std::vector<std::size_t>>& trapped_species)
+	void superPropagator::set_drc_of_species_trapped_in_fast_reactions(const std::vector<rsp::spe_info_base> &species_network_v, const std::vector<rsp::reaction_info_base> &reaction_network_v, const std::vector<std::vector<std::size_t>>& trapped_species, std::string atom_followed)
 	{
 		// since there might be groups of trapped species, such as A=B, B=C, C=D, A,B,C,D belongs to the same fast transition group
 		// use union find here
@@ -167,17 +169,17 @@ namespace propagator_sr {
 			unique_fast_reactions.insert(r);
 		}
 
-		std::unordered_map<int, int> hash1;
-		std::unordered_map<int, int> hash2;
+		std::unordered_map<int, int> label_2_idx;
+		std::unordered_map<int, int> idx_2_label;
 		int counter = 0;
 		for (auto x : unique_trapped_species) {
-			hash1.emplace(counter, x);
-			hash2.emplace(x, counter++);
+			label_2_idx.emplace(counter, x);
+			idx_2_label.emplace(x, counter++);
 		}
 
-		UnionFind uf(hash1.size());
+		UnionFind uf(label_2_idx.size());
 		for (std::size_t i = 0; i < trapped_species[0].size(); ++i) {
-			uf.unite(hash2[trapped_species[0][i]], hash2[trapped_species[1][i]]);
+			uf.unite(idx_2_label[trapped_species[0][i]], idx_2_label[trapped_species[1][i]]);
 		}
 
 		// for all species, cancel all neighbors fast transitions
@@ -202,18 +204,18 @@ namespace propagator_sr {
 		for (auto x : trapped_species) {
 			for (auto y : x) {
 				// find root
-				auto s = hash1[uf.root(hash2(y))];
+				auto s = label_2_idx[uf.root(idx_2_label[y])];
 				unique_root_species.insert(s);
 			}
 		}
 		std::map<int, std::set<int> > fast_transition_group_spe;
 		for (auto x : unique_root_species) {
-			fast_transition_group_spe.emplace(x, std::set<int>(x));
+			fast_transition_group_spe.emplace(x, std::set<int>({ x }));
 		}
 		for (auto x : trapped_species) {
 			for (auto y : x) {
 				// find root
-				auto s = hash1[uf.root(hash2(y))];
+				auto s = label_2_idx[uf.root(idx_2_label[y])];
 				if (fast_transition_group_spe[s].find(y) == fast_transition_group_spe[s].end()) {
 					fast_transition_group_spe[s].insert(y);
 				}
@@ -222,7 +224,7 @@ namespace propagator_sr {
 
 		// first order approximation, instead of zero-th order, for example, A(k1)=B(k2)->(k3)C, 
 		// if there is a fast transition between A and B, there we modify the k3, k3=k2/(k1+k2) * k3
-		for (std::size_t i = 0; i < this->time_data_pgt.size(); ++i) {
+		for (std::size_t time_i = 0; time_i < this->time_data_pgt.size(); ++time_i) {
 			for (auto x : fast_transition_group_spe) {
 				// transition matrix, to each group of species, calculate a transition matrix
 				auto spe_set = x.second;
@@ -235,30 +237,54 @@ namespace propagator_sr {
 				}
 				// transition matrix
 				std::vector<std::vector<double> > transition_mat(spe_set.size(), std::vector<double>(spe_set.size(), 0.0));
-				for (auto x : spe_set) {
-					for (auto y : species_network_v[x].reaction_k_index_s_coef_v) {
+				for (auto s_idx_1 : spe_set) {
+					for (auto y : species_network_v[s_idx_1].reaction_k_index_s_coef_v) {
 						auto rxn_ind = y.first;
-						auto s_coef = y.second;
+						auto s_coef_1 = y.second;
 						if (unique_fast_reactions.find(rxn_ind) != unique_fast_reactions.end()) {
-							if (this->concentration_data_pgt[x][i] != 0) {
-								auto drc_tmp = s_coef *this->reaction_rate_data_pgt[rxn_ind][i] / this->concentration_data_pgt[x][i];
+							if (this->concentration_data_pgt[s_idx_1][time_i] != 0) {
+								auto drc_tmp = s_coef_1 *this->reaction_rate_data_pgt[rxn_ind][time_i] / this->concentration_data_pgt[s_idx_1][time_i];
 
 								// check out species index, if in this fast transition group, add to transition matrix
+								for (auto s_idx_w : reaction_network_v[rxn_ind].out_spe_index_weight_v_map.at(atom_followed)) {
+									auto s_idx_2 = s_idx_w.first;
+									auto s_coef_2 = s_idx_w.second;
 
-
+									// if s_idx_2 is in the same group as s_idx_1, update transition matrix
+									if (idx_2_label.find(s_idx_2) == idx_2_label.end())
+										continue;
+									else {
+										if (uf.root(idx_2_label.at(s_idx_1)) == uf.root(idx_2_label.at(s_idx_2))) {
+											// assume first order transition, if it is 5A==10B, too hard to deal with
+											// speaking of transition matrix, to a A==B system, 
+											// k_{AB} should be the matrix element on the left bottom corner
+											transition_mat[idx_2_label_tmp.at(s_idx_2)][idx_2_label_tmp.at(s_idx_1)] = drc_tmp / s_coef_2;
+										}
+									}
+								}
 							}
 						}
 					}
 				}
+				// calculate equilibrium concentration based on transition matrix
+				std::vector<double> equil_ratio;
+				auto ok = matrix_sr::cal_equilibrium_ratio_from_transition_matrix(transition_mat, equil_ratio);
 
-			}
-		}
+				if (ok == false)
+					continue;
+				for (std::size_t label_i_tmp = 0; label_i_tmp < transition_mat.size(); ++label_i_tmp) {
+					auto spe_idx_tmp = label_2_idx_tmp[label_i_tmp];
+					this->spe_drc_data_pgt[spe_idx_tmp][time_i] *= equil_ratio[label_i_tmp];
+				}
+
+			}// fast transition group
+		}// time
 
 		// add to main node, for example, A,B,C quick transition group, Add B and C's drc to A's
 		for (auto s : unique_trapped_species) {
-			if (hash1[uf.root(hash2[s])] != s) {
-				for (std::size_t i = 0; i < this->time_data_pgt.size(); ++i) {
-					this->spe_drc_data_pgt[hash1[uf.root(hash2[s])]][i] += this->spe_drc_data_pgt[s][i];
+			if (label_2_idx[uf.root(idx_2_label[s])] != s) {
+				for (std::size_t time_i = 0; time_i < this->time_data_pgt.size(); ++time_i) {
+					this->spe_drc_data_pgt[label_2_idx[uf.root(idx_2_label[s])]][time_i] += this->spe_drc_data_pgt[s][time_i];
 				}
 			}
 		}
@@ -435,7 +461,7 @@ namespace propagator_sr {
 		// pressure
 		fout.open((this->cwd_pgt + std::string("/output/pressure_") + tag + std::string(".csv")).c_str());
 		for (size_t i = 0; i < pressure_data_pgt.size(); ++i) {
-			//fout<<pressure_data_pgt[i]/1013250<<"\t"<<pressure_data_pgt[i]<<std::endl;
+			//fout<<pressure_data_pgt[time_i]/1013250<<"\t"<<pressure_data_pgt[time_i]<<std::endl;
 			fout << std::setprecision(std::numeric_limits<double>::max_digits10 + 1) << pressure_data_pgt[i] << "," << pressure_data_pgt[i] / 1013250 << "," << pressure_data_pgt[i] / 1000000 << std::endl;
 		}
 		fout.clear(); fout.close();
@@ -454,9 +480,9 @@ namespace propagator_sr {
 
 		//// int_drc, cumulative destructive rate constant
 		//fout.open((this->cwd_pgt + std::string("/output/int_drc_") + tag + std::string(".csv")).c_str());
-		//for (size_t i = 0; i < spe_drc_int_data_pgt[0].size(); ++i) {
+		//for (size_t time_i = 0; time_i < spe_drc_int_data_pgt[0].size(); ++time_i) {
 			//for (size_t j = 0; j < spe_drc_int_data_pgt.size(); ++j) {
-				//fout << std::setprecision(std::numeric_limits<double>::max_digits10+1) << spe_drc_int_data_pgt[j][i];
+				//fout << std::setprecision(std::numeric_limits<double>::max_digits10+1) << spe_drc_int_data_pgt[j][time_i];
 				//if (j < spe_drc_int_data_pgt.size() - 1)
 					//fout << ",";
 			//}
@@ -480,9 +506,9 @@ namespace propagator_sr {
 		//fout.open((this->cwd_pgt + std::string("/output/spe_production_rate_") + tag + std::string(".csv")).c_str());
 		//std::cout << spe_production_rate_data_pgt.size() << std::endl;
 		//std::cout << spe_production_rate_data_pgt[0].size() << std::endl;
-		//for (size_t i = 0; i < spe_production_rate_data_pgt[0].size(); ++i) {
+		//for (size_t time_i = 0; time_i < spe_production_rate_data_pgt[0].size(); ++time_i) {
 		//	for (size_t j = 0; j < spe_production_rate_data_pgt.size(); ++j) {
-		//		fout << std::setprecision(std::numeric_limits<double>::max_digits10+1) << spe_production_rate_data_pgt[j][i];
+		//		fout << std::setprecision(std::numeric_limits<double>::max_digits10+1) << spe_production_rate_data_pgt[j][time_i];
 		//		if (j < spe_production_rate_data_pgt.size() - 1)
 		//			fout << ",";
 		//	}
@@ -730,14 +756,14 @@ namespace propagator_sr {
 		for (size_t i = 0; i < spe_drc_int_data_pgt.size(); ++i)
 		{
 			//The first time interval
-			//spe_drc_int_data_pgt[i][0] = spe_drc_data_pgt[i][0] * (time_data_pgt[1] - time_data_pgt[0]);
+			//spe_drc_int_data_pgt[time_i][0] = spe_drc_data_pgt[time_i][0] * (time_data_pgt[1] - time_data_pgt[0]);
 			spe_drc_int_data_pgt[i][0] = 0.0;
 		}
 		//The other time interval
 		for (size_t i = 0; i < spe_drc_int_data_pgt.size(); ++i) {//[for
 			for (size_t j = 1; j < spe_drc_int_data_pgt[0].size(); ++j) {
 				////rectangle rule
-				//spe_drc_int_data_pgt[i][j] = spe_drc_data_pgt[i][j] * (time_data_pgt[j] - time_data_pgt[j - 1]) + spe_drc_int_data_pgt[i][j - 1];
+				//spe_drc_int_data_pgt[time_i][j] = spe_drc_data_pgt[time_i][j] * (time_data_pgt[j] - time_data_pgt[j - 1]) + spe_drc_int_data_pgt[time_i][j - 1];
 
 				//trapezoidal rule
 				spe_drc_int_data_pgt[i][j] = 0.5 * (spe_drc_data_pgt[i][j] + spe_drc_data_pgt[i][j - 1]) * (time_data_pgt[j] - time_data_pgt[j - 1]) + spe_drc_int_data_pgt[i][j - 1];

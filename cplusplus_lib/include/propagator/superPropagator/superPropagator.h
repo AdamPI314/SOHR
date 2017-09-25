@@ -132,7 +132,7 @@ namespace propagator_sr {
 		//set the reaction rate of fast reactions to be zero
 		void set_fast_reaction_rate_to_zero_pgt();
 		//set fast transition A=B's pseudo-first order rate constant given list of trapped species pair
-		void set_drc_of_species_trapped_in_fast_reactions(const std::vector<rsp::spe_info_base> &species_network_v, const std::vector<std::vector<std::size_t>> &trapped_species);
+		void set_drc_of_species_trapped_in_fast_reactions(const std::vector<rsp::spe_info_base> &species_network_v, const std::vector<rsp::reaction_info_base> &reaction_network_v, const std::vector<std::vector<std::size_t>> &trapped_species, std::string atom_followed = "H");
 
 
 	public:
@@ -200,7 +200,7 @@ namespace propagator_sr {
 		void convert_molar_concentration_to_mole_fraction();
 		void convert_mole_fraction_to_molar_concentration();
 
-		virtual void propagator_from_file(std::string tag="") {};
+		virtual void propagator_from_file(std::string tag = "") {};
 
 		/*
 		* constant volume-->cv

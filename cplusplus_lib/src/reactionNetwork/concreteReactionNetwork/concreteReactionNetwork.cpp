@@ -45,7 +45,7 @@ namespace reactionNetwork_sr {
 
 	void concreteReactionNetwork::merge_fast_transitions()
 	{
-		this->propagator->set_drc_of_species_trapped_in_fast_reactions(this->species_network_v, this->trapped_spe);
+		this->propagator->set_drc_of_species_trapped_in_fast_reactions(this->species_network_v, this->reaction_network_v, this->trapped_spe, this->rnk_pt.get<std::string>("pathway.atom_followed"));
 
 		//set the reaction rate of fast reactions to be zero
 		this->propagator->set_fast_reaction_rate_to_zero_pgt();
@@ -75,23 +75,23 @@ namespace reactionNetwork_sr {
 			}
 		}
 
-		std::unordered_map<int, int> hash1;
-		std::unordered_map<int, int> hash2;
+		std::unordered_map<int, int> label_2_idx;
+		std::unordered_map<int, int> idx_2_label;
 		int counter = 0;
 		for (auto x : unique_trapped_species) {
-			hash1.emplace(counter, x);
-			hash2.emplace(x, counter++);
+			label_2_idx.emplace(counter, x);
+			idx_2_label.emplace(x, counter++);
 		}
 
-		UnionFind uf(hash1.size());
+		UnionFind uf(label_2_idx.size());
 		for (std::size_t i = 0; i < trapped_spe[0].size(); ++i) {
-			uf.unite(hash2[trapped_spe[0][i]], hash2[trapped_spe[1][i]]);
+			uf.unite(idx_2_label[trapped_spe[0][i]], idx_2_label[trapped_spe[1][i]]);
 		}
 
 		for (auto s : unique_trapped_species) {
 			// not the main nodes
-			if (hash1[uf.root(hash2[s])] != s) {
-				this->species_network_v[hash1[uf.root(hash2[s])]].spe_name += (std::string("+") + this->species_network_v[s].spe_name);
+			if (label_2_idx[uf.root(idx_2_label[s])] != s) {
+				this->species_network_v[label_2_idx[uf.root(idx_2_label[s])]].spe_name += (std::string("+") + this->species_network_v[s].spe_name);
 			}
 		}
 
@@ -108,17 +108,17 @@ namespace reactionNetwork_sr {
 			}
 		}
 
-		std::unordered_map<int, int> hash1;
-		std::unordered_map<int, int> hash2;
+		std::unordered_map<int, int> label_2_idx;
+		std::unordered_map<int, int> idx_2_label;
 		int counter = 0;
 		for (auto x : unique_trapped_species) {
-			hash1.emplace(counter, x);
-			hash2.emplace(x, counter++);
+			label_2_idx.emplace(counter, x);
+			idx_2_label.emplace(x, counter++);
 		}
 
-		UnionFind uf(hash1.size());
+		UnionFind uf(label_2_idx.size());
 		for (std::size_t i = 0; i < trapped_spe[0].size(); ++i) {
-			uf.unite(hash2[trapped_spe[0][i]], hash2[trapped_spe[1][i]]);
+			uf.unite(idx_2_label[trapped_spe[0][i]], idx_2_label[trapped_spe[1][i]]);
 		}
 
 		// check all reactions
@@ -126,8 +126,8 @@ namespace reactionNetwork_sr {
 			for (auto &y : x.out_spe_index_weight_v_map) {
 				for (auto &z : y.second) {
 					// not root node, got to check wether it is a trapped species first
-					if (unique_trapped_species.find(z.first) != unique_trapped_species.end() && hash1[uf.root(hash2[z.first])] != (int)z.first) {
-						z.first = hash1[uf.root(hash2[z.first])];
+					if (unique_trapped_species.find(z.first) != unique_trapped_species.end() && label_2_idx[uf.root(idx_2_label[z.first])] != (int)z.first) {
+						z.first = label_2_idx[uf.root(idx_2_label[z.first])];
 					}
 				}
 			}//out_spe_index_weight_v_map
@@ -135,9 +135,9 @@ namespace reactionNetwork_sr {
 			for (auto &y : x.out_spe_index_branching_ratio_map_map) {
 				auto &idx_w_m = y.second;
 				for (auto s : unique_trapped_species) {
-					if (idx_w_m.find(s) != idx_w_m.end() && hash1[uf.root(hash2[s])] != s) {
+					if (idx_w_m.find(s) != idx_w_m.end() && label_2_idx[uf.root(idx_2_label[s])] != s) {
 						// delete old one, insert new one
-						idx_w_m.emplace(hash1[uf.root(hash2[s])], idx_w_m.at(s));
+						idx_w_m.emplace(label_2_idx[uf.root(idx_2_label[s])], idx_w_m.at(s));
 						idx_w_m.erase(s);
 					}
 				}
@@ -157,23 +157,23 @@ namespace reactionNetwork_sr {
 			}
 		}
 
-		std::unordered_map<int, int> hash1;
-		std::unordered_map<int, int> hash2;
+		std::unordered_map<int, int> label_2_idx;
+		std::unordered_map<int, int> idx_2_label;
 		int counter = 0;
 		for (auto x : unique_trapped_species) {
-			hash1.emplace(counter, x);
-			hash2.emplace(x, counter++);
+			label_2_idx.emplace(counter, x);
+			idx_2_label.emplace(x, counter++);
 		}
 
-		UnionFind uf(hash1.size());
+		UnionFind uf(label_2_idx.size());
 		for (std::size_t i = 0; i < trapped_spe[0].size(); ++i) {
-			uf.unite(hash2[trapped_spe[0][i]], hash2[trapped_spe[1][i]]);
+			uf.unite(idx_2_label[trapped_spe[0][i]], idx_2_label[trapped_spe[1][i]]);
 		}
 
 		for (auto s : unique_trapped_species) {
-			if (hash1[uf.root(hash2[s])] != s) {
+			if (label_2_idx[uf.root(idx_2_label[s])] != s) {
 				for (auto x : this->species_network_v[s].reaction_k_index_s_coef_v) {
-					this->species_network_v[hash1[uf.root(hash2[s])]].reaction_k_index_s_coef_v.push_back(x);
+					this->species_network_v[label_2_idx[uf.root(idx_2_label[s])]].reaction_k_index_s_coef_v.push_back(x);
 				}
 			}
 		}

@@ -175,8 +175,8 @@ void driver::evaluate_path_integral_over_time(const boost::mpi::communicator & w
 
 		//get the pathway name only on the processor 0
 		std::vector<std::string> pathway_vec_t;
-		pathwayHandler::get_pathway(main_cwd + std::string("/input/pathway_name.csv"), pathway_vec_t, 
-                        std::numeric_limits<int>::max()-1000); //all pathways
+		pathwayHandler::get_pathway(main_cwd + std::string("/input/pathway_name.csv"), pathway_vec_t,
+			std::numeric_limits<int>::max() - 1000); //all pathways
 
 
 		std::vector<std::size_t> topN_vec;
@@ -555,8 +555,8 @@ void driver::ODE_solver_path_integral_parallel_s_ct_np_v1(const boost::mpi::comm
 		topN = topN_vec.front();
 
 		//get the pathway name only on the processor 0
-		pathwayHandler::get_pathway(main_cwd + std::string("/input/pathway_name.csv"), pathway_vec, 
-                        std::numeric_limits<int>::max()-1000); //topN pathways
+		pathwayHandler::get_pathway(main_cwd + std::string("/input/pathway_name.csv"), pathway_vec,
+			std::numeric_limits<int>::max() - 1000); //topN pathways
 		iterationNumber = pt.get<std::size_t>("SOHR_init.iterationNumber");
 
 	}
@@ -870,9 +870,9 @@ void driver::ODE_solver_path_integral_parallel_s_ct_np_cc1_v1(const boost::mpi::
 		topN = topN_vec.front();
 
 		//get the pathway name only on the processor 0
-		pathwayHandler::get_pathway(main_cwd + std::string("/input/pathway_name.csv"), pathway_vec, 
-                        std::numeric_limits<int>::max()-1000); //topN pathways
-		//single source species
+		pathwayHandler::get_pathway(main_cwd + std::string("/input/pathway_name.csv"), pathway_vec,
+			std::numeric_limits<int>::max() - 1000); //topN pathways
+//single source species
 		if (pt.get<int>("SOHR_init.single_source_species") >= 0) {
 			std::string sss = pt.get<std::string>("pathway.atom_followed") + std::string("S") + pt.get<std::string>("SOHR_init.single_source_species");
 			pathwayHandler::pathway_starts_with(sss, pathway_vec, pathway_swss_vec);
@@ -2255,10 +2255,15 @@ void driver::MISC(const boost::mpi::communicator & world, const std::string & ma
 	broadcast(world, uncertainties, 0);
 
 	if (world.rank() == 0) {
-		rnk::concreteReactionNetwork rnk_concrete(uncertainties, world.rank(), main_cwd);
-		rnk_concrete.print();
-		double target_time_db = rnk_concrete.return_temperature_target_time();
-		std::cout << std::setprecision(15) << "time at target temperature is:\t" << target_time_db << std::endl; 
+		//rnk::concreteReactionNetwork rnk_concrete(uncertainties, world.rank(), main_cwd);
+		//rnk_concrete.print();
+		//double target_time_db = rnk_concrete.return_temperature_target_time();
+		//std::cout << std::setprecision(15) << "time at target temperature is:\t" << target_time_db << std::endl; 
+
+		std::vector<std::vector<double> > transition_mat = { {0.0, 1.0}, {2.0, 0.0} };
+		std::vector<double> equil_ratio;
+		auto result = matrix_sr::cal_equilibrium_ratio_from_transition_matrix(transition_mat, equil_ratio);
+
 		std::cout << "MISC\n";
 	}
 }

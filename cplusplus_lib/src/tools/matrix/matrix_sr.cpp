@@ -1,10 +1,14 @@
 #ifndef __MATRIX_SR_CPP_
 #define __MATRIX_SR_CPP_
 #include "../../../include/tools/matrix/matrix_sr.h"
+#include "../../../include/tools/matrix/eigen_unsym.h"
 #include <iostream>
 #include <cassert>
+#include <cmath>
+#include <complex> // std::complex, std::imag
 
 namespace matrix_sr {
+
 	size_t_matrix_t matrix_multiplication(size_t_matrix_t m_k, size_t_matrix_t k_n) {
 		std::size_t m = m_k.size();
 		std::size_t m_k_k = m_k[0].size();
@@ -97,6 +101,62 @@ namespace matrix_sr {
 
 		return A;
 
+	}
+
+	bool cal_equilibrium_ratio_from_transition_matrix(std::vector<std::vector<double>>& transition_mat, std::vector<double> &equil_ratio)
+	{
+		std::size_t m = transition_mat.size();
+		equil_ratio.assign(m, 0.0);
+
+		MatDoub mat_tmp(m, m, 0.0);
+		for (std::size_t i = 0; i < m; ++i) {
+			for (std::size_t j = 0; j < m; ++j) {
+				mat_tmp[i][j] = transition_mat[i][j];
+			}
+		}
+
+		Unsymmeig h(mat_tmp, true, true);
+		auto eigen_val = h.wri;
+		auto eigen_vec = h.zz;
+
+		// find the first eigen value that's is positive
+		// if there is more than one steady states, ignore the rest lol
+		std::size_t first_real_idx = 0;
+		bool ok = false;
+
+		for (std::size_t i = 0; i < m; ++i) {
+			if (eigen_val[i].imag() != 0)
+				continue;
+			// imaginary is zero, real number
+			if (eigen_val[i].real() > 0) {
+				first_real_idx = i;
+				ok = true;
+				break;
+			}
+		}
+
+		// if there is no real positive eigen-value, return false
+		if (ok == false)
+			return false;
+
+		for (std::size_t i = 0; i < m; ++i) {
+			//equil_ratio[i] = eigen_vec[i][first_real_idx];
+			equil_ratio[i] = eigen_vec[i][first_real_idx] * eigen_vec[i][first_real_idx];
+		}
+
+		// normalize
+		double sum_tmp = 0.0;
+		for (std::size_t i = 0; i < m; ++i) {
+			sum_tmp += equil_ratio[i];
+		}
+		if (sum_tmp == 0.0)
+			return false;
+
+		for (std::size_t i = 0; i < m; ++i) {
+			equil_ratio[i] /= sum_tmp;
+		}
+
+		return true;
 	}
 
 	//matrix_sr::size_t_matrix_t m1;

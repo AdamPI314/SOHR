@@ -45,14 +45,14 @@ def get_fast_rxn_trapped_spe():
         {
             "rxn": [348, 349],
             "spe": [39, 50]
+        },
+        # 1080    556     npropyloo=QOOH_1        557     npropyloo=QOOH_1
+        # reactants       78      npropyloo       products        87      QOOH_1
+        # 1081    -556    npropyloo=QOOH_1        -557    npropyloo=QOOH_1
+        {
+            "rxn": [1080, 1081],
+            "spe": [78, 87]
         }
-        # # 1080    556     npropyloo=QOOH_1        557     npropyloo=QOOH_1
-        # # reactants       78      npropyloo       products        87      QOOH_1
-        # # 1081    -556    npropyloo=QOOH_1        -557    npropyloo=QOOH_1
-        # {
-        #     "rxn": [1080, 1081],
-        #     "spe": [78, 87]
-        # }
     ]
 
     fast_reaction_list = []
