@@ -197,6 +197,63 @@ namespace propagator_sr {
 			}
 		}
 
+		// find fast transition groups
+		std::unordered_set<int> unique_root_species;
+		for (auto x : trapped_species) {
+			for (auto y : x) {
+				// find root
+				auto s = hash1[uf.root(hash2(y))];
+				unique_root_species.insert(s);
+			}
+		}
+		std::map<int, std::set<int> > fast_transition_group_spe;
+		for (auto x : unique_root_species) {
+			fast_transition_group_spe.emplace(x, std::set<int>(x));
+		}
+		for (auto x : trapped_species) {
+			for (auto y : x) {
+				// find root
+				auto s = hash1[uf.root(hash2(y))];
+				if (fast_transition_group_spe[s].find(y) == fast_transition_group_spe[s].end()) {
+					fast_transition_group_spe[s].insert(y);
+				}
+			}
+		}
+
+		// first order approximation, instead of zero-th order, for example, A(k1)=B(k2)->(k3)C, 
+		// if there is a fast transition between A and B, there we modify the k3, k3=k2/(k1+k2) * k3
+		for (std::size_t i = 0; i < this->time_data_pgt.size(); ++i) {
+			for (auto x : fast_transition_group_spe) {
+				// transition matrix, to each group of species, calculate a transition matrix
+				auto spe_set = x.second;
+				int counter = 0;
+				std::unordered_map<int, int> idx_2_label_tmp;
+				std::unordered_map<int, int> label_2_idx_tmp;
+				for (auto x : spe_set) {
+					label_2_idx_tmp[counter] = x;
+					idx_2_label_tmp[x] = counter++;
+				}
+				// transition matrix
+				std::vector<std::vector<double> > transition_mat(spe_set.size(), std::vector<double>(spe_set.size(), 0.0));
+				for (auto x : spe_set) {
+					for (auto y : species_network_v[x].reaction_k_index_s_coef_v) {
+						auto rxn_ind = y.first;
+						auto s_coef = y.second;
+						if (unique_fast_reactions.find(rxn_ind) != unique_fast_reactions.end()) {
+							if (this->concentration_data_pgt[x][i] != 0) {
+								auto drc_tmp = s_coef *this->reaction_rate_data_pgt[rxn_ind][i] / this->concentration_data_pgt[x][i];
+
+								// check out species index, if in this fast transition group, add to transition matrix
+
+
+							}
+						}
+					}
+				}
+
+			}
+		}
+
 		// add to main node, for example, A,B,C quick transition group, Add B and C's drc to A's
 		for (auto s : unique_trapped_species) {
 			if (hash1[uf.root(hash2[s])] != s) {
