@@ -2263,6 +2263,7 @@ void driver::MISC(const boost::mpi::communicator & world, const std::string & ma
 		std::vector<std::vector<double> > transition_mat = { {0.0, 1.0}, {2.0, 0.0} };
 		std::vector<double> equil_ratio;
 		auto result = matrix_sr::cal_equilibrium_ratio_from_transition_matrix(transition_mat, equil_ratio);
+		std::cout << result << std::endl;
 
 		std::cout << "MISC\n";
 	}

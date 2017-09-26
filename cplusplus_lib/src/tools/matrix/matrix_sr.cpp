@@ -1,11 +1,12 @@
 #ifndef __MATRIX_SR_CPP_
 #define __MATRIX_SR_CPP_
 #include "../../../include/tools/matrix/matrix_sr.h"
-#include "../../../include/tools/matrix/eigen_unsym.h"
 #include <iostream>
 #include <cassert>
 #include <cmath>
 #include <complex> // std::complex, std::imag
+
+#include "../../../include/tools/matrix/eigen_unsym.h"
 
 namespace matrix_sr {
 
