@@ -66,7 +66,15 @@ def get_fast_rxn_trapped_spe():
         {
             "rxn": [1042, 1043],
             "spe": [72, 108]
+        },
+        # 434     224     acetyl+O2=acetylperoxy
+        # reactants       9       O2      45      acetyl  products        47      acetylperoxy
+        # 435     -224    acetyl+O2=acetylperoxy
+        {
+            "rxn": [434, 435],
+            "spe": [45, 47]
         }
+
     ]
 
     fast_reaction_list = []
