@@ -2177,7 +2177,7 @@ namespace reactionNetwork_sr {
 			auto ss_prob_idx = this->sp_chattering_rnk->spe_idx_2_super_group_idx[curr_spe];
 			//check zero case
 			auto chattering_ratio = this->evaluate_chattering_group_ss_prob_at_time(reaction_time, ss_prob_idx);
-			if (chattering_ratio != 0.0)
+			if (chattering_ratio > 0.0)
 				spe_branching_ratio *= chattering_ratio;
 		}
 
@@ -2226,7 +2226,7 @@ namespace reactionNetwork_sr {
 			auto ss_prob_idx = this->sp_chattering_rnk->spe_idx_2_super_group_idx[curr_spe];
 			auto chattering_ratio = this->evaluate_chattering_group_ss_prob_at_time(reaction_time, ss_prob_idx);
 			//check zero case
-			if (chattering_ratio != 0.0)
+			if (chattering_ratio > 0.0)
 				spe_branching_ratio *= chattering_ratio;
 		}
 
@@ -2307,7 +2307,7 @@ namespace reactionNetwork_sr {
 					ss_prob[i] = this->evaluate_chattering_group_ss_prob_at_time(time, ss_prob_idx);
 				}
 				//check zero case
-				if (std::accumulate(ss_prob.begin(), ss_prob.end(), 0.0) != 0.0) {
+				if (std::accumulate(ss_prob.begin(), ss_prob.end(), 0.0) > 0.0) {
 					next_vertex = this->sp_chattering_rnk->species_chattering_group_mat[chattering_group_id][
 						rand->return_index_randomly_given_probability_vector(ss_prob)
 					];

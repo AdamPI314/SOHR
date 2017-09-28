@@ -74,7 +74,6 @@ namespace reactionNetwork_sr {
 			auto group_id_idx = x.second;
 			this->species_network_v[spe_idx].chattering_group_id = group_id_idx.first;
 		}
-		return;
 	}
 
 	bool concreteReactionNetwork::set_init_spe_concentration(rsp::my_time_t in_time)
