@@ -2115,16 +2115,17 @@ namespace reactionNetwork_sr {
 		}
 
 
-		int chattering_group_id = this->species_network_v[curr_spe].chattering_group_id;
+		int chattering_group_id = this->species_network_v[next_spe].chattering_group_id;
 
 		double spe_branching_ratio = 0.0;
+		//find next species
 		if (this->reaction_network_v[next_reaction].out_spe_index_branching_ratio_map_map[atom_followed].count(next_spe) > 0)
-			spe_branching_ratio = this->reaction_network_v[next_reaction].out_spe_index_branching_ratio_map_map[atom_followed][next_spe];
+			spe_branching_ratio = this->reaction_network_v[next_reaction].out_spe_index_branching_ratio_map_map[atom_followed].at(next_spe);
 		else if (chattering_group_id != -1) {
 			// gotta to consider the case the "next_spe" is not found, but species in the same group as "next_spe" is found
 			for (auto n_s : this->sp_chattering_rnk->species_chattering_group_mat[chattering_group_id]) {
 				if (this->reaction_network_v[next_reaction].out_spe_index_branching_ratio_map_map[atom_followed].count(n_s) > 0) {
-					spe_branching_ratio = this->reaction_network_v[next_reaction].out_spe_index_branching_ratio_map_map[atom_followed][n_s];
+					spe_branching_ratio = this->reaction_network_v[next_reaction].out_spe_index_branching_ratio_map_map[atom_followed].at(n_s);
 					break;
 				}
 			}
@@ -2133,7 +2134,7 @@ namespace reactionNetwork_sr {
 		//treat the special case when the next species is a chattering species
 		if (chattering_group_id != -1) {
 			//multiply by the probability of being current species within the chattering group
-			auto ss_prob_idx = this->sp_chattering_rnk->spe_idx_2_super_group_idx[curr_spe];
+			auto ss_prob_idx = this->sp_chattering_rnk->spe_idx_2_super_group_idx.at(next_spe);
 			auto chattering_ratio = this->evaluate_chattering_group_ss_prob_at_time(reaction_time, ss_prob_idx);
 			//check zero case
 			if (chattering_ratio > 0.0)
