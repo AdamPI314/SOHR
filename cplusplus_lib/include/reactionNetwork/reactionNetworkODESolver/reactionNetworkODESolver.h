@@ -56,6 +56,7 @@ namespace reactionNetworkODESolver_sr {
 	public:
 		// got to instantiate this function otherwise this sub-class is still pure-virtual class can not be instantiated
 		double evaluate_spe_concentration_at_time(double time, std::size_t index = 0) const override { return 0.0; };
+		double evaluate_chattering_group_ss_prob_at_time(double in_time, size_t index = 0) const override { return 0.0; };
 
 	public:
 		/*

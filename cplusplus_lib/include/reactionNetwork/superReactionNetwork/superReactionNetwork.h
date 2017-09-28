@@ -125,9 +125,8 @@ namespace reactionNetwork_sr {
 		//the species is a dead species
 		std::vector<vertex_t> dead_species;
 	protected:
-		//trapped species, species are trapped in some local reaction with fast conversion rate
-		//they should be in pairs, so use two vector to store them
-		std::vector<std::vector<std::size_t> > trapped_spe;
+		//shared pointer of chattering
+		std::shared_ptr<chattering_sr::chattering> sp_chattering_rnk;
 	protected:
 		/*
 		 *	we have two spaces here, one is reaction mechanism space, in which
@@ -225,8 +224,6 @@ namespace reactionNetwork_sr {
 	public:
 		//86 and 89 are dead species, they transform to each other very fast
 		void set_dead_spe();
-		//set trapped spe, read info from file "setting.cfg"/"setting.json"
-		void set_trapped_spe();
 
 	public:
 		//initiate the graph according to the input Edge vector
@@ -465,6 +462,7 @@ namespace reactionNetwork_sr {
 	public:
 		//defer to subclass
 		virtual double evaluate_spe_concentration_at_time(double time, std::size_t index = 0) const = 0;
+		virtual double evaluate_chattering_group_ss_prob_at_time(double in_time, size_t index = 0) const = 0;
 
 	public:
 		//prob that a spe will react in time range

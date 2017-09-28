@@ -104,7 +104,7 @@ namespace matrix_sr {
 
 	}
 
-	bool cal_equilibrium_ratio_from_transition_matrix(std::vector<std::vector<double>>& transition_mat, std::vector<double> &equil_ratio)
+	bool cal_equilibrium_ratio_from_transition_matrix(std::vector<std::vector<double>>& transition_mat, double &first_real_positive_eigenvalue, std::vector<double> &equil_ratio)
 	{
 		std::size_t m = transition_mat.size();
 		equil_ratio.assign(m, 0.0);
@@ -140,6 +140,7 @@ namespace matrix_sr {
 		if (ok == false)
 			return false;
 
+		first_real_positive_eigenvalue = eigen_val[first_real_idx].real();
 		for (std::size_t i = 0; i < m; ++i) {
 			//equil_ratio[i] = eigen_vec[i][first_real_idx];
 			equil_ratio[i] = eigen_vec[i][first_real_idx] * eigen_vec[i][first_real_idx];

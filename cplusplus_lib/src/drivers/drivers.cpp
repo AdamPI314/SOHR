@@ -2260,10 +2260,11 @@ void driver::MISC(const boost::mpi::communicator & world, const std::string & ma
 		//double target_time_db = rnk_concrete.return_temperature_target_time();
 		//std::cout << std::setprecision(15) << "time at target temperature is:\t" << target_time_db << std::endl; 
 
-		std::vector<std::vector<double> > transition_mat = { {0.0, 1.0}, {2.0, 0.0} };
-		std::vector<double> equil_ratio;
-		auto result = matrix_sr::cal_equilibrium_ratio_from_transition_matrix(transition_mat, equil_ratio);
-		std::cout << result << std::endl;
+		//std::vector<std::vector<double> > transition_mat = { {0.0, 1.0}, {2.0, 0.0} };
+		//double first_real_positive_eigenvalue;
+		//std::vector<double> equil_ratio;
+		//auto result = matrix_sr::cal_equilibrium_ratio_from_transition_matrix(transition_mat, first_real_positive_eigenvalue, equil_ratio);
+		//std::cout << result << std::endl;
 
 		std::cout << "MISC\n";
 	}

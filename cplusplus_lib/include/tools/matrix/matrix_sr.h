@@ -22,7 +22,7 @@ namespace matrix_sr {
 	path_R_matrix_t matrix_power(path_R_matrix_t n_n, std::size_t k);
 
 	// calculate equilibrium concentration/ratios from transition matrix
-	bool cal_equilibrium_ratio_from_transition_matrix(std::vector<std::vector<double> > &transition_mat, std::vector<double> &equil_ratio);
+	bool cal_equilibrium_ratio_from_transition_matrix(std::vector<std::vector<double> > &transition_mat, double &first_positive_eigenvalue, std::vector<double> &equil_ratio);
 
 }
 

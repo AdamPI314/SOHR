@@ -33,8 +33,15 @@ namespace reactionNetwork_sr {
 			this->propagator = new pgt::superPropagator(uncertainties, this->cwd);
 		}
 
-		if (this->rnk_pt.get<std::string>("network.merge_fast_1st_order_transitions") == std::string("yes"))
-			this->merge_fast_transitions();
+		if (this->rnk_pt.get<std::string>("network.merge_chatterings") == std::string("yes")) {
+			this->sp_chattering_rnk = this->propagator->get_sp_of_chattering();
+			//std::cout << this->sp_chattering_rnk.use_count();
+			this->merge_chatterings();
+		}
+		else {
+			//not a good idea to leave smart pointer nullptr
+			this->sp_chattering_rnk = std::make_shared<chattering_sr::chattering>();
+		}
 
 	}
 
@@ -43,140 +50,31 @@ namespace reactionNetwork_sr {
 		delete this->propagator;
 	}
 
-	void concreteReactionNetwork::merge_fast_transitions()
+	void concreteReactionNetwork::merge_chatterings()
 	{
-		this->propagator->set_drc_of_species_trapped_in_fast_reactions(this->species_network_v, this->reaction_network_v, this->trapped_spe, this->rnk_pt.get<std::string>("pathway.atom_followed"));
+		this->propagator->find_chattering_group(this->species_network_v);
+
+		this->propagator->update_info_of_chattering_species_reactions(this->species_network_v, this->reaction_network_v, this->rnk_pt.get<std::string>("pathway.atom_followed"));
 
 		//set the reaction rate of fast reactions to be zero
-		this->propagator->set_fast_reaction_rate_to_zero_pgt();
+		this->propagator->set_chattering_reaction_rate_to_zero_pgt();
 
 		//re construct the cubic spline
 		this->propagator->initiate_cubic_spline();
 
-		//merge species names, for example, change main node's name to 'A+B'
-		this->merge_trapped_species_name();
-
-		//reaction produces B redirect to A
-		this->redirect_Bs_flow_into_As();
-
-		//Append B's sink reactions to A's sink reaction list
-		this->append_Bs_out_to_As_out();
+		//update_species_chattering_group_id
+		this->update_species_chattering_group_id();
 
 	}
 
-	void concreteReactionNetwork::merge_trapped_species_name()
+	void concreteReactionNetwork::update_species_chattering_group_id()
 	{
-		// since there might be groups of trapped species, such as A=B, B=C, C=D, A,B,C,D belongs to the same fast transition group
-		// use union find here
-		std::unordered_set<int> unique_trapped_species;
-		for (auto x : trapped_spe) {
-			for (auto y : x) {
-				unique_trapped_species.insert(y);
-			}
+		for (auto x : this->sp_chattering_rnk->spe_idx_2_chattering_group_id_idx) {
+			auto spe_idx = x.first;
+			auto group_id_idx = x.second;
+			this->species_network_v[spe_idx].chattering_group_id = group_id_idx.first;
 		}
-
-		std::unordered_map<int, int> label_2_idx;
-		std::unordered_map<int, int> idx_2_label;
-		int counter = 0;
-		for (auto x : unique_trapped_species) {
-			label_2_idx.emplace(counter, x);
-			idx_2_label.emplace(x, counter++);
-		}
-
-		UnionFind uf(label_2_idx.size());
-		for (std::size_t i = 0; i < trapped_spe[0].size(); ++i) {
-			uf.unite(idx_2_label[trapped_spe[0][i]], idx_2_label[trapped_spe[1][i]]);
-		}
-
-		for (auto s : unique_trapped_species) {
-			// not the main nodes
-			if (label_2_idx[uf.root(idx_2_label[s])] != s) {
-				this->species_network_v[label_2_idx[uf.root(idx_2_label[s])]].spe_name += (std::string("+") + this->species_network_v[s].spe_name);
-			}
-		}
-
-	}
-
-	void concreteReactionNetwork::redirect_Bs_flow_into_As()
-	{
-		// since there might be groups of trapped species, such as A=B, B=C, C=D, A,B,C,D belongs to the same fast transition group
-		// use union find here
-		std::unordered_set<int> unique_trapped_species;
-		for (auto x : trapped_spe) {
-			for (auto y : x) {
-				unique_trapped_species.insert(y);
-			}
-		}
-
-		std::unordered_map<int, int> label_2_idx;
-		std::unordered_map<int, int> idx_2_label;
-		int counter = 0;
-		for (auto x : unique_trapped_species) {
-			label_2_idx.emplace(counter, x);
-			idx_2_label.emplace(x, counter++);
-		}
-
-		UnionFind uf(label_2_idx.size());
-		for (std::size_t i = 0; i < trapped_spe[0].size(); ++i) {
-			uf.unite(idx_2_label[trapped_spe[0][i]], idx_2_label[trapped_spe[1][i]]);
-		}
-
-		// check all reactions
-		for (auto &x : this->reaction_network_v) {
-			for (auto &y : x.out_spe_index_weight_v_map) {
-				for (auto &z : y.second) {
-					// not root node, got to check wether it is a trapped species first
-					if (unique_trapped_species.find(z.first) != unique_trapped_species.end() && label_2_idx[uf.root(idx_2_label[z.first])] != (int)z.first) {
-						z.first = label_2_idx[uf.root(idx_2_label[z.first])];
-					}
-				}
-			}//out_spe_index_weight_v_map
-
-			for (auto &y : x.out_spe_index_branching_ratio_map_map) {
-				auto &idx_w_m = y.second;
-				for (auto s : unique_trapped_species) {
-					if (idx_w_m.find(s) != idx_w_m.end() && label_2_idx[uf.root(idx_2_label[s])] != s) {
-						// delete old one, insert new one
-						idx_w_m.emplace(label_2_idx[uf.root(idx_2_label[s])], idx_w_m.at(s));
-						idx_w_m.erase(s);
-					}
-				}
-			}//out_spe_index_branching_ratio_map_map
-		}
-
-	}
-
-	void concreteReactionNetwork::append_Bs_out_to_As_out()
-	{
-		// since there might be groups of trapped species, such as A=B, B=C, C=D, A,B,C,D belongs to the same fast transition group
-		// use union find here
-		std::unordered_set<int> unique_trapped_species;
-		for (auto x : trapped_spe) {
-			for (auto y : x) {
-				unique_trapped_species.insert(y);
-			}
-		}
-
-		std::unordered_map<int, int> label_2_idx;
-		std::unordered_map<int, int> idx_2_label;
-		int counter = 0;
-		for (auto x : unique_trapped_species) {
-			label_2_idx.emplace(counter, x);
-			idx_2_label.emplace(x, counter++);
-		}
-
-		UnionFind uf(label_2_idx.size());
-		for (std::size_t i = 0; i < trapped_spe[0].size(); ++i) {
-			uf.unite(idx_2_label[trapped_spe[0][i]], idx_2_label[trapped_spe[1][i]]);
-		}
-
-		for (auto s : unique_trapped_species) {
-			if (label_2_idx[uf.root(idx_2_label[s])] != s) {
-				for (auto x : this->species_network_v[s].reaction_k_index_s_coef_v) {
-					this->species_network_v[label_2_idx[uf.root(idx_2_label[s])]].reaction_k_index_s_coef_v.push_back(x);
-				}
-			}
-		}
+		return;
 	}
 
 	bool concreteReactionNetwork::set_init_spe_concentration(rsp::my_time_t in_time)
@@ -295,6 +193,11 @@ namespace reactionNetwork_sr {
 	double concreteReactionNetwork::evaluate_spe_concentration_at_time(double time, std::size_t index) const
 	{
 		return propagator->evaluate_concentration_at_time(time, index);
+	}
+
+	double concreteReactionNetwork::evaluate_chattering_group_ss_prob_at_time(double in_time, size_t index) const
+	{
+		return propagator->evaluate_chattering_group_ss_prob_at_time(in_time, index);
 	}
 
 	double concreteReactionNetwork::pathway_AT_sim_move_one_step(double when_time, size_t curr_spe, size_t next_reaction, size_t next_spe)

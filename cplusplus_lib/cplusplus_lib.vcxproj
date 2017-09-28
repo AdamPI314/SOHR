@@ -165,6 +165,7 @@
     <ClInclude Include="include\time\myclock_us.h" />
     <ClInclude Include="include\time\timing.h" />
     <ClInclude Include="include\tools\block_decomposition\block_decomposition.h" />
+    <ClInclude Include="include\tools\chattering\chattering.h" />
     <ClInclude Include="include\tools\map_reduce\map_reduce.h" />
     <ClInclude Include="include\tools\matrix\eigen_unsym.h" />
     <ClInclude Include="include\tools\matrix\matrix_sr.h" />
@@ -204,6 +205,7 @@
     <ClCompile Include="src\time\myclock_us.cpp" />
     <ClCompile Include="src\time\timing.cpp" />
     <ClCompile Include="src\tools\block_decomposition\block_decomposition.cpp" />
+    <ClCompile Include="src\tools\chattering\chattering.cpp" />
     <ClCompile Include="src\tools\map_reduce\map_reduce.cpp" />
     <ClCompile Include="src\tools\matrix\matrix_sr.cpp" />
     <ClCompile Include="src\tools\my_debug\my_debug.cpp" />

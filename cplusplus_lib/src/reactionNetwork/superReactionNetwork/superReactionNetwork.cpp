@@ -14,6 +14,7 @@
 #include <boost/graph/reverse_graph.hpp>
 #include <boost/limits.hpp>
 #include <boost/graph/grid_graph.hpp>
+#include <numeric>
 
 #include <math.h> /* log */
 
@@ -58,8 +59,6 @@ namespace reactionNetwork_sr {
 
 		//set dead species
 		set_dead_spe();
-		//set trapped spe
-		set_trapped_spe();
 
 		initiate_M_matrix();
 		initiate_R_matrix();
@@ -255,24 +254,6 @@ namespace reactionNetwork_sr {
 		this->dead_species = dead_spe_index;
 	}
 
-	void superReactionNetwork::set_trapped_spe()
-	{
-		std::vector<std::vector<std::size_t> > Matrix(2, std::vector<std::size_t>());
-
-		//for (auto key1 : this->rnk_pt.get_child("pathway.fast_reaction")) {
-		//	auto s1 = (reaction_network_v[key1.second.get_value<std::size_t>()].out_spe_index_weight_v_map.begin())->second.front().first;
-		//	auto s2 = (reaction_network_v[boost::lexical_cast<std::size_t>(key1.first)].out_spe_index_weight_v_map.begin())->second.front().first;
-
-		//	Matrix[0].push_back(s1);
-		//	Matrix[1].push_back(s2);
-		//}
-		for (auto key1 : this->rnk_pt.get_child("pathway.trapped_species")) {
-			Matrix[0].push_back(boost::lexical_cast<std::size_t>(key1.first));
-			Matrix[1].push_back(key1.second.get_value<std::size_t>());
-		}
-
-		this->trapped_spe = Matrix;
-	}
 
 	void superReactionNetwork::initGraph(const vector<VertexPair>& edgeVector, const std::vector<EdgeProperties_graph>& edgePro)
 	{
@@ -2187,36 +2168,18 @@ namespace reactionNetwork_sr {
 			}
 		}
 
-		////treat the special case when the next species is a trapped species
-		//std::vector<std::size_t>::iterator it0 = std::find(this->trapped_spe[0].begin(), this->trapped_spe[0].end(), next_spe);
-		//std::vector<std::size_t>::iterator it1 = std::find(this->trapped_spe[1].begin(), this->trapped_spe[1].end(), next_spe);
-		//std::size_t index_t = std::min(std::distance(trapped_spe[0].begin(), it0), std::distance(trapped_spe[1].begin(), it1));
-		////if is is a trapped species
-		//if (index_t != trapped_spe[0].size()) {
-		//	std::size_t index_01_t = (index_t == (std::size_t)std::distance(trapped_spe[0].begin(), it0)) ? 0 : 1;
-
-		//	//it comes directly without internal conversion
-		//	if ((prob_target_reaction != 0)) {
-		//		//std::cout<<"bingo1!"<<std::endl;
-		//	}
-		//	//it comes indirectly, from internal conversion
-		//	else {
-		//		next_spe = trapped_spe[1 - index_01_t][index_t];
-		//		//std::cout<<"trapped spe:\t"<<next_spe<<"\n";
-		//		for (std::size_t i = 0; i < reaction_network_v[next_reaction].out_spe_index_weight_v_map[atom_followed].size(); ++i) {
-		//			//found next spe
-		//			if (reaction_network_v[next_reaction].out_spe_index_weight_v_map[atom_followed][i].first == next_spe) {
-		//				prob_target_reaction = reaction_network_v[next_reaction].out_spe_index_weight_v_map[atom_followed][i].second;
-		//			}
-
-		//		}//for
-		//	}//else
-
-		//	//for trapped species, each of them has species branching ratio of 0.5
-		//	prob_target_reaction *= 0.5;
-		//}
-
 		double spe_branching_ratio = prob_target_reaction / prob_total;
+
+		//treat the special case when the next species is a chattering species
+		int chattering_group_id = this->species_network_v[curr_spe].chattering_group_id;
+		if (chattering_group_id != -1) {
+			//multiply by the probability of being current species within the chattering group
+			auto ss_prob_idx = this->sp_chattering_rnk->spe_idx_2_super_group_idx[curr_spe];
+			//check zero case
+			auto chattering_ratio = this->evaluate_chattering_group_ss_prob_at_time(reaction_time, ss_prob_idx);
+			if (chattering_ratio != 0.0)
+				spe_branching_ratio *= chattering_ratio;
+		}
 
 		return reaction_branching_ratio*spe_branching_ratio;
 	}
@@ -2256,31 +2219,17 @@ namespace reactionNetwork_sr {
 		if (this->reaction_network_v[next_reaction].out_spe_index_branching_ratio_map_map[atom_followed].count(next_spe) > 0)
 			spe_branching_ratio = this->reaction_network_v[next_reaction].out_spe_index_branching_ratio_map_map[atom_followed][next_spe];
 
-		////treat the special case when the next species is a trapped species
-		//std::vector<std::size_t>::iterator it0 = std::find(this->trapped_spe[0].begin(), this->trapped_spe[0].end(), next_spe);
-		//std::vector<std::size_t>::iterator it1 = std::find(this->trapped_spe[1].begin(), this->trapped_spe[1].end(), next_spe);
-		//std::size_t index_t = std::min(std::distance(trapped_spe[0].begin(), it0), std::distance(trapped_spe[1].begin(), it1));
-		////if is is a trapped species
-		//if (index_t != trapped_spe[0].size()) {
-		//	std::size_t index_01_t = (index_t == (std::size_t)std::distance(trapped_spe[0].begin(), it0)) ? 0 : 1;
+		//treat the special case when the next species is a chattering species
+		int chattering_group_id = this->species_network_v[curr_spe].chattering_group_id;
+		if (chattering_group_id != -1) {
+			//multiply by the probability of being current species within the chattering group
+			auto ss_prob_idx = this->sp_chattering_rnk->spe_idx_2_super_group_idx[curr_spe];
+			auto chattering_ratio = this->evaluate_chattering_group_ss_prob_at_time(reaction_time, ss_prob_idx);
+			//check zero case
+			if (chattering_ratio != 0.0)
+				spe_branching_ratio *= chattering_ratio;
+		}
 
-		//	//it comes directly without internal conversion, we are good
-		//	if ((spe_branching_ratio != 0)) {
-		//		//std::cout<<"bingo1!"<<std::endl;
-		//	}
-		//	//it comes indirectly, from internal conversion
-		//	else {
-		//		next_spe = trapped_spe[1 - index_01_t][index_t];
-		//		//std::cout<<"trapped spe:\t"<<next_spe<<"\n";
-		//		if (this->reaction_network_v[next_reaction].out_spe_index_branching_ratio_map_map[atom_followed].count(next_spe) > 0)
-		//			spe_branching_ratio = this->reaction_network_v[next_reaction].out_spe_index_branching_ratio_map_map[atom_followed][next_spe];
-		//		else
-		//			spe_branching_ratio = 0.0;
-		//	}//else
-
-		//	//for trapped species, each of them has species branching ratio of 0.5
-		//	spe_branching_ratio *= 0.5;
-		//}
 
 		return reaction_branching_ratio*spe_branching_ratio;
 	}
@@ -2346,16 +2295,26 @@ namespace reactionNetwork_sr {
 			//random pick next spe
 			vertex_t next_vertex = random_pick_next_spe(next_reaction_index, atom_followed);
 
-			////treat the special case when the next species is a trapped species
-			//std::vector<std::size_t>::iterator it0 = std::find(this->trapped_spe[0].begin(), this->trapped_spe[0].end(), next_vertex);
-			//std::vector<std::size_t>::iterator it1 = std::find(this->trapped_spe[1].begin(), this->trapped_spe[1].end(), next_vertex);
-			//std::size_t index_t = std::min(std::distance(trapped_spe[0].begin(), it0), std::distance(trapped_spe[1].begin(), it1));
-			////		std::cout<<index_t<<std::endl;
+			//chattering case
+			int chattering_group_id = this->species_network_v[next_vertex].chattering_group_id;
+			if (chattering_group_id != -1) {
+				// choose one randomly based on steady state probability
+				std::vector<double> ss_prob(this->sp_chattering_rnk->species_chattering_group_mat[chattering_group_id].size(), 0.0);
+				for (std::size_t i = 0; i < ss_prob.size(); ++i) {
+					auto ss_prob_idx = this->sp_chattering_rnk->spe_idx_2_super_group_idx[
+						this->sp_chattering_rnk->species_chattering_group_mat[chattering_group_id][i]
+					];
+					ss_prob[i] = this->evaluate_chattering_group_ss_prob_at_time(time, ss_prob_idx);
+					//check zero case
+					if (std::accumulate(ss_prob.begin(), ss_prob.end(), 0.0) != 0.0) {
+						next_vertex = this->sp_chattering_rnk->spe_idx_2_super_group_idx[
+							rand->return_index_randomly_given_probability_vector(ss_prob)
+						];
+					}
+				}
 
-			//if (index_t != trapped_spe[0].size()) {
-			//	//find, choose one randomly from trapped_spe[0] or trapped_spe[1], in the same column
-			//	next_vertex = trapped_spe[rand->return_0_or_1_evenly_randomly()][index_t];
-			//}
+			}
+
 
 			when_where.first = time;
 			when_where.second = next_vertex;

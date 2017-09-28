@@ -15,8 +15,8 @@ namespace reactionNetwork_sr {
 	class concreteReactionNetwork :public superReactionNetwork {
 
 	protected:
-		//propagator
-		//polymorphism
+		// propagator
+		// polymorphism
 		pgt::superPropagator* propagator;
 
 	public:
@@ -28,15 +28,10 @@ namespace reactionNetwork_sr {
 		// Here is how we do it, the idea is to treat these two species as a single one
 		// One philosophy is to minimize the change
 		// 1) set fast reaction rates to be zeros
-		// 2) append B's out nodes to A's out nodes list
-		// 3) Reactions flow into B are redirected to A
-		// 4) No change to B's pseudo-first order rate constant, and the corresponding integral over time, keep them in memory, not a big deal
-		// but Change A's k in a way that first get rid of k_{AB}, and append B_{B's out but to A} to A
+		// 2) chattering with a time scale
 		// re-call initiate_cubic_spline()
-		void merge_fast_transitions();
-		void merge_trapped_species_name();
-		void redirect_Bs_flow_into_As();
-		void append_Bs_out_to_As_out();
+		void merge_chatterings();
+		void update_species_chattering_group_id();
 
 	public:
 		/*
@@ -72,6 +67,7 @@ namespace reactionNetwork_sr {
 
 	public:
 		double evaluate_spe_concentration_at_time(double time, std::size_t index = 0) const override;
+		double evaluate_chattering_group_ss_prob_at_time(double in_time, size_t index = 0) const override;
 
 
 	public:

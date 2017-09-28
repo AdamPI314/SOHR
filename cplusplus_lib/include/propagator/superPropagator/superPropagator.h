@@ -1,10 +1,12 @@
 #ifndef __SUPERPROPAGATOR_H_
 #define __SUPERPROPAGATOR_H_
 
+#include <memory>
 #include "../../tools/misc/misc_template.h"
 #include "../../odeSolver/odesolver.h"
 #include "../../relationshipParser/relationshipParser.h"
 #include <boost/property_tree/ptree.hpp> //for property_tree
+#include "../../tools/chattering/chattering.h"
 
 #include "../../cubicSpline/interp_1d.h"
 #include "../../cubicSpline/interp_linear.h"
@@ -52,8 +54,16 @@ namespace propagator_sr {
 		//std::vector<std::vector<spe_production_rate_t> > spe_production_rate_data_pgt;
 
 	public:
-		//fast reaction, local reaction with fast inter-conversion rate
-		std::vector<std::size_t> fast_reaction_pgt;
+		// shared pointer
+		std::shared_ptr<chattering_sr::chattering> sp_chattering_pgt = std::make_shared<chattering_sr::chattering>();
+
+		//chattering group data
+		// (1) chattering group drc, the time scale of this chattering mode, there might be multiple modes, only consider
+		// the first mode
+		// (2) project the mode on species direction, probability being that species, or says steady state probability
+		std::vector<std::vector<double> > chattering_group_k_data_pgt;
+		std::vector<std::vector<double> > chattering_group_ss_prob_data_pgt;
+
 	public:
 		/*
 		* 	cubic spline
@@ -79,6 +89,12 @@ namespace propagator_sr {
 
 		//Pressure versus time
 		Linear_interp* time_pressure_pgt;
+
+	public:
+		//chattering group rate constant k, time scale pointer
+		std::vector<Linear_interp*> chattering_group_k_pgt;
+		//steady state probability
+		std::vector<Linear_interp*> chattering_group_ss_prob_pgt;
 
 	public:
 		superPropagator(std::vector<double> uncertainties_in, std::string cwd_in);
@@ -125,14 +141,19 @@ namespace propagator_sr {
 			const double * const xgst);
 
 	public:
-		//fast reaction, local reaction with fast inter-conversion rate
-		void set_fast_reactions_pgt();
-		std::vector<std::size_t> get_fast_reactions_pgt();
+		void find_chattering_group(const std::vector<rsp::spe_info_base> &species_network_v);
+		// return shared pointer of chattering
+		std::shared_ptr<chattering_sr::chattering> get_sp_of_chattering();
+
+		//chattering species and reaction, local reaction with fast inter-conversion rate
+		void set_chattering_spe_pgt();
+		void set_chattering_reactions_pgt();
+		std::vector<std::size_t> get_chattering_reactions_pgt();
 
 		//set the reaction rate of fast reactions to be zero
-		void set_fast_reaction_rate_to_zero_pgt();
+		void set_chattering_reaction_rate_to_zero_pgt();
 		//set fast transition A=B's pseudo-first order rate constant given list of trapped species pair
-		void set_drc_of_species_trapped_in_fast_reactions(const std::vector<rsp::spe_info_base> &species_network_v, const std::vector<rsp::reaction_info_base> &reaction_network_v, const std::vector<std::vector<std::size_t>> &trapped_species, std::string atom_followed = "H");
+		void update_info_of_chattering_species_reactions(const std::vector<rsp::spe_info_base> &species_network_v, const std::vector<rsp::reaction_info_base> &reaction_network_v, std::string atom_followed = "H");
 
 
 	public:
@@ -195,6 +216,14 @@ namespace propagator_sr {
 			init_time_temperature_pgt();
 			init_temperature_time_pgt();
 			init_time_pressure_pgt();
+
+			//chatterings
+			if (this->chattering_group_k_data_pgt.size() > 0 && this->chattering_group_k_data_pgt[0].size() > 0) {
+				init_time_chattering_group_k_pgt();
+			}
+			if (this->chattering_group_ss_prob_data_pgt.size() > 0 && this->chattering_group_ss_prob_data_pgt[0].size() > 0) {
+				init_time_chattering_group_ss_prob_pgt();
+			}
 		}//initiate_cubic_spline
 
 		void convert_molar_concentration_to_mole_fraction();
@@ -296,6 +325,10 @@ namespace propagator_sr {
 		//initialize pressure vs. time
 		bool init_time_pressure_pgt();
 
+		//chattering group k
+		bool init_time_chattering_group_k_pgt();
+		bool init_time_chattering_group_ss_prob_pgt();
+
 	public:
 		double evaluate_temperature_at_time(double in_time) const;
 		double evaluate_time_at_temperature(double in_temperature) const;
@@ -306,6 +339,11 @@ namespace propagator_sr {
 		double evaluate_spe_drc_int_at_time(double in_time, size_t index = 0) const;
 		double evaluate_time_at_spe_drc_int(double integral, size_t index = 0) const;
 		double evaluate_reaction_rate_at_time(double in_time, size_t index = 0) const;
+
+	public:
+		//evaluate chattering group's k or says time scale
+		double evaluate_chattering_group_k_at_time(double in_time, size_t chattering_group_id = 0) const;
+		double evaluate_chattering_group_ss_prob_at_time(double in_time, size_t index = 0) const;
 
 	};
 

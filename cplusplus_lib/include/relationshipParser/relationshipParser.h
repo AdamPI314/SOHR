@@ -117,7 +117,7 @@ namespace relationshipParser_sr {
 	//probability type
 	typedef double probability_t;
 
-	//species information base type, define basic infor we are gonna to use in the reaction network
+	//species information base type, define basic information we are gonna to use in the reaction network
 	struct spe_info_base {
 		index_int_t spe_index;
 		spe_name_t spe_name;
@@ -134,10 +134,13 @@ namespace relationshipParser_sr {
 		//P_max= 1-P_min
 		probability_t prob_max;
 
+		//fast transition group/ chattering group
+		int chattering_group_id;
+
 		//net sink terms of this species, cancel the same terms on both sides for auto-catalytic reactions, left sink term
 		std::vector<reaction_index_s_coef_t> reaction_k_index_s_coef_v;
 
-		spe_info_base() :spe_conc(0.0), survival_probability(0.0), prob_min(0.0), prob_max(0.0) {}
+		spe_info_base() :spe_conc(0.0), survival_probability(0.0), prob_min(0.0), prob_max(0.0), chattering_group_id(-1) {}
 	};
 
 	//species information struct
