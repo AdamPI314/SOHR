@@ -2083,48 +2083,7 @@ namespace reactionNetwork_sr {
 
 	}
 
-
-	double superReactionNetwork::reaction_spe_branching_ratio(double reaction_time, std::size_t curr_spe, std::size_t next_reaction, std::size_t next_spe, std::string atom_followed)
-	{
-		//update rate in the reaction network
-		this->update_reaction_rate(reaction_time, curr_spe);
-
-		//probability
-		double prob_total = 0.0, prob_target_reaction = 0.0;
-		for (std::size_t i = 0; i < this->species_network_v[curr_spe].reaction_k_index_s_coef_v.size(); ++i) {//for
-			//found next reaction
-			if (this->species_network_v[curr_spe].reaction_k_index_s_coef_v[i].first == next_reaction) {
-				prob_target_reaction = this->species_network_v[curr_spe].reaction_k_index_s_coef_v[i].second* //s_coef_product
-					this->reaction_network_v[this->species_network_v[curr_spe].reaction_k_index_s_coef_v[i].first].reaction_rate; //reaction rate
-				prob_total += prob_target_reaction;
-			}
-			//not found next reaction
-			else {
-				prob_total += this->species_network_v[curr_spe].reaction_k_index_s_coef_v[i].second* //s_coef_product
-					this->reaction_network_v[this->species_network_v[curr_spe].reaction_k_index_s_coef_v[i].first].reaction_rate; //reaction rate
-			}
-		}//for
-
-		double reaction_branching_ratio = prob_target_reaction / prob_total;
-
-		prob_total = 0.0; prob_target_reaction = 0.0;
-		for (std::size_t i = 0; i < reaction_network_v[next_reaction].out_spe_index_weight_v_map[atom_followed].size(); ++i) {
-			//found next spe
-			if (reaction_network_v[next_reaction].out_spe_index_weight_v_map[atom_followed][i].first == next_spe) {
-				prob_target_reaction = reaction_network_v[next_reaction].out_spe_index_weight_v_map[atom_followed][i].second;
-				prob_total += prob_target_reaction;
-			}
-			//not found next spe
-			else {
-				prob_total += reaction_network_v[next_reaction].out_spe_index_weight_v_map[atom_followed][i].second;
-			}
-		}
-		double spe_branching_ratio = prob_target_reaction / prob_total;
-
-		return reaction_branching_ratio*spe_branching_ratio;
-	}
-
-	double superReactionNetwork::reaction_spe_branching_ratio_v2(double reaction_time, std::size_t curr_spe, std::size_t next_reaction, std::size_t next_spe, std::string atom_followed)
+	double reactionNetwork_sr::superReactionNetwork::reaction_spe_branching_ratio(double reaction_time, std::size_t curr_spe, std::size_t next_reaction, std::size_t next_spe, std::string atom_followed)
 	{
 		//update rate in the reaction network
 		this->update_reaction_rate(reaction_time, curr_spe);
@@ -2155,72 +2114,23 @@ namespace reactionNetwork_sr {
 			reaction_branching_ratio = prob_target_reaction / prob_total;
 		}
 
-		prob_total = 0.0; prob_target_reaction = 0.0;
-		for (std::size_t i = 0; i < reaction_network_v[next_reaction].out_spe_index_weight_v_map[atom_followed].size(); ++i) {
-			//found next spe
-			if (reaction_network_v[next_reaction].out_spe_index_weight_v_map[atom_followed][i].first == next_spe) {
-				prob_target_reaction = reaction_network_v[next_reaction].out_spe_index_weight_v_map[atom_followed][i].second;
-				prob_total += prob_target_reaction;
-			}
-			//not found next spe
-			else {
-				prob_total += reaction_network_v[next_reaction].out_spe_index_weight_v_map[atom_followed][i].second;
-			}
-		}
 
-		double spe_branching_ratio = prob_target_reaction / prob_total;
-
-		//treat the special case when the next species is a chattering species
 		int chattering_group_id = this->species_network_v[curr_spe].chattering_group_id;
-		if (chattering_group_id != -1) {
-			//multiply by the probability of being current species within the chattering group
-			auto ss_prob_idx = this->sp_chattering_rnk->spe_idx_2_super_group_idx[curr_spe];
-			//check zero case
-			auto chattering_ratio = this->evaluate_chattering_group_ss_prob_at_time(reaction_time, ss_prob_idx);
-			if (chattering_ratio > 0.0)
-				spe_branching_ratio *= chattering_ratio;
-		}
-
-		return reaction_branching_ratio*spe_branching_ratio;
-	}
-
-	double reactionNetwork_sr::superReactionNetwork::reaction_spe_branching_ratio_v3(double reaction_time, std::size_t curr_spe, std::size_t next_reaction, std::size_t next_spe, std::string atom_followed)
-	{
-		//update rate in the reaction network
-		this->update_reaction_rate(reaction_time, curr_spe);
-
-		//probability
-		double prob_total = 0.0, prob_target_reaction = 0.0;
-		for (std::size_t i = 0; i < this->species_network_v[curr_spe].reaction_k_index_s_coef_v.size(); ++i) {//for
-			//found next reaction
-			if (this->species_network_v[curr_spe].reaction_k_index_s_coef_v[i].first == next_reaction) {
-				prob_target_reaction = this->species_network_v[curr_spe].reaction_k_index_s_coef_v[i].second* //s_coef_product
-					this->reaction_network_v[this->species_network_v[curr_spe].reaction_k_index_s_coef_v[i].first].reaction_rate; //reaction rate
-				prob_total += prob_target_reaction;
-			}
-			//not found next reaction
-			else {
-				prob_total += this->species_network_v[curr_spe].reaction_k_index_s_coef_v[i].second* //s_coef_product
-					this->reaction_network_v[this->species_network_v[curr_spe].reaction_k_index_s_coef_v[i].first].reaction_rate; //reaction rate
-			}
-		}//for
-
-		double reaction_branching_ratio;
-		//it prob_total ==0.0, it must because I set it to be zero artificially
-		//it depends
-		if (prob_total == 0.0) {
-			reaction_branching_ratio = 1.0;
-		}
-		else {
-			reaction_branching_ratio = prob_target_reaction / prob_total;
-		}
 
 		double spe_branching_ratio = 0.0;
 		if (this->reaction_network_v[next_reaction].out_spe_index_branching_ratio_map_map[atom_followed].count(next_spe) > 0)
 			spe_branching_ratio = this->reaction_network_v[next_reaction].out_spe_index_branching_ratio_map_map[atom_followed][next_spe];
+		else if (chattering_group_id != -1) {
+			// gotta to consider the case the "next_spe" is not found, but species in the same group as "next_spe" is found
+			for (auto n_s : this->sp_chattering_rnk->species_chattering_group_mat[chattering_group_id]) {
+				if (this->reaction_network_v[next_reaction].out_spe_index_branching_ratio_map_map[atom_followed].count(n_s) > 0) {
+					spe_branching_ratio = this->reaction_network_v[next_reaction].out_spe_index_branching_ratio_map_map[atom_followed][n_s];
+					break;
+				}
+			}
+		}
 
 		//treat the special case when the next species is a chattering species
-		int chattering_group_id = this->species_network_v[curr_spe].chattering_group_id;
 		if (chattering_group_id != -1) {
 			//multiply by the probability of being current species within the chattering group
 			auto ss_prob_idx = this->sp_chattering_rnk->spe_idx_2_super_group_idx[curr_spe];
@@ -2369,7 +2279,7 @@ namespace reactionNetwork_sr {
 
 		when_time = reaction_time_from_importance_sampling(when_time, curr_spe, u_1);
 
-		pathway_prob *= reaction_spe_branching_ratio_v3(when_time, curr_spe, next_reaction, next_spe, atom_followed);
+		pathway_prob *= reaction_spe_branching_ratio(when_time, curr_spe, next_reaction, next_spe, atom_followed);
 
 		return when_time;
 	}

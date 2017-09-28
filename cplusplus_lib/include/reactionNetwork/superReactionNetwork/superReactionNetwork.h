@@ -475,19 +475,10 @@ namespace reactionNetwork_sr {
 		* input- current species spe
 		* input- next species spe
 		* output- reaction and spe branching ratio
-		*/
-		double reaction_spe_branching_ratio(double reaction_time, std::size_t curr_spe, std::size_t next_reaction, std::size_t next_spe, std::string atom_followed = "H");
-		/*
-		* input- reaction_time, next reaction time
-		* input- next reaction R
-		* input- current species spe
-		* input- next species spe
-		* output- reaction and spe branching ratio
 		* deal with fast reactions, next_spe is not a product of next_reaction, but inter-convert to one product of next_reaction rapidly
 		*/
-		double reaction_spe_branching_ratio_v2(double reaction_time, std::size_t curr_spe, std::size_t next_reaction, std::size_t next_spe, std::string atom_followed = "H");
 		/* use out_spe_index_branching_ratio_map_map, do not need to search for out species and calculate spe branching ratio each time*/
-		double reaction_spe_branching_ratio_v3(double reaction_time, std::size_t curr_spe, std::size_t next_reaction, std::size_t next_spe, std::string atom_followed = "H");
+		double reaction_spe_branching_ratio(double reaction_time, std::size_t curr_spe, std::size_t next_reaction, std::size_t next_spe, std::string atom_followed = "H");
 
 	public:
 		/*
