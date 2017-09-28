@@ -2305,12 +2305,12 @@ namespace reactionNetwork_sr {
 						this->sp_chattering_rnk->species_chattering_group_mat[chattering_group_id][i]
 					];
 					ss_prob[i] = this->evaluate_chattering_group_ss_prob_at_time(time, ss_prob_idx);
-					//check zero case
-					if (std::accumulate(ss_prob.begin(), ss_prob.end(), 0.0) != 0.0) {
-						next_vertex = this->sp_chattering_rnk->spe_idx_2_super_group_idx[
-							rand->return_index_randomly_given_probability_vector(ss_prob)
-						];
-					}
+				}
+				//check zero case
+				if (std::accumulate(ss_prob.begin(), ss_prob.end(), 0.0) != 0.0) {
+					next_vertex = this->sp_chattering_rnk->species_chattering_group_mat[chattering_group_id][
+						rand->return_index_randomly_given_probability_vector(ss_prob)
+					];
 				}
 
 			}
