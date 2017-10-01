@@ -62,6 +62,7 @@ namespace propagator_sr {
 		// the first mode
 		// (2) project the mode on species direction, probability being that species, or says steady state probability
 		std::vector<std::vector<double> > chattering_group_k_data_pgt;
+		std::vector<std::vector<double> > chattering_group_k_int_data_pgt;
 		std::vector<std::vector<double> > chattering_group_ss_prob_data_pgt;
 
 	public:
@@ -93,6 +94,10 @@ namespace propagator_sr {
 	public:
 		//chattering group rate constant k, time scale pointer
 		std::vector<Linear_interp*> chattering_group_k_pgt;
+		//integral
+		std::vector<Linear_interp*> chattering_group_k_int_pgt;
+		//integral reverse
+		std::vector<Linear_interp*> chattering_group_k_int_time_pgt;
 		//steady state probability
 		std::vector<Linear_interp*> chattering_group_ss_prob_pgt;
 
@@ -221,6 +226,14 @@ namespace propagator_sr {
 			if (this->chattering_group_k_data_pgt.size() > 0 && this->chattering_group_k_data_pgt[0].size() > 0) {
 				init_time_chattering_group_k_pgt();
 			}
+			this->integrate_chattering_group_propensity_function_pgt();
+			if (this->chattering_group_k_int_data_pgt.size() > 0 && this->chattering_group_k_int_data_pgt[0].size() > 0) {
+				init_chattering_group_k_int_pgt();
+			}
+			if (this->chattering_group_k_int_data_pgt.size() > 0 && this->chattering_group_k_int_data_pgt[0].size() > 0) {
+				init_chattering_group_k_int_time_pgt();
+			}
+
 			if (this->chattering_group_ss_prob_data_pgt.size() > 0 && this->chattering_group_ss_prob_data_pgt[0].size() > 0) {
 				init_time_chattering_group_ss_prob_pgt();
 			}
@@ -327,7 +340,13 @@ namespace propagator_sr {
 
 		//chattering group k
 		bool init_time_chattering_group_k_pgt();
+		//integral of the propensity function or says the destruction rate constant function
+		void integrate_chattering_group_propensity_function_pgt();
 		bool init_time_chattering_group_ss_prob_pgt();
+		//initialize cumulative species destruction rate constant
+		bool init_chattering_group_k_int_pgt();
+		//initialize time vs. cumulative species destruction rate constant
+		bool init_chattering_group_k_int_time_pgt();
 
 	public:
 		double evaluate_temperature_at_time(double in_time) const;
@@ -341,9 +360,11 @@ namespace propagator_sr {
 		double evaluate_reaction_rate_at_time(double in_time, size_t index = 0) const;
 
 	public:
+		double evaluate_chattering_group_ss_prob_at_time(double in_time, size_t index = 0) const;
 		//evaluate chattering group's k or says time scale
 		double evaluate_chattering_group_k_at_time(double in_time, size_t chattering_group_id = 0) const;
-		double evaluate_chattering_group_ss_prob_at_time(double in_time, size_t index = 0) const;
+		double evaluate_chattering_group_k_int_at_time(double in_time, size_t index = 0) const;
+		double evaluate_time_at_chattering_group_k_int(double integral, size_t index = 0) const;
 
 	};
 
