@@ -110,7 +110,7 @@ namespace reactionNetworkODESolver_sr {
 		rnk::vertex_t curr_spe,
 		double Y) {
 		//if current species is a dead species, found
-		if (std::find(this->dead_species.begin(), this->dead_species.end(), curr_spe) != this->dead_species.end()) {
+		if (this->dead_species.count(curr_spe) >= 1) {
 			return std::numeric_limits<rsp::my_time_t>::max();
 		}
 		else {//not found
@@ -132,7 +132,7 @@ namespace reactionNetworkODESolver_sr {
 	double reactionNetworkODESolver::reaction_time_from_importance_sampling(rsp::my_time_t curr_time,
 		rnk::vertex_t curr_spe, double Y) {
 		//if current species is a dead species, found
-		if (std::find(this->dead_species.begin(), this->dead_species.end(), curr_spe) != this->dead_species.end()) {
+		if (this->dead_species.count(curr_spe) >= 1) {
 			return std::numeric_limits<rsp::my_time_t>::max();
 		}
 
@@ -156,6 +156,11 @@ namespace reactionNetworkODESolver_sr {
 			else
 				return reaction_time;
 		}
+	}
+
+	double reactionNetworkODESolver::chattering_group_reaction_time_from_importance_sampling_without_cutoff(rsp::my_time_t curr_time, rnk::vertex_t curr_group, double Y)
+	{
+		return 0.0;
 	}
 
 	void reactionNetworkODESolver::set_concentration_at_time_zero_to_initial_fraction_or_concentration() {

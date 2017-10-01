@@ -105,7 +105,7 @@ namespace reactionNetwork_sr {
 	double concreteReactionNetwork::reaction_time_from_importance_sampling_without_cutoff(rsp::my_time_t curr_time, vertex_t curr_spe, double Y)
 	{
 		//if current species is a dead species, found
-		if (std::find(this->dead_species.begin(), this->dead_species.end(), curr_spe) != this->dead_species.end()) {
+		if (this->dead_species.count(curr_spe) >= 1) {
 			return std::numeric_limits<rsp::my_time_t>::max();
 		}
 		else {//not found
@@ -127,7 +127,7 @@ namespace reactionNetwork_sr {
 	double concreteReactionNetwork::reaction_time_from_importance_sampling(rsp::my_time_t curr_time, vertex_t curr_spe, double Y)
 	{
 		//if current species is a dead species, found
-		if (std::find(this->dead_species.begin(), this->dead_species.end(), curr_spe) != this->dead_species.end()) {
+		if (this->dead_species.count(curr_spe) >= 1) {
 			return std::numeric_limits<rsp::my_time_t>::max();
 		}
 
@@ -147,6 +147,28 @@ namespace reactionNetwork_sr {
 				return sys_min_time;
 			else if (reaction_time > tau)
 				return tau;
+			else
+				return reaction_time;
+		}
+	}
+
+	double concreteReactionNetwork::chattering_group_reaction_time_from_importance_sampling_without_cutoff(rsp::my_time_t curr_time, vertex_t curr_group, double Y)
+	{
+		if (curr_time >= this->tau) {
+			return curr_time;
+		}
+		else {
+			//the ln of 1.0/(1.0-Y)
+			double ln_Y_reciprocal = log(1.0 / (1.0 - Y));
+			//use the initial integral value at this time
+			double init_chattering_group_k_int = propagator->evaluate_chattering_group_k_int_at_time(curr_time, curr_group);
+			//exact integral
+			double exact_integral = ln_Y_reciprocal + init_chattering_group_k_int;
+			//Solve for the first reaction time
+			double reaction_time = propagator->evaluate_time_at_chattering_group_k_int(exact_integral, curr_group);
+
+			if (reaction_time < sys_min_time)
+				return sys_min_time;
 			else
 				return reaction_time;
 		}

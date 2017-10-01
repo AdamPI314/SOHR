@@ -56,6 +56,11 @@ namespace reactionNetwork_sr {
 		* if reaction_time> tau, cut it off
 		*/
 		double reaction_time_from_importance_sampling(rsp::my_time_t curr_time, vertex_t curr_spe, double Y) override;
+		/*
+		* chattering group reaction time from importance sampling, exact time
+		* if reaction_time> tau, let it be, don't cut it off
+		*/
+		double chattering_group_reaction_time_from_importance_sampling_without_cutoff(rsp::my_time_t curr_time, vertex_t curr_group, double Y) override;
 
 	public:
 		//set Prob_max(tau^{j}|t+tau^{j-1};S^{j-1}), with pathway_end_time fixed

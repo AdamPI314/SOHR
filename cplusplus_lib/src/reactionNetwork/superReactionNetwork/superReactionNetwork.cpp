@@ -244,11 +244,11 @@ namespace reactionNetwork_sr {
 	void superReactionNetwork::set_dead_spe()
 	{
 		//86 and 89 are dead species, they transform to each other very fast
-		std::vector<std::size_t> dead_spe_index;
+		std::set<rsp::index_int_t> dead_spe_index;
 
 		for (auto key1 : this->rnk_pt.get_child("pathway.dead_species")) {
 			//std::cout<<key1.second.get_value<std::size_t>()<<std::endl;
-			dead_spe_index.push_back(key1.second.get_value<std::size_t>());
+			dead_spe_index.insert(key1.second.get_value<rsp::index_int_t>());
 		}
 
 		this->dead_species = dead_spe_index;
@@ -1776,7 +1776,7 @@ namespace reactionNetwork_sr {
 		retrieve_path_info(predecessors_r, predecessor_edges_r, k_shortest_path_info_vec, s, t, top_k);
 	}
 
-	void superReactionNetwork::initiate_sidetack_tree(eppstein::sidetrack_tree& st_tree, const path_vertex_t& path_v, const path_edge_t& path_e, const std::vector<double> &distance_r) const
+	void superReactionNetwork::initiate_sidetack_tree(eppstein::sidetrack_tree& st_tree, const path_vertex_t& path_v, path_edge_t& path_e, const std::vector<double> &distance_r) const
 	{
 		eppstein::VertexProperties_tree parent_node;
 		//add vertex, return its index in the new tree
@@ -1937,7 +1937,7 @@ namespace reactionNetwork_sr {
 			//number of nodes = path length + 1
 			std::vector<vertex_t> path_v_t(K_shortest_path_v_vec[v.ref_path_index].begin(),
 				K_shortest_path_v_vec[v.ref_path_index].begin() + v.path_length_before_to_vertex + 1);
-			std::vector<std::size_t> path_e_t(K_shortest_path_e_vec[v.ref_path_index].begin(),
+			std::vector<rsp::index_int_t> path_e_t(K_shortest_path_e_vec[v.ref_path_index].begin(),
 				K_shortest_path_e_vec[v.ref_path_index].begin() + v.path_length_before_to_vertex);
 			path_e_t.push_back(v.reaction_index);
 
@@ -2156,48 +2156,70 @@ namespace reactionNetwork_sr {
 		} while (u_1 == 1.0);
 
 		time = reaction_time_from_importance_sampling_without_cutoff(time, curr_vertex, u_1);
+		when_where_t when_where(time, curr_vertex);
+		if (time > this->tau) {
+			// if curr_vertex is a dead species, should return here
+			return when_where;
+		}
+
 		//update rate in the reaction network
 		update_reaction_rate(time, curr_vertex);
+		rsp::index_int_t next_reaction_index = random_pick_next_reaction(curr_vertex);
+		//random pick next spe
+		vertex_t next_vertex = random_pick_next_spe(next_reaction_index, atom_followed);
 
-		when_where_t when_where(time, curr_vertex);
+		curr_pathway_local += "R";
+		curr_pathway_local += boost::lexical_cast<std::string>(next_reaction_index);
 
-		//if current species is not a dead species, not found
-		if (std::find(this->dead_species.begin(), this->dead_species.end(), curr_vertex) == this->dead_species.end()) {//if1
-			rsp::index_int_t next_reaction_index = random_pick_next_reaction(curr_vertex);
-			//random pick next spe
-			vertex_t next_vertex = random_pick_next_spe(next_reaction_index, atom_followed);
+		curr_pathway_local += "S";
+		curr_pathway_local += boost::lexical_cast<std::string>(next_vertex);
 
-			//chattering case
-			int chattering_group_id = this->species_network_v[next_vertex].chattering_group_id;
-			if (chattering_group_id != -1) {
-				// choose one randomly based on steady state probability
-				std::vector<double> ss_prob(this->sp_chattering_rnk->species_chattering_group_mat[chattering_group_id].size(), 0.0);
-				for (std::size_t i = 0; i < ss_prob.size(); ++i) {
-					auto ss_prob_idx = this->sp_chattering_rnk->spe_idx_2_super_group_idx[
-						this->sp_chattering_rnk->species_chattering_group_mat[chattering_group_id][i]
-					];
-					ss_prob[i] = this->evaluate_chattering_group_ss_prob_at_time(time, ss_prob_idx);
-				}
-				//check zero case
-				if (std::accumulate(ss_prob.begin(), ss_prob.end(), 0.0) > 0.0) {
-					next_vertex = this->sp_chattering_rnk->species_chattering_group_mat[chattering_group_id][
-						rand->return_index_randomly_given_probability_vector(ss_prob)
-					];
-				}
+		when_where.first = time;
+		when_where.second = next_vertex;
+		//all good, normal procedure stop here
 
+		//chattering case
+		//if it is chattering, and it is the first time reach chattering group, "move one step"
+		//is actually move two steps, add reaction "G_{group index}"
+		int chattering_group_id = this->species_network_v[next_vertex].chattering_group_id;
+		if (chattering_group_id != -1) {
+			// add time delay first, regenerate random number, inverse to get exact time, get steady state time first
+			// then calculate steady state ratios
+			do {
+				u_1 = rand->random01();
+			} while (u_1 == 1.0);
+			time = chattering_group_reaction_time_from_importance_sampling_without_cutoff(time, chattering_group_id, u_1);
+
+			// time out of range, stop and return
+			if (time > this->tau) {
+				when_where.first = time;
+				return when_where;
 			}
 
+			// choose one randomly based on steady state probability
+			std::vector<double> ss_prob(this->sp_chattering_rnk->species_chattering_group_mat[chattering_group_id].size(), 0.0);
+			for (std::size_t i = 0; i < ss_prob.size(); ++i) {
+				auto ss_prob_idx = this->sp_chattering_rnk->spe_idx_2_super_group_idx[
+					this->sp_chattering_rnk->species_chattering_group_mat[chattering_group_id][i]
+				];
+				ss_prob[i] = this->evaluate_chattering_group_ss_prob_at_time(time, ss_prob_idx);
+			}
+			//check zero case
+			if (std::accumulate(ss_prob.begin(), ss_prob.end(), 0.0) > 0.0) {
+				next_vertex = this->sp_chattering_rnk->species_chattering_group_mat[chattering_group_id][
+					rand->return_index_randomly_given_probability_vector(ss_prob)
+				];
+			}
+
+			curr_pathway_local += "R";
+			//negative reaction index represent chattering group number
+			curr_pathway_local += boost::lexical_cast<std::string>(-1 * chattering_group_id);
+
+			curr_pathway_local += "S";
+			curr_pathway_local += boost::lexical_cast<std::string>(next_vertex);
 
 			when_where.first = time;
 			when_where.second = next_vertex;
-			if (time < tau) {//if2
-				curr_pathway_local += "R";
-				curr_pathway_local += boost::lexical_cast<std::string>(next_reaction_index);
-
-				curr_pathway_local += "S";
-				curr_pathway_local += boost::lexical_cast<std::string>(next_vertex);
-			}//if2
-
 		}//if1
 
 		return when_where;

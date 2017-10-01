@@ -23,7 +23,7 @@ namespace relationshipParser_sr {
 	//time type
 	typedef double my_time_t;
 	//index type or count number/integer
-	typedef std::size_t index_int_t;
+	typedef int index_int_t;
 
 	/*
 	* reaction network reaction index and ChemKin reaction index lookup table, the reason the ChemKin index is a vector
@@ -87,13 +87,13 @@ namespace relationshipParser_sr {
 	typedef double low_pressure_limit_t[3];
 	typedef double TROE_centering_t[3];
 	//sink or source reactions of a species and stoichoimetric coefficient
-	typedef std::pair<std::size_t, stoichiometric_coef_t> reaction_index_s_coef_t;
+	typedef std::pair<index_int_t, stoichiometric_coef_t> reaction_index_s_coef_t;
 	/*
 	* All reactions a species involved in, either sink or source reactions
 	* The first number, +1/-1 , to indicate whether it is a source or sink reaction
 	* sk-->represents source or sink
 	*/
-	typedef std::pair<int, reaction_index_s_coef_t> reaction_sk_index_s_coef_t;
+	typedef std::pair<index_int_t, reaction_index_s_coef_t> reaction_sk_index_s_coef_t;
 	//species mass weight
 	typedef double spe_mass_weight_t;
 

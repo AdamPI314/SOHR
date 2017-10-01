@@ -315,7 +315,7 @@ namespace relationshipParser_sr {
 
 		for (reactionNetwork_chemkin_index_map_t::const_iterator itr = reactionNetwork_chemkin_index_map.begin(); itr != reactionNetwork_chemkin_index_map.end(); ++itr) {
 			fout << itr->first << "\t";
-			for (index_int_t i = 0; i < itr->second.size(); ++i) {
+			for (index_int_t i = 0; i < static_cast<index_int_t>(itr->second.size()); ++i) {
 				//need to convert Fortran style index into C++ style index
 				index_int_t reaction_v_ind = static_cast<index_int_t>(abs(itr->second[i])) - 1;
 				fout << itr->second[i] << "\t";
@@ -326,21 +326,21 @@ namespace relationshipParser_sr {
 			//just print the first reaction
 			index_int_t reaction_v_ind = static_cast<index_int_t>(abs(itr->second[0])) - 1;
 			fout << "reactants\t";
-			for (index_int_t i = 0; i < reaction_v[reaction_v_ind].reactant.size(); ++i) {
+			for (index_int_t i = 0; i < static_cast<index_int_t>(reaction_v[reaction_v_ind].reactant.size()); ++i) {
 				fout << reaction_v[reaction_v_ind].reactant[i].first << "\t" << species_v[reaction_v[reaction_v_ind].reactant[i].first].spe_name << "\t";
 			}
 			fout << "products\t";
-			for (index_int_t i = 0; i < reaction_v[reaction_v_ind].product.size(); ++i) {
+			for (index_int_t i = 0; i < static_cast<index_int_t>(reaction_v[reaction_v_ind].product.size()); ++i) {
 				fout << reaction_v[reaction_v_ind].product[i].first << "\t" << species_v[reaction_v[reaction_v_ind].product[i].first].spe_name << "\t";
 			}
 			fout << std::endl;
 
 			fout << "net_reactants\t";
-			for (index_int_t i = 0; i < reaction_v[reaction_v_ind].net_reactant.size(); ++i) {
+			for (index_int_t i = 0; i < static_cast<index_int_t>(reaction_v[reaction_v_ind].net_reactant.size()); ++i) {
 				fout << reaction_v[reaction_v_ind].net_reactant[i].first << "\t" << species_v[reaction_v[reaction_v_ind].net_reactant[i].first].spe_name << "\t";
 			}
 			fout << "net_products\t";
-			for (index_int_t i = 0; i < reaction_v[reaction_v_ind].net_product.size(); ++i) {
+			for (index_int_t i = 0; i < static_cast<index_int_t>(reaction_v[reaction_v_ind].net_product.size()); ++i) {
 				fout << reaction_v[reaction_v_ind].net_product[i].first << "\t" << species_v[reaction_v[reaction_v_ind].net_product[i].first].spe_name << "\t";
 			}
 			fout << std::endl;

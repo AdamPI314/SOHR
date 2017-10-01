@@ -70,6 +70,12 @@ namespace reactionNetworkODESolver_sr {
 		*/
 		double reaction_time_from_importance_sampling(rsp::my_time_t curr_time, rnk::vertex_t curr_spe, double Y) override;
 
+		/*
+		* chattering group reaction time from importance sampling, exact time
+		* if reaction_time> tau, let it be, don't cut it off
+		*/
+		double chattering_group_reaction_time_from_importance_sampling_without_cutoff(rsp::my_time_t curr_time, rnk::vertex_t curr_group, double Y) override;
+
 	public:
 		/*
 		* set the conc_data_sr[i][0] to the initial probability

@@ -123,7 +123,7 @@ namespace reactionNetwork_sr {
 		//dead/end species, species that can not be destroyed, it might have a linkage in the reaction network, but the destruction rate
 		//is always zero! set this vector manually. check the last line of file int_drc.dat, if the cumulative destruction rate is zero,
 		//the species is a dead species
-		std::vector<vertex_t> dead_species;
+		std::set<vertex_t> dead_species;
 	protected:
 		//shared pointer of chattering
 		std::shared_ptr<chattering_sr::chattering> sp_chattering_rnk;
@@ -397,7 +397,7 @@ namespace reactionNetwork_sr {
 		typedef std::deque<Edge> path_edge_t;
 		void eppstein_alogrithm(const Vertex s, const Vertex t, double time_in = 0.0, std::string atom = "H");
 		//create the sidetrack edge tree, insert the first level nodes
-		void initiate_sidetack_tree(eppstein::sidetrack_tree &st_tree, const path_vertex_t &path_v, const path_edge_t &path_e, const std::vector<double> &distance_r) const;
+		void initiate_sidetack_tree(eppstein::sidetrack_tree &st_tree, const path_vertex_t &path_v, path_edge_t &path_e, const std::vector<double> &distance_r) const;
 		//add node to sidetrack tree recursively
 		void add_vertex_to_sidetrack_tree_recursively(eppstein::sidetrack_tree &st_tree, const eppstein::sidetrack_tree::Vertex curr_vertex_index_in_tree, eppstein::vertex_index_t curr_vertex_index_in_original_graph,
 			const std::vector<double>& distance, const std::vector<double> &distance_r, std::size_t level_from_current_vertex_in_original_graph = 0, const std::size_t level_from_root = 0) const;
@@ -449,6 +449,12 @@ namespace reactionNetwork_sr {
 		* if reaction_time> tau, cut it off
 		*/
 		virtual double reaction_time_from_importance_sampling(rsp::my_time_t curr_time, vertex_t curr_spe, double Y) = 0;
+
+		/*
+		* chattering group reaction time from importance sampling, exact time
+		* if reaction_time> tau, let it be, don't cut it off
+		*/
+		virtual double chattering_group_reaction_time_from_importance_sampling_without_cutoff(rsp::my_time_t curr_time, vertex_t curr_group, double Y) = 0;
 
 
 		//for concreteReactionNetwork and reactionNetworkSolver

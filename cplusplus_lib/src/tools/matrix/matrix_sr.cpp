@@ -18,7 +18,7 @@ namespace matrix_sr {
 		// #columns of first matrix equals #rows of second matrix
 		assert(m_k_k == k_n_k);
 
-		size_t_matrix_t return_matrix(m, std::vector<std::size_t>(n, 0));
+		size_t_matrix_t return_matrix(m, std::vector<rsp::index_int_t>(n, 0));
 
 		for (std::size_t i = 0; i < m; ++i) {
 			for (std::size_t j = 0; j < n; ++j) {
@@ -67,7 +67,7 @@ namespace matrix_sr {
 						if (m_k[i][k][l1].size() != 0) {
 							for (std::size_t l2 = 0; l2 < k_n[k][j].size(); ++l2) {
 								if (k_n[k][j][l2].size() != 0) {
-									std::vector<std::size_t > v_new;
+									std::vector<rsp::index_int_t> v_new;
 									// combine two vectors
 									v_new.reserve(m_k[i][k][l1].size() + k_n[k][j][l2].size()); // preallocate memory
 									v_new.insert(v_new.end(), m_k[i][k][l1].begin(), m_k[i][k][l1].end());
