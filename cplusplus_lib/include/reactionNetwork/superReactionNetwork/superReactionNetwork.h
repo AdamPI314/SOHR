@@ -484,14 +484,9 @@ namespace reactionNetwork_sr {
 		/*
 		* return when it is, where we are, for MPI
 		* move one step
-		*/
-		when_where_t pathway_move_one_step(double time, vertex_t curr_vertex, std::string &curr_pathway_local);
-		/*
-		* return when it is, where we are, for MPI
-		* move one step
 		* if we reach trapped species, randomly select one species from the trapped species pair to proceed
 		*/
-		when_where_t pathway_move_one_step_v2(double time, vertex_t curr_vertex, std::string &curr_pathway_local, std::string atom_followed = "H");
+		when_where_t pathway_move_one_step(double time, vertex_t curr_vertex, std::string &curr_pathway_local, std::string atom_followed = "H");
 
 		/*
 		* simulate in a specific time range once, knowing the initial species,  manually set which atom to follow, and return the pathway

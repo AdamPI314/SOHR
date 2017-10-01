@@ -2146,46 +2146,7 @@ namespace reactionNetwork_sr {
 	}
 
 
-	when_where_t superReactionNetwork::pathway_move_one_step(double time, vertex_t curr_vertex, std::string & curr_pathway_local)
-	{
-		//Monte-Carlo simulation
-		//generate the random number u_1 between 0 and 1.0
-		double u_1 = 0.0;
-		do {
-			u_1 = rand->random01();
-		} while (u_1 == 1.0);
-
-		time = reaction_time_from_importance_sampling_without_cutoff(time, curr_vertex, u_1);
-
-		//update rate in the reaction network
-		update_reaction_rate(time, curr_vertex);
-
-		when_where_t when_where(time, curr_vertex);
-
-		//if current species is not a dead species, not found
-		if (std::find(this->dead_species.begin(), this->dead_species.end(), curr_vertex) == this->dead_species.end()) {//if1
-			if (time < tau) {//if2
-
-				rsp::index_int_t next_reaction_index = random_pick_next_reaction(curr_vertex);
-				//random pick next spe
-				vertex_t next_vertex = random_pick_next_spe(next_reaction_index);
-
-				when_where.second = next_vertex;
-
-				curr_pathway_local += "R";
-				curr_pathway_local += boost::lexical_cast<std::string>(next_reaction_index);
-
-				curr_pathway_local += "S";
-				curr_pathway_local += boost::lexical_cast<std::string>(next_vertex);
-
-			}//if2
-
-		}//if1
-
-		return when_where;
-	}
-
-	when_where_t superReactionNetwork::pathway_move_one_step_v2(double time, vertex_t curr_vertex, std::string & curr_pathway_local, std::string atom_followed)
+	when_where_t superReactionNetwork::pathway_move_one_step(double time, vertex_t curr_vertex, std::string & curr_pathway_local, std::string atom_followed)
 	{
 		//Monte-Carlo simulation
 		//generate the random number u_1 between 0 and 1.0
@@ -2254,8 +2215,7 @@ namespace reactionNetwork_sr {
 		curr_pathway_local += boost::lexical_cast<std::string>(init_vertex);
 
 		while (when_where.first < tau) {
-			//when_where=pathway_move_one_step(when_where.first, when_where.second, curr_pathway_local);
-			when_where = pathway_move_one_step_v2(when_where.first, when_where.second, curr_pathway_local, atom_followed);
+			when_where = pathway_move_one_step(when_where.first, when_where.second, curr_pathway_local, atom_followed);
 		}
 
 		return curr_pathway_local;
