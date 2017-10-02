@@ -25,7 +25,7 @@ namespace relationshipParser_sr {
 	typedef int index_int_t;
 
 	//a constant, used as indicator
-	const index_int_t INDIDATOR = 100000;
+	const index_int_t INDICATOR = 100000;
 
 	/*
 	* reaction network reaction index and ChemKin reaction index lookup table, the reason the ChemKin index is a vector

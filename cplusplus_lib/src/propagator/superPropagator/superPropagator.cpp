@@ -241,7 +241,7 @@ namespace propagator_sr {
 			for (std::size_t j = 0; j < this->sp_chattering_pgt->species_chattering_group_mat[i].size(); ++j) {
 				pt_child_tmp.put(boost::lexical_cast<std::string>(j), this->sp_chattering_pgt->species_chattering_group_mat[i][j]);
 			}
-			pt_root_tmp.put_child(boost::lexical_cast<std::string>(i+rsp::INDIDATOR), pt_child_tmp);
+			pt_root_tmp.put_child(boost::lexical_cast<std::string>(i+rsp::INDICATOR), pt_child_tmp);
 		}
 
 		std::ofstream out_stream;
