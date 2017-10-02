@@ -221,6 +221,19 @@ namespace reactionNetwork_sr {
 		return propagator->evaluate_chattering_group_ss_prob_at_time(in_time, index);
 	}
 
+	double concreteReactionNetwork::prob_chattering_group_will_react_in_a_time_range(double init_time, double pathway_end_time, size_t curr_chattering_group)
+	{
+		//pro_max= 1-prob_min= 1-exp[-integrate_{init_time}^{end_time}{propensity function}];
+		double pro_max = 0.0;
+		if (init_time <= pathway_end_time) {
+			pro_max = 1.0 - exp(-(propagator->evaluate_chattering_group_k_int_at_time(pathway_end_time, curr_chattering_group) - propagator->evaluate_chattering_group_k_int_at_time(init_time, curr_chattering_group)));
+		}
+		else
+			pro_max = 0.0;
+
+		return pro_max;
+	}
+
 	double concreteReactionNetwork::pathway_AT_sim_move_one_step(double when_time, size_t curr_spe, size_t next_reaction, size_t next_spe)
 	{
 		//update rate in the reaction network
@@ -232,7 +245,7 @@ namespace reactionNetwork_sr {
 			u_1 = rand->random01();
 		} while (u_1 == 1.0);
 
-		//when_time= reaction_time_from_importance_sampling(when_time, curr_spe, u_1);
+		//when_time= reaction_time_from_importance_sampling(when_time, curr_chattering_group, u_1);
 		when_time = reaction_time_from_importance_sampling_without_cutoff(when_time, curr_spe, u_1);
 		return when_time;
 	}
@@ -357,7 +370,7 @@ namespace reactionNetwork_sr {
 				if (ite != out_flux.end()) {
 					//find it
 					//std::cout<<"find it!"<<std::endl;
-					ite->second +=/*this->species_network_v[curr_spe].reaction_k_index_s_coef_v[i].second* //s_coef_product*/
+					ite->second +=/*this->species_network_v[curr_chattering_group].reaction_k_index_s_coef_v[i].second* //s_coef_product*/
 						this->reaction_network_v[this->species_network_v[curr_spe].reaction_k_index_s_coef_v[i].first].reaction_rate; //reaction rate
 				}
 				else {

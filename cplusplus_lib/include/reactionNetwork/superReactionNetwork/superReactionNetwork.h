@@ -473,6 +473,7 @@ namespace reactionNetwork_sr {
 	public:
 		//prob that a spe will react in time range
 		double prob_spe_will_react_in_a_time_range(double init_time, double pathway_end_time, size_t curr_spe);
+		virtual double prob_chattering_group_will_react_in_a_time_range(double init_time, double pathway_end_time, size_t curr_chattering_group) = 0;
 
 	public:
 		/*

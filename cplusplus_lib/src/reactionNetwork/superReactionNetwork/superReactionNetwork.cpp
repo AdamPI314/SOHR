@@ -2284,30 +2284,39 @@ namespace reactionNetwork_sr {
 		//start from the first reaction
 		for (size_t i = 0; i < reaction_vec.size(); ++i)
 		{
-			// none-chattering reaction
+			//none-chattering reaction
 			if (reaction_vec[i] >= 0) {
 				pathway_prob *= prob_spe_will_react_in_a_time_range(when_time, pathway_end_time, spe_vec[i]);
 				when_time = pathway_prob_sim_move_one_step(when_time, spe_vec[i], reaction_vec[i], spe_vec[i + 1], pathway_prob, atom_followed);
 			}
-			// chattering reaction, chattering case
+			//chattering reaction, chattering case
 			else {
 				int chattering_group_id = this->species_network_v[spe_vec[i]].chattering_group_id;
 				if (chattering_group_id != -1) {
-					// add time delay first, regenerate random number, inverse to get exact time, get steady state time first
-					// then calculate steady state ratios
-					double u_1 = 1.0;
-					do {
-						u_1 = rand->random01();
-					} while (u_1 == 1.0);
+					//add time delay first, regenerate random number, inverse to get exact time, get steady state time first
+					//then calculate steady state ratios
+					double chattering_grou_prob_mat = prob_chattering_group_will_react_in_a_time_range(when_time, pathway_end_time, chattering_group_id);
+					pathway_prob *= chattering_grou_prob_mat;
 
-					when_time = chattering_group_reaction_time_from_importance_sampling_without_cutoff(when_time, chattering_group_id, u_1);
+					//avoid problems around boundary
+					if (when_time < (tau - INFINITESIMAL_DT)) {
+						double u_1 = 1.0;
+						if (chattering_grou_prob_mat > 0.0) {
+							u_1 = rand->random_min_max(0, chattering_grou_prob_mat);
+						}
+						else
+							u_1 = 0.0;
 
-					auto ss_prob_idx = this->sp_chattering_rnk->spe_idx_2_super_group_idx.at(spe_vec[i + 1]);
-					auto ss_ratio_tmp = this->evaluate_chattering_group_ss_prob_at_time(when_time, ss_prob_idx);
+						when_time = chattering_group_reaction_time_from_importance_sampling_without_cutoff(when_time, chattering_group_id, u_1);
 
-					// multiply by stead state ratio if not zero
-					if (ss_ratio_tmp > 0)
-						pathway_prob *= ss_ratio_tmp;
+						auto ss_prob_idx = this->sp_chattering_rnk->spe_idx_2_super_group_idx.at(spe_vec[i + 1]);
+						auto ss_ratio_tmp = this->evaluate_chattering_group_ss_prob_at_time(when_time, ss_prob_idx);
+
+						// multiply by stead state ratio if not zero
+						if (ss_ratio_tmp > 0)
+							pathway_prob *= ss_ratio_tmp;
+					}//boundary time problem
+
 				}//if chattering group valid
 			}//if chattering case
 

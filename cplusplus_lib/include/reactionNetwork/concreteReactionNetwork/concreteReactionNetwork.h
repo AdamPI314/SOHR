@@ -74,6 +74,8 @@ namespace reactionNetwork_sr {
 		double evaluate_spe_concentration_at_time(double time, std::size_t index = 0) const override;
 		double evaluate_chattering_group_ss_prob_at_time(double in_time, size_t index = 0) const override;
 
+	public:
+		double prob_chattering_group_will_react_in_a_time_range(double init_time, double pathway_end_time, size_t curr_chattering_group) override;
 
 	public:
 		//return temperature target time
