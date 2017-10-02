@@ -38,14 +38,14 @@ def get_fast_rxn_trapped_spe():
         {
             "rxn": [1116, 1117],
             "spe": [87, 90]
+        },
+        # 348     180     C2H5+O2=CH3CH2OO
+        # reactants       39      C2H5    9       O2      products        50      CH3CH2OO
+        # 349     -180    C2H5+O2=CH3CH2OO
+        {
+            "rxn": [348, 349],
+            "spe": [39, 50]
         }
-        # # 348     180     C2H5+O2=CH3CH2OO
-        # # reactants       39      C2H5    9       O2      products        50      CH3CH2OO
-        # # 349     -180    C2H5+O2=CH3CH2OO
-        # {
-        #     "rxn": [348, 349],
-        #     "spe": [39, 50]
-        # },
         # # 1080    556     npropyloo=QOOH_1        557     npropyloo=QOOH_1
         # # reactants       78      npropyloo       products        87      QOOH_1
         # # 1081    -556    npropyloo=QOOH_1        -557    npropyloo=QOOH_1
