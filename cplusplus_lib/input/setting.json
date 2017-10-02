@@ -68,12 +68,12 @@
         "init_spe": 62,
         "atom_followed": "C",
         "super_atom": "X",
-        "tau": 0.55,
+        "tau": 0.65,
         "topN": [
-            1000
+            5000
         ],
         "pathwayEndWith": "ALL",
-        "trajectoryNumber": 1,
+        "trajectoryNumber": 10000,
         "trajectoryNumberVector": [
             1000,
             1000,
@@ -87,13 +87,15 @@
             "1068": 1069,
             "1096": 1097,
             "132": 133,
-            "1116": 1117
+            "1116": 1117,
+            "348": 349
         },
         "trapped_species": {
             "60": 78,
             "61": 80,
             "25": 27,
-            "87": 90
+            "87": 90,
+            "39": 50
         },
         "non_zero_rate_reaction": [],
         "max_path_length": [
