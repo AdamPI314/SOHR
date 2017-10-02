@@ -56,10 +56,10 @@ namespace reactionNetworkODESolver_sr {
 	public:
 		// got to instantiate this function otherwise this sub-class is still pure-virtual class can not be instantiated
 		double evaluate_spe_concentration_at_time(double time, std::size_t index = 0) const override { return 0.0; };
-		double evaluate_chattering_group_ss_prob_at_time(double in_time, size_t index = 0) const override { return 0.0; };
+		double evaluate_chattering_group_spe_ss_prob_at_time(double in_time, size_t index = 0) const override { return 0.0; };
 
 	public:
-		double prob_chattering_group_will_react_in_a_time_range(double init_time, double pathway_end_time, size_t curr_chattering_group) override { return 0.0;  };
+		double prob_chattering_group_spe_will_react_in_a_time_range(double init_time, double pathway_end_time, size_t index) override { return 0.0;  };
 
 	public:
 		/*
@@ -77,7 +77,7 @@ namespace reactionNetworkODESolver_sr {
 		* chattering group reaction time from importance sampling, exact time
 		* if reaction_time> tau, let it be, don't cut it off
 		*/
-		double chattering_group_reaction_time_from_importance_sampling_without_cutoff(rsp::my_time_t curr_time, rnk::vertex_t curr_group, double Y) override;
+		double chattering_group_spe_reaction_time_from_importance_sampling_without_cutoff(rsp::my_time_t curr_time, rnk::vertex_t index, double Y) override;
 
 	public:
 		/*

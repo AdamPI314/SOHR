@@ -2121,10 +2121,10 @@ namespace reactionNetwork_sr {
 			spe_branching_ratio = this->reaction_network_v[next_reaction].out_spe_index_branching_ratio_map_map[atom_followed].at(next_spe);
 		////next species not found
 		//else {
-		//	int chattering_group_id = this->species_network_v[next_spe].chattering_group_id;
-		//	if (chattering_group_id != -1) {
+		//	int super_group_idx1 = this->species_network_v[next_spe].super_group_idx1;
+		//	if (super_group_idx1 != -1) {
 		//		// gotta to consider the case the "next_spe" is not found, but species in the same group as "next_spe" is found
-		//		for (auto n_s : this->sp_chattering_rnk->species_chattering_group_mat[chattering_group_id]) {
+		//		for (auto n_s : this->sp_chattering_rnk->species_chattering_group_mat[super_group_idx1]) {
 		//			if (this->reaction_network_v[next_reaction].out_spe_index_branching_ratio_map_map[atom_followed].count(n_s) > 0) {
 		//				spe_branching_ratio = this->reaction_network_v[next_reaction].out_spe_index_branching_ratio_map_map[atom_followed].at(n_s);
 		//				break;
@@ -2133,13 +2133,13 @@ namespace reactionNetwork_sr {
 
 		//		//treat the special case when the next species is a chattering species
 		//		//multiply by the probability of being current species within the chattering group
-		//		auto ss_prob_idx = this->sp_chattering_rnk->spe_idx_2_super_group_idx.at(next_spe);
-		//		auto chattering_ratio = this->evaluate_chattering_group_ss_prob_at_time(reaction_time, ss_prob_idx);
+		//		auto super_group_idx2 = this->sp_chattering_rnk->spe_idx_2_super_group_idx.at(next_spe);
+		//		auto chattering_ratio = this->evaluate_chattering_group_spe_ss_prob_at_time(reaction_time, super_group_idx2);
 		//		//check zero case
 		//		if (chattering_ratio > 0.0)
 		//			spe_branching_ratio *= chattering_ratio;
 
-		//	}//chattering_group_id != -1
+		//	}//super_group_idx1 != -1
 		//}
 
 		return reaction_branching_ratio*spe_branching_ratio;
@@ -2188,7 +2188,9 @@ namespace reactionNetwork_sr {
 			do {
 				u_1 = rand->random01();
 			} while (u_1 == 1.0);
-			time = chattering_group_reaction_time_from_importance_sampling_without_cutoff(time, chattering_group_id, u_1);
+
+			int super_group_idx1 = this->sp_chattering_rnk->spe_idx_2_super_group_idx[next_vertex];
+			time = chattering_group_spe_reaction_time_from_importance_sampling_without_cutoff(time, super_group_idx1, u_1);
 
 			// time out of range, stop and return
 			if (time > this->tau) {
@@ -2202,7 +2204,7 @@ namespace reactionNetwork_sr {
 				auto ss_prob_idx = this->sp_chattering_rnk->spe_idx_2_super_group_idx[
 					this->sp_chattering_rnk->species_chattering_group_mat[chattering_group_id][i]
 				];
-				ss_prob[i] = this->evaluate_chattering_group_ss_prob_at_time(time, ss_prob_idx);
+				ss_prob[i] = this->evaluate_chattering_group_spe_ss_prob_at_time(time, ss_prob_idx);
 			}
 			//check none-zero case, if it is zero or less, no change, when_where will not change, time no change, where no change
 			if (std::accumulate(ss_prob.begin(), ss_prob.end(), 0.0) > 0.0) {
@@ -2212,8 +2214,8 @@ namespace reactionNetwork_sr {
 
 				curr_pathway_local += "R";
 				//negative reaction index represent chattering group number
-				//since there is no -1 * 0, which means, to the first chattering_group_id 0, negative 0 is still 0,
-				//negative sign will not show on pathway string, here we make it to be -1*(chattering_group_id+1)
+				//since there is no -1 * 0, which means, to the first super_group_idx1 0, negative 0 is still 0,
+				//negative sign will not show on pathway string, here we make it to be -1*(super_group_idx1+1)
 				curr_pathway_local += boost::lexical_cast<std::string>(-1 * (chattering_group_id + rsp::INDICATOR));
 
 				curr_pathway_local += "S";
@@ -2295,11 +2297,12 @@ namespace reactionNetwork_sr {
 			}
 			//chattering reaction, chattering case
 			else {
-				int chattering_group_id = this->species_network_v[spe_vec[i]].chattering_group_id;
+				auto chattering_group_id = this->species_network_v[spe_vec[i]].chattering_group_id;
 				if (chattering_group_id != -1) {
+					auto super_group_idx1 = this->sp_chattering_rnk->spe_idx_2_super_group_idx.at(spe_vec[i]);
 					//add time delay first, regenerate random number, inverse to get exact time, get steady state time first
 					//then calculate steady state ratios
-					double chattering_grou_prob_mat = prob_chattering_group_will_react_in_a_time_range(when_time, pathway_end_time, chattering_group_id);
+					auto chattering_grou_prob_mat = prob_chattering_group_spe_will_react_in_a_time_range(when_time, pathway_end_time, super_group_idx1);
 					pathway_prob *= chattering_grou_prob_mat;
 
 					//avoid problems around boundary
@@ -2311,10 +2314,10 @@ namespace reactionNetwork_sr {
 						else
 							u_1 = 0.0;
 
-						when_time = chattering_group_reaction_time_from_importance_sampling_without_cutoff(when_time, chattering_group_id, u_1);
+						when_time = chattering_group_spe_reaction_time_from_importance_sampling_without_cutoff(when_time, super_group_idx1, u_1);
 
-						auto ss_prob_idx = this->sp_chattering_rnk->spe_idx_2_super_group_idx.at(spe_vec[i + 1]);
-						auto ss_ratio_tmp = this->evaluate_chattering_group_ss_prob_at_time(when_time, ss_prob_idx);
+						auto super_group_idx2 = this->sp_chattering_rnk->spe_idx_2_super_group_idx.at(spe_vec[i + 1]);
+						auto ss_ratio_tmp = this->evaluate_chattering_group_spe_ss_prob_at_time(when_time, super_group_idx2);
 
 						// multiply by stead state ratio if not zero
 						if (ss_ratio_tmp > 0)

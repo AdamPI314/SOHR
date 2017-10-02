@@ -454,7 +454,7 @@ namespace reactionNetwork_sr {
 		* chattering group reaction time from importance sampling, exact time
 		* if reaction_time> tau, let it be, don't cut it off
 		*/
-		virtual double chattering_group_reaction_time_from_importance_sampling_without_cutoff(rsp::my_time_t curr_time, vertex_t curr_group, double Y) = 0;
+		virtual double chattering_group_spe_reaction_time_from_importance_sampling_without_cutoff(rsp::my_time_t curr_time, vertex_t index, double Y) = 0;
 
 
 		//for concreteReactionNetwork and reactionNetworkSolver
@@ -468,12 +468,12 @@ namespace reactionNetwork_sr {
 	public:
 		//defer to subclass
 		virtual double evaluate_spe_concentration_at_time(double time, std::size_t index = 0) const = 0;
-		virtual double evaluate_chattering_group_ss_prob_at_time(double in_time, size_t index = 0) const = 0;
+		virtual double evaluate_chattering_group_spe_ss_prob_at_time(double in_time, size_t index = 0) const = 0;
 
 	public:
 		//prob that a spe will react in time range
 		double prob_spe_will_react_in_a_time_range(double init_time, double pathway_end_time, size_t curr_spe);
-		virtual double prob_chattering_group_will_react_in_a_time_range(double init_time, double pathway_end_time, size_t curr_chattering_group) = 0;
+		virtual double prob_chattering_group_spe_will_react_in_a_time_range(double init_time, double pathway_end_time, size_t index) = 0;
 
 	public:
 		/*

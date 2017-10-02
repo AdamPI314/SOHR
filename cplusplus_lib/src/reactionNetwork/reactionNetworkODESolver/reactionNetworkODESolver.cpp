@@ -158,7 +158,7 @@ namespace reactionNetworkODESolver_sr {
 		}
 	}
 
-	double reactionNetworkODESolver::chattering_group_reaction_time_from_importance_sampling_without_cutoff(rsp::my_time_t curr_time, rnk::vertex_t curr_group, double Y)
+	double reactionNetworkODESolver::chattering_group_spe_reaction_time_from_importance_sampling_without_cutoff(rsp::my_time_t curr_time, rnk::vertex_t index, double Y)
 	{
 		return 0.0;
 	}

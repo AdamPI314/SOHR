@@ -58,12 +58,12 @@ namespace propagator_sr {
 		std::shared_ptr<chattering_sr::chattering> sp_chattering_pgt = std::make_shared<chattering_sr::chattering>();
 
 		//chattering group data
-		// (1) chattering group drc, the time scale of this chattering mode, there might be multiple modes, only consider
+		// (1) chattering group species drc, the time scale of this chattering mode, there might be multiple modes, only consider
 		// the first mode
 		// (2) project the mode on species direction, probability being that species, or says steady state probability
-		std::vector<std::vector<double> > chattering_group_k_data_pgt;
-		std::vector<std::vector<double> > chattering_group_k_int_data_pgt;
-		std::vector<std::vector<double> > chattering_group_ss_prob_data_pgt;
+		std::vector<std::vector<double> > chattering_group_spe_k_data_pgt;
+		std::vector<std::vector<double> > chattering_group_spe_k_int_data_pgt;
+		std::vector<std::vector<double> > chattering_group_spe_ss_prob_data_pgt;
 
 	public:
 		/*
@@ -93,13 +93,13 @@ namespace propagator_sr {
 
 	public:
 		//chattering group rate constant k, time scale pointer
-		std::vector<Linear_interp*> chattering_group_k_pgt;
+		std::vector<Linear_interp*> chattering_group_spe_k_pgt;
 		//integral
-		std::vector<Linear_interp*> chattering_group_k_int_pgt;
+		std::vector<Linear_interp*> chattering_group_spe_k_int_pgt;
 		//integral reverse
-		std::vector<Linear_interp*> chattering_group_k_int_time_pgt;
+		std::vector<Linear_interp*> chattering_group_spe_k_int_time_pgt;
 		//steady state probability
-		std::vector<Linear_interp*> chattering_group_ss_prob_pgt;
+		std::vector<Linear_interp*> chattering_group_spe_ss_prob_pgt;
 
 	public:
 		superPropagator(std::vector<double> uncertainties_in, std::string cwd_in);
@@ -223,18 +223,18 @@ namespace propagator_sr {
 			init_time_pressure_pgt();
 
 			//chatterings
-			if (this->chattering_group_k_data_pgt.size() > 0 && this->chattering_group_k_data_pgt[0].size() > 0) {
+			if (this->chattering_group_spe_k_data_pgt.size() > 0 && this->chattering_group_spe_k_data_pgt[0].size() > 0) {
 				init_time_chattering_group_k_pgt();
 			}
 			this->integrate_chattering_group_propensity_function_pgt();
-			if (this->chattering_group_k_int_data_pgt.size() > 0 && this->chattering_group_k_int_data_pgt[0].size() > 0) {
+			if (this->chattering_group_spe_k_int_data_pgt.size() > 0 && this->chattering_group_spe_k_int_data_pgt[0].size() > 0) {
 				init_chattering_group_k_int_pgt();
 			}
-			if (this->chattering_group_k_int_data_pgt.size() > 0 && this->chattering_group_k_int_data_pgt[0].size() > 0) {
+			if (this->chattering_group_spe_k_int_data_pgt.size() > 0 && this->chattering_group_spe_k_int_data_pgt[0].size() > 0) {
 				init_chattering_group_k_int_time_pgt();
 			}
 
-			if (this->chattering_group_ss_prob_data_pgt.size() > 0 && this->chattering_group_ss_prob_data_pgt[0].size() > 0) {
+			if (this->chattering_group_spe_ss_prob_data_pgt.size() > 0 && this->chattering_group_spe_ss_prob_data_pgt[0].size() > 0) {
 				init_time_chattering_group_ss_prob_pgt();
 			}
 		}//initiate_cubic_spline
@@ -360,11 +360,11 @@ namespace propagator_sr {
 		double evaluate_reaction_rate_at_time(double in_time, size_t index = 0) const;
 
 	public:
-		double evaluate_chattering_group_ss_prob_at_time(double in_time, size_t index = 0) const;
-		//evaluate chattering group's k or says time scale
-		double evaluate_chattering_group_k_at_time(double in_time, size_t chattering_group_id = 0) const;
-		double evaluate_chattering_group_k_int_at_time(double in_time, size_t index = 0) const;
-		double evaluate_time_at_chattering_group_k_int(double integral, size_t index = 0) const;
+		double evaluate_chattering_group_spe_ss_prob_at_time(double in_time, size_t index = 0) const;
+		//evaluate chattering group species' k or says time scale
+		double evaluate_chattering_group_spe_k_at_time(double in_time, size_t index = 0) const;
+		double evaluate_chattering_group_spe_k_int_at_time(double in_time, size_t index = 0) const;
+		double evaluate_time_at_chattering_group_spe_k_int(double integral, size_t index = 0) const;
 
 	};
 

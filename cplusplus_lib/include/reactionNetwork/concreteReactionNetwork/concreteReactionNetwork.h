@@ -60,7 +60,7 @@ namespace reactionNetwork_sr {
 		* chattering group reaction time from importance sampling, exact time
 		* if reaction_time> tau, let it be, don't cut it off
 		*/
-		double chattering_group_reaction_time_from_importance_sampling_without_cutoff(rsp::my_time_t curr_time, vertex_t curr_group, double Y) override;
+		double chattering_group_spe_reaction_time_from_importance_sampling_without_cutoff(rsp::my_time_t curr_time, vertex_t index, double Y) override;
 
 	public:
 		//set Prob_max(tau^{j}|t+tau^{j-1};S^{j-1}), with pathway_end_time fixed
@@ -72,10 +72,10 @@ namespace reactionNetwork_sr {
 
 	public:
 		double evaluate_spe_concentration_at_time(double time, std::size_t index = 0) const override;
-		double evaluate_chattering_group_ss_prob_at_time(double in_time, size_t index = 0) const override;
+		double evaluate_chattering_group_spe_ss_prob_at_time(double in_time, size_t index = 0) const override;
 
 	public:
-		double prob_chattering_group_will_react_in_a_time_range(double init_time, double pathway_end_time, size_t curr_chattering_group) override;
+		double prob_chattering_group_spe_will_react_in_a_time_range(double init_time, double pathway_end_time, size_t index) override;
 
 	public:
 		//return temperature target time
