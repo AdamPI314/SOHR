@@ -12,6 +12,8 @@ namespace eppstein_algorithm
 
 	typedef rsp::index_int_t vertex_index_t;
 	typedef rsp::index_int_t edge_index_t;
+	typedef rsp::index_int_t path_index_t;
+	typedef int path_length_t;
 
 	struct VertexProperties_tree
 	{
@@ -51,10 +53,10 @@ namespace eppstein_algorithm
 		//path cost
 		double cost;
 		//node index in sidetrack tree
-		std::size_t vertex_index_in_sidetrack_tree;
+		vertex_index_t vertex_index_in_sidetrack_tree;
 
 		//parent path's or says reference path's index in PATH vector
-		std::size_t ref_path_index;
+		path_index_t ref_path_index;
 
 		bool operator < (const len_path_t& rhs) const {
 			return cost > rhs.cost;
@@ -68,9 +70,9 @@ namespace eppstein_algorithm
 		//path cost
 		double cost;
 		//reference path, index in vector
-		std::size_t ref_path_index;
+		path_index_t ref_path_index;
 		//length of path before sidetrack edge
-		std::size_t path_length_before_to_vertex;
+		path_length_t path_length_before_to_vertex;
 		//target edge of sidetrack edge in the original graph
 		vertex_index_t to_vertex;
 		//index of sidetrack edge in the original graph, that edge ends with to_vertex
