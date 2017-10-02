@@ -2115,32 +2115,32 @@ namespace reactionNetwork_sr {
 		}
 
 
-		int chattering_group_id = this->species_network_v[next_spe].chattering_group_id;
-
 		double spe_branching_ratio = 0.0;
-		//find next species
+		//next species found
 		if (this->reaction_network_v[next_reaction].out_spe_index_branching_ratio_map_map[atom_followed].count(next_spe) > 0)
 			spe_branching_ratio = this->reaction_network_v[next_reaction].out_spe_index_branching_ratio_map_map[atom_followed].at(next_spe);
-		else if (chattering_group_id != -1) {
-			// gotta to consider the case the "next_spe" is not found, but species in the same group as "next_spe" is found
-			for (auto n_s : this->sp_chattering_rnk->species_chattering_group_mat[chattering_group_id]) {
-				if (this->reaction_network_v[next_reaction].out_spe_index_branching_ratio_map_map[atom_followed].count(n_s) > 0) {
-					spe_branching_ratio = this->reaction_network_v[next_reaction].out_spe_index_branching_ratio_map_map[atom_followed].at(n_s);
-					break;
-				}
-			}
-		}
+		////next species not found
+		//else {
+		//	int chattering_group_id = this->species_network_v[next_spe].chattering_group_id;
+		//	if (chattering_group_id != -1) {
+		//		// gotta to consider the case the "next_spe" is not found, but species in the same group as "next_spe" is found
+		//		for (auto n_s : this->sp_chattering_rnk->species_chattering_group_mat[chattering_group_id]) {
+		//			if (this->reaction_network_v[next_reaction].out_spe_index_branching_ratio_map_map[atom_followed].count(n_s) > 0) {
+		//				spe_branching_ratio = this->reaction_network_v[next_reaction].out_spe_index_branching_ratio_map_map[atom_followed].at(n_s);
+		//				break;
+		//			}
+		//		}
 
-		//treat the special case when the next species is a chattering species
-		if (chattering_group_id != -1) {
-			//multiply by the probability of being current species within the chattering group
-			auto ss_prob_idx = this->sp_chattering_rnk->spe_idx_2_super_group_idx.at(next_spe);
-			auto chattering_ratio = this->evaluate_chattering_group_ss_prob_at_time(reaction_time, ss_prob_idx);
-			//check zero case
-			if (chattering_ratio > 0.0)
-				spe_branching_ratio *= chattering_ratio;
-		}
+		//		//treat the special case when the next species is a chattering species
+		//		//multiply by the probability of being current species within the chattering group
+		//		auto ss_prob_idx = this->sp_chattering_rnk->spe_idx_2_super_group_idx.at(next_spe);
+		//		auto chattering_ratio = this->evaluate_chattering_group_ss_prob_at_time(reaction_time, ss_prob_idx);
+		//		//check zero case
+		//		if (chattering_ratio > 0.0)
+		//			spe_branching_ratio *= chattering_ratio;
 
+		//	}//chattering_group_id != -1
+		//}
 
 		return reaction_branching_ratio*spe_branching_ratio;
 	}
@@ -2302,9 +2302,9 @@ namespace reactionNetwork_sr {
 
 					when_time = chattering_group_reaction_time_from_importance_sampling_without_cutoff(when_time, chattering_group_id, u_1);
 
-					auto ss_ratio_tmp = this->evaluate_chattering_group_ss_prob_at_time(when_time, 
-						this->sp_chattering_rnk->spe_idx_2_super_group_idx[spe_vec[i]]
-					);
+					auto ss_prob_idx = this->sp_chattering_rnk->spe_idx_2_super_group_idx.at(spe_vec[i + 1]);
+					auto ss_ratio_tmp = this->evaluate_chattering_group_ss_prob_at_time(when_time, ss_prob_idx);
+
 					// multiply by stead state ratio if not zero
 					if (ss_ratio_tmp > 0)
 						pathway_prob *= ss_ratio_tmp;
