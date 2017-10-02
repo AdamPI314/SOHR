@@ -1883,7 +1883,7 @@ namespace reactionNetwork_sr {
 
 		//pop out current node, push all its children to priority_queue
 		auto sidetrack_e = lp_pq.top();	lp_pq.pop();
-		const eppstein::vertex_index_t curr_vertex = sidetrack_e.vertex_index_in_sidetrack_tree;
+		auto curr_vertex = sidetrack_e.vertex_index_in_sidetrack_tree;
 
 		eppstein::path_info_t path_info;
 		path_info.cost = sidetrack_e.cost;

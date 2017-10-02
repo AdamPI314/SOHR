@@ -51,7 +51,7 @@ namespace eppstein_algorithm
 		//path cost
 		double cost;
 		//node index in sidetrack tree
-		vertex_index_t vertex_index_in_sidetrack_tree;
+		std::size_t vertex_index_in_sidetrack_tree;
 
 		//parent path's or says reference path's index in PATH vector
 		std::size_t ref_path_index;
