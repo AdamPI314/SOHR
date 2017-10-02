@@ -2204,22 +2204,24 @@ namespace reactionNetwork_sr {
 				];
 				ss_prob[i] = this->evaluate_chattering_group_ss_prob_at_time(time, ss_prob_idx);
 			}
-			//check zero case
+			//check none-zero case, if it is zero or less, no change, when_where will not change, time no change, where no change
 			if (std::accumulate(ss_prob.begin(), ss_prob.end(), 0.0) > 0.0) {
 				next_vertex = this->sp_chattering_rnk->species_chattering_group_mat[chattering_group_id][
 					rand->return_index_randomly_given_probability_vector(ss_prob)
 				];
+
+				curr_pathway_local += "R";
+				//negative reaction index represent chattering group number
+				curr_pathway_local += boost::lexical_cast<std::string>(-1 * chattering_group_id);
+
+				curr_pathway_local += "S";
+				curr_pathway_local += boost::lexical_cast<std::string>(next_vertex);
+
+				when_where.first = time;
+				when_where.second = next_vertex;
 			}
 
-			curr_pathway_local += "R";
-			//negative reaction index represent chattering group number
-			curr_pathway_local += boost::lexical_cast<std::string>(-1 * chattering_group_id);
 
-			curr_pathway_local += "S";
-			curr_pathway_local += boost::lexical_cast<std::string>(next_vertex);
-
-			when_where.first = time;
-			when_where.second = next_vertex;
 		}//if1
 
 		return when_where;
