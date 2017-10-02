@@ -795,7 +795,7 @@ namespace reactionNetwork_sr {
 			else
 				properties(e).edge_weight = 0.0;
 		}
-		Vertex v;
+		//Vertex v;
 		BGL_FORALL_VERTICES(v, this->graph, GraphContainer)
 		{
 			Edge e;
@@ -884,7 +884,7 @@ namespace reactionNetwork_sr {
 			else
 				properties(e).edge_weight = 0.0;
 		}
-		Vertex v;
+		//Vertex v;
 		BGL_FORALL_VERTICES(v, this->graph, GraphContainer)
 		{
 			Edge e;
@@ -954,7 +954,7 @@ namespace reactionNetwork_sr {
 		vector<double> min_distance(this->species_network_v.size(), std::numeric_limits<double>::max());
 		min_distance[source_v] = 0.0;
 		//the second is the vertex, the first is the current distance from the source to the vertex
-		std::set<std::pair<double, std::size_t> > active_vertices;
+		std::set<std::pair<double, rsp::index_int_t> > active_vertices;
 
 		active_vertices.insert({ 0.0, source_v });
 
@@ -2083,7 +2083,7 @@ namespace reactionNetwork_sr {
 
 	}
 
-	double reactionNetwork_sr::superReactionNetwork::reaction_spe_branching_ratio(double reaction_time, std::size_t curr_spe, std::size_t next_reaction, std::size_t next_spe, std::string atom_followed)
+	double reactionNetwork_sr::superReactionNetwork::reaction_spe_branching_ratio(double reaction_time, rsp::index_int_t curr_spe, rsp::index_int_t next_reaction, rsp::index_int_t next_spe, std::string atom_followed)
 	{
 		//update rate in the reaction network
 		this->update_reaction_rate(reaction_time, curr_spe);

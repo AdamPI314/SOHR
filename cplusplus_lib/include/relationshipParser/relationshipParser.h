@@ -74,7 +74,7 @@ namespace relationshipParser_sr {
 	//species name type
 	typedef std::string spe_name_t;
 	//species component type, like total number of atoms, number of a specific atom
-	typedef std::map<std::string, std::size_t> spe_component_t;
+	typedef std::map<std::string, index_int_t> spe_component_t;
 
 	//species name and species stoichoimetric coefficient in reaction/transition.
 	typedef std::map<spe_name_t, stoichiometric_coef_t> spe_name_s_coef_t;
@@ -98,12 +98,12 @@ namespace relationshipParser_sr {
 	typedef double spe_mass_weight_t;
 
 	//species index and weight type
-	typedef std::pair<std::size_t, stoichiometric_coef_t> spe_index_weight_t;
+	typedef std::pair<index_int_t, stoichiometric_coef_t> spe_index_weight_t;
 
 	//element name and element index type map
-	typedef std::map<element_name_t, std::size_t> ele_name_index_map_t;
+	typedef std::map<element_name_t, index_int_t> ele_name_index_map_t;
 	//species name and species index type map
-	typedef std::map<spe_name_t, std::size_t> spe_name_index_map_t;
+	typedef std::map<spe_name_t, index_int_t> spe_name_index_map_t;
 
 	//element information struct
 	struct element_info {
