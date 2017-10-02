@@ -2284,10 +2284,35 @@ namespace reactionNetwork_sr {
 		//start from the first reaction
 		for (size_t i = 0; i < reaction_vec.size(); ++i)
 		{
-			pathway_prob *= prob_spe_will_react_in_a_time_range(when_time, pathway_end_time, spe_vec[i]);
+			// none-chattering reaction
+			if (reaction_vec[i] >= 0) {
+				pathway_prob *= prob_spe_will_react_in_a_time_range(when_time, pathway_end_time, spe_vec[i]);
+				when_time = pathway_prob_sim_move_one_step(when_time, spe_vec[i], reaction_vec[i], spe_vec[i + 1], pathway_prob, atom_followed);
+			}
+			// chattering reaction, chattering case
+			else {
+				int chattering_group_id = this->species_network_v[spe_vec[i]].chattering_group_id;
+				if (chattering_group_id != -1) {
+					// add time delay first, regenerate random number, inverse to get exact time, get steady state time first
+					// then calculate steady state ratios
+					double u_1 = 1.0;
+					do {
+						u_1 = rand->random01();
+					} while (u_1 == 1.0);
 
-			when_time = pathway_prob_sim_move_one_step(when_time, spe_vec[i], reaction_vec[i], spe_vec[i + 1], pathway_prob, atom_followed);
+					when_time = chattering_group_reaction_time_from_importance_sampling_without_cutoff(when_time, chattering_group_id, u_1);
+
+					auto ss_ratio_tmp = this->evaluate_chattering_group_ss_prob_at_time(when_time, 
+						this->sp_chattering_rnk->spe_idx_2_super_group_idx[spe_vec[i]]
+					);
+					// multiply by stead state ratio if not zero
+					if (ss_ratio_tmp > 0)
+						pathway_prob *= ss_ratio_tmp;
+				}//if chattering group valid
+			}//if chattering case
+
 		}
+
 		//got to multiply by P_min or says (1-P_max)
 		set_spe_prob_max_at_a_time(when_time, pathway_end_time, spe_vec.back());
 
