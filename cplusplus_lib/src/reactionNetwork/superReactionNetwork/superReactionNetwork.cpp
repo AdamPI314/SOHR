@@ -2183,20 +2183,20 @@ namespace reactionNetwork_sr {
 		//is actually move two steps, add reaction "G_{group index}"
 		int chattering_group_id = this->species_network_v[next_vertex].chattering_group_id;
 		if (chattering_group_id != -1) {
-			// add time delay first, regenerate random number, inverse to get exact time, get steady state time first
-			// then calculate steady state ratios
-			do {
-				u_1 = rand->random01();
-			} while (u_1 == 1.0);
+			//// add time delay first, regenerate random number, inverse to get exact time, get steady state time first
+			//// then calculate steady state ratios
+			//do {
+			//	u_1 = rand->random01();
+			//} while (u_1 == 1.0);
 
-			int super_group_idx1 = this->sp_chattering_rnk->spe_idx_2_super_group_idx[next_vertex];
-			time = chattering_group_spe_reaction_time_from_importance_sampling_without_cutoff(time, super_group_idx1, u_1);
+			//int super_group_idx1 = this->sp_chattering_rnk->spe_idx_2_super_group_idx[next_vertex];
+			//time = chattering_group_spe_reaction_time_from_importance_sampling_without_cutoff(time, super_group_idx1, u_1);
 
-			// time out of range, stop and return
-			if (time > this->tau) {
-				when_where.first = time;
-				return when_where;
-			}
+			//// time out of range, stop and return
+			//if (time > this->tau) {
+			//	when_where.first = time;
+			//	return when_where;
+			//}
 
 			// choose one randomly based on steady state probability
 			std::vector<double> ss_prob(this->sp_chattering_rnk->species_chattering_group_mat[chattering_group_id].size(), 0.0);
@@ -2299,22 +2299,22 @@ namespace reactionNetwork_sr {
 			else {
 				auto chattering_group_id = this->species_network_v[spe_vec[i]].chattering_group_id;
 				if (chattering_group_id != -1) {
-					auto super_group_idx1 = this->sp_chattering_rnk->spe_idx_2_super_group_idx.at(spe_vec[i]);
-					//add time delay first, regenerate random number, inverse to get exact time, get steady state time first
-					//then calculate steady state ratios
-					auto chattering_grou_prob_mat = prob_chattering_group_spe_will_react_in_a_time_range(when_time, pathway_end_time, super_group_idx1);
-					pathway_prob *= chattering_grou_prob_mat;
+					//auto super_group_idx1 = this->sp_chattering_rnk->spe_idx_2_super_group_idx.at(spe_vec[i]);
+					////add time delay first, regenerate random number, inverse to get exact time, get steady state time first
+					////then calculate steady state ratios
+					//auto chattering_grou_prob_mat = prob_chattering_group_spe_will_react_in_a_time_range(when_time, pathway_end_time, super_group_idx1);
+					//pathway_prob *= chattering_grou_prob_mat;
 
 					//avoid problems around boundary
 					if (when_time < (tau - INFINITESIMAL_DT)) {
-						double u_1 = 1.0;
-						if (chattering_grou_prob_mat > 0.0) {
-							u_1 = rand->random_min_max(0, chattering_grou_prob_mat);
-						}
-						else
-							u_1 = 0.0;
+						//double u_1 = 1.0;
+						//if (chattering_grou_prob_mat > 0.0) {
+						//	u_1 = rand->random_min_max(0, chattering_grou_prob_mat);
+						//}
+						//else
+						//	u_1 = 0.0;
 
-						when_time = chattering_group_spe_reaction_time_from_importance_sampling_without_cutoff(when_time, super_group_idx1, u_1);
+						//when_time = chattering_group_spe_reaction_time_from_importance_sampling_without_cutoff(when_time, super_group_idx1, u_1);
 
 						auto super_group_idx2 = this->sp_chattering_rnk->spe_idx_2_super_group_idx.at(spe_vec[i + 1]);
 						auto ss_ratio_tmp = this->evaluate_chattering_group_spe_ss_prob_at_time(when_time, super_group_idx2);
