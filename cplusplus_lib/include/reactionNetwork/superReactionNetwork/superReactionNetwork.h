@@ -425,7 +425,7 @@ namespace reactionNetwork_sr {
 		* species vector 2->5->1
 		* reaction vector 2-4
 		*/
-		bool parse_pathway_to_vector(std::string pathway_in, std::vector<size_t> &spe_vec, std::vector<size_t> &reaction_vec) const;
+		bool parse_pathway_to_vector(std::string pathway_in, std::vector<rsp::index_int_t> &spe_vec, std::vector<rsp::index_int_t> &reaction_vec) const;
 		int get_number_of_elements() const;
 
 	public:
@@ -505,14 +505,14 @@ namespace reactionNetwork_sr {
 		* force the next reaction to be  next_reaction, next species to be next_spe, because what we want is just pathway probability
 		* directly set the next reaction and next species the ones we want
 		*/
-		double pathway_prob_sim_move_one_step(double when_time, vertex_t curr_spe, std::size_t next_reaction, vertex_t next_spe, double &pathway_prob, std::string atom_followed = "H");
+		double pathway_prob_sim_move_one_step(double when_time, vertex_t curr_spe, rsp::index_int_t next_reaction, vertex_t next_spe, double &pathway_prob, std::string atom_followed = "H");
 		//input a pathway, return its pathway prob
 		/*
 		//parse pathway to spe and reaction vector
 		std::vector<size_t> spe_vec; std::vector<size_t> reaction_vec;
 		this->parse_pathway_to_vector(pathway_in, spe_vec, reaction_vec);
 		*/
-		double pathway_prob_input_pathway_sim_once(const double init_time, const double pathway_end_time, const std::vector<size_t> &spe_vec, const std::vector<size_t> &reaction_vec, std::string atom_followed = "H");
+		double pathway_prob_input_pathway_sim_once(const double init_time, const double pathway_end_time, const std::vector<rsp::index_int_t> &spe_vec, const std::vector<rsp::index_int_t> &reaction_vec, std::string atom_followed = "H");
 
 
 	public:

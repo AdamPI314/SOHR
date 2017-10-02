@@ -2016,13 +2016,13 @@ namespace reactionNetwork_sr {
 		//return true;
 	}
 
-	bool superReactionNetwork::parse_pathway_to_vector(std::string pathway_in, std::vector<size_t>& spe_vec, std::vector<size_t>& reaction_vec) const
+	bool superReactionNetwork::parse_pathway_to_vector(std::string pathway_in, std::vector<rsp::index_int_t>& spe_vec, std::vector<rsp::index_int_t>& reaction_vec) const
 	{
 		spe_vec.resize(0);
 		reaction_vec.resize(0);
 
 		//const char* pattern="\\w\\d+";
-		const char* pattern = "\\d+";
+		const char* pattern = "[-]?\\d+";
 		boost::regex re(pattern);
 
 		boost::sregex_iterator it(pathway_in.begin(), pathway_in.end(), re);
@@ -2034,10 +2034,10 @@ namespace reactionNetwork_sr {
 		}
 		for (size_t i = 0; i < reaction_spe.size(); ++i) {
 			if (i % 2 == 0) {
-				spe_vec.push_back(boost::lexical_cast<size_t>(reaction_spe[i]));
+				spe_vec.push_back(boost::lexical_cast<rsp::index_int_t>(reaction_spe[i]));
 			}
 			else if (i % 2 == 1) {
-				reaction_vec.push_back(boost::lexical_cast<size_t>(reaction_spe[i]));
+				reaction_vec.push_back(boost::lexical_cast<rsp::index_int_t>(reaction_spe[i]));
 			}
 		}
 
@@ -2243,7 +2243,7 @@ namespace reactionNetwork_sr {
 		return curr_pathway_local;
 	}
 
-	double superReactionNetwork::pathway_prob_sim_move_one_step(double when_time, vertex_t curr_spe, std::size_t next_reaction, vertex_t next_spe, double & pathway_prob, std::string atom_followed)
+	double superReactionNetwork::pathway_prob_sim_move_one_step(double when_time, vertex_t curr_spe, rsp::index_int_t next_reaction, vertex_t next_spe, double & pathway_prob, std::string atom_followed)
 	{
 		if (when_time >= (tau - INFINITESIMAL_DT)) {
 			return when_time;
@@ -2267,7 +2267,7 @@ namespace reactionNetwork_sr {
 		return when_time;
 	}
 
-	double superReactionNetwork::pathway_prob_input_pathway_sim_once(double const init_time, const double pathway_end_time, const std::vector<size_t> &spe_vec, const std::vector<size_t> &reaction_vec, std::string atom_followed)
+	double superReactionNetwork::pathway_prob_input_pathway_sim_once(double const init_time, const double pathway_end_time, const std::vector<rsp::index_int_t> &spe_vec, const std::vector<rsp::index_int_t> &reaction_vec, std::string atom_followed)
 	{
 		//set pathway end time
 		set_tau(pathway_end_time);
@@ -2733,7 +2733,7 @@ namespace reactionNetwork_sr {
 
 	double reactionNetwork_sr::superReactionNetwork::calculate_path_weight_based_on_path_probability(std::string path, std::string atom_followed, double start_time, double end_time)
 	{
-		std::vector<std::size_t> spe_vec; std::vector<std::size_t> reaction_vec;
+		std::vector<rsp::index_int_t> spe_vec; std::vector<rsp::index_int_t> reaction_vec;
 		double prob = 0.0;
 		this->parse_pathway_to_vector(path, spe_vec, reaction_vec);
 		prob = pathway_prob_input_pathway_sim_once(start_time, end_time, spe_vec, reaction_vec, atom_followed);

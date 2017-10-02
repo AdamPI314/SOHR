@@ -37,7 +37,9 @@ void pathwayHandler::get_pathway(std::string filename, std::vector<std::string> 
 		}
 		// there may be blank lines
 		if (s.size() > 0) {
-			boost::tokenizer<> tok(s);
+			boost::char_separator<char> sep(",");
+			typedef boost::tokenizer< boost::char_separator<char> > t_tokenizer;
+			t_tokenizer tok(s, sep);
 			//just push back pathway name
 			pathway_vec.push_back(std::string(*(tok.begin())));
 			//for(boost::tokenizer<>::iterator beg=tok.begin(); beg!=tok.end(); ++beg){

@@ -376,7 +376,7 @@ namespace reactionNetworkODESolver_sr {
 			std::string atom_followed; std::string real_path;
 			this->split_atom_followed_and_pathway(path_v[pi], atom_followed, real_path);
 
-			std::vector<size_t> spe_vec; std::vector<size_t> reaction_vec;
+			std::vector<rsp::index_int_t> spe_vec; std::vector<rsp::index_int_t> reaction_vec;
 			this->parse_pathway_to_vector(real_path, spe_vec, reaction_vec);
 
 			for (std::size_t tj = 1; tj < Ntime; ++tj) {
@@ -507,7 +507,7 @@ namespace reactionNetworkODESolver_sr {
 			std::string atom_followed; std::string pathway;
 			this->split_atom_followed_and_pathway(pathway_vec[k], atom_followed, pathway);
 
-			std::vector<size_t> spe_vec; std::vector<size_t> reaction_vec;
+			std::vector<rsp::index_int_t> spe_vec; std::vector<rsp::index_int_t> reaction_vec;
 			this->parse_pathway_to_vector(pathway, spe_vec, reaction_vec);
 
 			// if the concentration of initial species is zero, no need to calculate
@@ -570,7 +570,7 @@ namespace reactionNetworkODESolver_sr {
 		std::string atom_followed; std::string real_path;
 		this->split_atom_followed_and_pathway(path, atom_followed, real_path);
 
-		std::vector<size_t> spe_vec; std::vector<size_t> reaction_vec;
+		std::vector<rsp::index_int_t> spe_vec; std::vector<rsp::index_int_t> reaction_vec;
 		this->parse_pathway_to_vector(real_path, spe_vec, reaction_vec);
 
 		for (std::size_t l = 0; l < Nlocal; ++l) {
@@ -596,7 +596,7 @@ namespace reactionNetworkODESolver_sr {
 		std::string atom_followed; std::string real_path;
 		this->split_atom_followed_and_pathway(path, atom_followed, real_path);
 
-		std::vector<size_t> spe_vec; std::vector<size_t> reaction_vec;
+		std::vector<rsp::index_int_t> spe_vec; std::vector<rsp::index_int_t> reaction_vec;
 		this->parse_pathway_to_vector(real_path, spe_vec, reaction_vec);
 
 		for (std::size_t l = 0; l < Nlocal; ++l) {

@@ -220,7 +220,7 @@ void driver::evaluate_path_integral_over_time(const boost::mpi::communicator & w
 
 	// evaluate path integral on each core
 	double pathway_prob_db_t = 0.0;
-	std::vector<size_t> spe_vec; std::vector<size_t> reaction_vec;
+	std::vector<rsp::index_int_t> spe_vec; std::vector<rsp::index_int_t> reaction_vec;
 
 	for (size_t i = 0; i < prob_Mat.size(); ++i) {
 		for (size_t j = 0; j < prob_Mat[0].size(); ++j) {

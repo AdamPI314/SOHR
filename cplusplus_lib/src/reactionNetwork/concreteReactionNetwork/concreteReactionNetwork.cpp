@@ -240,7 +240,7 @@ namespace reactionNetwork_sr {
 	double concreteReactionNetwork::pathway_AT_input_pathway_sim_once(double init_time, double pathway_end_time, std::string pathway_in)
 	{
 		//parse pathway to spe and reaction vector
-		std::vector<size_t> spe_vec; std::vector<size_t> reaction_vec;
+		std::vector<rsp::index_int_t> spe_vec; std::vector<rsp::index_int_t> reaction_vec;
 		this->parse_pathway_to_vector(pathway_in, spe_vec, reaction_vec);
 
 		//set pathway end time
