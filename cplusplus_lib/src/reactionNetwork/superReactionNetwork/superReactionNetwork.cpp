@@ -1898,7 +1898,7 @@ namespace reactionNetwork_sr {
 		eppstein::len_path_t lp_tmp;
 		BGL_FORALL_ADJ(curr_vertex, v, st_tree.getTree(), eppstein::sidetrack_tree::TreeContainer)
 		{
-			if (v == curr_vertex)
+			if (static_cast<vertex_index_t>(v) == curr_vertex)
 				continue;
 			lp_tmp.cost = st_tree.properties(v).cost;
 			lp_tmp.vertex_index_in_sidetrack_tree = st_tree.properties(v).vertex_index_in_tree;
@@ -1942,7 +1942,7 @@ namespace reactionNetwork_sr {
 			path_e_t.push_back(v.reaction_index);
 
 			auto n = v.to_vertex;
-			while (n != t)
+			while (n != static_cast<vertex_index_t>(t))
 			{
 				path_v_t.push_back(n);
 				path_e_t.push_back(properties(predecessor_edges_r[n]).reaction_index);
