@@ -402,8 +402,8 @@ namespace propagator_sr {
 					//stead state probability
 					this->chattering_group_spe_ss_prob_data_pgt[super_group_idx][time_i] = equil_ratio[label_i_tmp];
 
-					//escaping rate, gotta to think about it later, kinda make sense
-					this->spe_drc_data_pgt[spe_idx_tmp][time_i] *= equil_ratio[label_i_tmp];
+					////escaping rate, gotta to think about it later, kinda make sense
+					//this->spe_drc_data_pgt[spe_idx_tmp][time_i] *= equil_ratio[label_i_tmp];
 
 					++label_i_tmp;
 				}
