@@ -2212,7 +2212,9 @@ namespace reactionNetwork_sr {
 
 				curr_pathway_local += "R";
 				//negative reaction index represent chattering group number
-				curr_pathway_local += boost::lexical_cast<std::string>(-1 * chattering_group_id);
+				//since there is no -1 * 0, which means, to the first chattering_group_id 0, negative 0 is still 0,
+				//negative sign will not show on pathway string, here we make it to be -1*(chattering_group_id+1)
+				curr_pathway_local += boost::lexical_cast<std::string>(-1 * (chattering_group_id + rsp::INDIDATOR));
 
 				curr_pathway_local += "S";
 				curr_pathway_local += boost::lexical_cast<std::string>(next_vertex);

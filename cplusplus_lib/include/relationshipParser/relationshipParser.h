@@ -18,12 +18,14 @@
 namespace relationshipParser_sr {
 
 	namespace mt = misc_template;
-	//type define
 
 	//time type
 	typedef double my_time_t;
 	//index type or count number/integer
 	typedef int index_int_t;
+
+	//a constant, used as indicator
+	const index_int_t INDIDATOR = 100000;
 
 	/*
 	* reaction network reaction index and ChemKin reaction index lookup table, the reason the ChemKin index is a vector
