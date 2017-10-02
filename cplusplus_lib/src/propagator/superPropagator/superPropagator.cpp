@@ -234,6 +234,31 @@ namespace propagator_sr {
 			}
 		}
 
+		//write to json file
+		boost::property_tree::ptree pt_root_tmp;
+		for (std::size_t i = 0; i < this->sp_chattering_pgt->species_chattering_group_mat.size(); ++i) {
+			boost::property_tree::ptree pt_child_tmp;
+			for (std::size_t j = 0; j < this->sp_chattering_pgt->species_chattering_group_mat[i].size(); ++j) {
+				pt_child_tmp.put(boost::lexical_cast<std::string>(j), this->sp_chattering_pgt->species_chattering_group_mat[i][j]);
+			}
+			pt_root_tmp.put_child(boost::lexical_cast<std::string>(i), pt_child_tmp);
+		}
+
+		std::ofstream out_stream;
+		try
+		{
+			//open to use
+			//this->cwd + std::string("/input/setting.json"),  std::locale()
+			out_stream.open(this->cwd_pgt + std::string("/output/chattering_group_info.json"));
+
+			boost::property_tree::write_json(out_stream, pt_root_tmp);
+		}//try
+		catch (std::ofstream::failure e) {
+			std::cerr << "Exception opening/reading/closing file\n";
+		}//catch
+
+		out_stream.close();
+
 	}
 
 	std::shared_ptr<chattering_sr::chattering> superPropagator::get_sp_of_chattering()
