@@ -2291,13 +2291,8 @@ namespace reactionNetwork_sr {
 		//set pathway end time
 		set_tau(pathway_end_time);
 
-		////parse pathway to spe and reaction vector
-		//std::vector<size_t> spe_vec; std::vector<size_t> reaction_vec;
-		//this->parse_pathway_to_vector(pathway_in, spe_vec, reaction_vec);
-
 		//basically, we assume there must be a reaction at the beginning, so should multiply be the 1-P_min(tau=0|t;S^{0})
 		double pathway_prob = 1.0;
-
 		double when_time = init_time;
 
 		//start from the first reaction
@@ -2330,23 +2325,26 @@ namespace reactionNetwork_sr {
 
 					when_time = chattering_group_reaction_time_from_importance_sampling_without_cutoff(when_time, chattering_group_id, u_1);
 
-					//choose one randomly based on drc at this time, actually going out by that direction
+					/*step 1*/
+					//based on drc at this time, calculate probability going out by that direction
 					std::vector<double> drc_prob(this->sp_chattering_rnk->species_chattering_group_mat[chattering_group_id].size(), 0.0);
 					for (std::size_t i = 0; i < drc_prob.size(); ++i) {
 						drc_prob[i] = this->evaluate_spe_drc_at_time(when_time,
 							this->sp_chattering_rnk->species_chattering_group_mat[chattering_group_id][i]);
 					}
 					double drc_prob_sum = std::accumulate(drc_prob.begin(), drc_prob.end(), 0.0);
-					//notice out species is spe_vec[i+1]
-					if (drc_prob_sum > 0.0)
-						pathway_prob *= drc_prob[this->sp_chattering_rnk->spe_idx_2_chattering_group_id_idx[spe_vec[i + 1]].second];
+					//make sure there is at least one direction out, there is no, dead end, return 0.0 probability
+					if (drc_prob_sum <= 0.0)
+						return 0.0;
 
-					auto ss_prob_idx = this->sp_chattering_rnk->spe_idx_2_super_group_idx.at(spe_vec[i + 1]);
-					auto ss_ratio_tmp = this->evaluate_chattering_group_ss_prob_at_time(when_time, ss_prob_idx);
+					//notice out species is spe_vec[i + 1], next_species1
+					pathway_prob *= drc_prob[this->sp_chattering_rnk->spe_idx_2_chattering_group_id_idx[spe_vec[i + 1]].second] / drc_prob_sum;
+					/*step 1*/
 
-					//multiply by stead state ratio if not zero
-					if (ss_ratio_tmp > 0)
-						pathway_prob *= ss_ratio_tmp;
+					/*step 2*/
+					pathway_prob *= reaction_spe_branching_ratio(when_time, spe_vec[i + 1], reaction_vec[i + 1], spe_vec[i + 2], atom_followed);
+					/*step 2*/
+
 				}//boundary time problem
 
 				//move two steps actually
