@@ -66,7 +66,7 @@ namespace propagator_sr {
 		if (temperature_time_pgt != 0)
 			delete temperature_time_pgt;
 
-		// chattering group
+		//chattering group
 		for (std::size_t i = 0; i < chattering_group_k_data_pgt.size(); ++i) {
 			if (chattering_group_k_pgt.size() == 0)
 				break;
@@ -161,8 +161,8 @@ namespace propagator_sr {
 
 	void superPropagator::find_chattering_group(const std::vector<rsp::spe_info_base>& species_network_v)
 	{
-		// since there might be groups of trapped species, such as A=B, B=C, C=D, A,B,C,D belongs to the same fast transition group
-		// use union find here
+		//since there might be groups of trapped species, such as A=B, B=C, C=D, A,B,C,D belongs to the same fast transition group
+		//use union find here
 		std::unordered_set<int> unique_trapped_species;
 		for (auto x : this->sp_chattering_pgt->chattering_spe) {
 			for (auto y : x) {
@@ -188,11 +188,11 @@ namespace propagator_sr {
 				idx_2_label[this->sp_chattering_pgt->chattering_spe[1][i]]);
 		}
 
-		// find fast transition groups
+		//find fast transition groups
 		std::unordered_set<int> unique_root_species;
 		for (auto x : this->sp_chattering_pgt->chattering_spe) {
 			for (auto y : x) {
-				// find root
+				//find root
 				auto s = label_2_idx[uf.root(idx_2_label[y])];
 				unique_root_species.insert(s);
 			}
@@ -203,7 +203,7 @@ namespace propagator_sr {
 		}
 		for (auto x : this->sp_chattering_pgt->chattering_spe) {
 			for (auto y : x) {
-				// find root
+				//find root
 				auto s = label_2_idx[uf.root(idx_2_label[y])];
 				if (fast_transition_group_spe[s].find(y) == fast_transition_group_spe[s].end()) {
 					fast_transition_group_spe[s].insert(y);
@@ -241,7 +241,7 @@ namespace propagator_sr {
 			for (std::size_t j = 0; j < this->sp_chattering_pgt->species_chattering_group_mat[i].size(); ++j) {
 				pt_child_tmp.put(boost::lexical_cast<std::string>(j), this->sp_chattering_pgt->species_chattering_group_mat[i][j]);
 			}
-			pt_root_tmp.put_child(boost::lexical_cast<std::string>(i+rsp::INDICATOR), pt_child_tmp);
+			pt_root_tmp.put_child(boost::lexical_cast<std::string>(i + rsp::INDICATOR), pt_child_tmp);
 		}
 
 		std::ofstream out_stream;
@@ -305,8 +305,8 @@ namespace propagator_sr {
 
 	void superPropagator::update_info_of_chattering_species_reactions(const std::vector<rsp::spe_info_base> &species_network_v, const std::vector<rsp::reaction_info_base> &reaction_network_v, std::string atom_followed)
 	{
-		// since there might be groups of trapped species, such as A=B, B=C, C=D, A,B,C,D belongs to the same fast transition group
-		// use union find here
+		//since there might be groups of trapped species, such as A=B, B=C, C=D, A,B,C,D belongs to the same fast transition group
+		//use union find here
 		std::unordered_set<int> unique_trapped_species;
 		for (auto x : this->sp_chattering_pgt->spe_idx_2_chattering_group_id_idx) {
 			unique_trapped_species.insert(x.first);
@@ -316,7 +316,7 @@ namespace propagator_sr {
 			unique_fast_reactions.insert(r);
 		}
 
-		// for all species, cancel all neighbors fast transitions
+		//for all species, cancel all neighbors fast transitions
 		for (auto x : unique_trapped_species) {
 			for (auto y : species_network_v[x].reaction_k_index_s_coef_v) {
 				auto rxn_ind = y.first;
@@ -345,15 +345,15 @@ namespace propagator_sr {
 			x.assign(this->time_data_pgt.size(), 0.0);
 
 
-		// first order approximation, instead of zero-th order, for example, A(k1)=B(k2)->(k3)C, 
-		// if there is a fast transition between A and B, there we modify the k3, k3=k2/(k1+k2) * k3
+		//first order approximation, instead of zero-th order, for example, A(k1)=B(k2)->(k3)C, 
+		//if there is a fast transition between A and B, there we modify the k3, k3=k2/(k1+k2) * k3
 		for (std::size_t time_i = 0; time_i < this->time_data_pgt.size(); ++time_i) {
 
 			for (std::size_t group_i = 0; group_i < this->sp_chattering_pgt->species_chattering_group_mat.size(); ++group_i) {
 				auto spe_vec = this->sp_chattering_pgt->species_chattering_group_mat[group_i];
-				// transition matrix, to each group of species, calculate a transition matrix
+				//transition matrix, to each group of species, calculate a transition matrix
 
-				// transition matrix
+				//transition matrix
 				std::vector<std::vector<double> > transition_mat(spe_vec.size(), std::vector<double>(spe_vec.size(), 0.0));
 				for (auto s_idx_1 : spe_vec) {
 					for (auto y : species_network_v[s_idx_1].reaction_k_index_s_coef_v) {
@@ -363,19 +363,19 @@ namespace propagator_sr {
 							if (this->concentration_data_pgt[s_idx_1][time_i] != 0) {
 								auto drc_tmp = s_coef_1 *this->reaction_rate_data_pgt[rxn_ind][time_i] / this->concentration_data_pgt[s_idx_1][time_i];
 
-								// check out species index, if in this fast transition group, add to transition matrix
+								//check out species index, if in this fast transition group, add to transition matrix
 								for (auto s_idx_w : reaction_network_v[rxn_ind].out_spe_index_weight_v_map.at(atom_followed)) {
 									auto s_idx_2 = s_idx_w.first;
 									auto s_coef_2 = s_idx_w.second;
 
-									// if s_idx_2 is in the same group as s_idx_1, update transition matrix
+									//if s_idx_2 is in the same group as s_idx_1, update transition matrix
 									if (this->sp_chattering_pgt->spe_idx_2_chattering_group_id_idx.find(s_idx_2) == this->sp_chattering_pgt->spe_idx_2_chattering_group_id_idx.end())
 										continue;
 									else {
 										if (this->sp_chattering_pgt->spe_idx_2_chattering_group_id_idx.at(s_idx_1).first == this->sp_chattering_pgt->spe_idx_2_chattering_group_id_idx.at(s_idx_2).first) {
-											// assume first order transition, if it is 5A==10B, too hard to deal with
-											// speaking of transition matrix, to a A==B system, 
-											// k_{AB} should be the matrix element on the left bottom corner
+											//assume first order transition, if it is 5A==10B, too hard to deal with
+											//speaking of transition matrix, to a A==B system, 
+											//k_{AB} should be the matrix element on the left bottom corner
 											transition_mat[this->sp_chattering_pgt->spe_idx_2_chattering_group_id_idx.at(s_idx_2).second]
 												[this->sp_chattering_pgt->spe_idx_2_chattering_group_id_idx.at(s_idx_1).second] = drc_tmp / s_coef_2;
 										}
@@ -385,32 +385,38 @@ namespace propagator_sr {
 						}
 					}
 				}
-				// calculate equilibrium concentration based on transition matrix
+				//calculate steady state concentration based on transition matrix, dummy variable here
 				double first_real_positive_eigenvalue;
 				std::vector<double> equil_ratio;
-				auto ok = matrix_sr::cal_equilibrium_ratio_from_transition_matrix(transition_mat, first_real_positive_eigenvalue, equil_ratio);
+				auto ok = matrix_sr::cal_steady_state_ratio_from_transition_matrix(transition_mat, first_real_positive_eigenvalue, equil_ratio);
 
-				if (ok == false)
-					continue;
-				//chattering time scale/reduced k
-				this->chattering_group_k_data_pgt[group_i][time_i] = first_real_positive_eigenvalue;
-				//steady state probability
-				std::size_t label_i_tmp = 0;
-				for (auto spe_idx_tmp : spe_vec) {
-					auto idx = this->sp_chattering_pgt->spe_idx_2_super_group_idx[spe_idx_tmp];
-					//stead state probability
-					this->chattering_group_ss_prob_data_pgt[idx][time_i] = equil_ratio[label_i_tmp];
-					//escaping rate, gotta to think about it later, kinda make sense
-					this->spe_drc_data_pgt[spe_idx_tmp][time_i] *= equil_ratio[label_i_tmp];
+				//sum over all chattering species
+				this->chattering_group_k_data_pgt[group_i][time_i] = 0.0;
 
-					++label_i_tmp;
-				}
+				for (std::size_t label_i = 0; label_i < spe_vec.size(); ++label_i) {
+					auto spe_idx = spe_vec[label_i];
+					auto s_g_idx = this->sp_chattering_pgt->spe_idx_2_super_group_idx[spe_idx];
+
+					if (ok == true) {
+						//steady state probability
+						this->chattering_group_ss_prob_data_pgt[s_g_idx][time_i] = equil_ratio[label_i];
+						//escaping rate, gotta to think about it later, kinda make sense
+						this->spe_drc_data_pgt[spe_idx][time_i] *= equil_ratio[label_i];
+					}
+					else {
+						//steady state probability
+						this->chattering_group_ss_prob_data_pgt[s_g_idx][time_i] = (1.0 / spe_vec.size());
+						//no change on drc of this species
+					}
+
+					this->chattering_group_k_data_pgt[group_i][time_i] += this->spe_drc_data_pgt[spe_idx][time_i];
+				}//for
 
 
-			}// fast transition group
-		}// time
+			}//fast transition group
+		}//time
 
-		// done
+		//done
 	}
 
 	rsp::temperature_t superPropagator::return_target_temperature() const
@@ -466,8 +472,8 @@ namespace propagator_sr {
 		//molar fraction
 		double* x_t = new double[neq - 1]; double* y_t = new double[neq - 1];
 		for (int i = 0; i < neq - 1; ++i) { x_t[i] = 0.0; y_t[i] = 0.0; }
-		// Read 'Temperature(K)' and 'Pressure(atm)'.
-		// Read	MOLAR FRACTION for species.
+		//Read 'Temperature(K)' and 'Pressure(atm)'.
+		//Read	MOLAR FRACTION for species.
 		double Temp, Pressure;
 		read_configuration(Temp, Pressure, neq - 1, x_t);
 		//	chem_init(Temp, Pressure, neq-1, x_t, this->cwd_pgt+std::string("/input/setting.cfg"));
@@ -566,21 +572,21 @@ namespace propagator_sr {
 
 	void superPropagator::w2f_pgt(std::string tag)
 	{
-		// time
+		//time
 		std::ofstream fout((this->cwd_pgt + std::string("/output/time_") + tag + std::string(".csv")).c_str());
 		for (size_t i = 0; i < time_data_pgt.size(); ++i) {
 			fout << std::setprecision(std::numeric_limits<double>::max_digits10 + 1) << time_data_pgt[i] << std::endl;
 		}
 		fout.clear(); fout.close();
 
-		// temperature
+		//temperature
 		fout.open((this->cwd_pgt + std::string("/output/temperature_") + tag + std::string(".csv")).c_str());
 		for (size_t i = 0; i < temperature_data_pgt.size(); ++i) {
 			fout << std::setprecision(std::numeric_limits<double>::max_digits10 + 1) << temperature_data_pgt[i] << std::endl;
 		}
 		fout.clear(); fout.close();
 
-		// pressure
+		//pressure
 		fout.open((this->cwd_pgt + std::string("/output/pressure_") + tag + std::string(".csv")).c_str());
 		for (size_t i = 0; i < pressure_data_pgt.size(); ++i) {
 			//fout<<pressure_data_pgt[time_i]/1013250<<"\t"<<pressure_data_pgt[time_i]<<std::endl;
@@ -588,7 +594,7 @@ namespace propagator_sr {
 		}
 		fout.clear(); fout.close();
 
-		// concentration, 8 species
+		//concentration, 8 species
 		fout.open((this->cwd_pgt + std::string("/output/concentration_") + tag + std::string(".csv")).c_str());
 		for (size_t i = 0; i < concentration_data_pgt[0].size(); ++i) {
 			for (size_t j = 0; j < concentration_data_pgt.size(); ++j) {
@@ -600,7 +606,7 @@ namespace propagator_sr {
 		}
 		fout.clear(); fout.close();
 
-		//// int_drc, cumulative destructive rate constant
+		////int_drc, cumulative destructive rate constant
 		//fout.open((this->cwd_pgt + std::string("/output/int_drc_") + tag + std::string(".csv")).c_str());
 		//for (size_t time_i = 0; time_i < spe_drc_int_data_pgt[0].size(); ++time_i) {
 			//for (size_t j = 0; j < spe_drc_int_data_pgt.size(); ++j) {
@@ -612,7 +618,7 @@ namespace propagator_sr {
 		//}
 		//fout.clear(); fout.close();
 
-		// destruction rate constant,pseudo first order destructive rate constant
+		//destruction rate constant,pseudo first order destructive rate constant
 		fout.open((this->cwd_pgt + std::string("/output/drc_") + tag + std::string(".csv")).c_str());
 		for (size_t i = 0; i < spe_drc_data_pgt[0].size(); ++i) {
 			for (size_t j = 0; j < spe_drc_data_pgt.size(); ++j) {
@@ -638,7 +644,7 @@ namespace propagator_sr {
 		//}
 		//fout.clear(); fout.close();
 
-		// reaction rate
+		//reaction rate
 		fout.open((this->cwd_pgt + std::string("/output/reaction_rate_") + tag + std::string(".csv")).c_str());
 		for (size_t i = 0; i < reaction_rate_data_pgt[0].size(); ++i) {
 			for (size_t j = 0; j < reaction_rate_data_pgt.size(); ++j) {
@@ -700,8 +706,8 @@ namespace propagator_sr {
 		double pressure_atm = this->pgt_pt.get<double>("chem_init.pressure_atm");
 
 		//The pressure has to be in cgs unit, convert pascal(Pa) to dyne/square centimeter [dyn/cm**2]
-		// 1atm= 101325 Pa
-		// 1Pa= 10 dyn/cm**2
+		//1atm= 101325 Pa
+		//1Pa= 10 dyn/cm**2
 		Pressure = pressure_atm * 1013250;
 		Temp = this->pgt_pt.get<double>("chem_init.init_temperature");
 
@@ -717,7 +723,7 @@ namespace propagator_sr {
 	{
 		dt = this->pgt_pt.get<double>("lsode_init.dt");
 
-		// Read 'lsode' parameters.
+		//Read 'lsode' parameters.
 		lsodestore.atol = this->pgt_pt.get<double>("lsode_init.atol");
 		lsodestore.rtol = this->pgt_pt.get<double>("lsode_init.rtol");
 		lsodestore.mf = this->pgt_pt.get<int>("lsode_init.mf");
@@ -809,7 +815,7 @@ namespace propagator_sr {
 
 #ifdef __USE_CANTERA_
 		mechanism::kinetics::cantera_init();
-#endif // __USE_CANTERA_
+#endif //__USE_CANTERA_
 
 
 		//Read the file named "chem.out", read in the chemical reactions index

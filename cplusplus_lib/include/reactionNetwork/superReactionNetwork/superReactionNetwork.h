@@ -10,8 +10,8 @@
 //#pragma once
 
 #include <fstream>
-#include <utility>                          // for std::pair
-#include <algorithm>                        // for std::for_each and std::find_if
+#include <utility>                          //for std::pair
+#include <algorithm>                        //for std::for_each and std::find_if
 #include <iterator>
 #include <ctime>
 #include <limits> //std::numeric_limits
@@ -30,7 +30,7 @@
 #include "../../pathwayHandler/pathwayHandler.h"
 
 #include <boost/config.hpp>
-#include <boost/utility.hpp> // for boost::tie
+#include <boost/utility.hpp> //for boost::tie
 #include <boost/graph/adjacency_list.hpp>
 #include <boost/graph/graphviz.hpp>
 #include <boost/lexical_cast.hpp>
@@ -90,8 +90,8 @@ namespace reactionNetwork_sr {
 		double edge_weight;
 
 		//stoichiometric coefficient, like A+A->B+B, s_coef_reactant= s_coef_product= 2
-		rsp::stoichiometric_coef_t s_coef_reactant; // stoichiometric coefficient, default value = 1
-		rsp::stoichiometric_coef_t s_coef_product; // stoichiometric coefficient, default value = 1
+		rsp::stoichiometric_coef_t s_coef_reactant; //stoichiometric coefficient, default value = 1
+		rsp::stoichiometric_coef_t s_coef_product; //stoichiometric coefficient, default value = 1
 		EdgeProperties_graph() :edge_index(0), reaction_index(0), edge_weight(0.0), s_coef_reactant(1.0), s_coef_product(1.0) {}
 		EdgeProperties_graph(rsp::index_int_t reaction_index_in, rsp::stoichiometric_coef_t s_coef_reactant_in, rsp::stoichiometric_coef_t s_coef_product_in) :
 			edge_index(0), reaction_index(reaction_index_in), edge_weight(0.0), s_coef_reactant(s_coef_reactant_in), s_coef_product(s_coef_product_in) {}
@@ -174,12 +174,12 @@ namespace reactionNetwork_sr {
 		double shortest_distance;
 
 	protected:
-		// Graph theoretic enumeration of chemical pathways
-		// IRPC paper, http://www.tandfonline.com/doi/abs/10.1080/0144235X.2016.1220774
-		// M-matrix
+		//Graph theoretic enumeration of chemical pathways
+		//IRPC paper, http://www.tandfonline.com/doi/abs/10.1080/0144235X.2016.1220774
+		//M-matrix
 		//std::vector<std::vector<std::size_t> > M_matrix;
 		atom_M_matrix_t atom_M_matrix;
-		// R-matrix
+		//R-matrix
 		//matrix_sr::path_R_matrix_t R_matrix;
 		atom_R_matrix_t atom_R_matrix;
 
@@ -200,8 +200,8 @@ namespace reactionNetwork_sr {
 		//read species and reaction info, parse reaction network, transform all stuff into reaction network format
 		//construct the edgeVector and the edgeProperty so that we can build the reaction network
 		void read_chem_out_spe_reaction_network(std::vector<VertexPair> &edgeVector, std::vector<EdgeProperties_graph> &edgePro, std::vector<VertexProperties_graph>& vertex_info);
-		// update species super atom info
-		// super atom is defined as a general atom, which could be any atom, the number equals to the sum of all atoms
+		//update species super atom info
+		//super atom is defined as a general atom, which could be any atom, the number equals to the sum of all atoms
 		void update_super_atom_info(std::string super_atom = "X");
 	public:
 		void set_species_initial_concentration();
@@ -418,7 +418,7 @@ namespace reactionNetwork_sr {
 		vertex_t random_pick_next_spe(rsp::index_int_t reaction_index, std::string atom_followed = "H");
 
 	public:
-		// XS1R1S2--> X and S1R1S2
+		//XS1R1S2--> X and S1R1S2
 		void split_atom_followed_and_pathway(std::string str_in, std::string &atom_followed, std::string &pathway) const;
 		/*
 		* parse pathway like S2R2S5R4S1 to two vectors
@@ -435,7 +435,7 @@ namespace reactionNetwork_sr {
 		virtual bool update_reaction_rate(double in_time) = 0;
 		void set_reaction_rate(vertex_t i, double reaction_rate);
 		void set_is_reaction_rate_nonzero_from_setting_file();
-		// set is reaction rate nonzero based the real reaction rate
+		//set is reaction rate nonzero based the real reaction rate
 		void set_is_reaction_rate_nonzero_from_previous_iteration();
 
 	public:
@@ -468,6 +468,7 @@ namespace reactionNetwork_sr {
 	public:
 		//defer to subclass
 		virtual double evaluate_spe_concentration_at_time(double time, std::size_t index = 0) const = 0;
+		virtual double evaluate_spe_drc_at_time(double time, std::size_t index = 0) const = 0;
 		virtual double evaluate_chattering_group_ss_prob_at_time(double in_time, size_t index = 0) const = 0;
 
 	public:
@@ -517,78 +518,78 @@ namespace reactionNetwork_sr {
 
 
 	public:
-		// initiate M-Matrix
+		//initiate M-Matrix
 		void initiate_M_matrix(std::string atom_followed);
-		// initiate M-Matrix following all atoms
+		//initiate M-Matrix following all atoms
 		void initiate_M_matrix();
-		// print out M-matrix
+		//print out M-matrix
 		void print_M_matrix(std::string atom_followed);
 
 		matrix_sr::size_t_matrix_t return_M_matrix(std::string atom_followed);
 
-		// initiate R-Matrix, v1, store reaction index
+		//initiate R-Matrix, v1, store reaction index
 		void initiate_R_matrix_v1(std::string atom_followed);
-		// initiate R-Matrix, v2, store edge index, notice edge index is different than reaction index
-		// one reaction might corresponds to multiple edges
+		//initiate R-Matrix, v2, store edge index, notice edge index is different than reaction index
+		//one reaction might corresponds to multiple edges
 		void initiate_R_matrix_v2(std::string atom_followed);
-		// initiate R-matrix following all atoms
+		//initiate R-matrix following all atoms
 		void initiate_R_matrix();
 
 		matrix_sr::path_R_matrix_t return_R_matrix(std::string atom_followed);
 
-		// print out R-matrix
+		//print out R-matrix
 		void print_R_matrix(std::string atom_followed);
-		// get M_matrix element
+		//get M_matrix element
 		std::size_t get_M_matrix_element(std::string atom_followed, std::size_t i, std::size_t j);
-		// get R_matrix element
+		//get R_matrix element
 		matrix_sr::path_R_matrix_element_t get_R_matrix_element(std::string atom_followed, std::size_t i, std::size_t j);
 
 	public:
-		// convert R matrix pathway representation to pathway string, like S0R1S1
+		//convert R matrix pathway representation to pathway string, like S0R1S1
 		std::string R_matrix_path_representation_to_string(matrix_sr::path_t p);
-		// tell whether a path contains zero reaction rate reactions or not
+		//tell whether a path contains zero reaction rate reactions or not
 		bool contains_zero_reaction_rate_reactions(matrix_sr::path_t p);
 		std::vector<std::string> get_path_string_element_i_j(const matrix_sr::path_R_matrix_t &pRm, std::size_t i, std::size_t j);
 
-		// return a vector of pathway string of length n, species i-->j, change matrix element, so that each matrix element can not contain more than topN sub-path
+		//return a vector of pathway string of length n, species i-->j, change matrix element, so that each matrix element can not contain more than topN sub-path
 		std::vector<std::string> get_path_string_update_matrix_element_i_j_topN(matrix_sr::path_R_matrix_t &pRm, const std::size_t i, const std::size_t j,
 			const std::string atom_followed = "H", const std::size_t topN = 10, const double start_time = 0.0, const double end_time = 1.0);
-		// save vector of path string to file
+		//save vector of path string to file
 		void path_string_vector_s2f(std::vector<std::string> vs, std::string filename = "./output/pathname.csv");
 
-		// save heuristic path string to file
+		//save heuristic path string to file
 		void heuristic_path_string_vector_s2f(std::string atom_followed = "H", std::size_t n = 1, std::string filename = "./output/heuristic_pathname.csv");
-		// save heuristic path string to memory, n is pathway length
+		//save heuristic path string to memory, n is pathway length
 		std::set<std::string> heuristic_path_string_vector_s2m(std::string atom_followed = "H", std::size_t n = 1);
-		// sorted by path length
+		//sorted by path length
 		std::set<std::string> heuristic_path_string_vector_sorted_based_on_path_length(std::string atom_followed = "H", std::size_t n = 1, std::size_t topN = 10);
-		// sorted by pathway probability, here topN is a const for all species because of matrix multiplication, matrix power N is the same for all species
+		//sorted by pathway probability, here topN is a const for all species because of matrix multiplication, matrix power N is the same for all species
 		std::set<std::string> heuristic_path_string_vector_sorted_based_on_path_prob(std::string atom_followed = "H", std::size_t n = 1, std::size_t topN = 10, double end_time_ratio = 1.0);
 
 
-		// path weight for path sorting
-		// method 1, by path length
+		//path weight for path sorting
+		//method 1, by path length
 		double calculate_path_weight_path_length(std::string path);
-		// method 2, by pathway probability at a time
+		//method 2, by pathway probability at a time
 		double calculate_path_weight_based_on_path_probability(std::string path, std::string atom_followed = "H", double start_time = 0.0, double end_time = 1.0);
 
-		// for a stage number, generate pathway and save to file, this stage number could be time stage number or iteration stage number
-		// sort by path length, following all elements
+		//for a stage number, generate pathway and save to file, this stage number could be time stage number or iteration stage number
+		//sort by path length, following all elements
 		std::size_t heuristic_path_string_vector_by_stage_number_path_length_all_elements(const std::size_t stage_n, std::string filename = "./output/heuristic_pathname_1.csv", std::size_t = 10);
-		// sort by pathway probability at a time, using one trajectory, following all elements
+		//sort by pathway probability at a time, using one trajectory, following all elements
 		std::size_t heuristic_path_string_vector_by_stage_number_path_prob_all_elements(const std::size_t stage_n, std::string filename = "./output/heuristic_pathname_1.csv", std::size_t topN = 10, double end_time_ratio = 1.0);
 		std::size_t heuristic_path_string_vector_by_stage_number_path_prob_all_elements_s2m(const std::size_t stage_n, std::vector<std::string> &path_all_v, std::size_t topN = 10, double end_time_ratio = 1.0);
-		// sort by pathway probability at a time, using one trajectory, following "X", super atom
+		//sort by pathway probability at a time, using one trajectory, following "X", super atom
 		std::size_t heuristic_path_string_vector_by_stage_number_path_prob_super_element(const std::size_t stage_n, std::string filename = "./output/heuristic_pathname_1.csv", std::size_t = 10, double end_time_ratio = 1.0);
 
-		// species index with initial concentrations
+		//species index with initial concentrations
 		std::set<std::size_t> return_species_index_with_initial_concentration() const;
 		std::set<std::size_t> return_species_index_without_initial_concentration() const;
 		std::set<std::pair<std::size_t, double> > return_species_index_and_initial_concentration() const;
 
-		// generate pathway by running monte carlo trajectories, by following one element
+		//generate pathway by running monte carlo trajectories, by following one element
 		void generate_path_by_running_monte_carlo_trajectory_s2m(std::vector<statistics > &statistics_v, std::size_t Ntrajectory, std::string atom_followed = "H", double end_time_ratio = 1.0);
-		// generate pathway by running monte carlo trajectories, by following all elements
+		//generate pathway by running monte carlo trajectories, by following all elements
 		std::size_t generate_path_by_running_monte_carlo_trajectory_all_elements_s2m(std::vector<statistics > &statistics_v, std::size_t Ntrajectory, double end_time_ratio = 1.0);
 
 		std::vector<rsp::element_info> return_element_vecotr() const;

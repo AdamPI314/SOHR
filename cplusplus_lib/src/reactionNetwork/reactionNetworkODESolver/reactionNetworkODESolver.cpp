@@ -18,7 +18,7 @@ namespace reactionNetworkODESolver_sr {
 		this->update_number_of_ways_making_species();
 
 		this->single_source = this->pgt_pt.get<int>("SOHR_init.single_source_species");
-		// if there is a single source, change the time-dependent single correction factor
+		//if there is a single source, change the time-dependent single correction factor
 		if (this->single_source >= 0) {
 			this->single_source_spe_dr_rnos.assign(this->time_data_pgt.size(), 0.0);
 			this->single_source_additional_concentration_data_rnos.assign(this->time_data_pgt.size(), 0.0);
@@ -194,18 +194,18 @@ namespace reactionNetworkODESolver_sr {
 
 		update_single_source_species_dr_based_on_spe_concentration_s_ct_np();
 
-		// don't include initial concentration of source, renormalize among other non-source species
+		//don't include initial concentration of source, renormalize among other non-source species
 		single_source_additional_concentration_data_rnos[0] = 0.0;
 
 		double Npoints = this->time_data_pgt.size();
 		double delta_t = this->time_data_pgt.back() / (double)(Npoints - 1);
 
-		//// Rectangle rule based numerical integral
+		////Rectangle rule based numerical integral
 		//for (std::size_t i = 1; i < single_source_additional_concentration_data_rnos.size(); ++i) {
 		//single_source_additional_concentration_data_rnos[i] = this->single_source_spe_dr_rnos[i] * delta_t;
 		//}
 
-		// Trapezoidal rule
+		//Trapezoidal rule
 		for (std::size_t ti = 1; ti < single_source_additional_concentration_data_rnos.size(); ++ti) {
 			single_source_additional_concentration_data_rnos[ti] = 0.5 * (this->single_source_spe_dr_rnos[ti - 1] + this->single_source_spe_dr_rnos[ti]) * delta_t;
 		}
@@ -266,7 +266,7 @@ namespace reactionNetworkODESolver_sr {
 	void reactionNetworkODESolver::check_zero_concentration(double deltaConcentration)
 	{
 		for (std::size_t i = 0; i < concentration_data_pgt.size(); ++i) {
-			// not the initial concentration
+			//not the initial concentration
 			for (std::size_t j = 1; j < concentration_data_pgt[i].size(); ++j) {
 				if (concentration_data_pgt[i][j] == 0)
 					concentration_data_pgt[i][j] = deltaConcentration;
@@ -276,13 +276,13 @@ namespace reactionNetworkODESolver_sr {
 
 	void reactionNetworkODESolver::divide_concentration_by_number_of_ways_making_it()
 	{
-		// find available elements, based on initial concentrations
+		//find available elements, based on initial concentrations
 		std::vector<bool> element_available(this->element_v.size(), false);
 		for (auto x : this->species_network_v) {
-			// initial concentration greater than zero
+			//initial concentration greater than zero
 			if (x.spe_conc > 0) {
 				for (std::size_t i = 0; i < this->element_v.size(); ++i)
-					// find a element
+					//find a element
 					if (x.spe_component.at(this->element_v[i].ele_name) > 0) {
 						element_available[i] = true;
 					}
@@ -291,7 +291,7 @@ namespace reactionNetworkODESolver_sr {
 		}//for
 
 		std::vector<double> num_ways(this->species_network_v.size(), 0.0);
-		// for each species, if conatains one available element, #ways make it +1
+		//for each species, if conatains one available element, #ways make it +1
 		for (std::size_t i = 0; i < this->species_network_v.size(); ++i) {
 			for (std::size_t j = 0; j < this->element_v.size(); ++j) {
 				if (element_available[j] == false)
@@ -321,13 +321,13 @@ namespace reactionNetworkODESolver_sr {
 		this->num_ways_making_spe.assign(this->species_network_v.size(), 0.0);
 
 
-		// find available elements, based on initial concentrations
+		//find available elements, based on initial concentrations
 		std::vector<bool> element_available(this->element_v.size(), false);
 		for (auto x : this->species_network_v) {
-			// initial concentration greater than zero
+			//initial concentration greater than zero
 			if (x.spe_conc > 0) {
 				for (std::size_t i = 0; i < this->element_v.size(); ++i)
-					// find a element
+					//find a element
 					if (x.spe_component.at(this->element_v[i].ele_name) > 0) {
 						element_available[i] = true;
 					}
@@ -335,7 +335,7 @@ namespace reactionNetworkODESolver_sr {
 			}//if
 		}//for
 
-		// for each species, if conatains one available element, #ways make it +1
+		//for each species, if conatains one available element, #ways make it +1
 		for (std::size_t i = 0; i < this->species_network_v.size(); ++i) {
 			for (std::size_t j = 0; j < this->element_v.size(); ++j) {
 				if (element_available[j] == false)
@@ -441,8 +441,8 @@ namespace reactionNetworkODESolver_sr {
 					this->number2Concentration);
 			}
 			else {
-				// nothing happens before the end time point, include the very last point
-				// because function "update_spe_conc_at_time_range" exclude the very last point, add it manually here
+				//nothing happens before the end time point, include the very last point
+				//because function "update_spe_conc_at_time_range" exclude the very last point, add it manually here
 				this->update_spe_concentration_at_time_range(preceding_time_index,
 					static_cast<std::size_t>(index_data_pgt.back() + 1),
 					preceding_spe_index, this->number2Concentration);
@@ -499,23 +499,23 @@ namespace reactionNetworkODESolver_sr {
 
 	void reactionNetworkODESolver::ODEdirectlyEvaluatePathwayProbability_si_tj(const std::size_t si, const std::size_t tj, const std::vector<std::string>& pathway_vec, const double P2C, const std::size_t Nlocal, std::vector<std::vector<double>>& prob_Mat)
 	{
-		// species name
+		//species name
 		std::string S = std::string("S") + boost::lexical_cast<std::string>(si);
 		double conc_S = 0.0;//local concentration for S
 		for (std::size_t k = 0; k < pathway_vec.size(); ++k) {
-			// notice here that letters before first "S" represents the followed atom
+			//notice here that letters before first "S" represents the followed atom
 			std::string atom_followed; std::string pathway;
 			this->split_atom_followed_and_pathway(pathway_vec[k], atom_followed, pathway);
 
 			std::vector<rsp::index_int_t> spe_vec; std::vector<rsp::index_int_t> reaction_vec;
 			this->parse_pathway_to_vector(pathway, spe_vec, reaction_vec);
 
-			// if the concentration of initial species is zero, no need to calculate
+			//if the concentration of initial species is zero, no need to calculate
 			if (this->species_network_v[spe_vec[0]].spe_conc > 0.0) {
 				for (std::size_t l = 0; l < Nlocal; ++l) {
-					// the initial concentration of starting species* path_prob* p2c of ending species,
-					// notice p2c is calculated from species components
-					// if the concentration of initial species is zero, no need to calculate
+					//the initial concentration of starting species* path_prob* p2c of ending species,
+					//notice p2c is calculated from species components
+					//if the concentration of initial species is zero, no need to calculate
 					conc_S += this->species_network_v[spe_vec[0]].spe_conc*
 						pathway_prob_input_pathway_sim_once(0.0, this->time_data_pgt[tj], spe_vec, reaction_vec, atom_followed)
 						* P2C
@@ -566,7 +566,7 @@ namespace reactionNetworkODESolver_sr {
 	{
 		//local probability for S
 		double prob_S = 0.0;
-		// notice here that letters before first "S" represents the followed atom
+		//notice here that letters before first "S" represents the followed atom
 		std::string atom_followed; std::string real_path;
 		this->split_atom_followed_and_pathway(path, atom_followed, real_path);
 
@@ -575,7 +575,7 @@ namespace reactionNetworkODESolver_sr {
 
 		for (std::size_t l = 0; l < Nlocal; ++l) {
 
-			// integrate over points before, Monte Carlo integral, uniformaly sample initial time
+			//integrate over points before, Monte Carlo integral, uniformaly sample initial time
 			for (std::size_t k = 0; k < tj; ++k) {
 				double t0 = rand->random_min_max(0, time_data_pgt[tj]);
 
@@ -592,7 +592,7 @@ namespace reactionNetworkODESolver_sr {
 	{
 		//local probability for S
 		double prob_S = 0.0;
-		// notice here that letters before first "S" represents the followed atom
+		//notice here that letters before first "S" represents the followed atom
 		std::string atom_followed; std::string real_path;
 		this->split_atom_followed_and_pathway(path, atom_followed, real_path);
 
@@ -601,7 +601,7 @@ namespace reactionNetworkODESolver_sr {
 
 		for (std::size_t l = 0; l < Nlocal; ++l) {
 
-			// integrate over points before, Rectangle rule
+			//integrate over points before, Rectangle rule
 			for (std::size_t k = 0; k < tj; ++k) {
 				prob_S += pathway_prob_input_pathway_sim_once(time_data_pgt[k], time_data_pgt[tj], spe_vec, reaction_vec, atom_followed)
 					* this->evaluate_single_source_additional_concentration_at_time(time_data_pgt[k]);

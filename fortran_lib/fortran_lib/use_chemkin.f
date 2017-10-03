@@ -19,10 +19,10 @@
       write(51,*) ""
 
       ctmp="  Please make sure that in the file 'global_extern_vars.h"
-     >// "', the value of the constant 'NumberOfReactions'"
+     >//"', the value of the constant 'NumberOfReactions'"
       write(51,"(A)") ctmp
       ctmp="  is  the same as 'Number of Reactions (NII)', and the"
-     >// " value of the constant 'NumberOfSpecies' is the"
+     >//" value of the constant 'NumberOfSpecies' is the"
       write(51,"(A)") ctmp
       ctmp="  same as 'Number of Species (NKK)'."
       write(51,"(A)") ctmp
@@ -33,11 +33,11 @@
       write(51,*) "   "
 
       ctmp="  Please make sure that the values of constants 'LENIWK'"
-     >// ", 'LENRWK' and 'LENCWK' in the file "
+     >//", 'LENRWK' and 'LENCWK' in the file "
       write(51,"(A)") ctmp
       ctmp="  'global_extern_vars.h"
-     >// "' are the same as those in the file"
-     >// " 'ckvariables.f'. Also, they must"
+     >//"' are the same as those in the file"
+     >//" 'ckvariables.f'. Also, they must"
       write(51,"(A)") ctmp
       ctmp="  be larger than"
      >//"  'LENICK', 'LENRCK' and 'LENCCK' respectively."

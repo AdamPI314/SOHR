@@ -45,10 +45,10 @@ class Tree_bundled
 public:
 	/* an adjacency_list like we need it */
 	typedef adjacency_list<
-		//vecS, // allow parallel edges
-		listS, // doesn't allow parallel edges
-		vecS, // vertex container
-		bidirectionalS, // directed graph
+		//vecS, //allow parallel edges
+		listS, //doesn't allow parallel edges
+		vecS, //vertex container
+		bidirectionalS, //directed graph
 		/*property<vertex_properties_t, VERTEXPROPERTIES>,*/
 		//property<edge_properties_t, EDGEPROPERTIES>
 

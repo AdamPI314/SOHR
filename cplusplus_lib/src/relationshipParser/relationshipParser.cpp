@@ -252,7 +252,7 @@ namespace relationshipParser_sr {
 			std::string str_tmp = *(itr2_reactant);
 			std::string str_tmp_r = str_tmp;
 			//std::cout<<str_tmp<<std::endl;
-			// decompose species which are reactants
+			//decompose species which are reactants
 			spe_name_s_coef_t spe_name_s_coef_reactant;
 			boost::sregex_token_iterator itr2_reactant_spe(str_tmp.begin(), str_tmp.end(), regexPattern2_spe, 0);
 			boost::smatch what;
@@ -269,7 +269,7 @@ namespace relationshipParser_sr {
 			boost::sregex_token_iterator itr2_product(reaction_v[i].reaction_name.begin(), reaction_v[i].reaction_name.end(), regexPattern2_product, 0);
 			str_tmp = *(itr2_product);
 			//std::cout<<str_tmp<<std::endl;
-			// decompose species which are products
+			//decompose species which are products
 			spe_name_s_coef_t spe_name_s_coef_product;
 			boost::sregex_token_iterator itr2_product_spe(str_tmp.begin(), str_tmp.end(), regexPattern2_spe, 0);
 			for (; itr2_product_spe != end; ++itr2_product_spe) {

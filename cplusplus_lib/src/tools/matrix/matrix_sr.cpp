@@ -4,7 +4,7 @@
 #include <iostream>
 #include <cassert>
 #include <cmath>
-#include <complex> // std::complex, std::imag
+#include <complex> //std::complex, std::imag
 
 #include "../../../include/tools/matrix/eigen_unsym.h"
 
@@ -15,7 +15,7 @@ namespace matrix_sr {
 		std::size_t m_k_k = m_k[0].size();
 		std::size_t k_n_k = k_n.size();
 		std::size_t n = k_n[0].size();
-		// #columns of first matrix equals #rows of second matrix
+		//#columns of first matrix equals #rows of second matrix
 		assert(m_k_k == k_n_k);
 
 		size_t_matrix_t return_matrix(m, std::vector<rsp::index_int_t>(n, 0));
@@ -51,41 +51,41 @@ namespace matrix_sr {
 		std::size_t m_k_k = m_k[0].size();
 		std::size_t k_n_k = k_n.size();
 		std::size_t n = k_n[0].size();
-		// #columns of first matrix equals #rows of second matrix
+		//#columns of first matrix equals #rows of second matrix
 		assert(m_k_k == k_n_k);
-		// each matrix element is a potential matrix
+		//each matrix element is a potential matrix
 		path_R_matrix_t return_matrix(m, std::vector<path_R_matrix_element_t>(n));
 
 		for (std::size_t i = 0; i < m; ++i) {
 			for (std::size_t j = 0; j < n; ++j) {
-				// define multiplication
-				// combine two vectors into a single vector
+				//define multiplication
+				//combine two vectors into a single vector
 				path_R_matrix_element_t p_new;
 				for (std::size_t k = 0; k < m_k_k; ++k) {
 					for (std::size_t l1 = 0; l1 < m_k[i][k].size(); ++l1) {
-						// for all none-zero path, zero means no path, just a empty vector
+						//for all none-zero path, zero means no path, just a empty vector
 						if (m_k[i][k][l1].size() != 0) {
 							for (std::size_t l2 = 0; l2 < k_n[k][j].size(); ++l2) {
 								if (k_n[k][j][l2].size() != 0) {
 									std::vector<rsp::index_int_t> v_new;
-									// combine two vectors
-									v_new.reserve(m_k[i][k][l1].size() + k_n[k][j][l2].size()); // preallocate memory
+									//combine two vectors
+									v_new.reserve(m_k[i][k][l1].size() + k_n[k][j][l2].size()); //preallocate memory
 									v_new.insert(v_new.end(), m_k[i][k][l1].begin(), m_k[i][k][l1].end());
 									v_new.insert(v_new.end(), k_n[k][j][l2].begin(), k_n[k][j][l2].end());
 									p_new.push_back(v_new);
-								} // if
-							} // l2
+								} //if
+							} //l2
 
-						} // if
+						} //if
 
-					} // l1
-				} // k
+					} //l1
+				} //k
 
 				if (p_new.size() == 0)
 					p_new = {};
 				return_matrix[i][j] = p_new;
-			} // j
-		} // i
+			} //j
+		} //i
 
 		return return_matrix;
 	}
@@ -104,7 +104,7 @@ namespace matrix_sr {
 
 	}
 
-	bool cal_equilibrium_ratio_from_transition_matrix(std::vector<std::vector<double>>& transition_mat, double &first_real_positive_eigenvalue, std::vector<double> &equil_ratio)
+	bool cal_steady_state_ratio_from_transition_matrix(std::vector<std::vector<double>>& transition_mat, double &first_real_positive_eigenvalue, std::vector<double> &equil_ratio)
 	{
 		std::size_t m = transition_mat.size();
 		equil_ratio.assign(m, 0.0);
@@ -120,15 +120,15 @@ namespace matrix_sr {
 		auto eigen_val = h.wri;
 		auto eigen_vec = h.zz;
 
-		// find the first eigen value that's is positive
-		// if there is more than one steady states, ignore the rest lol
+		//find the first eigen value that's is positive
+		//if there is more than one steady states, ignore the rest lol
 		std::size_t first_real_idx = 0;
 		bool ok = false;
 
 		for (std::size_t i = 0; i < m; ++i) {
 			if (eigen_val[i].imag() != 0)
 				continue;
-			// imaginary is zero, real number
+			//imaginary is zero, real number
 			if (eigen_val[i].real() > 0) {
 				first_real_idx = i;
 				ok = true;
@@ -136,7 +136,7 @@ namespace matrix_sr {
 			}
 		}
 
-		// if there is no real positive eigen-value, return false
+		//if there is no real positive eigen-value, return false
 		if (ok == false)
 			return false;
 
@@ -146,7 +146,7 @@ namespace matrix_sr {
 			equil_ratio[i] = eigen_vec[i][first_real_idx] * eigen_vec[i][first_real_idx];
 		}
 
-		// normalize
+		//normalize
 		double sum_tmp = 0.0;
 		for (std::size_t i = 0; i < m; ++i) {
 			sum_tmp += equil_ratio[i];
@@ -180,7 +180,7 @@ namespace matrix_sr {
 
 	//matrix_sr::path_R_matrix_t m1;
 	//m1.resize(5);
-	//// each matrix element is a matrix
+	////each matrix element is a matrix
 	//m1[0] = { {},{ { 1 } },{ { 2 } },{ { 3 } },{ { 4 } } };
 	//m1[1] = { {},{},{ { 5 } },{ { 6 } },{ { 7 } } };
 	//m1[2] = { {},{},{},{ { 8 } },{ { 9 } } };
@@ -235,4 +235,4 @@ namespace matrix_sr {
 
 }
 
-#endif // !__MATRIX_SR_CPP_
+#endif //!__MATRIX_SR_CPP_

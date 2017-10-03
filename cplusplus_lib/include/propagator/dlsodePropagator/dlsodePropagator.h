@@ -87,9 +87,9 @@ namespace propagator_sr {
 		*
 		*/
 		void time_propagator_s_ct_np_s2m_pgt(std::vector<double> uncertainties, double critical_time, double end_time) override;
-		// cc-->constant concentration, hold the concentration of the first species to be constant
+		//cc-->constant concentration, hold the concentration of the first species to be constant
 		void time_propagator_s_ct_np_cc1_s2m_pgt(std::vector<double> uncertainties, double critical_time, double end_time) override;
-		// cc-->constant concentration, hold the concentration of the first two species to be constant
+		//cc-->constant concentration, hold the concentration of the first two species to be constant
 		void time_propagator_s_ct_np_cc2_s2m_pgt(std::vector<double> uncertainties, double critical_time, double end_time) override;
 
 	};

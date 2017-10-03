@@ -75,7 +75,7 @@ namespace mechanism {
 		::ctcdyr(RHO, T, Y, ::chemkin.ickwrk, ::chemkin.rckwrk, CDOT, DDOT);
 #else
 		::ckcdyr(RHO, T, Y, ::chemkin.ickwrk, ::chemkin.rckwrk, CDOT, DDOT);
-#endif // __USE_CANTERA_
+#endif //__USE_CANTERA_
 	}
 
 	void kinetics::kfkr(const double *P, const double *T, const double *X, double *FWDK, double *REVK) {
@@ -84,12 +84,12 @@ namespace mechanism {
 		::ctkfkr(P, T, X, ::chemkin.ickwrk, ::chemkin.rckwrk, FWDK, REVK);
 #else
 		::ckkfkr(P, T, X, ::chemkin.ickwrk, ::chemkin.rckwrk, FWDK, REVK);
-#endif // __USE_CANTERA_
+#endif //__USE_CANTERA_
 	}
 
-	// Shirong Bai wrote a fortron subroutine to calculate the reaction rates given temperature and molar concentration
-	// Applicable for reactions with rate constant independent of pressure
-	// where sr stands for Shirong
+	//Shirong Bai wrote a fortron subroutine to calculate the reaction rates given temperature and molar concentration
+	//Applicable for reactions with rate constant independent of pressure
+	//where sr stands for Shirong
 	void kinetics::kfkrsr(const double *T, const double *C, double *FWDK, double *REVK) {
 		::ckkfkrsr(T, C, ::chemkin.ickwrk, ::chemkin.rckwrk, FWDK, REVK);
 	}

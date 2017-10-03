@@ -11,12 +11,12 @@
 #elif __APPLE__
     #include "TargetConditionals.h"
     #if TARGET_OS_IPHONE && TARGET_IPHONE_SIMULATOR
-        // define something for simulator   
+        //define something for simulator   
     #elif TARGET_OS_IPHONE
-        // define something for iphone  
+        //define something for iphone  
     #else
         #define TARGET_OS_OSX 1
-        // define something for OSX
+        //define something for OSX
     #endif
 
 #elif __linux
@@ -24,9 +24,9 @@
 	#define __CANTERA_AVAILABLE_
 	#define __USE_CANTERA_
 #elif __unix 
-    // all unices not caught above
+    //all unices not caught above
 #elif __posix
-    // POSIX
+    //POSIX
 #endif
 
 

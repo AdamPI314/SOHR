@@ -17,7 +17,7 @@
 //look the website below for more info
 //http://stackoverflow.com/questions/1120140/how-can-i-read-and-parse-csv-files-in-c
 
-// Best read CSV file, could read other files with small modification
+//Best read CSV file, could read other files with small modification
 //I would just create a class representing a row.
 //Then stream into that object:
 class CSVRow
@@ -55,9 +55,9 @@ public:
 	CSVIterator(std::istream& str) :m_str(str.good() ? &str : NULL) { ++(*this); }
 	CSVIterator() :m_str(NULL) {}
 
-	//// Pre Increment
+	////Pre Increment
 	CSVIterator& operator++() { if (m_str) { m_row.readNextRow(*m_str); m_str = m_str->good() ? m_str : NULL; }return *this; }
-	//// Post increment
+	////Post increment
 	CSVIterator operator++(int) { CSVIterator tmp(*this); ++(*this); return tmp; }
 	CSVRow const& operator*()   const { return m_row; }
 	CSVRow const* operator->()  const { return &m_row; }

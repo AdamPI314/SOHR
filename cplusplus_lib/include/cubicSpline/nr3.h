@@ -6,7 +6,7 @@
 //#define _USENRERRORCLASS_ 1
 //#define _TURNONFPES_ 1
 
-// all the system #include's we'll ever need
+//all the system #include's we'll ever need
 #include <fstream>
 #include <cmath>
 #include <complex>
@@ -23,7 +23,7 @@
 
 using namespace std;
 
-// macro-like inline functions
+//macro-like inline functions
 
 template<class T>
 inline T SQR(const T a) { return a*a; }
@@ -82,7 +82,7 @@ inline void SWAP(T &a, T &b)
 	T dum = a; a = b; b = dum;
 }
 
-// exception handling
+//exception handling
 
 #ifndef _USENRERRORCLASS_
 #define throw(message) \
@@ -102,17 +102,17 @@ void NRcatch(NRerror err) {
 }
 #endif
 
-// usage example:
+//usage example:
 //
 //	try {
 //		somebadroutine();
 //	}
 //	catch(NRerror s) {NRcatch(s);}
 //
-// (You can of course substitute any other catch body for NRcatch(s).)
+//(You can of course substitute any other catch body for NRcatch(s).)
 
 
-// Vector and Matrix Classes
+//Vector and Matrix Classes
 
 #ifdef _USESTDVECTOR_
 #define NRvector vector
@@ -121,25 +121,25 @@ void NRcatch(NRerror err) {
 template <class T>
 class NRvector {
 private:
-	int nn;	// size of array. upper index is nn-1
+	int nn;	//size of array. upper index is nn-1
 	T *v;
 public:
 	NRvector();
-	explicit NRvector(int n);		// Zero-based array
+	explicit NRvector(int n);		//Zero-based array
 	NRvector(int n, const T &a);	//initialize to constant value
-	NRvector(int n, const T *a);	// Initialize to array
-	NRvector(const NRvector &rhs);	// Copy constructor
+	NRvector(int n, const T *a);	//Initialize to array
+	NRvector(const NRvector &rhs);	//Copy constructor
 	NRvector & operator=(const NRvector &rhs);	//assignment
-	typedef T value_type; // make T available externally
+	typedef T value_type; //make T available externally
 	inline T & operator[](const int i);	//i'th element
 	inline const T & operator[](const int i) const;
 	inline int size() const;
-	void resize(int newn); // resize (contents not preserved)
-	void assign(int newn, const T &a); // resize and assign a constant value
+	void resize(int newn); //resize (contents not preserved)
+	void assign(int newn, const T &a); //resize and assign a constant value
 	~NRvector();
 };
 
-// NRvector definitions
+//NRvector definitions
 
 template <class T>
 NRvector<T>::NRvector() : nn(0), v(NULL) {}
@@ -167,7 +167,7 @@ NRvector<T>::NRvector(const NRvector<T> &rhs) : nn(rhs.nn), v(nn>0 ? new T[nn] :
 
 template <class T>
 NRvector<T> & NRvector<T>::operator=(const NRvector<T> &rhs)
-// postcondition: normal assignment via copying has been performed;
+//postcondition: normal assignment via copying has been performed;
 //		if vector and rhs were different sizes, vector
 //		has been resized to match the size of rhs
 {
@@ -239,7 +239,7 @@ NRvector<T>::~NRvector()
 	if (v != NULL) delete[](v);
 }
 
-// end of NRvector definitions
+//end of NRvector definitions
 
 #endif //ifdef _USESTDVECTOR_
 
@@ -251,18 +251,18 @@ private:
 	T **v;
 public:
 	NRmatrix();
-	NRmatrix(int n, int m);			// Zero-based array
+	NRmatrix(int n, int m);			//Zero-based array
 	NRmatrix(int n, int m, const T &a);	//Initialize to constant
-	NRmatrix(int n, int m, const T *a);	// Initialize to array
-	NRmatrix(const NRmatrix &rhs);		// Copy constructor
+	NRmatrix(int n, int m, const T *a);	//Initialize to array
+	NRmatrix(const NRmatrix &rhs);		//Copy constructor
 	NRmatrix & operator=(const NRmatrix &rhs);	//assignment
-	typedef T value_type; // make T available externally
+	typedef T value_type; //make T available externally
 	inline T* operator[](const int i);	//subscripting: pointer to row i
 	inline const T* operator[](const int i) const;
 	inline int nrows() const;
 	inline int ncols() const;
-	void resize(int newn, int newm); // resize (contents not preserved)
-	void assign(int newn, int newm, const T &a); // resize and assign a constant value
+	void resize(int newn, int newm); //resize (contents not preserved)
+	void assign(int newn, int newm, const T &a); //resize and assign a constant value
 	~NRmatrix();
 };
 
@@ -306,7 +306,7 @@ NRmatrix<T>::NRmatrix(const NRmatrix &rhs) : nn(rhs.nn), mm(rhs.mm), v(nn>0 ? ne
 
 template <class T>
 NRmatrix<T> & NRmatrix<T>::operator=(const NRmatrix<T> &rhs)
-// postcondition: normal assignment via copying has been performed;
+//postcondition: normal assignment via copying has been performed;
 //		if matrix and rhs were different sizes, matrix
 //		has been resized to match the size of rhs
 {
@@ -485,31 +485,31 @@ NRMat3d<T>::~NRMat3d()
 }
 
 
-// basic type names (redefine if your bit lengths don't match)
+//basic type names (redefine if your bit lengths don't match)
 
-typedef int Int; // 32 bit integer
+typedef int Int; //32 bit integer
 typedef unsigned int Uint;
 
 #ifdef _MSC_VER
-typedef __int64 Llong; // 64 bit integer
+typedef __int64 Llong; //64 bit integer
 typedef unsigned __int64 Ullong;
 #else
-typedef long long int Llong; // 64 bit integer
+typedef long long int Llong; //64 bit integer
 typedef unsigned long long int Ullong;
 #endif
 
-typedef char Char; // 8 bit integer
+typedef char Char; //8 bit integer
 typedef unsigned char Uchar;
 
-typedef double Doub; // default floating type
+typedef double Doub; //default floating type
 typedef long double Ldoub;
 
-typedef complex<double> Complex; // default complex type
+typedef complex<double> Complex; //default complex type
 
 typedef bool Bool;
 
-// NaN: uncomment one of the following 3 methods of defining a global NaN
-// you can test by verifying that (NaN != NaN) is true
+//NaN: uncomment one of the following 3 methods of defining a global NaN
+//you can test by verifying that (NaN != NaN) is true
 
 static const Doub NaN = numeric_limits<Doub>::quiet_NaN();
 
@@ -518,7 +518,7 @@ static const Doub NaN = numeric_limits<Doub>::quiet_NaN();
 
 //Doub NaN = sqrt(-1.);
 
-// vector types
+//vector types
 
 typedef const NRvector<Int> VecInt_I;
 typedef NRvector<Int> VecInt, VecInt_O, VecInt_IO;
@@ -553,7 +553,7 @@ typedef NRvector<Complex> VecComplex, VecComplex_O, VecComplex_IO;
 typedef const NRvector<Bool> VecBool_I;
 typedef NRvector<Bool> VecBool, VecBool_O, VecBool_IO;
 
-// matrix types
+//matrix types
 
 typedef const NRmatrix<Int> MatInt_I;
 typedef NRmatrix<Int> MatInt, MatInt_O, MatInt_IO;
@@ -579,12 +579,12 @@ typedef NRmatrix<Doub> MatDoub, MatDoub_O, MatDoub_IO;
 typedef const NRmatrix<Bool> MatBool_I;
 typedef NRmatrix<Bool> MatBool, MatBool_O, MatBool_IO;
 
-// 3D matrix types
+//3D matrix types
 
 typedef const NRMat3d<Doub> Mat3DDoub_I;
 typedef NRMat3d<Doub> Mat3DDoub, Mat3DDoub_O, Mat3DDoub_IO;
 
-// Floating Point Exceptions for Microsoft compilers
+//Floating Point Exceptions for Microsoft compilers
 
 #ifdef _TURNONFPES_
 #ifdef _MSC_VER

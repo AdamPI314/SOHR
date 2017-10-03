@@ -7,8 +7,8 @@
 //clcf represents command line and config file
 clcf_parser::clcf_parser() :generic("Generic options"), config("Configuration"), hidden("Hidden options")
 {
-	// Declare a group of options that will be 
-	// allowed only on command line
+	//Declare a group of options that will be 
+	//allowed only on command line
 	generic.add_options()
 		("version,v", "print version string")
 		("help", "produce help message")
@@ -16,9 +16,9 @@ clcf_parser::clcf_parser() :generic("Generic options"), config("Configuration"),
 			"name of a file of a configuration.")
 		;
 
-	// Declare a group of options that will be 
-	// allowed both on command line and in
-	// config file
+	//Declare a group of options that will be 
+	//allowed both on command line and in
+	//config file
 	config.add_options()
 		("optimization", po::value<int>()->default_value(10),
 			"optimization level")
@@ -39,8 +39,8 @@ clcf_parser::clcf_parser() :generic("Generic options"), config("Configuration"),
 			"pathway ending with a species, specify which species it is")
 		;
 
-	// Hidden options, will be allowed both on command line and
-	// in config file, but will not be shown to the user.
+	//Hidden options, will be allowed both on command line and
+	//in config file, but will not be shown to the user.
 	hidden.add_options()
 		("input-file", po::value< std::vector<std::string> >(), "input file")
 		;
@@ -128,7 +128,7 @@ void clcf_parser::print() {
 //cf represents and config file
 cf_parser::cf_parser() :config("Configuration")
 {
-	// Declare a group of options that will be allowed in config file
+	//Declare a group of options that will be allowed in config file
 	config.add_options()
 		//time section
 		("time.min_time", po::value<my_time_t>()->default_value(0.0),
@@ -147,7 +147,7 @@ cf_parser::cf_parser() :config("Configuration")
 			"initial pressure in unit of atm")
 		("chem_init.init_temperature", po::value<double>()->default_value(1000.0),
 			"initial temperature in unit of Kelvin")
-		// we can use std::vector<std::string> instead of just std::string, if use std::string, use boost::tokenizer to parse data easily
+		//we can use std::vector<std::string> instead of just std::string, if use std::string, use boost::tokenizer to parse data easily
 		("chem_init.species_index_concentration", po::value<std::string>(),
 			"species index and corresponding concentration")
 

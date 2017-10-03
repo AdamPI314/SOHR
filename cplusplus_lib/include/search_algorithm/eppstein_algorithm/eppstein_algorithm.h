@@ -47,7 +47,7 @@ namespace eppstein_algorithm
 		~sidetrack_tree();
 	};
 
-	// length of path, path priority struct
+	//length of path, path priority struct
 	struct len_path_t
 	{
 		//path cost

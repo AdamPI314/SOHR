@@ -131,7 +131,7 @@ namespace propagator_sr {
 		double* c_t = new double[nkk];
 		for (int i = 0; i < nkk; ++i) { c_t[i] = 0.0; }
 
-		// Read 'Temperature(K)' and 'Pressure(atm)', and MOLAR FRACTION for species.
+		//Read 'Temperature(K)' and 'Pressure(atm)', and MOLAR FRACTION for species.
 		double Temp, Pressure;
 		read_configuration(Temp, Pressure, nkk, c_t);
 		//time step
@@ -242,11 +242,11 @@ namespace propagator_sr {
 		double* c_t = new double[nkk];
 		for (int i = 0; i < nkk; ++i) { c_t[i] = 0.0; }
 
-		// Read 'Temperature(K)' and 'Pressure(atm)', and MOLAR FRACTION for species.
+		//Read 'Temperature(K)' and 'Pressure(atm)', and MOLAR FRACTION for species.
 		double Temp, Pressure;
 		read_configuration(Temp, Pressure, nkk, c_t);
 
-		// linear combination prefactors
+		//linear combination prefactors
 		std::vector<double> pre_factor = { 0, 0, 1, -1, 2, -2, 2, -2 };
 		double initial_state = 0.0, final_state = 0.0;
 		for (int i = 0; i < nkk; ++i)
@@ -321,13 +321,13 @@ namespace propagator_sr {
 			//in case print_Count is too big
 			print_count = (print_count + 1) % INT_MAX;
 
-			// update final state
+			//update final state
 			final_state = 0.0;
 			for (int i = 0; i < nkk; ++i)
 				final_state += pre_factor[i] * c_t[i];
 
 		} while ((end_time - time_data_list_pgt.back()) > 0.001*dt && final_state > -1 * initial_state*order_parameter_ratio);
-		// data of the last time step is not saved, save it here
+		//data of the last time step is not saved, save it here
 		update_temporary_data_pgt(
 			time_data_list_pgt,
 			temperature_data_list_pgt,

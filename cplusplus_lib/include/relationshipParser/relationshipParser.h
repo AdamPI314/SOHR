@@ -184,8 +184,8 @@ namespace relationshipParser_sr {
 		reaction_direction_t reaction_direction;
 		reaction_rate_t reaction_rate;
 
-		// is reaction zero, used as a flag
-		// zero->false, none zero->true
+		//is reaction zero, used as a flag
+		//zero->false, none zero->true
 		bool is_reaction_rate_nonzero = false;
 		/*
 		* out species and corresponding weight
@@ -201,7 +201,7 @@ namespace relationshipParser_sr {
 		*/
 		std::map<std::string, std::vector<spe_index_weight_t > >  out_spe_index_weight_v_map;
 
-		// out species, branching ratio, by follow a atom
+		//out species, branching ratio, by follow a atom
 		std::map<std::string, std::map<std::size_t, double> > out_spe_index_branching_ratio_map_map;
 
 		reaction_info_base() :reaction_direction(both), reaction_rate(0.0) {}

@@ -19,26 +19,26 @@ namespace propagator_sr {
 		//propagate_and_initiate_cublic_spline_pgt();
 		initialize_sohr();
 
-		// only constant volume
+		//only constant volume
 		if (this->pgt_pt.get<std::string>("system.condition") == std::string("cv")) {
-			// dlsode
+			//dlsode
 			if (this->pgt_pt.get<std::string>("system.initializer") == std::string("dlsode")) {
 				time_initializer_using_dlsode_cv(this->pgt_pt.get<double>("time.critical_time"),
 					this->pgt_pt.get<double>("time.max_time"));
 			}
-			// initial guess
+			//initial guess
 			else if (this->pgt_pt.get<std::string>("system.initializer") == std::string("guess")) {
 				time_initializer_based_on_guess_cv(this->pgt_pt.get<double>("time.critical_time"),
 					this->pgt_pt.get<double>("time.max_time"));
 			}
-			// others
+			//others
 			else {
 				time_initializer_based_on_guess_cv(this->pgt_pt.get<double>("time.critical_time"),
 					this->pgt_pt.get<double>("time.max_time"));
 			}
 
 		}
-		// constant volume and constant temperature
+		//constant volume and constant temperature
 		else if (this->pgt_pt.get<std::string>("system.condition") == std::string("cv_ct")) {
 			if (this->pgt_pt.get<std::string>("system.initializer") == std::string("dlsode")) {
 				time_initializer_using_dlsode_cv_ct(this->pgt_pt.get<double>("time.critical_time"),
@@ -51,8 +51,8 @@ namespace propagator_sr {
 			}
 
 		}
-		// not constant volume
-		// surface reaction, constant temperature, np pressure
+		//not constant volume
+		//surface reaction, constant temperature, np pressure
 		else if (this->pgt_pt.get<std::string>("system.condition") == std::string("s_ct_np")) {
 			if (this->pgt_pt.get<std::string>("system.initializer") == std::string("dlsode")) {
 				time_initializer_using_dlsode_s_ct_np(this->pgt_pt.get<double>("time.critical_time"),
@@ -67,7 +67,7 @@ namespace propagator_sr {
 					this->pgt_pt.get<double>("time.max_time"));
 			}
 		}
-		// surface reaction, constant temperature, np pressure, cc1
+		//surface reaction, constant temperature, np pressure, cc1
 		else if (this->pgt_pt.get<std::string>("system.condition") == std::string("s_ct_np_cc1")) {
 			if (this->pgt_pt.get<std::string>("system.initializer") == std::string("dlsode")) {
 				time_initializer_using_dlsode_s_ct_np_cc1(this->pgt_pt.get<double>("time.critical_time"),
@@ -82,7 +82,7 @@ namespace propagator_sr {
 					this->pgt_pt.get<double>("time.max_time"));
 			}
 		}
-		// others
+		//others
 		else {
 			time_initializer_based_on_guess(this->pgt_pt.get<double>("time.critical_time"),
 				this->pgt_pt.get<double>("time.max_time"));
@@ -132,7 +132,7 @@ namespace propagator_sr {
 		std::size_t num_reaction = std::distance(reactionNetwork_chemkin_index_map.begin(),
 			reactionNetwork_chemkin_index_map.end());
 
-		// xgst[0]~xgst[nkk-1] are the MASS molar concentration of each species. xgst[nkk] is the temperature.
+		//xgst[0]~xgst[nkk-1] are the MASS molar concentration of each species. xgst[nkk] is the temperature.
 		//in which nkk is number of species
 		//number of equations neq=nkk+1
 		const int nkk = mechanism::kinetics::nkk(), neq =
@@ -149,16 +149,16 @@ namespace propagator_sr {
 		double *c_t = new double[nkk];
 		for (int i = 0; i < nkk; ++i) { c_t[i] = 0.0; }
 
-		// Read 'Temperature(K)' and 'Pressure(atm)'.
-		// Read	MOLAR CONCENTRATION for species.
+		//Read 'Temperature(K)' and 'Pressure(atm)'.
+		//Read	MOLAR CONCENTRATION for species.
 		double Temp;
 		read_configuration(Temp, ckstore.pressure, neq - 1, c_t);
 
 		//recalculate the pressure using equation P= nRT
 		//The pressure has to be in cgs unit, convert pascal(Pa) to dyne/square centimeter [dyn/cm**2]
-		// 1atm= 101325 Pa
-		// 1Pa= 10 dyn/cm**2
-		// P = nRT
+		//1atm= 101325 Pa
+		//1Pa= 10 dyn/cm**2
+		//P = nRT
 		double ru, ruc, pa;
 		mechanism::kinetics::rp(&ru, &ruc, &pa);
 		//ckstore.pressure = pressure_data_pgt[0];
@@ -268,7 +268,7 @@ namespace propagator_sr {
 		std::size_t num_reaction = std::distance(reactionNetwork_chemkin_index_map.begin(),
 			reactionNetwork_chemkin_index_map.end());
 
-		// xgst[0]~xgst[nkk-1] are the MASS molar concentration of each species. xgst[nkk] is the temperature.
+		//xgst[0]~xgst[nkk-1] are the MASS molar concentration of each species. xgst[nkk] is the temperature.
 		//in which nkk is number of species
 		//number of equations neq=nkk+1
 		const int nkk = mechanism::kinetics::nkk(), neq =
@@ -289,8 +289,8 @@ namespace propagator_sr {
 		double *y_t = new double[nkk];
 		for (int i = 0; i < nkk; ++i) { y_t[i] = 0.0; }
 
-		// Read 'Temperature(K)' and 'Pressure(atm)'.
-		// Read	MOLE FRACTION for species.
+		//Read 'Temperature(K)' and 'Pressure(atm)'.
+		//Read	MOLE FRACTION for species.
 		double Temp;
 		read_configuration(Temp, ckstore.pressure, neq - 1, x_t);
 		//normalization
@@ -298,7 +298,7 @@ namespace propagator_sr {
 		for (int i = 0; i < nkk; ++i) { sum += x_t[i]; }
 		for (int i = 0; i < nkk; ++i) { x_t[i] /= sum; }
 
-		// Convert mole fraction to molar concentration given pressure and temperature
+		//Convert mole fraction to molar concentration given pressure and temperature
 		mechanism::kinetics::xtcp(&ckstore.pressure, &Temp, x_t, c_t);
 
 		/*
@@ -444,7 +444,7 @@ namespace propagator_sr {
 			//cout<<R_A<<endl;
 		}
 
-		// xgst[0]~xgst[nkk-1] are the MASS FRACTION of each species. xgst[nkk] is the temperature.
+		//xgst[0]~xgst[nkk-1] are the MASS FRACTION of each species. xgst[nkk] is the temperature.
 		//in which nkk is number of species
 		//number of equations neq=nkk+1
 		const int nkk = mechanism::kinetics::nkk(), neq = mechanism::kinetics::nkk() + 1, nii = mechanism::kinetics::nii();
@@ -456,8 +456,8 @@ namespace propagator_sr {
 		double* x_t = new double[nkk]; double* y_t = new double[nkk];
 		for (int i = 0; i < nkk; ++i) { x_t[i] = 0.0; y_t[i] = 0.0; }
 
-		// Read 'Temperature(K)' and 'Pressure(atm)'.
-		// Read	MOLAR FRACTION for species.
+		//Read 'Temperature(K)' and 'Pressure(atm)'.
+		//Read	MOLAR FRACTION for species.
 		double Temp;
 		//	chem_init(Temp, ckstore.pressure, neq-1, x_t, this->cwd_dl+std::string("/input/setting.cfg"));
 		this->read_configuration(Temp, ckstore.pressure, neq - 1, x_t);
@@ -465,8 +465,8 @@ namespace propagator_sr {
 
 		//add temperature to initial conditions for lsode.
 		xgst[neq - 1] = Temp;
-		// Read time step 'dt(s)'.
-		// Read 'lsode' parameters.
+		//Read time step 'dt(s)'.
+		//Read 'lsode' parameters.
 		double dt = 0;
 		this->initialize_lsode(dt);
 
@@ -576,7 +576,7 @@ namespace propagator_sr {
 			//cout<<R_A<<endl;
 		}
 
-		// xgst[0]~xgst[nkk-1] are the MASS FRACTION of each species. xgst[nkk] is the temperature.
+		//xgst[0]~xgst[nkk-1] are the MASS FRACTION of each species. xgst[nkk] is the temperature.
 		//in which nkk is number of species
 		//number of equations neq=nkk+1
 		const int nkk = mechanism::kinetics::nkk(), neq = mechanism::kinetics::nkk() + 1, nii = mechanism::kinetics::nii();
@@ -588,8 +588,8 @@ namespace propagator_sr {
 		double* x_t = new double[nkk]; double* y_t = new double[nkk];
 		for (int i = 0; i < nkk; ++i) { x_t[i] = 0.0; y_t[i] = 0.0; }
 
-		// Read 'Temperature(K)' and 'Pressure(atm)'.
-		// Read	MOLAR FRACTION for species.
+		//Read 'Temperature(K)' and 'Pressure(atm)'.
+		//Read	MOLAR FRACTION for species.
 		double Temp;
 		//	chem_init(Temp, ckstore.pressure, neq-1, x_t, this->cwd_dl+std::string("/input/setting.cfg"));
 		this->read_configuration(Temp, ckstore.pressure, neq - 1, x_t);
@@ -597,8 +597,8 @@ namespace propagator_sr {
 
 		//add temperature to initial conditions for lsode.
 		xgst[neq - 1] = Temp;
-		// Read time step 'dt(s)'.
-		// Read 'lsode' parameters.
+		//Read time step 'dt(s)'.
+		//Read 'lsode' parameters.
 		double dt = 0;
 		this->initialize_lsode(dt);
 
@@ -706,7 +706,7 @@ namespace propagator_sr {
 			//cout<<R_A<<endl;
 		}
 
-		// xgst[0]~xgst[nkk-1] are the MASS molar concentration of each species. xgst[nkk] is the temperature.
+		//xgst[0]~xgst[nkk-1] are the MASS molar concentration of each species. xgst[nkk] is the temperature.
 		//in which nkk is number of species
 		//number of equations neq=nkk+1
 		const int nkk = mechanism::kinetics::nkk(), neq = mechanism::kinetics::nkk() + 1, nii = mechanism::kinetics::nii();
@@ -725,15 +725,15 @@ namespace propagator_sr {
 		double* c_t = new double[nkk];
 		for (int i = 0; i < nkk; ++i) { c_t[i] = 0.0; }
 
-		// Read 'Temperature(K)' and 'Pressure(atm)'.
-		// Read	MOLAR FRACTION for species.
+		//Read 'Temperature(K)' and 'Pressure(atm)'.
+		//Read	MOLAR FRACTION for species.
 		double Temp;
 		//	chem_init(Temp, ckstore.pressure, neq-1, x_t, this->cwd_dl+std::string("/input/setting.cfg"));
 		read_configuration(Temp, ckstore.pressure, neq - 1, c_t);
 		//add temperature to initial conditions for lsode.
 		xgst[neq - 1] = Temp;
-		// Read time step 'dt(s)'.
-		// Read 'lsode' parameters.
+		//Read time step 'dt(s)'.
+		//Read 'lsode' parameters.
 		//time step
 		double dt = 0;
 		//	lsode_init(dt, this->cwd_dl+std::string("/input/setting.cfg"));
@@ -770,9 +770,9 @@ namespace propagator_sr {
 			//Returns the forward and reverse reaction rates for reactions given pressure, temperature(s) and mole fractions.
 			//chemkincpp_sr::chemkin::ckkfkr(&ckstore.pressure, &Temp, x_t, FWDR_t, REVR_t);
 
-			// Shirong Bai wrote a fortron subroutine to calculate the reaction rates given temperature and molar concentration
-			// Applicable for reactions with rate constant independent of pressure
-			// where sr stands for Shirong
+			//Shirong Bai wrote a fortron subroutine to calculate the reaction rates given temperature and molar concentration
+			//Applicable for reactions with rate constant independent of pressure
+			//where sr stands for Shirong
 			mechanism::kinetics::kfkrsr(&Temp, c_t, FWDR_t, REVR_t);
 
 			//int NPrecision=16;
@@ -835,7 +835,7 @@ namespace propagator_sr {
 			//cout<<R_A<<endl;
 		}
 
-		// xgst[0]~xgst[nkk-1] are the MASS molar concentration of each species. xgst[nkk] is the temperature.
+		//xgst[0]~xgst[nkk-1] are the MASS molar concentration of each species. xgst[nkk] is the temperature.
 		//in which nkk is number of species
 		//number of equations neq=nkk+1
 		const int nkk = mechanism::kinetics::nkk(), neq = mechanism::kinetics::nkk() + 1, nii = mechanism::kinetics::nii();
@@ -854,15 +854,15 @@ namespace propagator_sr {
 		double* c_t = new double[nkk];
 		for (int i = 0; i < nkk; ++i) { c_t[i] = 0.0; }
 
-		// Read 'Temperature(K)' and 'Pressure(atm)'.
-		// Read	MOLAR FRACTION for species.
+		//Read 'Temperature(K)' and 'Pressure(atm)'.
+		//Read	MOLAR FRACTION for species.
 		double Temp;
 		//	chem_init(Temp, ckstore.pressure, neq-1, x_t, this->cwd_dl+std::string("/input/setting.cfg"));
 		read_configuration(Temp, ckstore.pressure, neq - 1, c_t);
 		//add temperature to initial conditions for lsode.
 		xgst[neq - 1] = Temp;
-		// Read time step 'dt(s)'.
-		// Read 'lsode' parameters.
+		//Read time step 'dt(s)'.
+		//Read 'lsode' parameters.
 		//time step
 		double dt = 0;
 		//	lsode_init(dt, this->cwd_dl+std::string("/input/setting.cfg"));
@@ -905,9 +905,9 @@ namespace propagator_sr {
 			//Returns the forward and reverse reaction rates for reactions given pressure, temperature(s) and mole fractions.
 			//chemkincpp_sr::chemkin::ckkfkr(&ckstore.pressure, &Temp, x_t, FWDR_t, REVR_t);
 
-			// Shirong Bai wrote a fortron subroutine to calculate the reaction rates given temperature and molar concentration
-			// Applicable for reactions with rate constant independent of pressure
-			// where sr stands for Shirong
+			//Shirong Bai wrote a fortron subroutine to calculate the reaction rates given temperature and molar concentration
+			//Applicable for reactions with rate constant independent of pressure
+			//where sr stands for Shirong
 			mechanism::kinetics::kfkrsr(&Temp, c_t, FWDR_t, REVR_t);
 
 			//[ print out
@@ -1175,9 +1175,9 @@ namespace propagator_sr {
 		double Temp = temperature_data_pgt[0];
 
 		////The pressure has to be in cgs unit, convert pascal(Pa) to dyne/square centimeter [dyn/cm**2]
-		//// 1atm= 101325 Pa
-		//// 1Pa= 10 dyn/cm**2
-		//// P = nRT
+		////1atm= 101325 Pa
+		////1Pa= 10 dyn/cm**2
+		////P = nRT
 		//double ru, ruc, pa;
 		//chemkincpp_sr::chemkin::rp(&ru, &ruc, &pa);
 		////ckstore.pressure = pressure_data_pgt[0];

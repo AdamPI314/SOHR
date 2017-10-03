@@ -4,13 +4,13 @@
 #include <vector>
 
 class UnionFind {
-	// Weighted Quick Union With Path Compression
+	//Weighted Quick Union With Path Compression
 public:
 	UnionFind(int n);
 public:
-	// id
+	//id
 	std::vector<int> id;
-	// weight
+	//weight
 	std::vector<int> w;
 
 public:

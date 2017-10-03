@@ -24,9 +24,9 @@ int main(int argc, char **argv) {
 	*/
 	/*************************************************************************************************/
 	po::variables_map vm;
-	// current working directory
+	//current working directory
 	std::string main_cwd;
-	// boost property tree
+	//boost property tree
 	boost::property_tree::ptree pt;
 
 	driver::parse_parameters(argc, argv, vm, main_cwd, pt);

@@ -6,7 +6,7 @@
 
 UnionFind::UnionFind(int n)
 {
-	// Weighted Quick Union With Path Compression
+	//Weighted Quick Union With Path Compression
 	this->id.assign(n, 0);
 	for (int i = 0; i < n; ++i)
 		this->id[i] = i;
@@ -15,7 +15,7 @@ UnionFind::UnionFind(int n)
 
 int UnionFind::root(int i)
 {
-	// path compression, flat tree, avoid deep tree
+	//path compression, flat tree, avoid deep tree
 	while (i != id[i]) {
 		id[i] = id[id[i]];
 		i = id[i];

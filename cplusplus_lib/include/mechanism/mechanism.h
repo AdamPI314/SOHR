@@ -54,9 +54,9 @@ namespace mechanism {
 		static void ytcr(const double *RHO, const double *T, const double *Y, double *C);
 		static void cdyr(const double *RHO, const double *T, const double *Y, double *CDOT, double *DDOT);
 		static void kfkr(const double *P, const double *T, const double *X, double *FWDK, double *REVK);
-		// Shirong Bai wrote a fortron subroutine to calculate the reaction rates given temperature and molar concentration
-		// Applicable for reactions with rate constant independent of pressure
-		// where sr stands for Shirong
+		//Shirong Bai wrote a fortron subroutine to calculate the reaction rates given temperature and molar concentration
+		//Applicable for reactions with rate constant independent of pressure
+		//where sr stands for Shirong
 		static void kfkrsr(const double *T, const double *C, double *FWDK, double *REVK);
 
 		static void kfrt(const double *P, const double *T, double *RKFT, double *RKRT);

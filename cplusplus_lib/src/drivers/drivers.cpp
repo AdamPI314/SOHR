@@ -13,12 +13,12 @@
 
 void driver::parse_parameters(const int argc, char ** argv, po::variables_map & vm, std::string &main_cwd, boost::property_tree::ptree & pt)
 {
-	// read vm
+	//read vm
 	clcf_parser clcf_parser_obj;
 	clcf_parser_obj.parse(argc, argv);
 	clcf_parser_obj.get_vm(vm);
 
-	// read main_cwd
+	//read main_cwd
 	if (vm.count("cwd")) {
 		main_cwd = vm["cwd"].as<std::string>();
 	}
@@ -27,7 +27,7 @@ void driver::parse_parameters(const int argc, char ** argv, po::variables_map & 
 	}
 	//std::cout << "main_cwd:\t" << boost::filesystem::canonical(main_cwd) << std::endl;
 
-	// read pt
+	//read pt
 	boost::property_tree::read_json(main_cwd + string("/input/setting.json"), pt, std::locale());
 
 }
@@ -140,7 +140,7 @@ void driver::generate_pathway_running_Monte_carlo_trajectory(const boost::mpi::c
 	statistics stat_test;
 	std::string str_t;
 
-	// generate pathway one trajectory
+	//generate pathway one trajectory
 	for (int i = 0; i < local_N; ++i) {
 		str_t = rnk_obj.pathway_sim_once(init_time, end_time, rnk_obj.return_initial_spe(), pt.get<std::string>("pathway.atom_followed")); //vertex 2 is H2
 		stat_test.insert_pathway_stat(str_t);
@@ -218,7 +218,7 @@ void driver::evaluate_path_integral_over_time(const boost::mpi::communicator & w
 
 	double tau = pt.get<double>("time.tau");
 
-	// evaluate path integral on each core
+	//evaluate path integral on each core
 	double pathway_prob_db_t = 0.0;
 	std::vector<rsp::index_int_t> spe_vec; std::vector<rsp::index_int_t> reaction_vec;
 
@@ -232,7 +232,7 @@ void driver::evaluate_path_integral_over_time(const boost::mpi::communicator & w
 			}
 		}
 	}
-	// map reduce
+	//map reduce
 	for (size_t i = 0; i < prob_Mat.size(); ++i) {
 		for (size_t j = 0; j < prob_Mat[0].size(); ++j) {
 			reduce(world, prob_Mat[i][j], prob_Mat_reduce[i][j], std::plus<double>(), 0);
@@ -300,10 +300,10 @@ void driver::speciation_evaluate_concentrations_for_different_sets_rate_coeffici
 			time_point[i] *= target_time_db;
 		}
 
-		// print concentration to file "./output/conc.csv"
+		//print concentration to file "./output/conc.csv"
 		pgt_obj.spe_concentration_w2f_pgt(time_point, std::string("/output/conc_") + boost::lexical_cast<std::string>(ith_k) + std::string(".csv"));
 
-		// print target time to file
+		//print target time to file
 		std::ofstream tt_fout((main_cwd + std::string("/output/target_time_") + boost::lexical_cast<std::string>(ith_k) + std::string(".csv")).c_str());
 		tt_fout << std::setprecision(16) << target_time_db;
 		tt_fout.close();
@@ -410,7 +410,7 @@ void driver::ODE_solver_MC_trajectory_s_ct_np_parallel(const boost::mpi::communi
 		//map reduce
 		for (size_t i = 0; i < prob_Mat.size(); ++i) {
 			for (size_t j = 0; j < prob_Mat[0].size(); ++j) {
-				// think about it later
+				//think about it later
 				reduce(world, prob_Mat[i][j], prob_Mat_reduce[i][j], std::plus<double>(), 0);
 			}
 		}
@@ -497,13 +497,13 @@ void driver::ODE_solver_MC_trajectory_cv_parallel(const boost::mpi::communicator
 		std::size_t trajectoryNumber_local_O2 = static_cast<std::size_t>(trajectoryNumber_local*prob[0]);
 		std::size_t trajectoryNumber_local_H2 = static_cast<std::size_t>(trajectoryNumber_local*prob[2]);
 
-		// follow O
+		//follow O
 		for (std::size_t j = 0; j < trajectoryNumber_local_O2; ++j) {
 			rnkODEs.set_reaction_out_spe_info("O");
 			rnkODEs.ODE_pathway_sim_once(init_time, end_time, 0);
 		}
 
-		// follow H
+		//follow H
 		for (std::size_t j = 0; j < trajectoryNumber_local_H2; ++j) {
 			rnkODEs.set_reaction_out_spe_info("H");
 			rnkODEs.ODE_pathway_sim_once(init_time, end_time, 2);
@@ -514,7 +514,7 @@ void driver::ODE_solver_MC_trajectory_cv_parallel(const boost::mpi::communicator
 		//map reduce
 		for (size_t i = 0; i < prob_Mat.size(); ++i) {
 			for (size_t j = 0; j < prob_Mat[0].size(); ++j) {
-				// think about it later
+				//think about it later
 				reduce(world, prob_Mat[i][j], prob_Mat_reduce[i][j], std::plus<double>(), 0);
 			}
 		}
@@ -598,11 +598,11 @@ void driver::ODE_solver_path_integral_parallel_s_ct_np_v1(const boost::mpi::comm
 			}
 		}
 
-		// normalize prob_Mat_reduce so that it represents concentration
+		//normalize prob_Mat_reduce so that it represents concentration
 		if (world.rank() == 0) {
 			rnkODEs_obj.rescale_prob_matrix_data(prob_Mat_reduce, 1.0 / trajectoryNumber_total);
 			rnkODEs_obj.divide_prob_matrix_by_number_of_ways_making_species(prob_Mat_reduce);
-			// set the probability of the first time point to initial probability
+			//set the probability of the first time point to initial probability
 			rnkODEs_obj.set_probability_matrix_at_time_zero_to_initial_fraction_or_concentration(prob_Mat_reduce);
 		}
 		broadcast(world, prob_Mat_reduce, 0);
@@ -681,7 +681,7 @@ void driver::ODE_solver_path_integral_parallel_s_ct_np_v2(const boost::mpi::comm
 
 	for (std::size_t ni = 0; ni < iterationNumber; ++ni) {
 		if (world.rank() == 0) {
-			// generate pathname
+			//generate pathname
 			std::string filename = main_cwd + std::string("/output") + std::string("/pathname_")
 				+ boost::lexical_cast<std::string>(ni) + std::string(".csv");
 			rnkODEs_obj.heuristic_path_string_vector_by_stage_number_path_length_all_elements(ni, filename);
@@ -699,11 +699,11 @@ void driver::ODE_solver_path_integral_parallel_s_ct_np_v2(const boost::mpi::comm
 				reduce(world, prob_Mat[i][j], prob_Mat_reduce[i][j], std::plus<double>(), 0);
 			}
 		}
-		// normalize prob_Mat_reduce so that it represents concentration
+		//normalize prob_Mat_reduce so that it represents concentration
 		if (world.rank() == 0) {
 			rnkODEs_obj.rescale_prob_matrix_data(prob_Mat_reduce, 1.0 / trajectoryNumber_total);
 			rnkODEs_obj.divide_prob_matrix_by_number_of_ways_making_species(prob_Mat_reduce);
-			// set the probability of the first time point to initial probability
+			//set the probability of the first time point to initial probability
 			rnkODEs_obj.set_probability_matrix_at_time_zero_to_initial_fraction_or_concentration(prob_Mat_reduce);
 		}
 		broadcast(world, prob_Mat_reduce, 0);
@@ -796,7 +796,7 @@ void driver::ODE_solver_path_integral_parallel_s_ct_np_v3(const boost::mpi::comm
 		}
 
 		if (world.rank() == 0) {
-			// generate pathname
+			//generate pathname
 			std::string filename = main_cwd + std::string("/output") + std::string("/pathname_")
 				+ boost::lexical_cast<std::string>(ni) + std::string(".csv");
 			rnkODEs_obj.heuristic_path_string_vector_by_stage_number_path_length_all_elements(ni, filename);
@@ -814,11 +814,11 @@ void driver::ODE_solver_path_integral_parallel_s_ct_np_v3(const boost::mpi::comm
 				reduce(world, prob_Mat[i][j], prob_Mat_reduce[i][j], std::plus<double>(), 0);
 			}
 		}
-		// normalize prob_Mat_reduce so that it represents concentration
+		//normalize prob_Mat_reduce so that it represents concentration
 		if (world.rank() == 0) {
 			rnkODEs_obj.rescale_prob_matrix_data(prob_Mat_reduce, 1.0 / trajectoryNumber_total);
 			rnkODEs_obj.divide_prob_matrix_by_number_of_ways_making_species(prob_Mat_reduce);
-			// set the probability of the first time point to initial probability
+			//set the probability of the first time point to initial probability
 			rnkODEs_obj.set_probability_matrix_at_time_zero_to_initial_fraction_or_concentration(prob_Mat_reduce);
 		}
 
@@ -934,13 +934,13 @@ void driver::ODE_solver_path_integral_parallel_s_ct_np_cc1_v1(const boost::mpi::
 			}
 		}
 
-		// normalize prob_Mat_reduce so that it represents concentration
+		//normalize prob_Mat_reduce so that it represents concentration
 		if (world.rank() == 0) {
 			rnkODEs_obj.rescale_prob_matrix_data(conc_prob_Mat_reduce, 1.0 / trajectoryNumber_total);
 			rnkODEs_obj.divide_prob_matrix_by_number_of_ways_making_species(conc_prob_Mat_reduce);
-			// set the probability of the first time point to initial probability
+			//set the probability of the first time point to initial probability
 			rnkODEs_obj.set_probability_matrix_at_time_zero_to_initial_fraction_or_concentration(conc_prob_Mat_reduce);
-			// single source concentration to be constant
+			//single source concentration to be constant
 			rnkODEs_obj.set_probability_matrix_of_single_source_constant(conc_prob_Mat_reduce);
 
 		}
@@ -1068,10 +1068,10 @@ void driver::ODE_solver_path_integral_parallel_cv_v9(const boost::mpi::communica
 
 		size_t trajectoryNumber_local = get_num_block_decomposition_2(world.rank(), trajectoryNumber_total, world.size());
 
-		// this step is necessary since we convert mole fraction to molar concentration previously
+		//this step is necessary since we convert mole fraction to molar concentration previously
 		rnkODEs_obj.set_concentration_at_time_zero_to_initial_fraction_or_concentration();
 
-		// at most number of atoms * topN
+		//at most number of atoms * topN
 		rnkODEs_obj.ODEdirectlyEvaluatePathwayProbability(pathway_vec, P2C, trajectoryNumber_local, N_followed_atoms*topN, prob_Mat);
 		//map reduce
 		for (size_t i = 0; i < prob_Mat.size(); ++i) {
@@ -1080,12 +1080,12 @@ void driver::ODE_solver_path_integral_parallel_cv_v9(const boost::mpi::communica
 			}
 		}
 
-		// normalize prob_Mat_reduce so that it represents concentration
+		//normalize prob_Mat_reduce so that it represents concentration
 		if (world.rank() == 0) {
 			rnkODEs_obj.rescale_prob_matrix_data(prob_Mat_reduce, 1.0 / trajectoryNumber_total);
 			rnkODEs_obj.divide_prob_matrix_by_number_of_ways_making_species(prob_Mat_reduce);
 			rnkODEs_obj.normalize_prob_matrix_data(prob_Mat_reduce);
-			// set the probability of the first time point to initial probability
+			//set the probability of the first time point to initial probability
 			rnkODEs_obj.set_probability_matrix_at_time_zero_to_initial_fraction_or_concentration(prob_Mat_reduce);
 		}
 
@@ -1095,7 +1095,7 @@ void driver::ODE_solver_path_integral_parallel_cv_v9(const boost::mpi::communica
 			//last iteration, print concentration data to file
 			if (world.rank() == 0) {
 				rnkODEs_obj.update_concentration_data_from_spe_based_probability_matrix(prob_Mat_reduce);
-				// this is necessary since we also need to update pressre and temperature
+				//this is necessary since we also need to update pressre and temperature
 				rnkODEs_obj.convert_mole_fraction_to_molar_concentration();
 
 				rnkODEs_obj.update_temperature_pressure_based_on_spe_concentration_cv();
@@ -1115,10 +1115,10 @@ void driver::ODE_solver_path_integral_parallel_cv_v9(const boost::mpi::communica
 				rnkODEs_obj.update_concentration_data_from_spe_based_probability_matrix(prob_Mat_reduce);
 				rnkODEs_obj.w2f_pgt(std::string("SOHR_fraction_") + boost::lexical_cast<std::string>(ni));
 
-			}// if
+			}//if
 		}
 
-	}// for ni
+	}//for ni
 
 }
 
@@ -1211,10 +1211,10 @@ void driver::ODE_solver_path_integral_parallel_cv_v10(const boost::mpi::communic
 
 		size_t trajectoryNumber_local = get_num_block_decomposition_2(world.rank(), trajectoryNumber_total, world.size());
 
-		// this step is necessary since we convert mole fraction to molar concentration previously
+		//this step is necessary since we convert mole fraction to molar concentration previously
 		rnkODEs_obj.set_concentration_at_time_zero_to_initial_fraction_or_concentration();
 
-		// at most number of atoms * topN
+		//at most number of atoms * topN
 		rnkODEs_obj.ODEdirectlyEvaluatePathwayProbability(pathway_vec, P2C, trajectoryNumber_local, N_followed_atoms*topN, prob_Mat);
 		//map reduce
 		for (size_t i = 0; i < prob_Mat.size(); ++i) {
@@ -1223,12 +1223,12 @@ void driver::ODE_solver_path_integral_parallel_cv_v10(const boost::mpi::communic
 			}
 		}
 
-		// normalize prob_Mat_reduce so that it represents concentration
+		//normalize prob_Mat_reduce so that it represents concentration
 		if (world.rank() == 0) {
 			rnkODEs_obj.rescale_prob_matrix_data(prob_Mat_reduce, 1.0 / trajectoryNumber_total);
 			rnkODEs_obj.divide_prob_matrix_by_number_of_ways_making_species(prob_Mat_reduce);
 			rnkODEs_obj.normalize_prob_matrix_data(prob_Mat_reduce);
-			// set the probability of the first time point to initial probability
+			//set the probability of the first time point to initial probability
 			rnkODEs_obj.set_probability_matrix_at_time_zero_to_initial_fraction_or_concentration(prob_Mat_reduce);
 		}
 
@@ -1238,7 +1238,7 @@ void driver::ODE_solver_path_integral_parallel_cv_v10(const boost::mpi::communic
 			//last iteration, print concentration data to file
 			if (world.rank() == 0) {
 				rnkODEs_obj.update_concentration_data_from_spe_based_probability_matrix(prob_Mat_reduce);
-				// this is necessary since we also need to update pressre and temperature
+				//this is necessary since we also need to update pressre and temperature
 				rnkODEs_obj.convert_mole_fraction_to_molar_concentration();
 
 				rnkODEs_obj.update_temperature_pressure_based_on_spe_concentration_cv();
@@ -1256,10 +1256,10 @@ void driver::ODE_solver_path_integral_parallel_cv_v10(const boost::mpi::communic
 				rnkODEs_obj.update_concentration_data_from_spe_based_probability_matrix(prob_Mat_reduce);
 				rnkODEs_obj.w2f_pgt(std::string("SOHR_fraction_") + boost::lexical_cast<std::string>(ni));
 
-			}// if
+			}//if
 		}
 
-	}// for ni
+	}//for ni
 }
 
 void driver::ODE_solver_path_integral_parallel_cv_v11(const boost::mpi::communicator & world, const std::string & main_cwd, const boost::property_tree::ptree & pt)
@@ -1341,7 +1341,7 @@ void driver::ODE_solver_path_integral_parallel_cv_v11(const boost::mpi::communic
 		broadcast(world, trajectoryNumber_total, 0);
 
 		size_t trajectoryNumber_local = get_num_block_decomposition_2(world.rank(), trajectoryNumber_total, world.size());
-		// this step is necessary since we convert mole fraction to molar concentration previously
+		//this step is necessary since we convert mole fraction to molar concentration previously
 		rnkODEs_obj.set_concentration_at_time_zero_to_initial_fraction_or_concentration();
 
 		std::vector<std::size_t> i_stage_vec;
@@ -1353,7 +1353,7 @@ void driver::ODE_solver_path_integral_parallel_cv_v11(const boost::mpi::communic
 		for (std::size_t tj = 1; tj < Ntimepoints; ++tj) {
 			//total stage number is 10-ish
 			std::size_t i_stage = (std::size_t)get_stage_number(tj, Ntimepoints, path_n_v.size());
-			// a new stage, not exist
+			//a new stage, not exist
 			if (!std::binary_search(i_stage_vec.begin(), i_stage_vec.end(), i_stage)) {
 				i_stage_vec.push_back(i_stage);
 				if (world.rank() == 0) {
@@ -1384,12 +1384,12 @@ void driver::ODE_solver_path_integral_parallel_cv_v11(const boost::mpi::communic
 			}
 		}
 
-		// normalize prob_Mat_reduce so that it represents concentration
+		//normalize prob_Mat_reduce so that it represents concentration
 		if (world.rank() == 0) {
 			rnkODEs_obj.rescale_prob_matrix_data(prob_Mat_reduce, 1.0 / trajectoryNumber_total);
 			rnkODEs_obj.divide_prob_matrix_by_number_of_ways_making_species(prob_Mat_reduce);
 			rnkODEs_obj.normalize_prob_matrix_data(prob_Mat_reduce);
-			// set the probability of the first time point to initial probability
+			//set the probability of the first time point to initial probability
 			rnkODEs_obj.set_probability_matrix_at_time_zero_to_initial_fraction_or_concentration(prob_Mat_reduce);
 		}
 
@@ -1399,7 +1399,7 @@ void driver::ODE_solver_path_integral_parallel_cv_v11(const boost::mpi::communic
 			//last iteration, print concentration data to file
 			if (world.rank() == 0) {
 				rnkODEs_obj.update_concentration_data_from_spe_based_probability_matrix(prob_Mat_reduce);
-				// this is necessary since we also need to update pressre and temperature
+				//this is necessary since we also need to update pressre and temperature
 				rnkODEs_obj.convert_mole_fraction_to_molar_concentration();
 
 				rnkODEs_obj.update_temperature_pressure_based_on_spe_concentration_cv();
@@ -1417,7 +1417,7 @@ void driver::ODE_solver_path_integral_parallel_cv_v11(const boost::mpi::communic
 				rnkODEs_obj.update_concentration_data_from_spe_based_probability_matrix(prob_Mat_reduce);
 				rnkODEs_obj.w2f_pgt(std::string("SOHR_fraction_") + boost::lexical_cast<std::string>(ni));
 
-			}// if
+			}//if
 		}
 
 	}//Niterations
@@ -1517,10 +1517,10 @@ void driver::ODE_solver_path_integral_parallel_cv_ct_v1(const boost::mpi::commun
 
 		size_t trajectoryNumber_local = get_num_block_decomposition_2(world.rank(), trajectoryNumber_total, world.size());
 
-		// this step is necessary since we convert mole fraction to molar concentration previously
+		//this step is necessary since we convert mole fraction to molar concentration previously
 		rnkODEs_obj.set_concentration_at_time_zero_to_initial_fraction_or_concentration();
 
-		// at most number of atoms * topN
+		//at most number of atoms * topN
 		rnkODEs_obj.ODEdirectlyEvaluatePathwayProbability(pathway_vec, P2C, trajectoryNumber_local, N_followed_atoms*topN, prob_Mat);
 		//map reduce
 		for (size_t i = 0; i < prob_Mat.size(); ++i) {
@@ -1529,12 +1529,12 @@ void driver::ODE_solver_path_integral_parallel_cv_ct_v1(const boost::mpi::commun
 			}
 		}
 
-		// normalize prob_Mat_reduce so that it represents concentration
+		//normalize prob_Mat_reduce so that it represents concentration
 		if (world.rank() == 0) {
 			rnkODEs_obj.rescale_prob_matrix_data(prob_Mat_reduce, 1.0 / trajectoryNumber_total);
 			rnkODEs_obj.divide_prob_matrix_by_number_of_ways_making_species(prob_Mat_reduce);
 			rnkODEs_obj.normalize_prob_matrix_data(prob_Mat_reduce);
-			// set the probability of the first time point to initial probability
+			//set the probability of the first time point to initial probability
 			rnkODEs_obj.set_probability_matrix_at_time_zero_to_initial_fraction_or_concentration(prob_Mat_reduce);
 		}
 
@@ -1544,7 +1544,7 @@ void driver::ODE_solver_path_integral_parallel_cv_ct_v1(const boost::mpi::commun
 			//last iteration, print concentration data to file
 			if (world.rank() == 0) {
 				rnkODEs_obj.update_concentration_data_from_spe_based_probability_matrix(prob_Mat_reduce);
-				// this is necessary since we also need to update pressre and temperature
+				//this is necessary since we also need to update pressre and temperature
 				rnkODEs_obj.convert_mole_fraction_to_molar_concentration();
 
 				rnkODEs_obj.update_pressure_based_on_spe_concentration_cv();
@@ -1564,10 +1564,10 @@ void driver::ODE_solver_path_integral_parallel_cv_ct_v1(const boost::mpi::commun
 				rnkODEs_obj.update_concentration_data_from_spe_based_probability_matrix(prob_Mat_reduce);
 				rnkODEs_obj.w2f_pgt(std::string("SOHR_fraction_") + boost::lexical_cast<std::string>(ni));
 
-			}// if
+			}//if
 		}
 
-	}// for ni
+	}//for ni
 }
 
 void driver::ODE_solver_path_integral_parallel_cv_ct_v2(const boost::mpi::communicator & world, const std::string & main_cwd, const boost::property_tree::ptree & pt)
@@ -1649,7 +1649,7 @@ void driver::ODE_solver_path_integral_parallel_cv_ct_v2(const boost::mpi::commun
 		broadcast(world, trajectoryNumber_total, 0);
 
 		size_t trajectoryNumber_local = get_num_block_decomposition_2(world.rank(), trajectoryNumber_total, world.size());
-		// this step is necessary since we convert mole fraction to molar concentration previously
+		//this step is necessary since we convert mole fraction to molar concentration previously
 		rnkODEs_obj.set_concentration_at_time_zero_to_initial_fraction_or_concentration();
 
 		std::vector<std::size_t> i_stage_vec;
@@ -1661,7 +1661,7 @@ void driver::ODE_solver_path_integral_parallel_cv_ct_v2(const boost::mpi::commun
 		for (std::size_t tj = 1; tj < Ntimepoints; ++tj) {
 			//total stage number is 10-ish
 			std::size_t i_stage = (std::size_t)get_stage_number(tj, Ntimepoints, path_n_v.size());
-			// a new stage, not exist
+			//a new stage, not exist
 			if (!std::binary_search(i_stage_vec.begin(), i_stage_vec.end(), i_stage)) {
 				i_stage_vec.push_back(i_stage);
 				if (world.rank() == 0) {
@@ -1692,12 +1692,12 @@ void driver::ODE_solver_path_integral_parallel_cv_ct_v2(const boost::mpi::commun
 			}
 		}
 
-		// normalize prob_Mat_reduce so that it represents concentration
+		//normalize prob_Mat_reduce so that it represents concentration
 		if (world.rank() == 0) {
 			rnkODEs_obj.rescale_prob_matrix_data(prob_Mat_reduce, 1.0 / trajectoryNumber_total);
 			rnkODEs_obj.divide_prob_matrix_by_number_of_ways_making_species(prob_Mat_reduce);
 			rnkODEs_obj.normalize_prob_matrix_data(prob_Mat_reduce);
-			// set the probability of the first time point to initial probability
+			//set the probability of the first time point to initial probability
 			rnkODEs_obj.set_probability_matrix_at_time_zero_to_initial_fraction_or_concentration(prob_Mat_reduce);
 		}
 
@@ -1707,7 +1707,7 @@ void driver::ODE_solver_path_integral_parallel_cv_ct_v2(const boost::mpi::commun
 			//last iteration, print concentration data to file
 			if (world.rank() == 0) {
 				rnkODEs_obj.update_concentration_data_from_spe_based_probability_matrix(prob_Mat_reduce);
-				// this is necessary since we also need to update pressre and temperature
+				//this is necessary since we also need to update pressre and temperature
 				rnkODEs_obj.convert_mole_fraction_to_molar_concentration();
 
 				rnkODEs_obj.update_pressure_based_on_spe_concentration_cv();
@@ -1725,7 +1725,7 @@ void driver::ODE_solver_path_integral_parallel_cv_ct_v2(const boost::mpi::commun
 				rnkODEs_obj.update_concentration_data_from_spe_based_probability_matrix(prob_Mat_reduce);
 				rnkODEs_obj.w2f_pgt(std::string("SOHR_fraction_") + boost::lexical_cast<std::string>(ni));
 
-			}// if
+			}//if
 		}
 
 	}//Niterations
@@ -1735,7 +1735,7 @@ std::vector<std::string> driver::generate_pathway_running_Monte_carlo_trajectory
 {
 	std::size_t Nspecies = rnkODEs_obj.get_num_vertices();
 
-	// pick the top N
+	//pick the top N
 	std::size_t mc_topN = pt.get<std::size_t>("pathway.topN_monte_carlo_path");
 	std::vector<std::string> pathway_monte_carlo_vec;
 
@@ -1745,48 +1745,48 @@ std::vector<std::string> driver::generate_pathway_running_Monte_carlo_trajectory
 	size_t trajectoryNumber_local = get_num_block_decomposition_2(world.rank(), trajectoryNumber_total, world.size());
 
 	for (auto e : element_vector) {
-		// generate pathway by running monte carlo trajectories
+		//generate pathway by running monte carlo trajectories
 		std::vector<statistics > statistics_v(Nspecies);
 		rnkODEs_obj.generate_path_by_running_monte_carlo_trajectory_s2m(statistics_v, trajectoryNumber_local, e.ele_name, end_time_ratio);
-		// map reduce
+		//map reduce
 		std::vector<std::map<std::string, int> > result_v(Nspecies);
 		for (std::size_t mi = 0; mi < Nspecies; ++mi)
 			reduce(world, statistics_v[mi].get_pathway_unordered_map(), result_v[mi], merge_maps(), 0);
 
-		// core 0 only
+		//core 0 only
 		if (world.rank() == 0) {
 			auto spe_ind_initial_conc = rnkODEs_obj.return_species_index_and_initial_concentration();
-			// end species index
+			//end species index
 			std::vector<std::multimap<double, std::string, std::greater<double> > > prob_path_map_v(Nspecies);
 
 			for (auto ic : spe_ind_initial_conc) {
-				// multiply by the initial concentration
-				// endwith string
+				//multiply by the initial concentration
+				//endwith string
 				for (auto sp : result_v[ic.first]) {
-					// parse the index of last element
+					//parse the index of last element
 					auto ind = sp.first.find_last_of("S");
 					auto spe_ind = boost::lexical_cast<std::size_t>(sp.first.substr(ind + 1));
-					// initial concentration * path count
+					//initial concentration * path count
 					prob_path_map_v[spe_ind].emplace(ic.second * sp.second, sp.first);
 
-				} // for sp
-			} // for ic
+				} //for sp
+			} //for ic
 
-			// save topN to vector
+			//save topN to vector
 			for (auto ppm : prob_path_map_v) {
-				// for this end species following this element
+				//for this end species following this element
 				std::size_t counter = 0;
 				for (auto pp : ppm) {
 					if (counter < mc_topN) {
 						pathway_monte_carlo_vec.push_back(pp.second);
 						++counter;
-					} // if
+					} //if
 					else
 						break;
 
-				} // for pp
-			} // for ppm
-		} // if
+				} //for pp
+			} //for ppm
+		} //if
 	}
 
 
@@ -1872,7 +1872,7 @@ void driver::ODE_solver_path_integral_parallel_cv_ct_v3(const boost::mpi::commun
 		broadcast(world, trajectoryNumber_total, 0);
 
 		size_t trajectoryNumber_local = get_num_block_decomposition_2(world.rank(), trajectoryNumber_total, world.size());
-		// this step is necessary since we convert mole fraction to molar concentration previously
+		//this step is necessary since we convert mole fraction to molar concentration previously
 		rnkODEs_obj.set_concentration_at_time_zero_to_initial_fraction_or_concentration();
 
 		std::vector<std::size_t> i_stage_vec;
@@ -1885,7 +1885,7 @@ void driver::ODE_solver_path_integral_parallel_cv_ct_v3(const boost::mpi::commun
 		for (std::size_t tj = 1; tj < Ntimepoints; ++tj) {
 			//total stage number is 10-ish
 			std::size_t i_stage = (std::size_t)get_stage_number(tj, Ntimepoints, path_n_v.size());
-			// a new stage, not exist
+			//a new stage, not exist
 			if (!std::binary_search(i_stage_vec.begin(), i_stage_vec.end(), i_stage)) {
 				i_stage_vec.push_back(i_stage);
 				if (world.rank() == 0) {
@@ -1904,33 +1904,33 @@ void driver::ODE_solver_path_integral_parallel_cv_ct_v3(const boost::mpi::commun
 			}
 
 			for (std::size_t si = 0; si < Nspecies; ++si) {
-				// for every species, got to evaluate the concentration at every time point
+				//for every species, got to evaluate the concentration at every time point
 				std::string S = std::string("S") + boost::lexical_cast<std::string>(si);
 				std::vector<std::string> pathway_vec_t; std::vector<std::string> pathway_monte_carlo_vec_t;
-				// topN ends with S
+				//topN ends with S
 				pathwayHandler::pathway_ends_with(S, pathway_vec, pathway_vec_t, N_followed_atoms*topN_vec[si]); //topN pathways
 				pathwayHandler::pathway_ends_with(S, pathway_monte_carlo_vec, pathway_monte_carlo_vec_t, N_followed_atoms*pt.get<std::size_t>("pathway.topN_monte_carlo_path")); //topN pathways
-				// merge pathway
+				//merge pathway
 				pathwayHandler::merge_pathway(pathway_vec_t, pathway_monte_carlo_vec_t);
 
 				rnkODEs_obj.ODEdirectlyEvaluatePathwayProbability_si_tj(si, tj, pathway_vec_t, P2C[si], trajectoryNumber_local, prob_Mat);
 
-			}// Nspecies
-		}// Ntimepoints
+			}//Nspecies
+		}//Ntimepoints
 
-		// map reduce
+		//map reduce
 		for (size_t i = 0; i < prob_Mat.size(); ++i) {
 			for (size_t j = 0; j < prob_Mat[0].size(); ++j) {
 				reduce(world, prob_Mat[i][j], prob_Mat_reduce[i][j], std::plus<double>(), 0);
 			}
 		}
 
-		// normalize prob_Mat_reduce so that it represents concentration
+		//normalize prob_Mat_reduce so that it represents concentration
 		if (world.rank() == 0) {
 			rnkODEs_obj.rescale_prob_matrix_data(prob_Mat_reduce, 1.0 / trajectoryNumber_total);
 			rnkODEs_obj.divide_prob_matrix_by_number_of_ways_making_species(prob_Mat_reduce);
 			rnkODEs_obj.normalize_prob_matrix_data(prob_Mat_reduce);
-			// set the probability of the first time point to initial probability
+			//set the probability of the first time point to initial probability
 			rnkODEs_obj.set_probability_matrix_at_time_zero_to_initial_fraction_or_concentration(prob_Mat_reduce);
 		}
 
@@ -1940,7 +1940,7 @@ void driver::ODE_solver_path_integral_parallel_cv_ct_v3(const boost::mpi::commun
 			//last iteration, print concentration data to file
 			if (world.rank() == 0) {
 				rnkODEs_obj.update_concentration_data_from_spe_based_probability_matrix(prob_Mat_reduce);
-				// this is necessary since we also need to update pressre and temperature
+				//this is necessary since we also need to update pressre and temperature
 				rnkODEs_obj.convert_mole_fraction_to_molar_concentration();
 
 				rnkODEs_obj.update_pressure_based_on_spe_concentration_cv();
@@ -1958,7 +1958,7 @@ void driver::ODE_solver_path_integral_parallel_cv_ct_v3(const boost::mpi::commun
 				rnkODEs_obj.update_concentration_data_from_spe_based_probability_matrix(prob_Mat_reduce);
 				rnkODEs_obj.w2f_pgt(std::string("SOHR_fraction_") + boost::lexical_cast<std::string>(ni));
 
-			}// if
+			}//if
 		}
 
 	}//Niterations
@@ -2051,7 +2051,7 @@ void driver::ODE_solver_path_integral_parallel_cv_ct_v4(const boost::mpi::commun
 		broadcast(world, trajectoryNumber_total, 0);
 
 		size_t trajectoryNumber_local = get_num_block_decomposition_2(world.rank(), trajectoryNumber_total, world.size());
-		// this step is necessary since we convert mole fraction to molar concentration previously
+		//this step is necessary since we convert mole fraction to molar concentration previously
 		rnkODEs_obj.set_concentration_at_time_zero_to_initial_fraction_or_concentration();
 
 		std::vector<std::size_t> i_stage_vec;
@@ -2064,7 +2064,7 @@ void driver::ODE_solver_path_integral_parallel_cv_ct_v4(const boost::mpi::commun
 		for (std::size_t tj = 1; tj < Ntimepoints; ++tj) {
 			//total stage number is 10-ish
 			std::size_t i_stage = (std::size_t)get_stage_number(tj, Ntimepoints, path_n_v.size());
-			// a new stage, not exist
+			//a new stage, not exist
 			if (!std::binary_search(i_stage_vec.begin(), i_stage_vec.end(), i_stage)) {
 				i_stage_vec.push_back(i_stage);
 				double end_time_ratio_tmp = (i_stage + 1)*1.0 / path_n_v.size();
@@ -2082,35 +2082,35 @@ void driver::ODE_solver_path_integral_parallel_cv_ct_v4(const boost::mpi::commun
 			}
 
 			for (std::size_t si = 0; si < Nspecies; ++si) {
-				// for every species, got to evaluate the concentration at every time point
+				//for every species, got to evaluate the concentration at every time point
 				std::string S = std::string("S") + boost::lexical_cast<std::string>(si);
 				std::vector<std::string> pathway_vec_t; std::vector<std::string> pathway_monte_carlo_vec_t;
-				// topN ends with S
+				//topN ends with S
 				pathwayHandler::pathway_ends_with(S, pathway_vec, pathway_vec_t, N_followed_atoms*topN_vec[si]); //topN pathways
 				pathwayHandler::pathway_ends_with(S, pathway_monte_carlo_vec, pathway_monte_carlo_vec_t,
 					N_followed_atoms*pt.get<std::size_t>("pathway.topN_monte_carlo_path")); //topN pathways
-				// merge pathway
+				//merge pathway
 				pathwayHandler::merge_pathway(pathway_vec_t, pathway_monte_carlo_vec_t);
 
 				rnkODEs_obj.ODEdirectlyEvaluatePathwayProbability_si_tj(si, tj, pathway_vec_t, P2C[si], trajectoryNumber_local, prob_Mat);
 
-			}// Nspecies
-		}// Ntimepoints
+			}//Nspecies
+		}//Ntimepoints
 
-		 // map reduce
+		 //map reduce
 		for (size_t i = 0; i < prob_Mat.size(); ++i) {
 			for (size_t j = 0; j < prob_Mat[0].size(); ++j) {
 				reduce(world, prob_Mat[i][j], prob_Mat_reduce[i][j], std::plus<double>(), 0);
 			}
 		}
 
-		// normalize prob_Mat_reduce so that it represents concentration
+		//normalize prob_Mat_reduce so that it represents concentration
 		if (world.rank() == 0) {
 			rnkODEs_obj.rescale_prob_matrix_data(prob_Mat_reduce, 1.0 / trajectoryNumber_total);
 			rnkODEs_obj.divide_prob_matrix_by_number_of_ways_making_species(prob_Mat_reduce);
-			// normalize pathway probability so that it represents mole fraction
+			//normalize pathway probability so that it represents mole fraction
 			//rnkODEs_obj.normalize_prob_matrix_data(prob_Mat_reduce);
-			// set the probability of the first time point to initial probability
+			//set the probability of the first time point to initial probability
 			rnkODEs_obj.set_probability_matrix_at_time_zero_to_initial_fraction_or_concentration(prob_Mat_reduce);
 		}
 
@@ -2121,7 +2121,7 @@ void driver::ODE_solver_path_integral_parallel_cv_ct_v4(const boost::mpi::commun
 		if (world.rank() == 0) {
 			rnkODEs_obj.update_concentration_data_from_spe_based_probability_matrix(prob_Mat_reduce);
 
-			// this is necessary since we also need to update pressre and temperature
+			//this is necessary since we also need to update pressre and temperature
 			rnkODEs_obj.convert_mole_fraction_to_molar_concentration();
 
 			rnkODEs_obj.update_pressure_based_on_spe_concentration_cv();
@@ -2137,7 +2137,7 @@ void driver::ODE_solver_path_integral_parallel_cv_ct_v4(const boost::mpi::commun
 			rnkODEs_obj.update_concentration_data_from_spe_based_probability_matrix(prob_Mat_reduce);
 			rnkODEs_obj.w2f_pgt(std::string("SOHR_fraction_") + boost::lexical_cast<std::string>(ni));
 
-		}// if
+		}//if
 
 	}//Niterations
 
@@ -2211,7 +2211,7 @@ void driver::M_matrix_R_matrix(const boost::mpi::communicator & world, const std
 		rnk_concrete.print();
 
 		//for (auto x : p) {
-		//	// convert to path string
+		//	//convert to path string
 		//	std::cout << rnk_concrete.R_matrix_path_representation_to_string(x);
 		//	//for (auto y : x) {
 		//	//	std::cout << y << "-->";
@@ -2263,7 +2263,7 @@ void driver::MISC(const boost::mpi::communicator & world, const std::string & ma
 		//std::vector<std::vector<double> > transition_mat = { {0.0, 1.0}, {2.0, 0.0} };
 		//double first_real_positive_eigenvalue;
 		//std::vector<double> equil_ratio;
-		//auto result = matrix_sr::cal_equilibrium_ratio_from_transition_matrix(transition_mat, first_real_positive_eigenvalue, equil_ratio);
+		//auto result = matrix_sr::cal_steady_state_ratio_from_transition_matrix(transition_mat, first_real_positive_eigenvalue, equil_ratio);
 		//std::cout << result << std::endl;
 
 		std::cout << "MISC\n";

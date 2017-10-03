@@ -129,7 +129,7 @@ namespace propagator_sr {
 		void rescale_concentration_data(const std::vector<double> &factor_v);
 		void rescale_prob_matrix_data(std::vector<std::vector<double> > &prob_Mat, const double factor);
 		void rescale_prob_matrix_data(std::vector<std::vector<double> > &prob_Mat, const std::vector<double> &factor_v);
-		// normalize prob_matrix_data
+		//normalize prob_matrix_data
 		void normalize_prob_matrix_data(std::vector<std::vector<double> > &prob_Mat);
 
 		/*
@@ -158,9 +158,9 @@ namespace propagator_sr {
 		*
 		*/
 		void time_propagator_s_ct_np_s2m_pgt(std::vector<double> uncertainties, double critical_time, double end_time) override;
-		// cc-->constant concentration, hold the concentration of the first species to be constant
+		//cc-->constant concentration, hold the concentration of the first species to be constant
 		void time_propagator_s_ct_np_cc1_s2m_pgt(std::vector<double> uncertainties, double critical_time, double end_time) override;
-		// cc-->constant concentration, hold the concentration of the first two species to be constant
+		//cc-->constant concentration, hold the concentration of the first two species to be constant
 		void time_propagator_s_ct_np_cc2_s2m_pgt(std::vector<double> uncertainties, double critical_time, double end_time) override;
 
 

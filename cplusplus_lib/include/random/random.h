@@ -49,11 +49,11 @@ namespace random_sr {
 		* needs a few iterations to spread the initial entropy from the lowest bits
 		* to the whole state.
 		*/
-		// When calling other functions which take a generator or distribution
-		// as a parameter, make sure to always call by reference (or pointer).
-		// Calling by value invokes the copy constructor, which means that the
-		// sequence of random numbers at the caller is disconnected from the
-		// sequence at the callee.
+		//When calling other functions which take a generator or distribution
+		//as a parameter, make sure to always call by reference (or pointer).
+		//Calling by value invokes the copy constructor, which means that the
+		//sequence of random numbers at the caller is disconnected from the
+		//sequence at the callee.
 
 		double random01()
 		{

@@ -35,7 +35,7 @@ void pathwayHandler::get_pathway(std::string filename, std::vector<std::string> 
 		catch (std::ifstream::failure &e) {
 			std::cerr << e.what() << "Exception opening/reading/closing file\n";
 		}
-		// there may be blank lines
+		//there may be blank lines
 		if (s.size() > 0) {
 			boost::char_separator<char> sep(",");
 			typedef boost::tokenizer< boost::char_separator<char> > t_tokenizer;
@@ -79,10 +79,10 @@ std::vector<std::string> pathwayHandler::pathway_ends_with(const std::multimap<d
 	std::vector<std::string> v;
 	std::vector<std::size_t> v_counter(n_spe, 0);
 	for (auto x : p_map) {
-		// if all species has topN path endwith itself, break
+		//if all species has topN path endwith itself, break
 		if (std::accumulate(v_counter.begin(), v_counter.end(), 0) >= (int)(n_spe*topN))
 			break;
-		// iterate over species
+		//iterate over species
 		for (std::size_t i = 0; i < n_spe; ++i) {
 			if (v_counter[i] >= topN)
 				continue;
@@ -101,10 +101,10 @@ std::vector<std::string> pathwayHandler::pathway_ends_with(const std::multimap<d
 	std::vector<std::string> v;
 	std::vector<std::size_t> v_counter(n_spe, 0);
 	for (auto x : p_map) {
-		// if all species has topN path endwith itself, break
+		//if all species has topN path endwith itself, break
 		if (std::accumulate(v_counter.begin(), v_counter.end(), 0) >= (int)(n_spe*topN))
 			break;
-		// iterate over species
+		//iterate over species
 		for (std::size_t i = 0; i < n_spe; ++i) {
 			if (v_counter[i] >= topN)
 				continue;

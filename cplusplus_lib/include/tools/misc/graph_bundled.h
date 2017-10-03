@@ -62,12 +62,12 @@ public:
 	To have an edge index, you need to manually add it to the graph description, and then manually handle it.
 	*/
 	typedef adjacency_list<
-		vecS, // allow parallel edges
+		vecS, //allow parallel edges
 		//multisetS, //Specify boost::multisetS as the OutEdgeListS template argument to adjacency_list, this will enable an extra function
 		//called edge_range which returns a range of iterators for all the "parallel" edges coming out of u and going into v
-		//listS, // doesn't allow parallel edges
-		vecS, // vertex container
-		bidirectionalS, // directed graph
+		//listS, //doesn't allow parallel edges
+		vecS, //vertex container
+		bidirectionalS, //directed graph
 		/*property<vertex_properties_t, VERTEXPROPERTIES>,*/
 		//property<edge_properties_t, EDGEPROPERTIES>
 

@@ -216,6 +216,11 @@ namespace reactionNetwork_sr {
 		return propagator->evaluate_concentration_at_time(time, index);
 	}
 
+	double concreteReactionNetwork::evaluate_spe_drc_at_time(double time, std::size_t index) const
+	{
+		return propagator->evaluate_spe_drc_at_time(time, index);
+	}
+
 	double concreteReactionNetwork::evaluate_chattering_group_ss_prob_at_time(double in_time, size_t index) const
 	{
 		return propagator->evaluate_chattering_group_ss_prob_at_time(in_time, index);
@@ -307,7 +312,7 @@ namespace reactionNetwork_sr {
 			double a = 0.0, b = get_spe_prob_max_at_a_time(tau_j_minus_1, tau, spe_vec[j_th]);
 			double h = (b - a) / N_subvolume[j_th];
 
-			// basically says reaction occur at time_a and time_b immediately, so the next recursive relation start from this time point a
+			//basically says reaction occur at time_a and time_b immediately, so the next recursive relation start from this time point a
 			double tau_j = reaction_time_from_importance_sampling(tau_j_minus_1, spe_vec[j_th], a);
 			if (tau_j <= sys_min_time)
 				tau_j = sys_min_time;

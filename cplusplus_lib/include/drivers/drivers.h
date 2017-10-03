@@ -117,23 +117,23 @@ namespace driver {
 	* 9. Pathway based equation solver, solve differential equations derived from chemical mechanisms
 	* constant volume
 	*/
-	// get rid of intermediate files, in other words, do not write intermediate files to disks anymore, like path prob matrix
+	//get rid of intermediate files, in other words, do not write intermediate files to disks anymore, like path prob matrix
 	void ODE_solver_path_integral_parallel_cv_v9(const boost::mpi::communicator &world, const std::string &main_cwd, const boost::property_tree::ptree &pt);
-	// stage number here is the iteration number
+	//stage number here is the iteration number
 	void ODE_solver_path_integral_parallel_cv_v10(const boost::mpi::communicator &world, const std::string &main_cwd, const boost::property_tree::ptree &pt);
-	// generate pathway separately every time points, stage number here is the time stage number
+	//generate pathway separately every time points, stage number here is the time stage number
 	void ODE_solver_path_integral_parallel_cv_v11(const boost::mpi::communicator &world, const std::string &main_cwd, const boost::property_tree::ptree &pt);
 	/*
 	* 10. constant volume, constant temperature
 	*/
 	void ODE_solver_path_integral_parallel_cv_ct_v1(const boost::mpi::communicator &world, const std::string &main_cwd, const boost::property_tree::ptree &pt);
-	// generate pathway separately every time points, stage number here is the time stage number
+	//generate pathway separately every time points, stage number here is the time stage number
 	void ODE_solver_path_integral_parallel_cv_ct_v2(const boost::mpi::communicator &world, const std::string &main_cwd, const boost::property_tree::ptree &pt);
-	// generate monte carlo pathways, going to generate pathway on multiple cores, that's why we write this function here
+	//generate monte carlo pathways, going to generate pathway on multiple cores, that's why we write this function here
 	std::vector<std::string> generate_pathway_running_Monte_carlo_trajectory_s2m(const boost::mpi::communicator &world, const std::string &main_cwd, const boost::property_tree::ptree &pt, rnkODEs::reactionNetworkODESolver &rnkODEs_obj, double end_time_ratio = 1.0);
-	// incorpate monte carlo pathways into the pathway gengerating step, besides matrix based method
+	//incorpate monte carlo pathways into the pathway gengerating step, besides matrix based method
 	void ODE_solver_path_integral_parallel_cv_ct_v3(const boost::mpi::communicator &world, const std::string &main_cwd, const boost::property_tree::ptree &pt);
-	// for genetic toggle switch system
+	//for genetic toggle switch system
 	void ODE_solver_path_integral_parallel_cv_ct_v4(const boost::mpi::communicator &world, const std::string &main_cwd, const boost::property_tree::ptree &pt);
 
 	/*

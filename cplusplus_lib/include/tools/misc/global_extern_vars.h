@@ -12,10 +12,10 @@
 const int LENIWK = 16000, LENRWK = 16000, LENCWK = 200, LENSYM = 16;
 //const int LENIWK=300, LENRWK=600, LENCWK=20, LENSYM=16;
 
-// C++ and Fortran mixed programming.
+//C++ and Fortran mixed programming.
 extern "C"
 {
-	// Fortran 'COMMON' data struct.
+	//Fortran 'COMMON' data struct.
 	struct ckstrt_t
 	{
 		int nmm, nkk, nii, mxsp, mxtb, mxtp, ncp, ncp1,
@@ -57,7 +57,7 @@ extern "C"
 	extern struct lsodestore_t lsodestore;
 
 
-	// Fortran Subroutine.
+	//Fortran Subroutine.
 	void chemkininitialize();
 	//Returns universal gas constants and the pressure of one standard atmosphere
 	void ckrp(const int *ICKWRK, const double *RCKWRK, double *ru, double *ruc, double *pa);
@@ -85,9 +85,9 @@ extern "C"
 	void ckcppdlsodastcc1(const double *ti, const double *tout, const int *neq, double *ct);
 	void ckcppdlsodastcc2(const double *ti, const double *tout, const int *neq, double *ct);
 	void ckkfkr(const double *P, const double *T, const double *X, const int *ICKWRK, const double *RCKWRK, double *FWDK, double *REVK);
-	// Shirong Bai wrote a fortron subroutine to calculate the reaction rates given temperature and molar concentration
-	// Applicable for reactions with rate constant independent of pressure
-	// where sr stands for Shirong
+	//Shirong Bai wrote a fortron subroutine to calculate the reaction rates given temperature and molar concentration
+	//Applicable for reactions with rate constant independent of pressure
+	//where sr stands for Shirong
 	void ckkfkrsr(const double *T, const double *C, const int *ICKWRK, const double *RCKWRK, double *FWDK, double *REVK);
 
 	void ckpy(const double *RHO, const double *T, const double *Y, const int *ICKWRK, const double *RCKWRK, double *P);
@@ -100,7 +100,7 @@ extern "C"
 
 	void calculatetdotv(const double* Y, const double *t, double *tdot);
 
-	// Cantera section
+	//Cantera section
 #ifdef __USE_CANTERA_
 	void canterainitialize();
 	void ctindx(const int *ICKWRK, const double *RCKWRK, int *MM, int *KK, int *II);
@@ -113,7 +113,7 @@ extern "C"
 	void canteracppdlsodev(const double *ti, const double *tout, const int *neq, double *xgst);
 	void canteracppdlsodav(const double *ti, const double *tout, const int *neq, double *xgst);
 
-#endif // __USE_CANTERA_
+#endif //__USE_CANTERA_
 
 
 }

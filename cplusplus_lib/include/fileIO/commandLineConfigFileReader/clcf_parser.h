@@ -9,7 +9,7 @@ namespace po = boost::program_options;
 #include <fstream>
 #include <iterator>
 
-// A helper function to simplify the main part.
+//A helper function to simplify the main part.
 template<class T>
 std::ostream& operator<<(std::ostream& os, const std::vector<T>& v)
 {
@@ -28,17 +28,17 @@ private:
 	po::variables_map vm;
 
 private:
-	// Declare a group of options that will be 
-	// allowed only on command line
+	//Declare a group of options that will be 
+	//allowed only on command line
 	po::options_description generic;
 
-	// Declare a group of options that will be 
-	// allowed both on command line and in
-	// config file
+	//Declare a group of options that will be 
+	//allowed both on command line and in
+	//config file
 	po::options_description config;
 
-	// Hidden options, will be allowed both on command line and
-	// in config file, but will not be shown to the user.
+	//Hidden options, will be allowed both on command line and
+	//in config file, but will not be shown to the user.
 	po::options_description hidden;
 public:
 	//read command line
@@ -69,7 +69,7 @@ private:
 	po::variables_map vm;
 
 private:
-	// Declare a group of options that will be in config file
+	//Declare a group of options that will be in config file
 	po::options_description config;
 
 public:

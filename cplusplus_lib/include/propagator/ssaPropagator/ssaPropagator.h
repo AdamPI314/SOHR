@@ -102,9 +102,9 @@ namespace propagator_sr {
 			const double ti, const double Temp, const double Pressure,
 			const double * const c_t, const std::vector<double> &reaction_rate_v_tmp);
 
-		// cc-->constant concentration, hold the concentration of the first species to be constant
+		//cc-->constant concentration, hold the concentration of the first species to be constant
 		void time_propagator_s_ct_np_cc1_s2m_pgt(std::vector<double> uncertainties, double critical_time, double end_time) override;
-		// cc-->constant concentration, hold the concentration of the first two species to be constant
+		//cc-->constant concentration, hold the concentration of the first two species to be constant
 		void time_propagator_s_ct_np_cc2_s2m_pgt(std::vector<double> uncertainties, double critical_time, double end_time) override;
 
 		//Gillespie Stochastic Simulation Algorithm update step, here decouple c_t and reaction_rates so that this method is applicable to
