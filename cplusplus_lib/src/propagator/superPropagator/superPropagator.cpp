@@ -321,12 +321,14 @@ namespace propagator_sr {
 			for (auto y : species_network_v[x].reaction_k_index_s_coef_v) {
 				auto rxn_ind = y.first;
 				auto s_coef = y.second;
-				if (unique_fast_reactions.find(rxn_ind) != unique_fast_reactions.end()) {
+				if (unique_fast_reactions.count(rxn_ind) >= 1) {
 					for (std::size_t i = 0; i < this->time_data_pgt.size(); ++i) {
 						if (this->concentration_data_pgt[x][i] != 0) {
 							auto drc_tmp = s_coef *this->reaction_rate_data_pgt[rxn_ind][i] / this->concentration_data_pgt[x][i];
 							if (this->spe_drc_data_pgt[x][i] > drc_tmp)
 								this->spe_drc_data_pgt[x][i] -= drc_tmp;
+							else
+								this->spe_drc_data_pgt[x][i] = 0.0;
 						}
 					}
 				}
@@ -384,7 +386,8 @@ namespace propagator_sr {
 							}
 						}
 					}
-				}
+				}//transition matrix
+
 				//calculate steady state concentration based on transition matrix, dummy variable here
 				double first_real_positive_eigenvalue;
 				std::vector<double> equil_ratio;
