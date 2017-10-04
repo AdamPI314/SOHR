@@ -2205,6 +2205,11 @@ namespace reactionNetwork_sr {
 			for (std::size_t i = 0; i < drc_prob.size(); ++i) {
 				drc_prob[i] = this->evaluate_spe_drc_at_time(time,
 					this->sp_chattering_rnk->species_chattering_group_mat[chattering_group_id][i]);
+
+				//gonna take steady state concentration, or real concentration of species at this time into consideration
+				//can try steady state concentration vs. real equilibrium concentration
+				drc_prob[i] *= this->evaluate_spe_concentration_at_time(time,
+					this->sp_chattering_rnk->species_chattering_group_mat[chattering_group_id][i]);
 			}
 
 			auto next_vertex1 = this->sp_chattering_rnk->species_chattering_group_mat[chattering_group_id][
@@ -2330,6 +2335,11 @@ namespace reactionNetwork_sr {
 					std::vector<double> drc_prob(this->sp_chattering_rnk->species_chattering_group_mat[chattering_group_id].size(), 0.0);
 					for (std::size_t i = 0; i < drc_prob.size(); ++i) {
 						drc_prob[i] = this->evaluate_spe_drc_at_time(when_time,
+							this->sp_chattering_rnk->species_chattering_group_mat[chattering_group_id][i]);
+
+						//gonna take steady state concentration, or real concentration of species at this time into consideration
+						//can try steady state concentration vs. real equilibrium concentration
+						drc_prob[i] *= this->evaluate_spe_concentration_at_time(when_time,
 							this->sp_chattering_rnk->species_chattering_group_mat[chattering_group_id][i]);
 					}
 					double drc_prob_sum = std::accumulate(drc_prob.begin(), drc_prob.end(), 0.0);
