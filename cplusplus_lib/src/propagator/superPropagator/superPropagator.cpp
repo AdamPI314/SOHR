@@ -164,13 +164,13 @@ namespace propagator_sr {
 		//since there might be groups of trapped species, such as A=B, B=C, C=D, A,B,C,D belongs to the same fast transition group
 		//use union find here
 		std::unordered_set<int> unique_trapped_species;
-		for (auto x : this->sp_chattering_pgt->chattering_spe) {
+		for (auto x : this->sp_chattering_pgt->chattering_spe_idx_from_file) {
 			for (auto y : x) {
 				unique_trapped_species.insert(y);
 			}
 		}
 		std::set<int> unique_fast_reactions;
-		for (auto r : this->sp_chattering_pgt->chattering_reaction_index) {
+		for (auto r : this->sp_chattering_pgt->chattering_rxn_idx_from_file) {
 			unique_fast_reactions.insert(r);
 		}
 
@@ -183,14 +183,14 @@ namespace propagator_sr {
 		}
 
 		UnionFind uf(label_2_idx.size());
-		for (std::size_t i = 0; i < this->sp_chattering_pgt->chattering_spe[0].size(); ++i) {
-			uf.unite(idx_2_label[this->sp_chattering_pgt->chattering_spe[0][i]],
-				idx_2_label[this->sp_chattering_pgt->chattering_spe[1][i]]);
+		for (std::size_t i = 0; i < this->sp_chattering_pgt->chattering_spe_idx_from_file[0].size(); ++i) {
+			uf.unite(idx_2_label[this->sp_chattering_pgt->chattering_spe_idx_from_file[0][i]],
+				idx_2_label[this->sp_chattering_pgt->chattering_spe_idx_from_file[1][i]]);
 		}
 
 		//find fast transition groups
 		std::unordered_set<int> unique_root_species;
-		for (auto x : this->sp_chattering_pgt->chattering_spe) {
+		for (auto x : this->sp_chattering_pgt->chattering_spe_idx_from_file) {
 			for (auto y : x) {
 				//find root
 				auto s = label_2_idx[uf.root(idx_2_label[y])];
@@ -201,7 +201,7 @@ namespace propagator_sr {
 		for (auto x : unique_root_species) {
 			fast_transition_group_spe.emplace(x, std::set<int>({ x }));
 		}
-		for (auto x : this->sp_chattering_pgt->chattering_spe) {
+		for (auto x : this->sp_chattering_pgt->chattering_spe_idx_from_file) {
 			for (auto y : x) {
 				//find root
 				auto s = label_2_idx[uf.root(idx_2_label[y])];
@@ -221,13 +221,13 @@ namespace propagator_sr {
 				this->sp_chattering_pgt->spe_idx_2_chattering_group_id_idx[s_idx] = std::make_pair(group_counter, spe_counter);
 				++spe_counter;
 			}
-			this->sp_chattering_pgt->species_chattering_group_mat.push_back(s_c_g);
+			this->sp_chattering_pgt->species_chattering_group.push_back(s_c_g);
 			++group_counter;
 		}
 
 		//super_group_counter
 		int super_group_counter = 0;
-		for (auto g1 : this->sp_chattering_pgt->species_chattering_group_mat) {
+		for (auto g1 : this->sp_chattering_pgt->species_chattering_group) {
 			for (auto s_idx : g1) {
 				this->sp_chattering_pgt->spe_idx_2_super_group_idx[s_idx] = super_group_counter;
 				++super_group_counter;
@@ -236,10 +236,10 @@ namespace propagator_sr {
 
 		//write to json file
 		boost::property_tree::ptree pt_root_tmp;
-		for (std::size_t i = 0; i < this->sp_chattering_pgt->species_chattering_group_mat.size(); ++i) {
+		for (std::size_t i = 0; i < this->sp_chattering_pgt->species_chattering_group.size(); ++i) {
 			boost::property_tree::ptree pt_child_tmp;
-			for (std::size_t j = 0; j < this->sp_chattering_pgt->species_chattering_group_mat[i].size(); ++j) {
-				pt_child_tmp.put(boost::lexical_cast<std::string>(j), this->sp_chattering_pgt->species_chattering_group_mat[i][j]);
+			for (std::size_t j = 0; j < this->sp_chattering_pgt->species_chattering_group[i].size(); ++j) {
+				pt_child_tmp.put(boost::lexical_cast<std::string>(j), this->sp_chattering_pgt->species_chattering_group[i][j]);
 			}
 			pt_root_tmp.put_child(boost::lexical_cast<std::string>(i + rsp::INDICATOR), pt_child_tmp);
 		}
@@ -261,6 +261,46 @@ namespace propagator_sr {
 
 	}
 
+	void superPropagator::update_chattering_group_pairs_reactions(const std::vector<rsp::spe_info_base>& species_network_v, const std::vector<rsp::reaction_info_base>& reaction_network_v, std::string atom_followed)
+	{
+		this->sp_chattering_pgt->species_chattering_group_pairs_rxns.resize(0);
+		this->sp_chattering_pgt->species_chattering_group_pairs_rxns.clear();
+
+		this->sp_chattering_pgt->species_chattering_group_pairs_rxns.resize(this->sp_chattering_pgt->species_chattering_group.size());
+		for (std::size_t group_i = 0; group_i < this->sp_chattering_pgt->species_chattering_group.size(); ++group_i) {
+			std::map<std::pair<std::size_t, std::size_t>, std::set<chattering_sr::chattering::rxn_c1_c2> > pairs_rxns_map_tmp;
+			//species vector
+			auto s_vec_tmp = this->sp_chattering_pgt->species_chattering_group[group_i];
+			for (auto s_idx1 : s_vec_tmp) {//s_idx1
+				for (auto rxn_coef : species_network_v[s_idx1].reaction_k_index_s_coef_v) {
+					auto r_idx = rxn_coef.first;
+					auto c1 = rxn_coef.second;
+					for (auto s_idx_coef : reaction_network_v[r_idx].out_spe_index_weight_v_map.at(atom_followed)) {
+						auto s_idx2 = s_idx_coef.first;
+						auto c2 = s_idx_coef.second;
+
+						//if these two species are both in current chattering group
+						if (std::find(s_vec_tmp.begin(), s_vec_tmp.end(), s_idx2) != s_vec_tmp.end()) {
+							std::pair<std::size_t, std::size_t> s1_s2_p(s_idx1, s_idx2);
+
+							chattering_sr::chattering::rxn_c1_c2 r_c1_c2;
+							r_c1_c2.r_idx = r_idx;
+							r_c1_c2.c1 = c1;
+							r_c1_c2.c2 = c2;
+
+							pairs_rxns_map_tmp[s1_s2_p].insert(r_c1_c2);
+						}//if these two species are both in current chattering group
+
+					}
+
+				}
+
+			}//s_idx1
+
+			this->sp_chattering_pgt->species_chattering_group_pairs_rxns[group_i] = pairs_rxns_map_tmp;
+		}
+	}
+
 	std::shared_ptr<chattering_sr::chattering> superPropagator::get_sp_of_chattering()
 	{
 		return this->sp_chattering_pgt;
@@ -275,7 +315,7 @@ namespace propagator_sr {
 			Matrix[1].push_back(key1.second.get_value<std::size_t>());
 		}
 
-		this->sp_chattering_pgt->chattering_spe = Matrix;
+		this->sp_chattering_pgt->chattering_spe_idx_from_file = Matrix;
 	}
 
 	void superPropagator::set_chattering_reactions_pgt()
@@ -288,18 +328,18 @@ namespace propagator_sr {
 			fast_reaction_index.push_back(key1.second.get_value<std::size_t>());
 		}
 
-		this->sp_chattering_pgt->chattering_reaction_index = fast_reaction_index;
+		this->sp_chattering_pgt->chattering_rxn_idx_from_file = fast_reaction_index;
 	}
 
 	std::vector<std::size_t> superPropagator::get_chattering_reactions_pgt()
 	{
-		return this->sp_chattering_pgt->chattering_reaction_index;
+		return this->sp_chattering_pgt->chattering_rxn_idx_from_file;
 	}
 
 	void superPropagator::set_chattering_reaction_rate_to_zero_pgt()
 	{
-		for (std::size_t i = 0; i < this->sp_chattering_pgt->chattering_reaction_index.size(); ++i) {
-			std::fill(reaction_rate_data_pgt[this->sp_chattering_pgt->chattering_reaction_index[i]].begin(), reaction_rate_data_pgt[this->sp_chattering_pgt->chattering_reaction_index[i]].end(), 0.0);
+		for (std::size_t i = 0; i < this->sp_chattering_pgt->chattering_rxn_idx_from_file.size(); ++i) {
+			std::fill(reaction_rate_data_pgt[this->sp_chattering_pgt->chattering_rxn_idx_from_file[i]].begin(), reaction_rate_data_pgt[this->sp_chattering_pgt->chattering_rxn_idx_from_file[i]].end(), 0.0);
 		}
 	}
 
@@ -312,7 +352,7 @@ namespace propagator_sr {
 			unique_trapped_species.insert(x.first);
 		}
 		std::set<int> unique_fast_reactions;
-		for (auto r : this->sp_chattering_pgt->chattering_reaction_index) {
+		for (auto r : this->sp_chattering_pgt->chattering_rxn_idx_from_file) {
 			unique_fast_reactions.insert(r);
 		}
 
@@ -337,7 +377,7 @@ namespace propagator_sr {
 
 
 		this->chattering_group_k_data_pgt.clear();
-		this->chattering_group_k_data_pgt.resize(this->sp_chattering_pgt->species_chattering_group_mat.size());
+		this->chattering_group_k_data_pgt.resize(this->sp_chattering_pgt->species_chattering_group.size());
 		for (auto &x : this->chattering_group_k_data_pgt)
 			x.assign(this->time_data_pgt.size(), 0.0);
 
@@ -351,8 +391,8 @@ namespace propagator_sr {
 		//if there is a fast transition between A and B, there we modify the k3, k3=k2/(k1+k2) * k3
 		for (std::size_t time_i = 0; time_i < this->time_data_pgt.size(); ++time_i) {
 
-			for (std::size_t group_i = 0; group_i < this->sp_chattering_pgt->species_chattering_group_mat.size(); ++group_i) {
-				auto spe_vec = this->sp_chattering_pgt->species_chattering_group_mat[group_i];
+			for (std::size_t group_i = 0; group_i < this->sp_chattering_pgt->species_chattering_group.size(); ++group_i) {
+				auto spe_vec = this->sp_chattering_pgt->species_chattering_group[group_i];
 				//transition matrix, to each group of species, calculate a transition matrix
 
 				//transition matrix

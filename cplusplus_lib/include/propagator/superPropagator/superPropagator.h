@@ -147,6 +147,9 @@ namespace propagator_sr {
 
 	public:
 		void find_chattering_group(const std::vector<rsp::spe_info_base> &species_network_v);
+		//update chattering group-pairs-reactions
+		void update_chattering_group_pairs_reactions(const std::vector<rsp::spe_info_base> &species_network_v, const std::vector<rsp::reaction_info_base> &reaction_network_v, std::string atom_followed = "H");
+
 		//return shared pointer of chattering
 		std::shared_ptr<chattering_sr::chattering> get_sp_of_chattering();
 
