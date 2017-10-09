@@ -56,10 +56,12 @@ namespace reactionNetwork_sr {
 
 		this->propagator->update_chattering_group_pairs_reactions(this->species_network_v, this->reaction_network_v, this->rnk_pt.get<std::string>("pathway.atom_followed"));
 
-		this->propagator->update_info_of_chattering_species_reactions(this->species_network_v, this->reaction_network_v, this->rnk_pt.get<std::string>("pathway.atom_followed"));
+		this->propagator->subtract_chattering_reaction_contribution_from_species_drc_pgt();
+
+		this->propagator->update_info_of_chattering_group(this->species_network_v, this->reaction_network_v, this->rnk_pt.get<std::string>("pathway.atom_followed"));
 
 		//set the reaction rate of fast reactions to be zero
-		this->propagator->set_chattering_reaction_rate_to_zero_pgt();
+		this->propagator->set_chattering_reaction_rates_to_zero_pgt();
 
 		//re construct the cubic spline
 		this->propagator->initiate_cubic_spline();

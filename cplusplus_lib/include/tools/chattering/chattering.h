@@ -9,9 +9,15 @@ namespace chattering_sr {
 	class chattering {
 	public:
 		//chattrering includes chattering reaction and chattering species from input file directly
-		std::vector<std::size_t> chattering_rxn_idx_from_file;
+		std::vector<std::vector<std::size_t> > chattering_rxn_idx_from_file;
 		//chattering species in pair, read direcltly from file
 		std::vector<std::vector<std::size_t> > chattering_spe_idx_from_file;
+
+		//unique chattering species
+		std::set<std::size_t> unique_chattering_species;
+		//unique chattering reactions
+		std::set<std::size_t> unique_chattering_reactions;
+
 
 		struct rxn_c1_c2 {
 			//reaction index
@@ -32,7 +38,7 @@ namespace chattering_sr {
 
 	public:
 		//vector of species chattering groups
-		std::vector<std::vector<std::size_t> > species_chattering_group;
+		std::vector<std::vector<std::size_t> > species_chattering_group_mat;
 		//map species index -> its chattering group id, and index in that group 
 		std::map<std::size_t, std::pair<std::size_t, std::size_t> > spe_idx_2_chattering_group_id_idx;
 		//map species index -> a index in a flatten chattering super group
