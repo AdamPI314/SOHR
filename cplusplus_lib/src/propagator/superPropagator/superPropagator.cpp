@@ -341,15 +341,15 @@ namespace propagator_sr {
 
 				for (auto rxn_c1_c2 : rxn_c1_c2_set) {
 					//see if current reaction in the "expected list"
-					if (this->sp_chattering_pgt->unique_chattering_reactions.count(rxn_c1_c2.r_idx) < 1)
-						continue;
+					//if (this->sp_chattering_pgt->unique_chattering_reactions.count(rxn_c1_c2.r_idx) < 1)
+					//	continue;
 					for (std::size_t time_j = 0; time_j < this->time_data_pgt.size(); ++time_j) {
 						if (this->concentration_data_pgt[s1_s2_p.first][time_j] != 0) {
 							auto drc_tmp = rxn_c1_c2.c1 *this->reaction_rate_data_pgt[rxn_c1_c2.r_idx][time_j] / this->concentration_data_pgt[s1_s2_p.first][time_j];
 							if (this->spe_drc_data_pgt[s1_s2_p.first][time_j] > drc_tmp)
 								this->spe_drc_data_pgt[s1_s2_p.first][time_j] -= drc_tmp;
-							//else
-							//	this->spe_drc_data_pgt[s1_s2_p.first][time_j] = 0.0;
+							else
+								this->spe_drc_data_pgt[s1_s2_p.first][time_j] = 0.0;
 						}
 					}//time
 				}//s1 s2 reactions
@@ -357,7 +357,7 @@ namespace propagator_sr {
 		}//chattering group
 	}
 
-	void superPropagator::update_info_of_chattering_group()
+	void superPropagator::update_drc_and_equilibrium_probability_of_chattering_group()
 	{
 		this->chattering_group_k_data_pgt.clear();
 		this->chattering_group_k_data_pgt.resize(this->sp_chattering_pgt->species_chattering_group_mat.size());
@@ -393,6 +393,7 @@ namespace propagator_sr {
 					//check zero
 					if (sum_conc > 0) {
 						this->chattering_group_ss_prob_data_pgt[s_g_idx][time_j] /= sum_conc;
+
 						//as soon as fast equilibrium concentration is normalized
 						//this->spe_drc_data_pgt[spe_idx][time_j] *= this->chattering_group_ss_prob_data_pgt[s_g_idx][time_j];
 						this->chattering_group_k_data_pgt[group_i][time_j] +=
@@ -400,6 +401,7 @@ namespace propagator_sr {
 					}
 					else {
 						this->chattering_group_ss_prob_data_pgt[s_g_idx][time_j] = 1.0 / this->sp_chattering_pgt->species_chattering_group_mat[group_i].size();
+
 						//as soon as fast equilibrium concentration is normalized
 						//this->spe_drc_data_pgt[spe_idx][time_j] *= this->chattering_group_ss_prob_data_pgt[s_g_idx][time_j];
 						this->chattering_group_k_data_pgt[group_i][time_j] +=
@@ -414,10 +416,23 @@ namespace propagator_sr {
 
 	void superPropagator::set_chattering_reaction_rates_to_zero_pgt()
 	{
-		for (auto rxn_idx : this->sp_chattering_pgt->unique_chattering_reactions) {
-			std::fill(reaction_rate_data_pgt[rxn_idx].begin(),
-				reaction_rate_data_pgt[rxn_idx].end(), 0.0);
-		}
+		//for (auto rxn_idx : this->sp_chattering_pgt->unique_chattering_reactions) {
+		//	std::fill(reaction_rate_data_pgt[rxn_idx].begin(),
+		//		reaction_rate_data_pgt[rxn_idx].end(), 0.0);
+		//}
+
+		for (auto c_g : this->sp_chattering_pgt->species_chattering_group_pairs_rxns) {
+			for (auto p_r_m : c_g) {
+				auto s1_s2_p = p_r_m.first;
+				auto rxn_c1_c2_set = p_r_m.second;
+				for (auto rxn_c1_c2 : rxn_c1_c2_set) {
+					auto rxn_idx = rxn_c1_c2.r_idx;
+					std::fill(reaction_rate_data_pgt[rxn_idx].begin(),
+						reaction_rate_data_pgt[rxn_idx].end(), 0.0);
+				}//rxn_c1_c2_set
+			}//s1_s2_pair
+		}//chattrering_group
+
 	}
 
 	rsp::temperature_t superPropagator::return_target_temperature() const
