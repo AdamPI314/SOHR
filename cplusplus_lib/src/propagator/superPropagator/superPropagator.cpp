@@ -394,14 +394,16 @@ namespace propagator_sr {
 					if (sum_conc > 0) {
 						this->chattering_group_ss_prob_data_pgt[s_g_idx][time_j] /= sum_conc;
 						//as soon as fast equilibrium concentration is normalized
-						this->spe_drc_data_pgt[spe_idx][time_j] *= this->chattering_group_ss_prob_data_pgt[s_g_idx][time_j];
-						this->chattering_group_k_data_pgt[group_i][time_j] += this->spe_drc_data_pgt[spe_idx][time_j];
+						//this->spe_drc_data_pgt[spe_idx][time_j] *= this->chattering_group_ss_prob_data_pgt[s_g_idx][time_j];
+						this->chattering_group_k_data_pgt[group_i][time_j] +=
+							this->spe_drc_data_pgt[spe_idx][time_j] * this->chattering_group_ss_prob_data_pgt[s_g_idx][time_j];
 					}
 					else {
 						this->chattering_group_ss_prob_data_pgt[s_g_idx][time_j] = 1.0 / this->sp_chattering_pgt->species_chattering_group_mat[group_i].size();
 						//as soon as fast equilibrium concentration is normalized
-						this->spe_drc_data_pgt[spe_idx][time_j] *= this->chattering_group_ss_prob_data_pgt[s_g_idx][time_j];
-						this->chattering_group_k_data_pgt[group_i][time_j] += this->spe_drc_data_pgt[spe_idx][time_j];
+						//this->spe_drc_data_pgt[spe_idx][time_j] *= this->chattering_group_ss_prob_data_pgt[s_g_idx][time_j];
+						this->chattering_group_k_data_pgt[group_i][time_j] +=
+							this->spe_drc_data_pgt[spe_idx][time_j] * this->chattering_group_ss_prob_data_pgt[s_g_idx][time_j];
 					}
 				}
 
