@@ -58,7 +58,7 @@ namespace reactionNetwork_sr {
 
 		this->propagator->subtract_chattering_reaction_contribution_from_species_drc_pgt();
 
-		this->propagator->update_info_of_chattering_group(this->species_network_v, this->reaction_network_v, this->rnk_pt.get<std::string>("pathway.atom_followed"));
+		this->propagator->update_info_of_chattering_group();
 
 		//set the reaction rate of fast reactions to be zero
 		this->propagator->set_chattering_reaction_rates_to_zero_pgt();

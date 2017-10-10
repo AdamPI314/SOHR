@@ -348,8 +348,8 @@ namespace propagator_sr {
 							auto drc_tmp = rxn_c1_c2.c1 *this->reaction_rate_data_pgt[rxn_c1_c2.r_idx][time_i] / this->concentration_data_pgt[s1_s2_p.first][time_i];
 							if (this->spe_drc_data_pgt[s1_s2_p.first][time_i] > drc_tmp)
 								this->spe_drc_data_pgt[s1_s2_p.first][time_i] -= drc_tmp;
-							else
-								this->spe_drc_data_pgt[s1_s2_p.first][time_i] = 0.0;
+							//else
+							//	this->spe_drc_data_pgt[s1_s2_p.first][time_i] = 0.0;
 						}
 					}//time
 				}//s1 s2 reactions
@@ -357,7 +357,7 @@ namespace propagator_sr {
 		}//chattering group
 	}
 
-	void superPropagator::update_info_of_chattering_group(const std::vector<rsp::spe_info_base> &species_network_v, const std::vector<rsp::reaction_info_base> &reaction_network_v, std::string atom_followed)
+	void superPropagator::update_info_of_chattering_group()
 	{
 		this->chattering_group_k_data_pgt.clear();
 		this->chattering_group_k_data_pgt.resize(this->sp_chattering_pgt->species_chattering_group_mat.size());
@@ -397,13 +397,13 @@ namespace propagator_sr {
 						this->chattering_group_ss_prob_data_pgt[s_g_idx][time_j] /= sum_conc;
 						//as soon as fast equilibrium concentration is normalized
 						this->spe_drc_data_pgt[spe_idx][time_j] *= this->chattering_group_ss_prob_data_pgt[s_g_idx][time_j];
-						this->chattering_group_k_data_pgt[group_i][time_j] += this->chattering_group_ss_prob_data_pgt[s_g_idx][time_j];
+						this->chattering_group_k_data_pgt[group_i][time_j] += this->spe_drc_data_pgt[s_g_idx][time_j];
 					}
 					else {
 						this->chattering_group_ss_prob_data_pgt[s_g_idx][time_j] = 1.0 / this->sp_chattering_pgt->species_chattering_group_mat[group_i].size();
 						//as soon as fast equilibrium concentration is normalized
 						this->spe_drc_data_pgt[spe_idx][time_j] *= this->chattering_group_ss_prob_data_pgt[s_g_idx][time_j];
-						this->chattering_group_k_data_pgt[group_i][time_j] += this->chattering_group_ss_prob_data_pgt[s_g_idx][time_j];
+						this->chattering_group_k_data_pgt[group_i][time_j] += this->spe_drc_data_pgt[s_g_idx][time_j];
 					}
 				}
 

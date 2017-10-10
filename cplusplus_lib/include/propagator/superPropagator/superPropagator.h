@@ -160,7 +160,7 @@ namespace propagator_sr {
 		//cancel fast transition within each chattering group
 		void subtract_chattering_reaction_contribution_from_species_drc_pgt();
 		//set fast transition A=B's pseudo-first order rate constant given list of trapped species pair
-		void update_info_of_chattering_group(const std::vector<rsp::spe_info_base> &species_network_v, const std::vector<rsp::reaction_info_base> &reaction_network_v, std::string atom_followed = "H");
+		void update_info_of_chattering_group();
 		//set the reaction rate of fast reactions to be zero
 		void set_chattering_reaction_rates_to_zero_pgt();
 
