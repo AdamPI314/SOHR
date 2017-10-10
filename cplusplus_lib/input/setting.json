@@ -68,9 +68,9 @@
         "init_spe": 62,
         "atom_followed": "C",
         "super_atom": "X",
-        "tau": 0.50003,
+        "tau": 0.50004,
         "topN": [
-            100
+            1000
         ],
         "pathwayEndWith": "ALL",
         "trajectoryNumber": 10000,
