@@ -2199,7 +2199,7 @@ namespace reactionNetwork_sr {
 
 			//actually move two steps, (1) from one chattering species to another chattering species
 			//(2) from chattering species to the outside
-			/*first step*/
+			/*step */
 			//choose chattering species direction randomly based on drc at this time, actually going out from that species
 			std::vector<double> drc_prob(this->sp_chattering_rnk->species_chattering_group_mat[chattering_group_id].size(), 0.0);
 			for (std::size_t i = 0; i < drc_prob.size(); ++i) {
@@ -2224,9 +2224,9 @@ namespace reactionNetwork_sr {
 
 			curr_pathway_local += "S";
 			curr_pathway_local += boost::lexical_cast<std::string>(next_vertex1);
-			/*first step*/
+			/*step 1*/
 
-			/*second step*/
+			/*step 2*/
 			//update rate in the reaction network
 			update_reaction_rate(time, next_vertex1);
 			rsp::index_int_t next_reaction_index2 = random_pick_next_reaction(next_vertex1);
@@ -2241,7 +2241,7 @@ namespace reactionNetwork_sr {
 
 			when_where.first = time;
 			when_where.second = next_vertex2;
-			/*second step*/
+			/*step 2*/
 
 			return when_where;
 		}
