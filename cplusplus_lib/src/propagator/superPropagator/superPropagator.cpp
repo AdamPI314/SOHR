@@ -343,13 +343,13 @@ namespace propagator_sr {
 					//see if current reaction in the "expected list"
 					if (this->sp_chattering_pgt->unique_chattering_reactions.count(rxn_c1_c2.r_idx) < 1)
 						continue;
-					for (std::size_t time_i = 0; time_i < this->time_data_pgt.size(); ++time_i) {
-						if (this->concentration_data_pgt[s1_s2_p.first][time_i] != 0) {
-							auto drc_tmp = rxn_c1_c2.c1 *this->reaction_rate_data_pgt[rxn_c1_c2.r_idx][time_i] / this->concentration_data_pgt[s1_s2_p.first][time_i];
-							if (this->spe_drc_data_pgt[s1_s2_p.first][time_i] > drc_tmp)
-								this->spe_drc_data_pgt[s1_s2_p.first][time_i] -= drc_tmp;
+					for (std::size_t time_j = 0; time_j < this->time_data_pgt.size(); ++time_j) {
+						if (this->concentration_data_pgt[s1_s2_p.first][time_j] != 0) {
+							auto drc_tmp = rxn_c1_c2.c1 *this->reaction_rate_data_pgt[rxn_c1_c2.r_idx][time_j] / this->concentration_data_pgt[s1_s2_p.first][time_j];
+							if (this->spe_drc_data_pgt[s1_s2_p.first][time_j] > drc_tmp)
+								this->spe_drc_data_pgt[s1_s2_p.first][time_j] -= drc_tmp;
 							//else
-							//	this->spe_drc_data_pgt[s1_s2_p.first][time_i] = 0.0;
+							//	this->spe_drc_data_pgt[s1_s2_p.first][time_j] = 0.0;
 						}
 					}//time
 				}//s1 s2 reactions
@@ -397,13 +397,13 @@ namespace propagator_sr {
 						this->chattering_group_ss_prob_data_pgt[s_g_idx][time_j] /= sum_conc;
 						//as soon as fast equilibrium concentration is normalized
 						this->spe_drc_data_pgt[spe_idx][time_j] *= this->chattering_group_ss_prob_data_pgt[s_g_idx][time_j];
-						this->chattering_group_k_data_pgt[group_i][time_j] += this->spe_drc_data_pgt[s_g_idx][time_j];
+						this->chattering_group_k_data_pgt[group_i][time_j] += this->spe_drc_data_pgt[spe_idx][time_j];
 					}
 					else {
 						this->chattering_group_ss_prob_data_pgt[s_g_idx][time_j] = 1.0 / this->sp_chattering_pgt->species_chattering_group_mat[group_i].size();
 						//as soon as fast equilibrium concentration is normalized
 						this->spe_drc_data_pgt[spe_idx][time_j] *= this->chattering_group_ss_prob_data_pgt[s_g_idx][time_j];
-						this->chattering_group_k_data_pgt[group_i][time_j] += this->spe_drc_data_pgt[s_g_idx][time_j];
+						this->chattering_group_k_data_pgt[group_i][time_j] += this->spe_drc_data_pgt[spe_idx][time_j];
 					}
 				}
 
