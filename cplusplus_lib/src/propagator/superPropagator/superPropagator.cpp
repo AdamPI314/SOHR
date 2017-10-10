@@ -379,8 +379,7 @@ namespace propagator_sr {
 
 				//calculate concentration at this time
 				double sum_conc = 0.0;
-				for (std::size_t label_k = 0; label_k < this->sp_chattering_pgt->species_chattering_group_mat[group_i].size(); ++label_k) {
-					auto spe_idx = this->sp_chattering_pgt->species_chattering_group_mat[group_i][label_k];
+				for (auto spe_idx : this->sp_chattering_pgt->species_chattering_group_mat[group_i]) {
 					auto s_g_idx = this->sp_chattering_pgt->spe_idx_2_super_group_idx[spe_idx];
 					//fast equilibrium concentration, concentration at this time
 					this->chattering_group_ss_prob_data_pgt[s_g_idx][time_j] =
@@ -389,8 +388,7 @@ namespace propagator_sr {
 				}
 
 				//normalize within each chattering group
-				for (std::size_t label_k = 0; label_k < this->sp_chattering_pgt->species_chattering_group_mat[group_i].size(); ++label_k) {
-					auto spe_idx = this->sp_chattering_pgt->species_chattering_group_mat[group_i][label_k];
+				for (auto spe_idx : this->sp_chattering_pgt->species_chattering_group_mat[group_i]) {
 					auto s_g_idx = this->sp_chattering_pgt->spe_idx_2_super_group_idx[spe_idx];
 					//check zero
 					if (sum_conc > 0) {
