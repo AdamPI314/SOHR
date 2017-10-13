@@ -1,4 +1,4 @@
-#include "../../cplusplus_lib/include/tools/misc/global_macros.h"
+#include "../../include/tools/misc/global_macros.h"
 
 #ifdef __CANTERA_AVAILABLE_
 

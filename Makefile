@@ -98,7 +98,7 @@ LDFLAGS   =
 # If not specified, only the current directory will be serached.
 
 # Fortran Source directory
-FSRC_ROOT_DIR = ../fortran_lib
+FSRC_ROOT_DIR = ./fortran_lib
 FSRCDIRS   = $(FSRC_ROOT_DIR) $(FSRC_ROOT_DIR)/dlsode $(FSRC_ROOT_DIR)/chemkin $(FSRC_ROOT_DIR)/cantera
 
 # CXX Source directory
