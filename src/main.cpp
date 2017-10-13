@@ -33,7 +33,7 @@ int main(int argc, char **argv) {
 #endif // __NO_USE_MPI_
 
 
-#if defined(__MPI_AVALABLE_)
+#if defined(__USE_MPI_)
 	boost::mpi::environment env(argc, argv);
 	boost::mpi::communicator world;
 
