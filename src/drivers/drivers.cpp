@@ -110,7 +110,7 @@ void driver::evaluate_path_integral_over_time(const std::string & main_cwd, cons
 
 	//initialize the time points we are going to calculate
 	//read file pathway_time.csv
-	time_Mat = fileIO::fileIO::read_topN_line_csv_matrix(main_cwd + std::string("/input/pathway_time.csv"), topN);
+	time_Mat = fileIO::fileIO::read_topN_line_csv_matrix(main_cwd + std::string("/input/pathway_time_candidate.csv"), topN);
 
 	//pathway prob result
 	std::vector<std::vector<double> > prob_Mat(pathway_vec.size(), std::vector<double>(time_Mat[0].size(), 0.0));
@@ -330,7 +330,7 @@ void driver::evaluate_path_integral_over_time(const boost::mpi::communicator & w
 
 		//initialize the time points we are going to calculate
 		//read file pathway_time.csv
-		time_Mat = fileIO::fileIO::read_topN_line_csv_matrix(main_cwd + std::string("/input/pathway_time.csv"), topN);
+		time_Mat = fileIO::fileIO::read_topN_line_csv_matrix(main_cwd + std::string("/input/pathway_time_candidate.csv"), topN);
 	}
 
 	//broadcast

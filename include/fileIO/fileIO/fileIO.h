@@ -43,7 +43,7 @@ namespace fileIO {/*namespace fileIO*/
 
 	public:
 		//read top N line of csv matrix
-		static std::vector<std::vector<double> > read_topN_line_csv_matrix(std::string filename= "./input/pathway_time.csv", std::size_t topN=1);
+		static std::vector<std::vector<double> > read_topN_line_csv_matrix(std::string filename= "./input/pathway_time_candidate.csv", std::size_t topN=1);
 
 	};
 
