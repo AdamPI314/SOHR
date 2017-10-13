@@ -44,7 +44,7 @@ int main(int argc, char **argv) {
 
 	/*************************************************************************************************/
 	/*
-	* 1. Solve for concentration of Lokta-Voltera system or Dimerization or Michaelis–Menten, using LSODE
+	* 1. Solve for concentration of Lokta-Voltera system or Dimerization or Michaelis Menten, using LSODE
 	*/
 	/*************************************************************************************************/
 	if (pt.get<std::string>("job.job_type") == std::string("solve_ODEs_for_concentration_using_LSODE"))
