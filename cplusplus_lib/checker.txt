@@ -1,1 +1,0 @@
-pgrep -l "Rxn" | awk '/Rxn/ {print $1;}'| xargs ps
