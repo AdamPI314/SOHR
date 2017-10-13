@@ -10,7 +10,7 @@
         "merge_chatterings": "yes"
     },
     "job": {
-        "job_type": "generate_pathway_running_Monte_carlo_trajectory"
+        "job_type": "solve_ODEs_for_concentration_using_LSODE"
     },
     "propagator": {
         "primary_type": "from_file",
