@@ -5,6 +5,7 @@
  * Date: 10/08/2015
  */
 
+#include <cstdlib>
 #include "../include/drivers/drivers.h"
 #include "../include/tools/my_debug/my_debug.h"
 
