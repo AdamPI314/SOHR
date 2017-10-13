@@ -15,7 +15,7 @@ fortran_lib.u2d
 *.userprefs
 
 # User-specific directories
-output/
+output
 fortran_lib/Debug
 fortran_lib/Release
 
