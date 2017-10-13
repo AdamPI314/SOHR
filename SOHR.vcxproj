@@ -39,6 +39,7 @@
     <ClInclude Include="include\reactionNetwork\superReactionNetwork\superReactionNetwork.h" />
     <ClInclude Include="include\relationshipParser\relationshipParser.h" />
     <ClInclude Include="include\search_algorithm\eppstein_algorithm\eppstein_algorithm.h" />
+    <ClInclude Include="include\speciesNetwork\superSpeciesNetwork\superSpeciesNetwork.h" />
     <ClInclude Include="include\srkin\srkin.h" />
     <ClInclude Include="include\statistics\statistics.h" />
     <ClInclude Include="include\statistics\statistics_get_concentration.h" />
@@ -79,6 +80,7 @@
     <ClCompile Include="src\reactionNetwork\superReactionNetwork\superReactionNetwork.cpp" />
     <ClCompile Include="src\relationshipParser\relationshipParser.cpp" />
     <ClCompile Include="src\search_algorithm\eppstein_algorithm\eppstein_algorithm.cpp" />
+    <ClCompile Include="src\speciesNetwork\superSpeciesNetwork\superSpeciesNetwork.cpp" />
     <ClCompile Include="src\srkin\srkin.cpp" />
     <ClCompile Include="src\statistics\statistics.cpp" />
     <ClCompile Include="src\statistics\statistics_get_concentration.cpp" />

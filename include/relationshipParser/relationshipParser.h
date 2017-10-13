@@ -142,6 +142,8 @@ namespace relationshipParser_sr {
 		//net sink terms of this species, cancel the same terms on both sides for auto-catalytic reactions, left sink term
 		std::vector<reaction_index_s_coef_t> reaction_k_index_s_coef_v;
 
+		//std::
+
 		spe_info_base() :spe_conc(0.0), survival_probability(0.0), prob_min(0.0), prob_max(0.0), chattering_group_id(-1) {}
 	};
 
