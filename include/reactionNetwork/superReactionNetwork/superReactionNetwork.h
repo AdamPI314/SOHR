@@ -126,7 +126,7 @@ namespace reactionNetwork_sr {
 		std::set<vertex_t> dead_species;
 	protected:
 		//shared pointer of chattering
-		std::shared_ptr<chattering_sr::chattering> sp_chattering_rnk;
+		std::shared_ptr<species_group_sr::chattering> sp_chattering_rnk;
 	protected:
 		/*
 		 *	we have two spaces here, one is reaction mechanism space, in which

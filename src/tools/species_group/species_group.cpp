@@ -1,0 +1,21 @@
+#ifndef __SPECIES_GROUP_CPP_
+#define __SPECIES_GROUP_CPP_
+
+#include "../../../include/tools/species_group/species_group.h"
+
+namespace species_group_sr {
+	chattering::chattering()
+	{
+	}
+	chattering::~chattering()
+	{
+	}
+	spe_species_group::spe_species_group()
+	{
+	}
+	spe_species_group::~spe_species_group()
+	{
+	}
+}
+
+#endif

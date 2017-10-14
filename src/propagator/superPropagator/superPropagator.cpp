@@ -273,7 +273,7 @@ namespace propagator_sr {
 
 		this->sp_chattering_pgt->species_chattering_group_pairs_rxns.resize(this->sp_chattering_pgt->species_chattering_group_mat.size());
 		for (std::size_t group_i = 0; group_i < this->sp_chattering_pgt->species_chattering_group_mat.size(); ++group_i) {
-			std::map<std::pair<std::size_t, std::size_t>, std::set<chattering_sr::chattering::rxn_c1_c2> > pairs_rxns_map_tmp;
+			std::map<std::pair<std::size_t, std::size_t>, std::set<species_group_sr::rxn_c1_c2> > pairs_rxns_map_tmp;
 			//species vector
 			auto s_vec_tmp = this->sp_chattering_pgt->species_chattering_group_mat[group_i];
 			for (auto s_idx1 : s_vec_tmp) {//s_idx1
@@ -288,7 +288,7 @@ namespace propagator_sr {
 						if (std::find(s_vec_tmp.begin(), s_vec_tmp.end(), s_idx2) != s_vec_tmp.end()) {
 							std::pair<std::size_t, std::size_t> s1_s2_p(s_idx1, s_idx2);
 
-							chattering_sr::chattering::rxn_c1_c2 r_c1_c2;
+							species_group_sr::rxn_c1_c2 r_c1_c2;
 							r_c1_c2.r_idx = r_idx;
 							r_c1_c2.c1 = c1;
 							r_c1_c2.c2 = c2;
@@ -306,7 +306,7 @@ namespace propagator_sr {
 		}
 	}
 
-	std::shared_ptr<chattering_sr::chattering> superPropagator::get_sp_of_chattering()
+	std::shared_ptr<species_group_sr::chattering> superPropagator::get_sp_of_chattering()
 	{
 		return this->sp_chattering_pgt;
 	}

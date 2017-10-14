@@ -6,7 +6,7 @@
 #include "../../odeSolver/odesolver.h"
 #include "../../relationshipParser/relationshipParser.h"
 #include <boost/property_tree/ptree.hpp> //for property_tree
-#include "../../tools/chattering/chattering.h"
+#include "../../tools/species_group/species_group.h"
 
 #include "../../cubicSpline/interp_1d.h"
 #include "../../cubicSpline/interp_linear.h"
@@ -55,7 +55,7 @@ namespace propagator_sr {
 
 	public:
 		//shared pointer
-		std::shared_ptr<chattering_sr::chattering> sp_chattering_pgt = std::make_shared<chattering_sr::chattering>();
+		std::shared_ptr<species_group_sr::chattering> sp_chattering_pgt = std::make_shared<species_group_sr::chattering>();
 
 		//chattering group data
 		//(1) chattering group drc, the time scale of this chattering mode, there might be multiple modes, only consider
@@ -151,7 +151,7 @@ namespace propagator_sr {
 		void update_chattering_group_pairs_reactions(const std::vector<rsp::spe_info_base> &species_network_v, const std::vector<rsp::reaction_info_base> &reaction_network_v, std::string atom_followed = "H");
 
 		//return shared pointer of chattering
-		std::shared_ptr<chattering_sr::chattering> get_sp_of_chattering();
+		std::shared_ptr<species_group_sr::chattering> get_sp_of_chattering();
 
 		//chattering species and reaction, local reaction with fast inter-conversion rate
 		void set_chattering_spe_from_file_pgt();

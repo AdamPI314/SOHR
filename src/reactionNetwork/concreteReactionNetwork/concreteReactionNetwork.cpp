@@ -40,7 +40,7 @@ namespace reactionNetwork_sr {
 		}
 		else {
 			//not a good idea to leave smart pointer nullptr
-			this->sp_chattering_rnk = std::make_shared<chattering_sr::chattering>();
+			this->sp_chattering_rnk = std::make_shared<species_group_sr::chattering>();
 		}
 
 	}
