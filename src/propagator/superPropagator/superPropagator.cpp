@@ -428,7 +428,7 @@ namespace propagator_sr {
 
 		for (auto c_g : this->sp_chattering_pgt->species_chattering_group_pairs_rxns) {
 			for (auto p_r_m : c_g) {
-				auto s1_s2_p = p_r_m.first;
+				//auto s1_s2_p = p_r_m.first;
 				auto rxn_c1_c2_set = p_r_m.second;
 				for (auto rxn_c1_c2 : rxn_c1_c2_set) {
 					auto rxn_idx = rxn_c1_c2.r_idx;
