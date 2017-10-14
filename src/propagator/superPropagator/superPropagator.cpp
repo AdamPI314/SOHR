@@ -163,6 +163,50 @@ namespace propagator_sr {
 
 #endif // __CHEMKIN_AVAILABLE_
 
+	void superPropagator::update_all_species_group_pairs_reactions(const std::vector<rsp::spe_info_base>& species_network_v, const std::vector<rsp::reaction_info_base>& reaction_network_v, std::string atom_followed)
+	{
+		species_group_sr::species_group_pairs_rxns_t pairs_rxns_map_tmp;
+		//species vector
+		for (std::size_t s_idx1 = 0; s_idx1 < species_network_v.size(); ++s_idx1) {//s_idx1
+			//don't contain atom_followed
+			if (species_network_v[s_idx1].spe_component.at(atom_followed) < 1)
+				continue;
+
+			for (auto rxn_coef : species_network_v[s_idx1].reaction_k_index_s_coef_v) {
+				auto r_idx = rxn_coef.first;
+				auto c1 = rxn_coef.second;
+
+				for (auto s_idx_coef : reaction_network_v[r_idx].out_spe_index_weight_v_map.at(atom_followed)) {
+					auto s_idx2 = s_idx_coef.first;
+					auto c2 = s_idx_coef.second;
+
+					//don't contain atom_followed
+					if (species_network_v[s_idx2].spe_component.at(atom_followed) < 1 || c2 <= 0)
+						continue;
+
+					std::pair<std::size_t, std::size_t> s1_s2_p(s_idx1, s_idx2);
+
+					species_group_sr::rxn_c1_c2 r_c1_c2;
+					r_c1_c2.r_idx = r_idx;
+					r_c1_c2.c1 = c1;
+					r_c1_c2.c2 = c2;
+
+					pairs_rxns_map_tmp[s1_s2_p].push_back(r_c1_c2);
+
+
+				}
+
+			}
+
+		}//s_idx1
+		this->sp_all_species_group_pgt->species_group_pairs_rxns = pairs_rxns_map_tmp;
+	}
+
+
+	std::shared_ptr<species_group_sr::species_group> superPropagator::get_sp_of_all_species_group()
+	{
+		return this->sp_all_species_group_pgt;
+	}
 
 	void superPropagator::find_chattering_group(const std::vector<rsp::spe_info_base>& species_network_v)
 	{
@@ -273,16 +317,25 @@ namespace propagator_sr {
 
 		this->sp_chattering_pgt->species_chattering_group_pairs_rxns.resize(this->sp_chattering_pgt->species_chattering_group_mat.size());
 		for (std::size_t group_i = 0; group_i < this->sp_chattering_pgt->species_chattering_group_mat.size(); ++group_i) {
-			std::map<std::pair<std::size_t, std::size_t>, std::set<species_group_sr::rxn_c1_c2> > pairs_rxns_map_tmp;
+			species_group_sr::species_chattering_group_pairs_rxns_t pairs_rxns_map_tmp;
+
 			//species vector
 			auto s_vec_tmp = this->sp_chattering_pgt->species_chattering_group_mat[group_i];
 			for (auto s_idx1 : s_vec_tmp) {//s_idx1
+				//don't contain atom_followed
+				if (species_network_v[s_idx1].spe_component.at(atom_followed) < 1)
+					continue;
+
 				for (auto rxn_coef : species_network_v[s_idx1].reaction_k_index_s_coef_v) {
 					auto r_idx = rxn_coef.first;
 					auto c1 = rxn_coef.second;
 					for (auto s_idx_coef : reaction_network_v[r_idx].out_spe_index_weight_v_map.at(atom_followed)) {
 						auto s_idx2 = s_idx_coef.first;
 						auto c2 = s_idx_coef.second;
+
+						//don't contain atom_followed
+						if (species_network_v[s_idx2].spe_component.at(atom_followed) < 1 || c2 <= 0)
+							continue;
 
 						//if these two species are both in current chattering group
 						if (std::find(s_vec_tmp.begin(), s_vec_tmp.end(), s_idx2) != s_vec_tmp.end()) {

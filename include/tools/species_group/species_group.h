@@ -19,16 +19,24 @@ namespace species_group_sr {
 		}
 	};
 
-	class spe_species_group {
+	typedef std::map<std::pair<std::size_t, std::size_t>, std::vector<rxn_c1_c2> > species_group_pairs_rxns_t;
+
+	//all species group, only one group, from a mass conservation point of view, from example to 3H2 => 2H3 and H2 => 2H reactions
+	//there is no H2-->H3 transition probability thing, node to node transition, what we define here is presume we are following
+	//a single atom, the branching ratio H2 becomes either H3 or H, suppose the reaction rates are the same, then p(H2, H3) vs. p(H2, H)
+	//is defined as (3/4*6/6) vs. (1/4*2/2), in others words, it is reaction branching ratio * species branching ratio
+	class species_group {
 	public:
 		//this contains all the reaction between two species, for example s1, and s2, all reactions from s1 to s2
 		//and reaction from s2 to s1 will be calculated
-		std::vector< std::map<std::pair<std::size_t, std::size_t>, std::set<rxn_c1_c2> > > species_group_pairs_rxns;
+		species_group_pairs_rxns_t species_group_pairs_rxns;
 
 	public:
-		spe_species_group();
-		~spe_species_group();
+		species_group();
+		~species_group();
 	};
+
+	typedef std::map<std::pair<std::size_t, std::size_t>, std::set<rxn_c1_c2> > species_chattering_group_pairs_rxns_t;
 
 	class chattering {
 	public:
@@ -45,7 +53,7 @@ namespace species_group_sr {
 		//unique chattering reaction index calculated from chattering group
 		//this contains all the reaction between two species, for example s1, and s2, all reactions from s1 to s2
 		//and reaction from s2 to s1 will be calculated
-		std::vector< std::map<std::pair<std::size_t, std::size_t>, std::set<rxn_c1_c2> > > species_chattering_group_pairs_rxns;
+		std::vector<species_chattering_group_pairs_rxns_t> species_chattering_group_pairs_rxns;
 
 	public:
 		//vector of species chattering groups
