@@ -56,7 +56,7 @@ namespace propagator_sr {
 	public:
 		//shared pointer
 		//all species group
-		std::shared_ptr<species_group_sr::species_group> sp_all_species_group_pgt = std::make_shared<species_group_sr::species_group>();
+		std::shared_ptr<species_group_sr::species_group_base> sp_all_species_group_pgt = std::make_shared<species_group_sr::species_group_base>();
 		//chattering species group
 		std::shared_ptr<species_group_sr::chattering> sp_chattering_pgt = std::make_shared<species_group_sr::chattering>();
 
@@ -152,7 +152,7 @@ namespace propagator_sr {
 		void update_all_species_group_pairs_reactions(const std::vector<rsp::spe_info_base> &species_network_v, const std::vector<rsp::reaction_info_base> &reaction_network_v, std::string atom_followed = "H");
 
 		//return shared pointer of chattering
-		std::shared_ptr<species_group_sr::species_group> get_sp_of_all_species_group();
+		std::shared_ptr<species_group_sr::species_group_base> get_sp_of_all_species_group();
 
 	public:
 		void find_chattering_group(const std::vector<rsp::spe_info_base> &species_network_v);

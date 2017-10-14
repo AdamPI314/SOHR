@@ -10,10 +10,10 @@ namespace species_group_sr {
 	chattering::~chattering()
 	{
 	}
-	species_group::species_group()
+	species_group_base::species_group_base()
 	{
 	}
-	species_group::~species_group()
+	species_group_base::~species_group_base()
 	{
 	}
 }

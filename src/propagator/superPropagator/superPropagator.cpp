@@ -203,7 +203,7 @@ namespace propagator_sr {
 	}
 
 
-	std::shared_ptr<species_group_sr::species_group> superPropagator::get_sp_of_all_species_group()
+	std::shared_ptr<species_group_sr::species_group_base> superPropagator::get_sp_of_all_species_group()
 	{
 		return this->sp_all_species_group_pgt;
 	}
