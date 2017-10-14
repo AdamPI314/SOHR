@@ -15,21 +15,21 @@ namespace reactionNetwork_sr {
 	class concreteReactionNetwork :public superReactionNetwork {
 
 	protected:
-		// propagator
-		// polymorphism
+		//propagator
+		//polymorphism
 		pgt::superPropagator* propagator;
 
 	public:
 		concreteReactionNetwork(std::vector<double> uncertainties, std::size_t random_seed_for_this_core, std::string cwd_in);
 		~concreteReactionNetwork();
 	public:
-		// merge fast transitions, for example A=B first order reaction, assume the forward and backward reactions are both
-		// very fast, if we keep this fast transition in the network, this will result in long path in a short time range
-		// Here is how we do it, the idea is to treat these two species as a single one
-		// One philosophy is to minimize the change
-		// 1) set fast reaction rates to be zeros
-		// 2) chattering with a time scale
-		// re-call initiate_cubic_spline()
+		//merge fast transitions, for example A=B first order reaction, assume the forward and backward reactions are both
+		//very fast, if we keep this fast transition in the network, this will result in long path in a short time range
+		//Here is how we do it, the idea is to treat these two species as a single one
+		//One philosophy is to minimize the change
+		//1) set fast reaction rates to be zeros
+		//2) chattering with a time scale
+		//re-call initiate_cubic_spline()
 		void merge_chatterings();
 		void update_species_chattering_group_id();
 
@@ -60,7 +60,7 @@ namespace reactionNetwork_sr {
 		* chattering group reaction time from importance sampling, exact time
 		* if reaction_time> tau, let it be, don't cut it off
 		*/
-		double chattering_group_spe_reaction_time_from_importance_sampling_without_cutoff(rsp::my_time_t curr_time, vertex_t index, double Y) override;
+		double chattering_group_reaction_time_from_importance_sampling_without_cutoff(rsp::my_time_t curr_time, vertex_t curr_group, double Y) override;
 
 	public:
 		//set Prob_max(tau^{j}|t+tau^{j-1};S^{j-1}), with pathway_end_time fixed
@@ -72,10 +72,11 @@ namespace reactionNetwork_sr {
 
 	public:
 		double evaluate_spe_concentration_at_time(double time, std::size_t index = 0) const override;
-		double evaluate_chattering_group_spe_ss_prob_at_time(double in_time, size_t index = 0) const override;
+		double evaluate_spe_drc_at_time(double time, std::size_t index = 0) const override;
+		double evaluate_chattering_group_ss_prob_at_time(double in_time, size_t index = 0) const override;
 
 	public:
-		double prob_chattering_group_spe_will_react_in_a_time_range(double init_time, double pathway_end_time, size_t index) override;
+		double prob_chattering_group_will_react_in_a_time_range(double init_time, double pathway_end_time, size_t curr_chattering_group) override;
 
 	public:
 		//return temperature target time

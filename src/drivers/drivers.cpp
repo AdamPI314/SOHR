@@ -271,23 +271,23 @@ void driver::generate_pathway_running_Monte_carlo_trajectory(const boost::mpi::c
 	int trajectory_count_limit = pt.get<int>("pathway.trajectory_count_limit");
 
 	//statistics
-	statistics stat_test;
+	statistics stat;
 	std::string str_t;
 
 	// generate pathway one trajectory
 	for (int i = 0; i < local_N; ++i) {
 		str_t = rnk_obj.pathway_sim_once(init_time, end_time, rnk_obj.return_initial_spe(), pt.get<std::string>("pathway.atom_followed")); //vertex 2 is H2
-		stat_test.insert_pathway_stat(str_t);
+		stat.insert_pathway_stat(str_t);
 	}
 
 	//map reduce
 	std::map<std::string, int> result;
-	reduce(world, stat_test.get_pathway_unordered_map(),
+	reduce(world, stat.get_pathway_unordered_map(),
 		result, merge_maps(), 0);
 
 	if (world.rank() == 0) {
-		stat_test.insert_unordered_map(result);
-		stat_test.sort_print_to_file_stat(main_cwd + std::string("/output/pathway_stat.csv"), trajectory_count_limit);
+		stat.insert_unordered_map(result);
+		stat.sort_print_to_file_stat(main_cwd + std::string("/output/pathway_stat.csv"), trajectory_count_limit);
 	}
 }
 

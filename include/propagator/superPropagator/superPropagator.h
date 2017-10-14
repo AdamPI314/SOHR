@@ -26,7 +26,7 @@ namespace propagator_sr {
 		std::string cwd_pgt;
 	public:
 		//configurations, read configuration file named "setting.json"
-		// super propagator pt
+		//super propagator pt
 		boost::property_tree::ptree pgt_pt;
 	public:
 		std::vector<double> uncertainties;
@@ -38,9 +38,9 @@ namespace propagator_sr {
 		std::vector<rsp::temperature_t> temperature_data_pgt;
 		std::vector<rsp::pressure_t> pressure_data_pgt;
 
-		//// total concentration, if there is not external source, the total concentration is constant over time
-		//// if there is a source, the total concentration is a integral over rate*time
-		//// didn't define pointer up to now, not necessary, since this is only used in SOHR ODE at this moment
+		////total concentration, if there is not external source, the total concentration is constant over time
+		////if there is a source, the total concentration is a integral over rate*time
+		////didn't define pointer up to now, not necessary, since this is only used in SOHR ODE at this moment
 		//std::vector<rsp::concentration_t> total_concentration_data_pgt;
 
 		std::vector<std::vector<rsp::concentration_t> > concentration_data_pgt;
@@ -54,16 +54,16 @@ namespace propagator_sr {
 		//std::vector<std::vector<spe_production_rate_t> > spe_production_rate_data_pgt;
 
 	public:
-		// shared pointer
+		//shared pointer
 		std::shared_ptr<chattering_sr::chattering> sp_chattering_pgt = std::make_shared<chattering_sr::chattering>();
 
 		//chattering group data
-		// (1) chattering group species drc, the time scale of this chattering mode, there might be multiple modes, only consider
-		// the first mode
-		// (2) project the mode on species direction, probability being that species, or says steady state probability
-		std::vector<std::vector<double> > chattering_group_spe_k_data_pgt;
-		std::vector<std::vector<double> > chattering_group_spe_k_int_data_pgt;
-		std::vector<std::vector<double> > chattering_group_spe_ss_prob_data_pgt;
+		//(1) chattering group drc, the time scale of this chattering mode, there might be multiple modes, only consider
+		//the first mode
+		//(2) project the mode on species direction, probability being that species, or says steady state probability
+		std::vector<std::vector<double> > chattering_group_k_data_pgt;
+		std::vector<std::vector<double> > chattering_group_k_int_data_pgt;
+		std::vector<std::vector<double> > chattering_group_ss_prob_data_pgt;
 
 	public:
 		/*
@@ -80,7 +80,7 @@ namespace propagator_sr {
 		std::vector<Linear_interp*> reaction_rate_pgt;
 		//concentration
 		std::vector<Linear_interp*>	concentration_pgt;
-		//// total concentration
+		////total concentration
 		//Linear_interp* total_concentration_pgt;
 
 		//temperature versus time
@@ -93,13 +93,13 @@ namespace propagator_sr {
 
 	public:
 		//chattering group rate constant k, time scale pointer
-		std::vector<Linear_interp*> chattering_group_spe_k_pgt;
+		std::vector<Linear_interp*> chattering_group_k_pgt;
 		//integral
-		std::vector<Linear_interp*> chattering_group_spe_k_int_pgt;
+		std::vector<Linear_interp*> chattering_group_k_int_pgt;
 		//integral reverse
-		std::vector<Linear_interp*> chattering_group_spe_k_int_time_pgt;
+		std::vector<Linear_interp*> chattering_group_k_int_time_pgt;
 		//steady state probability
-		std::vector<Linear_interp*> chattering_group_spe_ss_prob_pgt;
+		std::vector<Linear_interp*> chattering_group_ss_prob_pgt;
 
 	public:
 		superPropagator(std::vector<double> uncertainties_in, std::string cwd_in);
@@ -110,22 +110,22 @@ namespace propagator_sr {
 
 		//class Base
 		//{
-		//// some virtual methods
+		////some virtual methods
 		//};
 
 		//class Derived : public Base
 		//{
 		//~Derived()
 		//{
-		//// Do some important cleanup
+		////Do some important cleanup
 		//}
 		//}
 		//Here, you'll notice that I didn't declare Base's destructor to be virtual.
 		//Now, let's have a look at the following snippet:
 
 		//Base *b = new Derived();
-		//// use b
-		//delete b; // Here's the problem!
+		////use b
+		//delete b; //Here's the problem!
 		//Since Base's destructor is not virtual and b is a Base* pointing to a Derived object,
 		//delete b has undefined behaviour. In most implementations, the call to the destructor
 		//will be resolved like any non-virtual code, meaning that the destructor of the base
@@ -147,19 +147,22 @@ namespace propagator_sr {
 
 	public:
 		void find_chattering_group(const std::vector<rsp::spe_info_base> &species_network_v);
-		// return shared pointer of chattering
+		//update chattering group-pairs-reactions
+		void update_chattering_group_pairs_reactions(const std::vector<rsp::spe_info_base> &species_network_v, const std::vector<rsp::reaction_info_base> &reaction_network_v, std::string atom_followed = "H");
+
+		//return shared pointer of chattering
 		std::shared_ptr<chattering_sr::chattering> get_sp_of_chattering();
 
 		//chattering species and reaction, local reaction with fast inter-conversion rate
-		void set_chattering_spe_pgt();
-		void set_chattering_reactions_pgt();
-		std::vector<std::size_t> get_chattering_reactions_pgt();
+		void set_chattering_spe_from_file_pgt();
+		void set_chattering_reactions_from_file_pgt();
 
-		//set the reaction rate of fast reactions to be zero
-		void set_chattering_reaction_rate_to_zero_pgt();
+		//cancel fast transition within each chattering group
+		void subtract_chattering_reaction_contribution_from_species_drc_pgt();
 		//set fast transition A=B's pseudo-first order rate constant given list of trapped species pair
-		void update_info_of_chattering_species_reactions(const std::vector<rsp::spe_info_base> &species_network_v, const std::vector<rsp::reaction_info_base> &reaction_network_v, std::string atom_followed = "H");
-
+		void update_drc_and_equilibrium_probability_of_chattering_group();
+		//set the reaction rate of fast reactions to be zero
+		void set_chattering_reaction_rates_to_zero_pgt();
 
 	public:
 		//return target temperature
@@ -223,24 +226,25 @@ namespace propagator_sr {
 			init_time_pressure_pgt();
 
 			//chatterings
-			if (this->chattering_group_spe_k_data_pgt.size() > 0 && this->chattering_group_spe_k_data_pgt[0].size() > 0) {
+			if (this->chattering_group_k_data_pgt.size() > 0 && this->chattering_group_k_data_pgt[0].size() > 0) {
 				init_time_chattering_group_k_pgt();
 			}
 			this->integrate_chattering_group_propensity_function_pgt();
-			if (this->chattering_group_spe_k_int_data_pgt.size() > 0 && this->chattering_group_spe_k_int_data_pgt[0].size() > 0) {
+			if (this->chattering_group_k_int_data_pgt.size() > 0 && this->chattering_group_k_int_data_pgt[0].size() > 0) {
 				init_chattering_group_k_int_pgt();
 			}
-			if (this->chattering_group_spe_k_int_data_pgt.size() > 0 && this->chattering_group_spe_k_int_data_pgt[0].size() > 0) {
+			if (this->chattering_group_k_int_data_pgt.size() > 0 && this->chattering_group_k_int_data_pgt[0].size() > 0) {
 				init_chattering_group_k_int_time_pgt();
 			}
 
-			if (this->chattering_group_spe_ss_prob_data_pgt.size() > 0 && this->chattering_group_spe_ss_prob_data_pgt[0].size() > 0) {
+			if (this->chattering_group_ss_prob_data_pgt.size() > 0 && this->chattering_group_ss_prob_data_pgt[0].size() > 0) {
 				init_time_chattering_group_ss_prob_pgt();
 			}
 		}//initiate_cubic_spline
 
-#if defined(__CHEMKIN_AVAILABLE_) && defined(__LSODE_AVAILABLE_)
 
+#if defined(__CHEMKIN_AVAILABLE_) && defined(__LSODE_AVAILABLE_)
+		
 		void convert_molar_concentration_to_mole_fraction();
 		void convert_mole_fraction_to_molar_concentration();
 
@@ -316,14 +320,13 @@ namespace propagator_sr {
 		*
 		*/
 		virtual void time_propagator_s_ct_np_s2m_pgt(std::vector<double> uncertainties, double critical_time, double end_time) {};
-		// cc-->constant concentration, hold the concentration of the first species to be constant
+		//cc-->constant concentration, hold the concentration of the first species to be constant
 		virtual void time_propagator_s_ct_np_cc1_s2m_pgt(std::vector<double> uncertainties, double critical_time, double end_time) {};
-		// cc-->constant concentration, hold the concentration of the first two species to be constant
+		//cc-->constant concentration, hold the concentration of the first two species to be constant
 		virtual void time_propagator_s_ct_np_cc2_s2m_pgt(std::vector<double> uncertainties, double critical_time, double end_time) {};
 
-
 #endif // defined(__CHEMKIN_AVAILABLE_) && defined(__LSODE_AVAILABLE_)
-		
+
 	public:
 		//integral of the propensity function or says the destruction rate constant function
 		void integrate_propensity_function_pgt();
@@ -368,11 +371,11 @@ namespace propagator_sr {
 		double evaluate_reaction_rate_at_time(double in_time, size_t index = 0) const;
 
 	public:
-		double evaluate_chattering_group_spe_ss_prob_at_time(double in_time, size_t index = 0) const;
-		//evaluate chattering group species' k or says time scale
-		double evaluate_chattering_group_spe_k_at_time(double in_time, size_t index = 0) const;
-		double evaluate_chattering_group_spe_k_int_at_time(double in_time, size_t index = 0) const;
-		double evaluate_time_at_chattering_group_spe_k_int(double integral, size_t index = 0) const;
+		double evaluate_chattering_group_ss_prob_at_time(double in_time, size_t index = 0) const;
+		//evaluate chattering group's k or says time scale
+		double evaluate_chattering_group_k_at_time(double in_time, size_t chattering_group_id = 0) const;
+		double evaluate_chattering_group_k_int_at_time(double in_time, size_t index = 0) const;
+		double evaluate_time_at_chattering_group_k_int(double integral, size_t index = 0) const;
 
 	};
 

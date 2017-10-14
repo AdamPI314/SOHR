@@ -11,13 +11,13 @@ namespace reactionNetworkODESolver_sr {
 
 	class reactionNetworkODESolver :public rnk::superReactionNetwork, public pgt::SOHRPropagator {
 		//private:
-		// number of ways making species
+		//number of ways making species
 		std::vector<double> num_ways_making_spe;
 
-		// Whether there is a single source
+		//Whether there is a single source
 		int single_source = -1;
 
-		// single source destruction rate, rnos-->reaction network ODE solver
+		//single source destruction rate, rnos-->reaction network ODE solver
 		std::vector<rsp::reaction_rate_t> single_source_spe_dr_rnos;
 
 		//single source additional concentration over time, rnos-->reaction network ODE solver
@@ -54,12 +54,13 @@ namespace reactionNetworkODESolver_sr {
 		bool update_reaction_rate(double in_time) override;
 
 	public:
-		// got to instantiate this function otherwise this sub-class is still pure-virtual class can not be instantiated
+		//got to instantiate this function otherwise this sub-class is still pure-virtual class can not be instantiated
 		double evaluate_spe_concentration_at_time(double time, std::size_t index = 0) const override { return 0.0; };
-		double evaluate_chattering_group_spe_ss_prob_at_time(double in_time, size_t index = 0) const override { return 0.0; };
+		double evaluate_spe_drc_at_time(double time, std::size_t index = 0) const override { return 0.0; };		
+		double evaluate_chattering_group_ss_prob_at_time(double in_time, size_t index = 0) const override { return 0.0; };
 
 	public:
-		double prob_chattering_group_spe_will_react_in_a_time_range(double init_time, double pathway_end_time, size_t index) override { return 0.0;  };
+		double prob_chattering_group_will_react_in_a_time_range(double init_time, double pathway_end_time, size_t curr_chattering_group) override { return 0.0;  };
 
 	public:
 		/*
@@ -77,7 +78,7 @@ namespace reactionNetworkODESolver_sr {
 		* chattering group reaction time from importance sampling, exact time
 		* if reaction_time> tau, let it be, don't cut it off
 		*/
-		double chattering_group_spe_reaction_time_from_importance_sampling_without_cutoff(rsp::my_time_t curr_time, rnk::vertex_t index, double Y) override;
+		double chattering_group_reaction_time_from_importance_sampling_without_cutoff(rsp::my_time_t curr_time, rnk::vertex_t curr_group, double Y) override;
 
 	public:
 		/*
@@ -89,9 +90,9 @@ namespace reactionNetworkODESolver_sr {
 		void set_probability_matrix_of_a_species_constant(std::vector<std::vector<double> > & prob_Mat, std::size_t ind);
 		void set_probability_matrix_of_single_source_constant(std::vector<std::vector<double> > & prob_Mat);
 
-		// update single_source_additional_concentration_data_rnos, from previous iteration
+		//update single_source_additional_concentration_data_rnos, from previous iteration
 		void update_single_source_additional_concentration_data_rnos_s_ct_np();
-		// initiate single source additional concentration pointer
+		//initiate single source additional concentration pointer
 		void init_time_single_source_additional_concentration_pointer_rnos();
 		double evaluate_single_source_additional_concentration_at_time(double in_time) const;
 
@@ -103,17 +104,17 @@ namespace reactionNetworkODESolver_sr {
 		*/
 		void check_zero_concentration(double deltaConcentration);
 
-		// divide the concentration of a species, like OH, by #ways that can make it, here for OH, we can either follow
-		// O or H to make OH, the two ways should give the same result so divide the concentration by a factor of 2
+		//divide the concentration of a species, like OH, by #ways that can make it, here for OH, we can either follow
+		//O or H to make OH, the two ways should give the same result so divide the concentration by a factor of 2
 		void divide_concentration_by_number_of_ways_making_it();
-		// divide the concentration of a species, like OH, by #ways that can make it, here for OH, we can either follow
-		// O or H to make OH, the two ways should give the same result so divide the concentration by a factor of 2
+		//divide the concentration of a species, like OH, by #ways that can make it, here for OH, we can either follow
+		//O or H to make OH, the two ways should give the same result so divide the concentration by a factor of 2
 		void divide_prob_matrix_by_number_of_ways_making_species(std::vector<std::vector<double> > & prob_Mat);
 		void update_number_of_ways_making_species();
 
-		// set single source concentration constant
+		//set single source concentration constant
 		void set_single_source_concentration_constant();
-		// update concentration data from pathway based probability matrix
+		//update concentration data from pathway based probability matrix
 		void update_concentration_oriented_prob_matrix_from_single_source_path_based_prob_matrix(const std::vector<std::string> &path_v,
 			const std::vector<double> &P2C, const std::vector<std::vector<double> > &path_prob_Mat, std::vector<std::vector<double> > &conc_prob_Mat);
 
@@ -145,20 +146,20 @@ namespace reactionNetworkODESolver_sr {
 		* return probability matrix, which is concentration vs. time actually
 		*/
 		void get_probability_matrix(std::vector<std::vector<double> > &prob_Mat) const;
-		// for species si, time point tj 
+		//for species si, time point tj 
 		void ODEdirectlyEvaluatePathwayProbability_si_tj(const std::size_t si, const std::size_t tj, const std::vector<std::string> &pathway_vec,
 			const double P2C, const std::size_t Nlocal, std::vector<std::vector<double> > &prob_Mat);
 		void ODEdirectlyEvaluatePathwayProbability(const std::vector<std::string> &pathway_vec,
 			const std::vector<double> &P2C, const std::size_t Nlocal, const std::size_t topN, std::vector<std::vector<double> > &prob_Mat);
 
-		// path starting with source species, input path pi evaluate pathway probability at time point tj, integrate over initial time t0, Monte Carlo integration
+		//path starting with source species, input path pi evaluate pathway probability at time point tj, integrate over initial time t0, Monte Carlo integration
 		double single_source_ODEdirectlyEvaluatePathwayProbability_pi_tj_integrate_over_t0_MC(std::string path, std::size_t tj, const std::size_t Nlocal);
-		// Rectangle integration rule
+		//Rectangle integration rule
 		double single_source_ODEdirectlyEvaluatePathwayProbability_pi_tj_integrate_over_t0_rectangle(std::string path, std::size_t tj, const std::size_t Nlocal);
 
-		// path starting with source species, input path pi, evaluate pathway probability each time point
+		//path starting with source species, input path pi, evaluate pathway probability each time point
 		void single_source_ODEdirectlyEvaluatePathwayProbability_pi(std::string path, const std::size_t Nlocal, std::vector<double> &prob_v);
-		// path starting with source species, input path vector, evaluate pathway probability at each time point
+		//path starting with source species, input path vector, evaluate pathway probability at each time point
 		void single_source_ODEdirectlyEvaluatePathwayProbability_pathVector(std::vector<std::string> path_v, const std::size_t Nlocal, std::vector<std::vector<double> > &path_prob_Mat);
 
 	};//class reactionNetworkODESolver

@@ -43,7 +43,7 @@ namespace reactionNetwork_sr {
 
 		std::vector<VertexPair> edgeVector; std::vector<EdgeProperties_graph> edgePro; std::vector<VertexProperties_graph> vertex_info;
 		this->read_chem_out_spe_reaction_network(edgeVector, edgePro, vertex_info);
-		// update super atom info
+		//update super atom info
 		this->update_super_atom_info(rnk_pt.get<std::string>("pathway.super_atom"));
 
 		set_species_initial_concentration();
@@ -213,7 +213,7 @@ namespace reactionNetwork_sr {
 		}
 
 		if (this->rnk_pt.get<std::string>("propagator.normalize_initial_concentration") == "yes") {
-			// renormalization
+			//renormalization
 			double total_conc = 0.0;
 			for (std::size_t i = 0; i < this->species_network_v.size(); ++i) {
 				total_conc += this->species_network_v[i].spe_conc;
@@ -288,7 +288,7 @@ namespace reactionNetwork_sr {
 	{
 		mt::vector_sr<rsp::reaction_index_s_coef_t > reaction_index_s_coef_v;
 		for (std::size_t i = 0; i < this->species_network_v.size(); ++i) {
-			// dead species
+			//dead species
 			if (std::find(this->dead_species.begin(), this->dead_species.end(), i) != this->dead_species.end())
 				continue;
 			reaction_index_s_coef_v.clear();
@@ -315,10 +315,10 @@ namespace reactionNetwork_sr {
 		boost::property_map<GraphContainer, vertex_index_t>::type vertex_id = get(vertex_index, graph);
 		std::pair<vertex_iter, vertex_iter> vp;
 		for (edge_range_t er = getEdges(); er.first != er.second; ++er.first) {//for
-			// if found
+			//if found
 			if (properties(*er.first).reaction_index == reaction_index) {//if
 				std::size_t spe_index = get(vertex_id, target(*er.first, graph));
-				// ignore duplicate elements
+				//ignore duplicate elements
 				out_spe_index_weight_v_tmp.insert_sr(
 					std::make_pair(spe_index,
 						/*spe index*/properties(*er.first).s_coef_product* this->species_network_v[spe_index].spe_component[atom_followed] /*weight*/)
@@ -339,10 +339,10 @@ namespace reactionNetwork_sr {
 		boost::property_map<GraphContainer, vertex_index_t>::type vertex_id = get(vertex_index, graph);
 		std::pair<vertex_iter, vertex_iter> vp;
 		for (edge_range_t er = getEdges(); er.first != er.second; ++er.first) {//for
-			// if found
+			//if found
 			if (properties(*er.first).reaction_index == reaction_index) {//if
 				std::size_t spe_index = get(vertex_id, target(*er.first, graph));
-				// ignore duplicate elements
+				//ignore duplicate elements
 				out_spe_index_weight_v_tmp.insert_sr(
 					std::make_pair(
 						spe_index, //spe index
@@ -365,10 +365,10 @@ namespace reactionNetwork_sr {
 		boost::property_map<GraphContainer, vertex_index_t>::type vertex_id = get(vertex_index, graph);
 		std::pair<vertex_iter, vertex_iter> vp;
 		for (edge_range_t er = getEdges(); er.first != er.second; ++er.first) {//for
-			// if found
+			//if found
 			if (properties(*er.first).reaction_index == reaction_index) {//if
 				std::size_t spe_index = get(vertex_id, target(*er.first, graph));
-				// ignore duplicate elements
+				//ignore duplicate elements
 				out_spe_index_weight_v_tmp.insert_sr(
 					std::make_pair(
 						spe_index, //spe index
@@ -405,7 +405,7 @@ namespace reactionNetwork_sr {
 	{
 		for (auto x : this->element_v)
 			this->set_reaction_out_spe_info(x.ele_name);
-		// super atom
+		//super atom
 		this->set_reaction_out_spe_info(rnk_pt.get<std::string>("pathway.super_atom"));
 	}
 
@@ -414,11 +414,11 @@ namespace reactionNetwork_sr {
 
 		for (std::size_t r_index = 0; r_index < this->reaction_network_v.size(); ++r_index) {
 			double prob_total = 0.0;
-			// calcualte out spe total weight for a reaction
+			//calcualte out spe total weight for a reaction
 			for (std::size_t i = 0; i < reaction_network_v[r_index].out_spe_index_weight_v_map[atom_followed].size(); ++i) {
 				prob_total += reaction_network_v[r_index].out_spe_index_weight_v_map[atom_followed][i].second;
 			}
-			// calculate the fraction
+			//calculate the fraction
 			for (std::size_t i = 0; i < reaction_network_v[r_index].out_spe_index_weight_v_map[atom_followed].size(); ++i) {
 				reaction_network_v[r_index].out_spe_index_branching_ratio_map_map[atom_followed]
 					[reaction_network_v[r_index].out_spe_index_weight_v_map[atom_followed][i].first] =
@@ -432,7 +432,7 @@ namespace reactionNetwork_sr {
 	{
 		for (auto x : this->element_v)
 			this->set_out_spe_index_branching_ratio_map_map(x.ele_name);
-		// super atom
+		//super atom
 		this->set_out_spe_index_branching_ratio_map_map(rnk_pt.get<std::string>("pathway.super_atom"));
 	}
 
@@ -463,7 +463,7 @@ namespace reactionNetwork_sr {
 	void superReactionNetwork::print()
 	{
 
-		//// test random number generator
+		////test random number generator
 		//std::ofstream fout((this->cwd + std::string("/output/random.csv")).c_str());
 		//for (size_t i = 0; i < 1000; ++i) {
 		//	fout << std::setprecision(10) << this->rand->random01() << std::endl;
@@ -563,7 +563,7 @@ namespace reactionNetwork_sr {
 		//}
 
 
-		//// reaction rates test
+		////reaction rates test
 		//std::cout << "reaction rates:\n";
 		//for (auto x : reaction_network_v) {
 		//	std::cout << x.reaction_rate << std::endl;
@@ -594,8 +594,8 @@ namespace reactionNetwork_sr {
 						fout << "\t-->" << this->species_network_v[j].spe_name << "\n\t\t";
 						for (size_t k = 0; k < p.size(); k++)
 						{
-							// this is edge index, one-step path, a path with only one reaction
-							// edge index to reaction index
+							//this is edge index, one-step path, a path with only one reaction
+							//edge index to reaction index
 							auto iter_e = edge_index_to_edge_iterator[p[k][0]];
 							auto reaction_index = this->properties(*iter_e).reaction_index;
 							//fout << this->reaction_network_v[reaction_index].reaction_name;
@@ -800,13 +800,13 @@ namespace reactionNetwork_sr {
 		{
 			Edge e;
 			double edge_weight_total = 0.0;
-			// sum over all out edge weights
+			//sum over all out edge weights
 			BGL_FORALL_OUTEDGES(v, e, this->graph, GraphContainer)
 			{
 				edge_weight_total += properties(e).edge_weight;
 			}
-			if (edge_weight_total != 0) {// if
-				// average
+			if (edge_weight_total != 0) {//if
+				//average
 				std::cout << "-->\t";
 				BGL_FORALL_OUTEDGES(v, e, this->graph, GraphContainer)
 				{
@@ -814,7 +814,7 @@ namespace reactionNetwork_sr {
 					std::cout << properties(e).edge_weight << "\t";
 				}
 				std::cout << "<--" << std::endl;
-			}// if
+			}//if
 			else
 			{
 				std::cout << "-->\t";
@@ -829,7 +829,7 @@ namespace reactionNetwork_sr {
 		//
 		BGL_FORALL_EDGES(e, this->graph, GraphContainer)
 		{
-			// edge weight not zero
+			//edge weight not zero
 			if (properties(e).edge_weight != 0)
 			{
 				properties(e).edge_weight *= -1.0;
@@ -889,13 +889,13 @@ namespace reactionNetwork_sr {
 		{
 			Edge e;
 			double edge_weight_total = 0.0;
-			// sum over all out edge weights
+			//sum over all out edge weights
 			BGL_FORALL_OUTEDGES(v, e, this->graph, GraphContainer)
 			{
 				edge_weight_total += properties(e).edge_weight;
 			}
-			if (edge_weight_total != 0) {// if
-				// average
+			if (edge_weight_total != 0) {//if
+				//average
 				std::cout << "-->\t";
 				BGL_FORALL_OUTEDGES(v, e, this->graph, GraphContainer)
 				{
@@ -904,19 +904,19 @@ namespace reactionNetwork_sr {
 					if (properties(e).edge_weight != 0)
 						properties(e).edge_weight = log(properties(e).edge_weight);
 					else
-						// out self defined magic number
+						//out self defined magic number
 						properties(e).edge_weight = boost::math::constants::pi<double>();
 
 					std::cout << properties(e).edge_weight << "\t";
 				}
 				std::cout << "<--" << std::endl;
-			}// if
+			}//if
 			else
 			{
 				std::cout << "-->\t";
 				BGL_FORALL_OUTEDGES(v, e, this->graph, GraphContainer)
 				{
-					// assign a magic number
+					//assign a magic number
 					properties(e).edge_weight = boost::math::constants::pi<double>();
 					std::cout << properties(e).edge_weight << "\t";
 				}
@@ -924,10 +924,10 @@ namespace reactionNetwork_sr {
 			}
 		}
 
-		// since log(brancing ratio)<=0, only take the negative without shifting will do the job
+		//since log(brancing ratio)<=0, only take the negative without shifting will do the job
 		BGL_FORALL_EDGES(e, this->graph, GraphContainer)
 		{
-			// edge weight not our magic number
+			//edge weight not our magic number
 			if (properties(e).edge_weight != boost::math::constants::pi<double>())
 			{
 				properties(e).edge_weight *= -1.0;
@@ -1105,7 +1105,7 @@ namespace reactionNetwork_sr {
 		}
 		std::cout << std::endl;
 
-		// Extract the shortest path from s to t.
+		//Extract the shortest path from s to t.
 		typedef std::vector<Edge> path_t;
 		path_t path;
 
@@ -1182,7 +1182,7 @@ namespace reactionNetwork_sr {
 		}
 		std::cout << std::endl;
 
-		// Extract the shortest path from s to t.
+		//Extract the shortest path from s to t.
 		typedef std::vector<Edge> path_t;
 		path_t path;
 
@@ -1253,7 +1253,7 @@ namespace reactionNetwork_sr {
 		//}
 		//std::cout << std::endl;
 
-		//// Extract the shortest path from s to t.
+		////Extract the shortest path from s to t.
 		//typedef std::vector<Edge> path_t;
 		//path_t path;
 
@@ -1368,7 +1368,7 @@ namespace reactionNetwork_sr {
 		//}
 		//std::cout << std::endl;
 
-		//// Extract the shortest path from s to t.
+		////Extract the shortest path from s to t.
 		//typedef std::vector<Edge> path_t;
 		//path_t path;
 
@@ -1488,7 +1488,7 @@ namespace reactionNetwork_sr {
 
 		//}
 
-		//// Extract the shortest path from s to t.
+		////Extract the shortest path from s to t.
 		//typedef std::vector<Edge> path_t;
 		//path_t path;
 
@@ -1613,7 +1613,7 @@ namespace reactionNetwork_sr {
 
 		//}
 
-		//// Extract the shortest path from s to t.
+		////Extract the shortest path from s to t.
 		//typedef std::vector<Edge> path_t;
 		//path_t path;
 
@@ -2006,7 +2006,7 @@ namespace reactionNetwork_sr {
 		atom_followed.clear();
 		pathway.clear();
 
-		// find first S, record position
+		//find first S, record position
 		auto found = str_in.find(std::string("S"));
 		atom_followed = str_in.substr(0, found);
 		//std::cout<< atom_followed << std::endl;
@@ -2063,7 +2063,7 @@ namespace reactionNetwork_sr {
 
 	void reactionNetwork_sr::superReactionNetwork::set_is_reaction_rate_nonzero_from_previous_iteration()
 	{
-		// time, half of pathway end time
+		//time, half of pathway end time
 		double time = 0.5 * this->rnk_pt.get<double>("time.tau");
 		this->update_reaction_rate(time);
 		for (std::size_t i = 0; i < this->reaction_network_v.size(); ++i) {
@@ -2121,10 +2121,10 @@ namespace reactionNetwork_sr {
 			spe_branching_ratio = this->reaction_network_v[next_reaction].out_spe_index_branching_ratio_map_map[atom_followed].at(next_spe);
 		////next species not found
 		//else {
-		//	int super_group_idx1 = this->species_network_v[next_spe].super_group_idx1;
-		//	if (super_group_idx1 != -1) {
-		//		// gotta to consider the case the "next_spe" is not found, but species in the same group as "next_spe" is found
-		//		for (auto n_s : this->sp_chattering_rnk->species_chattering_group_mat[super_group_idx1]) {
+		//	int chattering_group_id = this->species_network_v[next_spe].chattering_group_id;
+		//	if (chattering_group_id != -1) {
+		//		//gotta to consider the case the "next_spe" is not found, but species in the same group as "next_spe" is found
+		//		for (auto n_s : this->sp_chattering_rnk->species_chattering_group_mat[chattering_group_id]) {
 		//			if (this->reaction_network_v[next_reaction].out_spe_index_branching_ratio_map_map[atom_followed].count(n_s) > 0) {
 		//				spe_branching_ratio = this->reaction_network_v[next_reaction].out_spe_index_branching_ratio_map_map[atom_followed].at(n_s);
 		//				break;
@@ -2133,13 +2133,13 @@ namespace reactionNetwork_sr {
 
 		//		//treat the special case when the next species is a chattering species
 		//		//multiply by the probability of being current species within the chattering group
-		//		auto super_group_idx2 = this->sp_chattering_rnk->spe_idx_2_super_group_idx.at(next_spe);
-		//		auto chattering_ratio = this->evaluate_chattering_group_spe_ss_prob_at_time(reaction_time, super_group_idx2);
+		//		auto ss_prob_idx = this->sp_chattering_rnk->spe_idx_2_super_group_idx.at(next_spe);
+		//		auto chattering_ratio = this->evaluate_chattering_group_ss_prob_at_time(reaction_time, ss_prob_idx);
 		//		//check zero case
 		//		if (chattering_ratio > 0.0)
 		//			spe_branching_ratio *= chattering_ratio;
 
-		//	}//super_group_idx1 != -1
+		//	}//chattering_group_id != -1
 		//}
 
 		return reaction_branching_ratio*spe_branching_ratio;
@@ -2154,81 +2154,99 @@ namespace reactionNetwork_sr {
 		do {
 			u_1 = rand->random01();
 		} while (u_1 == 1.0);
+		when_where_t when_where(0.0, curr_vertex);
 
-		time = reaction_time_from_importance_sampling_without_cutoff(time, curr_vertex, u_1);
-		when_where_t when_where(time, curr_vertex);
-		if (time > this->tau) {
-			// if curr_vertex is a dead species, should return here
+
+		int chattering_group_id = this->species_network_v[curr_vertex].chattering_group_id;
+		//none chattering case
+		if (chattering_group_id == -1) {
+			time = reaction_time_from_importance_sampling_without_cutoff(time, curr_vertex, u_1);
+			if (time > this->tau) {
+				//if curr_vertex is a dead species, should return here
+				when_where.first = time;
+				return when_where;
+			}
+
+			//update rate in the reaction network
+			update_reaction_rate(time, curr_vertex);
+			rsp::index_int_t next_reaction_index = random_pick_next_reaction(curr_vertex);
+			//random pick next spe
+			vertex_t next_vertex = random_pick_next_spe(next_reaction_index, atom_followed);
+
+			curr_pathway_local += "R";
+			curr_pathway_local += boost::lexical_cast<std::string>(next_reaction_index);
+
+			curr_pathway_local += "S";
+			curr_pathway_local += boost::lexical_cast<std::string>(next_vertex);
+
+			when_where.first = time;
+			when_where.second = next_vertex;
+
 			return when_where;
 		}
-
-		//update rate in the reaction network
-		update_reaction_rate(time, curr_vertex);
-		rsp::index_int_t next_reaction_index = random_pick_next_reaction(curr_vertex);
-		//random pick next spe
-		vertex_t next_vertex = random_pick_next_spe(next_reaction_index, atom_followed);
-
-		curr_pathway_local += "R";
-		curr_pathway_local += boost::lexical_cast<std::string>(next_reaction_index);
-
-		curr_pathway_local += "S";
-		curr_pathway_local += boost::lexical_cast<std::string>(next_vertex);
-
-		when_where.first = time;
-		when_where.second = next_vertex;
-		//all good, normal procedure stop here
-
 		//chattering case
 		//if it is chattering, and it is the first time reach chattering group, "move one step"
 		//is actually move two steps, add reaction "G_{group index}"
-		int chattering_group_id = this->species_network_v[next_vertex].chattering_group_id;
-		if (chattering_group_id != -1) {
-			//// add time delay first, regenerate random number, inverse to get exact time, get steady state time first
-			//// then calculate steady state ratios
-			//do {
-			//	u_1 = rand->random01();
-			//} while (u_1 == 1.0);
+		else {
+			//calculate time from total drc of chattering species
+			time = chattering_group_reaction_time_from_importance_sampling_without_cutoff(time, chattering_group_id, u_1);
 
-			//int super_group_idx1 = this->sp_chattering_rnk->spe_idx_2_super_group_idx[next_vertex];
-			//time = chattering_group_spe_reaction_time_from_importance_sampling_without_cutoff(time, super_group_idx1, u_1);
-
-			//// time out of range, stop and return
-			//if (time > this->tau) {
-			//	when_where.first = time;
-			//	return when_where;
-			//}
-
-			// choose one randomly based on steady state probability
-			std::vector<double> ss_prob(this->sp_chattering_rnk->species_chattering_group_mat[chattering_group_id].size(), 0.0);
-			for (std::size_t i = 0; i < ss_prob.size(); ++i) {
-				auto ss_prob_idx = this->sp_chattering_rnk->spe_idx_2_super_group_idx[
-					this->sp_chattering_rnk->species_chattering_group_mat[chattering_group_id][i]
-				];
-				ss_prob[i] = this->evaluate_chattering_group_spe_ss_prob_at_time(time, ss_prob_idx);
-			}
-			//check none-zero case, if it is zero or less, no change, when_where will not change, time no change, where no change
-			if (std::accumulate(ss_prob.begin(), ss_prob.end(), 0.0) > 0.0) {
-				next_vertex = this->sp_chattering_rnk->species_chattering_group_mat[chattering_group_id][
-					rand->return_index_randomly_given_probability_vector(ss_prob)
-				];
-
-				curr_pathway_local += "R";
-				//negative reaction index represent chattering group number
-				//since there is no -1 * 0, which means, to the first super_group_idx1 0, negative 0 is still 0,
-				//negative sign will not show on pathway string, here we make it to be -1*(super_group_idx1+1)
-				curr_pathway_local += boost::lexical_cast<std::string>(-1 * (chattering_group_id + rsp::INDICATOR));
-
-				curr_pathway_local += "S";
-				curr_pathway_local += boost::lexical_cast<std::string>(next_vertex);
-
+			//time out of range, stop and return
+			if (time > this->tau) {
 				when_where.first = time;
-				when_where.second = next_vertex;
+				return when_where;
 			}
 
+			//actually move two steps, (1) from one chattering species to another chattering species
+			//(2) from chattering species to the outside
+			/*step */
+			//choose chattering species direction randomly based on drc at this time, actually going out from that species
+			std::vector<double> drc_prob(this->sp_chattering_rnk->species_chattering_group_mat[chattering_group_id].size(), 0.0);
+			for (std::size_t i = 0; i < drc_prob.size(); ++i) {
+				drc_prob[i] = this->evaluate_spe_drc_at_time(time,
+					this->sp_chattering_rnk->species_chattering_group_mat[chattering_group_id][i]);
 
-		}//if1
+				//gonna take steady state concentration, or real concentration of species at this time into consideration
+				//can try steady state concentration vs. real equilibrium concentration
+				drc_prob[i] *= this->evaluate_spe_concentration_at_time(time,
+					this->sp_chattering_rnk->species_chattering_group_mat[chattering_group_id][i]);
+			}
 
-		return when_where;
+			auto next_vertex1 = this->sp_chattering_rnk->species_chattering_group_mat[chattering_group_id][
+				rand->return_index_randomly_given_probability_vector(drc_prob)
+			];
+
+			curr_pathway_local += "R";
+			//negative reaction index represent chattering group number
+			//since there is no -1 * 0, which means, to the first chattering_group_id 0, negative 0 is still 0,
+			//negative sign will not show on pathway string, here we make it to be -1*(chattering_group_id+1)
+			curr_pathway_local += boost::lexical_cast<std::string>(-1 * (chattering_group_id + rsp::INDICATOR));
+
+			curr_pathway_local += "S";
+			curr_pathway_local += boost::lexical_cast<std::string>(next_vertex1);
+			/*step 1*/
+
+			/*step 2*/
+			//update rate in the reaction network
+			update_reaction_rate(time, next_vertex1);
+			rsp::index_int_t next_reaction_index2 = random_pick_next_reaction(next_vertex1);
+			//random pick next spe
+			vertex_t next_vertex2 = random_pick_next_spe(next_reaction_index2, atom_followed);
+
+			curr_pathway_local += "R";
+			curr_pathway_local += boost::lexical_cast<std::string>(next_reaction_index2);
+
+			curr_pathway_local += "S";
+			curr_pathway_local += boost::lexical_cast<std::string>(next_vertex2);
+
+			when_where.first = time;
+			when_where.second = next_vertex2;
+			/*step 2*/
+
+			return when_where;
+		}
+
+
 	}
 
 	std::string superReactionNetwork::pathway_sim_once(double init_time, double end_time, vertex_t init_vertex, std::string atom_followed)
@@ -2278,53 +2296,69 @@ namespace reactionNetwork_sr {
 		//set pathway end time
 		set_tau(pathway_end_time);
 
-		////parse pathway to spe and reaction vector
-		//std::vector<size_t> spe_vec; std::vector<size_t> reaction_vec;
-		//this->parse_pathway_to_vector(pathway_in, spe_vec, reaction_vec);
-
 		//basically, we assume there must be a reaction at the beginning, so should multiply be the 1-P_min(tau=0|t;S^{0})
 		double pathway_prob = 1.0;
-
 		double when_time = init_time;
 
 		//start from the first reaction
-		for (size_t i = 0; i < reaction_vec.size(); ++i)
+		for (size_t i = 0; i < reaction_vec.size();)
 		{
 			//none-chattering reaction
 			if (reaction_vec[i] >= 0) {
 				pathway_prob *= prob_spe_will_react_in_a_time_range(when_time, pathway_end_time, spe_vec[i]);
 				when_time = pathway_prob_sim_move_one_step(when_time, spe_vec[i], reaction_vec[i], spe_vec[i + 1], pathway_prob, atom_followed);
+				//move one step
+				++i;
 			}
 			//chattering reaction, chattering case
 			else {
-				auto chattering_group_id = this->species_network_v[spe_vec[i]].chattering_group_id;
-				if (chattering_group_id != -1) {
-					//auto super_group_idx1 = this->sp_chattering_rnk->spe_idx_2_super_group_idx.at(spe_vec[i]);
-					////add time delay first, regenerate random number, inverse to get exact time, get steady state time first
-					////then calculate steady state ratios
-					//auto chattering_grou_prob_mat = prob_chattering_group_spe_will_react_in_a_time_range(when_time, pathway_end_time, super_group_idx1);
-					//pathway_prob *= chattering_grou_prob_mat;
+				int chattering_group_id = this->species_network_v[spe_vec[i]].chattering_group_id;
 
-					//avoid problems around boundary
-					if (when_time < (tau - INFINITESIMAL_DT)) {
-						//double u_1 = 1.0;
-						//if (chattering_grou_prob_mat > 0.0) {
-						//	u_1 = rand->random_min_max(0, chattering_grou_prob_mat);
-						//}
-						//else
-						//	u_1 = 0.0;
+				//add time delay first, regenerate random number, inverse to get exact time, get steady state time first
+				//then calculate steady state ratios
+				double chattering_group_prob = prob_chattering_group_will_react_in_a_time_range(when_time, pathway_end_time, chattering_group_id);
+				pathway_prob *= chattering_group_prob;
 
-						//when_time = chattering_group_spe_reaction_time_from_importance_sampling_without_cutoff(when_time, super_group_idx1, u_1);
+				//avoid problems around boundary
+				if (when_time < (tau - INFINITESIMAL_DT)) {
+					double u_1 = 1.0;
+					if (chattering_group_prob > 0.0) {
+						u_1 = rand->random_min_max(0, chattering_group_prob);
+					}
+					else
+						u_1 = 0.0;
 
-						auto super_group_idx2 = this->sp_chattering_rnk->spe_idx_2_super_group_idx.at(spe_vec[i + 1]);
-						auto ss_ratio_tmp = this->evaluate_chattering_group_spe_ss_prob_at_time(when_time, super_group_idx2);
+					when_time = chattering_group_reaction_time_from_importance_sampling_without_cutoff(when_time, chattering_group_id, u_1);
 
-						// multiply by stead state ratio if not zero
-						if (ss_ratio_tmp > 0)
-							pathway_prob *= ss_ratio_tmp;
-					}//boundary time problem
+					/*step 1*/
+					//based on drc at this time, calculate probability going out by that direction
+					std::vector<double> drc_prob(this->sp_chattering_rnk->species_chattering_group_mat[chattering_group_id].size(), 0.0);
+					for (std::size_t i = 0; i < drc_prob.size(); ++i) {
+						drc_prob[i] = this->evaluate_spe_drc_at_time(when_time,
+							this->sp_chattering_rnk->species_chattering_group_mat[chattering_group_id][i]);
 
-				}//if chattering group valid
+						//gonna take steady state concentration, or real concentration of species at this time into consideration
+						//can try steady state concentration vs. real equilibrium concentration
+						drc_prob[i] *= this->evaluate_spe_concentration_at_time(when_time,
+							this->sp_chattering_rnk->species_chattering_group_mat[chattering_group_id][i]);
+					}
+					double drc_prob_sum = std::accumulate(drc_prob.begin(), drc_prob.end(), 0.0);
+					//make sure there is at least one direction out, there is no, dead end, return 0.0 probability
+					if (drc_prob_sum <= 0.0)
+						return 0.0;
+
+					//notice out species is spe_vec[i + 1], next_species1
+					pathway_prob *= drc_prob[this->sp_chattering_rnk->spe_idx_2_chattering_group_id_idx[spe_vec[i + 1]].second] / drc_prob_sum;
+					/*step 1*/
+
+					/*step 2*/
+					pathway_prob *= reaction_spe_branching_ratio(when_time, spe_vec[i + 1], reaction_vec[i + 1], spe_vec[i + 2], atom_followed);
+					/*step 2*/
+
+				}//boundary time problem
+
+				//move two steps actually
+				i += 2;
 			}//if chattering case
 
 		}
@@ -2340,7 +2374,7 @@ namespace reactionNetwork_sr {
 
 	void reactionNetwork_sr::superReactionNetwork::initiate_M_matrix(std::string atom_followed)
 	{
-		// resize and initialization
+		//resize and initialization
 		this->atom_M_matrix[atom_followed].resize(this->species_network_v.size());
 		for (std::size_t i = 0; i < this->atom_M_matrix[atom_followed].size(); ++i)
 			this->atom_M_matrix[atom_followed][i].resize(this->species_network_v.size());
@@ -2348,11 +2382,11 @@ namespace reactionNetwork_sr {
 			for (std::size_t j = 0; j < this->atom_M_matrix[atom_followed][i].size(); ++j)
 				this->atom_M_matrix[atom_followed][i][j] = 0;
 
-		// actually build M-matrix
+		//actually build M-matrix
 		for (std::size_t i = 0; i < this->atom_M_matrix[atom_followed].size(); ++i) {
 			for (std::size_t j = 0; j < this->species_network_v[i].reaction_k_index_s_coef_v.size(); ++j) {
 				for (std::size_t k = 0; k < this->reaction_network_v[this->species_network_v[i].reaction_k_index_s_coef_v[j].first].out_spe_index_weight_v_map[atom_followed].size(); ++k) {
-					// both contains atom followed
+					//both contains atom followed
 					if (this->species_network_v[i].spe_component[atom_followed] != 0 && this->species_network_v[this->reaction_network_v[this->species_network_v[i].reaction_k_index_s_coef_v[j].first].out_spe_index_weight_v_map[atom_followed][k].first].spe_component[atom_followed] != 0) {
 						this->atom_M_matrix[atom_followed][i][this->reaction_network_v[this->species_network_v[i].reaction_k_index_s_coef_v[j].first].out_spe_index_weight_v_map[atom_followed][k].first] += 1;
 					}
@@ -2389,7 +2423,7 @@ namespace reactionNetwork_sr {
 
 	void reactionNetwork_sr::superReactionNetwork::initiate_R_matrix_v1(std::string atom_followed)
 	{
-		// resize and initialization
+		//resize and initialization
 		this->atom_R_matrix[atom_followed].resize(this->species_network_v.size());
 		for (std::size_t i = 0; i < this->atom_R_matrix[atom_followed].size(); ++i)
 			this->atom_R_matrix[atom_followed][i].resize(this->species_network_v.size());
@@ -2397,11 +2431,11 @@ namespace reactionNetwork_sr {
 			for (std::size_t j = 0; j < this->atom_R_matrix[atom_followed][i].size(); ++j)
 				this->atom_R_matrix[atom_followed][i][j] = {};
 
-		// actually build M-matrix
+		//actually build M-matrix
 		for (std::size_t i = 0; i < this->atom_R_matrix[atom_followed].size(); ++i) {
 			for (std::size_t j = 0; j < this->species_network_v[i].reaction_k_index_s_coef_v.size(); ++j) {
 				for (std::size_t k = 0; k < this->reaction_network_v[this->species_network_v[i].reaction_k_index_s_coef_v[j].first].out_spe_index_weight_v_map[atom_followed].size(); ++k) {
-					// both contains atom followed
+					//both contains atom followed
 					if (this->species_network_v[i].spe_component[atom_followed] != 0 && this->species_network_v[this->reaction_network_v[this->species_network_v[i].reaction_k_index_s_coef_v[j].first].out_spe_index_weight_v_map[atom_followed][k].first].spe_component[atom_followed] != 0) {
 						this->atom_R_matrix[atom_followed][i][this->reaction_network_v[this->species_network_v[i].reaction_k_index_s_coef_v[j].first].out_spe_index_weight_v_map[atom_followed][k].first].push_back({ this->species_network_v[i].reaction_k_index_s_coef_v[j].first });
 					}
@@ -2413,7 +2447,7 @@ namespace reactionNetwork_sr {
 
 	void reactionNetwork_sr::superReactionNetwork::initiate_R_matrix_v2(std::string atom_followed)
 	{
-		// resize and initialization
+		//resize and initialization
 		this->atom_R_matrix[atom_followed].resize(this->species_network_v.size());
 		for (std::size_t i = 0; i < this->atom_R_matrix[atom_followed].size(); ++i)
 			this->atom_R_matrix[atom_followed][i].resize(this->species_network_v.size());
@@ -2497,7 +2531,7 @@ namespace reactionNetwork_sr {
 
 	bool reactionNetwork_sr::superReactionNetwork::contains_zero_reaction_rate_reactions(matrix_sr::path_t p)
 	{
-		// arrow guard
+		//arrow guard
 		if (p.size() == 0)
 			return false;
 		for (auto x : p) {
@@ -2534,8 +2568,8 @@ namespace reactionNetwork_sr {
 		matrix_sr::path_R_matrix_element_t p_new;
 		std::multimap<double, std::pair<std::string, std::size_t>, std::greater<double> > prob_path_map;
 
-		// if there is less than topN path, do nothing
-		// if there are more than topN path, delete the unimportant ones
+		//if there is less than topN path, do nothing
+		//if there are more than topN path, delete the unimportant ones
 		for (std::size_t k = 0; k < p.size(); ++k) {
 			std::string ps = R_matrix_path_representation_to_string(p[k]);
 			double prob = calculate_path_weight_based_on_path_probability(ps, atom_followed, start_time, end_time);
@@ -2551,7 +2585,7 @@ namespace reactionNetwork_sr {
 					prob_path_map.erase(std::prev(prob_path_map.end()));
 					prob_path_map.insert(std::make_pair(prob, std::make_pair(ps, k)));
 				}
-			} // if <topN
+			} //if <topN
 
 		}
 
@@ -2559,7 +2593,7 @@ namespace reactionNetwork_sr {
 			p_new.push_back(p[x.second.second]);
 		}
 
-		// update matrix
+		//update matrix
 		if (p_new.size() == 0)
 			p_new = {};
 		pRm[i][j].clear();
@@ -2591,7 +2625,7 @@ namespace reactionNetwork_sr {
 			auto pRmn = matrix_sr::matrix_power(this->atom_R_matrix[atom_followed], k);
 			for (auto key : this->rnk_pt.get_child("chem_init.species_index_concentration")) {
 				std::size_t si = boost::lexical_cast<std::size_t>(key.first);
-				// doesn't contain atom_followed
+				//doesn't contain atom_followed
 				if (species_network_v[si].spe_component.at(atom_followed) == 0)
 					continue;
 				if (k == 0) {
@@ -2609,7 +2643,7 @@ namespace reactionNetwork_sr {
 
 		}
 
-		// save to file
+		//save to file
 		std::ofstream fout(filename.c_str());
 		for (auto s : us)
 			fout << s << std::endl;
@@ -2623,7 +2657,7 @@ namespace reactionNetwork_sr {
 			auto pRmn = matrix_sr::matrix_power(this->atom_R_matrix[atom_followed], k);
 			for (auto key : this->rnk_pt.get_child("chem_init.species_index_concentration")) {
 				std::size_t si = boost::lexical_cast<std::size_t>(key.first);
-				// doesn't contain atom_followed
+				//doesn't contain atom_followed
 				if (species_network_v[si].spe_component.at(atom_followed) == 0)
 					continue;
 				if (k == 0) {
@@ -2682,11 +2716,11 @@ namespace reactionNetwork_sr {
 								p_map_v[sj].erase(std::prev(p_map_v[sj].end()));
 								p_map_v[sj].insert(std::make_pair(prob, s));
 							}
-						} // if <topN
+						} //if <topN
 
 
-					} // auto s
-				} // sj
+					} //auto s
+				} //sj
 			}
 
 		}
@@ -2715,7 +2749,7 @@ namespace reactionNetwork_sr {
 			auto species_with_initial_concentration = return_species_index_with_initial_concentration();
 			auto species_without_initial_concentration = return_species_index_without_initial_concentration();
 
-			// species with initial concentration
+			//species with initial concentration
 			for (auto si : species_with_initial_concentration) {
 				//doesn't contain atom_followed
 				if (species_network_v[si].spe_component.at(atom_followed) == 0)
@@ -2728,7 +2762,7 @@ namespace reactionNetwork_sr {
 				//in the mean time, we should change the matrix element so that it doesn't contain too many elements
 				//become too big-->lots of memory
 				for (std::size_t sj = 0; sj < this->species_network_v.size(); ++sj) {
-					// be a little cautious, a little open, 10*topN
+					//be a little cautious, a little open, 10*topN
 					auto vs = this->get_path_string_update_matrix_element_i_j_topN(pRmn, si, sj, atom_followed, 10 * topN, 0.0, end_time_ratio*this->rnk_pt.get<double>("time.tau"));
 					for (auto s : vs) {
 						double prob = calculate_path_weight_based_on_path_probability(s, atom_followed, 0.0, end_time_ratio*this->rnk_pt.get<double>("time.tau"));
@@ -2743,17 +2777,17 @@ namespace reactionNetwork_sr {
 								prob_path_map_v[sj].erase(std::prev(prob_path_map_v[sj].end()));
 								prob_path_map_v[sj].insert(std::make_pair(prob, s));
 							}
-						} // if <topN
+						} //if <topN
 
 
-					} // auto s
-				} // sj
+					} //auto s
+				} //sj
 			}
 
-			// species without initial concentration, still need to update matrix elements
+			//species without initial concentration, still need to update matrix elements
 			for (auto si : species_without_initial_concentration) {
 				for (std::size_t sj = 0; sj < this->species_network_v.size(); ++sj)
-					// be a little cautious, a little open, 10*topN
+					//be a little cautious, a little open, 10*topN
 					this->get_path_string_update_matrix_element_i_j_topN(pRmn, si, sj, atom_followed, 10 * topN, 0.0, end_time_ratio*this->rnk_pt.get<double>("time.tau"));
 			}
 
@@ -2779,7 +2813,7 @@ namespace reactionNetwork_sr {
 		this->parse_pathway_to_vector(path, spe_vec, reaction_vec);
 		prob = pathway_prob_input_pathway_sim_once(start_time, end_time, spe_vec, reaction_vec, atom_followed);
 
-		// take the initial concentration of initial species into account
+		//take the initial concentration of initial species into account
 		if (this->species_network_v[spe_vec[0]].spe_conc != 0)
 			prob *= this->species_network_v[spe_vec[0]].spe_conc;
 
@@ -2792,13 +2826,13 @@ namespace reactionNetwork_sr {
 	std::size_t reactionNetwork_sr::superReactionNetwork::heuristic_path_string_vector_by_stage_number_path_length_all_elements(const std::size_t stage_n, std::string filename, std::size_t topN)
 	{
 		assert(stage_n >= 0);
-		// fetch path length first
+		//fetch path length first
 		std::vector<std::size_t> path_n_v;
 		for (auto key : this->rnk_pt.get_child("pathway.max_path_length"))
 			path_n_v.push_back(key.second.get_value<std::size_t>());
 
 		std::size_t path_n;
-		// if iteration n is less than path_n_v lenght, fetch by index, otherwise take the last element
+		//if iteration n is less than path_n_v lenght, fetch by index, otherwise take the last element
 		if (stage_n < path_n_v.size())
 			path_n = path_n_v[stage_n];
 		else
@@ -2820,7 +2854,7 @@ namespace reactionNetwork_sr {
 			for (auto s : us)
 				all_path.insert(s);
 
-		// save to file
+		//save to file
 		std::ofstream fout(filename.c_str());
 		for (auto x : all_path)
 			fout << x << std::endl;
@@ -2832,13 +2866,13 @@ namespace reactionNetwork_sr {
 	std::size_t reactionNetwork_sr::superReactionNetwork::heuristic_path_string_vector_by_stage_number_path_prob_all_elements(const std::size_t stage_n, std::string filename, std::size_t topN, double end_time_ratio)
 	{
 		assert(stage_n >= 0);
-		// fetch path length first
+		//fetch path length first
 		std::vector<std::size_t> path_n_v;
 		for (auto key : this->rnk_pt.get_child("pathway.max_path_length"))
 			path_n_v.push_back(key.second.get_value<std::size_t>());
 
 		std::size_t path_n;
-		// if iteration n is less than path_n_v lenght, fetch by index, otherwise take the last element
+		//if iteration n is less than path_n_v lenght, fetch by index, otherwise take the last element
 		if (stage_n < path_n_v.size())
 			path_n = path_n_v[stage_n];
 		else
@@ -2860,7 +2894,7 @@ namespace reactionNetwork_sr {
 			for (auto s : us)
 				all_path.insert(s);
 
-		// save to file
+		//save to file
 		std::ofstream fout(filename.c_str());
 		for (auto x : all_path)
 			fout << x << std::endl;
@@ -2874,13 +2908,13 @@ namespace reactionNetwork_sr {
 		path_all_v.resize(0);
 
 		assert(stage_n >= 0);
-		// fetch path length first
+		//fetch path length first
 		std::vector<std::size_t> path_n_v;
 		for (auto key : this->rnk_pt.get_child("pathway.max_path_length"))
 			path_n_v.push_back(key.second.get_value<std::size_t>());
 
 		std::size_t path_n;
-		// if iteration n is less than path_n_v lenght, fetch by index, otherwise take the last element
+		//if iteration n is less than path_n_v lenght, fetch by index, otherwise take the last element
 		if (stage_n < path_n_v.size())
 			path_n = path_n_v[stage_n];
 		else
@@ -2912,13 +2946,13 @@ namespace reactionNetwork_sr {
 	std::size_t reactionNetwork_sr::superReactionNetwork::heuristic_path_string_vector_by_stage_number_path_prob_super_element(const std::size_t stage_n, std::string filename, std::size_t topN, double end_time_ratio)
 	{
 		assert(stage_n >= 0);
-		// fetch path length first
+		//fetch path length first
 		std::vector<std::size_t> path_n_v;
 		for (auto key : this->rnk_pt.get_child("pathway.max_path_length"))
 			path_n_v.push_back(key.second.get_value<std::size_t>());
 
 		std::size_t path_n;
-		// if iteration n is less than path_n_v lenght, fetch by index, otherwise take the last element
+		//if iteration n is less than path_n_v lenght, fetch by index, otherwise take the last element
 		if (stage_n < path_n_v.size())
 			path_n = path_n_v[stage_n];
 		else
@@ -2931,7 +2965,7 @@ namespace reactionNetwork_sr {
 
 		auto us = this->heuristic_path_string_vector_sorted_based_on_path_prob(this->rnk_pt.get<std::string>("pathway.super_atom"), path_n, topN, end_time_ratio);
 
-		// save to file
+		//save to file
 		std::ofstream fout(filename.c_str());
 		for (auto x : us)
 			fout << x << std::endl;
@@ -2955,7 +2989,7 @@ namespace reactionNetwork_sr {
 		std::set<std::size_t> species_without_initial_concentration;
 
 		for (std::size_t i = 0; i < this->species_network_v.size(); ++i) {
-			// not in species_with_initial_concentration
+			//not in species_with_initial_concentration
 			if (species_with_initial_concentration.count(i) == 0)
 				species_without_initial_concentration.insert(i);
 		}
@@ -2979,22 +3013,22 @@ namespace reactionNetwork_sr {
 
 		auto species_with_initial_concentration = return_species_index_with_initial_concentration();
 
-		// species with initial concentration, initial concentration is not zero
+		//species with initial concentration, initial concentration is not zero
 		for (auto si : species_with_initial_concentration) {
 			//doesn't contain atom_followed
 			if (species_network_v[si].spe_component.at(atom_followed) == 0)
 				continue;
 
-			// contain atom_followed
+			//contain atom_followed
 			std::string str_tmp;
 			for (std::size_t ti = 0; ti < Ntrajectory; ++ti) {
 				str_tmp = this->pathway_sim_once(0.0, end_time_ratio*this->rnk_pt.get<double>("time.tau"), si, atom_followed);
-				// put the atom followed in front
+				//put the atom followed in front
 				statistics_v[si].insert_pathway_stat(atom_followed + str_tmp);
-			} // for
-		} // for
+			} //for
+		} //for
 
-	} // generate_path_by_running_monte_carlo_trajectory_s2m
+	} //generate_path_by_running_monte_carlo_trajectory_s2m
 
 	std::size_t reactionNetwork_sr::superReactionNetwork::generate_path_by_running_monte_carlo_trajectory_all_elements_s2m(std::vector<statistics>& statistics_v, std::size_t Ntrajectory, double end_time_ratio)
 	{

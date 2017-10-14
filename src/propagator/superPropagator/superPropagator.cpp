@@ -66,33 +66,33 @@ namespace propagator_sr {
 		if (temperature_time_pgt != 0)
 			delete temperature_time_pgt;
 
-		// chattering group
-		for (std::size_t i = 0; i < chattering_group_spe_k_data_pgt.size(); ++i) {
-			if (chattering_group_spe_k_pgt.size() == 0)
+		//chattering group
+		for (std::size_t i = 0; i < chattering_group_k_data_pgt.size(); ++i) {
+			if (chattering_group_k_pgt.size() == 0)
 				break;
-			if (chattering_group_spe_k_pgt[i] != 0)
-				delete chattering_group_spe_k_pgt[i];
+			if (chattering_group_k_pgt[i] != 0)
+				delete chattering_group_k_pgt[i];
 		}
 
-		for (std::size_t i = 0; i < chattering_group_spe_k_int_data_pgt.size(); ++i) {
-			if (chattering_group_spe_k_int_pgt.size() == 0)
+		for (std::size_t i = 0; i < chattering_group_k_int_data_pgt.size(); ++i) {
+			if (chattering_group_k_int_pgt.size() == 0)
 				break;
-			if (chattering_group_spe_k_int_pgt[i] != 0)
-				delete chattering_group_spe_k_int_pgt[i];
+			if (chattering_group_k_int_pgt[i] != 0)
+				delete chattering_group_k_int_pgt[i];
 		}
 
-		for (std::size_t i = 0; i < chattering_group_spe_k_int_data_pgt.size(); ++i) {
-			if (chattering_group_spe_k_int_time_pgt.size() == 0)
+		for (std::size_t i = 0; i < chattering_group_k_int_data_pgt.size(); ++i) {
+			if (chattering_group_k_int_time_pgt.size() == 0)
 				break;
-			if (chattering_group_spe_k_int_time_pgt[i] != 0)
-				delete chattering_group_spe_k_int_time_pgt[i];
+			if (chattering_group_k_int_time_pgt[i] != 0)
+				delete chattering_group_k_int_time_pgt[i];
 		}
 
-		for (std::size_t i = 0; i < chattering_group_spe_ss_prob_data_pgt.size(); ++i) {
-			if (chattering_group_spe_ss_prob_pgt.size() == 0)
+		for (std::size_t i = 0; i < chattering_group_ss_prob_data_pgt.size(); ++i) {
+			if (chattering_group_ss_prob_pgt.size() == 0)
 				break;
-			if (chattering_group_spe_ss_prob_pgt[i] != 0)
-				delete chattering_group_spe_ss_prob_pgt[i];
+			if (chattering_group_ss_prob_pgt[i] != 0)
+				delete chattering_group_ss_prob_pgt[i];
 		}
 
 	}
@@ -110,7 +110,7 @@ namespace propagator_sr {
 		temperature_time_pgt = (Linear_interp*)0;
 
 		//chattering group
-		std::fill(chattering_group_spe_k_pgt.begin(), chattering_group_spe_k_pgt.end(), (Linear_interp*)(0));
+		std::fill(chattering_group_k_pgt.begin(), chattering_group_k_pgt.end(), (Linear_interp*)(0));
 	}
 
 #if defined(__CHEMKIN_AVAILABLE_)
@@ -127,13 +127,13 @@ namespace propagator_sr {
 			if (c_t[i] <= 0.0)
 			{
 				spe_drc_data_pgt[i].push_back(c_t[i]);
-				//spe_production_rate_data_pgt[time_i].push_back(CDOT_t[time_i]);
+				//spe_production_rate_data_pgt[time_j].push_back(CDOT_t[time_j]);
 			}
 			else
 			{
 				//just need the destruction rate const of species
 				spe_drc_data_pgt[i].push_back(DDOT_t[i] / c_t[i]);
-				//spe_production_rate_data_pgt[time_i].push_back(CDOT_t[time_i]);
+				//spe_production_rate_data_pgt[time_j].push_back(CDOT_t[time_j]);
 			}
 		}//for]
 
@@ -161,44 +161,43 @@ namespace propagator_sr {
 		pressure_data_pgt.push_back(ckstore.pressure);
 	}
 
-
 #endif // __CHEMKIN_AVAILABLE_
 
 
 	void superPropagator::find_chattering_group(const std::vector<rsp::spe_info_base>& species_network_v)
 	{
-		// since there might be groups of trapped species, such as A=B, B=C, C=D, A,B,C,D belongs to the same fast transition group
-		// use union find here
-		std::unordered_set<int> unique_trapped_species;
-		for (auto x : this->sp_chattering_pgt->chattering_spe) {
+		//since there might be groups of trapped species, such as A=B, B=C, C=D, A,B,C,D belongs to the same fast transition group
+		//use union find here
+		for (auto x : this->sp_chattering_pgt->chattering_spe_idx_from_file) {
 			for (auto y : x) {
-				unique_trapped_species.insert(y);
+				this->sp_chattering_pgt->unique_chattering_species.insert(y);
 			}
 		}
-		std::set<int> unique_fast_reactions;
-		for (auto r : this->sp_chattering_pgt->chattering_reaction_index) {
-			unique_fast_reactions.insert(r);
+		for (auto rxns : this->sp_chattering_pgt->chattering_rxn_idx_from_file) {
+			for (auto r : rxns) {
+				this->sp_chattering_pgt->unique_chattering_reactions.insert(r);
+			}
 		}
 
 		std::unordered_map<int, int> label_2_idx;
 		std::unordered_map<int, int> idx_2_label;
 		int counter = 0;
-		for (auto x : unique_trapped_species) {
+		for (auto x : this->sp_chattering_pgt->unique_chattering_species) {
 			label_2_idx.emplace(counter, x);
 			idx_2_label.emplace(x, counter++);
 		}
 
 		UnionFind uf(label_2_idx.size());
-		for (std::size_t i = 0; i < this->sp_chattering_pgt->chattering_spe[0].size(); ++i) {
-			uf.unite(idx_2_label[this->sp_chattering_pgt->chattering_spe[0][i]],
-				idx_2_label[this->sp_chattering_pgt->chattering_spe[1][i]]);
+		for (std::size_t i = 0; i < this->sp_chattering_pgt->chattering_spe_idx_from_file[0].size(); ++i) {
+			uf.unite(idx_2_label[this->sp_chattering_pgt->chattering_spe_idx_from_file[0][i]],
+				idx_2_label[this->sp_chattering_pgt->chattering_spe_idx_from_file[1][i]]);
 		}
 
-		// find fast transition groups
+		//find fast transition groups
 		std::unordered_set<int> unique_root_species;
-		for (auto x : this->sp_chattering_pgt->chattering_spe) {
+		for (auto x : this->sp_chattering_pgt->chattering_spe_idx_from_file) {
 			for (auto y : x) {
-				// find root
+				//find root
 				auto s = label_2_idx[uf.root(idx_2_label[y])];
 				unique_root_species.insert(s);
 			}
@@ -207,9 +206,9 @@ namespace propagator_sr {
 		for (auto x : unique_root_species) {
 			fast_transition_group_spe.emplace(x, std::set<int>({ x }));
 		}
-		for (auto x : this->sp_chattering_pgt->chattering_spe) {
+		for (auto x : this->sp_chattering_pgt->chattering_spe_idx_from_file) {
 			for (auto y : x) {
-				// find root
+				//find root
 				auto s = label_2_idx[uf.root(idx_2_label[y])];
 				if (fast_transition_group_spe[s].find(y) == fast_transition_group_spe[s].end()) {
 					fast_transition_group_spe[s].insert(y);
@@ -247,7 +246,7 @@ namespace propagator_sr {
 			for (std::size_t j = 0; j < this->sp_chattering_pgt->species_chattering_group_mat[i].size(); ++j) {
 				pt_child_tmp.put(boost::lexical_cast<std::string>(j), this->sp_chattering_pgt->species_chattering_group_mat[i][j]);
 			}
-			pt_root_tmp.put_child(boost::lexical_cast<std::string>(i+rsp::INDICATOR), pt_child_tmp);
+			pt_root_tmp.put_child(boost::lexical_cast<std::string>(i + rsp::INDICATOR), pt_child_tmp);
 		}
 
 		std::ofstream out_stream;
@@ -267,12 +266,52 @@ namespace propagator_sr {
 
 	}
 
+	void superPropagator::update_chattering_group_pairs_reactions(const std::vector<rsp::spe_info_base>& species_network_v, const std::vector<rsp::reaction_info_base>& reaction_network_v, std::string atom_followed)
+	{
+		this->sp_chattering_pgt->species_chattering_group_pairs_rxns.resize(0);
+		this->sp_chattering_pgt->species_chattering_group_pairs_rxns.clear();
+
+		this->sp_chattering_pgt->species_chattering_group_pairs_rxns.resize(this->sp_chattering_pgt->species_chattering_group_mat.size());
+		for (std::size_t group_i = 0; group_i < this->sp_chattering_pgt->species_chattering_group_mat.size(); ++group_i) {
+			std::map<std::pair<std::size_t, std::size_t>, std::set<chattering_sr::chattering::rxn_c1_c2> > pairs_rxns_map_tmp;
+			//species vector
+			auto s_vec_tmp = this->sp_chattering_pgt->species_chattering_group_mat[group_i];
+			for (auto s_idx1 : s_vec_tmp) {//s_idx1
+				for (auto rxn_coef : species_network_v[s_idx1].reaction_k_index_s_coef_v) {
+					auto r_idx = rxn_coef.first;
+					auto c1 = rxn_coef.second;
+					for (auto s_idx_coef : reaction_network_v[r_idx].out_spe_index_weight_v_map.at(atom_followed)) {
+						auto s_idx2 = s_idx_coef.first;
+						auto c2 = s_idx_coef.second;
+
+						//if these two species are both in current chattering group
+						if (std::find(s_vec_tmp.begin(), s_vec_tmp.end(), s_idx2) != s_vec_tmp.end()) {
+							std::pair<std::size_t, std::size_t> s1_s2_p(s_idx1, s_idx2);
+
+							chattering_sr::chattering::rxn_c1_c2 r_c1_c2;
+							r_c1_c2.r_idx = r_idx;
+							r_c1_c2.c1 = c1;
+							r_c1_c2.c2 = c2;
+
+							pairs_rxns_map_tmp[s1_s2_p].insert(r_c1_c2);
+						}//if these two species are both in current chattering group
+
+					}
+
+				}
+
+			}//s_idx1
+
+			this->sp_chattering_pgt->species_chattering_group_pairs_rxns[group_i] = pairs_rxns_map_tmp;
+		}
+	}
+
 	std::shared_ptr<chattering_sr::chattering> superPropagator::get_sp_of_chattering()
 	{
 		return this->sp_chattering_pgt;
 	}
 
-	void superPropagator::set_chattering_spe_pgt()
+	void superPropagator::set_chattering_spe_from_file_pgt()
 	{
 		std::vector<std::vector<std::size_t> > Matrix(2, std::vector<std::size_t>());
 
@@ -281,144 +320,124 @@ namespace propagator_sr {
 			Matrix[1].push_back(key1.second.get_value<std::size_t>());
 		}
 
-		this->sp_chattering_pgt->chattering_spe = Matrix;
+		this->sp_chattering_pgt->chattering_spe_idx_from_file = Matrix;
 	}
 
-	void superPropagator::set_chattering_reactions_pgt()
+	void superPropagator::set_chattering_reactions_from_file_pgt()
 	{
-		std::vector<std::size_t> fast_reaction_index;
-		//read with json_parser as property_tree
-		//nice and easy
-		for (auto &key1 : this->pgt_pt.get_child("pathway.fast_reaction")) {
-			fast_reaction_index.push_back(boost::lexical_cast<std::size_t>(key1.first));
-			fast_reaction_index.push_back(key1.second.get_value<std::size_t>());
+		std::vector<std::vector<std::size_t> > Matrix(2, std::vector<std::size_t>());
+
+		for (auto key1 : this->pgt_pt.get_child("pathway.fast_reaction")) {
+			Matrix[0].push_back(boost::lexical_cast<std::size_t>(key1.first));
+			Matrix[1].push_back(key1.second.get_value<std::size_t>());
 		}
 
-		this->sp_chattering_pgt->chattering_reaction_index = fast_reaction_index;
+		this->sp_chattering_pgt->chattering_rxn_idx_from_file = Matrix;
 	}
 
-	std::vector<std::size_t> superPropagator::get_chattering_reactions_pgt()
+	void superPropagator::subtract_chattering_reaction_contribution_from_species_drc_pgt()
 	{
-		return this->sp_chattering_pgt->chattering_reaction_index;
-	}
+		//for all species, either cancel fast transitions in the same chattering group
+		//or cancel specified reactions
+		for (std::size_t group_i = 0; group_i < this->sp_chattering_pgt->species_chattering_group_pairs_rxns.size(); ++group_i) {
+			for (auto x : this->sp_chattering_pgt->species_chattering_group_pairs_rxns[group_i]) {
+				auto s1_s2_p = x.first;
+				auto rxn_c1_c2_set = x.second;
 
-	void superPropagator::set_chattering_reaction_rate_to_zero_pgt()
-	{
-		for (std::size_t i = 0; i < this->sp_chattering_pgt->chattering_reaction_index.size(); ++i) {
-			std::fill(reaction_rate_data_pgt[this->sp_chattering_pgt->chattering_reaction_index[i]].begin(), reaction_rate_data_pgt[this->sp_chattering_pgt->chattering_reaction_index[i]].end(), 0.0);
-		}
-	}
-
-	void superPropagator::update_info_of_chattering_species_reactions(const std::vector<rsp::spe_info_base> &species_network_v, const std::vector<rsp::reaction_info_base> &reaction_network_v, std::string atom_followed)
-	{
-		// since there might be groups of trapped species, such as A=B, B=C, C=D, A,B,C,D belongs to the same fast transition group
-		// use union find here
-		std::unordered_set<int> unique_trapped_species;
-		for (auto x : this->sp_chattering_pgt->spe_idx_2_chattering_group_id_idx) {
-			unique_trapped_species.insert(x.first);
-		}
-		std::set<int> unique_fast_reactions;
-		for (auto r : this->sp_chattering_pgt->chattering_reaction_index) {
-			unique_fast_reactions.insert(r);
-		}
-
-		// for all species, cancel all neighbors fast transitions
-		for (auto x : unique_trapped_species) {
-			for (auto y : species_network_v[x].reaction_k_index_s_coef_v) {
-				auto rxn_ind = y.first;
-				auto s_coef = y.second;
-				if (unique_fast_reactions.find(rxn_ind) != unique_fast_reactions.end()) {
-					for (std::size_t i = 0; i < this->time_data_pgt.size(); ++i) {
-						if (this->concentration_data_pgt[x][i] != 0) {
-							auto drc_tmp = s_coef *this->reaction_rate_data_pgt[rxn_ind][i] / this->concentration_data_pgt[x][i];
-							if (this->spe_drc_data_pgt[x][i] > drc_tmp)
-								this->spe_drc_data_pgt[x][i] -= drc_tmp;
+				for (auto rxn_c1_c2 : rxn_c1_c2_set) {
+					//see if current reaction in the "expected list"
+					//if (this->sp_chattering_pgt->unique_chattering_reactions.count(rxn_c1_c2.r_idx) < 1)
+					//	continue;
+					for (std::size_t time_j = 0; time_j < this->time_data_pgt.size(); ++time_j) {
+						if (this->concentration_data_pgt[s1_s2_p.first][time_j] != 0) {
+							auto drc_tmp = rxn_c1_c2.c1 *this->reaction_rate_data_pgt[rxn_c1_c2.r_idx][time_j] / this->concentration_data_pgt[s1_s2_p.first][time_j];
+							if (this->spe_drc_data_pgt[s1_s2_p.first][time_j] > drc_tmp)
+								this->spe_drc_data_pgt[s1_s2_p.first][time_j] -= drc_tmp;
+							else
+								this->spe_drc_data_pgt[s1_s2_p.first][time_j] = 0.0;
 						}
-					}
-				}
-			}
-		}
+					}//time
+				}//s1 s2 reactions
+			}//s1_s2_pairs
+		}//chattering group
+	}
 
-
-		this->chattering_group_spe_k_data_pgt.clear();
-		this->chattering_group_spe_k_data_pgt.resize(this->sp_chattering_pgt->spe_idx_2_super_group_idx.size());
-		for (auto &x : this->chattering_group_spe_k_data_pgt)
+	void superPropagator::update_drc_and_equilibrium_probability_of_chattering_group()
+	{
+		this->chattering_group_k_data_pgt.clear();
+		this->chattering_group_k_data_pgt.resize(this->sp_chattering_pgt->species_chattering_group_mat.size());
+		for (auto &x : this->chattering_group_k_data_pgt)
 			x.assign(this->time_data_pgt.size(), 0.0);
 
-		this->chattering_group_spe_ss_prob_data_pgt.clear();
-		this->chattering_group_spe_ss_prob_data_pgt.resize(this->sp_chattering_pgt->spe_idx_2_super_group_idx.size());
-		for (auto &x : this->chattering_group_spe_ss_prob_data_pgt)
+		this->chattering_group_ss_prob_data_pgt.clear();
+		this->chattering_group_ss_prob_data_pgt.resize(this->sp_chattering_pgt->spe_idx_2_super_group_idx.size());
+		for (auto &x : this->chattering_group_ss_prob_data_pgt)
 			x.assign(this->time_data_pgt.size(), 0.0);
 
 
-		// first order approximation, instead of zero-th order, for example, A(k1)=B(k2)->(k3)C, 
-		// if there is a fast transition between A and B, there we modify the k3, k3=k2/(k1+k2) * k3
-		for (std::size_t time_i = 0; time_i < this->time_data_pgt.size(); ++time_i) {
+		//first order approximation, instead of zero-th order, for example, A(k1)=B(k2)->(k3)C, 
+		//if there is a fast transition between A and B, there we modify the k3, k3=k2/(k1+k2) * k3
+		for (std::size_t group_i = 0; group_i < this->sp_chattering_pgt->species_chattering_group_mat.size(); ++group_i) {
+			for (std::size_t time_j = 0; time_j < this->time_data_pgt.size(); ++time_j) {
+				//sum over all chattering species
+				this->chattering_group_k_data_pgt[group_i][time_j] = 0.0;
 
-			for (std::size_t group_i = 0; group_i < this->sp_chattering_pgt->species_chattering_group_mat.size(); ++group_i) {
-				auto spe_vec = this->sp_chattering_pgt->species_chattering_group_mat[group_i];
-				// transition matrix, to each group of species, calculate a transition matrix
+				//calculate concentration at this time
+				double sum_conc = 0.0;
+				for (auto spe_idx : this->sp_chattering_pgt->species_chattering_group_mat[group_i]) {
+					auto s_g_idx = this->sp_chattering_pgt->spe_idx_2_super_group_idx[spe_idx];
+					//fast equilibrium concentration, concentration at this time
+					this->chattering_group_ss_prob_data_pgt[s_g_idx][time_j] =
+						this->evaluate_concentration_at_time(this->time_data_pgt[time_j], spe_idx);
+					sum_conc += this->chattering_group_ss_prob_data_pgt[s_g_idx][time_j];
+				}
 
-				// transition matrix
-				std::vector<std::vector<double> > transition_mat(spe_vec.size(), std::vector<double>(spe_vec.size(), 0.0));
-				for (auto s_idx_1 : spe_vec) {
-					for (auto y : species_network_v[s_idx_1].reaction_k_index_s_coef_v) {
-						auto rxn_ind = y.first;
-						auto s_coef_1 = y.second;
-						if (unique_fast_reactions.find(rxn_ind) != unique_fast_reactions.end()) {
-							if (this->concentration_data_pgt[s_idx_1][time_i] != 0) {
-								auto drc_tmp = s_coef_1 *this->reaction_rate_data_pgt[rxn_ind][time_i] / this->concentration_data_pgt[s_idx_1][time_i];
+				//normalize within each chattering group
+				for (auto spe_idx : this->sp_chattering_pgt->species_chattering_group_mat[group_i]) {
+					auto s_g_idx = this->sp_chattering_pgt->spe_idx_2_super_group_idx[spe_idx];
+					//check zero
+					if (sum_conc > 0) {
+						this->chattering_group_ss_prob_data_pgt[s_g_idx][time_j] /= sum_conc;
 
-								// check out species index, if in this fast transition group, add to transition matrix
-								for (auto s_idx_w : reaction_network_v[rxn_ind].out_spe_index_weight_v_map.at(atom_followed)) {
-									auto s_idx_2 = s_idx_w.first;
-									auto s_coef_2 = s_idx_w.second;
+						//as soon as fast equilibrium concentration is normalized
+						//this->spe_drc_data_pgt[spe_idx][time_j] *= this->chattering_group_ss_prob_data_pgt[s_g_idx][time_j];
+						this->chattering_group_k_data_pgt[group_i][time_j] +=
+							this->spe_drc_data_pgt[spe_idx][time_j] * this->chattering_group_ss_prob_data_pgt[s_g_idx][time_j];
+					}
+					else {
+						this->chattering_group_ss_prob_data_pgt[s_g_idx][time_j] = 1.0 / this->sp_chattering_pgt->species_chattering_group_mat[group_i].size();
 
-									// if s_idx_2 is in the same group as s_idx_1, update transition matrix
-									if (this->sp_chattering_pgt->spe_idx_2_chattering_group_id_idx.find(s_idx_2) == this->sp_chattering_pgt->spe_idx_2_chattering_group_id_idx.end())
-										continue;
-									else {
-										if (this->sp_chattering_pgt->spe_idx_2_chattering_group_id_idx.at(s_idx_1).first == this->sp_chattering_pgt->spe_idx_2_chattering_group_id_idx.at(s_idx_2).first) {
-											// assume first order transition, if it is 5A==10B, too hard to deal with
-											// speaking of transition matrix, to a A==B system, 
-											// k_{AB} should be the matrix element on the left bottom corner
-											transition_mat[this->sp_chattering_pgt->spe_idx_2_chattering_group_id_idx.at(s_idx_2).second]
-												[this->sp_chattering_pgt->spe_idx_2_chattering_group_id_idx.at(s_idx_1).second] = drc_tmp / s_coef_2;
-										}
-									}
-								}
-							}
-						}
+						//as soon as fast equilibrium concentration is normalized
+						//this->spe_drc_data_pgt[spe_idx][time_j] *= this->chattering_group_ss_prob_data_pgt[s_g_idx][time_j];
+						this->chattering_group_k_data_pgt[group_i][time_j] +=
+							this->spe_drc_data_pgt[spe_idx][time_j] * this->chattering_group_ss_prob_data_pgt[s_g_idx][time_j];
 					}
 				}
-				// calculate equilibrium concentration based on transition matrix
-				double first_real_positive_eigenvalue;
-				std::vector<double> equil_ratio;
-				auto ok = matrix_sr::cal_equilibrium_ratio_from_transition_matrix(transition_mat, first_real_positive_eigenvalue, equil_ratio);
 
-				if (ok == false)
-					continue;
+			}//time
+		}//chattering group
 
-				//steady state probability
-				std::size_t label_i_tmp = 0;
-				for (auto spe_idx_tmp : spe_vec) {
-					auto super_group_idx = this->sp_chattering_pgt->spe_idx_2_super_group_idx[spe_idx_tmp];
-					//chattering time scale/reduced k
-					this->chattering_group_spe_k_data_pgt[super_group_idx][time_i] = first_real_positive_eigenvalue;
-					//stead state probability
-					this->chattering_group_spe_ss_prob_data_pgt[super_group_idx][time_i] = equil_ratio[label_i_tmp];
+	}
 
-					//escaping rate, gotta to think about it later, kinda make sense
-					this->spe_drc_data_pgt[spe_idx_tmp][time_i] *= equil_ratio[label_i_tmp];
+	void superPropagator::set_chattering_reaction_rates_to_zero_pgt()
+	{
+		//for (auto rxn_idx : this->sp_chattering_pgt->unique_chattering_reactions) {
+		//	std::fill(reaction_rate_data_pgt[rxn_idx].begin(),
+		//		reaction_rate_data_pgt[rxn_idx].end(), 0.0);
+		//}
 
-					++label_i_tmp;
-				}
+		for (auto c_g : this->sp_chattering_pgt->species_chattering_group_pairs_rxns) {
+			for (auto p_r_m : c_g) {
+				auto s1_s2_p = p_r_m.first;
+				auto rxn_c1_c2_set = p_r_m.second;
+				for (auto rxn_c1_c2 : rxn_c1_c2_set) {
+					auto rxn_idx = rxn_c1_c2.r_idx;
+					std::fill(reaction_rate_data_pgt[rxn_idx].begin(),
+						reaction_rate_data_pgt[rxn_idx].end(), 0.0);
+				}//rxn_c1_c2_set
+			}//s1_s2_pair
+		}//chattrering_group
 
-
-			}// fast transition group
-		}// time
-
-		// done
 	}
 
 	rsp::temperature_t superPropagator::return_target_temperature() const
@@ -440,7 +459,9 @@ namespace propagator_sr {
 		out_file.close();
 	}
 
+
 #if defined(__CHEMKIN_AVAILABLE_) && defined(__USE_LOSDE_)
+
 	void superPropagator::print_pgt()
 	{
 		cout << "Print:" << endl;
@@ -475,8 +496,8 @@ namespace propagator_sr {
 		//molar fraction
 		double* x_t = new double[neq - 1]; double* y_t = new double[neq - 1];
 		for (int i = 0; i < neq - 1; ++i) { x_t[i] = 0.0; y_t[i] = 0.0; }
-		// Read 'Temperature(K)' and 'Pressure(atm)'.
-		// Read	MOLAR FRACTION for species.
+		//Read 'Temperature(K)' and 'Pressure(atm)'.
+		//Read	MOLAR FRACTION for species.
 		double Temp, Pressure;
 		read_configuration(Temp, Pressure, neq - 1, x_t);
 		//	chem_init(Temp, Pressure, neq-1, x_t, this->cwd_pgt+std::string("/input/setting.cfg"));
@@ -572,34 +593,35 @@ namespace propagator_sr {
 		delete[] RKFT_t; delete[] RKRT_t;
 
 	}
+
 #endif // __CHEMKIN_AVAILABLE_ && __USE_LOSDE_
 
 
 	void superPropagator::w2f_pgt(std::string tag)
 	{
-		// time
+		//time
 		std::ofstream fout((this->cwd_pgt + std::string("/output/time_") + tag + std::string(".csv")).c_str());
 		for (size_t i = 0; i < time_data_pgt.size(); ++i) {
 			fout << std::setprecision(std::numeric_limits<double>::max_digits10 + 1) << time_data_pgt[i] << std::endl;
 		}
 		fout.clear(); fout.close();
 
-		// temperature
+		//temperature
 		fout.open((this->cwd_pgt + std::string("/output/temperature_") + tag + std::string(".csv")).c_str());
 		for (size_t i = 0; i < temperature_data_pgt.size(); ++i) {
 			fout << std::setprecision(std::numeric_limits<double>::max_digits10 + 1) << temperature_data_pgt[i] << std::endl;
 		}
 		fout.clear(); fout.close();
 
-		// pressure
+		//pressure
 		fout.open((this->cwd_pgt + std::string("/output/pressure_") + tag + std::string(".csv")).c_str());
 		for (size_t i = 0; i < pressure_data_pgt.size(); ++i) {
-			//fout<<pressure_data_pgt[time_i]/1013250<<"\t"<<pressure_data_pgt[time_i]<<std::endl;
+			//fout<<pressure_data_pgt[time_j]/1013250<<"\t"<<pressure_data_pgt[time_j]<<std::endl;
 			fout << std::setprecision(std::numeric_limits<double>::max_digits10 + 1) << pressure_data_pgt[i] << "," << pressure_data_pgt[i] / 1013250 << "," << pressure_data_pgt[i] / 1000000 << std::endl;
 		}
 		fout.clear(); fout.close();
 
-		// concentration, 8 species
+		//concentration, 8 species
 		fout.open((this->cwd_pgt + std::string("/output/concentration_") + tag + std::string(".csv")).c_str());
 		for (size_t i = 0; i < concentration_data_pgt[0].size(); ++i) {
 			for (size_t j = 0; j < concentration_data_pgt.size(); ++j) {
@@ -611,11 +633,11 @@ namespace propagator_sr {
 		}
 		fout.clear(); fout.close();
 
-		//// int_drc, cumulative destructive rate constant
+		////int_drc, cumulative destructive rate constant
 		//fout.open((this->cwd_pgt + std::string("/output/int_drc_") + tag + std::string(".csv")).c_str());
-		//for (size_t time_i = 0; time_i < spe_drc_int_data_pgt[0].size(); ++time_i) {
+		//for (size_t time_j = 0; time_j < spe_drc_int_data_pgt[0].size(); ++time_j) {
 			//for (size_t j = 0; j < spe_drc_int_data_pgt.size(); ++j) {
-				//fout << std::setprecision(std::numeric_limits<double>::max_digits10+1) << spe_drc_int_data_pgt[j][time_i];
+				//fout << std::setprecision(std::numeric_limits<double>::max_digits10+1) << spe_drc_int_data_pgt[j][time_j];
 				//if (j < spe_drc_int_data_pgt.size() - 1)
 					//fout << ",";
 			//}
@@ -623,7 +645,7 @@ namespace propagator_sr {
 		//}
 		//fout.clear(); fout.close();
 
-		// destruction rate constant,pseudo first order destructive rate constant
+		//destruction rate constant,pseudo first order destructive rate constant
 		fout.open((this->cwd_pgt + std::string("/output/drc_") + tag + std::string(".csv")).c_str());
 		for (size_t i = 0; i < spe_drc_data_pgt[0].size(); ++i) {
 			for (size_t j = 0; j < spe_drc_data_pgt.size(); ++j) {
@@ -639,9 +661,9 @@ namespace propagator_sr {
 		//fout.open((this->cwd_pgt + std::string("/output/spe_production_rate_") + tag + std::string(".csv")).c_str());
 		//std::cout << spe_production_rate_data_pgt.size() << std::endl;
 		//std::cout << spe_production_rate_data_pgt[0].size() << std::endl;
-		//for (size_t time_i = 0; time_i < spe_production_rate_data_pgt[0].size(); ++time_i) {
+		//for (size_t time_j = 0; time_j < spe_production_rate_data_pgt[0].size(); ++time_j) {
 		//	for (size_t j = 0; j < spe_production_rate_data_pgt.size(); ++j) {
-		//		fout << std::setprecision(std::numeric_limits<double>::max_digits10+1) << spe_production_rate_data_pgt[j][time_i];
+		//		fout << std::setprecision(std::numeric_limits<double>::max_digits10+1) << spe_production_rate_data_pgt[j][time_j];
 		//		if (j < spe_production_rate_data_pgt.size() - 1)
 		//			fout << ",";
 		//	}
@@ -649,7 +671,7 @@ namespace propagator_sr {
 		//}
 		//fout.clear(); fout.close();
 
-		// reaction rate
+		//reaction rate
 		fout.open((this->cwd_pgt + std::string("/output/reaction_rate_") + tag + std::string(".csv")).c_str());
 		for (size_t i = 0; i < reaction_rate_data_pgt[0].size(); ++i) {
 			for (size_t j = 0; j < reaction_rate_data_pgt.size(); ++j) {
@@ -711,8 +733,8 @@ namespace propagator_sr {
 		double pressure_atm = this->pgt_pt.get<double>("chem_init.pressure_atm");
 
 		//The pressure has to be in cgs unit, convert pascal(Pa) to dyne/square centimeter [dyn/cm**2]
-		// 1atm= 101325 Pa
-		// 1Pa= 10 dyn/cm**2
+		//1atm= 101325 Pa
+		//1Pa= 10 dyn/cm**2
 		Pressure = pressure_atm * 1013250;
 		Temp = this->pgt_pt.get<double>("chem_init.init_temperature");
 
@@ -726,11 +748,12 @@ namespace propagator_sr {
 
 
 #ifdef __LSODE_AVAILABLE_
+
 	void superPropagator::initialize_lsode(rsp::my_time_t & dt, std::string outfile)
 	{
 		dt = this->pgt_pt.get<double>("lsode_init.dt");
 
-		// Read 'lsode' parameters.
+		//Read 'lsode' parameters.
 		lsodestore.atol = this->pgt_pt.get<double>("lsode_init.atol");
 		lsodestore.rtol = this->pgt_pt.get<double>("lsode_init.rtol");
 		lsodestore.mf = this->pgt_pt.get<int>("lsode_init.mf");
@@ -775,19 +798,19 @@ namespace propagator_sr {
 			fout << "\n" << "  you are using the 12 November 2003 version of DLSODA: Livermore Solver for Ordinary Differential Equations,\n" <<
 				"  with Automatic method switching for stiff and nonstiff problems\n";
 			/*
-			*  4223 C          If the RWORK length is to be fixed, it should be at least
-			*  4224 C               MAX (LRN, LRS),
-			*  4225 C          where LRN and LRS are the RWORK lengths required when the
-			*  4226 C          current method is nonstiff or stiff, respectively.
-			*  4227 C
-			*  4228 C          The separate RWORK length requirements LRN and LRS are
-			*  4229 C          as follows:
-			*  4230 C          IF NEQ is constant and the maximum method orders have
-			*  4231 C          their default values, then
-			*  4232 C             LRN = 20 + 16*NEQ,
-			*  4233 C             LRS = 22 + 9*NEQ + NEQ**2           if JT = 1 or 2,
-			*  4234 C             LRS = 22 + 10*NEQ + (2*ML+MU)*NEQ   if JT = 4 or 5.
-			*/
+			 *  4223 C          If the RWORK length is to be fixed, it should be at least
+			 *  4224 C               MAX (LRN, LRS),
+			 *  4225 C          where LRN and LRS are the RWORK lengths required when the
+			 *  4226 C          current method is nonstiff or stiff, respectively.
+			 *  4227 C
+			 *  4228 C          The separate RWORK length requirements LRN and LRS are
+			 *  4229 C          as follows:
+			 *  4230 C          IF NEQ is constant and the maximum method orders have
+			 *  4231 C          their default values, then
+			 *  4232 C             LRN = 20 + 16*NEQ,
+			 *  4233 C             LRS = 22 + 9*NEQ + NEQ**2           if JT = 1 or 2,
+			 *  4234 C             LRS = 22 + 10*NEQ + (2*ML+MU)*NEQ   if JT = 4 or 5.
+			 */
 			double lrn_pgtsode, lrs_pgtsode;
 			lrn_pgtsode = 20 + 16 * neq;
 			fout << "  lrn_pgtsode =   " << lrn_pgtsode << std::endl;
@@ -817,19 +840,16 @@ namespace propagator_sr {
 
 #endif // __LSODE_AVAILABLE_
 
-
 	void superPropagator::initiate_propagator()
 	{
-
 #ifdef __LSODE_AVAILABLE_
 		//initiate chemkin
 		mechanism::kinetics::chemkin_init();
 #endif // __LSODE_AVAILABLE_
 
-
 #ifdef __USE_CANTERA_
 		mechanism::kinetics::cantera_init();
-#endif // __USE_CANTERA_
+#endif //__USE_CANTERA_
 
 
 		//Read the file named "chem.out", read in the chemical reactions index
@@ -842,14 +862,16 @@ namespace propagator_sr {
 		boost::property_tree::read_json(this->cwd_pgt + std::string("/input/setting.json"), pgt_pt, std::locale());
 
 		//set fast reactions, read fast inter-conversion reaction pairs from "setting.json"
-		set_chattering_spe_pgt();
-		set_chattering_reactions_pgt();
+		set_chattering_spe_from_file_pgt();
+		set_chattering_reactions_from_file_pgt();
 
 		//set the reaction rate of fast reactions to be zero
-		//set_chattering_reaction_rate_to_zero_pgt();
+		//set_chattering_reaction_rates_to_zero_pgt();
 	}
 
+
 #ifdef __CHEMKIN_AVAILABLE_
+
 	void propagator_sr::superPropagator::convert_molar_concentration_to_mole_fraction()
 	{
 		const int nkk = mechanism::kinetics::nkk();
@@ -865,12 +887,6 @@ namespace propagator_sr {
 			}
 		}
 	}
-
-#endif // __CHEMKIN_AVAILABLE_
-
-
-
-#ifdef __CHEMKIN_AVAILABLE_
 
 	void propagator_sr::superPropagator::convert_mole_fraction_to_molar_concentration()
 	{
@@ -900,7 +916,6 @@ namespace propagator_sr {
 #endif // __CHEMKIN_AVAILABLE_
 
 
-
 	void superPropagator::integrate_propensity_function_pgt()
 	{
 
@@ -911,14 +926,14 @@ namespace propagator_sr {
 		for (size_t i = 0; i < spe_drc_int_data_pgt.size(); ++i)
 		{
 			//The first time interval
-			//spe_drc_int_data_pgt[time_i][0] = spe_drc_data_pgt[time_i][0] * (time_data_pgt[1] - time_data_pgt[0]);
+			//spe_drc_int_data_pgt[time_j][0] = spe_drc_data_pgt[time_j][0] * (time_data_pgt[1] - time_data_pgt[0]);
 			spe_drc_int_data_pgt[i][0] = 0.0;
 		}
 		//The other time interval
 		for (size_t i = 0; i < spe_drc_int_data_pgt.size(); ++i) {//[for
 			for (size_t j = 1; j < spe_drc_int_data_pgt[0].size(); ++j) {
 				////rectangle rule
-				//spe_drc_int_data_pgt[time_i][j] = spe_drc_data_pgt[time_i][j] * (time_data_pgt[j] - time_data_pgt[j - 1]) + spe_drc_int_data_pgt[time_i][j - 1];
+				//spe_drc_int_data_pgt[time_j][j] = spe_drc_data_pgt[time_j][j] * (time_data_pgt[j] - time_data_pgt[j - 1]) + spe_drc_int_data_pgt[time_j][j - 1];
 
 				//trapezoidal rule
 				spe_drc_int_data_pgt[i][j] = 0.5 * (spe_drc_data_pgt[i][j] + spe_drc_data_pgt[i][j - 1]) * (time_data_pgt[j] - time_data_pgt[j - 1]) + spe_drc_int_data_pgt[i][j - 1];
@@ -1037,16 +1052,16 @@ namespace propagator_sr {
 
 	bool superPropagator::init_time_chattering_group_k_pgt()
 	{
-		for (size_t i = 0; i < chattering_group_spe_k_data_pgt.size(); ++i) {
-			if (chattering_group_spe_k_pgt.size() == 0)
+		for (size_t i = 0; i < chattering_group_k_data_pgt.size(); ++i) {
+			if (chattering_group_k_pgt.size() == 0)
 				break;
-			if (chattering_group_spe_k_pgt[i] != 0)
-				delete chattering_group_spe_k_pgt[i];
+			if (chattering_group_k_pgt[i] != 0)
+				delete chattering_group_k_pgt[i];
 		}
-		chattering_group_spe_k_pgt.clear();
-		//creat the cubic spline and link it to std::vector<Linear_interp*> chattering_group_spe_k_pgt
-		for (size_t i = 0; i < chattering_group_spe_k_data_pgt.size(); ++i) {
-			chattering_group_spe_k_pgt.push_back(new Linear_interp(time_data_pgt, chattering_group_spe_k_data_pgt[i]));
+		chattering_group_k_pgt.clear();
+		//creat the cubic spline and link it to std::vector<Linear_interp*> chattering_group_k_pgt
+		for (size_t i = 0; i < chattering_group_k_data_pgt.size(); ++i) {
+			chattering_group_k_pgt.push_back(new Linear_interp(time_data_pgt, chattering_group_k_data_pgt[i]));
 		}
 
 		return true;
@@ -1054,24 +1069,24 @@ namespace propagator_sr {
 
 	void superPropagator::integrate_chattering_group_propensity_function_pgt()
 	{
-		chattering_group_spe_k_int_data_pgt.resize(chattering_group_spe_k_data_pgt.size());
-		std::copy(chattering_group_spe_k_data_pgt.begin(), chattering_group_spe_k_data_pgt.end(), chattering_group_spe_k_int_data_pgt.begin());
+		chattering_group_k_int_data_pgt.resize(chattering_group_k_data_pgt.size());
+		std::copy(chattering_group_k_data_pgt.begin(), chattering_group_k_data_pgt.end(), chattering_group_k_int_data_pgt.begin());
 
 
-		for (size_t i = 0; i < chattering_group_spe_k_int_data_pgt.size(); ++i)
+		for (size_t i = 0; i < chattering_group_k_int_data_pgt.size(); ++i)
 		{
 			//The first time interval
-			//chattering_group_spe_k_int_data_pgt[time_i][0] = chattering_group_spe_k_data_pgt[time_i][0] * (time_data_pgt[1] - time_data_pgt[0]);
-			chattering_group_spe_k_int_data_pgt[i][0] = 0.0;
+			//chattering_group_k_int_data_pgt[time_j][0] = chattering_group_k_data_pgt[time_j][0] * (time_data_pgt[1] - time_data_pgt[0]);
+			chattering_group_k_int_data_pgt[i][0] = 0.0;
 		}
 		//The other time interval
-		for (size_t i = 0; i < chattering_group_spe_k_int_data_pgt.size(); ++i) {//[for
-			for (size_t j = 1; j < chattering_group_spe_k_int_data_pgt[0].size(); ++j) {
+		for (size_t i = 0; i < chattering_group_k_int_data_pgt.size(); ++i) {//[for
+			for (size_t j = 1; j < chattering_group_k_int_data_pgt[0].size(); ++j) {
 				////rectangle rule
-				//chattering_group_spe_k_int_data_pgt[time_i][j] = chattering_group_spe_k_data_pgt[time_i][j] * (time_data_pgt[j] - time_data_pgt[j - 1]) + chattering_group_spe_k_int_data_pgt[time_i][j - 1];
+				//chattering_group_k_int_data_pgt[time_j][j] = chattering_group_k_data_pgt[time_j][j] * (time_data_pgt[j] - time_data_pgt[j - 1]) + chattering_group_k_int_data_pgt[time_j][j - 1];
 
 				//trapezoidal rule
-				chattering_group_spe_k_int_data_pgt[i][j] = 0.5 * (chattering_group_spe_k_data_pgt[i][j] + chattering_group_spe_k_data_pgt[i][j - 1]) * (time_data_pgt[j] - time_data_pgt[j - 1]) + chattering_group_spe_k_int_data_pgt[i][j - 1];
+				chattering_group_k_int_data_pgt[i][j] = 0.5 * (chattering_group_k_data_pgt[i][j] + chattering_group_k_data_pgt[i][j - 1]) * (time_data_pgt[j] - time_data_pgt[j - 1]) + chattering_group_k_int_data_pgt[i][j - 1];
 
 			}
 		}//for]
@@ -1080,16 +1095,16 @@ namespace propagator_sr {
 
 	bool superPropagator::init_time_chattering_group_ss_prob_pgt()
 	{
-		for (size_t i = 0; i < chattering_group_spe_ss_prob_data_pgt.size(); ++i) {
-			if (chattering_group_spe_ss_prob_pgt.size() == 0)
+		for (size_t i = 0; i < chattering_group_ss_prob_data_pgt.size(); ++i) {
+			if (chattering_group_ss_prob_pgt.size() == 0)
 				break;
-			if (chattering_group_spe_ss_prob_pgt[i] != 0)
-				delete chattering_group_spe_ss_prob_pgt[i];
+			if (chattering_group_ss_prob_pgt[i] != 0)
+				delete chattering_group_ss_prob_pgt[i];
 		}
-		chattering_group_spe_ss_prob_pgt.clear();
-		//creat the cubic spline and link it to std::vector<Linear_interp*> chattering_group_spe_ss_prob_pgt
-		for (size_t i = 0; i < chattering_group_spe_ss_prob_data_pgt.size(); ++i) {
-			chattering_group_spe_ss_prob_pgt.push_back(new Linear_interp(time_data_pgt, chattering_group_spe_ss_prob_data_pgt[i]));
+		chattering_group_ss_prob_pgt.clear();
+		//creat the cubic spline and link it to std::vector<Linear_interp*> chattering_group_ss_prob_pgt
+		for (size_t i = 0; i < chattering_group_ss_prob_data_pgt.size(); ++i) {
+			chattering_group_ss_prob_pgt.push_back(new Linear_interp(time_data_pgt, chattering_group_ss_prob_data_pgt[i]));
 		}
 
 		return true;
@@ -1097,32 +1112,32 @@ namespace propagator_sr {
 
 	bool superPropagator::init_chattering_group_k_int_pgt()
 	{
-		for (std::size_t i = 0; i < chattering_group_spe_k_int_pgt.size(); ++i) {
-			if (chattering_group_spe_k_int_pgt[i] != 0)
-				delete chattering_group_spe_k_int_pgt[i];
+		for (std::size_t i = 0; i < chattering_group_k_int_pgt.size(); ++i) {
+			if (chattering_group_k_int_pgt[i] != 0)
+				delete chattering_group_k_int_pgt[i];
 		}
 		//Removes all elements from the vector (which are destroyed), leaving the container with a size of 0.
-		chattering_group_spe_k_int_pgt.clear();
+		chattering_group_k_int_pgt.clear();
 		//creat the cubic spline and link it to std::vector<Linear_interp*> spe_drc_pgt;
-		for (std::size_t i = 0; i < chattering_group_spe_k_int_data_pgt.size(); ++i)
+		for (std::size_t i = 0; i < chattering_group_k_int_data_pgt.size(); ++i)
 		{
-			chattering_group_spe_k_int_pgt.push_back(new Linear_interp(time_data_pgt, chattering_group_spe_k_int_data_pgt[i]));
+			chattering_group_k_int_pgt.push_back(new Linear_interp(time_data_pgt, chattering_group_k_int_data_pgt[i]));
 		}
 		return true;
 	}
 
 	bool superPropagator::init_chattering_group_k_int_time_pgt()
 	{
-		for (std::size_t i = 0; i < chattering_group_spe_k_int_time_pgt.size(); ++i) {
-			if (chattering_group_spe_k_int_time_pgt[i] != 0)
-				delete chattering_group_spe_k_int_time_pgt[i];
+		for (std::size_t i = 0; i < chattering_group_k_int_time_pgt.size(); ++i) {
+			if (chattering_group_k_int_time_pgt[i] != 0)
+				delete chattering_group_k_int_time_pgt[i];
 		}
 		//Removes all elements from the vector (which are destroyed), leaving the container with a size of 0.
-		chattering_group_spe_k_int_time_pgt.clear();
+		chattering_group_k_int_time_pgt.clear();
 		//creat the cubic spline and link it to std::vector<Linear_interp*> spe_drc_pgt;
-		for (std::size_t i = 0; i < chattering_group_spe_k_int_data_pgt.size(); ++i)
+		for (std::size_t i = 0; i < chattering_group_k_int_data_pgt.size(); ++i)
 		{
-			chattering_group_spe_k_int_time_pgt.push_back(new Linear_interp(chattering_group_spe_k_int_data_pgt[i], time_data_pgt));
+			chattering_group_k_int_time_pgt.push_back(new Linear_interp(chattering_group_k_int_data_pgt[i], time_data_pgt));
 		}
 		return true;
 	}
@@ -1211,45 +1226,45 @@ namespace propagator_sr {
 		return reaction_rate_pgt[index]->interp(in_time);
 	}
 
-	double superPropagator::evaluate_chattering_group_spe_ss_prob_at_time(double in_time, size_t index) const
+	double superPropagator::evaluate_chattering_group_ss_prob_at_time(double in_time, size_t index) const
 	{
 		if (in_time >= time_data_pgt.back())
 			in_time = time_data_pgt.back();
-		if ((index < 0) || (index >= chattering_group_spe_ss_prob_pgt.size()))
-			index = chattering_group_spe_ss_prob_pgt.size() - 1;
-		return chattering_group_spe_ss_prob_pgt[index]->interp(in_time);
+		if ((index < 0) || (index >= chattering_group_ss_prob_pgt.size()))
+			index = chattering_group_ss_prob_pgt.size() - 1;
+		return chattering_group_ss_prob_pgt[index]->interp(in_time);
 	}
 
-	double superPropagator::evaluate_chattering_group_spe_k_at_time(double in_time, size_t index) const
+	double superPropagator::evaluate_chattering_group_k_at_time(double in_time, size_t chattering_group_id) const
 	{
 		if (in_time >= time_data_pgt.back())
 			in_time = time_data_pgt.back();
-		if ((index < 0) || (index >= chattering_group_spe_k_pgt.size()))
-			index = chattering_group_spe_k_pgt.size() - 1;
-		return chattering_group_spe_k_pgt[index]->interp(in_time);
+		if ((chattering_group_id < 0) || (chattering_group_id >= chattering_group_k_pgt.size()))
+			chattering_group_id = chattering_group_k_pgt.size() - 1;
+		return chattering_group_k_pgt[chattering_group_id]->interp(in_time);
 	}
 
-	double superPropagator::evaluate_chattering_group_spe_k_int_at_time(double in_time, size_t index) const
+	double superPropagator::evaluate_chattering_group_k_int_at_time(double in_time, size_t index) const
 	{
 		if (in_time >= time_data_pgt.back())
 			in_time = time_data_pgt.back();
-		if ((index < 0) || (index >= chattering_group_spe_k_int_pgt.size()))
-			index = chattering_group_spe_k_int_pgt.size() - 1;
-		return chattering_group_spe_k_int_pgt[index]->interp(in_time);
+		if ((index < 0) || (index >= chattering_group_k_int_pgt.size()))
+			index = chattering_group_k_int_pgt.size() - 1;
+		return chattering_group_k_int_pgt[index]->interp(in_time);
 	}
 
-	double superPropagator::evaluate_time_at_chattering_group_spe_k_int(double integral, size_t index) const
+	double superPropagator::evaluate_time_at_chattering_group_k_int(double integral, size_t index) const
 	{
-		if ((index < 0) || (index >= chattering_group_spe_k_int_time_pgt.size())) {
+		if ((index < 0) || (index >= chattering_group_k_int_time_pgt.size())) {
 			std::cerr << "index out of bound!" << std::endl;
 		}
-		double diff = integral - chattering_group_spe_k_int_data_pgt[index].back();
+		double diff = integral - chattering_group_k_int_data_pgt[index].back();
 		if (diff > 0) {
-			integral = chattering_group_spe_k_int_data_pgt[index].back();
-			return time_data_pgt.back() + diff / chattering_group_spe_k_data_pgt[index].back();
+			integral = chattering_group_k_int_data_pgt[index].back();
+			return time_data_pgt.back() + diff / chattering_group_k_data_pgt[index].back();
 		}
 		else {
-			return chattering_group_spe_k_int_time_pgt[index]->interp(integral);
+			return chattering_group_k_int_time_pgt[index]->interp(integral);
 		}
 	}
 

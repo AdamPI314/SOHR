@@ -54,10 +54,14 @@ namespace reactionNetwork_sr {
 	{
 		this->propagator->find_chattering_group(this->species_network_v);
 
-		this->propagator->update_info_of_chattering_species_reactions(this->species_network_v, this->reaction_network_v, this->rnk_pt.get<std::string>("pathway.atom_followed"));
+		this->propagator->update_chattering_group_pairs_reactions(this->species_network_v, this->reaction_network_v, this->rnk_pt.get<std::string>("pathway.atom_followed"));
+
+		this->propagator->subtract_chattering_reaction_contribution_from_species_drc_pgt();
+
+		this->propagator->update_drc_and_equilibrium_probability_of_chattering_group();
 
 		//set the reaction rate of fast reactions to be zero
-		this->propagator->set_chattering_reaction_rate_to_zero_pgt();
+		this->propagator->set_chattering_reaction_rates_to_zero_pgt();
 
 		//re construct the cubic spline
 		this->propagator->initiate_cubic_spline();
@@ -152,7 +156,7 @@ namespace reactionNetwork_sr {
 		}
 	}
 
-	double concreteReactionNetwork::chattering_group_spe_reaction_time_from_importance_sampling_without_cutoff(rsp::my_time_t curr_time, vertex_t index, double Y)
+	double concreteReactionNetwork::chattering_group_reaction_time_from_importance_sampling_without_cutoff(rsp::my_time_t curr_time, vertex_t curr_group, double Y)
 	{
 		if (curr_time >= this->tau) {
 			return curr_time;
@@ -161,11 +165,11 @@ namespace reactionNetwork_sr {
 			//the ln of 1.0/(1.0-Y)
 			double ln_Y_reciprocal = log(1.0 / (1.0 - Y));
 			//use the initial integral value at this time
-			double init_chattering_group_k_int = propagator->evaluate_chattering_group_spe_k_int_at_time(curr_time, index);
+			double init_chattering_group_k_int = propagator->evaluate_chattering_group_k_int_at_time(curr_time, curr_group);
 			//exact integral
 			double exact_integral = ln_Y_reciprocal + init_chattering_group_k_int;
 			//Solve for the first reaction time
-			double reaction_time = propagator->evaluate_time_at_chattering_group_spe_k_int(exact_integral, index);
+			double reaction_time = propagator->evaluate_time_at_chattering_group_k_int(exact_integral, curr_group);
 
 			if (reaction_time < sys_min_time)
 				return sys_min_time;
@@ -216,17 +220,22 @@ namespace reactionNetwork_sr {
 		return propagator->evaluate_concentration_at_time(time, index);
 	}
 
-	double concreteReactionNetwork::evaluate_chattering_group_spe_ss_prob_at_time(double in_time, size_t index) const
+	double concreteReactionNetwork::evaluate_spe_drc_at_time(double time, std::size_t index) const
 	{
-		return propagator->evaluate_chattering_group_spe_ss_prob_at_time(in_time, index);
+		return propagator->evaluate_spe_drc_at_time(time, index);
 	}
 
-	double concreteReactionNetwork::prob_chattering_group_spe_will_react_in_a_time_range(double init_time, double pathway_end_time, size_t index)
+	double concreteReactionNetwork::evaluate_chattering_group_ss_prob_at_time(double in_time, size_t index) const
+	{
+		return propagator->evaluate_chattering_group_ss_prob_at_time(in_time, index);
+	}
+
+	double concreteReactionNetwork::prob_chattering_group_will_react_in_a_time_range(double init_time, double pathway_end_time, size_t curr_chattering_group)
 	{
 		//pro_max= 1-prob_min= 1-exp[-integrate_{init_time}^{end_time}{propensity function}];
 		double pro_max = 0.0;
 		if (init_time <= pathway_end_time) {
-			pro_max = 1.0 - exp(-(propagator->evaluate_chattering_group_spe_k_int_at_time(pathway_end_time, index) - propagator->evaluate_chattering_group_spe_k_int_at_time(init_time, index)));
+			pro_max = 1.0 - exp(-(propagator->evaluate_chattering_group_k_int_at_time(pathway_end_time, curr_chattering_group) - propagator->evaluate_chattering_group_k_int_at_time(init_time, curr_chattering_group)));
 		}
 		else
 			pro_max = 0.0;
@@ -245,7 +254,7 @@ namespace reactionNetwork_sr {
 			u_1 = rand->random01();
 		} while (u_1 == 1.0);
 
-		//when_time= reaction_time_from_importance_sampling(when_time, index, u_1);
+		//when_time= reaction_time_from_importance_sampling(when_time, curr_chattering_group, u_1);
 		when_time = reaction_time_from_importance_sampling_without_cutoff(when_time, curr_spe, u_1);
 		return when_time;
 	}
@@ -307,7 +316,7 @@ namespace reactionNetwork_sr {
 			double a = 0.0, b = get_spe_prob_max_at_a_time(tau_j_minus_1, tau, spe_vec[j_th]);
 			double h = (b - a) / N_subvolume[j_th];
 
-			// basically says reaction occur at time_a and time_b immediately, so the next recursive relation start from this time point a
+			//basically says reaction occur at time_a and time_b immediately, so the next recursive relation start from this time point a
 			double tau_j = reaction_time_from_importance_sampling(tau_j_minus_1, spe_vec[j_th], a);
 			if (tau_j <= sys_min_time)
 				tau_j = sys_min_time;
@@ -370,7 +379,7 @@ namespace reactionNetwork_sr {
 				if (ite != out_flux.end()) {
 					//find it
 					//std::cout<<"find it!"<<std::endl;
-					ite->second +=/*this->species_network_v[index].reaction_k_index_s_coef_v[i].second* //s_coef_product*/
+					ite->second +=/*this->species_network_v[curr_chattering_group].reaction_k_index_s_coef_v[i].second* //s_coef_product*/
 						this->reaction_network_v[this->species_network_v[curr_spe].reaction_k_index_s_coef_v[i].first].reaction_rate; //reaction rate
 				}
 				else {
