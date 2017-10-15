@@ -3,6 +3,7 @@
 * solve_ODEs_for_concentration_using_LSODE
 * solve_ODEs_for_concentration_using_SSA
 * generate_pathway_running_Monte_carlo_trajectory
+* generate_species_pathway_running_Monte_carlo_trajectory
 * evaluate_path_integral_over_time
 * speciation_evaluate_concentrations_for_different_sets_rate_coefficients
 * ODE_solver_MC_trajectory_single_core
