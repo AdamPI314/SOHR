@@ -2166,7 +2166,8 @@ namespace reactionNetwork_sr {
 		return reaction_branching_ratio*spe_branching_ratio;
 	}
 
-	double reactionNetwork_sr::superReactionNetwork::spe_spe_branching_ratio(const std::vector<species_group_sr::rxn_c1_c2>& rxn_c1_c2_vec, double reaction_time, rsp::index_int_t curr_spe, rsp::index_int_t next_spe, std::string atom_followed, bool update_reaction_rate)
+	double reactionNetwork_sr::superReactionNetwork::spe_spe_branching_ratio(const std::vector<species_group_sr::rxn_c1_c2>& rxn_c1_c2_vec,
+		double reaction_time, rsp::index_int_t curr_spe, rsp::index_int_t next_spe, std::string atom_followed, bool update_reaction_rate)
 	{
 		double ratio_tmp = 0.0;
 		for (auto rxn_c1_c2 : rxn_c1_c2_vec) {
@@ -2535,9 +2536,91 @@ namespace reactionNetwork_sr {
 
 		when_time = reaction_time_from_importance_sampling(when_time, curr_spe, u_1);
 
-		//pathway_prob *= reaction_spe_branching_ratio(when_time, curr_spe, next_reaction, next_spe, atom_followed);
+		pathway_prob *= spe_spe_branching_ratio(this->sp_all_species_group_rnk->out_species_rxns.at(curr_spe).at(next_spe),
+			when_time, curr_spe, next_spe, atom_followed, true);
 
 		return when_time;
+	}
+
+	double reactionNetwork_sr::superReactionNetwork::species_pathway_prob_input_pathway_sim_once(const double init_time, const double pathway_end_time, const std::vector<rsp::index_int_t>& spe_vec, const std::vector<rsp::index_int_t>& reaction_vec, std::string atom_followed)
+	{
+		//set pathway end time
+		set_tau(pathway_end_time);
+
+		//basically, we assume there must be a reaction at the beginning, so should multiply be the 1-P_min(tau=0|t;S^{0})
+		double pathway_prob = 1.0;
+		double when_time = init_time;
+
+		//start from the first reaction
+		for (size_t i = 0; i < reaction_vec.size();)
+		{
+			//none-chattering reaction
+			if (reaction_vec[i] >= 0) {
+				pathway_prob *= prob_spe_will_react_in_a_time_range(when_time, pathway_end_time, spe_vec[i]);
+				when_time = species_pathway_prob_sim_move_one_step(when_time, spe_vec[i], spe_vec[i + 1], pathway_prob, atom_followed);
+				//move one step
+				++i;
+			}
+			//chattering reaction, chattering case
+			else {
+				int chattering_group_id = this->species_network_v[spe_vec[i]].chattering_group_id;
+
+				//add time delay first, regenerate random number, inverse to get exact time, get steady state time first
+				//then calculate steady state ratios
+				double chattering_group_prob = prob_chattering_group_will_react_in_a_time_range(when_time, pathway_end_time, chattering_group_id);
+				pathway_prob *= chattering_group_prob;
+
+				//avoid problems around boundary
+				if (when_time < (tau - INFINITESIMAL_DT)) {
+					double u_1 = 1.0;
+					if (chattering_group_prob > 0.0) {
+						u_1 = rand->random_min_max(0, chattering_group_prob);
+					}
+					else
+						u_1 = 0.0;
+
+					when_time = chattering_group_reaction_time_from_importance_sampling_without_cutoff(when_time, chattering_group_id, u_1);
+
+					/*step 1*/
+					//based on drc at this time, calculate probability going out by that direction
+					std::vector<double> drc_prob(this->sp_chattering_rnk->species_chattering_group_mat[chattering_group_id].size(), 0.0);
+					for (std::size_t i = 0; i < drc_prob.size(); ++i) {
+						drc_prob[i] = this->evaluate_spe_drc_at_time(when_time,
+							this->sp_chattering_rnk->species_chattering_group_mat[chattering_group_id][i]);
+
+						//gonna take steady state concentration, or real concentration of species at this time into consideration
+						//can try steady state concentration vs. real equilibrium concentration
+						drc_prob[i] *= this->evaluate_spe_concentration_at_time(when_time,
+							this->sp_chattering_rnk->species_chattering_group_mat[chattering_group_id][i]);
+					}
+					double drc_prob_sum = std::accumulate(drc_prob.begin(), drc_prob.end(), 0.0);
+					//make sure there is at least one direction out, there is no, dead end, return 0.0 probability
+					if (drc_prob_sum <= 0.0)
+						return 0.0;
+
+					//notice out species is spe_vec[i + 1], next_species1
+					pathway_prob *= drc_prob[this->sp_chattering_rnk->spe_idx_2_chattering_group_id_idx[spe_vec[i + 1]].second] / drc_prob_sum;
+					/*step 1*/
+
+					/*step 2*/
+					pathway_prob *= spe_spe_branching_ratio(this->sp_all_species_group_rnk->out_species_rxns.at(spe_vec[i + 1]).at(spe_vec[i + 2]),
+						when_time, spe_vec[i + 1], spe_vec[i + 2], atom_followed, true);
+					/*step 2*/
+
+				}//boundary time problem
+
+				 //move two steps actually
+				i += 2;
+			}//if chattering case
+
+		}
+
+		//got to multiply by P_min or says (1-P_max)
+		set_spe_prob_max_at_a_time(when_time, pathway_end_time, spe_vec.back());
+
+		pathway_prob *= (1 - species_network_v[spe_vec.back()].prob_max);
+
+		return pathway_prob;
 	}
 
 

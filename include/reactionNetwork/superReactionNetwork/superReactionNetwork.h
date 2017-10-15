@@ -493,7 +493,8 @@ namespace reactionNetwork_sr {
 		*/
 		/* use out_spe_index_branching_ratio_map_map, do not need to search for out species and calculate spe branching ratio each time*/
 		double reaction_spe_branching_ratio(double reaction_time, rsp::index_int_t curr_spe, rsp::index_int_t next_reaction, rsp::index_int_t next_spe, std::string atom_followed = "H", bool update_reaction_rate = true);
-		double spe_spe_branching_ratio(const std::vector<species_group_sr::rxn_c1_c2> &rxn_c1_c2_vec, double reaction_time, rsp::index_int_t curr_spe, rsp::index_int_t next_spe, std::string atom_followed = "H", bool update_reaction_rate = true);
+		double spe_spe_branching_ratio(const std::vector<species_group_sr::rxn_c1_c2> &rxn_c1_c2_vec,
+			double reaction_time, rsp::index_int_t curr_spe, rsp::index_int_t next_spe, std::string atom_followed = "H", bool update_reaction_rate = true);
 
 	public:
 		/*
@@ -536,7 +537,7 @@ namespace reactionNetwork_sr {
 
 		//species pathway
 		double species_pathway_prob_sim_move_one_step(double when_time, vertex_t curr_spe, vertex_t next_spe, double &pathway_prob, std::string atom_followed = "H");
-
+		double species_pathway_prob_input_pathway_sim_once(const double init_time, const double pathway_end_time, const std::vector<rsp::index_int_t> &spe_vec, const std::vector<rsp::index_int_t> &reaction_vec, std::string atom_followed = "H");
 	public:
 		//initiate M-Matrix
 		void initiate_M_matrix(std::string atom_followed);
