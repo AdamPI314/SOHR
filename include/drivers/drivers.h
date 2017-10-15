@@ -69,6 +69,8 @@ namespace driver {
 
 	/*2. Generate pathway first, it might take some time, depends on what kinds of pathway you want*/
 	void generate_pathway_running_Monte_carlo_trajectory(const boost::mpi::communicator &world, const std::string &main_cwd, const boost::property_tree::ptree &pt);
+	/*2.1. Generate pathway first, it might take some time, depends on what kinds of pathway you want*/
+	void generate_species_pathway_running_Monte_carlo_trajectory(const boost::mpi::communicator &world, const std::string &main_cwd, const boost::property_tree::ptree &pt);
 
 	/*3. Evaluate pathway integral using Importance based Marte Carlo simulation*/
 	void evaluate_path_integral_over_time(const boost::mpi::communicator &world, const std::string &main_cwd, const boost::property_tree::ptree &pt);

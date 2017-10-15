@@ -66,6 +66,9 @@ int main(int argc, char **argv) {
 	/*************************************************************************************************/
 	else if (pt.get<std::string>("job.job_type") == std::string("generate_pathway_running_Monte_carlo_trajectory"))
 		driver::generate_pathway_running_Monte_carlo_trajectory(world, main_cwd, pt);
+	//2.1.
+	else if (pt.get<std::string>("job.job_type") == std::string("generate_species_pathway_running_Monte_carlo_trajectory"))
+		driver::generate_species_pathway_running_Monte_carlo_trajectory(world, main_cwd, pt);
 
 	/*************************************************************************************************/
 	/*

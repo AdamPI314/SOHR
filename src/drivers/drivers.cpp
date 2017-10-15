@@ -327,6 +327,58 @@ void driver::generate_pathway_running_Monte_carlo_trajectory(const boost::mpi::c
 	}
 }
 
+void driver::generate_species_pathway_running_Monte_carlo_trajectory(const boost::mpi::communicator & world, const std::string & main_cwd, const boost::property_tree::ptree & pt)
+{
+	std::vector<double> uncertainties;
+
+	//initialize MPI stuff
+	int trajectoryNumber_total = pt.get<std::size_t>("pathway.trajectoryNumber");
+	int P = world.size();
+	int local_N = get_num_block_decomposition_2(world.rank(), trajectoryNumber_total, P);
+
+	if (world.rank() == 0) {
+		fileIO::fileIO::read_generate_uncertainties_w2f_nominal(uncertainties,
+			main_cwd + std::string("/input/uncertainties.inp"));
+		//fileIO::fileIO::read_generate_uncertainties_w2f_random(uncertainties, main_cwd+std::string("/input/uncertainties.inp"));
+		//fileIO::fileIO::read_uncertainties_from_file(uncertainties, main_cwd+std::string("/input/uncertainties.inp"));
+
+	}//if
+
+	 //boradcast
+	broadcast(world, uncertainties, 0);
+
+	rnk::concreteReactionNetwork rnk_obj(uncertainties, world.rank(), main_cwd);
+	//rnk_obj.print_network();
+
+	//double target_time_db = rnk_obj.return_temperature_target_time();
+	double tau = pt.get<double>("time.tau");
+
+	double init_time = 0.0 * tau;
+	double end_time = pt.get<double>("pathway.tau")* tau;
+
+	int trajectory_count_limit = pt.get<int>("pathway.trajectory_count_limit");
+
+	//statistics
+	statistics stat;
+	std::string str_t;
+
+	// generate pathway one trajectory
+	for (int i = 0; i < local_N; ++i) {
+		str_t = rnk_obj.species_pathway_sim_once(init_time, end_time, rnk_obj.return_initial_spe(), pt.get<std::string>("pathway.atom_followed")); //vertex 2 is H2
+		stat.insert_pathway_stat(str_t);
+	}
+
+	//map reduce
+	std::map<std::string, int> result;
+	reduce(world, stat.get_pathway_unordered_map(),
+		result, merge_maps(), 0);
+
+	if (world.rank() == 0) {
+		stat.insert_unordered_map(result);
+		stat.sort_print_to_file_stat(main_cwd + std::string("/output/species_pathway_stat.csv"), trajectory_count_limit);
+	}
+}
+
 void driver::evaluate_path_integral_over_time(const boost::mpi::communicator & world, const std::string &main_cwd, const boost::property_tree::ptree & pt)
 {
 	std::vector<double> uncertainties;
