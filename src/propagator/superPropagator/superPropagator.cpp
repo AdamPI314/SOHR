@@ -229,7 +229,7 @@ namespace propagator_sr {
 			auto s2_idx = x.first.second;
 			auto vec = x.second;
 
-			out_species_rxns_map_tmp[s1_idx].push_back(std::make_pair(s2_idx, vec));
+			out_species_rxns_map_tmp[s1_idx][s2_idx] = vec;
 		}
 
 		this->sp_all_species_group_pgt->out_species_rxns = out_species_rxns_map_tmp;

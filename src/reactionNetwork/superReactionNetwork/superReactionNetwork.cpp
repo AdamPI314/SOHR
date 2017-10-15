@@ -2002,24 +2002,19 @@ namespace reactionNetwork_sr {
 
 	vertex_t reactionNetwork_sr::superReactionNetwork::spe_random_pick_next_spe(rsp::index_int_t curr_spe, std::string atom_followed)
 	{
-		auto vec = this->sp_all_species_group_rnk->out_species_rxns[curr_spe];
+		auto spe_rxn_c1_c2_map = this->sp_all_species_group_rnk->out_species_rxns.at(curr_spe);
 
-		std::vector<double> prob(vec.size(), 0.0);
-		std::vector<std::size_t> spe_index(vec.size(), 0);
+		std::vector<double> prob(spe_rxn_c1_c2_map.size(), 0.0);
+		std::vector<std::size_t> spe_index(spe_rxn_c1_c2_map.size(), 0);
 
-		for (size_t i = 0; i < vec.size(); i++)
+		size_t i = 0;
+		for (auto s_rxn_c1_c2 : spe_rxn_c1_c2_map)
 		{
-			auto next_spe = vec[i].first;
-			spe_index[i] = vec[i].first;
+			auto next_spe = s_rxn_c1_c2.first;
+			spe_index[i] = next_spe;
+			prob[i] = spe_spe_branching_ratio(s_rxn_c1_c2.second, -1.0, curr_spe, next_spe, atom_followed, false);
 
-			double ratio_tmp = 0.0;
-			for (auto rxn_c1_c2 : vec[i].second) {
-				auto reaction_index = rxn_c1_c2.r_idx;
-				//here is the time is a dummy variable, since we set not to update reaction rates
-				ratio_tmp += reaction_spe_branching_ratio(-1.0, curr_spe, reaction_index, next_spe, atom_followed, false);
-			}
-
-			prob[i] = ratio_tmp;
+			++i;
 		}
 
 		return spe_index[rand->return_index_randomly_given_probability_vector(prob)];
@@ -2169,6 +2164,17 @@ namespace reactionNetwork_sr {
 		//}
 
 		return reaction_branching_ratio*spe_branching_ratio;
+	}
+
+	double reactionNetwork_sr::superReactionNetwork::spe_spe_branching_ratio(const std::vector<species_group_sr::rxn_c1_c2>& rxn_c1_c2_vec, double reaction_time, rsp::index_int_t curr_spe, rsp::index_int_t next_spe, std::string atom_followed, bool update_reaction_rate)
+	{
+		double ratio_tmp = 0.0;
+		for (auto rxn_c1_c2 : rxn_c1_c2_vec) {
+			auto reaction_index = rxn_c1_c2.r_idx;
+			//here is the time is a dummy variable, since we set not to update reaction rates
+			ratio_tmp += reaction_spe_branching_ratio(-1.0, curr_spe, reaction_index, next_spe, atom_followed, update_reaction_rate);
+		}
+		return ratio_tmp;
 	}
 
 
@@ -2508,6 +2514,30 @@ namespace reactionNetwork_sr {
 		pathway_prob *= (1 - species_network_v[spe_vec.back()].prob_max);
 
 		return pathway_prob;
+	}
+
+	double reactionNetwork_sr::superReactionNetwork::species_pathway_prob_sim_move_one_step(double when_time, vertex_t curr_spe, vertex_t next_spe, double & pathway_prob, std::string atom_followed)
+	{
+		if (when_time >= (tau - INFINITESIMAL_DT)) {
+			return when_time;
+
+		}
+
+		this->set_spe_prob_max_at_a_time(when_time, tau, curr_spe);
+
+		double u_1;
+		if (species_network_v[curr_spe].prob_max > 0.0) {
+			u_1 = rand->random_min_max(0, species_network_v[curr_spe].prob_max);
+		}
+		else {
+			u_1 = 0.0;
+		}
+
+		when_time = reaction_time_from_importance_sampling(when_time, curr_spe, u_1);
+
+		//pathway_prob *= reaction_spe_branching_ratio(when_time, curr_spe, next_reaction, next_spe, atom_followed);
+
+		return when_time;
 	}
 
 
