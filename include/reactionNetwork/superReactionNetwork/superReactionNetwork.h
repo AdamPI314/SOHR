@@ -125,6 +125,8 @@ namespace reactionNetwork_sr {
 		//the species is a dead species
 		std::set<vertex_t> dead_species;
 	protected:
+		//shared pointer of all species
+		std::shared_ptr<species_group_sr::species_group_base> sp_all_species_group_rnk;
 		//shared pointer of chattering
 		std::shared_ptr<species_group_sr::chattering> sp_chattering_rnk;
 	protected:
@@ -411,11 +413,15 @@ namespace reactionNetwork_sr {
 		/*
 		* random pick next reaction based on their reaction rates and stoichiometric coefficient
 		*/
-		rsp::index_int_t random_pick_next_reaction(vertex_t curr_vertex);
+		rsp::index_int_t spe_random_pick_next_reaction(vertex_t curr_spe);
 		/*
 		* known the reaction, randomly pick next species based on their weight
 		*/
-		vertex_t random_pick_next_spe(rsp::index_int_t reaction_index, std::string atom_followed = "H");
+		vertex_t reaction_random_pick_next_spe(rsp::index_int_t reaction_index, std::string atom_followed = "H");
+		/*
+		* known the species, randomly pick next species based on their weight
+		*/
+		vertex_t spe_random_pick_next_spe(rsp::index_int_t curr_spe, std::string atom_followed = "H");
 
 	public:
 		//XS1R1S2--> X and S1R1S2
@@ -486,7 +492,7 @@ namespace reactionNetwork_sr {
 		* deal with fast reactions, next_spe is not a product of next_reaction, but inter-convert to one product of next_reaction rapidly
 		*/
 		/* use out_spe_index_branching_ratio_map_map, do not need to search for out species and calculate spe branching ratio each time*/
-		double reaction_spe_branching_ratio(double reaction_time, rsp::index_int_t curr_spe, rsp::index_int_t next_reaction, rsp::index_int_t next_spe, std::string atom_followed = "H");
+		double reaction_spe_branching_ratio(double reaction_time, rsp::index_int_t curr_spe, rsp::index_int_t next_reaction, rsp::index_int_t next_spe, std::string atom_followed = "H", bool update_reaction_rate = true);
 
 	public:
 		/*
@@ -494,12 +500,23 @@ namespace reactionNetwork_sr {
 		* move one step
 		* if we reach trapped species, randomly select one species from the trapped species pair to proceed
 		*/
-		when_where_t pathway_move_one_step(double time, vertex_t curr_vertex, std::string &curr_pathway_local, std::string atom_followed = "H");
+		when_where_t pathway_move_one_step(double time, vertex_t curr_spe, std::string &curr_pathway, std::string atom_followed = "H");
 
 		/*
 		* simulate in a specific time range once, knowing the initial species,  manually set which atom to follow, and return the pathway
 		*/
-		std::string pathway_sim_once(double init_time, double end_time, vertex_t init_vertex, std::string atom_followed = "H");
+		std::string pathway_sim_once(double init_time, double end_time, vertex_t init_spe, std::string atom_followed = "H");
+
+		/*
+		only species, no reactions, or says all reactions a condensed into a single step transition, given P(H2,H3), it represents
+		suppose a single atom, here H, originates from H2, the probability it is delivered to, by whatever reactions
+		*/
+		when_where_t species_pathway_move_one_step(double time, vertex_t curr_spe, std::string &curr_pathway, std::string atom_followed = "H");
+		/*
+		species pathway simulate once
+		*/
+		std::string species_pathway_sim_once(double init_time, double end_time, vertex_t init_spe, std::string atom_followed = "H");
+
 
 	public:
 		/*

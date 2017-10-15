@@ -35,6 +35,10 @@ namespace reactionNetwork_sr {
 
 		//all species pairs-rxn-coef1-coef2
 		this->propagator->update_all_species_group_pairs_reactions(this->species_network_v, this->reaction_network_v, this->rnk_pt.get<std::string>("pathway.atom_followed"));
+		//all species out species and reactions
+		this->propagator->update_all_species_out_species_reactions();
+		this->sp_all_species_group_rnk = this->propagator->get_sp_of_all_species_group();
+
 
 		if (this->rnk_pt.get<std::string>("network.merge_chatterings") == std::string("yes")) {
 			this->sp_chattering_rnk = this->propagator->get_sp_of_chattering();

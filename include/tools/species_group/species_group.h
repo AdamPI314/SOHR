@@ -20,6 +20,8 @@ namespace species_group_sr {
 	};
 
 	typedef std::map<std::pair<std::size_t, std::size_t>, std::vector<rxn_c1_c2> > species_group_pairs_rxns_t;
+	//out species of a single species, suppose following a single atom
+	typedef std::map<std::size_t, std::vector<std::pair<std::size_t, std::vector<rxn_c1_c2> > > > out_species_rxns_t;
 
 	//all species group, only one group, from a mass conservation point of view, from example to 3H2 => 2H3 and H2 => 2H reactions
 	//there is no H2-->H3 transition probability thing, node to node transition, what we define here is presume we are following
@@ -30,6 +32,7 @@ namespace species_group_sr {
 		//this contains all the reaction between two species, for example s1, and s2, all reactions from s1 to s2
 		//and reaction from s2 to s1 will be calculated
 		species_group_pairs_rxns_t species_group_pairs_rxns;
+		out_species_rxns_t out_species_rxns;
 
 	public:
 		species_group_base();

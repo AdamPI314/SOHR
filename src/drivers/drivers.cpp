@@ -72,6 +72,42 @@ void driver::generate_pathway_running_Monte_carlo_trajectory(const std::string &
 
 }
 
+void driver::generate_species_pathway_running_Monte_carlo_trajectory(const std::string & main_cwd, const boost::property_tree::ptree & pt)
+{
+	std::vector<double> uncertainties;
+
+	//initialize MPI stuff
+	int local_N = pt.get<std::size_t>("pathway.trajectoryNumber");
+
+
+	fileIO::fileIO::read_generate_uncertainties_w2f_nominal(uncertainties,
+		main_cwd + std::string("/input/uncertainties.inp"));
+	//fileIO::fileIO::read_generate_uncertainties_w2f_random(uncertainties, main_cwd+std::string("/input/uncertainties.inp"));
+	//fileIO::fileIO::read_uncertainties_from_file(uncertainties, main_cwd+std::string("/input/uncertainties.inp"));
+
+	rnk::concreteReactionNetwork rnk_obj(uncertainties, 0, main_cwd);
+	//rnk_obj.print_network();
+
+	//double target_time_db = rnk_obj.return_temperature_target_time();
+	double tau = pt.get<double>("time.tau");
+
+	double init_time = 0.0 * tau;
+	double end_time = pt.get<double>("pathway.tau")* tau;
+
+	int trajectory_count_limit = pt.get<int>("pathway.trajectory_count_limit");
+
+	//statistics
+	statistics stat;
+
+	// generate pathway one trajectory
+	for (int i = 0; i < local_N; ++i) {
+		auto str_t = rnk_obj.species_pathway_sim_once(init_time, end_time, rnk_obj.return_initial_spe(), pt.get<std::string>("pathway.atom_followed")); //vertex 2 is H2
+		stat.insert_pathway_stat(str_t);
+	}
+
+	stat.sort_print_to_file_stat(main_cwd + std::string("/output/species_pathway_stat.csv"), trajectory_count_limit);
+}
+
 void driver::evaluate_path_integral_over_time(const std::string & main_cwd, const boost::property_tree::ptree & pt)
 {
 	std::vector<double> uncertainties;
@@ -2373,7 +2409,7 @@ void driver::M_matrix_R_matrix(const boost::mpi::communicator & world, const std
 		std::cout << "Test.\n";
 	}
 
-}
+			}
 
 void driver::MISC(const boost::mpi::communicator & world, const std::string & main_cwd)
 {

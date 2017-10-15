@@ -52,6 +52,7 @@ namespace driver {
 #if defined(__NO_USE_MPI_)
 
 	void generate_pathway_running_Monte_carlo_trajectory(const std::string &main_cwd, const boost::property_tree::ptree &pt);
+	void generate_species_pathway_running_Monte_carlo_trajectory(const std::string &main_cwd, const boost::property_tree::ptree &pt);
 	void evaluate_path_integral_over_time(const std::string &main_cwd, const boost::property_tree::ptree &pt);
 
 #endif // __NO_USE_MPI_

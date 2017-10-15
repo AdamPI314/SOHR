@@ -200,6 +200,39 @@ namespace propagator_sr {
 
 		}//s_idx1
 		this->sp_all_species_group_pgt->species_group_pairs_rxns = pairs_rxns_map_tmp;
+
+		//write to file
+		std::ofstream fout((this->cwd_pgt + std::string("/output/species_pairs_reactions_coefs.csv")).c_str());
+		for (auto x : this->sp_all_species_group_pgt->species_group_pairs_rxns)
+		{
+			auto s1_s2 = x.first;
+			fout << "(" << s1_s2.first << "," << s1_s2.second << ")" << "-->"
+				<< "(" << species_network_v[s1_s2.first].spe_name << "," << species_network_v[s1_s2.second].spe_name << ")" << std::endl;
+
+			auto vec = x.second;
+			for (auto rxn_c1_c2 : vec)
+			{
+				fout << "\t" << "(" << rxn_c1_c2.r_idx << "," << rxn_c1_c2.c1 << "," << rxn_c1_c2.c2 << ")" << std::endl;
+				fout << "\t" << reaction_network_v[rxn_c1_c2.r_idx].reaction_name << std::endl;
+			}
+
+		}
+
+		fout.clear(); fout.close();
+	}
+
+	void superPropagator::update_all_species_out_species_reactions()
+	{
+		species_group_sr::out_species_rxns_t out_species_rxns_map_tmp;
+		for (auto x : this->sp_all_species_group_pgt->species_group_pairs_rxns) {
+			auto s1_idx = x.first.first;
+			auto s2_idx = x.first.second;
+			auto vec = x.second;
+
+			out_species_rxns_map_tmp[s1_idx].push_back(std::make_pair(s2_idx, vec));
+		}
+
+		this->sp_all_species_group_pgt->out_species_rxns = out_species_rxns_map_tmp;
 	}
 
 

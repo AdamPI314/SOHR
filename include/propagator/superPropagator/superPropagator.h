@@ -151,6 +151,9 @@ namespace propagator_sr {
 		//update all species group-pairs-reactions
 		void update_all_species_group_pairs_reactions(const std::vector<rsp::spe_info_base> &species_network_v, const std::vector<rsp::reaction_info_base> &reaction_network_v, std::string atom_followed = "H");
 
+		//out species and reactions
+		void update_all_species_out_species_reactions();
+
 		//return shared pointer of chattering
 		std::shared_ptr<species_group_sr::species_group_base> get_sp_of_all_species_group();
 
