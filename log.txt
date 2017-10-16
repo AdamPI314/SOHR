@@ -5,40 +5,6 @@ left=-0.5, right=-0.5
 /home/invictus/Documents/summer_2017_boulder/SRC_EXE_DIR/SOHR/projects/catalytic_cycle/make_figures.py:268: RuntimeWarning: invalid value encountered in true_divide
   / (rxn_rates[::delta_n, rxn_idx_pair[r_idx]] * conc[::delta_n, int(s_idx)])
 /home/invictus/Documents/summer_2017_boulder/SRC_EXE_DIR/SOHR
-{'rxn': [1068, 1069], 'spe': [60, 78]}
-{'rxn': [1096, 1097], 'spe': [61, 80]}
-{'rxn': [132, 133], 'spe': [25, 27]}
-{'rxn': [1116, 1117], 'spe': [87, 90]}
-{'rxn': [348, 349], 'spe': [39, 50]}
-{'rxn': [1080, 1081], 'spe': [78, 87]}
-{'rxn': [586, 587], 'spe': [85, 54]}
-{'rxn': [1042, 1043], 'spe': [72, 108]}
-{'rxn': [434, 435], 'spe': [45, 47]}
-{'rxn': [1068, 1069], 'spe': [60, 78]}
-{'rxn': [1096, 1097], 'spe': [61, 80]}
-{'rxn': [132, 133], 'spe': [25, 27]}
-{'rxn': [1116, 1117], 'spe': [87, 90]}
-{'rxn': [348, 349], 'spe': [39, 50]}
-{'rxn': [1080, 1081], 'spe': [78, 87]}
-{'rxn': [586, 587], 'spe': [85, 54]}
-{'rxn': [1042, 1043], 'spe': [72, 108]}
-{'rxn': [434, 435], 'spe': [45, 47]}
-{'rxn': [1068, 1069], 'spe': [60, 78]}
-{'rxn': [1096, 1097], 'spe': [61, 80]}
-{'rxn': [132, 133], 'spe': [25, 27]}
-{'rxn': [1116, 1117], 'spe': [87, 90]}
-{'rxn': [348, 349], 'spe': [39, 50]}
-{'rxn': [1080, 1081], 'spe': [78, 87]}
-{'rxn': [586, 587], 'spe': [85, 54]}
-{'rxn': [1042, 1043], 'spe': [72, 108]}
-{'rxn': [434, 435], 'spe': [45, 47]}
-/home/invictus/Documents/summer_2017_boulder/SRC_EXE_DIR/SOHR/output/pathway_stat.csv found
-/home/invictus/Documents/summer_2017_boulder/SRC_EXE_DIR/SOHR/output/pathway_name_selected.csv found
-/home/invictus/Documents/summer_2017_boulder/SRC_EXE_DIR/SOHR/output/pathway_prob.csv found
-/home/invictus/Documents/summer_2017_boulder/SRC_EXE_DIR/SOHR/output/pathname_prob.csv found
-/home/invictus/Documents/summer_2017_boulder/SRC_EXE_DIR/SOHR/output/chattering_group_info.json found
-/home/invictus/Documents/summer_2017_boulder/SRC_EXE_DIR/SOHR/output/pathway_name_candidate.csv found
-/home/invictus/Documents/summer_2017_boulder/SRC_EXE_DIR/SOHR/output/pathway_time_candidate.csv found
 5.68008532964e-06 62 C3H8
 1.09409509463e-06 14 CO
 8.25859837802e-07 59 C3H6
@@ -79,5 +45,5 @@ left=-0.5, right=-0.5
 {'rxn': [1042, 1043], 'spe': [72, 108]}
 {'rxn': [434, 435], 'spe': [45, 47]}
 1D array shape:	 110
-running time:	0.04 hours
+running time:	0.00 hours
 
