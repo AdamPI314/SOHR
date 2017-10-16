@@ -54,6 +54,7 @@ namespace driver {
 	void generate_pathway_running_Monte_carlo_trajectory(const std::string &main_cwd, const boost::property_tree::ptree &pt);
 	void generate_species_pathway_running_Monte_carlo_trajectory(const std::string &main_cwd, const boost::property_tree::ptree &pt);
 	void evaluate_path_integral_over_time(const std::string &main_cwd, const boost::property_tree::ptree &pt);
+	void evaluate_species_path_integral_over_time(const std::string &main_cwd, const boost::property_tree::ptree &pt);
 
 #endif // __NO_USE_MPI_
 	
@@ -74,6 +75,8 @@ namespace driver {
 
 	/*3. Evaluate pathway integral using Importance based Marte Carlo simulation*/
 	void evaluate_path_integral_over_time(const boost::mpi::communicator &world, const std::string &main_cwd, const boost::property_tree::ptree &pt);
+	/*3.1. Evaluate pathway integral using Importance based Marte Carlo simulation*/
+	void evaluate_species_path_integral_over_time(const boost::mpi::communicator &world, const std::string &main_cwd, const boost::property_tree::ptree &pt);
 
 	/*4. For speciation, print out concentration at for different sets of rate constant*/
 	void speciation_evaluate_concentrations_for_different_sets_rate_coefficients(const boost::mpi::communicator &world, const std::string &main_cwd, const boost::property_tree::ptree &pt);

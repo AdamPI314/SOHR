@@ -2041,24 +2041,42 @@ namespace reactionNetwork_sr {
 		spe_vec.resize(0);
 		reaction_vec.resize(0);
 
-		//const char* pattern="\\w\\d+";
-		const char* pattern = "[-]?\\d+";
-		boost::regex re(pattern);
+		const char* pattern1 = "(S\\d+(?:R[-]?\\d+)?)";
+		boost::regex re1(pattern1);
 
-		boost::sregex_iterator it(pathway_in.begin(), pathway_in.end(), re);
-		boost::sregex_iterator end;
+		boost::sregex_iterator it1(pathway_in.begin(), pathway_in.end(), re1);
+		boost::sregex_iterator end1;
 		std::vector<std::string> reaction_spe;
-		for (boost::sregex_iterator it_t = it; it_t != end; ++it_t) {
-			//std::cout<<it_t->str()<<std::endl;
-			reaction_spe.push_back(it_t->str());
+		for (; it1 != end1; ++it1) {
+			reaction_spe.push_back(it1->str());
 		}
-		for (size_t i = 0; i < reaction_spe.size(); ++i) {
-			if (i % 2 == 0) {
-				spe_vec.push_back(boost::lexical_cast<rsp::index_int_t>(reaction_spe[i]));
+
+		const char* pattern2 = "S(\\d+)(?:R(-?\\d+))?";
+		boost::regex re2(pattern2);
+
+		for (size_t i = 0; i < reaction_spe.size(); i++)
+		{
+			std::vector<std::string> rxn_s_idx_str;
+
+			boost::smatch result2;
+			if (boost::regex_search(reaction_spe[i], result2, re2)) {
+				for (std::size_t mi = 1; mi < result2.size(); ++mi) {
+					string s_rxn_idx(result2[mi].first, result2[mi].second);
+					rxn_s_idx_str.push_back(s_rxn_idx);
+				}
 			}
-			else if (i % 2 == 1) {
-				reaction_vec.push_back(boost::lexical_cast<rsp::index_int_t>(reaction_spe[i]));
+
+			spe_vec.push_back(boost::lexical_cast<rsp::index_int_t>(rxn_s_idx_str[0]));
+
+			if (rxn_s_idx_str[1] != std::string(""))
+				reaction_vec.push_back(boost::lexical_cast<rsp::index_int_t>(rxn_s_idx_str[1]));
+			else {
+				//not the last species
+				if (i != reaction_spe.size() - 1)
+					reaction_vec.push_back(INT_MAX);
 			}
+
+
 		}
 
 		return true;

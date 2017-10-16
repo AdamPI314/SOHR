@@ -9,9 +9,9 @@
     "network": {
         "merge_chatterings": "yes"
     },
-    "job": {
-        "job_type": "generate_species_pathway_running_Monte_carlo_trajectory"
-    },
+  "job": {
+    "job_type": "evaluate_species_path_integral_over_time"
+  },
     "propagator": {
         "primary_type": "from_file",
         "type": "dlsode",

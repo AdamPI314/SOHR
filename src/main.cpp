@@ -9,6 +9,7 @@
 #include "../include/drivers/drivers.h"
 #include "../include/tools/my_debug/my_debug.h"
 
+
 int main(int argc, char **argv) {
 
 	/*************************************************************************************************/
@@ -28,12 +29,14 @@ int main(int argc, char **argv) {
 
 #if defined(__NO_USE_MPI_)
 
-		if (pt.get<std::string>("job.job_type") == std::string("generate_pathway_running_Monte_carlo_trajectory"))
-			driver::generate_pathway_running_Monte_carlo_trajectory(main_cwd, pt);
-		else if (pt.get<std::string>("job.job_type") == std::string("generate_species_pathway_running_Monte_carlo_trajectory"))
-			driver::generate_species_pathway_running_Monte_carlo_trajectory(main_cwd, pt);
-		else if (pt.get<std::string>("job.job_type") == std::string("evaluate_path_integral_over_time"))
-			driver::evaluate_path_integral_over_time(main_cwd, pt);
+	if (pt.get<std::string>("job.job_type") == std::string("generate_pathway_running_Monte_carlo_trajectory"))
+		driver::generate_pathway_running_Monte_carlo_trajectory(main_cwd, pt);
+	else if (pt.get<std::string>("job.job_type") == std::string("generate_species_pathway_running_Monte_carlo_trajectory"))
+		driver::generate_species_pathway_running_Monte_carlo_trajectory(main_cwd, pt);
+	else if (pt.get<std::string>("job.job_type") == std::string("evaluate_path_integral_over_time"))
+		driver::evaluate_path_integral_over_time(main_cwd, pt);
+	else if (pt.get<std::string>("job.job_type") == std::string("evaluate_species_path_integral_over_time"))
+		driver::evaluate_species_path_integral_over_time(main_cwd, pt);
 
 
 #endif // __NO_USE_MPI_
@@ -77,6 +80,8 @@ int main(int argc, char **argv) {
 	/*************************************************************************************************/
 	else if (pt.get<std::string>("job.job_type") == std::string("evaluate_path_integral_over_time"))
 		driver::evaluate_path_integral_over_time(world, main_cwd, pt);
+	else if (pt.get<std::string>("job.job_type") == std::string("evaluate_species_path_integral_over_time"))
+		driver::evaluate_species_path_integral_over_time(world, main_cwd, pt);
 
 	/*************************************************************************************************/
 	/*
