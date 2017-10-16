@@ -2190,8 +2190,8 @@ namespace reactionNetwork_sr {
 		double ratio_tmp = 0.0;
 		for (auto rxn_c1_c2 : rxn_c1_c2_vec) {
 			auto reaction_index = rxn_c1_c2.r_idx;
-			//here is the time is a dummy variable, since we set not to update reaction rates
-			ratio_tmp += reaction_spe_branching_ratio(-1.0, curr_spe, reaction_index, next_spe, atom_followed, update_reaction_rate);
+			//whether to update reaction rates, is deferred to sub-routine to decice
+			ratio_tmp += reaction_spe_branching_ratio(reaction_time, curr_spe, reaction_index, next_spe, atom_followed, update_reaction_rate);
 		}
 		return ratio_tmp;
 	}
