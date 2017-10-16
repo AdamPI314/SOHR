@@ -642,7 +642,7 @@ void driver::evaluate_species_path_integral_over_time(const boost::mpi::communic
 		for (size_t j = 0; j < prob_Mat[0].size(); ++j) {
 			for (size_t k = 0; k < trajectoryNumber_local; ++k) {
 				rnk_obj.parse_pathway_to_vector(pathway_vec[i], spe_vec, reaction_vec);
-				pathway_prob_db_t = rnk_obj.pathway_prob_input_pathway_sim_once(0.0, time_Mat[i][j] * tau,
+				pathway_prob_db_t = rnk_obj.species_pathway_prob_input_pathway_sim_once(0.0, time_Mat[i][j] * tau,
 					spe_vec, reaction_vec, pt.get<std::string>("pathway.atom_followed"));
 				prob_Mat[i][j] += pathway_prob_db_t / trajectoryNumber_total;
 			}
