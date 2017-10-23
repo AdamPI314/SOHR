@@ -27,7 +27,7 @@
         "tau": 0.777705872994694
     },
     "chem_init": {
-        "pressure_atm": 9.86923,
+        "pressure_atm": 10.0,
         "init_temperature": 650,
         "species_index_concentration": {
             "62": 0.2,
@@ -68,9 +68,9 @@
         "init_spe": 62,
         "atom_followed": "C",
         "super_atom": "X",
-        "tau": 0.9001,
+        "tau": 0.99999,
         "topN": [
-            10000
+            1000
         ],
         "pathwayEndWith": "ALL",
         "trajectoryNumber": 10000,
