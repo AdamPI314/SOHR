@@ -154,7 +154,6 @@ int main(int argc, char **argv) {
 	else if (pt.get<std::string>("job.job_type") == std::string("ODE_solver_path_integral_parallel_s_ct_np_cc1_v1"))
 		driver::ODE_solver_path_integral_parallel_s_ct_np_cc1_v1(world, main_cwd, pt);
 
-
 	/*************************************************************************************************/
 	/*
 	* 10. Pathway based equation solver, solve differential equations derived from chemical mechanisms
@@ -180,14 +179,6 @@ int main(int argc, char **argv) {
 		driver::ODE_solver_path_integral_parallel_cv_ct_v3(world, main_cwd, pt);
 	else if (pt.get<std::string>("job.job_type") == std::string("ODE_solver_path_integral_parallel_cv_ct_v4"))
 		driver::ODE_solver_path_integral_parallel_cv_ct_v4(world, main_cwd, pt);
-
-	/*************************************************************************************************/
-	/*
-	* 12. Dijkstra based algorithm, actually it is eppstein's k-shortest path algorightm
-	*/
-	/*************************************************************************************************/
-	else if (pt.get<std::string>("job.job_type") == std::string("k_shortest_path_algorithms"))
-		driver::k_shortest_path_algorithms(world, main_cwd);
 
 	/*************************************************************************************************/
 	/*
