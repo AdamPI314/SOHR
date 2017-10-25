@@ -504,7 +504,7 @@ namespace propagator_sr {
 		}//chattering group
 
 		//chattering group destruction rate constant,pseudo first order destructive rate constant
-		std::string tag = "dlsode";
+		std::string tag = "dlsode_M";
 		std::ofstream fout((this->cwd_pgt + std::string("/output/chattering_group_drc_") + tag + std::string(".csv")).c_str());
 		for (size_t i = 0; i < chattering_group_k_data_pgt[0].size(); ++i) {
 			for (size_t j = 0; j < chattering_group_k_data_pgt.size(); ++j) {
