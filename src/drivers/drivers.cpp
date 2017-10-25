@@ -323,7 +323,7 @@ void driver::evaluate_path_AT_over_time(const std::string & main_cwd, const boos
 	//different seed for different core/CPU
 	rnk::concreteReactionNetwork rnk_obj(uncertainties, 0, main_cwd);
 
-	double tau = pt.get<double>("time.tau");
+	double time = pt.get<double>("time.tau") * pt.get<double>("pathway.tau");
 
 	// evaluate path AT on each core
 	std::vector<rsp::index_int_t> spe_vec; std::vector<rsp::index_int_t> reaction_vec;
@@ -331,7 +331,7 @@ void driver::evaluate_path_AT_over_time(const std::string & main_cwd, const boos
 	for (std::size_t i = 0; i < pathway_vec.size(); ++i) {
 		rnk_obj.parse_pathway_to_vector(pathway_vec[i], spe_vec, reaction_vec);
 		for (size_t j = 0; j < trajectoryNumber_local; ++j) {
-			path_AT_vec[i][j] = rnk_obj.pathway_AT_input_pathway_sim_once(0.0, tau, spe_vec, reaction_vec);
+			path_AT_vec[i][j] = rnk_obj.pathway_AT_input_pathway_sim_once(0.0, time, spe_vec, reaction_vec);
 		}
 	}
 
@@ -784,7 +784,7 @@ void driver::evaluate_path_AT_over_time(const boost::mpi::communicator & world, 
 		//different seed for different core/CPU
 		rnk::concreteReactionNetwork rnk_obj(uncertainties, 0, main_cwd);
 
-		double tau = pt.get<double>("time.tau");
+		double time = pt.get<double>("time.tau") * pt.get<double>("pathway.tau");
 
 		// evaluate path AT on each core
 		std::vector<rsp::index_int_t> spe_vec; std::vector<rsp::index_int_t> reaction_vec;
@@ -792,7 +792,7 @@ void driver::evaluate_path_AT_over_time(const boost::mpi::communicator & world, 
 		for (std::size_t i = 0; i < pathway_vec.size(); ++i) {
 			rnk_obj.parse_pathway_to_vector(pathway_vec[i], spe_vec, reaction_vec);
 			for (size_t j = 0; j < trajectoryNumber_local; ++j) {
-				path_AT_vec[i][j] = rnk_obj.pathway_AT_input_pathway_sim_once(0.0, tau, spe_vec, reaction_vec);
+				path_AT_vec[i][j] = rnk_obj.pathway_AT_input_pathway_sim_once(0.0, time, spe_vec, reaction_vec);
 			}
 		}
 
