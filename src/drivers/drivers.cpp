@@ -299,7 +299,7 @@ void driver::evaluate_path_AT_over_time(const std::string & main_cwd, const boos
 
 	//get the pathway name only on the processor 0
 	std::vector<std::string> pathway_vec_t;
-	pathwayHandler::get_pathway(main_cwd + std::string("/output/pathway_name_candidate.csv"), pathway_vec_t,
+	pathwayHandler::get_pathway(main_cwd + std::string("/output/species_pathway_name_candidate.csv"), pathway_vec_t,
 		std::numeric_limits<int>::max() - 1000); //all pathways
 
 	std::vector<std::size_t> topN_vec;
@@ -760,7 +760,7 @@ void driver::evaluate_path_AT_over_time(const boost::mpi::communicator & world, 
 
 		//get the pathway name only on the processor 0
 		std::vector<std::string> pathway_vec_t;
-		pathwayHandler::get_pathway(main_cwd + std::string("/output/pathway_name_candidate.csv"), pathway_vec_t,
+		pathwayHandler::get_pathway(main_cwd + std::string("/output/species_pathway_name_candidate.csv"), pathway_vec_t,
 			std::numeric_limits<int>::max() - 1000); //all pathways
 
 		std::vector<std::size_t> topN_vec;
