@@ -435,13 +435,15 @@ namespace propagator_sr {
 					//if (this->sp_chattering_pgt->unique_chattering_reactions.count(rxn_c1_c2.r_idx) < 1)
 					//	continue;
 					for (std::size_t time_j = 0; time_j < this->time_data_pgt.size(); ++time_j) {
-						if (this->concentration_data_pgt[s1_s2_p.first][time_j] != 0) {
+						if (this->concentration_data_pgt[s1_s2_p.first][time_j] > 0) {
 							auto drc_tmp = rxn_c1_c2.c1 *this->reaction_rate_data_pgt[rxn_c1_c2.r_idx][time_j] / this->concentration_data_pgt[s1_s2_p.first][time_j];
 							if (this->spe_drc_data_pgt[s1_s2_p.first][time_j] > drc_tmp)
 								this->spe_drc_data_pgt[s1_s2_p.first][time_j] -= drc_tmp;
 							else
 								this->spe_drc_data_pgt[s1_s2_p.first][time_j] = 0.0;
 						}
+						else
+							this->spe_drc_data_pgt[s1_s2_p.first][time_j] = 0.0;
 					}//time
 				}//s1 s2 reactions
 			}//s1_s2_pairs
@@ -691,7 +693,7 @@ namespace propagator_sr {
 		delete[] FWDR_t; delete[] REVR_t;
 		delete[] RKFT_t; delete[] RKRT_t;
 
-	}
+}
 
 #endif // __CHEMKIN_AVAILABLE_ && __USE_LOSDE_
 
