@@ -335,7 +335,7 @@ void driver::evaluate_path_AT_over_time(const std::string & main_cwd, const boos
 		}
 	}
 
-	std::ofstream fout((main_cwd + std::string("/output/pathway_AT.csv")).c_str(), std::ofstream::out);
+	std::ofstream fout((main_cwd + std::string("/output/species_pathway_AT.csv")).c_str(), std::ofstream::out);
 	for (size_t i = 0; i < path_AT_vec.size(); ++i) {
 		for (size_t j = 0; j < path_AT_vec[0].size(); ++j) {
 			fout << setprecision(PRINT_PRECISION) << path_AT_vec[i][j];
@@ -796,7 +796,7 @@ void driver::evaluate_path_AT_over_time(const boost::mpi::communicator & world, 
 			}
 		}
 
-		std::ofstream fout((main_cwd + std::string("/output/pathway_AT.csv")).c_str(), std::ofstream::out);
+		std::ofstream fout((main_cwd + std::string("/output/species_pathway_AT.csv")).c_str(), std::ofstream::out);
 		for (size_t i = 0; i < path_AT_vec.size(); ++i) {
 			for (size_t j = 0; j < path_AT_vec[0].size(); ++j) {
 				fout << setprecision(PRINT_PRECISION) << path_AT_vec[i][j];
