@@ -10,7 +10,7 @@
         "merge_chatterings": "yes"
     },
     "job": {
-        "job_type": "evaluate_species_path_integral_over_time"
+        "job_type": "evaluate_path_AT_over_time"
     },
     "propagator": {
         "primary_type": "from_file",
@@ -70,10 +70,10 @@
         "super_atom": "X",
         "tau": 0.95,
         "topN": [
-            100
+            10
         ],
         "pathwayEndWith": "ALL",
-        "trajectoryNumber": 10000,
+        "trajectoryNumber": 1000,
         "trajectoryNumberVector": [
             1000,
             1000,

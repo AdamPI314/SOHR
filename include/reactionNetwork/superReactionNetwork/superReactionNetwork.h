@@ -388,7 +388,6 @@ namespace reactionNetwork_sr {
 		*/
 		std::string species_pathway_sim_once(double init_time, double end_time, vertex_t init_spe, std::string atom_followed = "H");
 
-
 	public:
 		/*
 		* return where we are, when it is, for MPI ,for pathway probability
@@ -397,16 +396,22 @@ namespace reactionNetwork_sr {
 		*/
 		double pathway_prob_sim_move_one_step(double when_time, vertex_t curr_spe, rsp::index_int_t next_reaction, vertex_t next_spe, double &pathway_prob, std::string atom_followed = "H");
 		//input a pathway, return its pathway prob
-		/*
-		//parse pathway to spe and reaction vector
-		std::vector<size_t> spe_vec; std::vector<size_t> reaction_vec;
-		this->parse_pathway_to_vector(pathway_in, spe_vec, reaction_vec);
-		*/
-		double pathway_prob_input_pathway_sim_once(const double init_time, const double pathway_end_time, const std::vector<rsp::index_int_t> &spe_vec, const std::vector<rsp::index_int_t> &reaction_vec, std::string atom_followed = "H");
+		double pathway_prob_input_pathway_sim_once(const double init_time, const double end_time, const std::vector<rsp::index_int_t> &spe_vec, const std::vector<rsp::index_int_t> &reaction_vec, std::string atom_followed = "H");
 
 		//species pathway
 		double species_pathway_prob_sim_move_one_step(double when_time, vertex_t curr_spe, vertex_t next_spe, double &pathway_prob, std::string atom_followed = "H");
-		double species_pathway_prob_input_pathway_sim_once(const double init_time, const double pathway_end_time, const std::vector<rsp::index_int_t> &spe_vec, const std::vector<rsp::index_int_t> &reaction_vec, std::string atom_followed = "H");
+		double species_pathway_prob_input_pathway_sim_once(const double init_time, const double end_time, const std::vector<rsp::index_int_t> &spe_vec, const std::vector<rsp::index_int_t> &reaction_vec, std::string atom_followed = "H");
+		
+	public:
+		/*
+		* return where we are, when it is, for MPI ,for arrival time
+		* force the next reaction to be  next_reaction, next species to be next_spe, because what we want is just reaction time
+		* directly set the next reaction and next species the ones we want
+		*/
+		double pathway_AT_sim_move_one_step(double when_time, vertex_t curr_spe);
+		//input a pathway, return its arrival time
+		double pathway_AT_input_pathway_sim_once(const double init_time, const double end_time, const std::vector<rsp::index_int_t> &spe_vec, const std::vector<rsp::index_int_t> &reaction_vec);
+
 	public:
 		//initiate M-Matrix
 		void initiate_M_matrix(std::string atom_followed);

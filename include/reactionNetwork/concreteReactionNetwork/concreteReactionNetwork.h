@@ -86,16 +86,6 @@ namespace reactionNetwork_sr {
 
 	public:
 		/*
-		* return where we are, when it is, for MPI ,for arrival time
-		* force the next reaction to be  next_reaction, next species to be next_spe, because what we want is just reaction time
-		* directly set the next reaction and next species the ones we want
-		*/
-		double pathway_AT_sim_move_one_step(double when_time, size_t curr_spe, size_t next_reaction, size_t next_spe);
-		//input a pathway, return its arrival time
-		double pathway_AT_input_pathway_sim_once(double init_time, double pathway_end_time, std::string pathway_in);
-
-	public:
-		/*
 		* recursive relation
 		* {I^{(j)}}({\tau ^{(j)}},{S^{(j - 1)}},{R^{(j)}},{S^{(j)}},{N^{(j)}})
 		* = \frac{1}{{{N^{(j)}}}}\sum\limits_{i = 1}^{{N^{(j)}}} {{f^{(j)}}(\tau _i^{(j)},{S^{(j - 1)}},{R^{(j)}},{S^{(j)}}) \times }

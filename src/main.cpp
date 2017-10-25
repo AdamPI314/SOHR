@@ -37,6 +37,8 @@ int main(int argc, char **argv) {
 		driver::evaluate_path_integral_over_time(main_cwd, pt);
 	else if (pt.get<std::string>("job.job_type") == std::string("evaluate_species_path_integral_over_time"))
 		driver::evaluate_species_path_integral_over_time(main_cwd, pt);
+	else if (pt.get<std::string>("job.job_type") == std::string("evaluate_path_AT_over_time"))
+		driver::evaluate_path_AT_over_time(main_cwd, pt);
 
 
 #endif // __NO_USE_MPI_
@@ -82,6 +84,8 @@ int main(int argc, char **argv) {
 		driver::evaluate_path_integral_over_time(world, main_cwd, pt);
 	else if (pt.get<std::string>("job.job_type") == std::string("evaluate_species_path_integral_over_time"))
 		driver::evaluate_species_path_integral_over_time(world, main_cwd, pt);
+	else if (pt.get<std::string>("job.job_type") == std::string("evaluate_path_AT_over_time"))
+		driver::evaluate_path_AT_over_time(world, main_cwd, pt);
 
 	/*************************************************************************************************/
 	/*

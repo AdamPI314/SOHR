@@ -250,43 +250,6 @@ namespace reactionNetwork_sr {
 		return pro_max;
 	}
 
-	double concreteReactionNetwork::pathway_AT_sim_move_one_step(double when_time, size_t curr_spe, size_t next_reaction, size_t next_spe)
-	{
-		//update rate in the reaction network
-		update_reaction_rate(when_time, curr_spe);
-
-		//generage the random number u_1
-		double u_1 = 0.0;
-		do {
-			u_1 = rand->random01();
-		} while (u_1 == 1.0);
-
-		//when_time= reaction_time_from_importance_sampling(when_time, curr_chattering_group, u_1);
-		when_time = reaction_time_from_importance_sampling_without_cutoff(when_time, curr_spe, u_1);
-		return when_time;
-	}
-
-	double concreteReactionNetwork::pathway_AT_input_pathway_sim_once(double init_time, double pathway_end_time, std::string pathway_in)
-	{
-		//parse pathway to spe and reaction vector
-		std::vector<rsp::index_int_t> spe_vec; std::vector<rsp::index_int_t> reaction_vec;
-		this->parse_pathway_to_vector(pathway_in, spe_vec, reaction_vec);
-
-		//set pathway end time
-		set_tau(pathway_end_time);
-
-		double when_time = init_time;
-
-		//start from the first reaction
-		for (size_t i = 0; i < reaction_vec.size(); ++i)
-		{
-			when_time = pathway_AT_sim_move_one_step(when_time, spe_vec[i], reaction_vec[i], spe_vec[i + 1]);
-		}
-
-		return when_time;
-	}
-
-
 	double concreteReactionNetwork::pathway_prob_input_pathway_recursive_relation(double tau_j_minus_1, std::vector<std::size_t> spe_vec, std::vector<std::size_t> reaction_vec, std::vector<std::size_t> N_subvolume, std::size_t j_th)
 	{
 		/*
