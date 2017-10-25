@@ -126,7 +126,8 @@ namespace propagator_sr {
 		{
 			if (c_t[i] <= 0.0)
 			{
-				spe_drc_data_pgt[i].push_back(c_t[i]);
+				//spe_drc_data_pgt[i].push_back(c_t[i]);
+				spe_drc_data_pgt[i].push_back(0.0);
 				//spe_production_rate_data_pgt[time_j].push_back(CDOT_t[time_j]);
 			}
 			else
@@ -154,12 +155,16 @@ namespace propagator_sr {
 		}//for1
 
 		 //print concentration and temperature
-		for (int i = 0; i < nkk; ++i)
-			concentration_data_pgt[i].push_back(c_t[i]);
+		for (int i = 0; i < nkk; ++i) {
+			if (c_t[i] > 0)
+				concentration_data_pgt[i].push_back(c_t[i]);
+			else
+				concentration_data_pgt[i].push_back(0.0);
+		}
 
 		temperature_data_pgt.push_back(xgst[neq - 1]);
 		pressure_data_pgt.push_back(ckstore.pressure);
-	}
+}
 
 #endif // __CHEMKIN_AVAILABLE_
 

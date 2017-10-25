@@ -371,7 +371,7 @@ namespace propagator_sr {
 
 		//destruction rate const
 		for (int i = 0; i < nkk; ++i) {
-			if (c_t[i] == 0)
+			if (c_t[i] <= 0)
 			{
 				spe_drc_list[i].pop_front();
 				spe_drc_list[i].push_back(0.0);
@@ -392,7 +392,10 @@ namespace propagator_sr {
 		//print concentration and temperature
 		for (int i = 0; i < nkk; ++i) {
 			concentration_list[i].pop_front();
-			concentration_list[i].push_back(c_t[i]);
+			if (c_t[i] > 0)
+				concentration_list[i].push_back(c_t[i]);
+			else
+				concentration_list[i].push_back(0.0);
 		}
 
 		temperature_list.pop_front();
