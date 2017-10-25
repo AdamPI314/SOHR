@@ -503,6 +503,19 @@ namespace propagator_sr {
 			}//time
 		}//chattering group
 
+		//chattering group destruction rate constant,pseudo first order destructive rate constant
+		std::string tag = "dlsode";
+		std::ofstream fout((this->cwd_pgt + std::string("/output/chattering_group_drc_") + tag + std::string(".csv")).c_str());
+		for (size_t i = 0; i < chattering_group_k_data_pgt[0].size(); ++i) {
+			for (size_t j = 0; j < chattering_group_k_data_pgt.size(); ++j) {
+				fout << std::setprecision(std::numeric_limits<double>::max_digits10 + 1) << chattering_group_k_data_pgt[j][i];
+				if (j < chattering_group_k_data_pgt.size() - 1)
+					fout << ",";
+			}
+			fout << endl;
+		}
+		fout.clear(); fout.close();
+
 	}
 
 	void superPropagator::set_chattering_reaction_rates_to_zero_pgt()
