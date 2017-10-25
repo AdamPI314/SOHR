@@ -10,8 +10,8 @@
 //#pragma once
 
 #include <fstream>
-#include <utility>                          //for std::pair
-#include <algorithm>                        //for std::for_each and std::find_if
+#include <utility> //for std::pair
+#include <algorithm> //for std::for_each and std::find_if
 #include <iterator>
 #include <ctime>
 #include <limits> //std::numeric_limits
@@ -246,21 +246,7 @@ namespace reactionNetwork_sr {
 		* version 1, weight = stoichiometric coefficient * num of atoms
 		* reaction_index_s_coef_t
 		*/
-		bool search_for_out_spe_v1(rsp::index_int_t reaction_index, std::vector<rsp::spe_index_weight_t > &out_spe_index_weight_v, std::string atom_followed = "H");
-
-		/*
-		* search edges for out species of a reaction, record the species index and weight
-		* the weight is determined by follow str, like atom "H"
-		* version 2, weight = stoichiometric coefficient
-		*/
-		bool search_for_out_spe_v2(rsp::index_int_t reaction_index, std::vector<rsp::spe_index_weight_t > &out_spe_index_weight_v, std::string atom_followed = "H");
-
-		/*
-		* search edges for out species of a reaction, record the species index and weight
-		* the weight is determined by follow str, like atom "H"
-		* version 2, weight = num of atoms
-		*/
-		bool search_for_out_spe_v3(rsp::index_int_t reaction_index, std::vector<rsp::spe_index_weight_t > &out_spe_index_weight_v, std::string atom_followed = "H");
+		bool search_for_out_spe(rsp::index_int_t reaction_index, std::vector<rsp::spe_index_weight_t > &out_spe_index_weight_v, std::string atom_followed = "H");
 
 		/*
 		* set this->reaction.out_spe_index_weight_v
@@ -291,123 +277,6 @@ namespace reactionNetwork_sr {
 		* print initial json file for species labelling
 		*/
 		void print_initial_spe_label_json(std::string filename = "/output/initial_spe_label.json") const;
-		/*
-		* print initial json file for reactions labelling
-		*/
-		void print_initial_reaction_label_json(std::string filename = "/output/initial_reaction_label.json") const;
-
-	public:
-		/*set atom followed reaction rates at time t
-		1. update all reaction rates at time t
-		2. update edges weights
-		*/
-		/*
-		* version 1, 2, 3 are problematic at this moment, 4/19/2016, only the fourth version is working, natural log of branching ratio version
-		*/
-		//version zero, edge weights equal reaction rates*stoichoimetric coefficient, don't take the negative of edge weight, for test use
-		void set_atom_followed_edge_weight_at_time_v0(rsp::my_time_t t, std::string atom, double default_weight);
-		//version one, edge weights equal reaction rates*stoichoimetric coefficient
-		void set_atom_followed_edge_weight_at_time_v1(rsp::my_time_t t, std::string atom, double default_weight);
-		//version two, edge weights equal pseudo-first order rate constant
-		void set_atom_followed_edge_weight_at_time_v2(rsp::my_time_t t, std::string atom, double default_weight);
-		//version 3, branching ratio
-		void set_atom_followed_edge_weight_at_time_v3(rsp::my_time_t t, std::string atom, double default_weight);
-		//version 4, natural logarithm of branching ratio, got to be negative of log(0.0)=self_defined magic number
-		void set_atom_followed_edge_weight_at_time_v4(rsp::my_time_t t, std::string atom, double default_weight);
-		/*
-		* @ a time t
-		* Dijkstra algorithm, just use the reaction rate as the edge weight, no s_coef_reactant or s_coef_product
-		* two versions, first use std::set, second use std::priority_queue
-		* it is like a template method, call method overloaded in derived classes
-		*/
-		/*
-		* Modify Dijkstra's Algorithm to get the Shortest Path Between Two Nodes
-		* The best way to approach this is to think in terms of paths from each reachable node back to the source,
-		* commonly denoted by v. As you update each given node's distance, keep track of its direct parent on that path to v.
-		* That node is the given node's parent in the shortest-distance-to-v tree. When you've built that parent map,
-		* to find the shortest path from v to w build the path in reverse order: w, parent[w], parent[parent[w]], ...
-		*/
-		double dijkstra_w_set(const vertex_t source_v, const vertex_t target_v, const rsp::my_time_t time_in, std::string atom_followed = "H");
-		double dijkstra_w_priority_queue(const vertex_t source_v, const vertex_t target_v, const rsp::my_time_t time_in, std::string atom_followed = "H");
-		double dijkstra_boost(const vertex_t source_v, const vertex_t target_v, const rsp::my_time_t time_in);
-		double dijkstra_boost_v2(const vertex_t source_v, const vertex_t target_v, const rsp::my_time_t time_in);
-		//vectors to store the predecessors(p), vectors to store the distances from the root(d)
-		void dijkstra_boost(const vertex_t source_v, const vertex_t target_v, const rsp::my_time_t time_in,
-			std::vector<Vertex> &predecessors, std::vector<double> &distance);
-		void dijkstra_boost_v2(const vertex_t source_v, const vertex_t target_v, const rsp::my_time_t time_in,
-			std::vector<Vertex> &predecessors, std::vector<Edge> &predecessors_edges, std::vector<double> &distance);
-		void bellman_ford_boost(const vertex_t source_v, const vertex_t target_v, const rsp::my_time_t time_in,
-			std::vector<Vertex> &predecessors, std::vector<double> &distance);
-		void bellman_ford_boost_v2(const vertex_t source_v, const vertex_t target_v, const rsp::my_time_t time_in,
-			std::vector<Vertex> &predecessors, std::vector<Edge> &predecessors_edges, std::vector<double> &distance);
-		//dijkstra algorithm on the reverse graph
-		void dijkstra_reverse_graph_boost(const vertex_t source_v, const vertex_t target_v, const rsp::my_time_t time_in,
-			std::vector<reverse_vertex_t>& predecessors, std::vector<double>& distance);
-		void dijkstra_reverse_graph_boost_v2(const vertex_t source_v, const vertex_t target_v, const rsp::my_time_t time_in,
-			std::vector<reverse_vertex_t>& predecessors, std::vector<reverse_edge_t> &predecessors_edges, std::vector<double>& distance);
-		//bellman_ford algorithm on the reverse graph
-		void bellman_ford_reverse_graph_boost(const vertex_t source_v, const vertex_t target_v, const rsp::my_time_t time_in,
-			std::vector<reverse_vertex_t>& predecessors, std::vector<double>& distance);
-		void bellman_ford_reverse_graph_boost_v2(const vertex_t source_v, const vertex_t target_v, const rsp::my_time_t time_in,
-			std::vector<reverse_vertex_t>& predecessors, std::vector<reverse_edge_t> &predecessors_edges, std::vector<double>& distance);
-		//for print out the path
-		void print_dijkstra_algorithm_shortest_path(std::map<vertex_t, vertex_t > vertex_parent_map, const vertex_t s, const vertex_t v) const;
-
-		//k shortest path algorithm, sidetrack_tree algorithm
-		/**
-		* Computes the K shortest paths (allowing cycles) in a graph from node s to node t in graph G using Eppstein's
-		* algorithm. ("Finding the k Shortest Paths", Eppstein)
-		* <p/>
-		* Some explanatory notes about how Eppstein's algorithm works:
-		* - Start with the shortest path in the graph from s to t, which can be calculated using Dijkstra's algorithm.
-		* - The second shortest path must diverge away from this shortest path somewhere along the path at node u, with
-		* edge (u,v) known as a "sidetrack" edge. It then follows the shortest path from v to t.
-		* - In general, let T represent the shortest path tree rooted at target node t, containing for each node v, an edge
-		* (v,w) to the parent of node v (w) along its shortest path to node t.
-		* - All other edges (u,v) in the graph are "sidetrack" edges. In other words, this includes any edge (u,v) for
-		* which node v is not on the shortest path from u to t.
-		* - All paths from s to t can be uniquely represented by the sequence of sidetrack edges that appear in the path.
-		* - All non-sidetrack edges in the path are represented implicitly in the shortest path tree, T.
-		* - All paths from s to t can be represented in a tree, H, where the root node has no sidetrack edges, its children
-		* are all of the possible one sidetrack paths, the children of each of these sidetracks are the paths with a
-		* second sidetrack edge, and so on.
-		* - Each path from s to t corresponds to a path from the root of H to some descendant node in H.
-		* - The tree is a heap, as each additional sidetrack creates a new path whose cost is either the same as or greater
-		* than the cost of its parent path.
-		* - One possible way to find the k shortest paths, then, is to maintain a priority queue of candidate paths where
-		* once a path is pulled from the priority queue, its children in the heap are added to the priority queue.
-		* - Two observations about this heap:
-		* - Each node in H has at most O(E) children, where E is the number of edges in the graph.
-		* - If G has looped paths, then this heap is infinite.
-		* - Eppstein's algorithm is basically a scheme for re-organizing this heap so that each heap node has at most 4
-		* children, which is O(1) instead of O(E) - performing potentially much less work for each path found.
-		* - This re-organized heap R has the following form, in terms of the original heap H:
-		* - For each heap node in H, select its best child, B.
-		* - This child is known as a "cross edge" child.
-		* - Child B has N siblings in H.
-		* - These N siblings are removed from its parent in heap H and are made instead to be descendants of B in heap R.
-		* - The best child, B, has up to three of its siblings placed as direct children (along with its own best "cross
-		* edge" child in the original heap H, this yields a total of four possible children in R).
-		* - Among its sibling-children, one of its children in R is the root of a new binary heap containing all of the
-		* siblings of B in H that are sidetrack edges directed away from the same node in G.
-		* - All of the remaining siblings of B in H are placed in a binary heap with B as the root in R.
-		* - Because this is a binary heap, B has up to two children of this type.
-		* - Thus, B has at most four children in R. Any node in R that is a "cross-edge" child has up to four children,
-		* whereas other nodes fall inside binary heaps and are limited to having at most two children.
-		*/
-		typedef std::deque<vertex_t> path_vertex_t;
-		typedef std::deque<Edge> path_edge_t;
-		void eppstein_alogrithm(const Vertex s, const Vertex t, double time_in = 0.0, std::string atom = "H");
-		//create the sidetrack edge tree, insert the first level nodes
-		void initiate_sidetack_tree(eppstein::sidetrack_tree &st_tree, const path_vertex_t &path_v, path_edge_t &path_e, const std::vector<double> &distance_r) const;
-		//add node to sidetrack tree recursively
-		void add_vertex_to_sidetrack_tree_recursively(eppstein::sidetrack_tree &st_tree, const eppstein::sidetrack_tree::Vertex curr_vertex_index_in_tree, eppstein::vertex_index_t curr_vertex_index_in_original_graph,
-			const std::vector<double>& distance, const std::vector<double> &distance_r, std::size_t level_from_current_vertex_in_original_graph = 0, const std::size_t level_from_root = 0) const;
-		//add element to priority queue
-		void k_shortest_path_with_pq(const eppstein::sidetrack_tree &st_tree, eppstein::len_path_pq_t & lp_pq, std::vector<eppstein::path_info_t > &K_shortest_path_info_vec) const;
-		//retrieve path from path_info_vector
-		void retrieve_path_info(const std::vector<Vertex> &predecessors_r, const std::vector<reverse_edge_t> &predecessor_edges_r, const std::vector<eppstein::path_info_t > &K_shortest_path_info_vec,
-			const Vertex s, const Vertex t, const std::size_t top_k = 5);
 
 	public:
 		/*
@@ -616,8 +485,6 @@ namespace reactionNetwork_sr {
 		std::vector<rsp::element_info> return_element_vecotr() const;
 
 	};//class reactionNetwork
-
-
 
 
 }/*namespace reactionNetwork_sr*/

@@ -264,7 +264,7 @@ namespace propagator_sr {
 			idx_2_label.emplace(x, counter++);
 		}
 
-		UnionFind uf(label_2_idx.size());
+		UnionFind uf((int)label_2_idx.size());
 		for (std::size_t i = 0; i < this->sp_chattering_pgt->chattering_spe_idx_from_file[0].size(); ++i) {
 			uf.unite(idx_2_label[this->sp_chattering_pgt->chattering_spe_idx_from_file[0][i]],
 				idx_2_label[this->sp_chattering_pgt->chattering_spe_idx_from_file[1][i]]);
@@ -296,7 +296,7 @@ namespace propagator_sr {
 		//group_counter, spe_counter
 		int group_counter = 0;
 		for (auto s_c_g_pair : fast_transition_group_spe) {
-			std::vector<std::size_t> s_c_g;
+			std::vector<rsp::index_int_t> s_c_g;
 			int spe_counter = 0;
 			for (auto s_idx : s_c_g_pair.second) {
 				s_c_g.push_back(s_idx);
@@ -399,11 +399,11 @@ namespace propagator_sr {
 
 	void superPropagator::set_chattering_spe_from_file_pgt()
 	{
-		std::vector<std::vector<std::size_t> > Matrix(2, std::vector<std::size_t>());
+		std::vector<std::vector<rsp::index_int_t> > Matrix(2, std::vector<rsp::index_int_t>());
 
 		for (auto key1 : this->pgt_pt.get_child("pathway.trapped_species")) {
-			Matrix[0].push_back(boost::lexical_cast<std::size_t>(key1.first));
-			Matrix[1].push_back(key1.second.get_value<std::size_t>());
+			Matrix[0].push_back(boost::lexical_cast<rsp::index_int_t>(key1.first));
+			Matrix[1].push_back(key1.second.get_value<rsp::index_int_t>());
 		}
 
 		this->sp_chattering_pgt->chattering_spe_idx_from_file = Matrix;
@@ -411,11 +411,11 @@ namespace propagator_sr {
 
 	void superPropagator::set_chattering_reactions_from_file_pgt()
 	{
-		std::vector<std::vector<std::size_t> > Matrix(2, std::vector<std::size_t>());
+		std::vector<std::vector<rsp::index_int_t> > Matrix(2, std::vector<rsp::index_int_t>());
 
 		for (auto key1 : this->pgt_pt.get_child("pathway.fast_reaction")) {
-			Matrix[0].push_back(boost::lexical_cast<std::size_t>(key1.first));
-			Matrix[1].push_back(key1.second.get_value<std::size_t>());
+			Matrix[0].push_back(boost::lexical_cast<rsp::index_int_t>(key1.first));
+			Matrix[1].push_back(key1.second.get_value<rsp::index_int_t>());
 		}
 
 		this->sp_chattering_pgt->chattering_rxn_idx_from_file = Matrix;

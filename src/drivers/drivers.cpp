@@ -40,7 +40,7 @@ void driver::generate_pathway_running_Monte_carlo_trajectory(const std::string &
 	std::vector<double> uncertainties;
 
 	//initialize MPI stuff
-	int local_N = pt.get<std::size_t>("pathway.trajectoryNumber");
+	int local_N = pt.get<int>("pathway.trajectoryNumber");
 
 
 	fileIO::fileIO::read_generate_uncertainties_w2f_nominal(uncertainties,
@@ -77,7 +77,7 @@ void driver::generate_species_pathway_running_Monte_carlo_trajectory(const std::
 	std::vector<double> uncertainties;
 
 	//initialize MPI stuff
-	int local_N = pt.get<std::size_t>("pathway.trajectoryNumber");
+	int local_N = pt.get<int>("pathway.trajectoryNumber");
 
 
 	fileIO::fileIO::read_generate_uncertainties_w2f_nominal(uncertainties,
@@ -2549,41 +2549,6 @@ void driver::ODE_solver_path_integral_parallel_cv_ct_v4(const boost::mpi::commun
 
 }
 
-
-void driver::k_shortest_path_algorithms(const boost::mpi::communicator & world, const std::string & main_cwd)
-{
-	std::vector<double> uncertainties;
-	if (world.rank() == 0) {
-		fileIO::fileIO::read_generate_uncertainties_w2f_nominal(uncertainties,
-			main_cwd + std::string("/input/uncertainties.inp"));
-		//fileIO::fileIO::read_generate_uncertainties_w2f_random(uncertainties, main_cwd+std::string("/input/uncertainties.inp"));
-
-	}//if
-
-	 //boradcast
-	broadcast(world, uncertainties, 0);
-
-	if (world.rank() == 0) {
-		rnk::concreteReactionNetwork rnk_obj(uncertainties, world.rank(), main_cwd);
-		rnk_obj.print();
-		//rnk_obj.dijkstra_w_set(0, 11, 0.0);
-		//rnk_obj.dijkstra_w_priority_queue(0, 11, 0.0);
-		//rnk_obj.eppstein_alogrithm();
-		//rnk_obj.dijkstra_boost(0, 1, 1.0e-4);
-		//rnk_obj.dijkstra_boost_v2(0, 1, 1.0e-4);
-		rnk_obj.eppstein_alogrithm(0, 1, 1.0e-4, "O");
-		//rnk_obj.eppstein_alogrithm(0, 11, 0.0, "X");
-
-		//rnk_obj.eppstein_alogrithm(0, 11, 0.0);
-
-		//configurations, read configuration file named "setting.json"
-		//boost::property_tree::ptree pt;
-		//boost::property_tree::read_json(main_cwd + std::string("/input/setting.json"), pt, std::locale());
-		//auto target_time_db = pt.get<double>("time.tau");
-		//auto max_level = pt.get<std::size_t>("search_algorithm.max_level");
-
-	}
-}
 
 void driver::M_matrix_R_matrix(const boost::mpi::communicator & world, const std::string & main_cwd)
 {

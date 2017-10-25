@@ -148,10 +148,6 @@ namespace driver {
 	// for genetic toggle switch system
 	void ODE_solver_path_integral_parallel_cv_ct_v4(const boost::mpi::communicator &world, const std::string &main_cwd, const boost::property_tree::ptree &pt);
 
-	/*
-	* 12. k-shortest path algorithm
-	*/
-	void k_shortest_path_algorithms(const boost::mpi::communicator &world, const std::string &main_cwd);
 
 	/*
 	* 13. M-matrix and R-matrix
