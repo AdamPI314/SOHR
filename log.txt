@@ -8,18 +8,10 @@
 {'rxn': [586, 587], 'spe': [85, 54]}
 {'rxn': [1042, 1043], 'spe': [72, 108]}
 {'rxn': [434, 435], 'spe': [45, 47]}
-{'rxn': [1068, 1069], 'spe': [60, 78]}
-{'rxn': [1096, 1097], 'spe': [61, 80]}
-{'rxn': [132, 133], 'spe': [25, 27]}
-{'rxn': [1116, 1117], 'spe': [87, 90]}
-{'rxn': [348, 349], 'spe': [39, 50]}
-{'rxn': [1080, 1081], 'spe': [78, 87]}
-{'rxn': [586, 587], 'spe': [85, 54]}
-{'rxn': [1042, 1043], 'spe': [72, 108]}
-{'rxn': [434, 435], 'spe': [45, 47]}
 /home/invictus/Documents/summer_2017_boulder/SRC_EXE_DIR/SOHR/output/species_pathway_stat.csv found
 /home/invictus/Documents/summer_2017_boulder/SRC_EXE_DIR/SOHR/output/species_pathway_name_selected.csv found
 /home/invictus/Documents/summer_2017_boulder/SRC_EXE_DIR/SOHR/output/species_pathway_prob.csv found
+/home/invictus/Documents/summer_2017_boulder/SRC_EXE_DIR/SOHR/output/species_pathway_AT.csv found
 /home/invictus/Documents/summer_2017_boulder/SRC_EXE_DIR/SOHR/output/species_pathname_prob.csv found
 /home/invictus/Documents/summer_2017_boulder/SRC_EXE_DIR/SOHR/output/chattering_group_info.json found
 /home/invictus/Documents/summer_2017_boulder/SRC_EXE_DIR/SOHR/output/species_pathway_name_candidate.csv found
