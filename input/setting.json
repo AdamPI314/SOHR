@@ -65,15 +65,15 @@
         "number_of_Ks": 3
     },
     "pathway": {
-        "init_spe": 60,
+        "init_spe": 62,
         "atom_followed": "C",
         "super_atom": "X",
         "tau": 0.95,
         "topN": [
-            100
+            10
         ],
         "pathwayEndWith": "ALL",
-        "trajectoryNumber": 100000,
+        "trajectoryNumber": 10000,
         "trajectoryNumberVector": [
             1000,
             1000,
