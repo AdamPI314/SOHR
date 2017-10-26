@@ -164,7 +164,7 @@ namespace propagator_sr {
 
 		temperature_data_pgt.push_back(xgst[neq - 1]);
 		pressure_data_pgt.push_back(ckstore.pressure);
-}
+	}
 
 #endif // __CHEMKIN_AVAILABLE_
 
@@ -513,10 +513,25 @@ namespace propagator_sr {
 		//chattering group destruction rate constant,pseudo first order destructive rate constant
 		std::string tag = "dlsode_M";
 		std::ofstream fout((this->cwd_pgt + std::string("/output/chattering_group_drc_") + tag + std::string(".csv")).c_str());
-		for (size_t i = 0; i < chattering_group_k_data_pgt[0].size(); ++i) {
+		for (size_t time_i = 0; time_i < chattering_group_k_data_pgt[0].size(); ++time_i) {
 			for (size_t j = 0; j < chattering_group_k_data_pgt.size(); ++j) {
-				fout << std::setprecision(std::numeric_limits<double>::max_digits10 + 1) << chattering_group_k_data_pgt[j][i];
+				fout << std::setprecision(std::numeric_limits<double>::max_digits10 + 1) << chattering_group_k_data_pgt[j][time_i];
 				if (j < chattering_group_k_data_pgt.size() - 1)
+					fout << ",";
+			}
+			fout << endl;
+		}
+		fout.clear(); fout.close();
+
+		//print out a specific group ss prob
+		std::size_t group_i_tmp = 2;
+		fout.open((this->cwd_pgt + std::string("/output/chattering_group_ss_prob_") + tag + std::string(".csv")).c_str());
+		for (size_t time_i = 0; time_i < chattering_group_ss_prob_data_pgt[0].size(); ++time_i) {
+			for (std::size_t j = 0; j < this->sp_chattering_pgt->species_chattering_group_mat[group_i_tmp].size(); ++j) {
+				auto x = this->sp_chattering_pgt->species_chattering_group_mat[group_i_tmp][j];
+				auto s_g_id = this->sp_chattering_pgt->spe_idx_2_super_group_idx[x];
+				fout << std::setprecision(std::numeric_limits<double>::max_digits10 + 1) << chattering_group_ss_prob_data_pgt[s_g_id][time_i];
+				if (j < this->sp_chattering_pgt->species_chattering_group_mat[group_i_tmp].size() - 1)
 					fout << ",";
 			}
 			fout << endl;
@@ -698,7 +713,7 @@ namespace propagator_sr {
 		delete[] FWDR_t; delete[] REVR_t;
 		delete[] RKFT_t; delete[] RKRT_t;
 
-}
+	}
 
 #endif // __CHEMKIN_AVAILABLE_ && __USE_LOSDE_
 
