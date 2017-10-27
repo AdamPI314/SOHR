@@ -126,15 +126,13 @@ namespace propagator_sr {
 		{
 			if (c_t[i] <= 0.0)
 			{
-				//spe_drc_data_pgt[i].push_back(c_t[i]);
-				spe_drc_data_pgt[i].push_back(0.0);
-				//spe_production_rate_data_pgt[time_j].push_back(CDOT_t[time_j]);
+				c_t[i] = 0.0;
+				spe_drc_data_pgt[i].push_back(c_t[i]);
 			}
 			else
 			{
 				//just need the destruction rate const of species
 				spe_drc_data_pgt[i].push_back(DDOT_t[i] / c_t[i]);
-				//spe_production_rate_data_pgt[time_j].push_back(CDOT_t[time_j]);
 			}
 		}//for]
 
@@ -156,10 +154,9 @@ namespace propagator_sr {
 
 		 //print concentration and temperature
 		for (int i = 0; i < nkk; ++i) {
-			if (c_t[i] > 0)
-				concentration_data_pgt[i].push_back(c_t[i]);
-			else
-				concentration_data_pgt[i].push_back(0.0);
+			if (c_t[i] < 0)
+				c_t[i] = 0.0;
+			concentration_data_pgt[i].push_back(c_t[i]);
 		}
 
 		temperature_data_pgt.push_back(xgst[neq - 1]);
