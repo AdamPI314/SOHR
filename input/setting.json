@@ -22,9 +22,9 @@
     "time": {
         "min_time": 0,
         "max_time": 0.8000000998554411,
-        "critical_time": 0.8000000998554411,
-        "sys_min_time": 1e-10,
-        "tau": 0.777705872994694
+        "critical_time": 0.7519999998807062,
+        "sys_min_time": 1e-11,
+        "tau": 0.763215792447318
     },
     "chem_init": {
         "pressure_atm": 10.0,
@@ -37,9 +37,9 @@
         }
     },
     "lsode_init": {
-        "dt": 1e-07,
-        "atol": 1e-15,
-        "rtol": 1e-15,
+        "dt": 2.5e-08,
+        "atol": 1e-16,
+        "rtol": 1e-16,
         "mf": 22,
         "jt": 2,
         "itask": 1,
@@ -47,7 +47,7 @@
         "itol": 1,
         "istate": 1,
         "deltaN1": 5000,
-        "deltaN2": 5000
+        "deltaN2": 1000
     },
     "ssa_init": {
         "dt": 1e-06,

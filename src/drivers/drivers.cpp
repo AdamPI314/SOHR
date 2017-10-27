@@ -2760,10 +2760,10 @@ void driver::MISC(const boost::mpi::communicator & world, const std::string & ma
 	broadcast(world, uncertainties, 0);
 
 	if (world.rank() == 0) {
-		//rnk::concreteReactionNetwork rnk_concrete(uncertainties, world.rank(), main_cwd);
+		rnk::concreteReactionNetwork rnk_concrete(uncertainties, world.rank(), main_cwd);
 		//rnk_concrete.print();
-		//double target_time_db = rnk_concrete.return_temperature_target_time();
-		//std::cout << std::setprecision(15) << "time at target temperature is:\t" << target_time_db << std::endl; 
+		double target_time_db = rnk_concrete.return_temperature_target_time();
+		std::cout << std::setprecision(15) << "time at target temperature is:\t" << target_time_db << std::endl; 
 
 		//std::vector<std::vector<double> > transition_mat = { {0.0, 1.0}, {2.0, 0.0} };
 		//double first_real_positive_eigenvalue;

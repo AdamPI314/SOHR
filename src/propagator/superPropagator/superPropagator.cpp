@@ -523,20 +523,20 @@ namespace propagator_sr {
 		}
 		fout.clear(); fout.close();
 
-		////print out a specific group ss prob
-		//std::size_t group_i_tmp = 2;
-		//fout.open((this->cwd_pgt + std::string("/output/chattering_group_ss_prob_") + tag + std::string(".csv")).c_str());
-		//for (size_t time_i = 0; time_i < chattering_group_ss_prob_data_pgt[0].size(); ++time_i) {
-		//	for (std::size_t j = 0; j < this->sp_chattering_pgt->species_chattering_group_mat[group_i_tmp].size(); ++j) {
-		//		auto x = this->sp_chattering_pgt->species_chattering_group_mat[group_i_tmp][j];
-		//		auto s_g_id = this->sp_chattering_pgt->spe_idx_2_super_group_idx[x];
-		//		fout << std::setprecision(std::numeric_limits<double>::max_digits10 + 1) << chattering_group_ss_prob_data_pgt[s_g_id][time_i];
-		//		if (j < this->sp_chattering_pgt->species_chattering_group_mat[group_i_tmp].size() - 1)
-		//			fout << ",";
-		//	}
-		//	fout << endl;
-		//}
-		//fout.clear(); fout.close();
+		//print out a specific group ss prob
+		std::size_t group_i_tmp = 2;
+		fout.open((this->cwd_pgt + std::string("/output/chattering_group_ss_prob_") + tag + std::string(".csv")).c_str());
+		for (size_t time_i = 0; time_i < chattering_group_ss_prob_data_pgt[0].size(); ++time_i) {
+			for (std::size_t j = 0; j < this->sp_chattering_pgt->species_chattering_group_mat[group_i_tmp].size(); ++j) {
+				auto x = this->sp_chattering_pgt->species_chattering_group_mat[group_i_tmp][j];
+				auto s_g_id = this->sp_chattering_pgt->spe_idx_2_super_group_idx[x];
+				fout << std::setprecision(std::numeric_limits<double>::max_digits10 + 1) << chattering_group_ss_prob_data_pgt[s_g_id][time_i];
+				if (j < this->sp_chattering_pgt->species_chattering_group_mat[group_i_tmp].size() - 1)
+					fout << ",";
+			}
+			fout << endl;
+		}
+		fout.clear(); fout.close();
 
 	}
 
