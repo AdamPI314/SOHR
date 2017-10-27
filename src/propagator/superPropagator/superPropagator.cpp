@@ -115,7 +115,7 @@ namespace propagator_sr {
 
 #if defined(__CHEMKIN_AVAILABLE_)
 
-	void superPropagator::update_temporary_data_pgt(const int nkk, const int neq, const double ti, const double * c_t, const double * const CDOT_t, const double * const DDOT_t, const double * const FWDR_t, const double * const REVR_t, const double * const xgst)
+	void superPropagator::update_temporary_data_pgt(const int nkk, const int neq, const double ti, double * const c_t, const double * const CDOT_t, const double * const DDOT_t, const double * const FWDR_t, const double * const REVR_t, const double * const xgst)
 	{
 		double reaction_rate_tmp = 0.0;
 		//use the default dt to print out stuff
