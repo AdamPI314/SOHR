@@ -21,7 +21,7 @@
     },
     "time": {
         "min_time": 0,
-        "max_time": 0.8000000998554411,
+        "max_time": 0.7634499996523525,
         "critical_time": 0.7519999998807062,
         "sys_min_time": 1e-11,
         "tau": 0.763215792447318
@@ -70,7 +70,7 @@
         "super_atom": "X",
         "tau": 0.95,
         "topN": [
-            10
+            100
         ],
         "pathwayEndWith": "ALL",
         "trajectoryNumber": 10000,
