@@ -1347,7 +1347,7 @@ namespace reactionNetwork_sr {
 		return when_time;
 	}
 
-	double superReactionNetwork::pathway_AT_with_SP_input_pathway_sim_once(const double init_time, const double end_time, const std::vector<rsp::index_int_t>& spe_vec, const std::vector<rsp::index_int_t>& reaction_vec)
+	std::pair<double, double> superReactionNetwork::pathway_AT_with_SP_input_pathway_sim_once(const double init_time, const double end_time, const std::vector<rsp::index_int_t>& spe_vec, const std::vector<rsp::index_int_t>& reaction_vec)
 	{
 		//set pathway end time
 		set_tau(end_time);
@@ -1393,8 +1393,7 @@ namespace reactionNetwork_sr {
 		//got to multiply by P_min or says (1-P_max)
 		set_spe_prob_max_at_a_time(when_time, end_time, spe_vec.back());
 
-		when_time *= (1 - species_network_v[spe_vec.back()].prob_max);
-		return when_time;
+		return std::make_pair(when_time, 1 - species_network_v[spe_vec.back()].prob_max);
 	}
 
 	void reactionNetwork_sr::superReactionNetwork::initiate_M_matrix(std::string atom_followed)

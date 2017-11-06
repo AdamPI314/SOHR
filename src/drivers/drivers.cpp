@@ -371,7 +371,8 @@ void driver::evaluate_path_AT_with_SP_over_time(const std::string & main_cwd, co
 	}
 
 	size_t trajectoryNumber_local = pt.get<std::size_t>("pathway.trajectoryNumber");
-	std::vector< std::vector<double> > path_AT_vec(pathway_vec.size(), std::vector<double>(trajectoryNumber_local, 0.0));
+	std::vector< std::vector<double> > path_AT_mat(pathway_vec.size(), std::vector<double>(trajectoryNumber_local, 0.0));
+	std::vector< std::vector<double> > path_AT_prob_mat(pathway_vec.size(), std::vector<double>(trajectoryNumber_local, 0.0));
 
 	//different seed for different core/CPU
 	rnk::concreteReactionNetwork rnk_obj(uncertainties, 0, main_cwd);
@@ -384,23 +385,29 @@ void driver::evaluate_path_AT_with_SP_over_time(const std::string & main_cwd, co
 	for (std::size_t i = 0; i < pathway_vec.size(); ++i) {
 		rnk_obj.parse_pathway_to_vector(pathway_vec[i], spe_vec, reaction_vec);
 		for (size_t j = 0; j < trajectoryNumber_local; ++j) {
-			path_AT_vec[i][j] = rnk_obj.pathway_AT_with_SP_input_pathway_sim_once(0.0, time, spe_vec, reaction_vec);
+			std::tie(path_AT_mat[i][j], path_AT_prob_mat[i][j]) = rnk_obj.pathway_AT_with_SP_input_pathway_sim_once(0.0, time, spe_vec, reaction_vec);
 		}
 	}
 
-	std::ofstream fout((main_cwd + std::string("/output/species_pathway_AT_with_SP.csv")).c_str(), std::ofstream::out);
-	for (size_t i = 0; i < path_AT_vec.size(); ++i) {
-		for (size_t j = 0; j < path_AT_vec[0].size(); ++j) {
-			fout << setprecision(PRINT_PRECISION) << path_AT_vec[i][j];
-			if (j != (path_AT_vec[0].size() - 1)) {
-				fout << ",";
+	std::ofstream fout1((main_cwd + std::string("/output/species_pathway_AT_with_SP.csv")).c_str(), std::ofstream::out);
+	std::ofstream fout2((main_cwd + std::string("/output/species_pathway_SP.csv")).c_str(), std::ofstream::out);
+	for (size_t i = 0; i < path_AT_mat.size(); ++i) {
+		for (size_t j = 0; j < path_AT_mat[0].size(); ++j) {
+			fout1 << setprecision(PRINT_PRECISION) << path_AT_mat[i][j];
+			fout2 << setprecision(PRINT_PRECISION) << path_AT_prob_mat[i][j];
+			if (j != (path_AT_mat[0].size() - 1)) {
+				fout1 << ",";
+				fout2 << ",";
 			}
 		}
-		fout << std::endl;
+		fout1 << std::endl;
+		fout2 << std::endl;
 	}
 
-	fout.clear();
-	fout.close();
+	fout1.clear();
+	fout1.close();
+	fout2.clear();
+	fout2.close();
 }
 
 #endif // __NO_USE_MPI_
@@ -883,7 +890,8 @@ void driver::evaluate_path_AT_with_SP_over_time(const boost::mpi::communicator &
 		}
 
 		size_t trajectoryNumber_local = pt.get<std::size_t>("pathway.trajectoryNumber");
-		std::vector< std::vector<double> > path_AT_vec(pathway_vec.size(), std::vector<double>(trajectoryNumber_local, 0.0));
+		std::vector< std::vector<double> > path_AT_mat(pathway_vec.size(), std::vector<double>(trajectoryNumber_local, 0.0));
+		std::vector< std::vector<double> > path_AT_prob_mat(pathway_vec.size(), std::vector<double>(trajectoryNumber_local, 0.0));
 
 		//different seed for different core/CPU
 		rnk::concreteReactionNetwork rnk_obj(uncertainties, 0, main_cwd);
@@ -896,23 +904,29 @@ void driver::evaluate_path_AT_with_SP_over_time(const boost::mpi::communicator &
 		for (std::size_t i = 0; i < pathway_vec.size(); ++i) {
 			rnk_obj.parse_pathway_to_vector(pathway_vec[i], spe_vec, reaction_vec);
 			for (size_t j = 0; j < trajectoryNumber_local; ++j) {
-				path_AT_vec[i][j] = rnk_obj.pathway_AT_with_SP_input_pathway_sim_once(0.0, time, spe_vec, reaction_vec);
+				std::tie(path_AT_mat[i][j], path_AT_prob_mat[i][j]) = rnk_obj.pathway_AT_with_SP_input_pathway_sim_once(0.0, time, spe_vec, reaction_vec);
 			}
 		}
 
-		std::ofstream fout((main_cwd + std::string("/output/species_pathway_AT_with_SP.csv")).c_str(), std::ofstream::out);
-		for (size_t i = 0; i < path_AT_vec.size(); ++i) {
-			for (size_t j = 0; j < path_AT_vec[0].size(); ++j) {
-				fout << setprecision(PRINT_PRECISION) << path_AT_vec[i][j];
-				if (j != (path_AT_vec[0].size() - 1)) {
-					fout << ",";
+		std::ofstream fout1((main_cwd + std::string("/output/species_pathway_AT_with_SP.csv")).c_str(), std::ofstream::out);
+		std::ofstream fout2((main_cwd + std::string("/output/species_pathway_SP.csv")).c_str(), std::ofstream::out);
+		for (size_t i = 0; i < path_AT_mat.size(); ++i) {
+			for (size_t j = 0; j < path_AT_mat[0].size(); ++j) {
+				fout1 << setprecision(PRINT_PRECISION) << path_AT_mat[i][j];
+				fout2 << setprecision(PRINT_PRECISION) << path_AT_prob_mat[i][j];
+				if (j != (path_AT_mat[0].size() - 1)) {
+					fout1 << ",";
+					fout2 << ",";
 				}
 			}
-			fout << std::endl;
+			fout1 << std::endl;
+			fout2 << std::endl;
 		}
 
-		fout.clear();
-		fout.close();
+		fout1.clear();
+		fout1.close();
+		fout2.clear();
+		fout2.close();
 	}//world.rank() ==0
 }
 
