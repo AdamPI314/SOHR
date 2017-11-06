@@ -10,7 +10,7 @@
         "merge_chatterings": "yes"
     },
     "job": {
-        "job_type": "evaluate_path_AT_over_time"
+        "job_type": "evaluate_path_AT_with_SP_over_time"
     },
     "propagator": {
         "primary_type": "from_file",
