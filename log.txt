@@ -34,5 +34,5 @@
 /home/invictus/Documents/summer_2017_boulder/SRC_EXE_DIR/SOHR/output/chattering_group_info.json found
 /home/invictus/Documents/summer_2017_boulder/SRC_EXE_DIR/SOHR/output/species_pathway_name_candidate.csv found
 /home/invictus/Documents/summer_2017_boulder/SRC_EXE_DIR/SOHR/output/species_pathway_time_candidate.csv found
-running time:	0.06 hours
+running time:	0.07 hours
 

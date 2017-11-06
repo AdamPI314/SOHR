@@ -68,7 +68,7 @@
         "init_spe": 62,
         "atom_followed": "C",
         "super_atom": "X",
-        "tau": 0.95,
+        "tau": 0.98,
         "topN": [
             100
         ],
