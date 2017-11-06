@@ -45,8 +45,6 @@ void driver::generate_pathway_running_Monte_carlo_trajectory(const std::string &
 
 	fileIO::fileIO::read_generate_uncertainties_w2f_nominal(uncertainties,
 		main_cwd + std::string("/input/uncertainties.inp"));
-	//fileIO::fileIO::read_generate_uncertainties_w2f_random(uncertainties, main_cwd+std::string("/input/uncertainties.inp"));
-	//fileIO::fileIO::read_uncertainties_from_file(uncertainties, main_cwd+std::string("/input/uncertainties.inp"));
 
 	rnk::concreteReactionNetwork rnk_obj(uncertainties, 0, main_cwd);
 	//rnk_obj.print_network();
@@ -82,8 +80,6 @@ void driver::generate_species_pathway_running_Monte_carlo_trajectory(const std::
 
 	fileIO::fileIO::read_generate_uncertainties_w2f_nominal(uncertainties,
 		main_cwd + std::string("/input/uncertainties.inp"));
-	//fileIO::fileIO::read_generate_uncertainties_w2f_random(uncertainties, main_cwd+std::string("/input/uncertainties.inp"));
-	//fileIO::fileIO::read_uncertainties_from_file(uncertainties, main_cwd+std::string("/input/uncertainties.inp"));
 
 	rnk::concreteReactionNetwork rnk_obj(uncertainties, 0, main_cwd);
 	//rnk_obj.print_network();
@@ -120,8 +116,6 @@ void driver::evaluate_path_integral_over_time(const std::string & main_cwd, cons
 
 	fileIO::fileIO::read_generate_uncertainties_w2f_nominal(uncertainties,
 		main_cwd + std::string("/input/uncertainties.inp"));
-	//fileIO::fileIO::read_generate_uncertainties_w2f_random(uncertainties,
-	//	main_cwd + std::string("/input/uncertainties.inp"));
 
 	//get the pathway name only on the processor 0
 	std::vector<std::string> pathway_vec_t;
@@ -209,8 +203,6 @@ void driver::evaluate_species_path_integral_over_time(const std::string & main_c
 
 	fileIO::fileIO::read_generate_uncertainties_w2f_nominal(uncertainties,
 		main_cwd + std::string("/input/uncertainties.inp"));
-	//fileIO::fileIO::read_generate_uncertainties_w2f_random(uncertainties,
-	//	main_cwd + std::string("/input/uncertainties.inp"));
 
 	//get the pathway name only on the processor 0
 	std::vector<std::string> pathway_vec_t;
@@ -294,8 +286,6 @@ void driver::evaluate_path_AT_over_time(const std::string & main_cwd, const boos
 
 	fileIO::fileIO::read_generate_uncertainties_w2f_nominal(uncertainties,
 		main_cwd + std::string("/input/uncertainties.inp"));
-	//fileIO::fileIO::read_generate_uncertainties_w2f_random(uncertainties,
-	//	main_cwd + std::string("/input/uncertainties.inp"));
 
 	//get the pathway name only on the processor 0
 	std::vector<std::string> pathway_vec_t;
@@ -350,6 +340,69 @@ void driver::evaluate_path_AT_over_time(const std::string & main_cwd, const boos
 	fout.close();
 }
 
+void driver::evaluate_path_AT_with_SP_over_time(const std::string & main_cwd, const boost::property_tree::ptree & pt)
+{
+	std::vector<double> uncertainties;
+
+	//pathway name-pathway we are interested
+	std::vector<std::string> pathway_vec;
+
+	fileIO::fileIO::read_generate_uncertainties_w2f_nominal(uncertainties,
+		main_cwd + std::string("/input/uncertainties.inp"));
+
+	//get the pathway name only on the processor 0
+	std::vector<std::string> pathway_vec_t;
+	pathwayHandler::get_pathway(main_cwd + std::string("/output/species_pathway_name_candidate.csv"), pathway_vec_t,
+		std::numeric_limits<int>::max() - 1000); //all pathways
+
+	std::vector<std::size_t> topN_vec;
+	for (auto key1 : pt.get_child("pathway.topN")) {
+		topN_vec.push_back(key1.second.get_value<size_t>());
+	}
+	std::size_t topN = topN_vec.front();
+	topN = (topN <= pathway_vec_t.size()) ? topN : pathway_vec_t.size();
+
+	if (pt.get<std::string>("pathway.pathwayEndWith") == "ALL") {
+		pathway_vec.assign(pathway_vec_t.begin(), pathway_vec_t.begin() + topN);
+	}
+	else {
+		pathwayHandler::pathway_ends_with(pt.get<std::string>("pathway.pathwayEndWith"), pathway_vec_t, pathway_vec,
+			topN); //topN pathways
+	}
+
+	size_t trajectoryNumber_local = pt.get<std::size_t>("pathway.trajectoryNumber");
+	std::vector< std::vector<double> > path_AT_vec(pathway_vec.size(), std::vector<double>(trajectoryNumber_local, 0.0));
+
+	//different seed for different core/CPU
+	rnk::concreteReactionNetwork rnk_obj(uncertainties, 0, main_cwd);
+
+	double time = pt.get<double>("time.tau") * pt.get<double>("pathway.tau");
+
+	// evaluate path AT on each core
+	std::vector<rsp::index_int_t> spe_vec; std::vector<rsp::index_int_t> reaction_vec;
+
+	for (std::size_t i = 0; i < pathway_vec.size(); ++i) {
+		rnk_obj.parse_pathway_to_vector(pathway_vec[i], spe_vec, reaction_vec);
+		for (size_t j = 0; j < trajectoryNumber_local; ++j) {
+			path_AT_vec[i][j] = rnk_obj.pathway_AT_with_SP_input_pathway_sim_once(0.0, time, spe_vec, reaction_vec);
+		}
+	}
+
+	std::ofstream fout((main_cwd + std::string("/output/species_pathway_AT_with_SP.csv")).c_str(), std::ofstream::out);
+	for (size_t i = 0; i < path_AT_vec.size(); ++i) {
+		for (size_t j = 0; j < path_AT_vec[0].size(); ++j) {
+			fout << setprecision(PRINT_PRECISION) << path_AT_vec[i][j];
+			if (j != (path_AT_vec[0].size() - 1)) {
+				fout << ",";
+			}
+		}
+		fout << std::endl;
+	}
+
+	fout.clear();
+	fout.close();
+}
+
 #endif // __NO_USE_MPI_
 
 
@@ -362,7 +415,6 @@ void driver::write_concentration_at_time_to_file(const boost::mpi::communicator 
 	if (world.rank() == 0) {
 		fileIO::fileIO::read_generate_uncertainties_w2f_nominal(uncertainties,
 			main_cwd + std::string("/input/uncertainties.inp"));
-		//fileIO::fileIO::read_uncertainties_from_file(uncertainties, main_cwd+std::string("/input/uncertainties.inp"));
 	}//if
 
 	 //boradcast
@@ -388,8 +440,6 @@ void driver::solve_ODEs_for_concentration_using_LSODE(const boost::mpi::communic
 	if (world.rank() == 0) {
 		fileIO::fileIO::read_generate_uncertainties_w2f_nominal(uncertainties,
 			main_cwd + std::string("/input/uncertainties.inp"));
-		//fileIO::fileIO::read_generate_uncertainties_w2f_random(uncertainties, main_cwd+std::string("/input/uncertainties.inp"));
-		//fileIO::fileIO::read_uncertainties_from_file(uncertainties, main_cwd+std::string("/input/uncertainties.inp"));
 
 	}//if
 
@@ -440,9 +490,6 @@ void driver::generate_pathway_running_Monte_carlo_trajectory(const boost::mpi::c
 	if (world.rank() == 0) {
 		fileIO::fileIO::read_generate_uncertainties_w2f_nominal(uncertainties,
 			main_cwd + std::string("/input/uncertainties.inp"));
-		//fileIO::fileIO::read_generate_uncertainties_w2f_random(uncertainties, main_cwd+std::string("/input/uncertainties.inp"));
-		//fileIO::fileIO::read_uncertainties_from_file(uncertainties, main_cwd+std::string("/input/uncertainties.inp"));
-
 	}//if
 
 	 //boradcast
@@ -492,9 +539,6 @@ void driver::generate_species_pathway_running_Monte_carlo_trajectory(const boost
 	if (world.rank() == 0) {
 		fileIO::fileIO::read_generate_uncertainties_w2f_nominal(uncertainties,
 			main_cwd + std::string("/input/uncertainties.inp"));
-		//fileIO::fileIO::read_generate_uncertainties_w2f_random(uncertainties, main_cwd+std::string("/input/uncertainties.inp"));
-		//fileIO::fileIO::read_uncertainties_from_file(uncertainties, main_cwd+std::string("/input/uncertainties.inp"));
-
 	}//if
 
 	 //boradcast
@@ -545,8 +589,6 @@ void driver::evaluate_path_integral_over_time(const boost::mpi::communicator & w
 	if (world.rank() == 0) {
 		fileIO::fileIO::read_generate_uncertainties_w2f_nominal(uncertainties,
 			main_cwd + std::string("/input/uncertainties.inp"));
-		//fileIO::fileIO::read_generate_uncertainties_w2f_random(uncertainties,
-		//	main_cwd + std::string("/input/uncertainties.inp"));
 
 		//get the pathway name only on the processor 0
 		std::vector<std::string> pathway_vec_t;
@@ -651,8 +693,6 @@ void driver::evaluate_species_path_integral_over_time(const boost::mpi::communic
 	if (world.rank() == 0) {
 		fileIO::fileIO::read_generate_uncertainties_w2f_nominal(uncertainties,
 			main_cwd + std::string("/input/uncertainties.inp"));
-		//fileIO::fileIO::read_generate_uncertainties_w2f_random(uncertainties,
-		//	main_cwd + std::string("/input/uncertainties.inp"));
 
 		//get the pathway name only on the processor 0
 		std::vector<std::string> pathway_vec_t;
@@ -755,8 +795,6 @@ void driver::evaluate_path_AT_over_time(const boost::mpi::communicator & world, 
 
 		fileIO::fileIO::read_generate_uncertainties_w2f_nominal(uncertainties,
 			main_cwd + std::string("/input/uncertainties.inp"));
-		//fileIO::fileIO::read_generate_uncertainties_w2f_random(uncertainties,
-		//	main_cwd + std::string("/input/uncertainties.inp"));
 
 		//get the pathway name only on the processor 0
 		std::vector<std::string> pathway_vec_t;
@@ -813,6 +851,71 @@ void driver::evaluate_path_AT_over_time(const boost::mpi::communicator & world, 
 
 }
 
+void driver::evaluate_path_AT_with_SP_over_time(const boost::mpi::communicator & world, const std::string & main_cwd, const boost::property_tree::ptree & pt)
+{
+	if (world.rank() == 0) {
+		std::vector<double> uncertainties;
+
+		//pathway name-pathway we are interested
+		std::vector<std::string> pathway_vec;
+
+		fileIO::fileIO::read_generate_uncertainties_w2f_nominal(uncertainties,
+			main_cwd + std::string("/input/uncertainties.inp"));
+
+		//get the pathway name only on the processor 0
+		std::vector<std::string> pathway_vec_t;
+		pathwayHandler::get_pathway(main_cwd + std::string("/output/species_pathway_name_candidate.csv"), pathway_vec_t,
+			std::numeric_limits<int>::max() - 1000); //all pathways
+
+		std::vector<std::size_t> topN_vec;
+		for (auto key1 : pt.get_child("pathway.topN")) {
+			topN_vec.push_back(key1.second.get_value<size_t>());
+		}
+		std::size_t topN = topN_vec.front();
+		topN = (topN <= pathway_vec_t.size()) ? topN : pathway_vec_t.size();
+
+		if (pt.get<std::string>("pathway.pathwayEndWith") == "ALL") {
+			pathway_vec.assign(pathway_vec_t.begin(), pathway_vec_t.begin() + topN);
+		}
+		else {
+			pathwayHandler::pathway_ends_with(pt.get<std::string>("pathway.pathwayEndWith"), pathway_vec_t, pathway_vec,
+				topN); //topN pathways
+		}
+
+		size_t trajectoryNumber_local = pt.get<std::size_t>("pathway.trajectoryNumber");
+		std::vector< std::vector<double> > path_AT_vec(pathway_vec.size(), std::vector<double>(trajectoryNumber_local, 0.0));
+
+		//different seed for different core/CPU
+		rnk::concreteReactionNetwork rnk_obj(uncertainties, 0, main_cwd);
+
+		double time = pt.get<double>("time.tau") * pt.get<double>("pathway.tau");
+
+		// evaluate path AT on each core
+		std::vector<rsp::index_int_t> spe_vec; std::vector<rsp::index_int_t> reaction_vec;
+
+		for (std::size_t i = 0; i < pathway_vec.size(); ++i) {
+			rnk_obj.parse_pathway_to_vector(pathway_vec[i], spe_vec, reaction_vec);
+			for (size_t j = 0; j < trajectoryNumber_local; ++j) {
+				path_AT_vec[i][j] = rnk_obj.pathway_AT_with_SP_input_pathway_sim_once(0.0, time, spe_vec, reaction_vec);
+			}
+		}
+
+		std::ofstream fout((main_cwd + std::string("/output/species_pathway_AT_with_SP.csv")).c_str(), std::ofstream::out);
+		for (size_t i = 0; i < path_AT_vec.size(); ++i) {
+			for (size_t j = 0; j < path_AT_vec[0].size(); ++j) {
+				fout << setprecision(PRINT_PRECISION) << path_AT_vec[i][j];
+				if (j != (path_AT_vec[0].size() - 1)) {
+					fout << ",";
+				}
+			}
+			fout << std::endl;
+		}
+
+		fout.clear();
+		fout.close();
+	}//world.rank() ==0
+}
+
 void driver::speciation_evaluate_concentrations_for_different_sets_rate_coefficients(const boost::mpi::communicator & world, const std::string &main_cwd, const boost::property_tree::ptree &pt)
 {
 	std::vector<double> uncertainties;
@@ -822,7 +925,6 @@ void driver::speciation_evaluate_concentrations_for_different_sets_rate_coeffici
 	//size_t number_of_Ks_local = get_num_block_decomposition_2(world.rank(), number_of_Ks, P);
 
 	for (int ith_k = get_first_block_decomposition_2(world.rank(), number_of_Ks, P); ith_k <= get_last_block_decomposition_2(world.rank(), number_of_Ks, P); ++ith_k) {
-		//fileIO::fileIO::read_generate_uncertainties_w2f_nominal(uncertainties, main_cwd+std::string("/input/uncertainties.inp"));
 		fileIO::fileIO::read_generate_uncertainties_w2f_random(uncertainties,
 			main_cwd + std::string("/input/uncertainties.inp"), main_cwd + std::string("/output/uncertainties_random.csv"),
 			main_cwd + std::string("/input/chem.out"), ith_k);
@@ -2763,7 +2865,7 @@ void driver::MISC(const boost::mpi::communicator & world, const std::string & ma
 		rnk::concreteReactionNetwork rnk_concrete(uncertainties, world.rank(), main_cwd);
 		//rnk_concrete.print();
 		double target_time_db = rnk_concrete.return_temperature_target_time();
-		std::cout << std::setprecision(15) << "time at target temperature is:\t" << target_time_db << std::endl; 
+		std::cout << std::setprecision(15) << "time at target temperature is:\t" << target_time_db << std::endl;
 
 		//std::vector<std::vector<double> > transition_mat = { {0.0, 1.0}, {2.0, 0.0} };
 		//double first_real_positive_eigenvalue;

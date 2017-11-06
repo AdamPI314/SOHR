@@ -411,6 +411,8 @@ namespace reactionNetwork_sr {
 		double pathway_AT_sim_move_one_step(double when_time, vertex_t curr_spe);
 		//input a pathway, return its arrival time
 		double pathway_AT_input_pathway_sim_once(const double init_time, const double end_time, const std::vector<rsp::index_int_t> &spe_vec, const std::vector<rsp::index_int_t> &reaction_vec);
+		//input a pathway, return its arrival time * survival probability of the last species
+		double pathway_AT_with_SP_input_pathway_sim_once(const double init_time, const double end_time, const std::vector<rsp::index_int_t> &spe_vec, const std::vector<rsp::index_int_t> &reaction_vec);
 
 	public:
 		//initiate M-Matrix

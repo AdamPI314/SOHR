@@ -56,6 +56,8 @@ namespace driver {
 	void evaluate_path_integral_over_time(const std::string &main_cwd, const boost::property_tree::ptree &pt);
 	void evaluate_species_path_integral_over_time(const std::string &main_cwd, const boost::property_tree::ptree &pt);
 	void evaluate_path_AT_over_time(const std::string &main_cwd, const boost::property_tree::ptree &pt);
+	/*AT represents arrival time. SP represents survial probability*/
+	void evaluate_path_AT_with_SP_over_time(const std::string &main_cwd, const boost::property_tree::ptree &pt);
 
 #endif // __NO_USE_MPI_
 	
@@ -80,6 +82,8 @@ namespace driver {
 	void evaluate_species_path_integral_over_time(const boost::mpi::communicator &world, const std::string &main_cwd, const boost::property_tree::ptree &pt);
 	/*3.2 pathway arrival time*/
 	void evaluate_path_AT_over_time(const boost::mpi::communicator &world, const std::string &main_cwd, const boost::property_tree::ptree &pt);
+	/*3.3 pathway arrival time*/
+	void evaluate_path_AT_with_SP_over_time(const boost::mpi::communicator &world, const std::string &main_cwd, const boost::property_tree::ptree &pt);
 	/*4. For speciation, print out concentration at for different sets of rate constant*/
 	void speciation_evaluate_concentrations_for_different_sets_rate_coefficients(const boost::mpi::communicator &world, const std::string &main_cwd, const boost::property_tree::ptree &pt);
 

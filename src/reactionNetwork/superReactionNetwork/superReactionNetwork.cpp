@@ -1347,6 +1347,56 @@ namespace reactionNetwork_sr {
 		return when_time;
 	}
 
+	double superReactionNetwork::pathway_AT_with_SP_input_pathway_sim_once(const double init_time, const double end_time, const std::vector<rsp::index_int_t>& spe_vec, const std::vector<rsp::index_int_t>& reaction_vec)
+	{
+		//set pathway end time
+		set_tau(end_time);
+
+		//basically, we assume there must be a reaction at the beginning, so should multiply be the 1-P_min(tau=0|t;S^{0})
+		double when_time = init_time;
+
+		//start from the first reaction
+		for (size_t i = 0; i < reaction_vec.size();)
+		{
+			//none-chattering reaction
+			if (reaction_vec[i] >= 0) {
+				when_time = pathway_AT_sim_move_one_step(when_time, spe_vec[i]);
+				//move one step
+				++i;
+			}
+			//chattering reaction, chattering case
+			else {
+				int chattering_group_id = this->species_network_v[spe_vec[i]].chattering_group_id;
+
+				//add time delay first, regenerate random number, inverse to get exact time, get steady state time first
+				//then calculate steady state ratios
+				double chattering_group_prob = prob_chattering_group_will_react_in_a_time_range(when_time, end_time, chattering_group_id);
+
+				//avoid problems around boundary
+				if (when_time < (tau - INFINITESIMAL_DT)) {
+					double u_1 = 1.0;
+					if (chattering_group_prob > 0.0) {
+						u_1 = rand->random_min_max(0, chattering_group_prob);
+					}
+					else
+						u_1 = 0.0;
+
+					when_time = chattering_group_reaction_time_from_importance_sampling_without_cutoff(when_time, chattering_group_id, u_1);
+				}//boundary time problem
+
+				 //move two steps actually
+				i += 2;
+			}//if chattering case
+		}
+
+
+		//got to multiply by P_min or says (1-P_max)
+		set_spe_prob_max_at_a_time(when_time, end_time, spe_vec.back());
+
+		when_time *= (1 - species_network_v[spe_vec.back()].prob_max);
+		return when_time;
+	}
+
 	void reactionNetwork_sr::superReactionNetwork::initiate_M_matrix(std::string atom_followed)
 	{
 		//resize and initialization
