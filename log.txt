@@ -12,9 +12,11 @@
 /home/invictus/Documents/summer_2017_boulder/SRC_EXE_DIR/SOHR/output/species_pathway_name_selected.csv found
 /home/invictus/Documents/summer_2017_boulder/SRC_EXE_DIR/SOHR/output/species_pathway_prob.csv found
 /home/invictus/Documents/summer_2017_boulder/SRC_EXE_DIR/SOHR/output/species_pathway_AT.csv found
+/home/invictus/Documents/summer_2017_boulder/SRC_EXE_DIR/SOHR/output/species_pathway_AT_with_SP.csv found
+/home/invictus/Documents/summer_2017_boulder/SRC_EXE_DIR/SOHR/output/species_pathway_SP.csv found
 /home/invictus/Documents/summer_2017_boulder/SRC_EXE_DIR/SOHR/output/species_pathname_prob.csv found
 /home/invictus/Documents/summer_2017_boulder/SRC_EXE_DIR/SOHR/output/chattering_group_info.json found
 /home/invictus/Documents/summer_2017_boulder/SRC_EXE_DIR/SOHR/output/species_pathway_name_candidate.csv found
 /home/invictus/Documents/summer_2017_boulder/SRC_EXE_DIR/SOHR/output/species_pathway_time_candidate.csv found
-running time:	0.01 hours
+running time:	0.00 hours
 
