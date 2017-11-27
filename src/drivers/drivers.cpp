@@ -2976,9 +2976,9 @@ void driver::M_matrix_R_matrix(const boost::mpi::communicator & world, const std
 		//std::cout << filename_H << std::endl;
 		//rnk_concrete.heuristic_path_string_vector_s2f("H", 3, filename_H);
 
-		//std::string filename_O = main_cwd + std::string("/output") + std::string("/heuristic_pathname_O.csv");
-		//std::cout << filename_O << std::endl;
-		//rnk_concrete.heuristic_path_string_vector_s2f("O", 3, filename_O);
+		std::string filename_O = main_cwd + std::string("/output") + std::string("/heuristic_pathname_O.csv");
+		std::cout << filename_O << std::endl;
+		rnk_concrete.heuristic_path_string_vector_s2f("O", 3, filename_O);
 
 		//std::string filename = main_cwd + std::string("/output") + std::string("/pathname_")
 		//	+ boost::lexical_cast<std::string>(0) + std::string(".csv");

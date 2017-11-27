@@ -10,7 +10,7 @@
         "merge_chatterings": "yes"
     },
     "job": {
-        "job_type": "evaluate_path_AT_no_IT_over_time"
+        "job_type": "M_matrix_R_matrix"
     },
     "propagator": {
         "primary_type": "from_file",
