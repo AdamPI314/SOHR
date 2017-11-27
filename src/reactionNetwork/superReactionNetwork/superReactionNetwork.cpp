@@ -1735,6 +1735,28 @@ namespace reactionNetwork_sr {
 		fout.close(); fout.clear();
 	}
 
+	void superReactionNetwork::heuristic_path_string_vector_si_sj_n_s2f(std::string atom_followed, std::size_t si, std::size_t sj, std::size_t n, std::string filename)
+	{
+		std::unordered_set<std::string> us;
+		for (std::size_t k = 0; k <= n; ++k) {
+			auto pRmn = matrix_sr::matrix_power(this->atom_R_matrix[atom_followed], k);
+
+			if (k == 0) {
+				us.insert(std::string("S") + boost::lexical_cast<std::string>(si));
+				continue;
+			}
+			auto vs = this->get_path_string_update_matrix_element_i_j_topN(pRmn, si, sj);
+			for (auto s : vs)
+				us.insert(s);
+		}
+
+		//save to file
+		std::ofstream fout(filename.c_str());
+		for (auto s : us)
+			fout << s << std::endl;
+		fout.close(); fout.clear();
+	}
+
 	std::set<std::string> reactionNetwork_sr::superReactionNetwork::heuristic_path_string_vector_s2m(std::string atom_followed, std::size_t n)
 	{
 		std::set<std::string> us;

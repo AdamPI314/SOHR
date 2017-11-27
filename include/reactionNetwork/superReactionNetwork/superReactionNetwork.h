@@ -401,7 +401,7 @@ namespace reactionNetwork_sr {
 		//species pathway
 		double species_pathway_prob_sim_move_one_step(double when_time, vertex_t curr_spe, vertex_t next_spe, double &pathway_prob, std::string atom_followed = "H");
 		double species_pathway_prob_input_pathway_sim_once(const double init_time, const double end_time, const std::vector<rsp::index_int_t> &spe_vec, const std::vector<rsp::index_int_t> &reaction_vec, std::string atom_followed = "H");
-		
+
 	public:
 		/*
 		* return where we are, when it is, for MPI ,for arrival time
@@ -459,6 +459,7 @@ namespace reactionNetwork_sr {
 
 		//save heuristic path string to file
 		void heuristic_path_string_vector_s2f(std::string atom_followed = "H", std::size_t n = 1, std::string filename = "./output/heuristic_pathname.csv");
+		void heuristic_path_string_vector_si_sj_n_s2f(std::string atom_followed = "H", std::size_t si = 0, std::size_t sj = 0, std::size_t n = 1, std::string filename = "./output/heuristic_pathname.csv");
 		//save heuristic path string to memory, n is pathway length
 		std::set<std::string> heuristic_path_string_vector_s2m(std::string atom_followed = "H", std::size_t n = 1);
 		//sorted by path length
