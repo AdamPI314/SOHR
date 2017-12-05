@@ -302,7 +302,7 @@ namespace reactionNetwork_sr {
 	 * search out edge reactions of a species, record the reactant stoichoimetric coefficient
 	 */
 	void superReactionNetwork::search_for_out_reaction(vertex_t vertex, mt::vector_sr<rsp::reaction_index_s_coef_t > & reaction_index_s_coef_v) {
-		if (vertex >= getVertexCount())
+		if (vertex >= (vertex_t)getVertexCount())
 			return;
 		for (out_edge_range_t itr = getOutEdges(vertex); itr.first != itr.second; ++itr.first) {
 			reaction_index_s_coef_v.insert_sr(std::make_pair(properties(*itr.first).reaction_index, properties(*itr.first).s_coef_reactant));
