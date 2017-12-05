@@ -2873,7 +2873,7 @@ void driver::ODE_solver_path_integral_parallel_cv_ct_v4(const boost::mpi::commun
 				pathwayHandler::pathway_ends_with(S, pathway_vec, pathway_vec_t, N_followed_atoms*topN_vec[si]); //topN pathways
 				pathwayHandler::pathway_ends_with(S, pathway_monte_carlo_vec, pathway_monte_carlo_vec_t,
 					N_followed_atoms*pt.get<std::size_t>("pathway.topN_monte_carlo_path")); //topN pathways
-																							// merge pathway
+				// merge pathway																			
 				pathwayHandler::merge_pathway(pathway_vec_t, pathway_monte_carlo_vec_t);
 
 				rnkODEs_obj.ODEdirectlyEvaluatePathwayProbability_si_tj(si, tj, pathway_vec_t, P2C[si], trajectoryNumber_local, prob_Mat);
@@ -2990,7 +2990,7 @@ void driver::M_matrix_R_matrix(const boost::mpi::communicator & world, const std
 		//rnk_concrete.heuristic_path_string_vector_by_stage_number_path_length_all_elements(0, filename);
 
 		std::cout << "Test.\n";
-}
+	}
 
 }
 
