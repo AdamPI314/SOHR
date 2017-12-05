@@ -10,7 +10,7 @@
         "merge_chatterings": "yes"
     },
     "job": {
-        "job_type": "M_matrix_R_matrix"
+        "job_type": "solve_ODEs_for_concentration_using_LSODE"
     },
     "propagator": {
         "primary_type": "from_file",
@@ -21,25 +21,26 @@
     },
     "time": {
         "min_time": 0,
-        "max_time": 0.7634499996523525,
-        "critical_time": 0.7519999998807062,
+        "max_time": 1.0,
+        "critical_time": 1.0,
         "sys_min_time": 1e-11,
-        "tau": 0.763215792447318
+        "tau": 1.0 
     },
     "chem_init": {
-        "pressure_atm": 10.0,
-        "init_temperature": 650,
+        "pressure_atm": 3.0,
+        "init_temperature": 773,
         "species_index_concentration": {
-            "62": 0.2,
-            "9": 1.0,
-            "2": 3.72787,
-            "1": 0.0445909
+            "3": 2.0,
+            "4": 1.0,
+            "8": 0.132109,
+            "14": 0.0445909,
+            "15": 3.72787 
         }
     },
     "lsode_init": {
         "dt": 2.5e-08,
-        "atol": 1e-16,
-        "rtol": 1e-16,
+        "atol": 1e-12,
+        "rtol": 1e-12,
         "mf": 22,
         "jt": 2,
         "itask": 1,
@@ -65,8 +66,8 @@
         "number_of_Ks": 3
     },
     "pathway": {
-        "init_spe": 62,
-        "atom_followed": "C",
+        "init_spe": 3,
+        "atom_followed": "H",
         "super_atom": "X",
         "tau": 0.98,
         "topN": [
