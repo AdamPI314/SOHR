@@ -330,6 +330,14 @@ public:
 		return adjacent_vertices(v, graph);
 	}
 
+	std::size_t getInDegree(const Vertex&v) const {
+		return in_degree(v, graph);
+	}
+
+	std::size_t getOutDegree(const Vertex&v) const {
+		return out_degree(v, graph);
+	}
+
 	out_edge_range_t getOutEdges(const Vertex&v) const {
 		return out_edges(v, graph);
 	}
