@@ -7,7 +7,7 @@
         "initializer": "dlsode"
     },
     "network": {
-        "merge_chatterings": "yes"
+        "merge_chatterings": "no"
     },
     "job": {
         "job_type": "generate_pathway_running_Monte_carlo_trajectory"
@@ -74,7 +74,7 @@
             100
         ],
         "pathwayEndWith": "ALL",
-        "trajectoryNumber": 10,
+        "trajectoryNumber": 10000000,
         "trajectoryNumberVector": [
             1000,
             1000,
@@ -83,7 +83,9 @@
             1000
         ],
         "trajectory_count_limit": 1,
-        "dead_species": [],
+        "dead_species": [
+            6
+        ],
         "fast_reaction": {},
         "trapped_species": {},
         "non_zero_rate_reaction": [],
