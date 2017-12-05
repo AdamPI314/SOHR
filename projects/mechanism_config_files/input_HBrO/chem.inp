@@ -1,0 +1,115 @@
+!
+! ************************************************************************
+!    BROMINE MECHANISM 2011/1
+! ************************************************************************
+!
+ELEMENTS
+BR O H N AR
+END
+SPECIES
+H  O  OH  H2  O2  HO2  H2O  H2O2
+HBR BR2 BR BRO HOBR BROO
+AR N2
+END
+
+REACTIONS
+!
+! *****************************************************************************
+!    H2 subset (basis set)                                                    *
+! *****************************************************************************
+!
+ H+O2=O+OH                            3.6E15  -0.410   16600 ! RAS/GLA08a HES98
+ H+H+M=H2+M                           7.0E17  -1.000       0 ! RAS/GLA08a COH/WES83
+   N2/0/ H2O/0/ H2/0/                                        !
+ H+H+N2=H2+N2                         5.4E18  -1.300       0 ! RAS/GLA08a COH/WES83
+ H+H+H2=H2+H2                         1.0E17  -0.600       0 ! RAS/GLA08a COH/WES83
+ H+H+H2O=H2+H2O                       1.0E19  -1.000       0 ! RAS/GLA08a COH/WES83
+ H+O+M=OH+M                           6.2E16  -0.600       0 ! RAS/GLA08a MIL/BOW89
+   H2O/5/                                                    ! 
+ H+O2(+M)=HO2(+M)                     5.8E11   0.6724   -290 !            SEL/MIL08
+   LOW  / 7.2E20 -1.73 536 /                                 !            N2
+   TROE /0.72 1E-30 1E30 1E30/                               !            Fc=0.72
+   N2/1/ AR/0/ H2O/11/ H2/2/ O2/1/                           ! (O2 = 0.78; H2 = 2)
+!   N2/0.9/ AR/0/ H2O/11/ H2/2/ O2/1/                         ! For batch reactor exps 
+ O+O+M=O2+M                           1.9E13   0.000   -1788 ! RAS/GLA08a NBS86
+   N2/1.5/ O2/1.5/ H2O/10/                                   !
+ O+H2=OH+H                            3.8E12   0.000    7948 ! RAS/GLA08a CEC05
+   DUPLICATE                                                 !
+ O+H2=OH+H                            8.8E14   0.000   19175 ! RAS/GLA08a CEC05
+   DUPLICATE                                                 !
+ OH+OH=O+H2O                          4.3E03   2.700   -1822 ! RAS/GLA08a SRI/MIC06
+ H+OH(+M)=H2O(+M)                     2.5E13   0.234    -114 !            SEL/MIL08
+   LOW  / 4.5E21 -1.81 499 /                                 !            N2
+   TROE /0.73 1E-30 1E30 1E30/                               !            Fc=0.73
+   AR/0.38/ H2/0.73/ H2O/12/ !HE/0.38/                       !            source?   
+ OH+H2=H+H2O                          2.1E08   1.520    3449 ! RAS/GLA08a MIC92
+ H2+O2=HO2+H                          7.4E05   2.433   53502 ! RAS/GLA08a MIC/WAG00 
+ HO2+H=OH+OH                          8.4E13   0.000     400 ! RAS/GLA08a RAS/GLA08a
+ HO2+H=H2O+O                          1.4E12   0.000       0 ! RAS/GLA08a CEC05
+ HO2+O=OH+O2                          1.6E13   0.000    -445 ! RAS/GLA08a CEC05
+ HO2+OH=H2O+O2                        3.6E21  -2.100    9000 ! RAS/GLA08a RAS/GLA08a
+   DUPLICATE                                                 !
+ HO2+OH=H2O+O2                        2.0E15  -0.600       0 ! 
+   DUPLICATE                                                 !
+ HO2+OH=H2O+O2                       -2.2E96 -24.000   49000 !
+   DUPLICATE                                                 !
+ HO2+HO2=H2O2+O2                      1.9E11   0.000   -1408 ! RAS/GLA08a KAP/TROE02
+   DUPLICATE                                                 !
+ HO2+HO2=H2O2+O2                      1.0E14   0.000   11034 !
+   DUPLICATE                                                 !
+ H2O2(+M)=OH+OH(+M)                   4.0E11   0.000   37137 ! RAS/GLA08a KAP/TRO02
+   LOW  /2.291E16 0.0 43638/                                 !
+   TROE /0.5 1E-30 1E30 1E30/                                !  (Fc=0.5)
+   H2O/12/ H2/2.5/ AR/0.64/                                  !
+ H2O2+H=H2O+OH                        1.0E13   0.000    3580 ! RAS/GLA08a CEC05
+ H2O2+H=HO2+H2                        1.7E12   0.000    3760 ! RAS/GLA08a CEC05
+ H2O2+O=HO2+OH                        9.6E06   2.000    3970 ! RAS/GLA08a NBS86,MAR99,LI/DRY04
+ H2O2+OH=H2O+HO2                      1.9E12   0.000     427 ! RAS/GLA08a HIP/TRO95
+   DUPLICATE                                                 !
+ H2O2+OH=H2O+HO2                      1.6E18   0.000   29410 ! RAS/GLA08a HIP/TRO95
+   DUPLICATE                                                 !
+!
+! ************************************************************************
+!    Bromine reactions                                                    *
+! ************************************************************************
+!
+H+BR+M = HBR+M                        1.9E21  -1.87        0 ! BAU/MON81
+ HBR/2.7/ N2/1/ H2O/5/ 
+HBR+H = BR+H2                         1.3E10   1.05      163 ! SEA/PIL91
+HBR+O = BR+OH                         3.5E12   0.00     2981 ! DEM/MOL97
+HBR+OH = BR+H2O                       4.0E12   0.00     -308 ! ATK/TRO07
+HBR+HO2 = BR+H2O2                     4.2E03   2.93     7672 ! pw/PM
+HBR+BRO = HOBR+BR                     1.3E10   0.00     3600 ! HAN/FRA99 
+!
+BR+HO2 = HBR+O2                       8.6E09   1.00      468 ! pw
+BR+BR+M = BR2+M                       1.5E14   0.00    -1700 ! BAU/MON81
+ N2/1.25/ H2O/5.4/ BR2/0/ 
+BR+BR+BR2 = BR2+BR2                   1.1E15   0.00    -2206 ! BAU/MON81
+!
+BR2+H = HBR+BR                        4.6E07   2.05    -1804 ! SEA/PIL91
+BR2+O = BR+BRO                        3.1E11   0.00    -1961 ! HAR/JON98
+BR2+OH = HOBR+BR                      1.1E15  -0.66        0 ! BRY/KNY06
+!
+BRO+H = BR+OH                         3.0E13   0.00        0 ! BAB/TSA96 est
+BRO+H = HBR+O                         1.0E12   0.00        0 ! BAB/TSA96 est as Cl
+BRO+O = BR+O2                         1.1E13   0.00     -457 ! ATK/TRO07
+BRO+OH = BR+HO2                       1.1E13   0.00     -497 ! ATK/TRO07
+BRO+HO2 = HOBR+O2                     2.7E12   0.00     -994 ! ATK/TRO07
+BRO+BRO = BR+BR+O2                    1.6E12   0.00        0 ! ATK/TRO07
+BRO+BRO = BR2+O2                      1.7E10   0.00    -1670 ! ATK/TRO07
+!
+HOBR(+M) = BR+OH(+M)                  1.0E15   0.00    48700 ! pw/PM
+  LOW  / 1.3E22 -1.52  51100 /  
+HOBR+H = BRO+H2                       2.0E07   1.91     8012 ! pw/PM 
+HOBR+H = HBR+OH                       3.0E13   0.00        0 ! est, see text 
+HOBR+H = BR+H2O                       3.0E13   0.00        0 ! est, see text 
+HOBR+O = BRO+OH                       7.2E13   0.00      854 ! ATK/TRO07
+HOBR+OH = BRO+H2O                     1.9E02   3.12    -1250 ! WANSUN04
+HOBR+HO2 = BRO+H2O2                   1.0E01   3.55    13090 ! pw/PM
+!
+BR+O2+M = BROO+M                      2.3E24  -3.90        0 ! est as Cl
+BROO+H = BRO+OH                       3.0E13   0.00        0 ! est as Cl
+BROO+O = BRO+O2                       3.0E13   0.00        0 ! est as Cl
+BROO+OH = BRO+HO2                     2.0E12   0.00        0 ! est 
+BROO+BR = BR2+O2                      1.0E14   0.00        0 ! est as Cl
+END
