@@ -74,7 +74,7 @@
             100
         ],
         "pathwayEndWith": "ALL",
-        "trajectoryNumber": 10000000,
+        "trajectoryNumber": 10,
         "trajectoryNumberVector": [
             1000,
             1000,
