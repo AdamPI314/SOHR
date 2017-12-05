@@ -2,56 +2,144 @@
     "dir": {
         "include-path": "."
     },
-	"propagator":{
-		"type": "lsode"
-	},
+    "system": {
+        "condition": "cv",
+        "initializer": "dlsode"
+    },
+    "network": {
+        "merge_chatterings": "yes"
+    },
+    "job": {
+        "job_type": "M_matrix_R_matrix"
+    },
+    "propagator": {
+        "primary_type": "from_file",
+        "type": "dlsode",
+        "sub_type": "time_propagator_cv_s2m_pgt",
+        "convert_molar_concentration_to_mole_fraction": "no",
+        "normalize_initial_concentration": "yes"
+    },
     "time": {
         "min_time": 0,
-        "max_time": 1.0,
-        "critical_time": 1.0,
-        "sys_min_time": 1e-10,
-        "path_beg_time": 0,
-        "path_end_time": 1.0 
+        "max_time": 0.7634499996523525,
+        "critical_time": 0.7519999998807062,
+        "sys_min_time": 1e-11,
+        "tau": 0.763215792447318
     },
     "chem_init": {
-        "pressure_atm": 5.54651,
-        "init_temperature": 1,
+        "pressure_atm": 10.0,
+        "init_temperature": 650,
         "species_index_concentration": {
-            "0": 1.0,
-            "1": 1.0,
-            "2": 1.0 
+            "62": 0.2,
+            "9": 1.0,
+            "2": 3.72787,
+            "1": 0.0445909
         }
     },
     "lsode_init": {
-        "dt": 1e-6,
-        "atol": 1e-10,
-        "rtol": 1e-10,
+        "dt": 2.5e-08,
+        "atol": 1e-16,
+        "rtol": 1e-16,
         "mf": 22,
         "jt": 2,
         "itask": 1,
         "iopt": 0,
         "itol": 1,
         "istate": 1,
-        "deltaN1": 10000,
-        "deltaN2": 10000
+        "deltaN1": 5000,
+        "deltaN2": 1000
+    },
+    "ssa_init": {
+        "dt": 1e-06,
+        "fixed_size": 10000,
+        "order_parameter_ratio": 0.5,
+        "deltaN1": 1,
+        "deltaN2": 1
     },
     "T": {
-        "critical_temperature": 888,
-        "end_temperature": 905,
-        "target_temperature": 900 
+        "critical_temperature": 1100,
+        "end_temperature": 1900,
+        "target_temperature": 1800
+    },
+    "speciation": {
+        "number_of_Ks": 3
     },
     "pathway": {
-        "init_spe": 0,
-        "atom_followed": "X",
-        "dead_species": [3],
-        "trapped_species": {},
-        "fast_reaction": {}
+        "init_spe": 62,
+        "atom_followed": "C",
+        "super_atom": "X",
+        "tau": 0.98,
+        "topN": [
+            100
+        ],
+        "pathwayEndWith": "ALL",
+        "trajectoryNumber": 10000,
+        "trajectoryNumberVector": [
+            1000,
+            1000,
+            1000,
+            1000,
+            1000
+        ],
+        "trajectory_count_limit": 1,
+        "dead_species": [],
+        "fast_reaction": {
+            "1068": 1069,
+            "1096": 1097,
+            "132": 133,
+            "1116": 1117,
+            "348": 349,
+            "1080": 1081,
+            "586": 587,
+            "1042": 1043,
+            "434": 435
+        },
+        "trapped_species": {
+            "60": 78,
+            "61": 80,
+            "25": 27,
+            "87": 90,
+            "39": 50,
+            "78": 87,
+            "85": 54,
+            "72": 108,
+            "45": 47
+        },
+        "non_zero_rate_reaction": [],
+        "max_path_length": [
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            15,
+            15,
+            15,
+            15
+        ]
     },
-    "srode_init": {
-        "timeN1": 1000,
-        "timeN2": 3,
-        "number2Concentration": 0.003,
-        "iterationN1": 1000,
-        "iterationN2": 1 
+    "search_algorithm": {
+        "max_level": 1,
+        "top_k": 25
+    },
+    "SOHR_init": {
+        "single_source_species": -1,
+        "timeN1": 100,
+        "timeN2": 10,
+        "deltaConcentration": 1e-50,
+        "massConservationFactor": 1.0,
+        "iterationNumber": 5,
+        "timeIterationNumber": 0,
+        "P2C": [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+        ]
     }
 }
