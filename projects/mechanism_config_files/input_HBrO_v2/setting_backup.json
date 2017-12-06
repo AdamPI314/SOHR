@@ -7,10 +7,10 @@
         "initializer": "dlsode"
     },
     "network": {
-        "merge_chatterings": "no"
+        "merge_chatterings": "yes"
     },
     "job": {
-        "job_type": "generate_pathway_running_Monte_carlo_trajectory"
+        "job_type": "solve_ODEs_for_concentration_using_LSODE"
     },
     "propagator": {
         "primary_type": "from_file",
@@ -21,10 +21,10 @@
     },
     "time": {
         "min_time": 0,
-        "max_time": 1.0,
-        "critical_time": 1.0,
+        "max_time": 10.0,
+        "critical_time": 10.0,
         "sys_min_time": 1e-11,
-        "tau": 1.0
+        "tau": 10.0 
     },
     "chem_init": {
         "pressure_atm": 3.0,
@@ -34,7 +34,7 @@
             "4": 1.0,
             "8": 0.132109,
             "14": 0.0445909,
-            "15": 3.72787
+            "15": 3.72787 
         }
     },
     "lsode_init": {
@@ -66,10 +66,10 @@
         "number_of_Ks": 3
     },
     "pathway": {
-        "init_spe": 8,
-        "atom_followed": "X",
+        "init_spe": 3,
+        "atom_followed": "H",
         "super_atom": "X",
-        "tau": 1.0,
+        "tau": 0.98,
         "topN": [
             100
         ],
@@ -83,11 +83,29 @@
             1000
         ],
         "trajectory_count_limit": 1,
-        "dead_species": [
-            6
-        ],
-        "fast_reaction": {},
-        "trapped_species": {},
+        "dead_species": [],
+        "fast_reaction": {
+            "1068": 1069,
+            "1096": 1097,
+            "132": 133,
+            "1116": 1117,
+            "348": 349,
+            "1080": 1081,
+            "586": 587,
+            "1042": 1043,
+            "434": 435
+        },
+        "trapped_species": {
+            "60": 78,
+            "61": 80,
+            "25": 27,
+            "87": 90,
+            "39": 50,
+            "78": 87,
+            "85": 54,
+            "72": 108,
+            "45": 47
+        },
         "non_zero_rate_reaction": [],
         "max_path_length": [
             10,
