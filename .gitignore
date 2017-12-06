@@ -10,12 +10,14 @@
 *.sln.docstates
 RxnNetwork_PI
 fortran_lib.u2d
+log.txt
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 
 # User-specific directories
-cplusplus_lib/output/
+input
+output
 fortran_lib/Debug
 fortran_lib/Release
 
