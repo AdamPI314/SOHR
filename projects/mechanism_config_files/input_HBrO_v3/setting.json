@@ -21,23 +21,26 @@
     },
     "time": {
         "min_time": 0,
-        "max_time": 5.0,
-        "critical_time": 5.0,
-        "sys_min_time": 1e-10,
-        "tau": 5.0
+        "max_time": 1.0,
+        "critical_time": 1.0,
+        "sys_min_time": 1e-11,
+        "tau": 1.0
     },
     "chem_init": {
-        "pressure_atm": 5.54651,
-        "init_temperature": 298,
+        "pressure_atm": 3.0,
+        "init_temperature": 773,
         "species_index_concentration": {
-            "0": 1.0,
-            "1": 1.0
+            "3": 2.0,
+            "4": 1.0,
+            "8": 0.132109,
+            "14": 0.0445909,
+            "15": 3.72787
         }
     },
     "lsode_init": {
-        "dt": 1.0e-07,
-        "atol": 1e-10,
-        "rtol": 1e-10,
+        "dt": 2.5e-07,
+        "atol": 1e-12,
+        "rtol": 1e-12,
         "mf": 22,
         "jt": 2,
         "itask": 1,
@@ -55,15 +58,15 @@
         "deltaN2": 1
     },
     "T": {
-        "critical_temperature": 298,
-        "end_temperature": 298,
-        "target_temperature": 298 
+        "critical_temperature": 1100,
+        "end_temperature": 1900,
+        "target_temperature": 1800
     },
     "speciation": {
         "number_of_Ks": 3
     },
     "pathway": {
-        "init_spe": 0,
+        "init_spe": 8,
         "atom_followed": "X",
         "super_atom": "X",
         "tau": 1.0,
@@ -81,7 +84,7 @@
         ],
         "trajectory_count_limit": 1,
         "dead_species": [
-           3 
+            6
         ],
         "fast_reaction": {},
         "trapped_species": {},
@@ -105,16 +108,20 @@
     },
     "SOHR_init": {
         "single_source_species": -1,
-        "timeN1": 1000,
-        "timeN2": 3,
+        "timeN1": 100,
+        "timeN2": 10,
         "deltaConcentration": 1e-50,
-        "massConservationFactor": 2.0,
-        "iterationNumber": 3,
+        "massConservationFactor": 1.0,
+        "iterationNumber": 5,
         "timeIterationNumber": 0,
         "P2C": [
             1.0,
             1.0,
-            0.5,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
             1.0
         ]
     }
