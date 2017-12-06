@@ -36,7 +36,8 @@
 * time_propagator_cp_ct_s2m_pgt
 * time_propagator_s_ct_s2m_pgt
 * time_propagator_s_ct_np_s2m_pgt
-* time_propagator_s_ct_np_cc_s2m_pgt
+* time_propagator_s_ct_np_cc1_s2m_pgt
+* time_propagator_s_ct_np_cc2_s2m_pgt
 
 # propagator.ssa.sub_type
 * time_propagator_s_ct_np_s2m_pgt
