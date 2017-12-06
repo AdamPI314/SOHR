@@ -10,12 +10,12 @@ def get_local_settings():
     """
     setting = {
         # end time
-        "end_t": 1.0,
+        "end_t": 5.0,
         # critical time, after which print out more data points
-        "critical_t": 1.0,
-        # reference time, to a combustion system, this is gonna be the ignition delay time
+        "critical_t": 5.0,
+        # reference time, real time, to a combustion system, this is gonna be the ignition delay time
         # for Propane, time when temperature=1800K
-        "max_tau": 1.0,
+        "max_tau": 5.0,
         # exact time = tau*max_tau
         "tau": 1.0,
         # species oriented, if true, pick pathways ending with top_n species,
@@ -25,9 +25,9 @@ def get_local_settings():
         "species_path": False,
         # atom followed
         "atom_f": "X",
-        "init_s": 8,
+        "init_s": 0,
         # end species index, either None, or [] or [14, 15]
-        "end_s_idx": [6],
+        "end_s_idx": [3],
         # top n path
         "top_n_p": 10,
         # top n path for gephi to generate coordinates

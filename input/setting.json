@@ -10,7 +10,7 @@
         "merge_chatterings": "no"
     },
     "job": {
-        "job_type": "solve_ODEs_for_concentration_using_LSODE"
+        "job_type": "generate_pathway_running_Monte_carlo_trajectory"
     },
     "propagator": {
         "primary_type": "from_file",
@@ -21,10 +21,10 @@
     },
     "time": {
         "min_time": 0,
-        "max_time": 5.0,
-        "critical_time": 5.0,
+        "max_time": 1.0,
+        "critical_time": 1.0,
         "sys_min_time": 1e-10,
-        "tau": 5.0
+        "tau": 1.0
     },
     "chem_init": {
         "pressure_atm": 5.54651,
@@ -35,7 +35,7 @@
         }
     },
     "lsode_init": {
-        "dt": 1.0e-06,
+        "dt": 1e-06,
         "atol": 1e-10,
         "rtol": 1e-10,
         "mf": 22,
@@ -57,7 +57,7 @@
     "T": {
         "critical_temperature": 298,
         "end_temperature": 298,
-        "target_temperature": 298 
+        "target_temperature": 298
     },
     "speciation": {
         "number_of_Ks": 3
@@ -81,7 +81,7 @@
         ],
         "trajectory_count_limit": 1,
         "dead_species": [
-           3 
+            3
         ],
         "fast_reaction": {},
         "trapped_species": {},
