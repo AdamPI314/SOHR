@@ -1,0 +1,141 @@
+<?xml version="1.0"?>
+<ctml>
+  <validate species="yes" reactions="yes"/>
+  <elementData>
+    <element name="X" atomicWt="1.0" atomicNumber="0"/>
+  </elementData>
+
+  <!-- phase gas     -->
+  <phase id="gas" dim="3">
+    <elementArray datasrc="elements.xml">X</elementArray>
+    <speciesArray datasrc="#species_data">S   E   SE  P</speciesArray>
+    <reactionArray datasrc="#reaction_data"/>
+    <state>
+      <temperature units="K">300.0</temperature>
+      <pressure units="Pa">101325.0</pressure>
+    </state>
+    <thermo model="IdealGas"/>
+    <kinetics model="GasKinetics"/>
+    <transport model="None"/>
+  </phase>
+
+  <!-- species definitions     -->
+  <speciesData id="species_data">
+
+    <!-- species S    -->
+    <species name="S">
+      <atomArray>X:1 </atomArray>
+      <note>120186</note>
+      <thermo>
+        <NASA Tmin="300.0" Tmax="1000.0" P0="100000.0">
+           <floatArray size="7" name="coeffs">
+             2.500000000E+00,   0.000000000E+00,   0.000000000E+00,   0.000000000E+00, 
+             0.000000000E+00,   2.547163000E+04,  -4.601176000E-01</floatArray>
+        </NASA>
+        <NASA Tmin="1000.0" Tmax="5000.0" P0="100000.0">
+           <floatArray size="7" name="coeffs">
+             2.500000000E+00,   0.000000000E+00,   0.000000000E+00,   0.000000000E+00, 
+             0.000000000E+00,   2.547163000E+04,  -4.601176000E-01</floatArray>
+        </NASA>
+      </thermo>
+    </species>
+
+    <!-- species E    -->
+    <species name="E">
+      <atomArray>X:1 </atomArray>
+      <note>120186</note>
+      <thermo>
+        <NASA Tmin="300.0" Tmax="1000.0" P0="100000.0">
+           <floatArray size="7" name="coeffs">
+             2.500000000E+00,   0.000000000E+00,   0.000000000E+00,   0.000000000E+00, 
+             0.000000000E+00,   2.547163000E+04,  -4.601176000E-01</floatArray>
+        </NASA>
+        <NASA Tmin="1000.0" Tmax="5000.0" P0="100000.0">
+           <floatArray size="7" name="coeffs">
+             2.500000000E+00,   0.000000000E+00,   0.000000000E+00,   0.000000000E+00, 
+             0.000000000E+00,   2.547163000E+04,  -4.601176000E-01</floatArray>
+        </NASA>
+      </thermo>
+    </species>
+
+    <!-- species SE    -->
+    <species name="SE">
+      <atomArray>X:2 </atomArray>
+      <note>120186</note>
+      <thermo>
+        <NASA Tmin="300.0" Tmax="1000.0" P0="100000.0">
+           <floatArray size="7" name="coeffs">
+             2.500000000E+00,   0.000000000E+00,   0.000000000E+00,   0.000000000E+00, 
+             0.000000000E+00,   2.547163000E+04,  -4.601176000E-01</floatArray>
+        </NASA>
+        <NASA Tmin="1000.0" Tmax="5000.0" P0="100000.0">
+           <floatArray size="7" name="coeffs">
+             2.500000000E+00,   0.000000000E+00,   0.000000000E+00,   0.000000000E+00, 
+             0.000000000E+00,   2.547163000E+04,  -4.601176000E-01</floatArray>
+        </NASA>
+      </thermo>
+    </species>
+
+    <!-- species P    -->
+    <species name="P">
+      <atomArray>X:1 </atomArray>
+      <note>120186</note>
+      <thermo>
+        <NASA Tmin="300.0" Tmax="1000.0" P0="100000.0">
+           <floatArray size="7" name="coeffs">
+             2.500000000E+00,   0.000000000E+00,   0.000000000E+00,   0.000000000E+00, 
+             0.000000000E+00,   2.547163000E+04,  -4.601176000E-01</floatArray>
+        </NASA>
+        <NASA Tmin="1000.0" Tmax="5000.0" P0="100000.0">
+           <floatArray size="7" name="coeffs">
+             2.500000000E+00,   0.000000000E+00,   0.000000000E+00,   0.000000000E+00, 
+             0.000000000E+00,   2.547163000E+04,  -4.601176000E-01</floatArray>
+        </NASA>
+      </thermo>
+    </species>
+  </speciesData>
+  <reactionData id="reaction_data">
+
+    <!-- reaction 0001    -->
+    <reaction id="0001" reversible="no">
+      <equation>S + E =] SE</equation>
+      <rateCoeff>
+        <Arrhenius>
+           <A>1.000000E-03</A>
+           <b>0.0</b>
+           <E units="cal/mol">0.000000</E>
+        </Arrhenius>
+      </rateCoeff>
+      <reactants>S:1.0 E:1</reactants>
+      <products>SE:1.0</products>
+    </reaction>
+
+    <!-- reaction 0002    -->
+    <reaction id="0002" reversible="no">
+      <equation>SE =] S + E</equation>
+      <rateCoeff>
+        <Arrhenius>
+           <A>1.000000E+00</A>
+           <b>0.0</b>
+           <E units="cal/mol">0.000000</E>
+        </Arrhenius>
+      </rateCoeff>
+      <reactants>SE:1.0</reactants>
+      <products>S:1.0 E:1</products>
+    </reaction>
+
+    <!-- reaction 0003    -->
+    <reaction id="0003" reversible="no">
+      <equation>SE =] P + E</equation>
+      <rateCoeff>
+        <Arrhenius>
+           <A>1.000000E+00</A>
+           <b>0.0</b>
+           <E units="cal/mol">0.000000</E>
+        </Arrhenius>
+      </rateCoeff>
+      <reactants>SE:1.0</reactants>
+      <products>P:1.0 E:1</products>
+    </reaction>
+  </reactionData>
+</ctml>

@@ -1,23 +1,7 @@
 /home/invictus/Documents/summer_2017_boulder/SRC_EXE_DIR/SOHR
 {}
 {}
-Traceback (most recent call last):
-  File "./projects/catalytic_cycle/main_driver.py", line 74, in <module>
-    end_s_idx=G_S['end_s_idx'], species_path=G_S['species_path'])
-  File "/home/invictus/Documents/summer_2017_boulder/SRC_EXE_DIR/SOHR/projects/catalytic_cycle/job_drivers.py", line 101, in symbolic_path_2_real_path
-    top_n, end_s_idx)
-  File "/home/invictus/Documents/summer_2017_boulder/SRC_EXE_DIR/SOHR/projects/catalytic_cycle/parse_spe_reaction_info.py", line 120, in symbolic_path_2_real_path
-    path_data = pd.read_csv(f_n_p, names=['path', 'prob'])
-  File "/opt/anaconda/lib/python3.6/site-packages/pandas/io/parsers.py", line 655, in parser_f
-    return _read(filepath_or_buffer, kwds)
-  File "/opt/anaconda/lib/python3.6/site-packages/pandas/io/parsers.py", line 405, in _read
-    parser = TextFileReader(filepath_or_buffer, **kwds)
-  File "/opt/anaconda/lib/python3.6/site-packages/pandas/io/parsers.py", line 762, in __init__
-    self._make_engine(self.engine)
-  File "/opt/anaconda/lib/python3.6/site-packages/pandas/io/parsers.py", line 966, in _make_engine
-    self._engine = CParserWrapper(self.f, **self.options)
-  File "/opt/anaconda/lib/python3.6/site-packages/pandas/io/parsers.py", line 1582, in __init__
-    self._reader = parsers.TextReader(src, **kwds)
-  File "pandas/_libs/parsers.pyx", line 394, in pandas._libs.parsers.TextReader.__cinit__ (pandas/_libs/parsers.c:4209)
-  File "pandas/_libs/parsers.pyx", line 710, in pandas._libs.parsers.TextReader._setup_parser_source (pandas/_libs/parsers.c:8873)
-FileNotFoundError: File b'/home/invictus/Documents/summer_2017_boulder/SRC_EXE_DIR/SOHR/output/pathway_stat.csv' does not exist
+/home/invictus/Documents/summer_2017_boulder/SRC_EXE_DIR/SOHR/output/pathway_stat.csv found
+/home/invictus/Documents/summer_2017_boulder/SRC_EXE_DIR/SOHR/output/pathname_prob.csv found
+running time:	0.00 hours
+
