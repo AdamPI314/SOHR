@@ -1,0 +1,15 @@
+{
+	"ipropyl": "C3H7-2",
+	"npropyl": "C3H7-1",
+	"npropyloo": "C3H7,OO-1",
+	"ipropyloo": "C3H7,OO-2",
+	"npropyloxy": "C3H7,O-1",
+	"ipropyloxy": "C3H7,O-2",
+	"npropylooh": "C3H7,OOH-1",
+	"ipropylooh": "C3H7,OOH-2",
+	"ethoxy": "CH3CH2O",
+	"acrolein": "CH2CHCHO",
+	"acetone": "(CH3)2CO",
+	"acetyloxy": "CH3COO"
+
+}
