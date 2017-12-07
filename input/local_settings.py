@@ -24,7 +24,7 @@ def get_local_settings():
         # condense species path, no reactions
         "species_path": False,
         # atom followed
-        "atom_f": "X",
+        "atom_f": "Y",
         "init_s": 1,
         # end species index, either None, or [] or [14, 15]
         "end_s_idx": [1],
