@@ -8,7 +8,7 @@
 units(length='cm', time='s', quantity='mol', act_energy='cal/mol')
 
 ideal_gas(name='gas',
-          elements="X",
+          elements="X Y",
           species="""S   E   SE  P""",
           reactions='all',
           initial_state=state(temperature=300.0, pressure=OneAtm))
@@ -17,6 +17,7 @@ ideal_gas(name='gas',
 # Element data
 #-------------------------------------------------------------------------------
 
+element(symbol=u'Y', atomic_mass=1.0)
 element(symbol=u'X', atomic_mass=1.0)
 #-------------------------------------------------------------------------------
 # Species data
@@ -35,7 +36,7 @@ species(name=u'S',
         note=u'120186')
 
 species(name=u'E',
-        atoms='X:1',
+        atoms='Y:1',
         thermo=(NASA([300.00, 1000.00],
                      [ 2.50000000E+00,  0.00000000E+00,  0.00000000E+00,
                        0.00000000E+00,  0.00000000E+00,  2.54716300E+04,
@@ -47,7 +48,7 @@ species(name=u'E',
         note=u'120186')
 
 species(name=u'SE',
-        atoms='X:2',
+        atoms='Y:1 X:1',
         thermo=(NASA([300.00, 1000.00],
                      [ 2.50000000E+00,  0.00000000E+00,  0.00000000E+00,
                        0.00000000E+00,  0.00000000E+00,  2.54716300E+04,
