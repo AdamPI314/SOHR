@@ -17,17 +17,17 @@ def get_local_settings():
         # for Propane, time when temperature=1800K
         "max_tau": 0.763215792447318,
         # exact time = tau*max_tau
-        "tau": 0.98,
+        "tau": 1.0,
         # species oriented, if true, pick pathways ending with top_n species,
         #  if False, just top n pathway
         "spe_oriented": True,
         # condense species path, no reactions
-        "species_path": True,
+        "species_path": False,
         # atom followed
         "atom_f": "C",
         "init_s": 62,
         # end species index, either None, or [] or [14, 15]
-        "end_s_idx": [14, 59],
+        "end_s_idx": [14],
         # top n path
         "top_n_p": 10,
         # top n path for gephi to generate coordinates
@@ -35,7 +35,7 @@ def get_local_settings():
         # top n species
         "top_n_s": 10,
         # number of trajectory used to generate pathway list running mc simulation
-        "mc_n_traj": 10000000,
+        "mc_n_traj": 1000000,
         # path integral number of trajectory
         "pi_n_traj": 10000,
         # number of time points when prepare path integral time points
