@@ -1,1 +1,0 @@
-/opt/anaconda/bin/python ./projects/catalytic_cycle/main_driver.py 1>log.txt 2>&1 & 
