@@ -13,7 +13,7 @@
         "job_type": "solve_ODEs_for_concentration_using_SSA"
     },
     "propagator": {
-        "primary_type": "from_file",
+        "primary_type": "recalculate",
         "type": "ssa",
         "sub_type": "time_propagator_s_ct_np_s2m_find_one_transition_pgt",
         "convert_molar_concentration_to_mole_fraction": "no",
