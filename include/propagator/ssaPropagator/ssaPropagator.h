@@ -24,7 +24,10 @@ namespace propagator_sr {
 	public:
 		//template method
 		virtual void propagate_pgt() override;
-
+		/*
+		* read time, pressure, temperature, concentration, drc from file
+		*/
+		void propagator_from_file(std::string tag = "") override;
 
 #if defined(__CHEMKIN_AVAILABLE_) && defined(__LSODE_AVAILABLE_)
 

@@ -508,7 +508,17 @@ namespace propagator_sr {
 		}//chattering group
 
 		//chattering group destruction rate constant,pseudo first order destructive rate constant
-		std::string tag = "dlsode_M";
+		std::string tag = "";
+		if (this->pgt_pt.get<std::string>("propagator.type") == std::string("dlsode")) {
+			if (this->pgt_pt.get<std::string>("propagator.convert_molar_concentration_to_mole_fraction") == std::string("no"))
+				tag += "dlsode_M";
+			else if (this->pgt_pt.get<std::string>("propagator.convert_molar_concentration_to_mole_fraction") == std::string("yes"))
+				tag += "dlsode_fraction";
+		}
+		else if (this->pgt_pt.get<std::string>("propagator.type") == std::string("ssa")) {
+			tag += "ssa_number";
+		}
+
 		std::ofstream fout((this->cwd_pgt + std::string("/output/chattering_group_drc_") + tag + std::string(".csv")).c_str());
 		for (size_t time_i = 0; time_i < chattering_group_k_data_pgt[0].size(); ++time_i) {
 			for (size_t j = 0; j < chattering_group_k_data_pgt.size(); ++j) {
@@ -521,7 +531,7 @@ namespace propagator_sr {
 		fout.clear(); fout.close();
 
 		//print out a specific group ss prob
-		std::size_t group_i_tmp = 2;
+		std::size_t group_i_tmp = 0;
 		fout.open((this->cwd_pgt + std::string("/output/chattering_group_ss_prob_") + tag + std::string(".csv")).c_str());
 		for (size_t time_i = 0; time_i < chattering_group_ss_prob_data_pgt[0].size(); ++time_i) {
 			for (std::size_t j = 0; j < this->sp_chattering_pgt->species_chattering_group_mat[group_i_tmp].size(); ++j) {
@@ -710,7 +720,7 @@ namespace propagator_sr {
 		delete[] FWDR_t; delete[] REVR_t;
 		delete[] RKFT_t; delete[] RKRT_t;
 
-	}
+		}
 
 #endif // __CHEMKIN_AVAILABLE_ && __USE_LOSDE_
 
@@ -948,13 +958,13 @@ namespace propagator_sr {
 			{
 				fout << "  jt = " << lsodestore.jt << std::endl;
 				fout << "  The program should not use this 'jt' value. Please check \"include/fortran_lib/dlsode/opkdmain.f\" for more information.\n" << std::endl;
-			}
+	}
 			fout << std::endl;
-		}
+	}
 
 		fout.close();
 
-	}	//initialize_lsode
+}	//initialize_lsode
 
 #endif // __LSODE_AVAILABLE_
 
@@ -1028,7 +1038,7 @@ namespace propagator_sr {
 			for (int i = 0; i < nkk; ++i) {
 				concentration_data_pgt[i][k] = c_t[i];
 			}
-		}
+	}
 	}
 
 #endif // __CHEMKIN_AVAILABLE_
