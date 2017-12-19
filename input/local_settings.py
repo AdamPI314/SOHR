@@ -35,13 +35,13 @@ def get_local_settings():
         # top n species
         "top_n_s": 10,
         # number of trajectory used to generate pathway list running mc simulation
-        "mc_n_traj": 100,
+        "mc_n_traj": 10000000,
         # path integral number of trajectory
         "pi_n_traj": 10000,
         # number of time points when prepare path integral time points
-        "pi_n_time": 1,
+        "pi_n_time": 10,
         # tag, M or fraction
-        "tag": "M"
+        "tag": "ssa_number"
     }
     return setting
 

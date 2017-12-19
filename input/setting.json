@@ -10,7 +10,7 @@
         "merge_chatterings": "yes"
     },
     "job": {
-        "job_type": "generate_pathway_running_Monte_carlo_trajectory"
+        "job_type": "evaluate_path_integral_over_time"
     },
     "propagator": {
         "primary_type": "from_file",
@@ -69,10 +69,10 @@
         "super_atom": "Q",
         "tau": 1.0,
         "topN": [
-            100
+            10
         ],
         "pathwayEndWith": "ALL",
-        "trajectoryNumber": 100,
+        "trajectoryNumber": 10000,
         "trajectoryNumberVector": [
             1000,
             1000,
