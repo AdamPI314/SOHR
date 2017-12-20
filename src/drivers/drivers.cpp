@@ -52,8 +52,8 @@ void driver::generate_pathway_running_Monte_carlo_trajectory(const std::string &
 	//double target_time_db = rnk_obj.return_temperature_target_time();
 	double tau = pt.get<double>("time.tau");
 
-	double init_time = 0.0 * tau;
-	double end_time = pt.get<double>("pathway.tau")* tau;
+	double init_time = pt.get<double>("pathway.begin_t") * tau;
+	double end_time = pt.get<double>("pathway.end_t")* tau;
 
 	int trajectory_count_limit = pt.get<int>("pathway.trajectory_count_limit");
 
@@ -87,8 +87,8 @@ void driver::generate_species_pathway_running_Monte_carlo_trajectory(const std::
 	//double target_time_db = rnk_obj.return_temperature_target_time();
 	double tau = pt.get<double>("time.tau");
 
-	double init_time = 0.0 * tau;
-	double end_time = pt.get<double>("pathway.tau")* tau;
+	double init_time = pt.get<double>("pathway.begin_t") * tau;
+	double end_time = pt.get<double>("pathway.end_t")* tau;
 
 	int trajectory_count_limit = pt.get<int>("pathway.trajectory_count_limit");
 
@@ -313,7 +313,7 @@ void driver::evaluate_path_AT_over_time(const std::string & main_cwd, const boos
 	//different seed for different core/CPU
 	rnk::concreteReactionNetwork rnk_obj(uncertainties, 0, main_cwd);
 
-	double time = pt.get<double>("time.tau") * pt.get<double>("pathway.tau");
+	double time = pt.get<double>("time.tau") * pt.get<double>("pathway.end_t");
 
 	// evaluate path AT on each core
 	std::vector<rsp::index_int_t> spe_vec; std::vector<rsp::index_int_t> reaction_vec;
@@ -376,7 +376,7 @@ void driver::evaluate_path_AT_no_IT_over_time(const std::string & main_cwd, cons
 	//different seed for different core/CPU
 	rnk::concreteReactionNetwork rnk_obj(uncertainties, 0, main_cwd);
 
-	double time = pt.get<double>("time.tau") * pt.get<double>("pathway.tau");
+	double time = pt.get<double>("time.tau") * pt.get<double>("pathway.end_t");
 
 	// evaluate path AT on each core
 	std::vector<rsp::index_int_t> spe_vec; std::vector<rsp::index_int_t> reaction_vec;
@@ -440,7 +440,7 @@ void driver::evaluate_path_AT_with_SP_over_time(const std::string & main_cwd, co
 	//different seed for different core/CPU
 	rnk::concreteReactionNetwork rnk_obj(uncertainties, 0, main_cwd);
 
-	double time = pt.get<double>("time.tau") * pt.get<double>("pathway.tau");
+	double time = pt.get<double>("time.tau") * pt.get<double>("pathway.end_t");
 
 	// evaluate path AT on each core
 	std::vector<rsp::index_int_t> spe_vec; std::vector<rsp::index_int_t> reaction_vec;
@@ -494,12 +494,12 @@ void driver::write_concentration_at_time_to_file(const boost::mpi::communicator 
 		pgt::dlsodePropagator pgt_obj(uncertainties, main_cwd);
 		if (pt.get<std::string>("propagator.convert_molar_concentration_to_mole_fraction") == std::string("yes")) {
 			pgt_obj.convert_molar_concentration_to_mole_fraction();
-			pgt_obj.spe_concentration_w2f_pgt(pt.get<double>("time.tau") * pt.get<double>("pathway.tau"),
-				pt.get<std::string>("pathway.tau") + std::string("_dlsode_fraction"));
+			pgt_obj.spe_concentration_w2f_pgt(pt.get<double>("time.tau") * pt.get<double>("pathway.end_t"),
+				pt.get<std::string>("pathway.end_t") + std::string("_dlsode_fraction"));
 		}
 		else
-			pgt_obj.spe_concentration_w2f_pgt(pt.get<double>("time.tau") * pt.get<double>("pathway.tau"),
-				pt.get<std::string>("pathway.tau") + std::string("_dlsode_M"));
+			pgt_obj.spe_concentration_w2f_pgt(pt.get<double>("time.tau") * pt.get<double>("pathway.end_t"),
+				pt.get<std::string>("pathway.end_t") + std::string("_dlsode_M"));
 	}
 }
 
@@ -571,8 +571,8 @@ void driver::generate_pathway_running_Monte_carlo_trajectory(const boost::mpi::c
 	//double target_time_db = rnk_obj.return_temperature_target_time();
 	double tau = pt.get<double>("time.tau");
 
-	double init_time = 0.0 * tau;
-	double end_time = pt.get<double>("pathway.tau")* tau;
+	double init_time = pt.get<double>("pathway.begin_t") * tau;
+	double end_time = pt.get<double>("pathway.end_t")* tau;
 
 	int trajectory_count_limit = pt.get<int>("pathway.trajectory_count_limit");
 
@@ -620,8 +620,8 @@ void driver::generate_species_pathway_running_Monte_carlo_trajectory(const boost
 	//double target_time_db = rnk_obj.return_temperature_target_time();
 	double tau = pt.get<double>("time.tau");
 
-	double init_time = 0.0 * tau;
-	double end_time = pt.get<double>("pathway.tau")* tau;
+	double init_time = pt.get<double>("pathway.begin_t") * tau;
+	double end_time = pt.get<double>("pathway.end_t")* tau;
 
 	int trajectory_count_limit = pt.get<int>("pathway.trajectory_count_limit");
 
@@ -892,7 +892,7 @@ void driver::evaluate_path_AT_over_time(const boost::mpi::communicator & world, 
 		//different seed for different core/CPU
 		rnk::concreteReactionNetwork rnk_obj(uncertainties, 0, main_cwd);
 
-		double time = pt.get<double>("time.tau") * pt.get<double>("pathway.tau");
+		double time = pt.get<double>("time.tau") * pt.get<double>("pathway.end_t");
 
 		// evaluate path AT on each core
 		std::vector<rsp::index_int_t> spe_vec; std::vector<rsp::index_int_t> reaction_vec;
@@ -958,7 +958,7 @@ void driver::evaluate_path_AT_no_IT_over_time(const boost::mpi::communicator & w
 		//different seed for different core/CPU
 		rnk::concreteReactionNetwork rnk_obj(uncertainties, 0, main_cwd);
 
-		double time = pt.get<double>("time.tau") * pt.get<double>("pathway.tau");
+		double time = pt.get<double>("time.tau") * pt.get<double>("pathway.end_t");
 
 		// evaluate path AT on each core
 		std::vector<rsp::index_int_t> spe_vec; std::vector<rsp::index_int_t> reaction_vec;
@@ -1024,7 +1024,7 @@ void driver::evaluate_path_AT_with_SP_over_time(const boost::mpi::communicator &
 		//different seed for different core/CPU
 		rnk::concreteReactionNetwork rnk_obj(uncertainties, 0, main_cwd);
 
-		double time = pt.get<double>("time.tau") * pt.get<double>("pathway.tau");
+		double time = pt.get<double>("time.tau") * pt.get<double>("pathway.end_t");
 
 		// evaluate path AT on each core
 		std::vector<rsp::index_int_t> spe_vec; std::vector<rsp::index_int_t> reaction_vec;
@@ -1111,7 +1111,7 @@ void driver::ODE_solver_MC_trajectory_single_core(const boost::mpi::communicator
 		rnkODEs::reactionNetworkODESolver rnkODEs_obj(uncertainties, world.rank(), main_cwd);
 
 		double tau = pt.get<double>("time.tau");
-		double init_time = 0.0 * tau;
+		double init_time = pt.get<double>("pathway.begin_t") * tau;
 		double end_time = 1.0 * tau;
 
 		rnkODEs_obj.ODE_pathway_sim_N(init_time, end_time, pt.get<int>("pathway.trajectoryNumber"));
@@ -1136,8 +1136,8 @@ void driver::ODE_solver_MC_trajectory_s_ct_np_parallel(const boost::mpi::communi
 
 		iterationNumber = pt.get<std::size_t>("SOHR_init.iterationNumber");
 		trajectoryNumber_total = pt.get<std::size_t>("pathway.trajectoryNumber");
-		init_time = 0.0*pt.get<double>("time.tau");
-		end_time = pt.get<double>("pathway.tau")*pt.get<double>("time.tau");
+		init_time = pt.get<double>("pathway.begin_t")*pt.get<double>("time.tau");
+		end_time = pt.get<double>("pathway.end_t")*pt.get<double>("time.tau");
 	}
 
 	//broadcast
@@ -1228,8 +1228,8 @@ void driver::ODE_solver_MC_trajectory_cv_parallel(const boost::mpi::communicator
 
 		iterationNumber = pt.get<std::size_t>("SOHR_init.iterationNumber");
 		trajectoryNumber_total = pt.get<std::size_t>("pathway.trajectoryNumber");
-		init_time = 0.0*pt.get<double>("time.tau");
-		end_time = pt.get<double>("pathway.tau")*pt.get<double>("time.tau");
+		init_time = pt.get<double>("pathway.begin_t")*pt.get<double>("time.tau");
+		end_time = pt.get<double>("pathway.end_t")*pt.get<double>("time.tau");
 	}
 
 	//broadcast

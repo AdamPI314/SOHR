@@ -9,25 +9,41 @@ def get_local_settings():
     local settings for C++ codes
     """
     setting = {
-        # end time
-        "end_t": 1.0e08,
-        # critical time, after which print out more data points
-        "critical_t": 1.0e08,
+        "system": {
+            "condition": "cv",
+            "initializer": "dlsode"
+        },
+        "network": {
+            "merge_chatterings": "yes"
+        },
+        "propagator": {
+            "primary_type": "from_file",
+            "type": "dlsode",
+            "sub_type": "time_propagator_cv_s2m_pgt",
+            "convert_molar_concentration_to_mole_fraction": "no",
+            "normalize_initial_concentration": "no"
+        },
+        # trajectory max time, used to solve referene trajectory
+        "traj_max_t": 0.763449999652352496,
+        # trajectory critical time, after which print out more data points
+        "traj_critical_t": 0.751999999880706205,
         # reference time, to a combustion system, this is gonna be the ignition delay time
         # for Propane, time when temperature=1800K
-        "max_tau": 38.8,
-        # exact time = tau*max_tau
-        "tau": 1.0,
+        "tau": 0.763215792447318,
+        # beginning time, for pathway or for trajectory, exact time = begin_t*max_tau
+        "begin_t": 0.0,
+        # end time, for pathway or for trajectory, exact time = end_t*max_tau
+        "end_t": 1.0,
         # species oriented, if true, pick pathways ending with top_n species,
         #  if False, just top n pathway
-        "spe_oriented": False,
+        "spe_oriented": True,
         # condense species path, no reactions
         "species_path": False,
         # atom followed
-        "atom_f": "X",
-        "init_s": 0,
+        "atom_f": "C",
+        "init_s": 62,
         # end species index, either None, or [] or [14, 15]
-        "end_s_idx": [],
+        "end_s_idx": [14],
         # top n path
         "top_n_p": 10,
         # top n path for gephi to generate coordinates
@@ -35,13 +51,13 @@ def get_local_settings():
         # top n species
         "top_n_s": 10,
         # number of trajectory used to generate pathway list running mc simulation
-        "mc_n_traj": 10000000,
+        "mc_n_traj": 1000000,
         # path integral number of trajectory
         "pi_n_traj": 10000,
         # number of time points when prepare path integral time points
-        "pi_n_time": 10,
+        "pi_n_time": 1,
         # tag, M or fraction
-        "tag": "ssa_number"
+        "tag": "M"
     }
     return setting
 
@@ -53,37 +69,69 @@ def get_fast_rxn_trapped_spe():
     """
     fast_transitions = [
         {
-            # 0	1	2A=>A2
-            # reactants	2	A	products	4	A2
-            # 2	3	A2=>2A
-            # reactants	4	A2	products	2	A
-            "rxn": [0, 2],
-            "spe": [2, 4]
+            # 1068    549     O2+npropyl=npropyloo
+            # reactants       9       O2      60      npropyl products        78      npropyloo
+            # 1069    -549    O2+npropyl=npropyloo
+            "rxn": [1068, 1069],
+            "spe": [60, 78]
         },
+        # 1096    565     O2+ipropyl=ipropyloo
+        # reactants       9       O2      61      ipropyl products        80      ipropyloo
+        # 1097    -565    O2+ipropyl=ipropyloo
         {
-            # 4	5	O+A2=>OA2
-            # reactants	4	A2	1	O	products	6	OA2
-            # 6	7	OA2 = >O + A2
-            # reactants	6	OA2	products	4	A2	1	O
-            "rxn": [4, 6],
-            "spe": [4, 6]
+            "rxn": [1096, 1097],
+            "spe": [61, 80]
         },
+        # 132     69      CH3+O2(+M)=CH3OO(+M)
+        # reactants       25      CH3     9       O2      products        27      CH3OO
+        # 133     -69     CH3+O2(+M)=CH3OO(+M)
         {
-            # 1	2	2B = >B2
-            # reactants	3	B	products	5	B2
-            # 3	4	B2 = >2B
-            # reactants	5	B2	products	3	B
-            "rxn": [1, 3],
-            "spe": [3, 5]
+            "rxn": [132, 133],
+            "spe": [25, 27]
         },
+        # 1116    575     O2+QOOH_1=well_1
+        # reactants       9       O2      87      QOOH_1  products        90      well_1
+        # 1117    -575    O2+QOOH_1=well_1
         {
-            # 5	6	O + B2= >OB2
-            # reactants	5	B2	1	O	products	7	OB2
-            # 7	8	OB2 = >O + B2
-            # reactants	7	OB2	products	5	B2	1	O
-            "rxn": [5, 7],
-            "spe": [5, 7]
+            "rxn": [1116, 1117],
+            "spe": [87, 90]
+        },
+        # 348     180     C2H5+O2=CH3CH2OO
+        # reactants       39      C2H5    9       O2      products        50      CH3CH2OO
+        # 349     -180    C2H5+O2=CH3CH2OO
+        {
+            "rxn": [348, 349],
+            "spe": [39, 50]
+        },
+        # 1080    556     npropyloo=QOOH_1        557     npropyloo=QOOH_1
+        # reactants       78      npropyloo       products        87      QOOH_1
+        # 1081    -556    npropyloo=QOOH_1        -557    npropyloo=QOOH_1
+        {
+            "rxn": [1080, 1081],
+            "spe": [78, 87]
+        },
+        # 586     300     O2C2H4OH=CH2CH2OH+O2
+        # reactants       85      O2C2H4OH        products        54      CH2CH2OH        9       O2
+        # 587     -300    O2C2H4OH=CH2CH2OH+O2
+        {
+            "rxn": [586, 587],
+            "spe": [85, 54]
+        },
+        # 1042    536     allyloxy=vinoxylmethyl
+        # reactants       72      allyloxy        products        108     vinoxylmethyl
+        # 1043    -536    allyloxy=vinoxylmethyl
+        {
+            "rxn": [1042, 1043],
+            "spe": [72, 108]
+        },
+        # 434     224     acetyl+O2=acetylperoxy
+        # reactants       9       O2      45      acetyl  products        47      acetylperoxy
+        # 435     -224    acetyl+O2=acetylperoxy
+        {
+            "rxn": [434, 435],
+            "spe": [45, 47]
         }
+
     ]
 
     fast_reaction_list = []
@@ -97,7 +145,7 @@ def get_fast_rxn_trapped_spe():
 
     fast_reaction = OrderedDict(fast_reaction_list)
     trapped_species = OrderedDict(trapped_species_list)
-    print(fast_reaction, trapped_species)
+    # print(fast_reaction, trapped_species)
     return fast_reaction, trapped_species
 
 
