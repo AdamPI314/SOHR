@@ -10,12 +10,12 @@
         "merge_chatterings": "yes"
     },
     "job": {
-        "job_type": "solve_ODEs_for_concentration_using_LSODE"
+        "job_type": "evaluate_path_integral_over_time"
     },
     "propagator": {
         "primary_type": "from_file",
         "type": "dlsode",
-        "sub_type": "temperature_propagator_cv_s2m_pgt",
+        "sub_type": "time_propagator_cv_s2m_pgt",
         "convert_molar_concentration_to_mole_fraction": "no",
         "normalize_initial_concentration": "yes"
     },
@@ -24,7 +24,7 @@
         "max_time": 0.85,
         "critical_time": 0.7519999998807062,
         "sys_min_time": 1e-11,
-        "tau": 0.763449999652352
+        "tau": 0.85
     },
     "chem_init": {
         "pressure_atm": 9.86923,

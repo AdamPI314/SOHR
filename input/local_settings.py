@@ -19,7 +19,7 @@ def get_local_settings():
         "propagator": {
             "primary_type": "from_file",
             "type": "dlsode",
-            "sub_type": "temperature_propagator_cv_s2m_pgt",
+            "sub_type": "time_propagator_cv_s2m_pgt",
             "convert_molar_concentration_to_mole_fraction": "no",
             "normalize_initial_concentration": "yes"
         },
@@ -29,7 +29,7 @@ def get_local_settings():
         "traj_critical_t": 0.751999999880706205,
         # reference time, to a combustion system, this is gonna be the ignition delay time
         # for Propane, time when temperature=1800K
-        "tau": 0.763449999652352,
+        "tau": 0.85,
         # beginning time, for pathway or for trajectory, exact time = begin_t*max_tau
         "begin_t": 0.0,
         # end time, for pathway or for trajectory, exact time = end_t*max_tau
