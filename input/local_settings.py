@@ -24,28 +24,29 @@ def get_local_settings():
             "normalize_initial_concentration": "yes"
         },
         # trajectory max time, used to solve referene trajectory
-        "traj_max_t": 0.85,
+        "traj_max_t": 0.779074999626780951,
         # trajectory critical time, after which print out more data points
         "traj_critical_t": 0.751999999880706205,
         # reference time, to a combustion system, this is gonna be the ignition delay time
         # for Propane, time when temperature=1800K
-        "tau": 0.85,
-        # beginning time, for pathway or for trajectory, exact time = begin_t*max_tau
+        "tau": 0.777655955130997,
+        # beginning time, for pathway or for trajectory, exact time = begin_t*tau
         "begin_t": 0.0,
-        # end time, for pathway or for trajectory, exact time = end_t*max_tau
-        "end_t": 1.0,
+        # end time, for pathway or for trajectory, exact time = end_t*tau
+        # here 0.25718313951098054 is actually 0.2 seconds
+        "end_t": 0.25718313951098054,
         # species oriented, if true, pick pathways ending with top_n species,
         #  if False, just top n pathway
-        "spe_oriented": True,
+        "spe_oriented": False,
         # condense species path, no reactions
         "species_path": False,
         # atom followed
         "atom_f": "C",
         "init_s": 62,
         # end species index, either None, or [] or [14, 15]
-        "end_s_idx": [14],
+        "end_s_idx": [],
         # top n path
-        "top_n_p": 10,
+        "top_n_p": 100,
         # top n path for gephi to generate coordinates
         "top_n_p_gephi": 10,
         # top n species

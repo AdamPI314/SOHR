@@ -21,10 +21,10 @@
     },
     "time": {
         "min_time": 0,
-        "max_time": 0.85,
+        "max_time": 0.779074999626781,
         "critical_time": 0.7519999998807062,
         "sys_min_time": 1e-11,
-        "tau": 0.85
+        "tau": 0.777655955130997
     },
     "chem_init": {
         "pressure_atm": 9.86923,
@@ -69,7 +69,7 @@
         "atom_followed": "C",
         "super_atom": "X",
         "begin_t": 0.0,
-        "end_t": 1.0,
+        "end_t": 0.25718313951098054,
         "topN": [
             100
         ],

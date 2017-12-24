@@ -53,7 +53,7 @@ void driver::generate_pathway_running_Monte_carlo_trajectory(const std::string &
 	double tau = pt.get<double>("time.tau");
 
 	double init_time = pt.get<double>("pathway.begin_t") * tau;
-	double end_time = pt.get<double>("pathway.end_t")* tau;
+	double end_time = pt.get<double>("pathway.end_t") * tau;
 
 	int trajectory_count_limit = pt.get<int>("pathway.trajectory_count_limit");
 
@@ -88,7 +88,7 @@ void driver::generate_species_pathway_running_Monte_carlo_trajectory(const std::
 	double tau = pt.get<double>("time.tau");
 
 	double init_time = pt.get<double>("pathway.begin_t") * tau;
-	double end_time = pt.get<double>("pathway.end_t")* tau;
+	double end_time = pt.get<double>("pathway.end_t") * tau;
 
 	int trajectory_count_limit = pt.get<int>("pathway.trajectory_count_limit");
 
