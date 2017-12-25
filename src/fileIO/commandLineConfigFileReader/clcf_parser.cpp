@@ -34,9 +34,6 @@ clcf_parser::clcf_parser() :generic("Generic options"), config("Configuration"),
 			"Num of trajectory")
 		("topN,T", po::value<int>()->default_value(1),
 			"topN pathways")
-		("pathwayEndWith,E",
-			po::value<std::string>()->default_value(std::string("ALL")),
-			"pathway ending with a species, specify which species it is")
 		;
 
 	// Hidden options, will be allowed both on command line and

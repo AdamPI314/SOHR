@@ -11,8 +11,7 @@
 
 #define PRINT_PRECISION 10
 
-
-void driver::parse_parameters(const int argc, char ** argv, po::variables_map & vm, std::string &main_cwd, boost::property_tree::ptree & pt)
+void driver::parse_parameters(const int argc, char **argv, po::variables_map &vm, std::string &main_cwd, boost::property_tree::ptree &pt)
 {
 	// read vm
 	clcf_parser clcf_parser_obj;
@@ -20,28 +19,28 @@ void driver::parse_parameters(const int argc, char ** argv, po::variables_map & 
 	clcf_parser_obj.get_vm(vm);
 
 	// read main_cwd
-	if (vm.count("cwd")) {
+	if (vm.count("cwd"))
+	{
 		main_cwd = vm["cwd"].as<std::string>();
 	}
-	else {
+	else
+	{
 		main_cwd = boost::filesystem::current_path().string();
 	}
 	//std::cout << "main_cwd:\t" << boost::filesystem::canonical(main_cwd) << std::endl;
 
 	// read pt
 	boost::property_tree::read_json(main_cwd + string("/input/setting.json"), pt, std::locale());
-
 }
 
 #ifdef __NO_USE_MPI_
 
-void driver::generate_pathway_running_Monte_carlo_trajectory(const std::string & main_cwd, const boost::property_tree::ptree & pt)
+void driver::generate_pathway_running_Monte_carlo_trajectory(const std::string &main_cwd, const boost::property_tree::ptree &pt)
 {
 	std::vector<double> uncertainties;
 
 	//initialize MPI stuff
 	int local_N = pt.get<int>("pathway.trajectoryNumber");
-
 
 	fileIO::fileIO::read_generate_uncertainties_w2f_nominal(uncertainties,
 		main_cwd + std::string("/input/uncertainties.inp"));
@@ -61,22 +60,21 @@ void driver::generate_pathway_running_Monte_carlo_trajectory(const std::string &
 	statistics stat;
 
 	// generate pathway one trajectory
-	for (int i = 0; i < local_N; ++i) {
+	for (int i = 0; i < local_N; ++i)
+	{
 		auto str_t = rnk_obj.pathway_sim_once(init_time, end_time, rnk_obj.return_initial_spe(), pt.get<std::string>("pathway.atom_followed")); //vertex 2 is H2
 		stat.insert_pathway_stat(str_t);
 	}
 
 	stat.sort_print_to_file_stat(main_cwd + std::string("/output/pathway_stat.csv"), trajectory_count_limit);
-
 }
 
-void driver::generate_species_pathway_running_Monte_carlo_trajectory(const std::string & main_cwd, const boost::property_tree::ptree & pt)
+void driver::generate_species_pathway_running_Monte_carlo_trajectory(const std::string &main_cwd, const boost::property_tree::ptree &pt)
 {
 	std::vector<double> uncertainties;
 
 	//initialize MPI stuff
 	int local_N = pt.get<int>("pathway.trajectoryNumber");
-
 
 	fileIO::fileIO::read_generate_uncertainties_w2f_nominal(uncertainties,
 		main_cwd + std::string("/input/uncertainties.inp"));
@@ -96,7 +94,8 @@ void driver::generate_species_pathway_running_Monte_carlo_trajectory(const std::
 	statistics stat;
 
 	// generate pathway one trajectory
-	for (int i = 0; i < local_N; ++i) {
+	for (int i = 0; i < local_N; ++i)
+	{
 		auto str_t = rnk_obj.species_pathway_sim_once(init_time, end_time, rnk_obj.return_initial_spe(), pt.get<std::string>("pathway.atom_followed")); //vertex 2 is H2
 		stat.insert_pathway_stat(str_t);
 	}
@@ -104,15 +103,14 @@ void driver::generate_species_pathway_running_Monte_carlo_trajectory(const std::
 	stat.sort_print_to_file_stat(main_cwd + std::string("/output/species_pathway_stat.csv"), trajectory_count_limit);
 }
 
-void driver::evaluate_path_integral_over_time(const std::string & main_cwd, const boost::property_tree::ptree & pt)
+void driver::evaluate_path_integral_over_time(const std::string &main_cwd, const boost::property_tree::ptree &pt)
 {
 	std::vector<double> uncertainties;
 
 	//pathway name-pathway we are interested
 	std::vector<std::string> pathway_vec;
 	//time points, every pathway has its own set of time points
-	std::vector<std::vector<double> > time_Mat;
-
+	std::vector<std::vector<double>> time_Mat;
 
 	fileIO::fileIO::read_generate_uncertainties_w2f_nominal(uncertainties,
 		main_cwd + std::string("/input/uncertainties.inp"));
@@ -122,28 +120,22 @@ void driver::evaluate_path_integral_over_time(const std::string & main_cwd, cons
 	pathwayHandler::get_pathway(main_cwd + std::string("/output/pathway_name_candidate.csv"), pathway_vec_t,
 		std::numeric_limits<int>::max() - 1000); //all pathways
 
-
 	std::vector<std::size_t> topN_vec;
-	for (auto key1 : pt.get_child("pathway.topN")) {
+	for (auto key1 : pt.get_child("pathway.topN"))
+	{
 		topN_vec.push_back(key1.second.get_value<size_t>());
 	}
 	std::size_t topN = topN_vec.front();
 	topN = (topN <= pathway_vec_t.size()) ? topN : pathway_vec_t.size();
 
-	if (pt.get<std::string>("pathway.pathwayEndWith") == "ALL") {
-		pathway_vec.assign(pathway_vec_t.begin(), pathway_vec_t.begin() + topN);
-	}
-	else {
-		pathwayHandler::pathway_ends_with(pt.get<std::string>("pathway.pathwayEndWith"), pathway_vec_t, pathway_vec,
-			topN); //topN pathways
-	}
+	pathway_vec.assign(pathway_vec_t.begin(), pathway_vec_t.begin() + topN);
 
 	//initialize the time points we are going to calculate
 	//read file pathway_time.csv
 	time_Mat = fileIO::fileIO::read_topN_line_csv_matrix(main_cwd + std::string("/output/pathway_time_candidate.csv"), topN);
 
 	//pathway prob result
-	std::vector<std::vector<double> > prob_Mat(pathway_vec.size(), std::vector<double>(time_Mat[0].size(), 0.0));
+	std::vector<std::vector<double>> prob_Mat(pathway_vec.size(), std::vector<double>(time_Mat[0].size(), 0.0));
 
 	////create rxn_network, generate pathway
 	size_t trajectoryNumber_local = pt.get<std::size_t>("pathway.trajectoryNumber");
@@ -155,11 +147,15 @@ void driver::evaluate_path_integral_over_time(const std::string & main_cwd, cons
 
 	// evaluate path integral on each core
 	double p_p_db = 0.0;
-	std::vector<rsp::index_int_t> spe_vec; std::vector<rsp::index_int_t> reaction_vec;
+	std::vector<rsp::index_int_t> spe_vec;
+	std::vector<rsp::index_int_t> reaction_vec;
 
-	for (size_t i = 0; i < prob_Mat.size(); ++i) {
-		for (size_t j = 0; j < prob_Mat[0].size(); ++j) {
-			for (size_t k = 0; k < trajectoryNumber_local; ++k) {
+	for (size_t i = 0; i < prob_Mat.size(); ++i)
+	{
+		for (size_t j = 0; j < prob_Mat[0].size(); ++j)
+		{
+			for (size_t k = 0; k < trajectoryNumber_local; ++k)
+			{
 				rnk_obj.parse_pathway_to_vector(pathway_vec[i], spe_vec, reaction_vec);
 				p_p_db = rnk_obj.pathway_prob_input_pathway_sim_once(0.0, time_Mat[i][j] * tau,
 					spe_vec, reaction_vec, pt.get<std::string>("pathway.atom_followed"));
@@ -169,10 +165,13 @@ void driver::evaluate_path_integral_over_time(const std::string & main_cwd, cons
 	}
 
 	std::ofstream fout((main_cwd + std::string("/output/pathway_prob.csv")).c_str(), std::ofstream::out);
-	for (size_t i = 0; i < prob_Mat.size(); ++i) {
-		for (size_t j = 0; j < prob_Mat[0].size(); ++j) {
+	for (size_t i = 0; i < prob_Mat.size(); ++i)
+	{
+		for (size_t j = 0; j < prob_Mat[0].size(); ++j)
+		{
 			fout << setprecision(PRINT_PRECISION) << prob_Mat[i][j];
-			if (j != (prob_Mat[0].size() - 1)) {
+			if (j != (prob_Mat[0].size() - 1))
+			{
 				fout << ",";
 			}
 		}
@@ -183,23 +182,22 @@ void driver::evaluate_path_integral_over_time(const std::string & main_cwd, cons
 	fout.clear();
 	fout.close();
 	fout.open((main_cwd + std::string("/output/pathway_name_selected.csv")).c_str(), std::ofstream::out);
-	for (size_t i = 0; i < pathway_vec.size(); ++i) {
+	for (size_t i = 0; i < pathway_vec.size(); ++i)
+	{
 		fout << pathway_vec[i] << std::endl;
 	}
 	fout.clear();
 	fout.close();
-
 }
 
-void driver::evaluate_species_path_integral_over_time(const std::string & main_cwd, const boost::property_tree::ptree & pt)
+void driver::evaluate_species_path_integral_over_time(const std::string &main_cwd, const boost::property_tree::ptree &pt)
 {
 	std::vector<double> uncertainties;
 
 	//pathway name-pathway we are interested
 	std::vector<std::string> pathway_vec;
 	//time points, every pathway has its own set of time points
-	std::vector<std::vector<double> > time_Mat;
-
+	std::vector<std::vector<double>> time_Mat;
 
 	fileIO::fileIO::read_generate_uncertainties_w2f_nominal(uncertainties,
 		main_cwd + std::string("/input/uncertainties.inp"));
@@ -209,28 +207,22 @@ void driver::evaluate_species_path_integral_over_time(const std::string & main_c
 	pathwayHandler::get_pathway(main_cwd + std::string("/output/species_pathway_name_candidate.csv"), pathway_vec_t,
 		std::numeric_limits<int>::max() - 1000); //all pathways
 
-
 	std::vector<std::size_t> topN_vec;
-	for (auto key1 : pt.get_child("pathway.topN")) {
+	for (auto key1 : pt.get_child("pathway.topN"))
+	{
 		topN_vec.push_back(key1.second.get_value<size_t>());
 	}
 	std::size_t topN = topN_vec.front();
 	topN = (topN <= pathway_vec_t.size()) ? topN : pathway_vec_t.size();
 
-	if (pt.get<std::string>("pathway.pathwayEndWith") == "ALL") {
-		pathway_vec.assign(pathway_vec_t.begin(), pathway_vec_t.begin() + topN);
-	}
-	else {
-		pathwayHandler::pathway_ends_with(pt.get<std::string>("pathway.pathwayEndWith"), pathway_vec_t, pathway_vec,
-			topN); //topN pathways
-	}
+	pathway_vec.assign(pathway_vec_t.begin(), pathway_vec_t.begin() + topN);
 
 	//initialize the time points we are going to calculate
 	//read file pathway_time.csv
 	time_Mat = fileIO::fileIO::read_topN_line_csv_matrix(main_cwd + std::string("/output/species_pathway_time_candidate.csv"), topN);
 
 	//pathway prob result
-	std::vector<std::vector<double> > prob_Mat(pathway_vec.size(), std::vector<double>(time_Mat[0].size(), 0.0));
+	std::vector<std::vector<double>> prob_Mat(pathway_vec.size(), std::vector<double>(time_Mat[0].size(), 0.0));
 
 	////create rxn_network, generate pathway
 	size_t trajectoryNumber_local = pt.get<std::size_t>("pathway.trajectoryNumber");
@@ -242,11 +234,15 @@ void driver::evaluate_species_path_integral_over_time(const std::string & main_c
 
 	// evaluate path integral on each core
 	double p_p_db = 0.0;
-	std::vector<rsp::index_int_t> spe_vec; std::vector<rsp::index_int_t> reaction_vec;
+	std::vector<rsp::index_int_t> spe_vec;
+	std::vector<rsp::index_int_t> reaction_vec;
 
-	for (size_t i = 0; i < prob_Mat.size(); ++i) {
-		for (size_t j = 0; j < prob_Mat[0].size(); ++j) {
-			for (size_t k = 0; k < trajectoryNumber_local; ++k) {
+	for (size_t i = 0; i < prob_Mat.size(); ++i)
+	{
+		for (size_t j = 0; j < prob_Mat[0].size(); ++j)
+		{
+			for (size_t k = 0; k < trajectoryNumber_local; ++k)
+			{
 				rnk_obj.parse_pathway_to_vector(pathway_vec[i], spe_vec, reaction_vec);
 				p_p_db = rnk_obj.species_pathway_prob_input_pathway_sim_once(0.0, time_Mat[i][j] * tau,
 					spe_vec, reaction_vec, pt.get<std::string>("pathway.atom_followed"));
@@ -256,10 +252,13 @@ void driver::evaluate_species_path_integral_over_time(const std::string & main_c
 	}
 
 	std::ofstream fout((main_cwd + std::string("/output/species_pathway_prob.csv")).c_str(), std::ofstream::out);
-	for (size_t i = 0; i < prob_Mat.size(); ++i) {
-		for (size_t j = 0; j < prob_Mat[0].size(); ++j) {
+	for (size_t i = 0; i < prob_Mat.size(); ++i)
+	{
+		for (size_t j = 0; j < prob_Mat[0].size(); ++j)
+		{
 			fout << setprecision(PRINT_PRECISION) << prob_Mat[i][j];
-			if (j != (prob_Mat[0].size() - 1)) {
+			if (j != (prob_Mat[0].size() - 1))
+			{
 				fout << ",";
 			}
 		}
@@ -270,14 +269,15 @@ void driver::evaluate_species_path_integral_over_time(const std::string & main_c
 	fout.clear();
 	fout.close();
 	fout.open((main_cwd + std::string("/output/species_pathway_name_selected.csv")).c_str(), std::ofstream::out);
-	for (size_t i = 0; i < pathway_vec.size(); ++i) {
+	for (size_t i = 0; i < pathway_vec.size(); ++i)
+	{
 		fout << pathway_vec[i] << std::endl;
 	}
 	fout.clear();
 	fout.close();
 }
 
-void driver::evaluate_path_AT_over_time(const std::string & main_cwd, const boost::property_tree::ptree & pt)
+void driver::evaluate_path_AT_over_time(const std::string &main_cwd, const boost::property_tree::ptree &pt)
 {
 	std::vector<double> uncertainties;
 
@@ -293,22 +293,17 @@ void driver::evaluate_path_AT_over_time(const std::string & main_cwd, const boos
 		std::numeric_limits<int>::max() - 1000); //all pathways
 
 	std::vector<std::size_t> topN_vec;
-	for (auto key1 : pt.get_child("pathway.topN")) {
+	for (auto key1 : pt.get_child("pathway.topN"))
+	{
 		topN_vec.push_back(key1.second.get_value<size_t>());
 	}
 	std::size_t topN = topN_vec.front();
 	topN = (topN <= pathway_vec_t.size()) ? topN : pathway_vec_t.size();
 
-	if (pt.get<std::string>("pathway.pathwayEndWith") == "ALL") {
-		pathway_vec.assign(pathway_vec_t.begin(), pathway_vec_t.begin() + topN);
-	}
-	else {
-		pathwayHandler::pathway_ends_with(pt.get<std::string>("pathway.pathwayEndWith"), pathway_vec_t, pathway_vec,
-			topN); //topN pathways
-	}
+	pathway_vec.assign(pathway_vec_t.begin(), pathway_vec_t.begin() + topN);
 
 	size_t trajectoryNumber_local = pt.get<std::size_t>("pathway.trajectoryNumber");
-	std::vector< std::vector<double> > path_AT_vec(pathway_vec.size(), std::vector<double>(trajectoryNumber_local, 0.0));
+	std::vector<std::vector<double>> path_AT_vec(pathway_vec.size(), std::vector<double>(trajectoryNumber_local, 0.0));
 
 	//different seed for different core/CPU
 	rnk::concreteReactionNetwork rnk_obj(uncertainties, 0, main_cwd);
@@ -316,20 +311,26 @@ void driver::evaluate_path_AT_over_time(const std::string & main_cwd, const boos
 	double time = pt.get<double>("time.tau") * pt.get<double>("pathway.end_t");
 
 	// evaluate path AT on each core
-	std::vector<rsp::index_int_t> spe_vec; std::vector<rsp::index_int_t> reaction_vec;
+	std::vector<rsp::index_int_t> spe_vec;
+	std::vector<rsp::index_int_t> reaction_vec;
 
-	for (std::size_t i = 0; i < pathway_vec.size(); ++i) {
+	for (std::size_t i = 0; i < pathway_vec.size(); ++i)
+	{
 		rnk_obj.parse_pathway_to_vector(pathway_vec[i], spe_vec, reaction_vec);
-		for (size_t j = 0; j < trajectoryNumber_local; ++j) {
+		for (size_t j = 0; j < trajectoryNumber_local; ++j)
+		{
 			path_AT_vec[i][j] = rnk_obj.pathway_AT_input_pathway_sim_once(0.0, time, spe_vec, reaction_vec);
 		}
 	}
 
 	std::ofstream fout((main_cwd + std::string("/output/species_pathway_AT.csv")).c_str(), std::ofstream::out);
-	for (size_t i = 0; i < path_AT_vec.size(); ++i) {
-		for (size_t j = 0; j < path_AT_vec[0].size(); ++j) {
+	for (size_t i = 0; i < path_AT_vec.size(); ++i)
+	{
+		for (size_t j = 0; j < path_AT_vec[0].size(); ++j)
+		{
 			fout << setprecision(PRINT_PRECISION) << path_AT_vec[i][j];
-			if (j != (path_AT_vec[0].size() - 1)) {
+			if (j != (path_AT_vec[0].size() - 1))
+			{
 				fout << ",";
 			}
 		}
@@ -340,7 +341,7 @@ void driver::evaluate_path_AT_over_time(const std::string & main_cwd, const boos
 	fout.close();
 }
 
-void driver::evaluate_path_AT_no_IT_over_time(const std::string & main_cwd, const boost::property_tree::ptree & pt)
+void driver::evaluate_path_AT_no_IT_over_time(const std::string &main_cwd, const boost::property_tree::ptree &pt)
 {
 	std::vector<double> uncertainties;
 
@@ -356,22 +357,17 @@ void driver::evaluate_path_AT_no_IT_over_time(const std::string & main_cwd, cons
 		std::numeric_limits<int>::max() - 1000); //all pathways
 
 	std::vector<std::size_t> topN_vec;
-	for (auto key1 : pt.get_child("pathway.topN")) {
+	for (auto key1 : pt.get_child("pathway.topN"))
+	{
 		topN_vec.push_back(key1.second.get_value<size_t>());
 	}
 	std::size_t topN = topN_vec.front();
 	topN = (topN <= pathway_vec_t.size()) ? topN : pathway_vec_t.size();
 
-	if (pt.get<std::string>("pathway.pathwayEndWith") == "ALL") {
-		pathway_vec.assign(pathway_vec_t.begin(), pathway_vec_t.begin() + topN);
-	}
-	else {
-		pathwayHandler::pathway_ends_with(pt.get<std::string>("pathway.pathwayEndWith"), pathway_vec_t, pathway_vec,
-			topN); //topN pathways
-	}
+	pathway_vec.assign(pathway_vec_t.begin(), pathway_vec_t.begin() + topN);
 
 	size_t trajectoryNumber_local = pt.get<std::size_t>("pathway.trajectoryNumber");
-	std::vector< std::vector<double> > path_AT_vec(pathway_vec.size(), std::vector<double>(trajectoryNumber_local, 0.0));
+	std::vector<std::vector<double>> path_AT_vec(pathway_vec.size(), std::vector<double>(trajectoryNumber_local, 0.0));
 
 	//different seed for different core/CPU
 	rnk::concreteReactionNetwork rnk_obj(uncertainties, 0, main_cwd);
@@ -379,20 +375,26 @@ void driver::evaluate_path_AT_no_IT_over_time(const std::string & main_cwd, cons
 	double time = pt.get<double>("time.tau") * pt.get<double>("pathway.end_t");
 
 	// evaluate path AT on each core
-	std::vector<rsp::index_int_t> spe_vec; std::vector<rsp::index_int_t> reaction_vec;
+	std::vector<rsp::index_int_t> spe_vec;
+	std::vector<rsp::index_int_t> reaction_vec;
 
-	for (std::size_t i = 0; i < pathway_vec.size(); ++i) {
+	for (std::size_t i = 0; i < pathway_vec.size(); ++i)
+	{
 		rnk_obj.parse_pathway_to_vector(pathway_vec[i], spe_vec, reaction_vec);
-		for (size_t j = 0; j < trajectoryNumber_local; ++j) {
+		for (size_t j = 0; j < trajectoryNumber_local; ++j)
+		{
 			path_AT_vec[i][j] = rnk_obj.pathway_AT_no_IT_input_pathway_sim_once(0.0, time, spe_vec, reaction_vec);
 		}
 	}
 
 	std::ofstream fout((main_cwd + std::string("/output/species_pathway_AT_no_IT.csv")).c_str(), std::ofstream::out);
-	for (size_t i = 0; i < path_AT_vec.size(); ++i) {
-		for (size_t j = 0; j < path_AT_vec[0].size(); ++j) {
+	for (size_t i = 0; i < path_AT_vec.size(); ++i)
+	{
+		for (size_t j = 0; j < path_AT_vec[0].size(); ++j)
+		{
 			fout << setprecision(PRINT_PRECISION) << path_AT_vec[i][j];
-			if (j != (path_AT_vec[0].size() - 1)) {
+			if (j != (path_AT_vec[0].size() - 1))
+			{
 				fout << ",";
 			}
 		}
@@ -403,7 +405,7 @@ void driver::evaluate_path_AT_no_IT_over_time(const std::string & main_cwd, cons
 	fout.close();
 }
 
-void driver::evaluate_path_AT_with_SP_over_time(const std::string & main_cwd, const boost::property_tree::ptree & pt)
+void driver::evaluate_path_AT_with_SP_over_time(const std::string &main_cwd, const boost::property_tree::ptree &pt)
 {
 	std::vector<double> uncertainties;
 
@@ -419,23 +421,18 @@ void driver::evaluate_path_AT_with_SP_over_time(const std::string & main_cwd, co
 		std::numeric_limits<int>::max() - 1000); //all pathways
 
 	std::vector<std::size_t> topN_vec;
-	for (auto key1 : pt.get_child("pathway.topN")) {
+	for (auto key1 : pt.get_child("pathway.topN"))
+	{
 		topN_vec.push_back(key1.second.get_value<size_t>());
 	}
 	std::size_t topN = topN_vec.front();
 	topN = (topN <= pathway_vec_t.size()) ? topN : pathway_vec_t.size();
 
-	if (pt.get<std::string>("pathway.pathwayEndWith") == "ALL") {
-		pathway_vec.assign(pathway_vec_t.begin(), pathway_vec_t.begin() + topN);
-	}
-	else {
-		pathwayHandler::pathway_ends_with(pt.get<std::string>("pathway.pathwayEndWith"), pathway_vec_t, pathway_vec,
-			topN); //topN pathways
-	}
+	pathway_vec.assign(pathway_vec_t.begin(), pathway_vec_t.begin() + topN);
 
 	size_t trajectoryNumber_local = pt.get<std::size_t>("pathway.trajectoryNumber");
-	std::vector< std::vector<double> > path_AT_mat(pathway_vec.size(), std::vector<double>(trajectoryNumber_local, 0.0));
-	std::vector< std::vector<double> > path_AT_prob_mat(pathway_vec.size(), std::vector<double>(trajectoryNumber_local, 0.0));
+	std::vector<std::vector<double>> path_AT_mat(pathway_vec.size(), std::vector<double>(trajectoryNumber_local, 0.0));
+	std::vector<std::vector<double>> path_AT_prob_mat(pathway_vec.size(), std::vector<double>(trajectoryNumber_local, 0.0));
 
 	//different seed for different core/CPU
 	rnk::concreteReactionNetwork rnk_obj(uncertainties, 0, main_cwd);
@@ -443,22 +440,28 @@ void driver::evaluate_path_AT_with_SP_over_time(const std::string & main_cwd, co
 	double time = pt.get<double>("time.tau") * pt.get<double>("pathway.end_t");
 
 	// evaluate path AT on each core
-	std::vector<rsp::index_int_t> spe_vec; std::vector<rsp::index_int_t> reaction_vec;
+	std::vector<rsp::index_int_t> spe_vec;
+	std::vector<rsp::index_int_t> reaction_vec;
 
-	for (std::size_t i = 0; i < pathway_vec.size(); ++i) {
+	for (std::size_t i = 0; i < pathway_vec.size(); ++i)
+	{
 		rnk_obj.parse_pathway_to_vector(pathway_vec[i], spe_vec, reaction_vec);
-		for (size_t j = 0; j < trajectoryNumber_local; ++j) {
+		for (size_t j = 0; j < trajectoryNumber_local; ++j)
+		{
 			std::tie(path_AT_mat[i][j], path_AT_prob_mat[i][j]) = rnk_obj.pathway_AT_with_SP_input_pathway_sim_once(0.0, time, spe_vec, reaction_vec);
 		}
 	}
 
 	std::ofstream fout1((main_cwd + std::string("/output/species_pathway_AT_with_SP.csv")).c_str(), std::ofstream::out);
 	std::ofstream fout2((main_cwd + std::string("/output/species_pathway_SP.csv")).c_str(), std::ofstream::out);
-	for (size_t i = 0; i < path_AT_mat.size(); ++i) {
-		for (size_t j = 0; j < path_AT_mat[0].size(); ++j) {
+	for (size_t i = 0; i < path_AT_mat.size(); ++i)
+	{
+		for (size_t j = 0; j < path_AT_mat[0].size(); ++j)
+		{
 			fout1 << setprecision(PRINT_PRECISION) << path_AT_mat[i][j];
 			fout2 << setprecision(PRINT_PRECISION) << path_AT_prob_mat[i][j];
-			if (j != (path_AT_mat[0].size() - 1)) {
+			if (j != (path_AT_mat[0].size() - 1))
+			{
 				fout1 << ",";
 				fout2 << ",";
 			}
@@ -475,24 +478,26 @@ void driver::evaluate_path_AT_with_SP_over_time(const std::string & main_cwd, co
 
 #endif // __NO_USE_MPI_
 
+#if defined(__USE_MPI_)
 
-#if defined(__USE_MPI_) 
-
-void driver::write_concentration_at_time_to_file(const boost::mpi::communicator & world, std::string & main_cwd, const boost::property_tree::ptree & pt)
+void driver::write_concentration_at_time_to_file(const boost::mpi::communicator &world, std::string &main_cwd, const boost::property_tree::ptree &pt)
 {
 	std::vector<double> uncertainties;
 
-	if (world.rank() == 0) {
+	if (world.rank() == 0)
+	{
 		fileIO::fileIO::read_generate_uncertainties_w2f_nominal(uncertainties,
 			main_cwd + std::string("/input/uncertainties.inp"));
-	}//if
+	} //if
 
-	 //boradcast
+	//boradcast
 	broadcast(world, uncertainties, 0);
 
-	if (world.rank() == 0) {
+	if (world.rank() == 0)
+	{
 		pgt::dlsodePropagator pgt_obj(uncertainties, main_cwd);
-		if (pt.get<std::string>("propagator.convert_molar_concentration_to_mole_fraction") == std::string("yes")) {
+		if (pt.get<std::string>("propagator.convert_molar_concentration_to_mole_fraction") == std::string("yes"))
+		{
 			pgt_obj.convert_molar_concentration_to_mole_fraction();
 			pgt_obj.spe_concentration_w2f_pgt(pt.get<double>("time.tau") * pt.get<double>("pathway.end_t"),
 				pt.get<std::string>("pathway.end_t") + std::string("_dlsode_fraction"));
@@ -503,20 +508,22 @@ void driver::write_concentration_at_time_to_file(const boost::mpi::communicator 
 	}
 }
 
-void driver::solve_ODEs_for_concentration_using_LSODE(const boost::mpi::communicator & world, std::string & main_cwd, const boost::property_tree::ptree &pt)
+void driver::solve_ODEs_for_concentration_using_LSODE(const boost::mpi::communicator &world, std::string &main_cwd, const boost::property_tree::ptree &pt)
 {
 	std::vector<double> uncertainties;
 
-	if (world.rank() == 0) {
+	if (world.rank() == 0)
+	{
 		fileIO::fileIO::read_generate_uncertainties_w2f_nominal(uncertainties,
 			main_cwd + std::string("/input/uncertainties.inp"));
 
-	}//if
+	} //if
 
-	 //boradcast
+	//boradcast
 	broadcast(world, uncertainties, 0);
 
-	if (world.rank() == 0) {
+	if (world.rank() == 0)
+	{
 		pgt::dlsodePropagator pgt_obj(uncertainties, main_cwd);
 		if (pt.get<std::string>("propagator.convert_molar_concentration_to_mole_fraction") == std::string("yes"))
 		{
@@ -526,29 +533,30 @@ void driver::solve_ODEs_for_concentration_using_LSODE(const boost::mpi::communic
 		else
 			pgt_obj.w2f_pgt("dlsode_M");
 		//pgt_obj.convert_molar_concentration_to_mole_fraction();
-
 	}
 }
 
-void driver::solve_ODEs_for_concentration_using_SSA(const boost::mpi::communicator & world, std::string & main_cwd, const boost::property_tree::ptree &pt)
+void driver::solve_ODEs_for_concentration_using_SSA(const boost::mpi::communicator &world, std::string &main_cwd, const boost::property_tree::ptree &pt)
 {
 	std::vector<double> uncertainties;
 
-	if (world.rank() == 0) {
+	if (world.rank() == 0)
+	{
 		fileIO::fileIO::read_generate_uncertainties_w2f_nominal(uncertainties,
 			main_cwd + std::string("/input/uncertainties.inp"));
-	}//if
+	} //if
 
-	 //boradcast
+	//boradcast
 	broadcast(world, uncertainties, 0);
 
-	if (world.rank() == 0) {
+	if (world.rank() == 0)
+	{
 		pgt::ssaPropagator pgt_obj(uncertainties, world.rank(), main_cwd);
 		pgt_obj.w2f_pgt("ssa_number");
 	}
 }
 
-void driver::generate_pathway_running_Monte_carlo_trajectory(const boost::mpi::communicator & world, const std::string &main_cwd, const boost::property_tree::ptree &pt)
+void driver::generate_pathway_running_Monte_carlo_trajectory(const boost::mpi::communicator &world, const std::string &main_cwd, const boost::property_tree::ptree &pt)
 {
 	std::vector<double> uncertainties;
 
@@ -557,22 +565,23 @@ void driver::generate_pathway_running_Monte_carlo_trajectory(const boost::mpi::c
 	int P = world.size();
 	int local_N = get_num_block_decomposition_2(world.rank(), trajectoryNumber_total, P);
 
-	if (world.rank() == 0) {
+	if (world.rank() == 0)
+	{
 		fileIO::fileIO::read_generate_uncertainties_w2f_nominal(uncertainties,
 			main_cwd + std::string("/input/uncertainties.inp"));
-	}//if
+	} //if
 
-	 //boradcast
+	//boradcast
 	broadcast(world, uncertainties, 0);
 
 	rnk::concreteReactionNetwork rnk_obj(uncertainties, world.rank(), main_cwd);
 	//rnk_obj.print_network();
-	
+
 	//double target_time_db = rnk_obj.return_temperature_target_time();
 	double tau = pt.get<double>("time.tau");
 
 	double init_time = pt.get<double>("pathway.begin_t") * tau;
-	double end_time = pt.get<double>("pathway.end_t")* tau;
+	double end_time = pt.get<double>("pathway.end_t") * tau;
 
 	int trajectory_count_limit = pt.get<int>("pathway.trajectory_count_limit");
 
@@ -581,7 +590,8 @@ void driver::generate_pathway_running_Monte_carlo_trajectory(const boost::mpi::c
 	std::string str_t;
 
 	// generate pathway one trajectory
-	for (int i = 0; i < local_N; ++i) {
+	for (int i = 0; i < local_N; ++i)
+	{
 		str_t = rnk_obj.pathway_sim_once(init_time, end_time, rnk_obj.return_initial_spe(), pt.get<std::string>("pathway.atom_followed")); //vertex 2 is H2
 		stat.insert_pathway_stat(str_t);
 	}
@@ -591,13 +601,14 @@ void driver::generate_pathway_running_Monte_carlo_trajectory(const boost::mpi::c
 	reduce(world, stat.get_pathway_unordered_map(),
 		result, merge_maps(), 0);
 
-	if (world.rank() == 0) {
+	if (world.rank() == 0)
+	{
 		stat.insert_unordered_map(result);
 		stat.sort_print_to_file_stat(main_cwd + std::string("/output/pathway_stat.csv"), trajectory_count_limit);
 	}
 }
 
-void driver::generate_species_pathway_running_Monte_carlo_trajectory(const boost::mpi::communicator & world, const std::string & main_cwd, const boost::property_tree::ptree & pt)
+void driver::generate_species_pathway_running_Monte_carlo_trajectory(const boost::mpi::communicator &world, const std::string &main_cwd, const boost::property_tree::ptree &pt)
 {
 	std::vector<double> uncertainties;
 
@@ -606,12 +617,13 @@ void driver::generate_species_pathway_running_Monte_carlo_trajectory(const boost
 	int P = world.size();
 	int local_N = get_num_block_decomposition_2(world.rank(), trajectoryNumber_total, P);
 
-	if (world.rank() == 0) {
+	if (world.rank() == 0)
+	{
 		fileIO::fileIO::read_generate_uncertainties_w2f_nominal(uncertainties,
 			main_cwd + std::string("/input/uncertainties.inp"));
-	}//if
+	} //if
 
-	 //boradcast
+	//boradcast
 	broadcast(world, uncertainties, 0);
 
 	rnk::concreteReactionNetwork rnk_obj(uncertainties, world.rank(), main_cwd);
@@ -621,7 +633,7 @@ void driver::generate_species_pathway_running_Monte_carlo_trajectory(const boost
 	double tau = pt.get<double>("time.tau");
 
 	double init_time = pt.get<double>("pathway.begin_t") * tau;
-	double end_time = pt.get<double>("pathway.end_t")* tau;
+	double end_time = pt.get<double>("pathway.end_t") * tau;
 
 	int trajectory_count_limit = pt.get<int>("pathway.trajectory_count_limit");
 
@@ -630,7 +642,8 @@ void driver::generate_species_pathway_running_Monte_carlo_trajectory(const boost
 	std::string str_t;
 
 	// generate pathway one trajectory
-	for (int i = 0; i < local_N; ++i) {
+	for (int i = 0; i < local_N; ++i)
+	{
 		str_t = rnk_obj.species_pathway_sim_once(init_time, end_time, rnk_obj.return_initial_spe(), pt.get<std::string>("pathway.atom_followed")); //vertex 2 is H2
 		stat.insert_pathway_stat(str_t);
 	}
@@ -640,23 +653,25 @@ void driver::generate_species_pathway_running_Monte_carlo_trajectory(const boost
 	reduce(world, stat.get_pathway_unordered_map(),
 		result, merge_maps(), 0);
 
-	if (world.rank() == 0) {
+	if (world.rank() == 0)
+	{
 		stat.insert_unordered_map(result);
 		stat.sort_print_to_file_stat(main_cwd + std::string("/output/species_pathway_stat.csv"), trajectory_count_limit);
 	}
 }
 
-void driver::evaluate_path_integral_over_time(const boost::mpi::communicator & world, const std::string &main_cwd, const boost::property_tree::ptree & pt)
+void driver::evaluate_path_integral_over_time(const boost::mpi::communicator &world, const std::string &main_cwd, const boost::property_tree::ptree &pt)
 {
 	std::vector<double> uncertainties;
 
 	//pathway name-pathway we are interested
 	std::vector<std::string> pathway_vec;
 	//time points, every pathway has its own set of time points
-	std::vector<std::vector<double> > time_Mat;
+	std::vector<std::vector<double>> time_Mat;
 
 	//calculate the uncertainties only in the first node
-	if (world.rank() == 0) {
+	if (world.rank() == 0)
+	{
 		fileIO::fileIO::read_generate_uncertainties_w2f_nominal(uncertainties,
 			main_cwd + std::string("/input/uncertainties.inp"));
 
@@ -665,21 +680,15 @@ void driver::evaluate_path_integral_over_time(const boost::mpi::communicator & w
 		pathwayHandler::get_pathway(main_cwd + std::string("/output/pathway_name_candidate.csv"), pathway_vec_t,
 			std::numeric_limits<int>::max() - 1000); //all pathways
 
-
 		std::vector<std::size_t> topN_vec;
-		for (auto key1 : pt.get_child("pathway.topN")) {
+		for (auto key1 : pt.get_child("pathway.topN"))
+		{
 			topN_vec.push_back(key1.second.get_value<size_t>());
 		}
 		std::size_t topN = topN_vec.front();
 		topN = (topN <= pathway_vec_t.size()) ? topN : pathway_vec_t.size();
 
-		if (pt.get<std::string>("pathway.pathwayEndWith") == "ALL") {
-			pathway_vec.assign(pathway_vec_t.begin(), pathway_vec_t.begin() + topN);
-		}
-		else {
-			pathwayHandler::pathway_ends_with(pt.get<std::string>("pathway.pathwayEndWith"), pathway_vec_t, pathway_vec,
-				topN); //topN pathways
-		}
+		pathway_vec.assign(pathway_vec_t.begin(), pathway_vec_t.begin() + topN);
 
 		//initialize the time points we are going to calculate
 		//read file pathway_time.csv
@@ -692,8 +701,8 @@ void driver::evaluate_path_integral_over_time(const boost::mpi::communicator & w
 	broadcast(world, time_Mat, 0);
 
 	//pathway prob result
-	std::vector<std::vector<double> > prob_Mat(pathway_vec.size(), std::vector<double>(time_Mat[0].size(), 0.0));
-	std::vector<std::vector<double> > prob_Mat_reduce(pathway_vec.size(), std::vector<double>(time_Mat[0].size(), 0.0));
+	std::vector<std::vector<double>> prob_Mat(pathway_vec.size(), std::vector<double>(time_Mat[0].size(), 0.0));
+	std::vector<std::vector<double>> prob_Mat_reduce(pathway_vec.size(), std::vector<double>(time_Mat[0].size(), 0.0));
 
 	////create rxn_network, generate pathway
 	size_t trajectoryNumber_total = pt.get<std::size_t>("pathway.trajectoryNumber");
@@ -707,11 +716,15 @@ void driver::evaluate_path_integral_over_time(const boost::mpi::communicator & w
 
 	// evaluate path integral on each core
 	double pathway_prob_db_t = 0.0;
-	std::vector<rsp::index_int_t> spe_vec; std::vector<rsp::index_int_t> reaction_vec;
+	std::vector<rsp::index_int_t> spe_vec;
+	std::vector<rsp::index_int_t> reaction_vec;
 
-	for (size_t i = 0; i < prob_Mat.size(); ++i) {
-		for (size_t j = 0; j < prob_Mat[0].size(); ++j) {
-			for (size_t k = 0; k < trajectoryNumber_local; ++k) {
+	for (size_t i = 0; i < prob_Mat.size(); ++i)
+	{
+		for (size_t j = 0; j < prob_Mat[0].size(); ++j)
+		{
+			for (size_t k = 0; k < trajectoryNumber_local; ++k)
+			{
 				rnk_obj.parse_pathway_to_vector(pathway_vec[i], spe_vec, reaction_vec);
 				pathway_prob_db_t = rnk_obj.pathway_prob_input_pathway_sim_once(0.0, time_Mat[i][j] * tau,
 					spe_vec, reaction_vec, pt.get<std::string>("pathway.atom_followed"));
@@ -720,18 +733,24 @@ void driver::evaluate_path_integral_over_time(const boost::mpi::communicator & w
 		}
 	}
 	// map reduce
-	for (size_t i = 0; i < prob_Mat.size(); ++i) {
-		for (size_t j = 0; j < prob_Mat[0].size(); ++j) {
+	for (size_t i = 0; i < prob_Mat.size(); ++i)
+	{
+		for (size_t j = 0; j < prob_Mat[0].size(); ++j)
+		{
 			reduce(world, prob_Mat[i][j], prob_Mat_reduce[i][j], std::plus<double>(), 0);
 		}
 	}
 
-	if (world.rank() == 0) {
+	if (world.rank() == 0)
+	{
 		std::ofstream fout((main_cwd + std::string("/output/pathway_prob.csv")).c_str(), std::ofstream::out);
-		for (size_t i = 0; i < prob_Mat_reduce.size(); ++i) {
-			for (size_t j = 0; j < prob_Mat_reduce[0].size(); ++j) {
+		for (size_t i = 0; i < prob_Mat_reduce.size(); ++i)
+		{
+			for (size_t j = 0; j < prob_Mat_reduce[0].size(); ++j)
+			{
 				fout << setprecision(PRINT_PRECISION) << prob_Mat_reduce[i][j];
-				if (j != (prob_Mat_reduce[0].size() - 1)) {
+				if (j != (prob_Mat_reduce[0].size() - 1))
+				{
 					fout << ",";
 				}
 			}
@@ -741,26 +760,27 @@ void driver::evaluate_path_integral_over_time(const boost::mpi::communicator & w
 		fout.clear();
 		fout.close();
 		fout.open((main_cwd + std::string("/output/pathway_name_selected.csv")).c_str(), std::ofstream::out);
-		for (size_t i = 0; i < pathway_vec.size(); ++i) {
+		for (size_t i = 0; i < pathway_vec.size(); ++i)
+		{
 			fout << pathway_vec[i] << std::endl;
 		}
 		fout.clear();
 		fout.close();
 	}
-
 }
 
-void driver::evaluate_species_path_integral_over_time(const boost::mpi::communicator & world, const std::string & main_cwd, const boost::property_tree::ptree & pt)
+void driver::evaluate_species_path_integral_over_time(const boost::mpi::communicator &world, const std::string &main_cwd, const boost::property_tree::ptree &pt)
 {
 	std::vector<double> uncertainties;
 
 	//pathway name-pathway we are interested
 	std::vector<std::string> pathway_vec;
 	//time points, every pathway has its own set of time points
-	std::vector<std::vector<double> > time_Mat;
+	std::vector<std::vector<double>> time_Mat;
 
 	//calculate the uncertainties only in the first node
-	if (world.rank() == 0) {
+	if (world.rank() == 0)
+	{
 		fileIO::fileIO::read_generate_uncertainties_w2f_nominal(uncertainties,
 			main_cwd + std::string("/input/uncertainties.inp"));
 
@@ -769,21 +789,15 @@ void driver::evaluate_species_path_integral_over_time(const boost::mpi::communic
 		pathwayHandler::get_pathway(main_cwd + std::string("/output/species_pathway_name_candidate.csv"), pathway_vec_t,
 			std::numeric_limits<int>::max() - 1000); //all pathways
 
-
 		std::vector<std::size_t> topN_vec;
-		for (auto key1 : pt.get_child("pathway.topN")) {
+		for (auto key1 : pt.get_child("pathway.topN"))
+		{
 			topN_vec.push_back(key1.second.get_value<size_t>());
 		}
 		std::size_t topN = topN_vec.front();
 		topN = (topN <= pathway_vec_t.size()) ? topN : pathway_vec_t.size();
 
-		if (pt.get<std::string>("pathway.pathwayEndWith") == "ALL") {
-			pathway_vec.assign(pathway_vec_t.begin(), pathway_vec_t.begin() + topN);
-		}
-		else {
-			pathwayHandler::pathway_ends_with(pt.get<std::string>("pathway.pathwayEndWith"), pathway_vec_t, pathway_vec,
-				topN); //topN pathways
-		}
+		pathway_vec.assign(pathway_vec_t.begin(), pathway_vec_t.begin() + topN);
 
 		//initialize the time points we are going to calculate
 		//read file pathway_time.csv
@@ -796,8 +810,8 @@ void driver::evaluate_species_path_integral_over_time(const boost::mpi::communic
 	broadcast(world, time_Mat, 0);
 
 	//pathway prob result
-	std::vector<std::vector<double> > prob_Mat(pathway_vec.size(), std::vector<double>(time_Mat[0].size(), 0.0));
-	std::vector<std::vector<double> > prob_Mat_reduce(pathway_vec.size(), std::vector<double>(time_Mat[0].size(), 0.0));
+	std::vector<std::vector<double>> prob_Mat(pathway_vec.size(), std::vector<double>(time_Mat[0].size(), 0.0));
+	std::vector<std::vector<double>> prob_Mat_reduce(pathway_vec.size(), std::vector<double>(time_Mat[0].size(), 0.0));
 
 	////create rxn_network, generate pathway
 	size_t trajectoryNumber_total = pt.get<std::size_t>("pathway.trajectoryNumber");
@@ -811,11 +825,15 @@ void driver::evaluate_species_path_integral_over_time(const boost::mpi::communic
 
 	// evaluate path integral on each core
 	double pathway_prob_db_t = 0.0;
-	std::vector<rsp::index_int_t> spe_vec; std::vector<rsp::index_int_t> reaction_vec;
+	std::vector<rsp::index_int_t> spe_vec;
+	std::vector<rsp::index_int_t> reaction_vec;
 
-	for (size_t i = 0; i < prob_Mat.size(); ++i) {
-		for (size_t j = 0; j < prob_Mat[0].size(); ++j) {
-			for (size_t k = 0; k < trajectoryNumber_local; ++k) {
+	for (size_t i = 0; i < prob_Mat.size(); ++i)
+	{
+		for (size_t j = 0; j < prob_Mat[0].size(); ++j)
+		{
+			for (size_t k = 0; k < trajectoryNumber_local; ++k)
+			{
 				rnk_obj.parse_pathway_to_vector(pathway_vec[i], spe_vec, reaction_vec);
 				pathway_prob_db_t = rnk_obj.species_pathway_prob_input_pathway_sim_once(0.0, time_Mat[i][j] * tau,
 					spe_vec, reaction_vec, pt.get<std::string>("pathway.atom_followed"));
@@ -824,18 +842,24 @@ void driver::evaluate_species_path_integral_over_time(const boost::mpi::communic
 		}
 	}
 	// map reduce
-	for (size_t i = 0; i < prob_Mat.size(); ++i) {
-		for (size_t j = 0; j < prob_Mat[0].size(); ++j) {
+	for (size_t i = 0; i < prob_Mat.size(); ++i)
+	{
+		for (size_t j = 0; j < prob_Mat[0].size(); ++j)
+		{
 			reduce(world, prob_Mat[i][j], prob_Mat_reduce[i][j], std::plus<double>(), 0);
 		}
 	}
 
-	if (world.rank() == 0) {
+	if (world.rank() == 0)
+	{
 		std::ofstream fout((main_cwd + std::string("/output/species_pathway_prob.csv")).c_str(), std::ofstream::out);
-		for (size_t i = 0; i < prob_Mat_reduce.size(); ++i) {
-			for (size_t j = 0; j < prob_Mat_reduce[0].size(); ++j) {
+		for (size_t i = 0; i < prob_Mat_reduce.size(); ++i)
+		{
+			for (size_t j = 0; j < prob_Mat_reduce[0].size(); ++j)
+			{
 				fout << setprecision(PRINT_PRECISION) << prob_Mat_reduce[i][j];
-				if (j != (prob_Mat_reduce[0].size() - 1)) {
+				if (j != (prob_Mat_reduce[0].size() - 1))
+				{
 					fout << ",";
 				}
 			}
@@ -845,19 +869,20 @@ void driver::evaluate_species_path_integral_over_time(const boost::mpi::communic
 		fout.clear();
 		fout.close();
 		fout.open((main_cwd + std::string("/output/species_pathway_name_selected.csv")).c_str(), std::ofstream::out);
-		for (size_t i = 0; i < pathway_vec.size(); ++i) {
+		for (size_t i = 0; i < pathway_vec.size(); ++i)
+		{
 			fout << pathway_vec[i] << std::endl;
 		}
 		fout.clear();
 		fout.close();
 	}
-
 }
 
-void driver::evaluate_path_AT_over_time(const boost::mpi::communicator & world, const std::string & main_cwd, const boost::property_tree::ptree & pt)
+void driver::evaluate_path_AT_over_time(const boost::mpi::communicator &world, const std::string &main_cwd, const boost::property_tree::ptree &pt)
 {
 
-	if (world.rank() == 0) {
+	if (world.rank() == 0)
+	{
 		std::vector<double> uncertainties;
 
 		//pathway name-pathway we are interested
@@ -872,22 +897,17 @@ void driver::evaluate_path_AT_over_time(const boost::mpi::communicator & world, 
 			std::numeric_limits<int>::max() - 1000); //all pathways
 
 		std::vector<std::size_t> topN_vec;
-		for (auto key1 : pt.get_child("pathway.topN")) {
+		for (auto key1 : pt.get_child("pathway.topN"))
+		{
 			topN_vec.push_back(key1.second.get_value<size_t>());
 		}
 		std::size_t topN = topN_vec.front();
 		topN = (topN <= pathway_vec_t.size()) ? topN : pathway_vec_t.size();
 
-		if (pt.get<std::string>("pathway.pathwayEndWith") == "ALL") {
-			pathway_vec.assign(pathway_vec_t.begin(), pathway_vec_t.begin() + topN);
-		}
-		else {
-			pathwayHandler::pathway_ends_with(pt.get<std::string>("pathway.pathwayEndWith"), pathway_vec_t, pathway_vec,
-				topN); //topN pathways
-		}
+		pathway_vec.assign(pathway_vec_t.begin(), pathway_vec_t.begin() + topN);
 
 		size_t trajectoryNumber_local = pt.get<std::size_t>("pathway.trajectoryNumber");
-		std::vector< std::vector<double> > path_AT_vec(pathway_vec.size(), std::vector<double>(trajectoryNumber_local, 0.0));
+		std::vector<std::vector<double>> path_AT_vec(pathway_vec.size(), std::vector<double>(trajectoryNumber_local, 0.0));
 
 		//different seed for different core/CPU
 		rnk::concreteReactionNetwork rnk_obj(uncertainties, 0, main_cwd);
@@ -895,20 +915,26 @@ void driver::evaluate_path_AT_over_time(const boost::mpi::communicator & world, 
 		double time = pt.get<double>("time.tau") * pt.get<double>("pathway.end_t");
 
 		// evaluate path AT on each core
-		std::vector<rsp::index_int_t> spe_vec; std::vector<rsp::index_int_t> reaction_vec;
+		std::vector<rsp::index_int_t> spe_vec;
+		std::vector<rsp::index_int_t> reaction_vec;
 
-		for (std::size_t i = 0; i < pathway_vec.size(); ++i) {
+		for (std::size_t i = 0; i < pathway_vec.size(); ++i)
+		{
 			rnk_obj.parse_pathway_to_vector(pathway_vec[i], spe_vec, reaction_vec);
-			for (size_t j = 0; j < trajectoryNumber_local; ++j) {
+			for (size_t j = 0; j < trajectoryNumber_local; ++j)
+			{
 				path_AT_vec[i][j] = rnk_obj.pathway_AT_input_pathway_sim_once(0.0, time, spe_vec, reaction_vec);
 			}
 		}
 
 		std::ofstream fout((main_cwd + std::string("/output/species_pathway_AT.csv")).c_str(), std::ofstream::out);
-		for (size_t i = 0; i < path_AT_vec.size(); ++i) {
-			for (size_t j = 0; j < path_AT_vec[0].size(); ++j) {
+		for (size_t i = 0; i < path_AT_vec.size(); ++i)
+		{
+			for (size_t j = 0; j < path_AT_vec[0].size(); ++j)
+			{
 				fout << setprecision(PRINT_PRECISION) << path_AT_vec[i][j];
-				if (j != (path_AT_vec[0].size() - 1)) {
+				if (j != (path_AT_vec[0].size() - 1))
+				{
 					fout << ",";
 				}
 			}
@@ -917,13 +943,13 @@ void driver::evaluate_path_AT_over_time(const boost::mpi::communicator & world, 
 
 		fout.clear();
 		fout.close();
-	}//world.rank() ==0
-
+	} //world.rank() ==0
 }
 
-void driver::evaluate_path_AT_no_IT_over_time(const boost::mpi::communicator & world, const std::string & main_cwd, const boost::property_tree::ptree & pt)
+void driver::evaluate_path_AT_no_IT_over_time(const boost::mpi::communicator &world, const std::string &main_cwd, const boost::property_tree::ptree &pt)
 {
-	if (world.rank() == 0) {
+	if (world.rank() == 0)
+	{
 		std::vector<double> uncertainties;
 
 		//pathway name-pathway we are interested
@@ -938,22 +964,17 @@ void driver::evaluate_path_AT_no_IT_over_time(const boost::mpi::communicator & w
 			std::numeric_limits<int>::max() - 1000); //all pathways
 
 		std::vector<std::size_t> topN_vec;
-		for (auto key1 : pt.get_child("pathway.topN")) {
+		for (auto key1 : pt.get_child("pathway.topN"))
+		{
 			topN_vec.push_back(key1.second.get_value<size_t>());
 		}
 		std::size_t topN = topN_vec.front();
 		topN = (topN <= pathway_vec_t.size()) ? topN : pathway_vec_t.size();
 
-		if (pt.get<std::string>("pathway.pathwayEndWith") == "ALL") {
-			pathway_vec.assign(pathway_vec_t.begin(), pathway_vec_t.begin() + topN);
-		}
-		else {
-			pathwayHandler::pathway_ends_with(pt.get<std::string>("pathway.pathwayEndWith"), pathway_vec_t, pathway_vec,
-				topN); //topN pathways
-		}
+		pathway_vec.assign(pathway_vec_t.begin(), pathway_vec_t.begin() + topN);
 
 		size_t trajectoryNumber_local = pt.get<std::size_t>("pathway.trajectoryNumber");
-		std::vector< std::vector<double> > path_AT_vec(pathway_vec.size(), std::vector<double>(trajectoryNumber_local, 0.0));
+		std::vector<std::vector<double>> path_AT_vec(pathway_vec.size(), std::vector<double>(trajectoryNumber_local, 0.0));
 
 		//different seed for different core/CPU
 		rnk::concreteReactionNetwork rnk_obj(uncertainties, 0, main_cwd);
@@ -961,20 +982,26 @@ void driver::evaluate_path_AT_no_IT_over_time(const boost::mpi::communicator & w
 		double time = pt.get<double>("time.tau") * pt.get<double>("pathway.end_t");
 
 		// evaluate path AT on each core
-		std::vector<rsp::index_int_t> spe_vec; std::vector<rsp::index_int_t> reaction_vec;
+		std::vector<rsp::index_int_t> spe_vec;
+		std::vector<rsp::index_int_t> reaction_vec;
 
-		for (std::size_t i = 0; i < pathway_vec.size(); ++i) {
+		for (std::size_t i = 0; i < pathway_vec.size(); ++i)
+		{
 			rnk_obj.parse_pathway_to_vector(pathway_vec[i], spe_vec, reaction_vec);
-			for (size_t j = 0; j < trajectoryNumber_local; ++j) {
+			for (size_t j = 0; j < trajectoryNumber_local; ++j)
+			{
 				path_AT_vec[i][j] = rnk_obj.pathway_AT_no_IT_input_pathway_sim_once(0.0, time, spe_vec, reaction_vec);
 			}
 		}
 
 		std::ofstream fout((main_cwd + std::string("/output/species_pathway_AT_no_IT.csv")).c_str(), std::ofstream::out);
-		for (size_t i = 0; i < path_AT_vec.size(); ++i) {
-			for (size_t j = 0; j < path_AT_vec[0].size(); ++j) {
+		for (size_t i = 0; i < path_AT_vec.size(); ++i)
+		{
+			for (size_t j = 0; j < path_AT_vec[0].size(); ++j)
+			{
 				fout << setprecision(PRINT_PRECISION) << path_AT_vec[i][j];
-				if (j != (path_AT_vec[0].size() - 1)) {
+				if (j != (path_AT_vec[0].size() - 1))
+				{
 					fout << ",";
 				}
 			}
@@ -983,12 +1010,13 @@ void driver::evaluate_path_AT_no_IT_over_time(const boost::mpi::communicator & w
 
 		fout.clear();
 		fout.close();
-	}//world.rank() ==0
+	} //world.rank() ==0
 }
 
-void driver::evaluate_path_AT_with_SP_over_time(const boost::mpi::communicator & world, const std::string & main_cwd, const boost::property_tree::ptree & pt)
+void driver::evaluate_path_AT_with_SP_over_time(const boost::mpi::communicator &world, const std::string &main_cwd, const boost::property_tree::ptree &pt)
 {
-	if (world.rank() == 0) {
+	if (world.rank() == 0)
+	{
 		std::vector<double> uncertainties;
 
 		//pathway name-pathway we are interested
@@ -1003,23 +1031,18 @@ void driver::evaluate_path_AT_with_SP_over_time(const boost::mpi::communicator &
 			std::numeric_limits<int>::max() - 1000); //all pathways
 
 		std::vector<std::size_t> topN_vec;
-		for (auto key1 : pt.get_child("pathway.topN")) {
+		for (auto key1 : pt.get_child("pathway.topN"))
+		{
 			topN_vec.push_back(key1.second.get_value<size_t>());
 		}
 		std::size_t topN = topN_vec.front();
 		topN = (topN <= pathway_vec_t.size()) ? topN : pathway_vec_t.size();
 
-		if (pt.get<std::string>("pathway.pathwayEndWith") == "ALL") {
-			pathway_vec.assign(pathway_vec_t.begin(), pathway_vec_t.begin() + topN);
-		}
-		else {
-			pathwayHandler::pathway_ends_with(pt.get<std::string>("pathway.pathwayEndWith"), pathway_vec_t, pathway_vec,
-				topN); //topN pathways
-		}
+		pathway_vec.assign(pathway_vec_t.begin(), pathway_vec_t.begin() + topN);
 
 		size_t trajectoryNumber_local = pt.get<std::size_t>("pathway.trajectoryNumber");
-		std::vector< std::vector<double> > path_AT_mat(pathway_vec.size(), std::vector<double>(trajectoryNumber_local, 0.0));
-		std::vector< std::vector<double> > path_AT_prob_mat(pathway_vec.size(), std::vector<double>(trajectoryNumber_local, 0.0));
+		std::vector<std::vector<double>> path_AT_mat(pathway_vec.size(), std::vector<double>(trajectoryNumber_local, 0.0));
+		std::vector<std::vector<double>> path_AT_prob_mat(pathway_vec.size(), std::vector<double>(trajectoryNumber_local, 0.0));
 
 		//different seed for different core/CPU
 		rnk::concreteReactionNetwork rnk_obj(uncertainties, 0, main_cwd);
@@ -1027,22 +1050,28 @@ void driver::evaluate_path_AT_with_SP_over_time(const boost::mpi::communicator &
 		double time = pt.get<double>("time.tau") * pt.get<double>("pathway.end_t");
 
 		// evaluate path AT on each core
-		std::vector<rsp::index_int_t> spe_vec; std::vector<rsp::index_int_t> reaction_vec;
+		std::vector<rsp::index_int_t> spe_vec;
+		std::vector<rsp::index_int_t> reaction_vec;
 
-		for (std::size_t i = 0; i < pathway_vec.size(); ++i) {
+		for (std::size_t i = 0; i < pathway_vec.size(); ++i)
+		{
 			rnk_obj.parse_pathway_to_vector(pathway_vec[i], spe_vec, reaction_vec);
-			for (size_t j = 0; j < trajectoryNumber_local; ++j) {
+			for (size_t j = 0; j < trajectoryNumber_local; ++j)
+			{
 				std::tie(path_AT_mat[i][j], path_AT_prob_mat[i][j]) = rnk_obj.pathway_AT_with_SP_input_pathway_sim_once(0.0, time, spe_vec, reaction_vec);
 			}
 		}
 
 		std::ofstream fout1((main_cwd + std::string("/output/species_pathway_AT_with_SP.csv")).c_str(), std::ofstream::out);
 		std::ofstream fout2((main_cwd + std::string("/output/species_pathway_SP.csv")).c_str(), std::ofstream::out);
-		for (size_t i = 0; i < path_AT_mat.size(); ++i) {
-			for (size_t j = 0; j < path_AT_mat[0].size(); ++j) {
+		for (size_t i = 0; i < path_AT_mat.size(); ++i)
+		{
+			for (size_t j = 0; j < path_AT_mat[0].size(); ++j)
+			{
 				fout1 << setprecision(PRINT_PRECISION) << path_AT_mat[i][j];
 				fout2 << setprecision(PRINT_PRECISION) << path_AT_prob_mat[i][j];
-				if (j != (path_AT_mat[0].size() - 1)) {
+				if (j != (path_AT_mat[0].size() - 1))
+				{
 					fout1 << ",";
 					fout2 << ",";
 				}
@@ -1055,10 +1084,10 @@ void driver::evaluate_path_AT_with_SP_over_time(const boost::mpi::communicator &
 		fout1.close();
 		fout2.clear();
 		fout2.close();
-	}//world.rank() ==0
+	} //world.rank() ==0
 }
 
-void driver::speciation_evaluate_concentrations_for_different_sets_rate_coefficients(const boost::mpi::communicator & world, const std::string &main_cwd, const boost::property_tree::ptree &pt)
+void driver::speciation_evaluate_concentrations_for_different_sets_rate_coefficients(const boost::mpi::communicator &world, const std::string &main_cwd, const boost::property_tree::ptree &pt)
 {
 	std::vector<double> uncertainties;
 
@@ -1066,7 +1095,8 @@ void driver::speciation_evaluate_concentrations_for_different_sets_rate_coeffici
 	size_t P = world.size();
 	//size_t number_of_Ks_local = get_num_block_decomposition_2(world.rank(), number_of_Ks, P);
 
-	for (int ith_k = get_first_block_decomposition_2(world.rank(), number_of_Ks, P); ith_k <= get_last_block_decomposition_2(world.rank(), number_of_Ks, P); ++ith_k) {
+	for (int ith_k = get_first_block_decomposition_2(world.rank(), number_of_Ks, P); ith_k <= get_last_block_decomposition_2(world.rank(), number_of_Ks, P); ++ith_k)
+	{
 		fileIO::fileIO::read_generate_uncertainties_w2f_random(uncertainties,
 			main_cwd + std::string("/input/uncertainties.inp"), main_cwd + std::string("/output/uncertainties_random.csv"),
 			main_cwd + std::string("/input/chem.out"), ith_k);
@@ -1075,12 +1105,13 @@ void driver::speciation_evaluate_concentrations_for_different_sets_rate_coeffici
 
 		pgt::dlsodePropagator pgt_obj(uncertainties, main_cwd);
 
-		std::vector<std::vector<double> > time_mat = fileIO::fileIO::read_topN_line_csv_matrix(main_cwd + std::string("/input/speciation_time_points.csv"), 1);
+		std::vector<std::vector<double>> time_mat = fileIO::fileIO::read_topN_line_csv_matrix(main_cwd + std::string("/input/speciation_time_points.csv"), 1);
 		std::vector<double> time_point = time_mat[0];
 
 		double target_time_db = pgt_obj.return_temperature_target_time();
 
-		for (std::size_t i = 0; i < time_point.size(); ++i) {
+		for (std::size_t i = 0; i < time_point.size(); ++i)
+		{
 			time_point[i] *= target_time_db;
 		}
 
@@ -1092,22 +1123,23 @@ void driver::speciation_evaluate_concentrations_for_different_sets_rate_coeffici
 		tt_fout << std::setprecision(16) << target_time_db;
 		tt_fout.close();
 	}
-
 }
 
-void driver::ODE_solver_MC_trajectory_single_core(const boost::mpi::communicator & world, const std::string &main_cwd, const boost::property_tree::ptree & pt)
+void driver::ODE_solver_MC_trajectory_single_core(const boost::mpi::communicator &world, const std::string &main_cwd, const boost::property_tree::ptree &pt)
 {
 	std::vector<double> uncertainties;
-	if (world.rank() == 0) {
+	if (world.rank() == 0)
+	{
 		fileIO::fileIO::read_generate_uncertainties_w2f_nominal(uncertainties,
 			main_cwd + std::string("/input/uncertainties.inp"));
 
-	}//if
+	} //if
 
-	 //boradcast
+	//boradcast
 	broadcast(world, uncertainties, 0);
 
-	if (world.rank() == 0) {
+	if (world.rank() == 0)
+	{
 		rnkODEs::reactionNetworkODESolver rnkODEs_obj(uncertainties, world.rank(), main_cwd);
 
 		double tau = pt.get<double>("time.tau");
@@ -1119,7 +1151,7 @@ void driver::ODE_solver_MC_trajectory_single_core(const boost::mpi::communicator
 	}
 }
 
-void driver::ODE_solver_MC_trajectory_s_ct_np_parallel(const boost::mpi::communicator & world, const std::string &main_cwd, const boost::property_tree::ptree & pt)
+void driver::ODE_solver_MC_trajectory_s_ct_np_parallel(const boost::mpi::communicator &world, const std::string &main_cwd, const boost::property_tree::ptree &pt)
 {
 	std::vector<double> uncertainties;
 
@@ -1130,14 +1162,15 @@ void driver::ODE_solver_MC_trajectory_s_ct_np_parallel(const boost::mpi::communi
 	double end_time;
 
 	//calculate the uncertainties only in the first node
-	if (world.rank() == 0) {
+	if (world.rank() == 0)
+	{
 		//read in uncertainties
 		fileIO::fileIO::read_generate_uncertainties_w2f_nominal(uncertainties, (main_cwd + "/input/uncertainties.inp"));
 
 		iterationNumber = pt.get<std::size_t>("SOHR_init.iterationNumber");
 		trajectoryNumber_total = pt.get<std::size_t>("pathway.trajectoryNumber");
-		init_time = pt.get<double>("pathway.begin_t")*pt.get<double>("time.tau");
-		end_time = pt.get<double>("pathway.end_t")*pt.get<double>("time.tau");
+		init_time = pt.get<double>("pathway.begin_t") * pt.get<double>("time.tau");
+		end_time = pt.get<double>("pathway.end_t") * pt.get<double>("time.tau");
 	}
 
 	//broadcast
@@ -1146,7 +1179,6 @@ void driver::ODE_solver_MC_trajectory_s_ct_np_parallel(const boost::mpi::communi
 	broadcast(world, trajectoryNumber_total, 0);
 	broadcast(world, init_time, 0);
 	broadcast(world, end_time, 0);
-
 
 	//create reaction_network
 	size_t P = world.size();
@@ -1160,13 +1192,15 @@ void driver::ODE_solver_MC_trajectory_s_ct_np_parallel(const boost::mpi::communi
 	std::pair<std::size_t, std::size_t> conc_data_size = rnkODEs_obj.get_size_of_concentration_data();
 
 	//pathway prob result
-	std::vector<std::vector<double> > prob_Mat(conc_data_size.first, std::vector<double>(conc_data_size.second, 0.0));
-	std::vector<std::vector<double> > prob_Mat_reduce(conc_data_size.first,
+	std::vector<std::vector<double>> prob_Mat(conc_data_size.first, std::vector<double>(conc_data_size.second, 0.0));
+	std::vector<std::vector<double>> prob_Mat_reduce(conc_data_size.first,
 		std::vector<double>(conc_data_size.second, 0.0));
 
-	for (std::size_t ni = 0; ni < iterationNumber; ++ni) {
+	for (std::size_t ni = 0; ni < iterationNumber; ++ni)
+	{
 		//not first iteration
-		if (ni != 0) {
+		if (ni != 0)
+		{
 			rnkODEs_obj.update_spe_drc_based_on_spe_concentration_s_ct_np();
 			rnkODEs_obj.integrate_propensity_function_pgt();
 			rnkODEs_obj.init_spe_drc_int_pgt();
@@ -1184,16 +1218,19 @@ void driver::ODE_solver_MC_trajectory_s_ct_np_parallel(const boost::mpi::communi
 
 		//on every local core
 		std::size_t init_spe;
-		for (size_t j = 0; j < trajectoryNumber_local; ++j) {
+		for (size_t j = 0; j < trajectoryNumber_local; ++j)
+		{
 			//pick a initial spe randomly
 			init_spe = rnkODEs_obj.return_index_randomly_given_probability_vector(prob);
 			rnkODEs_obj.ODE_pathway_sim_once(init_time, end_time, init_spe);
-		}//for 2
-		 //get probability matrix
+		} //for 2
+		  //get probability matrix
 		rnkODEs_obj.get_probability_matrix(prob_Mat);
 		//map reduce
-		for (size_t i = 0; i < prob_Mat.size(); ++i) {
-			for (size_t j = 0; j < prob_Mat[0].size(); ++j) {
+		for (size_t i = 0; i < prob_Mat.size(); ++i)
+		{
+			for (size_t j = 0; j < prob_Mat[0].size(); ++j)
+			{
 				// think about it later
 				reduce(world, prob_Mat[i][j], prob_Mat_reduce[i][j], std::plus<double>(), 0);
 			}
@@ -1203,16 +1240,15 @@ void driver::ODE_solver_MC_trajectory_s_ct_np_parallel(const boost::mpi::communi
 
 		rnkODEs_obj.update_concentration_data_from_spe_based_probability_matrix(prob_Mat_reduce);
 		rnkODEs_obj.set_concentration_at_time_zero_to_initial_fraction_or_concentration();
-
 	}
 
-	if (world.rank() == 0) {
+	if (world.rank() == 0)
+	{
 		rnkODEs_obj.w2f_pgt("SOHR");
 	}
-
 }
 
-void driver::ODE_solver_MC_trajectory_cv_parallel(const boost::mpi::communicator & world, const std::string & main_cwd, const boost::property_tree::ptree & pt)
+void driver::ODE_solver_MC_trajectory_cv_parallel(const boost::mpi::communicator &world, const std::string &main_cwd, const boost::property_tree::ptree &pt)
 {
 	std::vector<double> uncertainties;
 	//initialize MPI stuff
@@ -1222,14 +1258,15 @@ void driver::ODE_solver_MC_trajectory_cv_parallel(const boost::mpi::communicator
 	double end_time;
 
 	//calculate the uncertainties only in the first node
-	if (world.rank() == 0) {
+	if (world.rank() == 0)
+	{
 		//read in uncertainties
 		fileIO::fileIO::read_generate_uncertainties_w2f_nominal(uncertainties, (main_cwd + "/input/uncertainties.inp"));
 
 		iterationNumber = pt.get<std::size_t>("SOHR_init.iterationNumber");
 		trajectoryNumber_total = pt.get<std::size_t>("pathway.trajectoryNumber");
-		init_time = pt.get<double>("pathway.begin_t")*pt.get<double>("time.tau");
-		end_time = pt.get<double>("pathway.end_t")*pt.get<double>("time.tau");
+		init_time = pt.get<double>("pathway.begin_t") * pt.get<double>("time.tau");
+		end_time = pt.get<double>("pathway.end_t") * pt.get<double>("time.tau");
 	}
 
 	//broadcast
@@ -1238,7 +1275,6 @@ void driver::ODE_solver_MC_trajectory_cv_parallel(const boost::mpi::communicator
 	broadcast(world, trajectoryNumber_total, 0);
 	broadcast(world, init_time, 0);
 	broadcast(world, end_time, 0);
-
 
 	//create reaction_network
 	size_t P = world.size();
@@ -1255,13 +1291,15 @@ void driver::ODE_solver_MC_trajectory_cv_parallel(const boost::mpi::communicator
 	std::pair<std::size_t, std::size_t> conc_data_size = rnkODEs.get_size_of_concentration_data();
 
 	//pathway prob result
-	std::vector<std::vector<double> > prob_Mat(conc_data_size.first, std::vector<double>(conc_data_size.second, 0.0));
-	std::vector<std::vector<double> > prob_Mat_reduce(conc_data_size.first,
+	std::vector<std::vector<double>> prob_Mat(conc_data_size.first, std::vector<double>(conc_data_size.second, 0.0));
+	std::vector<std::vector<double>> prob_Mat_reduce(conc_data_size.first,
 		std::vector<double>(conc_data_size.second, 0.0));
 
-	for (std::size_t ni = 0; ni < iterationNumber; ++ni) {
+	for (std::size_t ni = 0; ni < iterationNumber; ++ni)
+	{
 		//not first iteration
-		if (ni != 0) {
+		if (ni != 0)
+		{
 			rnkODEs.update_temperature_pressure_based_on_spe_concentration_cv();
 			rnkODEs.update_spe_drc_reaction_rate_based_on_spe_concentration_cv();
 			rnkODEs.integrate_propensity_function_pgt();
@@ -1278,17 +1316,19 @@ void driver::ODE_solver_MC_trajectory_cv_parallel(const boost::mpi::communicator
 		rnkODEs.set_concentration_at_time_zero_to_initial_fraction_or_concentration();
 
 		//on every local core
-		std::size_t trajectoryNumber_local_O2 = static_cast<std::size_t>(trajectoryNumber_local*prob[0]);
-		std::size_t trajectoryNumber_local_H2 = static_cast<std::size_t>(trajectoryNumber_local*prob[2]);
+		std::size_t trajectoryNumber_local_O2 = static_cast<std::size_t>(trajectoryNumber_local * prob[0]);
+		std::size_t trajectoryNumber_local_H2 = static_cast<std::size_t>(trajectoryNumber_local * prob[2]);
 
 		// follow O
-		for (std::size_t j = 0; j < trajectoryNumber_local_O2; ++j) {
+		for (std::size_t j = 0; j < trajectoryNumber_local_O2; ++j)
+		{
 			rnkODEs.set_reaction_out_spe_info("O");
 			rnkODEs.ODE_pathway_sim_once(init_time, end_time, 0);
 		}
 
 		// follow H
-		for (std::size_t j = 0; j < trajectoryNumber_local_H2; ++j) {
+		for (std::size_t j = 0; j < trajectoryNumber_local_H2; ++j)
+		{
 			rnkODEs.set_reaction_out_spe_info("H");
 			rnkODEs.ODE_pathway_sim_once(init_time, end_time, 2);
 		}
@@ -1296,8 +1336,10 @@ void driver::ODE_solver_MC_trajectory_cv_parallel(const boost::mpi::communicator
 		//get probability matrix
 		rnkODEs.get_probability_matrix(prob_Mat);
 		//map reduce
-		for (size_t i = 0; i < prob_Mat.size(); ++i) {
-			for (size_t j = 0; j < prob_Mat[0].size(); ++j) {
+		for (size_t i = 0; i < prob_Mat.size(); ++i)
+		{
+			for (size_t j = 0; j < prob_Mat[0].size(); ++j)
+			{
 				// think about it later
 				reduce(world, prob_Mat[i][j], prob_Mat_reduce[i][j], std::plus<double>(), 0);
 			}
@@ -1310,13 +1352,14 @@ void driver::ODE_solver_MC_trajectory_cv_parallel(const boost::mpi::communicator
 		rnkODEs.check_zero_concentration(pt.get<double>("SOHR_init.deltaConcentration"));
 	}
 
-	if (world.rank() == 0) {
+	if (world.rank() == 0)
+	{
 		//rnkODEs.convert_molar_concentration_to_mole_fraction();
 		rnkODEs.w2f_pgt("SOHR");
 	}
 }
 
-void driver::ODE_solver_path_integral_parallel_s_ct_np_v1(const boost::mpi::communicator & world, const std::string & main_cwd, const boost::property_tree::ptree & pt)
+void driver::ODE_solver_path_integral_parallel_s_ct_np_v1(const boost::mpi::communicator &world, const std::string &main_cwd, const boost::property_tree::ptree &pt)
 {
 	std::vector<double> uncertainties;
 	//initialize MPI stuff
@@ -1328,12 +1371,14 @@ void driver::ODE_solver_path_integral_parallel_s_ct_np_v1(const boost::mpi::comm
 	std::size_t topN;
 
 	//calculate the uncertainties only in the first node
-	if (world.rank() == 0) {
+	if (world.rank() == 0)
+	{
 		//read in uncertainties
 		fileIO::fileIO::read_generate_uncertainties_w2f_nominal(uncertainties, (main_cwd + "/input/uncertainties.inp"));
 
 		std::vector<std::size_t> topN_vec;
-		for (auto key1 : pt.get_child("pathway.topN")) {
+		for (auto key1 : pt.get_child("pathway.topN"))
+		{
 			topN_vec.push_back(key1.second.get_value<size_t>());
 		}
 		topN = topN_vec.front();
@@ -1342,7 +1387,6 @@ void driver::ODE_solver_path_integral_parallel_s_ct_np_v1(const boost::mpi::comm
 		pathwayHandler::get_pathway(main_cwd + std::string("/output/pathway_name_candidate.csv"), pathway_vec,
 			std::numeric_limits<int>::max() - 1000); //topN pathways
 		iterationNumber = pt.get<std::size_t>("SOHR_init.iterationNumber");
-
 	}
 
 	//broadcast
@@ -1361,29 +1405,34 @@ void driver::ODE_solver_path_integral_parallel_s_ct_np_v1(const boost::mpi::comm
 	std::pair<std::size_t, std::size_t> conc_data_size = rnkODEs_obj.get_size_of_concentration_data();
 
 	//pathway prob result
-	std::vector<std::vector<double> > prob_Mat(conc_data_size.first, std::vector<double>(conc_data_size.second, 0.0));
-	std::vector<std::vector<double> > prob_Mat_reduce(conc_data_size.first,
+	std::vector<std::vector<double>> prob_Mat(conc_data_size.first, std::vector<double>(conc_data_size.second, 0.0));
+	std::vector<std::vector<double>> prob_Mat_reduce(conc_data_size.first,
 		std::vector<double>(conc_data_size.second, 0.0));
 
 	//conversion factor from pathway prob to concentration
 	std::vector<double> P2C;
-	for (auto key1 : pt.get_child("SOHR_init.P2C")) {
+	for (auto key1 : pt.get_child("SOHR_init.P2C"))
+	{
 		P2C.push_back(key1.second.get_value<double>());
 	}
 	assert(P2C.size() == conc_data_size.first);
 
 	rnkODEs_obj.set_concentration_at_time_zero_to_initial_fraction_or_concentration();
-	for (std::size_t ni = 0; ni < iterationNumber; ++ni) {
+	for (std::size_t ni = 0; ni < iterationNumber; ++ni)
+	{
 		rnkODEs_obj.ODEdirectlyEvaluatePathwayProbability(pathway_vec, P2C, trajectoryNumber_local, topN, prob_Mat);
 		//map reduce
-		for (size_t i = 0; i < prob_Mat.size(); ++i) {
-			for (size_t j = 0; j < prob_Mat[0].size(); ++j) {
+		for (size_t i = 0; i < prob_Mat.size(); ++i)
+		{
+			for (size_t j = 0; j < prob_Mat[0].size(); ++j)
+			{
 				reduce(world, prob_Mat[i][j], prob_Mat_reduce[i][j], std::plus<double>(), 0);
 			}
 		}
 
 		// normalize prob_Mat_reduce so that it represents concentration
-		if (world.rank() == 0) {
+		if (world.rank() == 0)
+		{
 			rnkODEs_obj.rescale_prob_matrix_data(prob_Mat_reduce, 1.0 / trajectoryNumber_total);
 			rnkODEs_obj.divide_prob_matrix_by_number_of_ways_making_species(prob_Mat_reduce);
 			// set the probability of the first time point to initial probability
@@ -1393,7 +1442,8 @@ void driver::ODE_solver_path_integral_parallel_s_ct_np_v1(const boost::mpi::comm
 
 		rnkODEs_obj.update_concentration_data_from_spe_based_probability_matrix(prob_Mat_reduce);
 
-		if (ni != 0) {
+		if (ni != 0)
+		{
 			rnkODEs_obj.update_spe_drc_based_on_spe_concentration_s_ct_np();
 			rnkODEs_obj.integrate_propensity_function_pgt();
 			rnkODEs_obj.init_spe_drc_int_pgt();
@@ -1406,12 +1456,13 @@ void driver::ODE_solver_path_integral_parallel_s_ct_np_v1(const boost::mpi::comm
 		}
 	}
 
-	if (world.rank() == 0) {
+	if (world.rank() == 0)
+	{
 		rnkODEs_obj.w2f_pgt("SOHR_0");
 	}
 }
 
-void driver::ODE_solver_path_integral_parallel_s_ct_np_v2(const boost::mpi::communicator & world, const std::string & main_cwd, const boost::property_tree::ptree & pt)
+void driver::ODE_solver_path_integral_parallel_s_ct_np_v2(const boost::mpi::communicator &world, const std::string &main_cwd, const boost::property_tree::ptree &pt)
 {
 	std::vector<double> uncertainties;
 	//initialize MPI stuff
@@ -1423,18 +1474,19 @@ void driver::ODE_solver_path_integral_parallel_s_ct_np_v2(const boost::mpi::comm
 	std::size_t topN;
 
 	//calculate the uncertainties only in the first node
-	if (world.rank() == 0) {
+	if (world.rank() == 0)
+	{
 		//read in uncertainties
 		fileIO::fileIO::read_generate_uncertainties_w2f_nominal(uncertainties, (main_cwd + "/input/uncertainties.inp"));
 
 		std::vector<std::size_t> topN_vec;
-		for (auto key1 : pt.get_child("pathway.topN")) {
+		for (auto key1 : pt.get_child("pathway.topN"))
+		{
 			topN_vec.push_back(key1.second.get_value<size_t>());
 		}
 		topN = topN_vec.front();
 
 		iterationNumber = pt.get<std::size_t>("SOHR_init.iterationNumber");
-
 	}
 
 	//broadcast
@@ -1452,22 +1504,24 @@ void driver::ODE_solver_path_integral_parallel_s_ct_np_v2(const boost::mpi::comm
 	auto conc_data_size = rnkODEs_obj.get_size_of_concentration_data();
 
 	//pathway prob result
-	std::vector<std::vector<double> > prob_Mat(conc_data_size.first, std::vector<double>(conc_data_size.second, 0.0));
-	std::vector<std::vector<double> > prob_Mat_reduce(conc_data_size.first,
+	std::vector<std::vector<double>> prob_Mat(conc_data_size.first, std::vector<double>(conc_data_size.second, 0.0));
+	std::vector<std::vector<double>> prob_Mat_reduce(conc_data_size.first,
 		std::vector<double>(conc_data_size.second, 0.0));
 
 	//conversion factor from pathway prob to concentration
 	std::vector<double> P2C;
-	for (auto key1 : pt.get_child("SOHR_init.P2C")) {
+	for (auto key1 : pt.get_child("SOHR_init.P2C"))
+	{
 		P2C.push_back(key1.second.get_value<double>());
 	}
 	assert(P2C.size() == conc_data_size.first);
 
-	for (std::size_t ni = 0; ni < iterationNumber; ++ni) {
-		if (world.rank() == 0) {
+	for (std::size_t ni = 0; ni < iterationNumber; ++ni)
+	{
+		if (world.rank() == 0)
+		{
 			// generate pathname
-			std::string filename = main_cwd + std::string("/output") + std::string("/pathname_")
-				+ boost::lexical_cast<std::string>(ni) + std::string(".csv");
+			std::string filename = main_cwd + std::string("/output") + std::string("/pathname_") + boost::lexical_cast<std::string>(ni) + std::string(".csv");
 			rnkODEs_obj.heuristic_path_string_vector_by_stage_number_path_length_all_elements(ni, filename);
 			//get the pathway name only on the processor 0
 			pathwayHandler::get_pathway(filename, pathway_vec, topN); //topN pathways
@@ -1478,13 +1532,16 @@ void driver::ODE_solver_path_integral_parallel_s_ct_np_v2(const boost::mpi::comm
 		rnkODEs_obj.set_concentration_at_time_zero_to_initial_fraction_or_concentration();
 		rnkODEs_obj.ODEdirectlyEvaluatePathwayProbability(pathway_vec, P2C, trajectoryNumber_local, topN, prob_Mat);
 		//map reduce
-		for (size_t i = 0; i < prob_Mat.size(); ++i) {
-			for (size_t j = 0; j < prob_Mat[0].size(); ++j) {
+		for (size_t i = 0; i < prob_Mat.size(); ++i)
+		{
+			for (size_t j = 0; j < prob_Mat[0].size(); ++j)
+			{
 				reduce(world, prob_Mat[i][j], prob_Mat_reduce[i][j], std::plus<double>(), 0);
 			}
 		}
 		// normalize prob_Mat_reduce so that it represents concentration
-		if (world.rank() == 0) {
+		if (world.rank() == 0)
+		{
 			rnkODEs_obj.rescale_prob_matrix_data(prob_Mat_reduce, 1.0 / trajectoryNumber_total);
 			rnkODEs_obj.divide_prob_matrix_by_number_of_ways_making_species(prob_Mat_reduce);
 			// set the probability of the first time point to initial probability
@@ -1494,7 +1551,8 @@ void driver::ODE_solver_path_integral_parallel_s_ct_np_v2(const boost::mpi::comm
 
 		rnkODEs_obj.update_concentration_data_from_spe_based_probability_matrix(prob_Mat_reduce);
 
-		if (ni != 0) {
+		if (ni != 0)
+		{
 			rnkODEs_obj.update_spe_drc_based_on_spe_concentration_s_ct_np();
 			rnkODEs_obj.integrate_propensity_function_pgt();
 			rnkODEs_obj.init_spe_drc_int_pgt();
@@ -1507,12 +1565,13 @@ void driver::ODE_solver_path_integral_parallel_s_ct_np_v2(const boost::mpi::comm
 		}
 	}
 
-	if (world.rank() == 0) {
+	if (world.rank() == 0)
+	{
 		rnkODEs_obj.w2f_pgt("SOHR_0");
 	}
 }
 
-void driver::ODE_solver_path_integral_parallel_s_ct_np_v3(const boost::mpi::communicator & world, const std::string & main_cwd, const boost::property_tree::ptree & pt)
+void driver::ODE_solver_path_integral_parallel_s_ct_np_v3(const boost::mpi::communicator &world, const std::string &main_cwd, const boost::property_tree::ptree &pt)
 {
 	std::vector<double> uncertainties;
 	//initialize MPI stuff
@@ -1524,18 +1583,19 @@ void driver::ODE_solver_path_integral_parallel_s_ct_np_v3(const boost::mpi::comm
 	std::size_t topN;
 
 	//calculate the uncertainties only in the first node
-	if (world.rank() == 0) {
+	if (world.rank() == 0)
+	{
 		//read in uncertainties
 		fileIO::fileIO::read_generate_uncertainties_w2f_nominal(uncertainties, (main_cwd + "/input/uncertainties.inp"));
 
 		std::vector<std::size_t> topN_vec;
-		for (auto key1 : pt.get_child("pathway.topN")) {
+		for (auto key1 : pt.get_child("pathway.topN"))
+		{
 			topN_vec.push_back(key1.second.get_value<size_t>());
 		}
 		topN = topN_vec.front();
 
 		iterationNumber = pt.get<std::size_t>("SOHR_init.iterationNumber");
-
 	}
 
 	//broadcast
@@ -1553,19 +1613,22 @@ void driver::ODE_solver_path_integral_parallel_s_ct_np_v3(const boost::mpi::comm
 	auto conc_data_size = rnkODEs_obj.get_size_of_concentration_data();
 
 	//pathway prob result
-	std::vector<std::vector<double> > prob_Mat(conc_data_size.first, std::vector<double>(conc_data_size.second, 0.0));
-	std::vector<std::vector<double> > prob_Mat_reduce(conc_data_size.first,
+	std::vector<std::vector<double>> prob_Mat(conc_data_size.first, std::vector<double>(conc_data_size.second, 0.0));
+	std::vector<std::vector<double>> prob_Mat_reduce(conc_data_size.first,
 		std::vector<double>(conc_data_size.second, 0.0));
 
 	//conversion factor from pathway prob to concentration
 	std::vector<double> P2C;
-	for (auto key1 : pt.get_child("SOHR_init.P2C")) {
+	for (auto key1 : pt.get_child("SOHR_init.P2C"))
+	{
 		P2C.push_back(key1.second.get_value<double>());
 	}
 	assert(P2C.size() == conc_data_size.first);
 
-	for (std::size_t ni = 0; ni < iterationNumber; ++ni) {
-		if (ni != 0) {
+	for (std::size_t ni = 0; ni < iterationNumber; ++ni)
+	{
+		if (ni != 0)
+		{
 			rnkODEs_obj.update_concentration_data_from_spe_based_probability_matrix(prob_Mat_reduce);
 
 			rnkODEs_obj.update_spe_drc_based_on_spe_concentration_s_ct_np();
@@ -1579,10 +1642,10 @@ void driver::ODE_solver_path_integral_parallel_s_ct_np_v3(const boost::mpi::comm
 			rnkODEs_obj.init_reaction_rate_pgt();
 		}
 
-		if (world.rank() == 0) {
+		if (world.rank() == 0)
+		{
 			// generate pathname
-			std::string filename = main_cwd + std::string("/output") + std::string("/pathname_")
-				+ boost::lexical_cast<std::string>(ni) + std::string(".csv");
+			std::string filename = main_cwd + std::string("/output") + std::string("/pathname_") + boost::lexical_cast<std::string>(ni) + std::string(".csv");
 			rnkODEs_obj.heuristic_path_string_vector_by_stage_number_path_length_all_elements(ni, filename);
 			//get the pathway name only on the processor 0
 			pathwayHandler::get_pathway(filename, pathway_vec, topN); //topN pathways
@@ -1593,13 +1656,16 @@ void driver::ODE_solver_path_integral_parallel_s_ct_np_v3(const boost::mpi::comm
 		rnkODEs_obj.set_concentration_at_time_zero_to_initial_fraction_or_concentration();
 		rnkODEs_obj.ODEdirectlyEvaluatePathwayProbability(pathway_vec, P2C, trajectoryNumber_local, topN, prob_Mat);
 		//map reduce
-		for (size_t i = 0; i < prob_Mat.size(); ++i) {
-			for (size_t j = 0; j < prob_Mat[0].size(); ++j) {
+		for (size_t i = 0; i < prob_Mat.size(); ++i)
+		{
+			for (size_t j = 0; j < prob_Mat[0].size(); ++j)
+			{
 				reduce(world, prob_Mat[i][j], prob_Mat_reduce[i][j], std::plus<double>(), 0);
 			}
 		}
 		// normalize prob_Mat_reduce so that it represents concentration
-		if (world.rank() == 0) {
+		if (world.rank() == 0)
+		{
 			rnkODEs_obj.rescale_prob_matrix_data(prob_Mat_reduce, 1.0 / trajectoryNumber_total);
 			rnkODEs_obj.divide_prob_matrix_by_number_of_ways_making_species(prob_Mat_reduce);
 			// set the probability of the first time point to initial probability
@@ -1609,7 +1675,8 @@ void driver::ODE_solver_path_integral_parallel_s_ct_np_v3(const boost::mpi::comm
 		if (ni != iterationNumber - 1)
 			broadcast(world, prob_Mat_reduce, 0);
 
-		if (ni == iterationNumber - 1) {
+		if (ni == iterationNumber - 1)
+		{
 			rnkODEs_obj.update_concentration_data_from_spe_based_probability_matrix(prob_Mat_reduce);
 
 			rnkODEs_obj.update_spe_drc_based_on_spe_concentration_s_ct_np();
@@ -1624,12 +1691,13 @@ void driver::ODE_solver_path_integral_parallel_s_ct_np_v3(const boost::mpi::comm
 		}
 	}
 
-	if (world.rank() == 0) {
+	if (world.rank() == 0)
+	{
 		rnkODEs_obj.w2f_pgt("SOHR_0");
 	}
 }
 
-void driver::ODE_solver_path_integral_parallel_s_ct_np_cc1_v1(const boost::mpi::communicator & world, const std::string & main_cwd, const boost::property_tree::ptree & pt)
+void driver::ODE_solver_path_integral_parallel_s_ct_np_cc1_v1(const boost::mpi::communicator &world, const std::string &main_cwd, const boost::property_tree::ptree &pt)
 {
 	std::vector<double> uncertainties;
 	//initialize MPI stuff
@@ -1643,12 +1711,14 @@ void driver::ODE_solver_path_integral_parallel_s_ct_np_cc1_v1(const boost::mpi::
 	std::size_t topN;
 
 	//calculate the uncertainties only in the first node
-	if (world.rank() == 0) {
+	if (world.rank() == 0)
+	{
 		//read in uncertainties
 		fileIO::fileIO::read_generate_uncertainties_w2f_nominal(uncertainties, (main_cwd + "/input/uncertainties.inp"));
 
 		std::vector<std::size_t> topN_vec;
-		for (auto key1 : pt.get_child("pathway.topN")) {
+		for (auto key1 : pt.get_child("pathway.topN"))
+		{
 			topN_vec.push_back(key1.second.get_value<size_t>());
 		}
 		topN = topN_vec.front();
@@ -1657,7 +1727,8 @@ void driver::ODE_solver_path_integral_parallel_s_ct_np_cc1_v1(const boost::mpi::
 		pathwayHandler::get_pathway(main_cwd + std::string("/output/pathway_name_candidate.csv"), pathway_vec,
 			std::numeric_limits<int>::max() - 1000); //topN pathways
 													 //single source species
-		if (pt.get<int>("SOHR_init.single_source_species") >= 0) {
+		if (pt.get<int>("SOHR_init.single_source_species") >= 0)
+		{
 			std::string sss = pt.get<std::string>("pathway.atom_followed") + std::string("S") + pt.get<std::string>("SOHR_init.single_source_species");
 			pathwayHandler::pathway_starts_with(sss, pathway_vec, pathway_swss_vec);
 			//Not the source species itself
@@ -1668,7 +1739,6 @@ void driver::ODE_solver_path_integral_parallel_s_ct_np_cc1_v1(const boost::mpi::
 		}
 
 		iterationNumber = pt.get<std::size_t>("SOHR_init.iterationNumber");
-
 	}
 
 	//broadcast
@@ -1688,52 +1758,56 @@ void driver::ODE_solver_path_integral_parallel_s_ct_np_cc1_v1(const boost::mpi::
 	std::pair<std::size_t, std::size_t> conc_data_size = rnkODEs_obj.get_size_of_concentration_data();
 
 	//concentration oriented prob matrix result
-	std::vector<std::vector<double> > conc_prob_Mat(conc_data_size.first, std::vector<double>(conc_data_size.second, 0.0));
-	std::vector<std::vector<double> > conc_prob_Mat_reduce(conc_data_size.first,
+	std::vector<std::vector<double>> conc_prob_Mat(conc_data_size.first, std::vector<double>(conc_data_size.second, 0.0));
+	std::vector<std::vector<double>> conc_prob_Mat_reduce(conc_data_size.first,
 		std::vector<double>(conc_data_size.second, 0.0));
 
 	//pathway based prob matrix result
-	std::vector<std::vector<double> > path_prob_Mat(pathway_swss_vec.size(), std::vector<double>(conc_data_size.second, 0.0));
+	std::vector<std::vector<double>> path_prob_Mat(pathway_swss_vec.size(), std::vector<double>(conc_data_size.second, 0.0));
 
 	//conversion factor from pathway prob to concentration
 	std::vector<double> P2C;
-	for (auto key1 : pt.get_child("SOHR_init.P2C")) {
+	for (auto key1 : pt.get_child("SOHR_init.P2C"))
+	{
 		P2C.push_back(key1.second.get_value<double>());
 	}
 	assert(P2C.size() == conc_data_size.first);
 
 	rnkODEs_obj.set_concentration_at_time_zero_to_initial_fraction_or_concentration();
-	for (std::size_t ni = 0; ni < iterationNumber; ++ni) {
+	for (std::size_t ni = 0; ni < iterationNumber; ++ni)
+	{
 		rnkODEs_obj.ODEdirectlyEvaluatePathwayProbability(pathway_vec, P2C, trajectoryNumber_local, topN, conc_prob_Mat);
 
 		//single source term, additional add-ons to the concentration from initial species
 		rnkODEs_obj.single_source_ODEdirectlyEvaluatePathwayProbability_pathVector(pathway_swss_vec, trajectoryNumber_local, path_prob_Mat);
 		rnkODEs_obj.update_concentration_oriented_prob_matrix_from_single_source_path_based_prob_matrix(pathway_swss_vec, P2C, path_prob_Mat, conc_prob_Mat);
 
-
 		//map reduce
-		for (size_t i = 0; i < conc_prob_Mat.size(); ++i) {
-			for (size_t j = 0; j < conc_prob_Mat[0].size(); ++j) {
+		for (size_t i = 0; i < conc_prob_Mat.size(); ++i)
+		{
+			for (size_t j = 0; j < conc_prob_Mat[0].size(); ++j)
+			{
 				reduce(world, conc_prob_Mat[i][j], conc_prob_Mat_reduce[i][j], std::plus<double>(), 0);
 			}
 		}
 
 		// normalize prob_Mat_reduce so that it represents concentration
-		if (world.rank() == 0) {
+		if (world.rank() == 0)
+		{
 			rnkODEs_obj.rescale_prob_matrix_data(conc_prob_Mat_reduce, 1.0 / trajectoryNumber_total);
 			rnkODEs_obj.divide_prob_matrix_by_number_of_ways_making_species(conc_prob_Mat_reduce);
 			// set the probability of the first time point to initial probability
 			rnkODEs_obj.set_probability_matrix_at_time_zero_to_initial_fraction_or_concentration(conc_prob_Mat_reduce);
 			// single source concentration to be constant
 			rnkODEs_obj.set_probability_matrix_of_single_source_constant(conc_prob_Mat_reduce);
-
 		}
 
 		broadcast(world, conc_prob_Mat_reduce, 0);
 
 		rnkODEs_obj.update_concentration_data_from_spe_based_probability_matrix(conc_prob_Mat_reduce);
 
-		if (ni != iterationNumber - 1) {
+		if (ni != iterationNumber - 1)
+		{
 			rnkODEs_obj.update_spe_drc_based_on_spe_concentration_s_ct_np();
 			rnkODEs_obj.integrate_propensity_function_pgt();
 			rnkODEs_obj.init_spe_drc_int_pgt();
@@ -1750,16 +1824,16 @@ void driver::ODE_solver_path_integral_parallel_s_ct_np_cc1_v1(const boost::mpi::
 		}
 
 		//write out every iteration
-		if (world.rank() == 0) {
+		if (world.rank() == 0)
+		{
 			//rnkODEs_obj.w2f_pgt("SOHR_0");
 			rnkODEs_obj.w2f_pgt(std::string("SOHR_M_") + boost::lexical_cast<std::string>(ni + 1));
 		}
 
-	}//ni
+	} //ni
 }
 
-
-void driver::ODE_solver_path_integral_parallel_cv_v9(const boost::mpi::communicator & world, const std::string & main_cwd, const boost::property_tree::ptree & pt)
+void driver::ODE_solver_path_integral_parallel_cv_v9(const boost::mpi::communicator &world, const std::string &main_cwd, const boost::property_tree::ptree &pt)
 {
 	//initialize MPI stuff
 	std::vector<double> uncertainties;
@@ -1774,25 +1848,28 @@ void driver::ODE_solver_path_integral_parallel_cv_v9(const boost::mpi::communica
 	std::vector<double> P2C;
 
 	//calculate the uncertainties only in the first node
-	if (world.rank() == 0) {
+	if (world.rank() == 0)
+	{
 		//read in uncertainties
 		fileIO::fileIO::read_generate_uncertainties_w2f_nominal(uncertainties, (main_cwd + "/input/uncertainties.inp"));
 
 		std::vector<std::size_t> topN_vec;
-		for (auto key1 : pt.get_child("pathway.topN")) {
+		for (auto key1 : pt.get_child("pathway.topN"))
+		{
 			topN_vec.push_back(key1.second.get_value<size_t>());
 		}
 		topN = topN_vec.front();
 
 		iterationNumber = pt.get<std::size_t>("SOHR_init.iterationNumber");
-		for (auto key1 : pt.get_child("pathway.trajectoryNumberVector")) {
+		for (auto key1 : pt.get_child("pathway.trajectoryNumberVector"))
+		{
 			trajectoryNumber_vector.push_back(key1.second.get_value<size_t>());
 		}
 
-		for (auto key1 : pt.get_child("SOHR_init.P2C")) {
+		for (auto key1 : pt.get_child("SOHR_init.P2C"))
+		{
 			P2C.push_back(key1.second.get_value<double>());
 		}
-
 	}
 
 	//broadcast
@@ -1808,11 +1885,13 @@ void driver::ODE_solver_path_integral_parallel_cv_v9(const boost::mpi::communica
 	assert(P2C.size() == species_time_size.first);
 
 	//pathway prob result
-	std::vector<std::vector<double> > prob_Mat(species_time_size.first, std::vector<double>(species_time_size.second, 0.0));
-	std::vector<std::vector<double> > prob_Mat_reduce(species_time_size.first, std::vector<double>(species_time_size.second, 0.0));
+	std::vector<std::vector<double>> prob_Mat(species_time_size.first, std::vector<double>(species_time_size.second, 0.0));
+	std::vector<std::vector<double>> prob_Mat_reduce(species_time_size.first, std::vector<double>(species_time_size.second, 0.0));
 
-	for (std::size_t ni = 1; ni <= iterationNumber; ++ni) {
-		if (ni != 1) {
+	for (std::size_t ni = 1; ni <= iterationNumber; ++ni)
+	{
+		if (ni != 1)
+		{
 			rnkODEs_obj.update_concentration_data_from_spe_based_probability_matrix(prob_Mat_reduce);
 
 			rnkODEs_obj.convert_mole_fraction_to_molar_concentration();
@@ -1837,7 +1916,8 @@ void driver::ODE_solver_path_integral_parallel_cv_v9(const boost::mpi::communica
 		std::size_t N_followed_atoms;
 
 		//got to generate paths after resetting the concentration, pseudo-first order rate constant and reaction rates, etc.
-		if (world.rank() == 0) {
+		if (world.rank() == 0)
+		{
 			//generate pathname, not necessay that all nodes have the same set of pathway vector, modify later
 			N_followed_atoms = rnkODEs_obj.heuristic_path_string_vector_by_stage_number_path_prob_all_elements_s2m(ni - 1, pathway_vec, topN);
 
@@ -1856,16 +1936,19 @@ void driver::ODE_solver_path_integral_parallel_cv_v9(const boost::mpi::communica
 		rnkODEs_obj.set_concentration_at_time_zero_to_initial_fraction_or_concentration();
 
 		// at most number of atoms * topN
-		rnkODEs_obj.ODEdirectlyEvaluatePathwayProbability(pathway_vec, P2C, trajectoryNumber_local, N_followed_atoms*topN, prob_Mat);
+		rnkODEs_obj.ODEdirectlyEvaluatePathwayProbability(pathway_vec, P2C, trajectoryNumber_local, N_followed_atoms * topN, prob_Mat);
 		//map reduce
-		for (size_t i = 0; i < prob_Mat.size(); ++i) {
-			for (size_t j = 0; j < prob_Mat[0].size(); ++j) {
+		for (size_t i = 0; i < prob_Mat.size(); ++i)
+		{
+			for (size_t j = 0; j < prob_Mat[0].size(); ++j)
+			{
 				reduce(world, prob_Mat[i][j], prob_Mat_reduce[i][j], std::plus<double>(), 0);
 			}
 		}
 
 		// normalize prob_Mat_reduce so that it represents concentration
-		if (world.rank() == 0) {
+		if (world.rank() == 0)
+		{
 			rnkODEs_obj.rescale_prob_matrix_data(prob_Mat_reduce, 1.0 / trajectoryNumber_total);
 			rnkODEs_obj.divide_prob_matrix_by_number_of_ways_making_species(prob_Mat_reduce);
 			rnkODEs_obj.normalize_prob_matrix_data(prob_Mat_reduce);
@@ -1875,9 +1958,11 @@ void driver::ODE_solver_path_integral_parallel_cv_v9(const boost::mpi::communica
 
 		if (ni != iterationNumber)
 			broadcast(world, prob_Mat_reduce, 0);
-		if (ni == iterationNumber) {
+		if (ni == iterationNumber)
+		{
 			//last iteration, print concentration data to file
-			if (world.rank() == 0) {
+			if (world.rank() == 0)
+			{
 				rnkODEs_obj.update_concentration_data_from_spe_based_probability_matrix(prob_Mat_reduce);
 				// this is necessary since we also need to update pressre and temperature
 				rnkODEs_obj.convert_mole_fraction_to_molar_concentration();
@@ -1899,14 +1984,13 @@ void driver::ODE_solver_path_integral_parallel_cv_v9(const boost::mpi::communica
 				rnkODEs_obj.update_concentration_data_from_spe_based_probability_matrix(prob_Mat_reduce);
 				rnkODEs_obj.w2f_pgt(std::string("SOHR_fraction_") + boost::lexical_cast<std::string>(ni));
 
-			}// if
+			} // if
 		}
 
-	}// for ni
-
+	} // for ni
 }
 
-void driver::ODE_solver_path_integral_parallel_cv_v10(const boost::mpi::communicator & world, const std::string & main_cwd, const boost::property_tree::ptree & pt)
+void driver::ODE_solver_path_integral_parallel_cv_v10(const boost::mpi::communicator &world, const std::string &main_cwd, const boost::property_tree::ptree &pt)
 {
 	//initialize MPI stuff
 	std::vector<double> uncertainties;
@@ -1918,25 +2002,28 @@ void driver::ODE_solver_path_integral_parallel_cv_v10(const boost::mpi::communic
 	std::vector<double> P2C;
 
 	//calculate the uncertainties only in the first node
-	if (world.rank() == 0) {
+	if (world.rank() == 0)
+	{
 		//read in uncertainties
 		fileIO::fileIO::read_generate_uncertainties_w2f_nominal(uncertainties, (main_cwd + "/input/uncertainties.inp"));
 
 		std::vector<std::size_t> topN_vec;
-		for (auto key1 : pt.get_child("pathway.topN")) {
+		for (auto key1 : pt.get_child("pathway.topN"))
+		{
 			topN_vec.push_back(key1.second.get_value<size_t>());
 		}
 		topN = topN_vec.front();
 
 		iterationNumber = pt.get<std::size_t>("SOHR_init.iterationNumber");
-		for (auto key1 : pt.get_child("pathway.trajectoryNumberVector")) {
+		for (auto key1 : pt.get_child("pathway.trajectoryNumberVector"))
+		{
 			trajectoryNumber_vector.push_back(key1.second.get_value<size_t>());
 		}
 
-		for (auto key1 : pt.get_child("SOHR_init.P2C")) {
+		for (auto key1 : pt.get_child("SOHR_init.P2C"))
+		{
 			P2C.push_back(key1.second.get_value<double>());
 		}
-
 	}
 
 	//broadcast
@@ -1952,11 +2039,13 @@ void driver::ODE_solver_path_integral_parallel_cv_v10(const boost::mpi::communic
 	assert(P2C.size() == species_time_size.first);
 
 	//pathway prob result
-	std::vector<std::vector<double> > prob_Mat(species_time_size.first, std::vector<double>(species_time_size.second, 0.0));
-	std::vector<std::vector<double> > prob_Mat_reduce(species_time_size.first, std::vector<double>(species_time_size.second, 0.0));
+	std::vector<std::vector<double>> prob_Mat(species_time_size.first, std::vector<double>(species_time_size.second, 0.0));
+	std::vector<std::vector<double>> prob_Mat_reduce(species_time_size.first, std::vector<double>(species_time_size.second, 0.0));
 
-	for (std::size_t ni = 1; ni <= iterationNumber; ++ni) {
-		if (ni != 1) {
+	for (std::size_t ni = 1; ni <= iterationNumber; ++ni)
+	{
+		if (ni != 1)
+		{
 			rnkODEs_obj.update_concentration_data_from_spe_based_probability_matrix(prob_Mat_reduce);
 			rnkODEs_obj.convert_mole_fraction_to_molar_concentration();
 
@@ -1980,7 +2069,8 @@ void driver::ODE_solver_path_integral_parallel_cv_v10(const boost::mpi::communic
 
 		std::size_t i_stage = ni - 1;
 		//got to generate paths after resetting the concentration, pseudo-first order rate constant and reaction rates, etc.
-		if (world.rank() == 0) {
+		if (world.rank() == 0)
+		{
 			//generate pathname, not necessay that all nodes have the same set of pathway vector, modify later
 			N_followed_atoms = rnkODEs_obj.heuristic_path_string_vector_by_stage_number_path_prob_all_elements_s2m(i_stage, pathway_vec, topN);
 
@@ -1999,16 +2089,19 @@ void driver::ODE_solver_path_integral_parallel_cv_v10(const boost::mpi::communic
 		rnkODEs_obj.set_concentration_at_time_zero_to_initial_fraction_or_concentration();
 
 		// at most number of atoms * topN
-		rnkODEs_obj.ODEdirectlyEvaluatePathwayProbability(pathway_vec, P2C, trajectoryNumber_local, N_followed_atoms*topN, prob_Mat);
+		rnkODEs_obj.ODEdirectlyEvaluatePathwayProbability(pathway_vec, P2C, trajectoryNumber_local, N_followed_atoms * topN, prob_Mat);
 		//map reduce
-		for (size_t i = 0; i < prob_Mat.size(); ++i) {
-			for (size_t j = 0; j < prob_Mat[0].size(); ++j) {
+		for (size_t i = 0; i < prob_Mat.size(); ++i)
+		{
+			for (size_t j = 0; j < prob_Mat[0].size(); ++j)
+			{
 				reduce(world, prob_Mat[i][j], prob_Mat_reduce[i][j], std::plus<double>(), 0);
 			}
 		}
 
 		// normalize prob_Mat_reduce so that it represents concentration
-		if (world.rank() == 0) {
+		if (world.rank() == 0)
+		{
 			rnkODEs_obj.rescale_prob_matrix_data(prob_Mat_reduce, 1.0 / trajectoryNumber_total);
 			rnkODEs_obj.divide_prob_matrix_by_number_of_ways_making_species(prob_Mat_reduce);
 			rnkODEs_obj.normalize_prob_matrix_data(prob_Mat_reduce);
@@ -2018,9 +2111,11 @@ void driver::ODE_solver_path_integral_parallel_cv_v10(const boost::mpi::communic
 
 		if (ni != iterationNumber)
 			broadcast(world, prob_Mat_reduce, 0);
-		if (ni == iterationNumber) {
+		if (ni == iterationNumber)
+		{
 			//last iteration, print concentration data to file
-			if (world.rank() == 0) {
+			if (world.rank() == 0)
+			{
 				rnkODEs_obj.update_concentration_data_from_spe_based_probability_matrix(prob_Mat_reduce);
 				// this is necessary since we also need to update pressre and temperature
 				rnkODEs_obj.convert_mole_fraction_to_molar_concentration();
@@ -2040,13 +2135,13 @@ void driver::ODE_solver_path_integral_parallel_cv_v10(const boost::mpi::communic
 				rnkODEs_obj.update_concentration_data_from_spe_based_probability_matrix(prob_Mat_reduce);
 				rnkODEs_obj.w2f_pgt(std::string("SOHR_fraction_") + boost::lexical_cast<std::string>(ni));
 
-			}// if
+			} // if
 		}
 
-	}// for ni
+	} // for ni
 }
 
-void driver::ODE_solver_path_integral_parallel_cv_v11(const boost::mpi::communicator & world, const std::string & main_cwd, const boost::property_tree::ptree & pt)
+void driver::ODE_solver_path_integral_parallel_cv_v11(const boost::mpi::communicator &world, const std::string &main_cwd, const boost::property_tree::ptree &pt)
 {
 	//initialize MPI stuff
 	std::vector<double> uncertainties;
@@ -2061,17 +2156,21 @@ void driver::ODE_solver_path_integral_parallel_cv_v11(const boost::mpi::communic
 	std::vector<std::size_t> path_n_v;
 
 	//calculate the uncertainties only in the first node
-	if (world.rank() == 0) {
+	if (world.rank() == 0)
+	{
 		//read in uncertainties
 		fileIO::fileIO::read_generate_uncertainties_w2f_nominal(uncertainties, (main_cwd + "/input/uncertainties.inp"));
-		for (auto key1 : pt.get_child("pathway.topN")) {
+		for (auto key1 : pt.get_child("pathway.topN"))
+		{
 			topN_vec.push_back(key1.second.get_value<size_t>());
 		}
 		iterationNumber = pt.get<std::size_t>("SOHR_init.iterationNumber");
-		for (auto key1 : pt.get_child("pathway.trajectoryNumberVector")) {
+		for (auto key1 : pt.get_child("pathway.trajectoryNumberVector"))
+		{
 			trajectoryNumber_vector.push_back(key1.second.get_value<size_t>());
 		}
-		for (auto key1 : pt.get_child("SOHR_init.P2C")) {
+		for (auto key1 : pt.get_child("SOHR_init.P2C"))
+		{
 			P2C.push_back(key1.second.get_value<double>());
 		}
 		for (auto key : pt.get_child("pathway.max_path_length"))
@@ -2094,11 +2193,13 @@ void driver::ODE_solver_path_integral_parallel_cv_v11(const boost::mpi::communic
 	assert(topN_vec.size() == Nspecies);
 
 	//pathway prob result
-	std::vector<std::vector<double> > prob_Mat(Nspecies, std::vector<double>(Ntimepoints, 0.0));
-	std::vector<std::vector<double> > prob_Mat_reduce(Nspecies, std::vector<double>(Ntimepoints, 0.0));
+	std::vector<std::vector<double>> prob_Mat(Nspecies, std::vector<double>(Ntimepoints, 0.0));
+	std::vector<std::vector<double>> prob_Mat_reduce(Nspecies, std::vector<double>(Ntimepoints, 0.0));
 
-	for (std::size_t ni = 1; ni <= iterationNumber; ++ni) {
-		if (ni != 1) {
+	for (std::size_t ni = 1; ni <= iterationNumber; ++ni)
+	{
+		if (ni != 1)
+		{
 			rnkODEs_obj.update_concentration_data_from_spe_based_probability_matrix(prob_Mat_reduce);
 			rnkODEs_obj.convert_mole_fraction_to_molar_concentration();
 
@@ -2116,7 +2217,8 @@ void driver::ODE_solver_path_integral_parallel_cv_v11(const boost::mpi::communic
 		//trajectory numbers
 		std::size_t trajectoryNumber_total;
 		//got to generate paths after resetting the concentration, pseudo-first order rate constant and reaction rates, etc.
-		if (world.rank() == 0) {
+		if (world.rank() == 0)
+		{
 			if (ni <= trajectoryNumber_vector.size())
 				trajectoryNumber_total = trajectoryNumber_vector[ni - 1];
 			else
@@ -2134,42 +2236,48 @@ void driver::ODE_solver_path_integral_parallel_cv_v11(const boost::mpi::communic
 		std::vector<std::string> pathway_vec;
 		std::size_t N_followed_atoms;
 		//not the first time point
-		for (std::size_t tj = 1; tj < Ntimepoints; ++tj) {
+		for (std::size_t tj = 1; tj < Ntimepoints; ++tj)
+		{
 			//total stage number is 10-ish
 			std::size_t i_stage = (std::size_t)get_stage_number(tj, Ntimepoints, path_n_v.size());
 			// a new stage, not exist
-			if (!std::binary_search(i_stage_vec.begin(), i_stage_vec.end(), i_stage)) {
+			if (!std::binary_search(i_stage_vec.begin(), i_stage_vec.end(), i_stage))
+			{
 				i_stage_vec.push_back(i_stage);
-				if (world.rank() == 0) {
-					double end_time_ratio_tmp = (i_stage + 1)*1.0 / path_n_v.size();
+				if (world.rank() == 0)
+				{
+					double end_time_ratio_tmp = (i_stage + 1) * 1.0 / path_n_v.size();
 					double end_time_ratio = (end_time_ratio_tmp > 1.0 ? 1.0 : end_time_ratio_tmp);
 					N_followed_atoms = rnkODEs_obj.heuristic_path_string_vector_by_stage_number_path_prob_all_elements_s2m(i_stage, pathway_vec, *std::max_element(topN_vec.begin(), topN_vec.end()), end_time_ratio);
 				}
 				broadcast(world, pathway_vec, 0);
 				broadcast(world, N_followed_atoms, 0);
-
 			}
 
-			for (std::size_t si = 0; si < Nspecies; ++si) {
+			for (std::size_t si = 0; si < Nspecies; ++si)
+			{
 				//for every species, got to evaluate the concentration at every time point
 				std::string S = std::string("S") + boost::lexical_cast<std::string>(si);
 				std::vector<std::string> pathway_vec_t;
 				//topN ends with S
-				pathwayHandler::pathway_ends_with(S, pathway_vec, pathway_vec_t, N_followed_atoms*topN_vec[si]); //topN pathways
+				pathwayHandler::pathway_ends_with(S, pathway_vec, pathway_vec_t, N_followed_atoms * topN_vec[si]); //topN pathways
 				rnkODEs_obj.ODEdirectlyEvaluatePathwayProbability_si_tj(si, tj, pathway_vec_t, P2C[si], trajectoryNumber_local, prob_Mat);
 
-			}//Nspecies
-		}//Ntimepoints
+			} //Nspecies
+		}	 //Ntimepoints
 
-		 //map reduce
-		for (size_t i = 0; i < prob_Mat.size(); ++i) {
-			for (size_t j = 0; j < prob_Mat[0].size(); ++j) {
+		//map reduce
+		for (size_t i = 0; i < prob_Mat.size(); ++i)
+		{
+			for (size_t j = 0; j < prob_Mat[0].size(); ++j)
+			{
 				reduce(world, prob_Mat[i][j], prob_Mat_reduce[i][j], std::plus<double>(), 0);
 			}
 		}
 
 		// normalize prob_Mat_reduce so that it represents concentration
-		if (world.rank() == 0) {
+		if (world.rank() == 0)
+		{
 			rnkODEs_obj.rescale_prob_matrix_data(prob_Mat_reduce, 1.0 / trajectoryNumber_total);
 			rnkODEs_obj.divide_prob_matrix_by_number_of_ways_making_species(prob_Mat_reduce);
 			rnkODEs_obj.normalize_prob_matrix_data(prob_Mat_reduce);
@@ -2179,9 +2287,11 @@ void driver::ODE_solver_path_integral_parallel_cv_v11(const boost::mpi::communic
 
 		if (ni != iterationNumber)
 			broadcast(world, prob_Mat_reduce, 0);
-		if (ni == iterationNumber) {
+		if (ni == iterationNumber)
+		{
 			//last iteration, print concentration data to file
-			if (world.rank() == 0) {
+			if (world.rank() == 0)
+			{
 				rnkODEs_obj.update_concentration_data_from_spe_based_probability_matrix(prob_Mat_reduce);
 				// this is necessary since we also need to update pressre and temperature
 				rnkODEs_obj.convert_mole_fraction_to_molar_concentration();
@@ -2201,14 +2311,13 @@ void driver::ODE_solver_path_integral_parallel_cv_v11(const boost::mpi::communic
 				rnkODEs_obj.update_concentration_data_from_spe_based_probability_matrix(prob_Mat_reduce);
 				rnkODEs_obj.w2f_pgt(std::string("SOHR_fraction_") + boost::lexical_cast<std::string>(ni));
 
-			}// if
+			} // if
 		}
 
-	}//Niterations
-
+	} //Niterations
 }
 
-void driver::ODE_solver_path_integral_parallel_cv_ct_v1(const boost::mpi::communicator & world, const std::string & main_cwd, const boost::property_tree::ptree & pt)
+void driver::ODE_solver_path_integral_parallel_cv_ct_v1(const boost::mpi::communicator &world, const std::string &main_cwd, const boost::property_tree::ptree &pt)
 {
 	//initialize MPI stuff
 	std::vector<double> uncertainties;
@@ -2223,25 +2332,28 @@ void driver::ODE_solver_path_integral_parallel_cv_ct_v1(const boost::mpi::commun
 	std::vector<double> P2C;
 
 	//calculate the uncertainties only in the first node
-	if (world.rank() == 0) {
+	if (world.rank() == 0)
+	{
 		//read in uncertainties
 		fileIO::fileIO::read_generate_uncertainties_w2f_nominal(uncertainties, (main_cwd + "/input/uncertainties.inp"));
 
 		std::vector<std::size_t> topN_vec;
-		for (auto key1 : pt.get_child("pathway.topN")) {
+		for (auto key1 : pt.get_child("pathway.topN"))
+		{
 			topN_vec.push_back(key1.second.get_value<size_t>());
 		}
 		topN = topN_vec.front();
 
 		iterationNumber = pt.get<std::size_t>("SOHR_init.iterationNumber");
-		for (auto key1 : pt.get_child("pathway.trajectoryNumberVector")) {
+		for (auto key1 : pt.get_child("pathway.trajectoryNumberVector"))
+		{
 			trajectoryNumber_vector.push_back(key1.second.get_value<size_t>());
 		}
 
-		for (auto key1 : pt.get_child("SOHR_init.P2C")) {
+		for (auto key1 : pt.get_child("SOHR_init.P2C"))
+		{
 			P2C.push_back(key1.second.get_value<double>());
 		}
-
 	}
 
 	//broadcast
@@ -2257,11 +2369,13 @@ void driver::ODE_solver_path_integral_parallel_cv_ct_v1(const boost::mpi::commun
 	assert(P2C.size() == species_time_size.first);
 
 	//pathway prob result
-	std::vector<std::vector<double> > prob_Mat(species_time_size.first, std::vector<double>(species_time_size.second, 0.0));
-	std::vector<std::vector<double> > prob_Mat_reduce(species_time_size.first, std::vector<double>(species_time_size.second, 0.0));
+	std::vector<std::vector<double>> prob_Mat(species_time_size.first, std::vector<double>(species_time_size.second, 0.0));
+	std::vector<std::vector<double>> prob_Mat_reduce(species_time_size.first, std::vector<double>(species_time_size.second, 0.0));
 
-	for (std::size_t ni = 1; ni <= iterationNumber; ++ni) {
-		if (ni != 1) {
+	for (std::size_t ni = 1; ni <= iterationNumber; ++ni)
+	{
+		if (ni != 1)
+		{
 			rnkODEs_obj.update_concentration_data_from_spe_based_probability_matrix(prob_Mat_reduce);
 
 			rnkODEs_obj.convert_mole_fraction_to_molar_concentration();
@@ -2286,7 +2400,8 @@ void driver::ODE_solver_path_integral_parallel_cv_ct_v1(const boost::mpi::commun
 		std::size_t N_followed_atoms;
 
 		//got to generate paths after resetting the concentration, pseudo-first order rate constant and reaction rates, etc.
-		if (world.rank() == 0) {
+		if (world.rank() == 0)
+		{
 			//generate pathname, not necessay that all nodes have the same set of pathway vector, modify later
 			N_followed_atoms = rnkODEs_obj.heuristic_path_string_vector_by_stage_number_path_prob_all_elements_s2m(ni - 1, pathway_vec, topN);
 
@@ -2305,16 +2420,19 @@ void driver::ODE_solver_path_integral_parallel_cv_ct_v1(const boost::mpi::commun
 		rnkODEs_obj.set_concentration_at_time_zero_to_initial_fraction_or_concentration();
 
 		// at most number of atoms * topN
-		rnkODEs_obj.ODEdirectlyEvaluatePathwayProbability(pathway_vec, P2C, trajectoryNumber_local, N_followed_atoms*topN, prob_Mat);
+		rnkODEs_obj.ODEdirectlyEvaluatePathwayProbability(pathway_vec, P2C, trajectoryNumber_local, N_followed_atoms * topN, prob_Mat);
 		//map reduce
-		for (size_t i = 0; i < prob_Mat.size(); ++i) {
-			for (size_t j = 0; j < prob_Mat[0].size(); ++j) {
+		for (size_t i = 0; i < prob_Mat.size(); ++i)
+		{
+			for (size_t j = 0; j < prob_Mat[0].size(); ++j)
+			{
 				reduce(world, prob_Mat[i][j], prob_Mat_reduce[i][j], std::plus<double>(), 0);
 			}
 		}
 
 		// normalize prob_Mat_reduce so that it represents concentration
-		if (world.rank() == 0) {
+		if (world.rank() == 0)
+		{
 			rnkODEs_obj.rescale_prob_matrix_data(prob_Mat_reduce, 1.0 / trajectoryNumber_total);
 			rnkODEs_obj.divide_prob_matrix_by_number_of_ways_making_species(prob_Mat_reduce);
 			rnkODEs_obj.normalize_prob_matrix_data(prob_Mat_reduce);
@@ -2324,9 +2442,11 @@ void driver::ODE_solver_path_integral_parallel_cv_ct_v1(const boost::mpi::commun
 
 		if (ni != iterationNumber)
 			broadcast(world, prob_Mat_reduce, 0);
-		if (ni == iterationNumber) {
+		if (ni == iterationNumber)
+		{
 			//last iteration, print concentration data to file
-			if (world.rank() == 0) {
+			if (world.rank() == 0)
+			{
 				rnkODEs_obj.update_concentration_data_from_spe_based_probability_matrix(prob_Mat_reduce);
 				// this is necessary since we also need to update pressre and temperature
 				rnkODEs_obj.convert_mole_fraction_to_molar_concentration();
@@ -2348,13 +2468,13 @@ void driver::ODE_solver_path_integral_parallel_cv_ct_v1(const boost::mpi::commun
 				rnkODEs_obj.update_concentration_data_from_spe_based_probability_matrix(prob_Mat_reduce);
 				rnkODEs_obj.w2f_pgt(std::string("SOHR_fraction_") + boost::lexical_cast<std::string>(ni));
 
-			}// if
+			} // if
 		}
 
-	}// for ni
+	} // for ni
 }
 
-void driver::ODE_solver_path_integral_parallel_cv_ct_v2(const boost::mpi::communicator & world, const std::string & main_cwd, const boost::property_tree::ptree & pt)
+void driver::ODE_solver_path_integral_parallel_cv_ct_v2(const boost::mpi::communicator &world, const std::string &main_cwd, const boost::property_tree::ptree &pt)
 {
 	//initialize MPI stuff
 	std::vector<double> uncertainties;
@@ -2369,17 +2489,21 @@ void driver::ODE_solver_path_integral_parallel_cv_ct_v2(const boost::mpi::commun
 	std::vector<std::size_t> path_n_v;
 
 	//calculate the uncertainties only in the first node
-	if (world.rank() == 0) {
+	if (world.rank() == 0)
+	{
 		//read in uncertainties
 		fileIO::fileIO::read_generate_uncertainties_w2f_nominal(uncertainties, (main_cwd + "/input/uncertainties.inp"));
-		for (auto key1 : pt.get_child("pathway.topN")) {
+		for (auto key1 : pt.get_child("pathway.topN"))
+		{
 			topN_vec.push_back(key1.second.get_value<size_t>());
 		}
 		iterationNumber = pt.get<std::size_t>("SOHR_init.iterationNumber");
-		for (auto key1 : pt.get_child("pathway.trajectoryNumberVector")) {
+		for (auto key1 : pt.get_child("pathway.trajectoryNumberVector"))
+		{
 			trajectoryNumber_vector.push_back(key1.second.get_value<size_t>());
 		}
-		for (auto key1 : pt.get_child("SOHR_init.P2C")) {
+		for (auto key1 : pt.get_child("SOHR_init.P2C"))
+		{
 			P2C.push_back(key1.second.get_value<double>());
 		}
 		for (auto key : pt.get_child("pathway.max_path_length"))
@@ -2402,11 +2526,13 @@ void driver::ODE_solver_path_integral_parallel_cv_ct_v2(const boost::mpi::commun
 	assert(topN_vec.size() == Nspecies);
 
 	//pathway prob result
-	std::vector<std::vector<double> > prob_Mat(Nspecies, std::vector<double>(Ntimepoints, 0.0));
-	std::vector<std::vector<double> > prob_Mat_reduce(Nspecies, std::vector<double>(Ntimepoints, 0.0));
+	std::vector<std::vector<double>> prob_Mat(Nspecies, std::vector<double>(Ntimepoints, 0.0));
+	std::vector<std::vector<double>> prob_Mat_reduce(Nspecies, std::vector<double>(Ntimepoints, 0.0));
 
-	for (std::size_t ni = 1; ni <= iterationNumber; ++ni) {
-		if (ni != 1) {
+	for (std::size_t ni = 1; ni <= iterationNumber; ++ni)
+	{
+		if (ni != 1)
+		{
 			rnkODEs_obj.update_concentration_data_from_spe_based_probability_matrix(prob_Mat_reduce);
 			rnkODEs_obj.convert_mole_fraction_to_molar_concentration();
 
@@ -2424,7 +2550,8 @@ void driver::ODE_solver_path_integral_parallel_cv_ct_v2(const boost::mpi::commun
 		//trajectory numbers
 		std::size_t trajectoryNumber_total;
 		//got to generate paths after resetting the concentration, pseudo-first order rate constant and reaction rates, etc.
-		if (world.rank() == 0) {
+		if (world.rank() == 0)
+		{
 			if (ni <= trajectoryNumber_vector.size())
 				trajectoryNumber_total = trajectoryNumber_vector[ni - 1];
 			else
@@ -2442,42 +2569,48 @@ void driver::ODE_solver_path_integral_parallel_cv_ct_v2(const boost::mpi::commun
 		std::vector<std::string> pathway_vec;
 		std::size_t N_followed_atoms;
 		//not the first time point
-		for (std::size_t tj = 1; tj < Ntimepoints; ++tj) {
+		for (std::size_t tj = 1; tj < Ntimepoints; ++tj)
+		{
 			//total stage number is 10-ish
 			std::size_t i_stage = (std::size_t)get_stage_number(tj, Ntimepoints, path_n_v.size());
 			// a new stage, not exist
-			if (!std::binary_search(i_stage_vec.begin(), i_stage_vec.end(), i_stage)) {
+			if (!std::binary_search(i_stage_vec.begin(), i_stage_vec.end(), i_stage))
+			{
 				i_stage_vec.push_back(i_stage);
-				if (world.rank() == 0) {
-					double end_time_ratio_tmp = (i_stage + 1)*1.0 / path_n_v.size();
+				if (world.rank() == 0)
+				{
+					double end_time_ratio_tmp = (i_stage + 1) * 1.0 / path_n_v.size();
 					double end_time_ratio = (end_time_ratio_tmp > 1.0 ? 1.0 : end_time_ratio_tmp);
 					N_followed_atoms = rnkODEs_obj.heuristic_path_string_vector_by_stage_number_path_prob_all_elements_s2m(i_stage, pathway_vec, *std::max_element(topN_vec.begin(), topN_vec.end()), end_time_ratio);
 				}
 				broadcast(world, pathway_vec, 0);
 				broadcast(world, N_followed_atoms, 0);
-
 			}
 
-			for (std::size_t si = 0; si < Nspecies; ++si) {
+			for (std::size_t si = 0; si < Nspecies; ++si)
+			{
 				//for every species, got to evaluate the concentration at every time point
 				std::string S = std::string("S") + boost::lexical_cast<std::string>(si);
 				std::vector<std::string> pathway_vec_t;
 				//topN ends with S
-				pathwayHandler::pathway_ends_with(S, pathway_vec, pathway_vec_t, N_followed_atoms*topN_vec[si]); //topN pathways
+				pathwayHandler::pathway_ends_with(S, pathway_vec, pathway_vec_t, N_followed_atoms * topN_vec[si]); //topN pathways
 				rnkODEs_obj.ODEdirectlyEvaluatePathwayProbability_si_tj(si, tj, pathway_vec_t, P2C[si], trajectoryNumber_local, prob_Mat);
 
-			}//Nspecies
-		}//Ntimepoints
+			} //Nspecies
+		}	 //Ntimepoints
 
-		 //map reduce
-		for (size_t i = 0; i < prob_Mat.size(); ++i) {
-			for (size_t j = 0; j < prob_Mat[0].size(); ++j) {
+		//map reduce
+		for (size_t i = 0; i < prob_Mat.size(); ++i)
+		{
+			for (size_t j = 0; j < prob_Mat[0].size(); ++j)
+			{
 				reduce(world, prob_Mat[i][j], prob_Mat_reduce[i][j], std::plus<double>(), 0);
 			}
 		}
 
 		// normalize prob_Mat_reduce so that it represents concentration
-		if (world.rank() == 0) {
+		if (world.rank() == 0)
+		{
 			rnkODEs_obj.rescale_prob_matrix_data(prob_Mat_reduce, 1.0 / trajectoryNumber_total);
 			rnkODEs_obj.divide_prob_matrix_by_number_of_ways_making_species(prob_Mat_reduce);
 			rnkODEs_obj.normalize_prob_matrix_data(prob_Mat_reduce);
@@ -2487,9 +2620,11 @@ void driver::ODE_solver_path_integral_parallel_cv_ct_v2(const boost::mpi::commun
 
 		if (ni != iterationNumber)
 			broadcast(world, prob_Mat_reduce, 0);
-		if (ni == iterationNumber) {
+		if (ni == iterationNumber)
+		{
 			//last iteration, print concentration data to file
-			if (world.rank() == 0) {
+			if (world.rank() == 0)
+			{
 				rnkODEs_obj.update_concentration_data_from_spe_based_probability_matrix(prob_Mat_reduce);
 				// this is necessary since we also need to update pressre and temperature
 				rnkODEs_obj.convert_mole_fraction_to_molar_concentration();
@@ -2509,13 +2644,13 @@ void driver::ODE_solver_path_integral_parallel_cv_ct_v2(const boost::mpi::commun
 				rnkODEs_obj.update_concentration_data_from_spe_based_probability_matrix(prob_Mat_reduce);
 				rnkODEs_obj.w2f_pgt(std::string("SOHR_fraction_") + boost::lexical_cast<std::string>(ni));
 
-			}// if
+			} // if
 		}
 
-	}//Niterations
+	} //Niterations
 }
 
-std::vector<std::string> driver::generate_pathway_running_Monte_carlo_trajectory_s2m(const boost::mpi::communicator & world, const std::string & main_cwd, const boost::property_tree::ptree & pt, rnkODEs::reactionNetworkODESolver & rnkODEs_obj, double end_time_ratio)
+std::vector<std::string> driver::generate_pathway_running_Monte_carlo_trajectory_s2m(const boost::mpi::communicator &world, const std::string &main_cwd, const boost::property_tree::ptree &pt, rnkODEs::reactionNetworkODESolver &rnkODEs_obj, double end_time_ratio)
 {
 	std::size_t Nspecies = rnkODEs_obj.get_num_vertices();
 
@@ -2528,25 +2663,29 @@ std::vector<std::string> driver::generate_pathway_running_Monte_carlo_trajectory
 	std::size_t trajectoryNumber_total = pt.get<std::size_t>("pathway.monteCarloTrajectoryNumber");
 	size_t trajectoryNumber_local = get_num_block_decomposition_2(world.rank(), trajectoryNumber_total, world.size());
 
-	for (auto e : element_vector) {
+	for (auto e : element_vector)
+	{
 		// generate pathway by running monte carlo trajectories
-		std::vector<statistics > statistics_v(Nspecies);
+		std::vector<statistics> statistics_v(Nspecies);
 		rnkODEs_obj.generate_path_by_running_monte_carlo_trajectory_s2m(statistics_v, trajectoryNumber_local, e.ele_name, end_time_ratio);
 		// map reduce
-		std::vector<std::map<std::string, int> > result_v(Nspecies);
+		std::vector<std::map<std::string, int>> result_v(Nspecies);
 		for (std::size_t mi = 0; mi < Nspecies; ++mi)
 			reduce(world, statistics_v[mi].get_pathway_unordered_map(), result_v[mi], merge_maps(), 0);
 
 		// core 0 only
-		if (world.rank() == 0) {
+		if (world.rank() == 0)
+		{
 			auto spe_ind_initial_conc = rnkODEs_obj.return_species_index_and_initial_concentration();
 			// end species index
-			std::vector<std::multimap<double, std::string, std::greater<double> > > prob_path_map_v(Nspecies);
+			std::vector<std::multimap<double, std::string, std::greater<double>>> prob_path_map_v(Nspecies);
 
-			for (auto ic : spe_ind_initial_conc) {
+			for (auto ic : spe_ind_initial_conc)
+			{
 				// multiply by the initial concentration
 				// endwith string
-				for (auto sp : result_v[ic.first]) {
+				for (auto sp : result_v[ic.first])
+				{
 					// parse the index of last element
 					auto ind = sp.first.find_last_of("S");
 					auto spe_ind = boost::lexical_cast<std::size_t>(sp.first.substr(ind + 1));
@@ -2554,14 +2693,17 @@ std::vector<std::string> driver::generate_pathway_running_Monte_carlo_trajectory
 					prob_path_map_v[spe_ind].emplace(ic.second * sp.second, sp.first);
 
 				} // for sp
-			} // for ic
+			}	 // for ic
 
-			  // save topN to vector
-			for (auto ppm : prob_path_map_v) {
+			// save topN to vector
+			for (auto ppm : prob_path_map_v)
+			{
 				// for this end species following this element
 				std::size_t counter = 0;
-				for (auto pp : ppm) {
-					if (counter < mc_topN) {
+				for (auto pp : ppm)
+				{
+					if (counter < mc_topN)
+					{
 						pathway_monte_carlo_vec.push_back(pp.second);
 						++counter;
 					} // if
@@ -2569,15 +2711,14 @@ std::vector<std::string> driver::generate_pathway_running_Monte_carlo_trajectory
 						break;
 
 				} // for pp
-			} // for ppm
-		} // if
+			}	 // for ppm
+		}		  // if
 	}
-
 
 	return pathway_monte_carlo_vec;
 }
 
-void driver::ODE_solver_path_integral_parallel_cv_ct_v3(const boost::mpi::communicator & world, const std::string & main_cwd, const boost::property_tree::ptree & pt)
+void driver::ODE_solver_path_integral_parallel_cv_ct_v3(const boost::mpi::communicator &world, const std::string &main_cwd, const boost::property_tree::ptree &pt)
 {
 	//initialize MPI stuff
 	std::vector<double> uncertainties;
@@ -2592,17 +2733,21 @@ void driver::ODE_solver_path_integral_parallel_cv_ct_v3(const boost::mpi::commun
 	std::vector<std::size_t> path_n_v;
 
 	//calculate the uncertainties only in the first node
-	if (world.rank() == 0) {
+	if (world.rank() == 0)
+	{
 		//read in uncertainties
 		fileIO::fileIO::read_generate_uncertainties_w2f_nominal(uncertainties, (main_cwd + "/input/uncertainties.inp"));
-		for (auto key1 : pt.get_child("pathway.topN")) {
+		for (auto key1 : pt.get_child("pathway.topN"))
+		{
 			topN_vec.push_back(key1.second.get_value<size_t>());
 		}
 		iterationNumber = pt.get<std::size_t>("SOHR_init.iterationNumber");
-		for (auto key1 : pt.get_child("pathway.trajectoryNumberVector")) {
+		for (auto key1 : pt.get_child("pathway.trajectoryNumberVector"))
+		{
 			trajectoryNumber_vector.push_back(key1.second.get_value<size_t>());
 		}
-		for (auto key1 : pt.get_child("SOHR_init.P2C")) {
+		for (auto key1 : pt.get_child("SOHR_init.P2C"))
+		{
 			P2C.push_back(key1.second.get_value<double>());
 		}
 		for (auto key : pt.get_child("pathway.max_path_length"))
@@ -2625,11 +2770,13 @@ void driver::ODE_solver_path_integral_parallel_cv_ct_v3(const boost::mpi::commun
 	assert(topN_vec.size() == Nspecies);
 
 	//pathway prob result
-	std::vector<std::vector<double> > prob_Mat(Nspecies, std::vector<double>(Ntimepoints, 0.0));
-	std::vector<std::vector<double> > prob_Mat_reduce(Nspecies, std::vector<double>(Ntimepoints, 0.0));
+	std::vector<std::vector<double>> prob_Mat(Nspecies, std::vector<double>(Ntimepoints, 0.0));
+	std::vector<std::vector<double>> prob_Mat_reduce(Nspecies, std::vector<double>(Ntimepoints, 0.0));
 
-	for (std::size_t ni = 1; ni <= iterationNumber; ++ni) {
-		if (ni != 1) {
+	for (std::size_t ni = 1; ni <= iterationNumber; ++ni)
+	{
+		if (ni != 1)
+		{
 			rnkODEs_obj.update_concentration_data_from_spe_based_probability_matrix(prob_Mat_reduce);
 			rnkODEs_obj.convert_mole_fraction_to_molar_concentration();
 
@@ -2647,7 +2794,8 @@ void driver::ODE_solver_path_integral_parallel_cv_ct_v3(const boost::mpi::commun
 		//trajectory numbers
 		std::size_t trajectoryNumber_total;
 		//got to generate paths after resetting the concentration, pseudo-first order rate constant and reaction rates, etc.
-		if (world.rank() == 0) {
+		if (world.rank() == 0)
+		{
 			if (ni <= trajectoryNumber_vector.size())
 				trajectoryNumber_total = trajectoryNumber_vector[ni - 1];
 			else
@@ -2666,14 +2814,17 @@ void driver::ODE_solver_path_integral_parallel_cv_ct_v3(const boost::mpi::commun
 		std::vector<std::string> pathway_monte_carlo_vec;
 		std::size_t N_followed_atoms;
 		//not the first time point
-		for (std::size_t tj = 1; tj < Ntimepoints; ++tj) {
+		for (std::size_t tj = 1; tj < Ntimepoints; ++tj)
+		{
 			//total stage number is 10-ish
 			std::size_t i_stage = (std::size_t)get_stage_number(tj, Ntimepoints, path_n_v.size());
 			// a new stage, not exist
-			if (!std::binary_search(i_stage_vec.begin(), i_stage_vec.end(), i_stage)) {
+			if (!std::binary_search(i_stage_vec.begin(), i_stage_vec.end(), i_stage))
+			{
 				i_stage_vec.push_back(i_stage);
-				if (world.rank() == 0) {
-					double end_time_ratio_tmp = (i_stage + 1)*1.0 / path_n_v.size();
+				if (world.rank() == 0)
+				{
+					double end_time_ratio_tmp = (i_stage + 1) * 1.0 / path_n_v.size();
 					double end_time_ratio = (end_time_ratio_tmp > 1.0 ? 1.0 : end_time_ratio_tmp);
 					N_followed_atoms = rnkODEs_obj.heuristic_path_string_vector_by_stage_number_path_prob_all_elements_s2m(i_stage, pathway_vec, *std::max_element(topN_vec.begin(), topN_vec.end()), end_time_ratio);
 				}
@@ -2684,33 +2835,37 @@ void driver::ODE_solver_path_integral_parallel_cv_ct_v3(const boost::mpi::commun
 				broadcast(world, pathway_vec, 0);
 				broadcast(world, pathway_monte_carlo_vec, 0);
 				broadcast(world, N_followed_atoms, 0);
-
 			}
 
-			for (std::size_t si = 0; si < Nspecies; ++si) {
+			for (std::size_t si = 0; si < Nspecies; ++si)
+			{
 				// for every species, got to evaluate the concentration at every time point
 				std::string S = std::string("S") + boost::lexical_cast<std::string>(si);
-				std::vector<std::string> pathway_vec_t; std::vector<std::string> pathway_monte_carlo_vec_t;
+				std::vector<std::string> pathway_vec_t;
+				std::vector<std::string> pathway_monte_carlo_vec_t;
 				// topN ends with S
-				pathwayHandler::pathway_ends_with(S, pathway_vec, pathway_vec_t, N_followed_atoms*topN_vec[si]); //topN pathways
-				pathwayHandler::pathway_ends_with(S, pathway_monte_carlo_vec, pathway_monte_carlo_vec_t, N_followed_atoms*pt.get<std::size_t>("pathway.topN_monte_carlo_path")); //topN pathways
-																																												 // merge pathway
+				pathwayHandler::pathway_ends_with(S, pathway_vec, pathway_vec_t, N_followed_atoms * topN_vec[si]);																   //topN pathways
+				pathwayHandler::pathway_ends_with(S, pathway_monte_carlo_vec, pathway_monte_carlo_vec_t, N_followed_atoms * pt.get<std::size_t>("pathway.topN_monte_carlo_path")); //topN pathways
+																																												   // merge pathway
 				pathwayHandler::merge_pathway(pathway_vec_t, pathway_monte_carlo_vec_t);
 
 				rnkODEs_obj.ODEdirectlyEvaluatePathwayProbability_si_tj(si, tj, pathway_vec_t, P2C[si], trajectoryNumber_local, prob_Mat);
 
-			}// Nspecies
-		}// Ntimepoints
+			} // Nspecies
+		}	 // Ntimepoints
 
-		 // map reduce
-		for (size_t i = 0; i < prob_Mat.size(); ++i) {
-			for (size_t j = 0; j < prob_Mat[0].size(); ++j) {
+		// map reduce
+		for (size_t i = 0; i < prob_Mat.size(); ++i)
+		{
+			for (size_t j = 0; j < prob_Mat[0].size(); ++j)
+			{
 				reduce(world, prob_Mat[i][j], prob_Mat_reduce[i][j], std::plus<double>(), 0);
 			}
 		}
 
 		// normalize prob_Mat_reduce so that it represents concentration
-		if (world.rank() == 0) {
+		if (world.rank() == 0)
+		{
 			rnkODEs_obj.rescale_prob_matrix_data(prob_Mat_reduce, 1.0 / trajectoryNumber_total);
 			rnkODEs_obj.divide_prob_matrix_by_number_of_ways_making_species(prob_Mat_reduce);
 			rnkODEs_obj.normalize_prob_matrix_data(prob_Mat_reduce);
@@ -2720,9 +2875,11 @@ void driver::ODE_solver_path_integral_parallel_cv_ct_v3(const boost::mpi::commun
 
 		if (ni != iterationNumber)
 			broadcast(world, prob_Mat_reduce, 0);
-		if (ni == iterationNumber) {
+		if (ni == iterationNumber)
+		{
 			//last iteration, print concentration data to file
-			if (world.rank() == 0) {
+			if (world.rank() == 0)
+			{
 				rnkODEs_obj.update_concentration_data_from_spe_based_probability_matrix(prob_Mat_reduce);
 				// this is necessary since we also need to update pressre and temperature
 				rnkODEs_obj.convert_mole_fraction_to_molar_concentration();
@@ -2742,14 +2899,13 @@ void driver::ODE_solver_path_integral_parallel_cv_ct_v3(const boost::mpi::commun
 				rnkODEs_obj.update_concentration_data_from_spe_based_probability_matrix(prob_Mat_reduce);
 				rnkODEs_obj.w2f_pgt(std::string("SOHR_fraction_") + boost::lexical_cast<std::string>(ni));
 
-			}// if
+			} // if
 		}
 
-	}//Niterations
-
+	} //Niterations
 }
 
-void driver::ODE_solver_path_integral_parallel_cv_ct_v4(const boost::mpi::communicator & world, const std::string & main_cwd, const boost::property_tree::ptree & pt)
+void driver::ODE_solver_path_integral_parallel_cv_ct_v4(const boost::mpi::communicator &world, const std::string &main_cwd, const boost::property_tree::ptree &pt)
 {
 	//initialize MPI stuff
 	std::vector<double> uncertainties;
@@ -2764,17 +2920,21 @@ void driver::ODE_solver_path_integral_parallel_cv_ct_v4(const boost::mpi::commun
 	std::vector<std::size_t> path_n_v;
 
 	//calculate the uncertainties only on the first node
-	if (world.rank() == 0) {
+	if (world.rank() == 0)
+	{
 		//read in uncertainties
 		fileIO::fileIO::read_generate_uncertainties_w2f_nominal(uncertainties, (main_cwd + "/input/uncertainties.inp"));
-		for (auto key1 : pt.get_child("pathway.topN")) {
+		for (auto key1 : pt.get_child("pathway.topN"))
+		{
 			topN_vec.push_back(key1.second.get_value<size_t>());
 		}
 		iterationNumber = pt.get<std::size_t>("SOHR_init.iterationNumber");
-		for (auto key1 : pt.get_child("pathway.trajectoryNumberVector")) {
+		for (auto key1 : pt.get_child("pathway.trajectoryNumberVector"))
+		{
 			trajectoryNumber_vector.push_back(key1.second.get_value<size_t>());
 		}
-		for (auto key1 : pt.get_child("SOHR_init.P2C")) {
+		for (auto key1 : pt.get_child("SOHR_init.P2C"))
+		{
 			P2C.push_back(key1.second.get_value<double>());
 		}
 		for (auto key : pt.get_child("pathway.max_path_length"))
@@ -2797,17 +2957,20 @@ void driver::ODE_solver_path_integral_parallel_cv_ct_v4(const boost::mpi::commun
 	assert(topN_vec.size() == Nspecies);
 
 	//pathway prob result
-	std::vector<std::vector<double> > prob_Mat(Nspecies, std::vector<double>(Ntimepoints, 0.0));
-	std::vector<std::vector<double> > prob_Mat_reduce(Nspecies, std::vector<double>(Ntimepoints, 0.0));
+	std::vector<std::vector<double>> prob_Mat(Nspecies, std::vector<double>(Ntimepoints, 0.0));
+	std::vector<std::vector<double>> prob_Mat_reduce(Nspecies, std::vector<double>(Ntimepoints, 0.0));
 
 	//print out initial guess result
-	if (world.rank() == 0) {
+	if (world.rank() == 0)
+	{
 		rnkODEs_obj.convert_molar_concentration_to_mole_fraction();
 		rnkODEs_obj.w2f_pgt(std::string("SOHR_fraction_") + boost::lexical_cast<std::string>(0));
 	}
 
-	for (std::size_t ni = 1; ni <= iterationNumber; ++ni) {
-		if (ni != 1) {
+	for (std::size_t ni = 1; ni <= iterationNumber; ++ni)
+	{
+		if (ni != 1)
+		{
 			rnkODEs_obj.update_concentration_data_from_spe_based_probability_matrix(prob_Mat_reduce);
 
 			rnkODEs_obj.convert_mole_fraction_to_molar_concentration();
@@ -2826,7 +2989,8 @@ void driver::ODE_solver_path_integral_parallel_cv_ct_v4(const boost::mpi::commun
 		//trajectory numbers
 		std::size_t trajectoryNumber_total;
 		//got to generate paths after resetting the concentration, pseudo-first order rate constant and reaction rates, etc.
-		if (world.rank() == 0) {
+		if (world.rank() == 0)
+		{
 			if (ni <= trajectoryNumber_vector.size())
 				trajectoryNumber_total = trajectoryNumber_vector[ni - 1];
 			else
@@ -2845,13 +3009,15 @@ void driver::ODE_solver_path_integral_parallel_cv_ct_v4(const boost::mpi::commun
 		std::vector<std::string> pathway_monte_carlo_vec;
 		std::size_t N_followed_atoms;
 		//not the first time point
-		for (std::size_t tj = 1; tj < Ntimepoints; ++tj) {
+		for (std::size_t tj = 1; tj < Ntimepoints; ++tj)
+		{
 			//total stage number is 10-ish
 			std::size_t i_stage = (std::size_t)get_stage_number(tj, Ntimepoints, path_n_v.size());
 			// a new stage, not exist
-			if (!std::binary_search(i_stage_vec.begin(), i_stage_vec.end(), i_stage)) {
+			if (!std::binary_search(i_stage_vec.begin(), i_stage_vec.end(), i_stage))
+			{
 				i_stage_vec.push_back(i_stage);
-				double end_time_ratio_tmp = (i_stage + 1)*1.0 / path_n_v.size();
+				double end_time_ratio_tmp = (i_stage + 1) * 1.0 / path_n_v.size();
 				double end_time_ratio = (end_time_ratio_tmp > 1.0 ? 1.0 : end_time_ratio_tmp);
 
 				if (world.rank() == 0)
@@ -2865,31 +3031,36 @@ void driver::ODE_solver_path_integral_parallel_cv_ct_v4(const boost::mpi::commun
 				broadcast(world, N_followed_atoms, 0);
 			}
 
-			for (std::size_t si = 0; si < Nspecies; ++si) {
+			for (std::size_t si = 0; si < Nspecies; ++si)
+			{
 				// for every species, got to evaluate the concentration at every time point
 				std::string S = std::string("S") + boost::lexical_cast<std::string>(si);
-				std::vector<std::string> pathway_vec_t; std::vector<std::string> pathway_monte_carlo_vec_t;
+				std::vector<std::string> pathway_vec_t;
+				std::vector<std::string> pathway_monte_carlo_vec_t;
 				// topN ends with S
-				pathwayHandler::pathway_ends_with(S, pathway_vec, pathway_vec_t, N_followed_atoms*topN_vec[si]); //topN pathways
+				pathwayHandler::pathway_ends_with(S, pathway_vec, pathway_vec_t, N_followed_atoms * topN_vec[si]); //topN pathways
 				pathwayHandler::pathway_ends_with(S, pathway_monte_carlo_vec, pathway_monte_carlo_vec_t,
-					N_followed_atoms*pt.get<std::size_t>("pathway.topN_monte_carlo_path")); //topN pathways
-				// merge pathway																			
+					N_followed_atoms * pt.get<std::size_t>("pathway.topN_monte_carlo_path")); //topN pathways
+// merge pathway
 				pathwayHandler::merge_pathway(pathway_vec_t, pathway_monte_carlo_vec_t);
 
 				rnkODEs_obj.ODEdirectlyEvaluatePathwayProbability_si_tj(si, tj, pathway_vec_t, P2C[si], trajectoryNumber_local, prob_Mat);
 
-			}// Nspecies
-		}// Ntimepoints
+			} // Nspecies
+		}	 // Ntimepoints
 
-		 // map reduce
-		for (size_t i = 0; i < prob_Mat.size(); ++i) {
-			for (size_t j = 0; j < prob_Mat[0].size(); ++j) {
+		// map reduce
+		for (size_t i = 0; i < prob_Mat.size(); ++i)
+		{
+			for (size_t j = 0; j < prob_Mat[0].size(); ++j)
+			{
 				reduce(world, prob_Mat[i][j], prob_Mat_reduce[i][j], std::plus<double>(), 0);
 			}
 		}
 
 		// normalize prob_Mat_reduce so that it represents concentration
-		if (world.rank() == 0) {
+		if (world.rank() == 0)
+		{
 			rnkODEs_obj.rescale_prob_matrix_data(prob_Mat_reduce, 1.0 / trajectoryNumber_total);
 			rnkODEs_obj.divide_prob_matrix_by_number_of_ways_making_species(prob_Mat_reduce);
 			// normalize pathway probability so that it represents mole fraction
@@ -2902,7 +3073,8 @@ void driver::ODE_solver_path_integral_parallel_cv_ct_v4(const boost::mpi::commun
 			broadcast(world, prob_Mat_reduce, 0);
 
 		//each iteration, print concentration data to file
-		if (world.rank() == 0) {
+		if (world.rank() == 0)
+		{
 			rnkODEs_obj.update_concentration_data_from_spe_based_probability_matrix(prob_Mat_reduce);
 
 			// this is necessary since we also need to update pressre and temperature
@@ -2921,18 +3093,17 @@ void driver::ODE_solver_path_integral_parallel_cv_ct_v4(const boost::mpi::commun
 			rnkODEs_obj.update_concentration_data_from_spe_based_probability_matrix(prob_Mat_reduce);
 			rnkODEs_obj.w2f_pgt(std::string("SOHR_fraction_") + boost::lexical_cast<std::string>(ni));
 
-		}// if
+		} // if
 
-	}//Niterations
-
+	} //Niterations
 }
 
-
-void driver::M_matrix_R_matrix(const boost::mpi::communicator & world, const std::string & main_cwd)
+void driver::M_matrix_R_matrix(const boost::mpi::communicator &world, const std::string &main_cwd)
 {
 	std::vector<double> uncertainties;
 	//calculate the uncertainties only in the first node
-	if (world.rank() == 0) {
+	if (world.rank() == 0)
+	{
 		//read in uncertainties
 		fileIO::fileIO::read_generate_uncertainties_w2f_nominal(uncertainties, (main_cwd + "/input/uncertainties.inp"));
 		//fileIO::fileIO::read_generate_uncertainties_w2f_random(uncertainties, main_cwd + std::string("/input/uncertainties.inp"));
@@ -2941,7 +3112,8 @@ void driver::M_matrix_R_matrix(const boost::mpi::communicator & world, const std
 	//boradcast
 	broadcast(world, uncertainties, 0);
 
-	if (world.rank() == 0) {
+	if (world.rank() == 0)
+	{
 		rnk::concreteReactionNetwork rnk_concrete(uncertainties, world.rank(), main_cwd);
 		//rnk_concrete.initiate_M_matrix("H");
 		//rnk_concrete.initiate_M_matrix();
@@ -2991,14 +3163,14 @@ void driver::M_matrix_R_matrix(const boost::mpi::communicator & world, const std
 
 		std::cout << "Test.\n";
 	}
-
 }
 
-void driver::MISC(const boost::mpi::communicator & world, const std::string & main_cwd)
+void driver::MISC(const boost::mpi::communicator &world, const std::string &main_cwd)
 {
 	std::vector<double> uncertainties;
 	//calculate the uncertainties only in the first node
-	if (world.rank() == 0) {
+	if (world.rank() == 0)
+	{
 		//read in uncertainties
 		fileIO::fileIO::read_generate_uncertainties_w2f_nominal(uncertainties, (main_cwd + "/input/uncertainties.inp"));
 		//fileIO::fileIO::read_generate_uncertainties_w2f_random(uncertainties, main_cwd + std::string("/input/uncertainties.inp"));
@@ -3007,7 +3179,8 @@ void driver::MISC(const boost::mpi::communicator & world, const std::string & ma
 	//boradcast
 	broadcast(world, uncertainties, 0);
 
-	if (world.rank() == 0) {
+	if (world.rank() == 0)
+	{
 		rnk::concreteReactionNetwork rnk_concrete(uncertainties, world.rank(), main_cwd);
 		//rnk_concrete.print();
 		double target_time_db = rnk_concrete.return_temperature_target_time();
@@ -3023,8 +3196,6 @@ void driver::MISC(const boost::mpi::communicator & world, const std::string & ma
 	}
 }
 
-
 #endif // __USE_MPI_
-
 
 #endif
