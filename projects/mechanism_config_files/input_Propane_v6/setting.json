@@ -72,7 +72,6 @@
         "topN": [
             100
         ],
-        "pathwayEndWith": "ALL",
         "trajectoryNumber": 10000,
         "trajectoryNumberVector": [
             1000,
