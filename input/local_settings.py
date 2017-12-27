@@ -41,14 +41,14 @@ def get_local_settings():
         # condense species path, no reactions
         "species_path": False,
         # atom followed
-        "atom_f": "C",
-        "init_s": 62,
+        "atom_f": "O",
+        "init_s": 9,
         # end species index, either None, or [] or [14, 15]
         "end_s_idx": [],
         # top n path
         "top_n_p": 100,
         # top n path for gephi to generate coordinates
-        "top_n_p_gephi": 10,
+        "top_n_p_gephi": 100,
         # top n species
         "top_n_s": 10,
         # number of trajectory used to generate pathway list running mc simulation
@@ -74,7 +74,12 @@ def get_fast_rxn_trapped_spe():
             # reactants       9       O2      60      npropyl products        78      npropyloo
             # 1069    -549    O2+npropyl=npropyloo
             "rxn": [1068, 1069],
-            "spe": [60, 78]
+            "time_scale1": -10,
+            "time_scale2": -10,
+            "spe": {
+                "C": [60, 78],
+                "O": [9, 78]
+            }
         },
         # 1096    565     O2+ipropyl=ipropyloo
         # reactants       9       O2      61      ipropyl products        80      ipropyloo
