@@ -201,7 +201,20 @@ namespace reactionNetwork_sr {
 		bool read_init_config();
 		//read species and reaction info, parse reaction network, transform all stuff into reaction network format
 		//construct the edgeVector and the edgeProperty so that we can build the reaction network
-		void read_chem_out_spe_reaction_network(std::vector<VertexPair> &edgeVector, std::vector<EdgeProperties_graph> &edgePro, std::vector<VertexProperties_graph>& vertex_info);
+		//first static version, second internal version-->memember function of superReactionNetwork
+		static void read_chem_out_spe_for_network_info(const std::string &cwd,
+			std::vector<rsp::element_info>& element_v,
+			std::vector<rsp::spe_info_base>& species_network_v,
+			std::vector<rsp::reaction_info_base> &reaction_network_v,
+			rsp::spe_name_index_map_t& spe_name_index_map,
+			std::vector<VertexPair> &edgeVector,
+			std::vector<EdgeProperties_graph> &edgePro,
+			std::vector<VertexProperties_graph>& vertex_info,
+			bool w2f = false);
+
+		void read_chem_out_spe_for_network_info(std::vector<VertexPair> &edgeVector,
+			std::vector<EdgeProperties_graph> &edgePro,
+			std::vector<VertexProperties_graph>& vertex_info);
 		//update species super atom info
 		//super atom is defined as a general atom, which could be any atom, the number equals to the sum of all atoms
 		void update_super_atom_info(std::string super_atom = "X");

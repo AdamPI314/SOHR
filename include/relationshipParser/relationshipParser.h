@@ -14,6 +14,7 @@
 
 
 #include "../tools/misc/misc_template.h"
+#include "../tools/misc/graph_bundled.h"
 
 namespace relationshipParser_sr {
 
@@ -243,6 +244,7 @@ namespace relationshipParser_sr {
 	public:
 		//Read the file named "chem.out", read in the element and species information.
 		static void read_chem_out_ele_spe(std::vector<element_info>& element_v, std::vector<spe_info>& species_v, spe_name_index_map_t& spe_name_index_map, std::string file_in = "./input/chem.out");
+
 		//s2f --> save to file
 		static void spe_information_s2f(const std::vector<spe_info>& species_v, std::string file_out = "./input/species_labelling.csv");
 		//Read the file named "chem.out", read in the chemical reactions.

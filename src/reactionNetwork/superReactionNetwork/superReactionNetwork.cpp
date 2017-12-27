@@ -42,7 +42,7 @@ namespace reactionNetwork_sr {
 		rand = new random_sr::random(this->random_seed_for_this_core);
 
 		std::vector<VertexPair> edgeVector; std::vector<EdgeProperties_graph> edgePro; std::vector<VertexProperties_graph> vertex_info;
-		this->read_chem_out_spe_reaction_network(edgeVector, edgePro, vertex_info);
+		read_chem_out_spe_for_network_info(edgeVector, edgePro, vertex_info);
 		//update super atom info
 		this->update_super_atom_info(rnk_pt.get<std::string>("pathway.super_atom"));
 
@@ -88,14 +88,14 @@ namespace reactionNetwork_sr {
 		return true;
 	}
 
-	void superReactionNetwork::read_chem_out_spe_reaction_network(std::vector<VertexPair> &edgeVector, std::vector<EdgeProperties_graph> &edgePro, std::vector<VertexProperties_graph>& vertex_info)
+	void superReactionNetwork::read_chem_out_spe_for_network_info(const std::string & cwd, std::vector<rsp::element_info>& element_v, std::vector<rsp::spe_info_base> &species_network_v, std::vector<rsp::reaction_info_base> &reaction_network_v, rsp::spe_name_index_map_t & spe_name_index_map, std::vector<VertexPair>& edgeVector, std::vector<EdgeProperties_graph>& edgePro, std::vector<VertexProperties_graph>& vertex_info, bool w2f)
 	{
 		/*
-		 * read species information
-		 */
+		* read species information
+		*/
 		std::vector<rsp::spe_info> species_v;
 		//read element, species and reaction information
-		rsp::relationshipParser::read_chem_out_ele_spe(element_v, species_v, spe_name_index_map, this->cwd + "/input/chem.out");
+		rsp::relationshipParser::read_chem_out_ele_spe(element_v, species_v, spe_name_index_map, cwd + "/input/chem.out");
 
 		for (std::size_t i = 0; i < species_v.size(); ++i) {/*for1*/
 			rsp::spe_info_base species_network_temp;
@@ -111,7 +111,7 @@ namespace reactionNetwork_sr {
 			species_network_v.push_back(species_network_temp);
 		}/*for1*/
 
-		//update vetex information, here our vertex just store the index of vextex in species space, look the difinition of VertexProperties_graph
+		 //update vetex information, here our vertex just store the index of vextex in species space, look the difinition of VertexProperties_graph
 		vertex_info.resize(species_network_v.size());
 		for (std::size_t i = 0; i < species_network_v.size(); ++i) {
 			vertex_info[i].vertex = species_network_v[i].spe_index;
@@ -119,15 +119,15 @@ namespace reactionNetwork_sr {
 
 
 		/*
-		 * read reaction information
-		 */
+		* read reaction information
+		*/
 		std::vector<rsp::reaction_info> reaction_v;
 		//include duplicated reactions
-		rsp::relationshipParser::read_chem_out_reaction(species_v, reaction_v, spe_name_index_map, this->cwd + "/input/chem.out");
+		rsp::relationshipParser::read_chem_out_reaction(species_v, reaction_v, spe_name_index_map, cwd + "/input/chem.out");
 		rsp::relationshipParser::set_reaction_net_reactant_product(reaction_v);
 		//reactionNetwork and chemkin index lookup table, notice chemkin index is Fortran index style
 		rsp::reactionNetwork_chemkin_index_map_t reactionNetwork_chemkin_index_map;
-		rsp::relationshipParser::read_reactionNetwork_chemkin_index_map(reactionNetwork_chemkin_index_map, this->cwd + "/input/chem.out");
+		rsp::relationshipParser::read_reactionNetwork_chemkin_index_map(reactionNetwork_chemkin_index_map, cwd + "/input/chem.out");
 
 
 		rsp::index_int_t edge_counter = 0;
@@ -151,7 +151,7 @@ namespace reactionNetwork_sr {
 				//edge vector
 				for (std::size_t i = 0; i < reaction_v[reaction_v_ind].net_reactant.size(); ++i) {/*for i*/
 					for (std::size_t j = 0; j < reaction_v[reaction_v_ind].net_product.size(); ++j) {/*for j*/
-						//std::cout << "[" << reaction_v[reaction_v_ind].net_reactant[i].first << "," << reaction_v[reaction_v_ind].net_product[j].first << "]" << "\t";
+																									 //std::cout << "[" << reaction_v[reaction_v_ind].net_reactant[i].first << "," << reaction_v[reaction_v_ind].net_product[j].first << "]" << "\t";
 						edgeVector.push_back(std::make_pair(reaction_v[reaction_v_ind].net_reactant[i].first, reaction_v[reaction_v_ind].net_product[j].first));
 						edgePro_tmp.edge_index = edge_counter; ++edge_counter;
 						edgePro_tmp.reaction_index = itr->first;
@@ -162,15 +162,15 @@ namespace reactionNetwork_sr {
 
 					}/*for j*/
 				}/*for i*/
-				//std::cout << std::endl;
+				 //std::cout << std::endl;
 			}/*if*/
-			//backward reaction
+			 //backward reaction
 			else if (itr->second[0] < 0) {
 				reaction_info_base_temp.reaction_direction = rsp::backward;
 				//edge vector
 				for (std::size_t i = 0; i < reaction_v[reaction_v_ind].net_product.size(); ++i) {/*for i*/
 					for (std::size_t j = 0; j < reaction_v[reaction_v_ind].net_reactant.size(); ++j) {/*for j*/
-						//std::cout << "[" << reaction_v[reaction_v_ind].net_product[i].first << "," << reaction_v[reaction_v_ind].net_reactant[j].first << "]" << "\t";
+																									  //std::cout << "[" << reaction_v[reaction_v_ind].net_product[i].first << "," << reaction_v[reaction_v_ind].net_reactant[j].first << "]" << "\t";
 						edgeVector.push_back(std::make_pair(reaction_v[reaction_v_ind].net_product[i].first, reaction_v[reaction_v_ind].net_reactant[j].first));
 						edgePro_tmp.edge_index = edge_counter; ++edge_counter;
 						edgePro_tmp.reaction_index = itr->first;
@@ -186,12 +186,21 @@ namespace reactionNetwork_sr {
 
 			}/*else if*/
 			reaction_info_base_temp.reaction_name = reaction_v[reaction_v_ind].reaction_name;
-			this->reaction_network_v.push_back(reaction_info_base_temp);
+			reaction_network_v.push_back(reaction_info_base_temp);
 
 		}/*for*/
-		rsp::relationshipParser::spe_information_s2f(species_v);
-		rsp::relationshipParser::reaction_information_s2f(species_v, reaction_v, reactionNetwork_chemkin_index_map);
 
+		if (w2f == true)
+		{
+			rsp::relationshipParser::spe_information_s2f(species_v);
+			rsp::relationshipParser::reaction_information_s2f(species_v, reaction_v, reactionNetwork_chemkin_index_map);
+		}
+	}
+
+	void superReactionNetwork::read_chem_out_spe_for_network_info(std::vector<VertexPair> &edgeVector, std::vector<EdgeProperties_graph> &edgePro, std::vector<VertexProperties_graph>& vertex_info)
+	{
+
+		read_chem_out_spe_for_network_info(this->cwd, this->element_v, this->species_network_v, this->reaction_network_v, this->spe_name_index_map, edgeVector, edgePro, vertex_info);
 	}
 
 	void superReactionNetwork::update_super_atom_info(std::string super_atom)

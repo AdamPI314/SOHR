@@ -28,8 +28,9 @@ int main(int argc, char **argv) {
 
 
 #if defined(__NO_USE_MPI_)
-
-	if (pt.get<std::string>("job.job_type") == std::string("generate_pathway_running_Monte_carlo_trajectory"))
+	if (pt.get<std::string>("job.job_type") == std::string("INITIATION"))
+		driver::INITIATION(main_cwd);
+	else if (pt.get<std::string>("job.job_type") == std::string("generate_pathway_running_Monte_carlo_trajectory"))
 		driver::generate_pathway_running_Monte_carlo_trajectory(main_cwd, pt);
 	else if (pt.get<std::string>("job.job_type") == std::string("generate_species_pathway_running_Monte_carlo_trajectory"))
 		driver::generate_species_pathway_running_Monte_carlo_trajectory(main_cwd, pt);
@@ -56,12 +57,14 @@ int main(int argc, char **argv) {
 	if (world.rank() == 0)
 		timer.begin();
 
+	if (pt.get<std::string>("job.job_type") == std::string("INITIATION"))
+		driver::INITIATION(world, main_cwd);
 	/*************************************************************************************************/
 	/*
 	* 1. Solve for concentration of Lokta-Voltera system or Dimerization or Michaelis Menten, using LSODE
 	*/
 	/*************************************************************************************************/
-	if (pt.get<std::string>("job.job_type") == std::string("solve_ODEs_for_concentration_using_LSODE"))
+	else if (pt.get<std::string>("job.job_type") == std::string("solve_ODEs_for_concentration_using_LSODE"))
 		driver::solve_ODEs_for_concentration_using_LSODE(world, main_cwd, pt);
 	else if (pt.get<std::string>("job.job_type") == std::string("solve_ODEs_for_concentration_using_SSA"))
 		driver::solve_ODEs_for_concentration_using_SSA(world, main_cwd, pt);

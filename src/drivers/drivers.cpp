@@ -35,6 +35,28 @@ void driver::parse_parameters(const int argc, char **argv, po::variables_map &vm
 
 #ifdef __NO_USE_MPI_
 
+void driver::INITIATION(const std::string & main_cwd)
+{
+	std::vector<rsp::element_info> element_v;
+	std::vector<rsp::spe_info_base> species_network_v;
+	std::vector<rsp::reaction_info_base> reaction_network_v;
+	rsp::spe_name_index_map_t spe_name_index_map;
+	std::vector<rnk::superReactionNetwork::VertexPair> edgeVector;
+	std::vector<rnk::EdgeProperties_graph> edgePro;
+	std::vector<rnk::VertexProperties_graph> vertex_info;
+	rnk::superReactionNetwork::read_chem_out_spe_for_network_info(main_cwd,
+		element_v,
+		species_network_v,
+		reaction_network_v,
+		spe_name_index_map,
+		edgeVector,
+		edgePro,
+		vertex_info,
+		true);
+
+	std::cout << "INITIATION\n";
+}
+
 void driver::generate_pathway_running_Monte_carlo_trajectory(const std::string &main_cwd, const boost::property_tree::ptree &pt)
 {
 	std::vector<double> uncertainties;
@@ -479,6 +501,32 @@ void driver::evaluate_path_AT_with_SP_over_time(const std::string &main_cwd, con
 #endif // __NO_USE_MPI_
 
 #if defined(__USE_MPI_)
+
+void driver::INITIATION(const boost::mpi::communicator & world, const std::string & main_cwd)
+{
+
+	if (world.rank() == 0)
+	{
+		std::vector<rsp::element_info> element_v;
+		std::vector<rsp::spe_info_base> species_network_v;
+		std::vector<rsp::reaction_info_base> reaction_network_v;
+		rsp::spe_name_index_map_t spe_name_index_map;
+		std::vector<rnk::superReactionNetwork::VertexPair> edgeVector;
+		std::vector<rnk::EdgeProperties_graph> edgePro;
+		std::vector<rnk::VertexProperties_graph> vertex_info;
+		rnk::superReactionNetwork::read_chem_out_spe_for_network_info(main_cwd,
+			element_v,
+			species_network_v,
+			reaction_network_v,
+			spe_name_index_map,
+			edgeVector,
+			edgePro,
+			vertex_info,
+			true);
+
+		std::cout << "INITIATION\n";
+	}
+}
 
 void driver::write_concentration_at_time_to_file(const boost::mpi::communicator &world, std::string &main_cwd, const boost::property_tree::ptree &pt)
 {
@@ -3194,7 +3242,7 @@ void driver::MISC(const boost::mpi::communicator &world, const std::string &main
 
 		std::cout << "MISC\n";
 	}
-}
+		}
 
 #endif // __USE_MPI_
 

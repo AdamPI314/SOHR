@@ -10,7 +10,7 @@
         "merge_chatterings": "yes"
     },
     "job": {
-        "job_type": "evaluate_path_integral_over_time"
+        "job_type": "INITIATION"
     },
     "propagator": {
         "primary_type": "from_file",
