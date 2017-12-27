@@ -244,11 +244,11 @@ namespace relationshipParser_sr {
 		//Read the file named "chem.out", read in the element and species information.
 		static void read_chem_out_ele_spe(std::vector<element_info>& element_v, std::vector<spe_info>& species_v, spe_name_index_map_t& spe_name_index_map, std::string file_in = "./input/chem.out");
 		//s2f --> save to file
-		static void spe_information_s2f(const std::vector<spe_info>& species_v, std::string file_out = "./output/species_labelling.csv");
+		static void spe_information_s2f(const std::vector<spe_info>& species_v, std::string file_out = "./input/species_labelling.csv");
 		//Read the file named "chem.out", read in the chemical reactions.
 		static void read_chem_out_reaction(const std::vector<spe_info>& species_v, std::vector<reaction_info>& reaction_v, const spe_name_index_map_t& spe_name_index_map, std::string file_in = "./input/chem.out");
 		static void reaction_information_s2f(const std::vector<spe_info> & species_v, const std::vector<reaction_info> & reaction_v,
-			const reactionNetwork_chemkin_index_map_t& reactionNetwork_chemkin_index_map, std::string file_out = "./output/reaction_labelling.csv");
+			const reactionNetwork_chemkin_index_map_t& reactionNetwork_chemkin_index_map, std::string file_out = "./input/reaction_labelling.csv");
 
 	public:
 		/*
