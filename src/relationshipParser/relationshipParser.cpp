@@ -437,7 +437,8 @@ namespace relationshipParser_sr {
 				re1_reactant, 0);
 			const char* p2_reactant = "([\\w\\(\\)\\-\\_,]+)(\\+|[\\w\\(\\)\\-\\_,]+)*";
 			boost::regex re2_reactant(p2_reactant);
-			boost::sregex_token_iterator itr2_reactant((*(itr1_reactant)).begin(), (*(itr1_reactant)).end(),
+			std::string reactant_tmp = *(itr1_reactant);
+			boost::sregex_token_iterator itr2_reactant(reactant_tmp.begin(), reactant_tmp.end(),
 				re2_reactant, 0);
 
 			const char* p1_product = "[<=>|=|=>|<=]([\\w\\(\\)\\-\\_,]+)(?:\\+([\\w\\(\\)\\-\\_,]+))*";
@@ -446,7 +447,8 @@ namespace relationshipParser_sr {
 				re1_product, 0);
 			const char* p2_product = "([\\w\\(\\)\\-\\_,]+)(?:\\+([\\w\\(\\)\\-\\_,]+))*";
 			boost::regex re2_product(p2_product);
-			boost::sregex_token_iterator itr2_product((*(itr1_product)).begin(), (*(itr1_product)).end(),
+			std::string product_tmp = *(itr1_product);
+			boost::sregex_token_iterator itr2_product(product_tmp.begin(), product_tmp.end(),
 				re2_product, 0);
 
 			if (x.second[0] > 0)
