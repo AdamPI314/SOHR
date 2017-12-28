@@ -430,7 +430,29 @@ namespace relationshipParser_sr {
 
 			//just print the first reaction
 			index_int_t reaction_v_ind = static_cast<index_int_t>(abs(x.second[0])) - 1;
-			pt_child1.put("reaction_name", reaction_v[reaction_v_ind].reaction_name);
+			std::string reaction_name = "";
+			const char* p1_reactant = "([\\w\\(\\)\\-\\_,]+)(\\+|[\\w\\(\\)\\-\\_,]+)*[<=>|=>|<=|=]";
+			boost::regex re1_reactant(p1_reactant);
+			boost::sregex_token_iterator itr1_reactant(reaction_v[reaction_v_ind].reaction_name.begin(), reaction_v[reaction_v_ind].reaction_name.end(),
+				re1_reactant, 0);
+			const char* p2_reactant = "([\\w\\(\\)\\-\\_,]+)(\\+|[\\w\\(\\)\\-\\_,]+)*";
+			boost::regex re2_reactant(p2_reactant);
+			boost::sregex_token_iterator itr2_reactant((*(itr1_reactant)).begin(), (*(itr1_reactant)).end(),
+				re2_reactant, 0);
+
+			const char* p1_product = "[<=>|=|=>|<=]([\\w\\(\\)\\-\\_,]+)(?:\\+([\\w\\(\\)\\-\\_,]+))*";
+			boost::regex re1_product(p1_product);
+			boost::sregex_token_iterator itr1_product(reaction_v[reaction_v_ind].reaction_name.begin(), reaction_v[reaction_v_ind].reaction_name.end(),
+				re1_product, 0);
+			const char* p2_product = "([\\w\\(\\)\\-\\_,]+)(?:\\+([\\w\\(\\)\\-\\_,]+))*";
+			boost::regex re2_product(p2_product);
+			boost::sregex_token_iterator itr2_product((*(itr1_product)).begin(), (*(itr1_product)).end(),
+				re2_product, 0);
+
+			if (x.second[0] > 0)
+				pt_child1.put("reaction_name", (*(itr2_reactant)) + "=>" + (*(itr2_product)));
+			else
+				pt_child1.put("reaction_name", (*(itr2_product)) + "=>" + (*(itr2_reactant)));
 
 			boost::property_tree::ptree pt_child_original_idx;
 			for (index_int_t i = 0; i < static_cast<index_int_t>(x.second.size()); ++i) {
@@ -467,7 +489,7 @@ namespace relationshipParser_sr {
 
 				pt_child_net_reactant1.put_child(boost::lexical_cast<std::string>(i), pt_child_net_reactant2);
 			}
-			
+
 			//net_products
 			boost::property_tree::ptree pt_child_net_product1;
 			boost::property_tree::ptree pt_child_net_product2;
@@ -477,7 +499,6 @@ namespace relationshipParser_sr {
 
 				pt_child_net_product1.put_child(boost::lexical_cast<std::string>(i), pt_child_net_product2);
 			}
-
 
 			if (x.second[0] > 0) {
 				pt_child1.put_child("reactant", pt_child_reactant1);
@@ -491,7 +512,6 @@ namespace relationshipParser_sr {
 				pt_child1.put_child("net_reactant", pt_child_net_product1);
 				pt_child1.put_child("net_product", pt_child_net_reactant1);
 			}
-
 
 			pt_root1.put_child(boost::lexical_cast<std::string>(x.first), pt_child1);
 		}
