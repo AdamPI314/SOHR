@@ -414,11 +414,11 @@ namespace relationshipParser_sr {
 				unpaired_reaction.emplace(reaction_v_ind, x.first);
 			}
 		}
-		
+
 
 		//write to json file
 		boost::property_tree::ptree pt_root1;
-		
+
 		for (auto x : reactionNetwork_chemkin_index_map) {
 			boost::property_tree::ptree pt_child1;
 
@@ -435,7 +435,7 @@ namespace relationshipParser_sr {
 			boost::property_tree::ptree pt_child_original_idx;
 			for (index_int_t i = 0; i < static_cast<index_int_t>(x.second.size()); ++i) {
 				pt_child_original_idx.put(boost::lexical_cast<std::string>(i), boost::lexical_cast<std::string>(x.second[i]));
-			}			
+			}
 			pt_child1.put_child("original_index", pt_child_original_idx);
 
 			//reactants
@@ -443,48 +443,55 @@ namespace relationshipParser_sr {
 			boost::property_tree::ptree pt_child_reactant2;
 			for (index_int_t i = 0; i < static_cast<index_int_t>(reaction_v[reaction_v_ind].reactant.size()); ++i) {
 				pt_child_reactant2.put("species_index", reaction_v[reaction_v_ind].reactant[i].first);
-				//pt_child_reactant2.put("species_name", species_v[reaction_v[reaction_v_ind].reactant[i].first].spe_name);
 				pt_child_reactant2.put("coefficient", reaction_v[reaction_v_ind].reactant[i].second);
 
 				pt_child_reactant1.put_child(boost::lexical_cast<std::string>(i), pt_child_reactant2);
 			}
-			pt_child1.put_child("reactant", pt_child_reactant1);
 
 			//products
 			boost::property_tree::ptree pt_child_product1;
 			boost::property_tree::ptree pt_child_product2;
 			for (index_int_t i = 0; i < static_cast<index_int_t>(reaction_v[reaction_v_ind].product.size()); ++i) {
 				pt_child_product2.put("species_index", reaction_v[reaction_v_ind].product[i].first);
-				//pt_child_product2.put("species_name", species_v[reaction_v[reaction_v_ind].product[i].first].spe_name);
 				pt_child_product2.put("coefficient", reaction_v[reaction_v_ind].product[i].second);
 
 				pt_child_product1.put_child(boost::lexical_cast<std::string>(i), pt_child_product2);
 			}
-			pt_child1.put_child("product", pt_child_product1);
 
 			//net_reactants
 			boost::property_tree::ptree pt_child_net_reactant1;
 			boost::property_tree::ptree pt_child_net_reactant2;
 			for (index_int_t i = 0; i < static_cast<index_int_t>(reaction_v[reaction_v_ind].net_reactant.size()); ++i) {
 				pt_child_net_reactant2.put("species_index", reaction_v[reaction_v_ind].net_reactant[i].first);
-				//pt_child_net_reactant2.put("species_name", species_v[reaction_v[reaction_v_ind].net_reactant[i].first].spe_name);
 				pt_child_net_reactant2.put("coefficient", reaction_v[reaction_v_ind].net_reactant[i].second);
 
 				pt_child_net_reactant1.put_child(boost::lexical_cast<std::string>(i), pt_child_net_reactant2);
 			}
-			pt_child1.put_child("net_reactant", pt_child_net_reactant1);
-
+			
 			//net_products
 			boost::property_tree::ptree pt_child_net_product1;
 			boost::property_tree::ptree pt_child_net_product2;
 			for (index_int_t i = 0; i < static_cast<index_int_t>(reaction_v[reaction_v_ind].net_product.size()); ++i) {
 				pt_child_net_product2.put("species_index", reaction_v[reaction_v_ind].net_product[i].first);
-				//pt_child_net_product2.put("species_name", species_v[reaction_v[reaction_v_ind].net_product[i].first].spe_name);
 				pt_child_net_product2.put("coefficient", reaction_v[reaction_v_ind].net_product[i].second);
 
 				pt_child_net_product1.put_child(boost::lexical_cast<std::string>(i), pt_child_net_product2);
 			}
-			pt_child1.put_child("net_product", pt_child_net_product1);
+
+
+			if (x.second[0] > 0) {
+				pt_child1.put_child("reactant", pt_child_reactant1);
+				pt_child1.put_child("product", pt_child_product1);
+				pt_child1.put_child("net_reactant", pt_child_net_reactant1);
+				pt_child1.put_child("net_product", pt_child_net_product1);
+			}
+			else {
+				pt_child1.put_child("reactant", pt_child_product1);
+				pt_child1.put_child("product", pt_child_reactant1);
+				pt_child1.put_child("net_reactant", pt_child_net_product1);
+				pt_child1.put_child("net_product", pt_child_net_reactant1);
+			}
+
 
 			pt_root1.put_child(boost::lexical_cast<std::string>(x.first), pt_child1);
 		}
