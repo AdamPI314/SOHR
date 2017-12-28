@@ -247,10 +247,17 @@ namespace relationshipParser_sr {
 
 		//s2f --> save to file
 		static void spe_information_s2f(const std::vector<spe_info>& species_v, std::string file_out = "./input/species_labelling.csv");
+		//save to json file
+		static void spe_information_s2json(const std::vector<spe_info>& species_v, std::string file_out = "./input/species_information.json");
+
 		//Read the file named "chem.out", read in the chemical reactions.
 		static void read_chem_out_reaction(const std::vector<spe_info>& species_v, std::vector<reaction_info>& reaction_v, const spe_name_index_map_t& spe_name_index_map, std::string file_in = "./input/chem.out");
+		
 		static void reaction_information_s2f(const std::vector<spe_info> & species_v, const std::vector<reaction_info> & reaction_v,
 			const reactionNetwork_chemkin_index_map_t& reactionNetwork_chemkin_index_map, std::string file_out = "./input/reaction_labelling.csv");
+		//save to json file
+		static void reaction_information_s2json(const std::vector<spe_info> & species_v, const std::vector<reaction_info> & reaction_v,
+			const reactionNetwork_chemkin_index_map_t& reactionNetwork_chemkin_index_map, std::string file_out = "./input/reaction_information.json");
 
 	public:
 		/*

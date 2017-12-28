@@ -151,7 +151,7 @@ namespace reactionNetwork_sr {
 				//edge vector
 				for (std::size_t i = 0; i < reaction_v[reaction_v_ind].net_reactant.size(); ++i) {/*for i*/
 					for (std::size_t j = 0; j < reaction_v[reaction_v_ind].net_product.size(); ++j) {/*for j*/
-																									 //std::cout << "[" << reaction_v[reaction_v_ind].net_reactant[i].first << "," << reaction_v[reaction_v_ind].net_product[j].first << "]" << "\t";
+						//std::cout << "[" << reaction_v[reaction_v_ind].net_reactant[i].first << "," << reaction_v[reaction_v_ind].net_product[j].first << "]" << "\t";
 						edgeVector.push_back(std::make_pair(reaction_v[reaction_v_ind].net_reactant[i].first, reaction_v[reaction_v_ind].net_product[j].first));
 						edgePro_tmp.edge_index = edge_counter; ++edge_counter;
 						edgePro_tmp.reaction_index = itr->first;
@@ -170,7 +170,7 @@ namespace reactionNetwork_sr {
 				//edge vector
 				for (std::size_t i = 0; i < reaction_v[reaction_v_ind].net_product.size(); ++i) {/*for i*/
 					for (std::size_t j = 0; j < reaction_v[reaction_v_ind].net_reactant.size(); ++j) {/*for j*/
-																									  //std::cout << "[" << reaction_v[reaction_v_ind].net_product[i].first << "," << reaction_v[reaction_v_ind].net_reactant[j].first << "]" << "\t";
+						//std::cout << "[" << reaction_v[reaction_v_ind].net_product[i].first << "," << reaction_v[reaction_v_ind].net_reactant[j].first << "]" << "\t";
 						edgeVector.push_back(std::make_pair(reaction_v[reaction_v_ind].net_product[i].first, reaction_v[reaction_v_ind].net_reactant[j].first));
 						edgePro_tmp.edge_index = edge_counter; ++edge_counter;
 						edgePro_tmp.reaction_index = itr->first;
@@ -193,7 +193,10 @@ namespace reactionNetwork_sr {
 		if (w2f == true)
 		{
 			rsp::relationshipParser::spe_information_s2f(species_v);
+			rsp::relationshipParser::spe_information_s2json(species_v);
+
 			rsp::relationshipParser::reaction_information_s2f(species_v, reaction_v, reactionNetwork_chemkin_index_map);
+			rsp::relationshipParser::reaction_information_s2json(species_v, reaction_v, reactionNetwork_chemkin_index_map);
 		}
 	}
 

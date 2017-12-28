@@ -1,6 +1,9 @@
 #ifndef __RELATIONSHIPPARSER_CPP_
 #define __RELATIONSHIPPARSER_CPP_
 
+#include <boost/property_tree/json_parser.hpp> //for json_reader
+#include <boost/optional/optional.hpp> //for optional
+
 #include "../../include/relationshipParser/relationshipParser.h"
 
 namespace relationshipParser_sr {
@@ -144,6 +147,46 @@ namespace relationshipParser_sr {
 		}
 
 		fout_t.close(); fout_t.clear();
+	}
+
+	void relationshipParser::spe_information_s2json(const std::vector<spe_info>& species_v, std::string file_out)
+	{
+
+		//write to json file
+		boost::property_tree::ptree pt_root1;
+
+		for (std::size_t i = 0; i < species_v.size(); ++i) {
+			boost::property_tree::ptree pt_child1;
+			pt_child1.put(boost::lexical_cast<std::string>("name"), species_v[i].spe_name);
+			pt_child1.put(boost::lexical_cast<std::string>("phase"), species_v[i].phase);
+			pt_child1.put(boost::lexical_cast<std::string>("charge"), species_v[i].charge);
+			pt_child1.put(boost::lexical_cast<std::string>("molecular_weight"), species_v[i].spe_weight);
+			pt_child1.put(boost::lexical_cast<std::string>("temperature_low"), species_v[i].temperature_low);
+			pt_child1.put(boost::lexical_cast<std::string>("temperature_high"), species_v[i].temperature_high);
+
+			boost::property_tree::ptree pt_child2;
+			for (auto x : species_v[i].spe_component) {
+				pt_child2.put(x.first, x.second);
+			}
+
+			pt_child1.put_child("spe_composition", pt_child2);
+			pt_root1.put_child(boost::lexical_cast<std::string>(species_v[i].spe_index), pt_child1);
+
+		}
+
+		std::ofstream out_stream;
+		try
+		{
+			//open to use
+			out_stream.open(file_out.c_str());
+			boost::property_tree::write_json(out_stream, pt_root1);
+		}//try
+		catch (std::ofstream::failure e) {
+			std::cerr << "Exception opening/reading/closing file\n";
+		}//catch
+
+		out_stream.close();
+
 	}
 
 
@@ -348,6 +391,116 @@ namespace relationshipParser_sr {
 
 		fout.close(); fout.clear();
 
+	}
+
+	void relationshipParser::reaction_information_s2json(const std::vector<spe_info>& species_v, const std::vector<reaction_info>& reaction_v, const reactionNetwork_chemkin_index_map_t & reactionNetwork_chemkin_index_map, std::string file_out)
+	{
+		//reverse reaction information
+		std::map<index_int_t, index_int_t> reverse_reaction;
+
+		std::map<index_int_t, index_int_t> unpaired_reaction;
+		for (auto x : reactionNetwork_chemkin_index_map) {
+			//check this value, use the first one
+			index_int_t reaction_v_ind = static_cast<index_int_t>(abs(x.second[0])) - 1;
+
+			//find its pair
+			if (unpaired_reaction.find(reaction_v_ind) != unpaired_reaction.end()) {
+				reverse_reaction.emplace(x.first, unpaired_reaction.at(reaction_v_ind));
+				reverse_reaction.emplace(unpaired_reaction.at(reaction_v_ind), x.first);
+				//erase by key
+				unpaired_reaction.erase(reaction_v_ind);
+			}
+			else {
+				unpaired_reaction.emplace(reaction_v_ind, x.first);
+			}
+		}
+		
+
+		//write to json file
+		boost::property_tree::ptree pt_root1;
+		
+		for (auto x : reactionNetwork_chemkin_index_map) {
+			boost::property_tree::ptree pt_child1;
+
+			//reverse reaction
+			if (reverse_reaction.find(x.first) != reverse_reaction.end())
+				pt_child1.put("reverse_reaction", boost::lexical_cast<std::string>(reverse_reaction.at(x.first)));
+			else
+				pt_child1.put("reverse_reaction", "None");
+
+			//just print the first reaction
+			index_int_t reaction_v_ind = static_cast<index_int_t>(abs(x.second[0])) - 1;
+			pt_child1.put("reaction_name", reaction_v[reaction_v_ind].reaction_name);
+
+			boost::property_tree::ptree pt_child_original_idx;
+			for (index_int_t i = 0; i < static_cast<index_int_t>(x.second.size()); ++i) {
+				pt_child_original_idx.put(boost::lexical_cast<std::string>(i), boost::lexical_cast<std::string>(x.second[i]));
+			}			
+			pt_child1.put_child("original_index", pt_child_original_idx);
+
+			//reactants
+			boost::property_tree::ptree pt_child_reactant1;
+			boost::property_tree::ptree pt_child_reactant2;
+			for (index_int_t i = 0; i < static_cast<index_int_t>(reaction_v[reaction_v_ind].reactant.size()); ++i) {
+				pt_child_reactant2.put("species_index", reaction_v[reaction_v_ind].reactant[i].first);
+				//pt_child_reactant2.put("species_name", species_v[reaction_v[reaction_v_ind].reactant[i].first].spe_name);
+				pt_child_reactant2.put("coefficient", reaction_v[reaction_v_ind].reactant[i].second);
+
+				pt_child_reactant1.put_child(boost::lexical_cast<std::string>(i), pt_child_reactant2);
+			}
+			pt_child1.put_child("reactant", pt_child_reactant1);
+
+			//products
+			boost::property_tree::ptree pt_child_product1;
+			boost::property_tree::ptree pt_child_product2;
+			for (index_int_t i = 0; i < static_cast<index_int_t>(reaction_v[reaction_v_ind].product.size()); ++i) {
+				pt_child_product2.put("species_index", reaction_v[reaction_v_ind].product[i].first);
+				//pt_child_product2.put("species_name", species_v[reaction_v[reaction_v_ind].product[i].first].spe_name);
+				pt_child_product2.put("coefficient", reaction_v[reaction_v_ind].product[i].second);
+
+				pt_child_product1.put_child(boost::lexical_cast<std::string>(i), pt_child_product2);
+			}
+			pt_child1.put_child("product", pt_child_product1);
+
+			//net_reactants
+			boost::property_tree::ptree pt_child_net_reactant1;
+			boost::property_tree::ptree pt_child_net_reactant2;
+			for (index_int_t i = 0; i < static_cast<index_int_t>(reaction_v[reaction_v_ind].net_reactant.size()); ++i) {
+				pt_child_net_reactant2.put("species_index", reaction_v[reaction_v_ind].net_reactant[i].first);
+				//pt_child_net_reactant2.put("species_name", species_v[reaction_v[reaction_v_ind].net_reactant[i].first].spe_name);
+				pt_child_net_reactant2.put("coefficient", reaction_v[reaction_v_ind].net_reactant[i].second);
+
+				pt_child_net_reactant1.put_child(boost::lexical_cast<std::string>(i), pt_child_net_reactant2);
+			}
+			pt_child1.put_child("net_reactant", pt_child_net_reactant1);
+
+			//net_products
+			boost::property_tree::ptree pt_child_net_product1;
+			boost::property_tree::ptree pt_child_net_product2;
+			for (index_int_t i = 0; i < static_cast<index_int_t>(reaction_v[reaction_v_ind].net_product.size()); ++i) {
+				pt_child_net_product2.put("species_index", reaction_v[reaction_v_ind].net_product[i].first);
+				//pt_child_net_product2.put("species_name", species_v[reaction_v[reaction_v_ind].net_product[i].first].spe_name);
+				pt_child_net_product2.put("coefficient", reaction_v[reaction_v_ind].net_product[i].second);
+
+				pt_child_net_product1.put_child(boost::lexical_cast<std::string>(i), pt_child_net_product2);
+			}
+			pt_child1.put_child("net_product", pt_child_net_product1);
+
+			pt_root1.put_child(boost::lexical_cast<std::string>(x.first), pt_child1);
+		}
+
+		std::ofstream out_stream;
+		try
+		{
+			//open to use
+			out_stream.open(file_out.c_str());
+			boost::property_tree::write_json(out_stream, pt_root1);
+		}//try
+		catch (std::ofstream::failure e) {
+			std::cerr << "Exception opening/reading/closing file\n";
+		}//catch
+
+		out_stream.close();
 	}
 
 	//regard reactions only as forward reactions
