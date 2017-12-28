@@ -10,7 +10,7 @@
         "merge_chatterings": "yes"
     },
     "job": {
-        "job_type": "INITIATION"
+        "job_type": "evaluate_path_integral_over_time"
     },
     "propagator": {
         "primary_type": "from_file",
@@ -86,24 +86,12 @@
         "fast_reaction": {
             "1068": 1069,
             "1096": 1097,
-            "132": 133,
-            "1116": 1117,
-            "348": 349,
-            "1080": 1081,
-            "586": 587,
-            "1042": 1043,
-            "434": 435
+            "1116": 1117
         },
         "trapped_species": {
-            "60": 78,
-            "61": 80,
-            "25": 27,
-            "87": 90,
-            "39": 50,
-            "78": 87,
-            "85": 54,
-            "72": 108,
-            "45": 47
+            "78": 9,
+            "80": 9,
+            "90": 9
         },
         "non_zero_rate_reaction": [],
         "max_path_length": [

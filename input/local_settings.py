@@ -78,7 +78,7 @@ def get_fast_rxn_trapped_spe(atom_followed="C"):
             "rxn": [1068, 1069],
             "spe": {
                 "H": [60, 78],
-                "O": [9, 78],
+                "O": [78, 9],
                 "C": [60, 78]
             }
         },
@@ -91,7 +91,7 @@ def get_fast_rxn_trapped_spe(atom_followed="C"):
             "rxn": [1096, 1097],
             "spe": {
                 "H": [61, 80],
-                "O": [9, 80],
+                "O": [80, 9],
                 "C": [61, 80]
             }
         },
@@ -104,7 +104,7 @@ def get_fast_rxn_trapped_spe(atom_followed="C"):
             "rxn": [1116, 1117],
             "spe": {
                 "H": [87, 90],
-                "O": [9, 90],
+                "O": [90, 9],
                 "C": [87, 90]
             }
         }
@@ -164,9 +164,10 @@ def get_fast_rxn_trapped_spe(atom_followed="C"):
 
     fast_reaction = OrderedDict(fast_reaction_list)
     trapped_species = OrderedDict(trapped_species_list)
-    # print(fast_reaction, trapped_species)
+    print(fast_reaction_list, trapped_species_list)
+    print(fast_reaction, trapped_species)
     return fast_reaction, trapped_species
 
 
 if __name__ == '__main__':
-    get_fast_rxn_trapped_spe()
+    get_fast_rxn_trapped_spe("O")
