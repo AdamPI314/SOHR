@@ -43,18 +43,23 @@ namespace reactionNetwork_sr {
 
 		std::vector<VertexPair> edgeVector; std::vector<EdgeProperties_graph> edgePro; std::vector<VertexProperties_graph> vertex_info;
 		read_chem_out_spe_for_network_info(edgeVector, edgePro, vertex_info);
-		//update super atom info
-		this->update_super_atom_info(rnk_pt.get<std::string>("pathway.super_atom"));
 
 		set_species_initial_concentration();
 
 		//initialize graph
 		initGraph(edgeVector, edgePro);
-
 		update_vertex_info(vertex_info);
+
+		this->follow_hypothesized_atom = this->check_hypothesized_atom();
+
+		//update super atom info
+		this->update_super_atom_info(rnk_pt.get<std::string>("pathway.super_atom"));
+		if (this->follow_hypothesized_atom) {
+			this->read_atom_scheme();
+			this->update_hypothesized_atom_info(rnk_pt.get<std::string>("pathway.atom_followed"));
+		}
 		set_spe_out_reaction_info();
 		set_reaction_out_spe_info();
-
 		set_out_spe_index_branching_ratio_map_map();
 
 		//set dead species
@@ -217,6 +222,38 @@ namespace reactionNetwork_sr {
 
 	}
 
+	void superReactionNetwork::read_atom_scheme()
+	{
+		boost::property_tree::read_json(this->cwd + std::string("/input/atom_scheme.json"), this->rnk_atom_scheme, std::locale());
+	}
+
+	bool superReactionNetwork::check_hypothesized_atom()
+	{
+		if (rnk_pt.get<std::string>("pathway.atom_followed") == rnk_pt.get<std::string>("pathway.super_atom"))
+			return false;
+		for (auto x : this->element_v) {
+			if (rnk_pt.get<std::string>("pathway.atom_followed") == x.ele_name)
+				return false;
+		}
+		return true;
+	}
+
+	void superReactionNetwork::update_hypothesized_atom_info(std::string hypothesized_atom)
+	{
+		auto ha_dict = this->rnk_atom_scheme.get_child(hypothesized_atom);
+
+		for (std::size_t i = 0; i < this->species_network_v.size(); ++i) {
+			this->species_network_v[i].spe_component[hypothesized_atom] = 0;
+		}
+
+		for (auto key1 : ha_dict) {
+			std::string spe_name = boost::lexical_cast<std::string>(key1.first);
+			rsp::index_int_t spe_idx = this->spe_name_index_map[spe_name];
+			rsp::index_int_t coef = boost::lexical_cast<rsp::index_int_t>(key1.second.get_value<double>());
+			this->species_network_v[spe_idx].spe_component[hypothesized_atom] = coef;
+		}
+	}
+
 	void superReactionNetwork::set_species_initial_concentration()
 	{
 		//read with json_parser as property_tree
@@ -261,6 +298,39 @@ namespace reactionNetwork_sr {
 		for (auto key1 : this->rnk_pt.get_child("pathway.dead_species")) {
 			//std::cout<<key1.second.get_value<std::size_t>()<<std::endl;
 			dead_spe_index.insert(key1.second.get_value<rsp::index_int_t>());
+		}
+
+		//search network also, if a species has no out reaction or out species
+		//it shall be a terminal species
+		//under current atom scheme, followed a species
+		std::string atom_followed = this->rnk_pt.get<std::string>("pathway.atom_followed");
+
+		for (auto x : this->species_network_v) {
+			if (x.reaction_k_index_s_coef_v.size() == 0) {
+				dead_spe_index.insert(x.spe_index);
+				continue;
+			}
+			bool no_out_spe = true;
+			// search all out reactions
+			for (auto y : x.reaction_k_index_s_coef_v) {
+				auto rxn_idx = y.first;
+
+				// search all out species
+				for (auto s : reaction_network_v[rxn_idx].out_spe_index_branching_ratio_map_map.at(atom_followed)) {
+					if (s.second > 0) {
+						no_out_spe = false;
+						break;
+					}
+				}
+				if (no_out_spe == false) {
+					break;
+				}
+			}
+
+			if (no_out_spe == true) {
+				dead_spe_index.insert(x.spe_index);
+				continue;
+			}
 		}
 
 		this->dead_species = dead_spe_index;
@@ -364,6 +434,9 @@ namespace reactionNetwork_sr {
 			this->set_reaction_out_spe_info(x.ele_name);
 		//super atom
 		this->set_reaction_out_spe_info(rnk_pt.get<std::string>("pathway.super_atom"));
+		if (this->follow_hypothesized_atom) {
+			this->set_reaction_out_spe_info(rnk_pt.get<std::string>("pathway.atom_followed"));
+		}
 	}
 
 	void superReactionNetwork::set_out_spe_index_branching_ratio_map_map(std::string atom_followed)
@@ -375,11 +448,14 @@ namespace reactionNetwork_sr {
 			for (std::size_t i = 0; i < reaction_network_v[r_index].out_spe_index_weight_v_map[atom_followed].size(); ++i) {
 				prob_total += reaction_network_v[r_index].out_spe_index_weight_v_map[atom_followed][i].second;
 			}
+			double reverse_p_t = 0.0;
+			if (prob_total > 0.0)
+				reverse_p_t = 1.0 / prob_total;
 			//calculate the fraction
 			for (std::size_t i = 0; i < reaction_network_v[r_index].out_spe_index_weight_v_map[atom_followed].size(); ++i) {
 				reaction_network_v[r_index].out_spe_index_branching_ratio_map_map[atom_followed]
 					[reaction_network_v[r_index].out_spe_index_weight_v_map[atom_followed][i].first] =
-					reaction_network_v[r_index].out_spe_index_weight_v_map[atom_followed][i].second / prob_total;
+					reaction_network_v[r_index].out_spe_index_weight_v_map[atom_followed][i].second * reverse_p_t;
 			}
 		}
 
@@ -391,6 +467,9 @@ namespace reactionNetwork_sr {
 			this->set_out_spe_index_branching_ratio_map_map(x.ele_name);
 		//super atom
 		this->set_out_spe_index_branching_ratio_map_map(rnk_pt.get<std::string>("pathway.super_atom"));
+		if (this->follow_hypothesized_atom) {
+			this->set_out_spe_index_branching_ratio_map_map(rnk_pt.get<std::string>("pathway.atom_followed"));
+		}
 	}
 
 

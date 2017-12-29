@@ -106,6 +106,10 @@ namespace reactionNetwork_sr {
 	protected:
 		//configurations, read configuration file named "setting.json"
 		boost::property_tree::ptree rnk_pt;
+		//atom scheme
+		boost::property_tree::ptree rnk_atom_scheme;
+		//follow hypothesized atom or not
+		bool follow_hypothesized_atom = false;
 
 	protected:
 		boost::uint32_t random_seed_for_this_core;
@@ -218,6 +222,10 @@ namespace reactionNetwork_sr {
 		//update species super atom info
 		//super atom is defined as a general atom, which could be any atom, the number equals to the sum of all atoms
 		void update_super_atom_info(std::string super_atom = "X");
+		//hypothesized atom, for example "HA1", the information is defined in file "./input/atom_scheme.json"
+		void read_atom_scheme();
+		bool check_hypothesized_atom();
+		void update_hypothesized_atom_info(std::string hypothesized_atom = "HA1");
 	public:
 		void set_species_initial_concentration();
 
