@@ -10,7 +10,7 @@
         "merge_chatterings": "yes"
     },
     "job": {
-        "job_type": "generate_pathway_running_Monte_carlo_trajectory"
+        "job_type": "evaluate_path_integral_over_time"
     },
     "propagator": {
         "primary_type": "from_file",
@@ -65,7 +65,7 @@
         "number_of_Ks": 3
     },
     "pathway": {
-        "init_spe": 9,
+        "init_spe": 62,
         "atom_followed": "HA1",
         "super_atom": "X",
         "begin_t": 0.0,
@@ -73,7 +73,7 @@
         "topN": [
             100
         ],
-        "trajectoryNumber": 10,
+        "trajectoryNumber": 10000,
         "trajectoryNumberVector": [
             1000,
             1000,
@@ -86,12 +86,14 @@
         "fast_reaction": {
             "1068": 1069,
             "1096": 1097,
-            "1116": 1117
+            "1116": 1117,
+            "1080": 1081
         },
         "trapped_species": {
-            "78": 9,
-            "80": 9,
-            "90": 9
+            "60": 78,
+            "61": 80,
+            "87": 90,
+            "78": 87
         },
         "non_zero_rate_reaction": [],
         "max_path_length": [

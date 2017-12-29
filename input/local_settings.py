@@ -41,8 +41,8 @@ def get_local_settings():
         # condense species path, no reactions
         "species_path": False,
         # atom followed
-        "atom_f": "O",
-        "init_s": 9,
+        "atom_f": "HA1",
+        "init_s": 62,
         # end species index, either None, or [] or [14, 15]
         "end_s_idx": [],
         # top n path
@@ -79,7 +79,8 @@ def get_fast_rxn_trapped_spe(atom_followed="C"):
             "spe": {
                 "H": [60, 78],
                 "O": [78, 9],
-                "C": [60, 78]
+                "C": [60, 78],
+                "HA1": [60, 78]
             }
         },
         # 1096    565     O2+ipropyl=ipropyloo
@@ -92,7 +93,8 @@ def get_fast_rxn_trapped_spe(atom_followed="C"):
             "spe": {
                 "H": [61, 80],
                 "O": [80, 9],
-                "C": [61, 80]
+                "C": [61, 80],
+                "HA1": [61, 80]
             }
         },
         # 1116    575     O2+QOOH_1=well_1
@@ -105,7 +107,21 @@ def get_fast_rxn_trapped_spe(atom_followed="C"):
             "spe": {
                 "H": [87, 90],
                 "O": [90, 9],
-                "C": [87, 90]
+                "C": [87, 90],
+                "HA1": [87, 90]
+            }
+        },
+        # 1080    556     npropyloo=QOOH_1        557     npropyloo=QOOH_1
+        # reactants       78      npropyloo       products        87      QOOH_1
+        # 1081    -556    npropyloo=QOOH_1        -557    npropyloo=QOOH_1
+        {
+            "formula1": "npropyloo=QOOH_1",
+            "formula2": "QOOH_1=>npropyloo",
+            "rxn": [1080, 1081],
+            "spe": {
+                "H": [78, 87],
+                "C": [78, 87],
+                "HA1": [78, 87]
             }
         }
         # # 132     69      CH3+O2(+M)=CH3OO(+M)
@@ -121,13 +137,6 @@ def get_fast_rxn_trapped_spe(atom_followed="C"):
         # {
         #     "rxn": [348, 349],
         #     "spe": [39, 50]
-        # },
-        # # 1080    556     npropyloo=QOOH_1        557     npropyloo=QOOH_1
-        # # reactants       78      npropyloo       products        87      QOOH_1
-        # # 1081    -556    npropyloo=QOOH_1        -557    npropyloo=QOOH_1
-        # {
-        #     "rxn": [1080, 1081],
-        #     "spe": [78, 87]
         # },
         # # 586     300     O2C2H4OH=CH2CH2OH+O2
         # # reactants       85      O2C2H4OH        products        54      CH2CH2OH        9       O2
