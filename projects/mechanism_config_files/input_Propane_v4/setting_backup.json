@@ -81,7 +81,7 @@
             1000
         ],
         "trajectory_count_limit": 1,
-        "dead_species": [],
+        "terminal_species": [],
         "fast_reaction": {
             "1068": 1069,
             "1096": 1097,

@@ -126,8 +126,8 @@ namespace reactionNetwork_sr {
 		rsp::spe_name_index_map_t spe_name_index_map;
 		//dead/end species, species that can not be destroyed, it might have a linkage in the reaction network, but the destruction rate
 		//is always zero! set this vector manually. check the last line of file int_drc.dat, if the cumulative destruction rate is zero,
-		//the species is a dead species
-		std::set<vertex_t> dead_species;
+		//the species is a terminal species
+		std::set<vertex_t> terminal_species;
 	protected:
 		//shared pointer of all species
 		std::shared_ptr<species_group_sr::species_group_base> sp_all_species_group_rnk;
@@ -245,8 +245,8 @@ namespace reactionNetwork_sr {
 		rsp::index_int_t return_initial_spe() const;
 
 	public:
-		//86 and 89 are dead species, they transform to each other very fast
-		void set_dead_spe();
+		//86 and 89 are terminal species, they transform to each other very fast
+		void set_terminal_spe();
 
 	public:
 		//initiate the graph according to the input Edge vector

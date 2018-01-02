@@ -109,8 +109,8 @@ namespace reactionNetworkODESolver_sr {
 	double reactionNetworkODESolver::reaction_time_from_importance_sampling_without_cutoff(rsp::my_time_t curr_time,
 		rnk::vertex_t curr_spe,
 		double Y) {
-		//if current species is a dead species, found
-		if (this->dead_species.count(curr_spe) >= 1) {
+		//if current species is a terminal species, found
+		if (this->terminal_species.count(curr_spe) >= 1) {
 			return std::numeric_limits<rsp::my_time_t>::max();
 		}
 		else {//not found
@@ -131,8 +131,8 @@ namespace reactionNetworkODESolver_sr {
 
 	double reactionNetworkODESolver::reaction_time_from_importance_sampling(rsp::my_time_t curr_time,
 		rnk::vertex_t curr_spe, double Y) {
-		//if current species is a dead species, found
-		if (this->dead_species.count(curr_spe) >= 1) {
+		//if current species is a terminal species, found
+		if (this->terminal_species.count(curr_spe) >= 1) {
 			return std::numeric_limits<rsp::my_time_t>::max();
 		}
 
@@ -400,8 +400,8 @@ namespace reactionNetworkODESolver_sr {
 		update_reaction_rate(curr_time, curr_vertex);
 		rnk::when_where_t when_where(curr_time, curr_vertex);
 
-		//if current species is not a dead species, not found
-		if (std::find(this->dead_species.begin(), this->dead_species.end(), curr_vertex) == this->dead_species.end()) {//if1
+		//if current species is not a terminal species, not found
+		if (std::find(this->terminal_species.begin(), this->terminal_species.end(), curr_vertex) == this->terminal_species.end()) {//if1
 			rsp::index_int_t next_reaction_index = spe_random_pick_next_reaction(curr_vertex);
 			//random pick next spe
 			rnk::vertex_t next_vertex = reaction_random_pick_next_spe(next_reaction_index);

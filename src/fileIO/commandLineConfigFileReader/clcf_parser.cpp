@@ -186,8 +186,8 @@ cf_parser::cf_parser() :config("Configuration")
 			"initial species index of pathway generation scheme")
 		("pathway.atom_followed", po::value<std::string>()->default_value("H"),
 			"atom which will be followed")
-		("pathway.dead_species", po::value<std::string>(),
-			"dead species, species with no out edge or out rate is zero")
+		("pathway.terminal_species", po::value<std::string>(),
+			"terminal species, species with no out edge or out rate is zero")
 		("pathway.trapped_species", po::value<std::string>(),
 			"trapped species, species are trapped in some local reaction with fast conversion rate")
 		("pathway.fast_reaction", po::value<std::string>(),

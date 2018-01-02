@@ -113,8 +113,8 @@ namespace reactionNetwork_sr {
 
 	double concreteReactionNetwork::reaction_time_from_importance_sampling_without_cutoff(rsp::my_time_t curr_time, vertex_t curr_spe, double Y)
 	{
-		//if current species is a dead species, found
-		if (this->dead_species.count(curr_spe) >= 1) {
+		//if current species is a terminal species, found
+		if (this->terminal_species.count(curr_spe) >= 1) {
 			return std::numeric_limits<rsp::my_time_t>::max();
 		}
 		else {//not found
@@ -135,8 +135,8 @@ namespace reactionNetwork_sr {
 
 	double concreteReactionNetwork::reaction_time_from_importance_sampling(rsp::my_time_t curr_time, vertex_t curr_spe, double Y)
 	{
-		//if current species is a dead species, found
-		if (this->dead_species.count(curr_spe) >= 1) {
+		//if current species is a terminal species, found
+		if (this->terminal_species.count(curr_spe) >= 1) {
 			return std::numeric_limits<rsp::my_time_t>::max();
 		}
 

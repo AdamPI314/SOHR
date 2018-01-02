@@ -62,8 +62,8 @@ namespace reactionNetwork_sr {
 		set_reaction_out_spe_info();
 		set_out_spe_index_branching_ratio_map_map();
 
-		//set dead species
-		set_dead_spe();
+		//set terminal species
+		set_terminal_spe();
 
 		initiate_M_matrix();
 		initiate_R_matrix();
@@ -290,14 +290,14 @@ namespace reactionNetwork_sr {
 		return this->rnk_pt.get<rsp::index_int_t>("pathway.init_spe");
 	}
 
-	void superReactionNetwork::set_dead_spe()
+	void superReactionNetwork::set_terminal_spe()
 	{
-		//86 and 89 are dead species, they transform to each other very fast
-		std::set<rsp::index_int_t> dead_spe_index;
+		//86 and 89 are terminal species, they transform to each other very fast
+		std::set<rsp::index_int_t> terminal_spe_index;
 
-		for (auto key1 : this->rnk_pt.get_child("pathway.dead_species")) {
+		for (auto key1 : this->rnk_pt.get_child("pathway.terminal_species")) {
 			//std::cout<<key1.second.get_value<std::size_t>()<<std::endl;
-			dead_spe_index.insert(key1.second.get_value<rsp::index_int_t>());
+			terminal_spe_index.insert(key1.second.get_value<rsp::index_int_t>());
 		}
 
 		//search network also, if a species has no out reaction or out species
@@ -307,7 +307,7 @@ namespace reactionNetwork_sr {
 
 		for (auto x : this->species_network_v) {
 			if (x.reaction_k_index_s_coef_v.size() == 0) {
-				dead_spe_index.insert(x.spe_index);
+				terminal_spe_index.insert(x.spe_index);
 				continue;
 			}
 			bool no_out_spe = true;
@@ -328,12 +328,12 @@ namespace reactionNetwork_sr {
 			}
 
 			if (no_out_spe == true) {
-				dead_spe_index.insert(x.spe_index);
+				terminal_spe_index.insert(x.spe_index);
 				continue;
 			}
 		}
 
-		this->dead_species = dead_spe_index;
+		this->terminal_species = terminal_spe_index;
 	}
 
 
@@ -370,8 +370,8 @@ namespace reactionNetwork_sr {
 	{
 		mt::vector_sr<rsp::reaction_index_s_coef_t > reaction_index_s_coef_v;
 		for (rsp::index_int_t i = 0; i < (rsp::index_int_t)this->species_network_v.size(); ++i) {
-			//dead species
-			if (std::find(this->dead_species.begin(), this->dead_species.end(), i) != this->dead_species.end())
+			//terminal species
+			if (std::find(this->terminal_species.begin(), this->terminal_species.end(), i) != this->terminal_species.end())
 				continue;
 			reaction_index_s_coef_v.clear();
 			search_for_out_reaction(i, reaction_index_s_coef_v);
@@ -944,7 +944,7 @@ namespace reactionNetwork_sr {
 		if (chattering_group_id == -1) {
 			time = reaction_time_from_importance_sampling_without_cutoff(time, curr_spe, u_1);
 			if (time > this->tau) {
-				//if curr_vertex is a dead species, should return here
+				//if curr_vertex is a terminal species, should return here
 				when_where.first = time;
 				return when_where;
 			}
@@ -1065,7 +1065,7 @@ namespace reactionNetwork_sr {
 		if (chattering_group_id == -1) {
 			time = reaction_time_from_importance_sampling_without_cutoff(time, curr_spe, u_1);
 			if (time > this->tau) {
-				//if curr_vertex is a dead species, should return here
+				//if curr_vertex is a terminal species, should return here
 				when_where.first = time;
 				return when_where;
 			}
