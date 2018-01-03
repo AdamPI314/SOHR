@@ -247,7 +247,7 @@ namespace propagator_sr {
 	{
 		//since there might be groups of chattering species, such as A=B, B=C, C=D, A,B,C,D belongs to the same fast transition group
 		//use union find here
-		for (auto x : this->sp_chattering_pgt->chattering_spe_idx_from_file) {
+		for (auto x : this->sp_chattering_pgt->chattering_spe_pair_idx_from_file) {
 			for (auto y : x) {
 				this->sp_chattering_pgt->unique_chattering_species.insert(y);
 			}
@@ -262,14 +262,14 @@ namespace propagator_sr {
 		}
 
 		UnionFind uf((int)label_2_idx.size());
-		for (std::size_t i = 0; i < this->sp_chattering_pgt->chattering_spe_idx_from_file[0].size(); ++i) {
-			uf.unite(idx_2_label[this->sp_chattering_pgt->chattering_spe_idx_from_file[0][i]],
-				idx_2_label[this->sp_chattering_pgt->chattering_spe_idx_from_file[1][i]]);
+		for (std::size_t i = 0; i < this->sp_chattering_pgt->chattering_spe_pair_idx_from_file[0].size(); ++i) {
+			uf.unite(idx_2_label[this->sp_chattering_pgt->chattering_spe_pair_idx_from_file[0][i]],
+				idx_2_label[this->sp_chattering_pgt->chattering_spe_pair_idx_from_file[1][i]]);
 		}
 
 		//find fast transition groups
 		std::unordered_set<int> unique_root_species;
-		for (auto x : this->sp_chattering_pgt->chattering_spe_idx_from_file) {
+		for (auto x : this->sp_chattering_pgt->chattering_spe_pair_idx_from_file) {
 			for (auto y : x) {
 				//find root
 				auto s = label_2_idx[uf.root(idx_2_label[y])];
@@ -280,7 +280,7 @@ namespace propagator_sr {
 		for (auto x : unique_root_species) {
 			fast_transition_group_spe.emplace(x, std::set<int>({ x }));
 		}
-		for (auto x : this->sp_chattering_pgt->chattering_spe_idx_from_file) {
+		for (auto x : this->sp_chattering_pgt->chattering_spe_pair_idx_from_file) {
 			for (auto y : x) {
 				//find root
 				auto s = label_2_idx[uf.root(idx_2_label[y])];
@@ -394,16 +394,26 @@ namespace propagator_sr {
 		return this->sp_chattering_pgt;
 	}
 
-	void superPropagator::set_chattering_spe_from_file_pgt()
+	void superPropagator::set_chattering_spe_pair_from_file_pgt()
 	{
 		std::vector<std::vector<rsp::index_int_t> > Matrix(2, std::vector<rsp::index_int_t>());
 
+		int counter = 0;
+
 		for (auto key1 : this->pgt_pt.get_child("pathway.chattering_species")) {
-			Matrix[0].push_back(boost::lexical_cast<rsp::index_int_t>(key1.first));
-			Matrix[1].push_back(key1.second.get_value<rsp::index_int_t>());
+			for (auto key2 : key1.second) {
+				rsp::index_int_t x = key2.second.get_value<rsp::index_int_t>();
+				//std::cout << x;
+				if (counter % 2 == 0)
+					Matrix[0].push_back(x);
+				else
+					Matrix[1].push_back(x);
+
+				++counter;
+			}
 		}
 
-		this->sp_chattering_pgt->chattering_spe_idx_from_file = Matrix;
+		this->sp_chattering_pgt->chattering_spe_pair_idx_from_file = Matrix;
 	}
 
 
@@ -937,13 +947,13 @@ namespace propagator_sr {
 			{
 				fout << "  jt = " << lsodestore.jt << std::endl;
 				fout << "  The program should not use this 'jt' value. Please check \"include/fortran_lib/dlsode/opkdmain.f\" for more information.\n" << std::endl;
-	}
+			}
 			fout << std::endl;
-	}
+		}
 
 		fout.close();
 
-}	//initialize_lsode
+	}	//initialize_lsode
 
 #endif // __LSODE_AVAILABLE_
 
@@ -969,7 +979,7 @@ namespace propagator_sr {
 		boost::property_tree::read_json(this->cwd_pgt + std::string("/input/setting.json"), pgt_pt, std::locale());
 
 		//set fast reactions, read fast inter-conversion reaction pairs from "setting.json"
-		set_chattering_spe_from_file_pgt();
+		set_chattering_spe_pair_from_file_pgt();
 
 		//set the reaction rate of fast reactions to be zero
 		//set_chattering_reaction_rates_to_zero_pgt();

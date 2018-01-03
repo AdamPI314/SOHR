@@ -167,7 +167,7 @@ namespace propagator_sr {
 		std::shared_ptr<species_group_sr::chattering> get_sp_of_chattering();
 
 		//chattering species and reaction, local reaction with fast inter-conversion rate
-		void set_chattering_spe_from_file_pgt();	
+		void set_chattering_spe_pair_from_file_pgt();	
 		//cancel fast transition within each chattering group
 		void subtract_chattering_reaction_contribution_from_species_drc_pgt();
 		//set fast transition A=B's pseudo-first order rate constant given list of chattering species pair

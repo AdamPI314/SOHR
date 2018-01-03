@@ -47,7 +47,7 @@ namespace species_group_sr {
 	class chattering {
 	public:
 		//chattering species in pair, read direcltly from file
-		std::vector<std::vector<rsp::index_int_t> > chattering_spe_idx_from_file;
+		std::vector<std::vector<rsp::index_int_t> > chattering_spe_pair_idx_from_file;
 
 		//unique chattering species
 		std::set<rsp::index_int_t> unique_chattering_species;
