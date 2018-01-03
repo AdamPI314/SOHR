@@ -188,8 +188,8 @@ cf_parser::cf_parser() :config("Configuration")
 			"atom which will be followed")
 		("pathway.terminal_species", po::value<std::string>(),
 			"terminal species, species with no out edge or out rate is zero")
-		("pathway.trapped_species", po::value<std::string>(),
-			"trapped species, species are trapped in some local reaction with fast conversion rate")
+		("pathway.chattering_species", po::value<std::string>(),
+			"chattering species, species are chattering in some local reaction with fast conversion rate")
 		("pathway.fast_reaction", po::value<std::string>(),
 			"fast reaction, local reaction with fast inter-conversion rate")
 

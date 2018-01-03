@@ -86,7 +86,7 @@
             6
         ],
         "fast_reaction": {},
-        "trapped_species": {},
+        "chattering_species": {},
         "non_zero_rate_reaction": [],
         "max_path_length": [
             10,

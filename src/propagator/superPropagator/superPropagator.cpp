@@ -243,9 +243,9 @@ namespace propagator_sr {
 		return this->sp_all_species_group_pgt;
 	}
 
-	void superPropagator::find_chattering_group(const std::vector<rsp::spe_info_base>& species_network_v)
+	void superPropagator::find_chattering_group_using_union_find(const std::vector<rsp::spe_info_base>& species_network_v)
 	{
-		//since there might be groups of trapped species, such as A=B, B=C, C=D, A,B,C,D belongs to the same fast transition group
+		//since there might be groups of chattering species, such as A=B, B=C, C=D, A,B,C,D belongs to the same fast transition group
 		//use union find here
 		for (auto x : this->sp_chattering_pgt->chattering_spe_idx_from_file) {
 			for (auto y : x) {
@@ -398,7 +398,7 @@ namespace propagator_sr {
 	{
 		std::vector<std::vector<rsp::index_int_t> > Matrix(2, std::vector<rsp::index_int_t>());
 
-		for (auto key1 : this->pgt_pt.get_child("pathway.trapped_species")) {
+		for (auto key1 : this->pgt_pt.get_child("pathway.chattering_species")) {
 			Matrix[0].push_back(boost::lexical_cast<rsp::index_int_t>(key1.first));
 			Matrix[1].push_back(key1.second.get_value<rsp::index_int_t>());
 		}

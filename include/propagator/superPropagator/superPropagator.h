@@ -158,7 +158,8 @@ namespace propagator_sr {
 		std::shared_ptr<species_group_sr::species_group_base> get_sp_of_all_species_group();
 
 	public:
-		void find_chattering_group(const std::vector<rsp::spe_info_base> &species_network_v);
+		//find chattering group using union find algorithm, GOOGLE union find if needed
+		void find_chattering_group_using_union_find(const std::vector<rsp::spe_info_base> &species_network_v);
 		//update chattering group-pairs-reactions
 		void update_chattering_group_pairs_reactions(const std::vector<rsp::spe_info_base> &species_network_v, const std::vector<rsp::reaction_info_base> &reaction_network_v, std::string atom_followed = "H");
 
@@ -166,11 +167,10 @@ namespace propagator_sr {
 		std::shared_ptr<species_group_sr::chattering> get_sp_of_chattering();
 
 		//chattering species and reaction, local reaction with fast inter-conversion rate
-		void set_chattering_spe_from_file_pgt();
-	
+		void set_chattering_spe_from_file_pgt();	
 		//cancel fast transition within each chattering group
 		void subtract_chattering_reaction_contribution_from_species_drc_pgt();
-		//set fast transition A=B's pseudo-first order rate constant given list of trapped species pair
+		//set fast transition A=B's pseudo-first order rate constant given list of chattering species pair
 		void update_drc_and_equilibrium_probability_of_chattering_group();
 		//set the reaction rate of fast reactions to be zero
 		void set_chattering_reaction_rates_to_zero_pgt();

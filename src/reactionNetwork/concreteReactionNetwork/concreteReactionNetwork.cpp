@@ -57,7 +57,7 @@ namespace reactionNetwork_sr {
 
 	void concreteReactionNetwork::merge_chatterings()
 	{
-		this->propagator->find_chattering_group(this->species_network_v);
+		this->propagator->find_chattering_group_using_union_find(this->species_network_v);
 
 		this->propagator->update_chattering_group_pairs_reactions(this->species_network_v, this->reaction_network_v, this->rnk_pt.get<std::string>("pathway.atom_followed"));
 
