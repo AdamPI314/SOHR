@@ -27,7 +27,7 @@ namespace species_group_sr {
 	typedef std::map<rsp::index_int_t, std::map<rsp::index_int_t, std::vector<rxn_c1_c2> > > out_species_rxns_t;
 
 	//all species group, only one group, from a mass conservation point of view, from example to 3H2 => 2H3 and H2 => 2H reactions
-	//there is no H2-->H3 transition probability thing, node to node transition, what we define here is presume we are following
+	//there is no H2-->H3 transition probability thing, node to node transition, what we define here is based on the assumption that one is following
 	//a single atom, the branching ratio H2 becomes either H3 or H, suppose the reaction rates are the same, then p(H2, H3) vs. p(H2, H)
 	//is defined as (3/4*6/6) vs. (1/4*2/2), in others words, it is reaction branching ratio * species branching ratio
 	class species_group_base {
@@ -46,8 +46,6 @@ namespace species_group_sr {
 
 	class chattering {
 	public:
-		//chattrering includes chattering reaction and chattering species from input file directly
-		std::vector<std::vector<rsp::index_int_t> > chattering_rxn_idx_from_file;
 		//chattering species in pair, read direcltly from file
 		std::vector<std::vector<rsp::index_int_t> > chattering_spe_idx_from_file;
 

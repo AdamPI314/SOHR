@@ -252,11 +252,6 @@ namespace propagator_sr {
 				this->sp_chattering_pgt->unique_chattering_species.insert(y);
 			}
 		}
-		for (auto rxns : this->sp_chattering_pgt->chattering_rxn_idx_from_file) {
-			for (auto r : rxns) {
-				this->sp_chattering_pgt->unique_chattering_reactions.insert(r);
-			}
-		}
 
 		std::unordered_map<int, int> label_2_idx;
 		std::unordered_map<int, int> idx_2_label;
@@ -411,17 +406,6 @@ namespace propagator_sr {
 		this->sp_chattering_pgt->chattering_spe_idx_from_file = Matrix;
 	}
 
-	void superPropagator::set_chattering_reactions_from_file_pgt()
-	{
-		std::vector<std::vector<rsp::index_int_t> > Matrix(2, std::vector<rsp::index_int_t>());
-
-		for (auto key1 : this->pgt_pt.get_child("pathway.fast_reaction")) {
-			Matrix[0].push_back(boost::lexical_cast<rsp::index_int_t>(key1.first));
-			Matrix[1].push_back(key1.second.get_value<rsp::index_int_t>());
-		}
-
-		this->sp_chattering_pgt->chattering_rxn_idx_from_file = Matrix;
-	}
 
 	void superPropagator::subtract_chattering_reaction_contribution_from_species_drc_pgt()
 	{
@@ -549,11 +533,6 @@ namespace propagator_sr {
 
 	void superPropagator::set_chattering_reaction_rates_to_zero_pgt()
 	{
-		//for (auto rxn_idx : this->sp_chattering_pgt->unique_chattering_reactions) {
-		//	std::fill(reaction_rate_data_pgt[rxn_idx].begin(),
-		//		reaction_rate_data_pgt[rxn_idx].end(), 0.0);
-		//}
-
 		for (auto c_g : this->sp_chattering_pgt->species_chattering_group_pairs_rxns) {
 			for (auto p_r_m : c_g) {
 				//auto s1_s2_p = p_r_m.first;
@@ -991,7 +970,6 @@ namespace propagator_sr {
 
 		//set fast reactions, read fast inter-conversion reaction pairs from "setting.json"
 		set_chattering_spe_from_file_pgt();
-		set_chattering_reactions_from_file_pgt();
 
 		//set the reaction rate of fast reactions to be zero
 		//set_chattering_reaction_rates_to_zero_pgt();
