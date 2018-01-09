@@ -204,23 +204,64 @@ namespace propagator_sr {
 		this->sp_all_species_group_pgt->species_group_pairs_rxns = pairs_rxns_map_tmp;
 
 		//write to file
-		std::ofstream fout((this->cwd_pgt + std::string("/output/species_pairs_reactions_coefs.csv")).c_str());
+		std::ofstream fout1((this->cwd_pgt + std::string("/output/species_pairs_reactions_coefs.csv")).c_str());
 		for (auto x : this->sp_all_species_group_pgt->species_group_pairs_rxns)
 		{
 			auto s1_s2 = x.first;
-			fout << "(" << s1_s2.first << "," << s1_s2.second << ")" << "-->"
+			fout1 << "(" << s1_s2.first << "," << s1_s2.second << ")" << "-->"
 				<< "(" << species_network_v[s1_s2.first].spe_name << "," << species_network_v[s1_s2.second].spe_name << ")" << std::endl;
 
 			auto vec = x.second;
 			for (auto rxn_c1_c2 : vec)
 			{
-				fout << "\t" << "(" << rxn_c1_c2.r_idx << "," << rxn_c1_c2.c1 << "," << rxn_c1_c2.c2 << ")" << std::endl;
-				fout << "\t" << reaction_network_v[rxn_c1_c2.r_idx].reaction_name << std::endl;
+				fout1 << "\t" << "(" << rxn_c1_c2.r_idx << "," << rxn_c1_c2.c1 << "," << rxn_c1_c2.c2 << ")" << std::endl;
+				fout1 << "\t" << reaction_network_v[rxn_c1_c2.r_idx].reaction_name << std::endl;
 			}
 
 		}
 
-		fout.clear(); fout.close();
+		fout1.clear(); fout1.close();
+
+		//write to json file
+		boost::property_tree::ptree pt_root1;
+		for (auto x : this->sp_all_species_group_pgt->species_group_pairs_rxns) {
+			boost::property_tree::ptree pt_child1;
+
+			auto s1_s2 = x.first;
+
+			boost::property_tree::ptree pt_child2;
+
+			int counter = 0;
+			auto vec = x.second;
+			for (auto rxn_c1_c2 : vec)
+			{
+				boost::property_tree::ptree pt_child3;
+
+				pt_child3.put("r_idx", rxn_c1_c2.r_idx);
+				pt_child3.put("c1", rxn_c1_c2.c1);
+				pt_child3.put("c2", rxn_c1_c2.c2);
+				pt_child3.put("r_name", reaction_network_v[rxn_c1_c2.r_idx].reaction_name);
+
+				pt_child2.put_child(boost::lexical_cast<std::string>(counter + 1), pt_child3);
+				++counter;
+			}
+			pt_child1.put_child(boost::lexical_cast<std::string>(s1_s2.second), pt_child2);
+			pt_root1.put_child(boost::lexical_cast<std::string>(s1_s2.first), pt_child1);
+		}
+
+		std::ofstream fout_json;
+		try
+		{
+			//open to use
+			fout_json.open((this->cwd_pgt + std::string("/input/species_pairs_reactions_coefs.json")).c_str());
+			boost::property_tree::write_json(fout_json, pt_root1);
+		}//try
+		catch (std::ofstream::failure e) {
+			std::cerr << "Exception opening/reading/closing file\n";
+		}//catch
+
+		fout_json.close();
+
 	}
 
 	void superPropagator::update_all_species_out_species_reactions()
@@ -709,7 +750,7 @@ namespace propagator_sr {
 		delete[] FWDR_t; delete[] REVR_t;
 		delete[] RKFT_t; delete[] RKRT_t;
 
-		}
+}
 
 #endif // __CHEMKIN_AVAILABLE_ && __USE_LOSDE_
 
@@ -942,18 +983,18 @@ namespace propagator_sr {
 			{
 				//lrs_pgtsode= 22+10*neq+neq*neq;
 				fout << "  lrs_pgtsode =   " << "check your jt value" << std::endl;
-			}
+	}
 			else
 			{
 				fout << "  jt = " << lsodestore.jt << std::endl;
 				fout << "  The program should not use this 'jt' value. Please check \"include/fortran_lib/dlsode/opkdmain.f\" for more information.\n" << std::endl;
 			}
 			fout << std::endl;
-		}
+			}
 
 		fout.close();
 
-	}	//initialize_lsode
+			}	//initialize_lsode
 
 #endif // __LSODE_AVAILABLE_
 
@@ -1017,7 +1058,7 @@ namespace propagator_sr {
 			for (int i = 0; i < nkk; ++i) {
 				x_t[i] = concentration_data_pgt[i][k];
 				total += x_t[i];
-			}
+	}
 			//normalization of mole fraction
 			for (int i = 0; i < nkk; ++i)
 				x_t[i] /= total;
@@ -1027,7 +1068,7 @@ namespace propagator_sr {
 				concentration_data_pgt[i][k] = c_t[i];
 			}
 	}
-	}
+}
 
 #endif // __CHEMKIN_AVAILABLE_
 
