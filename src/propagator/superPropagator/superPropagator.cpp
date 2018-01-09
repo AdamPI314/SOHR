@@ -224,30 +224,53 @@ namespace propagator_sr {
 
 		//write to json file
 		boost::property_tree::ptree pt_root1;
+
+		std::map<std::string, std::vector<boost::property_tree::ptree> > pt_spe_pair_dict;
+
 		for (auto x : this->sp_all_species_group_pgt->species_group_pairs_rxns) {
-			boost::property_tree::ptree pt_child1;
+			boost::property_tree::ptree pt_child2;
 
 			auto s1_s2 = x.first;
 
-			boost::property_tree::ptree pt_child2;
+			boost::property_tree::ptree pt_child3;
 
 			int counter = 0;
 			auto vec = x.second;
 			for (auto rxn_c1_c2 : vec)
 			{
-				boost::property_tree::ptree pt_child3;
+				boost::property_tree::ptree pt_child4;
 
-				pt_child3.put("r_idx", rxn_c1_c2.r_idx);
-				pt_child3.put("c1", rxn_c1_c2.c1);
-				pt_child3.put("c2", rxn_c1_c2.c2);
-				pt_child3.put("r_name", reaction_network_v[rxn_c1_c2.r_idx].reaction_name);
+				pt_child4.put("r_idx", rxn_c1_c2.r_idx);
+				pt_child4.put("c1", rxn_c1_c2.c1);
+				pt_child4.put("c2", rxn_c1_c2.c2);
+				pt_child4.put("r_name", reaction_network_v[rxn_c1_c2.r_idx].reaction_name);
 
-				pt_child2.put_child(boost::lexical_cast<std::string>(counter + 1), pt_child3);
+				pt_child3.put_child(boost::lexical_cast<std::string>(counter + 1), pt_child4);
 				++counter;
 			}
-			pt_child1.put_child(boost::lexical_cast<std::string>(s1_s2.second), pt_child2);
-			pt_root1.put_child(boost::lexical_cast<std::string>(s1_s2.first), pt_child1);
+			pt_child2.put_child(boost::lexical_cast<std::string>(s1_s2.second), pt_child3);
+
+			pt_root1.add_child(boost::lexical_cast<std::string>(s1_s2.first), pt_child2);
+
+			//pt_spe_pair_dict[boost::lexical_cast<std::string>(s1_s2.first)].push_back(pt_child2);
 		}
+
+		//for (auto s1_s2_pair : pt_spe_pair_dict) {
+		//	auto s1_idx = s1_s2_pair.first;
+		//	auto s2_rxn_vec = s1_s2_pair.second;
+
+		//	boost::property_tree::ptree pt_child1;
+		//	for (auto s2_rxn : s2_rxn_vec) {
+		//			for (auto s2_rxn_itr : s2_rxn) {
+		//			pt_child1.push_back(std::make_pair(s2_rxn_itr.first, s2_rxn_itr.second));
+		//			break;
+		//		}
+		//		
+		//	}
+
+		//	pt_root1.add_child(s1_idx, pt_child1);
+
+		//}
 
 		std::ofstream fout_json;
 		try
@@ -750,7 +773,7 @@ namespace propagator_sr {
 		delete[] FWDR_t; delete[] REVR_t;
 		delete[] RKFT_t; delete[] RKRT_t;
 
-}
+	}
 
 #endif // __CHEMKIN_AVAILABLE_ && __USE_LOSDE_
 
@@ -983,18 +1006,18 @@ namespace propagator_sr {
 			{
 				//lrs_pgtsode= 22+10*neq+neq*neq;
 				fout << "  lrs_pgtsode =   " << "check your jt value" << std::endl;
-	}
+			}
 			else
 			{
 				fout << "  jt = " << lsodestore.jt << std::endl;
 				fout << "  The program should not use this 'jt' value. Please check \"include/fortran_lib/dlsode/opkdmain.f\" for more information.\n" << std::endl;
 			}
 			fout << std::endl;
-			}
+		}
 
 		fout.close();
 
-			}	//initialize_lsode
+	}	//initialize_lsode
 
 #endif // __LSODE_AVAILABLE_
 
@@ -1058,7 +1081,7 @@ namespace propagator_sr {
 			for (int i = 0; i < nkk; ++i) {
 				x_t[i] = concentration_data_pgt[i][k];
 				total += x_t[i];
-	}
+			}
 			//normalization of mole fraction
 			for (int i = 0; i < nkk; ++i)
 				x_t[i] /= total;
@@ -1068,7 +1091,7 @@ namespace propagator_sr {
 				concentration_data_pgt[i][k] = c_t[i];
 			}
 	}
-}
+	}
 
 #endif // __CHEMKIN_AVAILABLE_
 
