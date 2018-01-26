@@ -1,0 +1,1762 @@
+{
+    "0": {
+        "name": "HE",
+        "phase": "G",
+        "charge": "0",
+        "molecular_weight": "4.0026000000000002",
+        "temperature_low": "200",
+        "temperature_high": "6000",
+        "spe_composition": {
+            "AR": "0",
+            "C": "0",
+            "H": "0",
+            "HE": "1",
+            "N": "0",
+            "O": "0"
+        }
+    },
+    "1": {
+        "name": "AR",
+        "phase": "G",
+        "charge": "0",
+        "molecular_weight": "39.948",
+        "temperature_low": "200",
+        "temperature_high": "6000",
+        "spe_composition": {
+            "AR": "1",
+            "C": "0",
+            "H": "0",
+            "HE": "0",
+            "N": "0",
+            "O": "0"
+        }
+    },
+    "2": {
+        "name": "N2",
+        "phase": "G",
+        "charge": "0",
+        "molecular_weight": "28.013400000000001",
+        "temperature_low": "200",
+        "temperature_high": "6000",
+        "spe_composition": {
+            "AR": "0",
+            "C": "0",
+            "H": "0",
+            "HE": "0",
+            "N": "2",
+            "O": "0"
+        }
+    },
+    "3": {
+        "name": "H",
+        "phase": "G",
+        "charge": "0",
+        "molecular_weight": "1.00797",
+        "temperature_low": "298",
+        "temperature_high": "6000",
+        "spe_composition": {
+            "AR": "0",
+            "C": "0",
+            "H": "1",
+            "HE": "0",
+            "N": "0",
+            "O": "0"
+        }
+    },
+    "4": {
+        "name": "H2",
+        "phase": "G",
+        "charge": "0",
+        "molecular_weight": "2.0159400000000001",
+        "temperature_low": "298",
+        "temperature_high": "3000",
+        "spe_composition": {
+            "AR": "0",
+            "C": "0",
+            "H": "2",
+            "HE": "0",
+            "N": "0",
+            "O": "0"
+        }
+    },
+    "5": {
+        "name": "HEG",
+        "phase": "G",
+        "charge": "0",
+        "molecular_weight": "1.00797",
+        "temperature_low": "200",
+        "temperature_high": "6000",
+        "spe_composition": {
+            "AR": "0",
+            "C": "0",
+            "H": "1",
+            "HE": "0",
+            "N": "0",
+            "O": "0"
+        }
+    },
+    "6": {
+        "name": "HCFG",
+        "phase": "G",
+        "charge": "0",
+        "molecular_weight": "1.00797",
+        "temperature_low": "298",
+        "temperature_high": "3000",
+        "spe_composition": {
+            "AR": "0",
+            "C": "0",
+            "H": "1",
+            "HE": "0",
+            "N": "0",
+            "O": "0"
+        }
+    },
+    "7": {
+        "name": "Halt",
+        "phase": "G",
+        "charge": "0",
+        "molecular_weight": "1.00797",
+        "temperature_low": "200",
+        "temperature_high": "6000",
+        "spe_composition": {
+            "AR": "0",
+            "C": "0",
+            "H": "1",
+            "HE": "0",
+            "N": "0",
+            "O": "0"
+        }
+    },
+    "8": {
+        "name": "O",
+        "phase": "G",
+        "charge": "0",
+        "molecular_weight": "15.9994",
+        "temperature_low": "298",
+        "temperature_high": "6000",
+        "spe_composition": {
+            "AR": "0",
+            "C": "0",
+            "H": "0",
+            "HE": "0",
+            "N": "0",
+            "O": "1"
+        }
+    },
+    "9": {
+        "name": "O2",
+        "phase": "G",
+        "charge": "0",
+        "molecular_weight": "31.998799999999999",
+        "temperature_low": "298",
+        "temperature_high": "3000",
+        "spe_composition": {
+            "AR": "0",
+            "C": "0",
+            "H": "0",
+            "HE": "0",
+            "N": "0",
+            "O": "2"
+        }
+    },
+    "10": {
+        "name": "OH",
+        "phase": "G",
+        "charge": "0",
+        "molecular_weight": "17.007370000000002",
+        "temperature_low": "298",
+        "temperature_high": "3000",
+        "spe_composition": {
+            "AR": "0",
+            "C": "0",
+            "H": "1",
+            "HE": "0",
+            "N": "0",
+            "O": "1"
+        }
+    },
+    "11": {
+        "name": "H2O",
+        "phase": "G",
+        "charge": "0",
+        "molecular_weight": "18.015339999999998",
+        "temperature_low": "298",
+        "temperature_high": "3000",
+        "spe_composition": {
+            "AR": "0",
+            "C": "0",
+            "H": "2",
+            "HE": "0",
+            "N": "0",
+            "O": "1"
+        }
+    },
+    "12": {
+        "name": "HO2",
+        "phase": "G",
+        "charge": "0",
+        "molecular_weight": "33.006770000000003",
+        "temperature_low": "298",
+        "temperature_high": "3000",
+        "spe_composition": {
+            "AR": "0",
+            "C": "0",
+            "H": "1",
+            "HE": "0",
+            "N": "0",
+            "O": "2"
+        }
+    },
+    "13": {
+        "name": "H2O2",
+        "phase": "G",
+        "charge": "0",
+        "molecular_weight": "34.014740000000003",
+        "temperature_low": "298",
+        "temperature_high": "3000",
+        "spe_composition": {
+            "AR": "0",
+            "C": "0",
+            "H": "2",
+            "HE": "0",
+            "N": "0",
+            "O": "2"
+        }
+    },
+    "14": {
+        "name": "CO",
+        "phase": "G",
+        "charge": "0",
+        "molecular_weight": "28.010549999999999",
+        "temperature_low": "298",
+        "temperature_high": "3000",
+        "spe_composition": {
+            "AR": "0",
+            "C": "1",
+            "H": "0",
+            "HE": "0",
+            "N": "0",
+            "O": "1"
+        }
+    },
+    "15": {
+        "name": "CO2",
+        "phase": "G",
+        "charge": "0",
+        "molecular_weight": "44.009950000000003",
+        "temperature_low": "298",
+        "temperature_high": "3000",
+        "spe_composition": {
+            "AR": "0",
+            "C": "1",
+            "H": "0",
+            "HE": "0",
+            "N": "0",
+            "O": "2"
+        }
+    },
+    "16": {
+        "name": "HCO",
+        "phase": "G",
+        "charge": "0",
+        "molecular_weight": "29.018519999999999",
+        "temperature_low": "298",
+        "temperature_high": "3000",
+        "spe_composition": {
+            "AR": "0",
+            "C": "1",
+            "H": "1",
+            "HE": "0",
+            "N": "0",
+            "O": "1"
+        }
+    },
+    "17": {
+        "name": "CH2O",
+        "phase": "G",
+        "charge": "0",
+        "molecular_weight": "30.026489999999999",
+        "temperature_low": "298",
+        "temperature_high": "3000",
+        "spe_composition": {
+            "AR": "0",
+            "C": "1",
+            "H": "2",
+            "HE": "0",
+            "N": "0",
+            "O": "1"
+        }
+    },
+    "18": {
+        "name": "formyloxy",
+        "phase": "G",
+        "charge": "0",
+        "molecular_weight": "45.017919999999997",
+        "temperature_low": "298",
+        "temperature_high": "3000",
+        "spe_composition": {
+            "AR": "0",
+            "C": "1",
+            "H": "1",
+            "HE": "0",
+            "N": "0",
+            "O": "2"
+        }
+    },
+    "19": {
+        "name": "formylperoxy",
+        "phase": "G",
+        "charge": "0",
+        "molecular_weight": "61.017319999999998",
+        "temperature_low": "298",
+        "temperature_high": "3000",
+        "spe_composition": {
+            "AR": "0",
+            "C": "1",
+            "H": "1",
+            "HE": "0",
+            "N": "0",
+            "O": "3"
+        }
+    },
+    "20": {
+        "name": "formylooh",
+        "phase": "G",
+        "charge": "0",
+        "molecular_weight": "62.025289999999998",
+        "temperature_low": "298",
+        "temperature_high": "3000",
+        "spe_composition": {
+            "AR": "0",
+            "C": "1",
+            "H": "2",
+            "HE": "0",
+            "N": "0",
+            "O": "3"
+        }
+    },
+    "21": {
+        "name": "C",
+        "phase": "G",
+        "charge": "0",
+        "molecular_weight": "12.011150000000001",
+        "temperature_low": "298",
+        "temperature_high": "6000",
+        "spe_composition": {
+            "AR": "0",
+            "C": "1",
+            "H": "0",
+            "HE": "0",
+            "N": "0",
+            "O": "0"
+        }
+    },
+    "22": {
+        "name": "CH",
+        "phase": "G",
+        "charge": "0",
+        "molecular_weight": "13.019119999999999",
+        "temperature_low": "298",
+        "temperature_high": "3000",
+        "spe_composition": {
+            "AR": "0",
+            "C": "1",
+            "H": "1",
+            "HE": "0",
+            "N": "0",
+            "O": "0"
+        }
+    },
+    "23": {
+        "name": "CH2(S)",
+        "phase": "G",
+        "charge": "0",
+        "molecular_weight": "14.027089999999999",
+        "temperature_low": "298",
+        "temperature_high": "3000",
+        "spe_composition": {
+            "AR": "0",
+            "C": "1",
+            "H": "2",
+            "HE": "0",
+            "N": "0",
+            "O": "0"
+        }
+    },
+    "24": {
+        "name": "CH2",
+        "phase": "G",
+        "charge": "0",
+        "molecular_weight": "14.027089999999999",
+        "temperature_low": "298",
+        "temperature_high": "3000",
+        "spe_composition": {
+            "AR": "0",
+            "C": "1",
+            "H": "2",
+            "HE": "0",
+            "N": "0",
+            "O": "0"
+        }
+    },
+    "25": {
+        "name": "CH3",
+        "phase": "G",
+        "charge": "0",
+        "molecular_weight": "15.03506",
+        "temperature_low": "298",
+        "temperature_high": "3000",
+        "spe_composition": {
+            "AR": "0",
+            "C": "1",
+            "H": "3",
+            "HE": "0",
+            "N": "0",
+            "O": "0"
+        }
+    },
+    "26": {
+        "name": "CH4",
+        "phase": "G",
+        "charge": "0",
+        "molecular_weight": "16.043030000000002",
+        "temperature_low": "298",
+        "temperature_high": "3000",
+        "spe_composition": {
+            "AR": "0",
+            "C": "1",
+            "H": "4",
+            "HE": "0",
+            "N": "0",
+            "O": "0"
+        }
+    },
+    "27": {
+        "name": "CH3OO",
+        "phase": "G",
+        "charge": "0",
+        "molecular_weight": "47.033859999999997",
+        "temperature_low": "298",
+        "temperature_high": "3000",
+        "spe_composition": {
+            "AR": "0",
+            "C": "1",
+            "H": "3",
+            "HE": "0",
+            "N": "0",
+            "O": "2"
+        }
+    },
+    "28": {
+        "name": "CH3OOH",
+        "phase": "G",
+        "charge": "0",
+        "molecular_weight": "48.041829999999997",
+        "temperature_low": "298",
+        "temperature_high": "3000",
+        "spe_composition": {
+            "AR": "0",
+            "C": "1",
+            "H": "4",
+            "HE": "0",
+            "N": "0",
+            "O": "2"
+        }
+    },
+    "29": {
+        "name": "CH2OH",
+        "phase": "G",
+        "charge": "0",
+        "molecular_weight": "31.034459999999999",
+        "temperature_low": "298",
+        "temperature_high": "3000",
+        "spe_composition": {
+            "AR": "0",
+            "C": "1",
+            "H": "3",
+            "HE": "0",
+            "N": "0",
+            "O": "1"
+        }
+    },
+    "30": {
+        "name": "CH3O",
+        "phase": "G",
+        "charge": "0",
+        "molecular_weight": "31.034459999999999",
+        "temperature_low": "298",
+        "temperature_high": "3000",
+        "spe_composition": {
+            "AR": "0",
+            "C": "1",
+            "H": "3",
+            "HE": "0",
+            "N": "0",
+            "O": "1"
+        }
+    },
+    "31": {
+        "name": "CH3OH",
+        "phase": "G",
+        "charge": "0",
+        "molecular_weight": "32.042430000000003",
+        "temperature_low": "298",
+        "temperature_high": "3000",
+        "spe_composition": {
+            "AR": "0",
+            "C": "1",
+            "H": "4",
+            "HE": "0",
+            "N": "0",
+            "O": "1"
+        }
+    },
+    "32": {
+        "name": "OCH2OOH",
+        "phase": "G",
+        "charge": "0",
+        "molecular_weight": "63.033259999999999",
+        "temperature_low": "298",
+        "temperature_high": "3000",
+        "spe_composition": {
+            "AR": "0",
+            "C": "1",
+            "H": "3",
+            "HE": "0",
+            "N": "0",
+            "O": "3"
+        }
+    },
+    "33": {
+        "name": "HOCH2OO",
+        "phase": "G",
+        "charge": "0",
+        "molecular_weight": "63.033259999999999",
+        "temperature_low": "298",
+        "temperature_high": "3000",
+        "spe_composition": {
+            "AR": "0",
+            "C": "1",
+            "H": "3",
+            "HE": "0",
+            "N": "0",
+            "O": "3"
+        }
+    },
+    "34": {
+        "name": "HOCH2OOH",
+        "phase": "G",
+        "charge": "0",
+        "molecular_weight": "64.041229999999999",
+        "temperature_low": "298",
+        "temperature_high": "3000",
+        "spe_composition": {
+            "AR": "0",
+            "C": "1",
+            "H": "4",
+            "HE": "0",
+            "N": "0",
+            "O": "3"
+        }
+    },
+    "35": {
+        "name": "HOCH2O",
+        "phase": "G",
+        "charge": "0",
+        "molecular_weight": "47.033859999999997",
+        "temperature_low": "298",
+        "temperature_high": "3000",
+        "spe_composition": {
+            "AR": "0",
+            "C": "1",
+            "H": "3",
+            "HE": "0",
+            "N": "0",
+            "O": "2"
+        }
+    },
+    "36": {
+        "name": "C2H2",
+        "phase": "G",
+        "charge": "0",
+        "molecular_weight": "26.038239999999998",
+        "temperature_low": "298",
+        "temperature_high": "3000",
+        "spe_composition": {
+            "AR": "0",
+            "C": "2",
+            "H": "2",
+            "HE": "0",
+            "N": "0",
+            "O": "0"
+        }
+    },
+    "37": {
+        "name": "C2H3",
+        "phase": "G",
+        "charge": "0",
+        "molecular_weight": "27.046209999999999",
+        "temperature_low": "298",
+        "temperature_high": "3000",
+        "spe_composition": {
+            "AR": "0",
+            "C": "2",
+            "H": "3",
+            "HE": "0",
+            "N": "0",
+            "O": "0"
+        }
+    },
+    "38": {
+        "name": "C2H4",
+        "phase": "G",
+        "charge": "0",
+        "molecular_weight": "28.054179999999999",
+        "temperature_low": "298",
+        "temperature_high": "3000",
+        "spe_composition": {
+            "AR": "0",
+            "C": "2",
+            "H": "4",
+            "HE": "0",
+            "N": "0",
+            "O": "0"
+        }
+    },
+    "39": {
+        "name": "C2H5",
+        "phase": "G",
+        "charge": "0",
+        "molecular_weight": "29.062149999999999",
+        "temperature_low": "298",
+        "temperature_high": "3000",
+        "spe_composition": {
+            "AR": "0",
+            "C": "2",
+            "H": "5",
+            "HE": "0",
+            "N": "0",
+            "O": "0"
+        }
+    },
+    "40": {
+        "name": "C2H6",
+        "phase": "G",
+        "charge": "0",
+        "molecular_weight": "30.070119999999999",
+        "temperature_low": "298",
+        "temperature_high": "3000",
+        "spe_composition": {
+            "AR": "0",
+            "C": "2",
+            "H": "6",
+            "HE": "0",
+            "N": "0",
+            "O": "0"
+        }
+    },
+    "41": {
+        "name": "ketene",
+        "phase": "G",
+        "charge": "0",
+        "molecular_weight": "42.037640000000003",
+        "temperature_low": "298",
+        "temperature_high": "3000",
+        "spe_composition": {
+            "AR": "0",
+            "C": "2",
+            "H": "2",
+            "HE": "0",
+            "N": "0",
+            "O": "1"
+        }
+    },
+    "42": {
+        "name": "HCCO",
+        "phase": "G",
+        "charge": "0",
+        "molecular_weight": "41.029670000000003",
+        "temperature_low": "298",
+        "temperature_high": "3000",
+        "spe_composition": {
+            "AR": "0",
+            "C": "2",
+            "H": "1",
+            "HE": "0",
+            "N": "0",
+            "O": "1"
+        }
+    },
+    "43": {
+        "name": "ethynol",
+        "phase": "G",
+        "charge": "0",
+        "molecular_weight": "42.037640000000003",
+        "temperature_low": "298",
+        "temperature_high": "3000",
+        "spe_composition": {
+            "AR": "0",
+            "C": "2",
+            "H": "2",
+            "HE": "0",
+            "N": "0",
+            "O": "1"
+        }
+    },
+    "44": {
+        "name": "acetaldehyde",
+        "phase": "G",
+        "charge": "0",
+        "molecular_weight": "44.053579999999997",
+        "temperature_low": "298",
+        "temperature_high": "3000",
+        "spe_composition": {
+            "AR": "0",
+            "C": "2",
+            "H": "4",
+            "HE": "0",
+            "N": "0",
+            "O": "1"
+        }
+    },
+    "45": {
+        "name": "acetyl",
+        "phase": "G",
+        "charge": "0",
+        "molecular_weight": "43.045610000000003",
+        "temperature_low": "298",
+        "temperature_high": "3000",
+        "spe_composition": {
+            "AR": "0",
+            "C": "2",
+            "H": "3",
+            "HE": "0",
+            "N": "0",
+            "O": "1"
+        }
+    },
+    "46": {
+        "name": "vinoxy",
+        "phase": "G",
+        "charge": "0",
+        "molecular_weight": "43.045610000000003",
+        "temperature_low": "298",
+        "temperature_high": "3000",
+        "spe_composition": {
+            "AR": "0",
+            "C": "2",
+            "H": "3",
+            "HE": "0",
+            "N": "0",
+            "O": "1"
+        }
+    },
+    "47": {
+        "name": "acetylperoxy",
+        "phase": "G",
+        "charge": "0",
+        "molecular_weight": "75.044409999999999",
+        "temperature_low": "298",
+        "temperature_high": "3000",
+        "spe_composition": {
+            "AR": "0",
+            "C": "2",
+            "H": "3",
+            "HE": "0",
+            "N": "0",
+            "O": "3"
+        }
+    },
+    "48": {
+        "name": "acetyloxy",
+        "phase": "G",
+        "charge": "0",
+        "molecular_weight": "59.045009999999998",
+        "temperature_low": "298",
+        "temperature_high": "3000",
+        "spe_composition": {
+            "AR": "0",
+            "C": "2",
+            "H": "3",
+            "HE": "0",
+            "N": "0",
+            "O": "2"
+        }
+    },
+    "49": {
+        "name": "ethoxy",
+        "phase": "G",
+        "charge": "0",
+        "molecular_weight": "45.061549999999997",
+        "temperature_low": "298",
+        "temperature_high": "3000",
+        "spe_composition": {
+            "AR": "0",
+            "C": "2",
+            "H": "5",
+            "HE": "0",
+            "N": "0",
+            "O": "1"
+        }
+    },
+    "50": {
+        "name": "CH3CH2OO",
+        "phase": "G",
+        "charge": "0",
+        "molecular_weight": "61.060949999999998",
+        "temperature_low": "298",
+        "temperature_high": "3000",
+        "spe_composition": {
+            "AR": "0",
+            "C": "2",
+            "H": "5",
+            "HE": "0",
+            "N": "0",
+            "O": "2"
+        }
+    },
+    "51": {
+        "name": "CH3CH2OOH",
+        "phase": "G",
+        "charge": "0",
+        "molecular_weight": "62.068919999999999",
+        "temperature_low": "298",
+        "temperature_high": "3000",
+        "spe_composition": {
+            "AR": "0",
+            "C": "2",
+            "H": "6",
+            "HE": "0",
+            "N": "0",
+            "O": "2"
+        }
+    },
+    "52": {
+        "name": "CH2CH2OOH",
+        "phase": "G",
+        "charge": "0",
+        "molecular_weight": "61.060949999999998",
+        "temperature_low": "298",
+        "temperature_high": "3000",
+        "spe_composition": {
+            "AR": "0",
+            "C": "2",
+            "H": "5",
+            "HE": "0",
+            "N": "0",
+            "O": "2"
+        }
+    },
+    "53": {
+        "name": "ethanol",
+        "phase": "G",
+        "charge": "0",
+        "molecular_weight": "46.069519999999997",
+        "temperature_low": "298",
+        "temperature_high": "3000",
+        "spe_composition": {
+            "AR": "0",
+            "C": "2",
+            "H": "6",
+            "HE": "0",
+            "N": "0",
+            "O": "1"
+        }
+    },
+    "54": {
+        "name": "CH2CH2OH",
+        "phase": "G",
+        "charge": "0",
+        "molecular_weight": "45.061549999999997",
+        "temperature_low": "298",
+        "temperature_high": "3000",
+        "spe_composition": {
+            "AR": "0",
+            "C": "2",
+            "H": "5",
+            "HE": "0",
+            "N": "0",
+            "O": "1"
+        }
+    },
+    "55": {
+        "name": "CH3CHOH",
+        "phase": "G",
+        "charge": "0",
+        "molecular_weight": "45.061549999999997",
+        "temperature_low": "298",
+        "temperature_high": "3000",
+        "spe_composition": {
+            "AR": "0",
+            "C": "2",
+            "H": "5",
+            "HE": "0",
+            "N": "0",
+            "O": "1"
+        }
+    },
+    "56": {
+        "name": "oxirane",
+        "phase": "G",
+        "charge": "0",
+        "molecular_weight": "44.053579999999997",
+        "temperature_low": "298",
+        "temperature_high": "3000",
+        "spe_composition": {
+            "AR": "0",
+            "C": "2",
+            "H": "4",
+            "HE": "0",
+            "N": "0",
+            "O": "1"
+        }
+    },
+    "57": {
+        "name": "oxiranyl",
+        "phase": "G",
+        "charge": "0",
+        "molecular_weight": "43.045610000000003",
+        "temperature_low": "298",
+        "temperature_high": "3000",
+        "spe_composition": {
+            "AR": "0",
+            "C": "2",
+            "H": "3",
+            "HE": "0",
+            "N": "0",
+            "O": "1"
+        }
+    },
+    "58": {
+        "name": "ethenol",
+        "phase": "G",
+        "charge": "0",
+        "molecular_weight": "44.053579999999997",
+        "temperature_low": "298",
+        "temperature_high": "3000",
+        "spe_composition": {
+            "AR": "0",
+            "C": "2",
+            "H": "4",
+            "HE": "0",
+            "N": "0",
+            "O": "1"
+        }
+    },
+    "59": {
+        "name": "C3H6",
+        "phase": "G",
+        "charge": "0",
+        "molecular_weight": "42.081270000000004",
+        "temperature_low": "298",
+        "temperature_high": "3000",
+        "spe_composition": {
+            "AR": "0",
+            "C": "3",
+            "H": "6",
+            "HE": "0",
+            "N": "0",
+            "O": "0"
+        }
+    },
+    "60": {
+        "name": "npropyl",
+        "phase": "G",
+        "charge": "0",
+        "molecular_weight": "43.089239999999997",
+        "temperature_low": "298",
+        "temperature_high": "3000",
+        "spe_composition": {
+            "AR": "0",
+            "C": "3",
+            "H": "7",
+            "HE": "0",
+            "N": "0",
+            "O": "0"
+        }
+    },
+    "61": {
+        "name": "ipropyl",
+        "phase": "G",
+        "charge": "0",
+        "molecular_weight": "43.089239999999997",
+        "temperature_low": "298",
+        "temperature_high": "3000",
+        "spe_composition": {
+            "AR": "0",
+            "C": "3",
+            "H": "7",
+            "HE": "0",
+            "N": "0",
+            "O": "0"
+        }
+    },
+    "62": {
+        "name": "C3H8",
+        "phase": "G",
+        "charge": "0",
+        "molecular_weight": "44.097209999999997",
+        "temperature_low": "298",
+        "temperature_high": "3000",
+        "spe_composition": {
+            "AR": "0",
+            "C": "3",
+            "H": "8",
+            "HE": "0",
+            "N": "0",
+            "O": "0"
+        }
+    },
+    "63": {
+        "name": "allyl",
+        "phase": "G",
+        "charge": "0",
+        "molecular_weight": "41.073300000000003",
+        "temperature_low": "298",
+        "temperature_high": "3000",
+        "spe_composition": {
+            "AR": "0",
+            "C": "3",
+            "H": "5",
+            "HE": "0",
+            "N": "0",
+            "O": "0"
+        }
+    },
+    "64": {
+        "name": "propen1yl",
+        "phase": "G",
+        "charge": "0",
+        "molecular_weight": "41.073300000000003",
+        "temperature_low": "298",
+        "temperature_high": "3000",
+        "spe_composition": {
+            "AR": "0",
+            "C": "3",
+            "H": "5",
+            "HE": "0",
+            "N": "0",
+            "O": "0"
+        }
+    },
+    "65": {
+        "name": "propen2yl",
+        "phase": "G",
+        "charge": "0",
+        "molecular_weight": "41.073300000000003",
+        "temperature_low": "298",
+        "temperature_high": "3000",
+        "spe_composition": {
+            "AR": "0",
+            "C": "3",
+            "H": "5",
+            "HE": "0",
+            "N": "0",
+            "O": "0"
+        }
+    },
+    "66": {
+        "name": "acetone",
+        "phase": "G",
+        "charge": "0",
+        "molecular_weight": "58.080669999999998",
+        "temperature_low": "298",
+        "temperature_high": "3000",
+        "spe_composition": {
+            "AR": "0",
+            "C": "3",
+            "H": "6",
+            "HE": "0",
+            "N": "0",
+            "O": "1"
+        }
+    },
+    "67": {
+        "name": "CH3OCH3",
+        "phase": "G",
+        "charge": "0",
+        "molecular_weight": "46.069519999999997",
+        "temperature_low": "298",
+        "temperature_high": "3000",
+        "spe_composition": {
+            "AR": "0",
+            "C": "2",
+            "H": "6",
+            "HE": "0",
+            "N": "0",
+            "O": "1"
+        }
+    },
+    "68": {
+        "name": "CH3OCH2",
+        "phase": "G",
+        "charge": "0",
+        "molecular_weight": "45.061549999999997",
+        "temperature_low": "298",
+        "temperature_high": "3000",
+        "spe_composition": {
+            "AR": "0",
+            "C": "2",
+            "H": "5",
+            "HE": "0",
+            "N": "0",
+            "O": "1"
+        }
+    },
+    "69": {
+        "name": "acrolein",
+        "phase": "G",
+        "charge": "0",
+        "molecular_weight": "56.064729999999997",
+        "temperature_low": "298",
+        "temperature_high": "3000",
+        "spe_composition": {
+            "AR": "0",
+            "C": "3",
+            "H": "4",
+            "HE": "0",
+            "N": "0",
+            "O": "1"
+        }
+    },
+    "70": {
+        "name": "CH2CHCO",
+        "phase": "G",
+        "charge": "0",
+        "molecular_weight": "55.056759999999997",
+        "temperature_low": "298",
+        "temperature_high": "3000",
+        "spe_composition": {
+            "AR": "0",
+            "C": "3",
+            "H": "3",
+            "HE": "0",
+            "N": "0",
+            "O": "1"
+        }
+    },
+    "71": {
+        "name": "CH3CHCO",
+        "phase": "G",
+        "charge": "0",
+        "molecular_weight": "56.064729999999997",
+        "temperature_low": "298",
+        "temperature_high": "3000",
+        "spe_composition": {
+            "AR": "0",
+            "C": "3",
+            "H": "4",
+            "HE": "0",
+            "N": "0",
+            "O": "1"
+        }
+    },
+    "72": {
+        "name": "allyloxy",
+        "phase": "G",
+        "charge": "0",
+        "molecular_weight": "57.072699999999998",
+        "temperature_low": "298",
+        "temperature_high": "3000",
+        "spe_composition": {
+            "AR": "0",
+            "C": "3",
+            "H": "5",
+            "HE": "0",
+            "N": "0",
+            "O": "1"
+        }
+    },
+    "73": {
+        "name": "allyl-alcohol",
+        "phase": "G",
+        "charge": "0",
+        "molecular_weight": "58.080669999999998",
+        "temperature_low": "298",
+        "temperature_high": "3000",
+        "spe_composition": {
+            "AR": "0",
+            "C": "3",
+            "H": "6",
+            "HE": "0",
+            "N": "0",
+            "O": "1"
+        }
+    },
+    "74": {
+        "name": "propanal",
+        "phase": "G",
+        "charge": "0",
+        "molecular_weight": "58.080669999999998",
+        "temperature_low": "298",
+        "temperature_high": "3000",
+        "spe_composition": {
+            "AR": "0",
+            "C": "3",
+            "H": "6",
+            "HE": "0",
+            "N": "0",
+            "O": "1"
+        }
+    },
+    "75": {
+        "name": "propionyl",
+        "phase": "G",
+        "charge": "0",
+        "molecular_weight": "57.072699999999998",
+        "temperature_low": "298",
+        "temperature_high": "3000",
+        "spe_composition": {
+            "AR": "0",
+            "C": "3",
+            "H": "5",
+            "HE": "0",
+            "N": "0",
+            "O": "1"
+        }
+    },
+    "76": {
+        "name": "npropyloxy",
+        "phase": "G",
+        "charge": "0",
+        "molecular_weight": "59.088639999999998",
+        "temperature_low": "298",
+        "temperature_high": "3000",
+        "spe_composition": {
+            "AR": "0",
+            "C": "3",
+            "H": "7",
+            "HE": "0",
+            "N": "0",
+            "O": "1"
+        }
+    },
+    "77": {
+        "name": "ipropyloxy",
+        "phase": "G",
+        "charge": "0",
+        "molecular_weight": "59.088639999999998",
+        "temperature_low": "298",
+        "temperature_high": "3000",
+        "spe_composition": {
+            "AR": "0",
+            "C": "3",
+            "H": "7",
+            "HE": "0",
+            "N": "0",
+            "O": "1"
+        }
+    },
+    "78": {
+        "name": "npropyloo",
+        "phase": "G",
+        "charge": "0",
+        "molecular_weight": "75.088040000000007",
+        "temperature_low": "298",
+        "temperature_high": "3000",
+        "spe_composition": {
+            "AR": "0",
+            "C": "3",
+            "H": "7",
+            "HE": "0",
+            "N": "0",
+            "O": "2"
+        }
+    },
+    "79": {
+        "name": "npropylooh",
+        "phase": "G",
+        "charge": "0",
+        "molecular_weight": "76.096010000000007",
+        "temperature_low": "298",
+        "temperature_high": "3000",
+        "spe_composition": {
+            "AR": "0",
+            "C": "3",
+            "H": "8",
+            "HE": "0",
+            "N": "0",
+            "O": "2"
+        }
+    },
+    "80": {
+        "name": "ipropyloo",
+        "phase": "G",
+        "charge": "0",
+        "molecular_weight": "75.088040000000007",
+        "temperature_low": "298",
+        "temperature_high": "3000",
+        "spe_composition": {
+            "AR": "0",
+            "C": "3",
+            "H": "7",
+            "HE": "0",
+            "N": "0",
+            "O": "2"
+        }
+    },
+    "81": {
+        "name": "ipropylooh",
+        "phase": "G",
+        "charge": "0",
+        "molecular_weight": "76.096010000000007",
+        "temperature_low": "298",
+        "temperature_high": "3000",
+        "spe_composition": {
+            "AR": "0",
+            "C": "3",
+            "H": "8",
+            "HE": "0",
+            "N": "0",
+            "O": "2"
+        }
+    },
+    "82": {
+        "name": "propen1ol",
+        "phase": "G",
+        "charge": "0",
+        "molecular_weight": "58.080669999999998",
+        "temperature_low": "298",
+        "temperature_high": "3000",
+        "spe_composition": {
+            "AR": "0",
+            "C": "3",
+            "H": "6",
+            "HE": "0",
+            "N": "0",
+            "O": "1"
+        }
+    },
+    "83": {
+        "name": "propen2ol",
+        "phase": "G",
+        "charge": "0",
+        "molecular_weight": "58.080669999999998",
+        "temperature_low": "298",
+        "temperature_high": "3000",
+        "spe_composition": {
+            "AR": "0",
+            "C": "3",
+            "H": "6",
+            "HE": "0",
+            "N": "0",
+            "O": "1"
+        }
+    },
+    "84": {
+        "name": "CH3CO3H",
+        "phase": "G",
+        "charge": "0",
+        "molecular_weight": "76.052379999999999",
+        "temperature_low": "300",
+        "temperature_high": "5000",
+        "spe_composition": {
+            "AR": "0",
+            "C": "2",
+            "H": "4",
+            "HE": "0",
+            "N": "0",
+            "O": "3"
+        }
+    },
+    "85": {
+        "name": "O2C2H4OH",
+        "phase": "G",
+        "charge": "0",
+        "molecular_weight": "77.06035",
+        "temperature_low": "300",
+        "temperature_high": "5000",
+        "spe_composition": {
+            "AR": "0",
+            "C": "2",
+            "H": "5",
+            "HE": "0",
+            "N": "0",
+            "O": "3"
+        }
+    },
+    "86": {
+        "name": "propoxide",
+        "phase": "G",
+        "charge": "0",
+        "molecular_weight": "58.080669999999998",
+        "temperature_low": "298",
+        "temperature_high": "3000",
+        "spe_composition": {
+            "AR": "0",
+            "C": "3",
+            "H": "6",
+            "HE": "0",
+            "N": "0",
+            "O": "1"
+        }
+    },
+    "87": {
+        "name": "QOOH_1",
+        "phase": "G",
+        "charge": "0",
+        "molecular_weight": "75.088040000000007",
+        "temperature_low": "298",
+        "temperature_high": "3000",
+        "spe_composition": {
+            "AR": "0",
+            "C": "3",
+            "H": "7",
+            "HE": "0",
+            "N": "0",
+            "O": "2"
+        }
+    },
+    "88": {
+        "name": "QOOH_2",
+        "phase": "G",
+        "charge": "0",
+        "molecular_weight": "75.088040000000007",
+        "temperature_low": "298",
+        "temperature_high": "3000",
+        "spe_composition": {
+            "AR": "0",
+            "C": "3",
+            "H": "7",
+            "HE": "0",
+            "N": "0",
+            "O": "2"
+        }
+    },
+    "89": {
+        "name": "QOOH_3",
+        "phase": "G",
+        "charge": "0",
+        "molecular_weight": "75.088040000000007",
+        "temperature_low": "298",
+        "temperature_high": "3000",
+        "spe_composition": {
+            "AR": "0",
+            "C": "3",
+            "H": "7",
+            "HE": "0",
+            "N": "0",
+            "O": "2"
+        }
+    },
+    "90": {
+        "name": "well_1",
+        "phase": "G",
+        "charge": "0",
+        "molecular_weight": "107.08684",
+        "temperature_low": "298",
+        "temperature_high": "3000",
+        "spe_composition": {
+            "AR": "0",
+            "C": "3",
+            "H": "7",
+            "HE": "0",
+            "N": "0",
+            "O": "4"
+        }
+    },
+    "91": {
+        "name": "well_2",
+        "phase": "G",
+        "charge": "0",
+        "molecular_weight": "107.08684",
+        "temperature_low": "298",
+        "temperature_high": "3000",
+        "spe_composition": {
+            "AR": "0",
+            "C": "3",
+            "H": "7",
+            "HE": "0",
+            "N": "0",
+            "O": "4"
+        }
+    },
+    "92": {
+        "name": "well_3",
+        "phase": "G",
+        "charge": "0",
+        "molecular_weight": "107.08684",
+        "temperature_low": "298",
+        "temperature_high": "3000",
+        "spe_composition": {
+            "AR": "0",
+            "C": "3",
+            "H": "7",
+            "HE": "0",
+            "N": "0",
+            "O": "4"
+        }
+    },
+    "93": {
+        "name": "well_5",
+        "phase": "G",
+        "charge": "0",
+        "molecular_weight": "107.08684",
+        "temperature_low": "298",
+        "temperature_high": "3000",
+        "spe_composition": {
+            "AR": "0",
+            "C": "3",
+            "H": "7",
+            "HE": "0",
+            "N": "0",
+            "O": "4"
+        }
+    },
+    "94": {
+        "name": "prod_1",
+        "phase": "G",
+        "charge": "0",
+        "molecular_weight": "90.079470000000001",
+        "temperature_low": "298",
+        "temperature_high": "3000",
+        "spe_composition": {
+            "AR": "0",
+            "C": "3",
+            "H": "6",
+            "HE": "0",
+            "N": "0",
+            "O": "3"
+        }
+    },
+    "95": {
+        "name": "prod_2",
+        "phase": "G",
+        "charge": "0",
+        "molecular_weight": "74.080070000000006",
+        "temperature_low": "298",
+        "temperature_high": "3000",
+        "spe_composition": {
+            "AR": "0",
+            "C": "3",
+            "H": "6",
+            "HE": "0",
+            "N": "0",
+            "O": "2"
+        }
+    },
+    "96": {
+        "name": "prod_3",
+        "phase": "G",
+        "charge": "0",
+        "molecular_weight": "90.079470000000001",
+        "temperature_low": "298",
+        "temperature_high": "3000",
+        "spe_composition": {
+            "AR": "0",
+            "C": "3",
+            "H": "6",
+            "HE": "0",
+            "N": "0",
+            "O": "3"
+        }
+    },
+    "97": {
+        "name": "prod_4",
+        "phase": "G",
+        "charge": "0",
+        "molecular_weight": "90.079470000000001",
+        "temperature_low": "298",
+        "temperature_high": "3000",
+        "spe_composition": {
+            "AR": "0",
+            "C": "3",
+            "H": "6",
+            "HE": "0",
+            "N": "0",
+            "O": "3"
+        }
+    },
+    "98": {
+        "name": "prod_5",
+        "phase": "G",
+        "charge": "0",
+        "molecular_weight": "90.079470000000001",
+        "temperature_low": "298",
+        "temperature_high": "3000",
+        "spe_composition": {
+            "AR": "0",
+            "C": "3",
+            "H": "6",
+            "HE": "0",
+            "N": "0",
+            "O": "3"
+        }
+    },
+    "99": {
+        "name": "prod_6",
+        "phase": "G",
+        "charge": "0",
+        "molecular_weight": "74.080070000000006",
+        "temperature_low": "298",
+        "temperature_high": "3000",
+        "spe_composition": {
+            "AR": "0",
+            "C": "3",
+            "H": "6",
+            "HE": "0",
+            "N": "0",
+            "O": "2"
+        }
+    },
+    "100": {
+        "name": "prod_7",
+        "phase": "G",
+        "charge": "0",
+        "molecular_weight": "74.080070000000006",
+        "temperature_low": "298",
+        "temperature_high": "3000",
+        "spe_composition": {
+            "AR": "0",
+            "C": "3",
+            "H": "6",
+            "HE": "0",
+            "N": "0",
+            "O": "2"
+        }
+    },
+    "101": {
+        "name": "frag_1",
+        "phase": "G",
+        "charge": "0",
+        "molecular_weight": "73.072100000000006",
+        "temperature_low": "298",
+        "temperature_high": "3000",
+        "spe_composition": {
+            "AR": "0",
+            "C": "3",
+            "H": "5",
+            "HE": "0",
+            "N": "0",
+            "O": "2"
+        }
+    },
+    "102": {
+        "name": "frag_3",
+        "phase": "G",
+        "charge": "0",
+        "molecular_weight": "73.072100000000006",
+        "temperature_low": "298",
+        "temperature_high": "3000",
+        "spe_composition": {
+            "AR": "0",
+            "C": "3",
+            "H": "5",
+            "HE": "0",
+            "N": "0",
+            "O": "2"
+        }
+    },
+    "103": {
+        "name": "frag_4",
+        "phase": "G",
+        "charge": "0",
+        "molecular_weight": "73.072100000000006",
+        "temperature_low": "298",
+        "temperature_high": "3000",
+        "spe_composition": {
+            "AR": "0",
+            "C": "3",
+            "H": "5",
+            "HE": "0",
+            "N": "0",
+            "O": "2"
+        }
+    },
+    "104": {
+        "name": "frag_5",
+        "phase": "G",
+        "charge": "0",
+        "molecular_weight": "73.072100000000006",
+        "temperature_low": "298",
+        "temperature_high": "3000",
+        "spe_composition": {
+            "AR": "0",
+            "C": "3",
+            "H": "5",
+            "HE": "0",
+            "N": "0",
+            "O": "2"
+        }
+    },
+    "105": {
+        "name": "propen1oxy",
+        "phase": "G",
+        "charge": "0",
+        "molecular_weight": "57.072699999999998",
+        "temperature_low": "298",
+        "temperature_high": "3000",
+        "spe_composition": {
+            "AR": "0",
+            "C": "3",
+            "H": "5",
+            "HE": "0",
+            "N": "0",
+            "O": "1"
+        }
+    },
+    "106": {
+        "name": "propen2oxy",
+        "phase": "G",
+        "charge": "0",
+        "molecular_weight": "57.072699999999998",
+        "temperature_low": "298",
+        "temperature_high": "3000",
+        "spe_composition": {
+            "AR": "0",
+            "C": "3",
+            "H": "5",
+            "HE": "0",
+            "N": "0",
+            "O": "1"
+        }
+    },
+    "107": {
+        "name": "glyoxal",
+        "phase": "G",
+        "charge": "0",
+        "molecular_weight": "58.037039999999998",
+        "temperature_low": "298",
+        "temperature_high": "3000",
+        "spe_composition": {
+            "AR": "0",
+            "C": "2",
+            "H": "2",
+            "HE": "0",
+            "N": "0",
+            "O": "2"
+        }
+    },
+    "108": {
+        "name": "vinoxylmethyl",
+        "phase": "G",
+        "charge": "0",
+        "molecular_weight": "57.072699999999998",
+        "temperature_low": "298",
+        "temperature_high": "3000",
+        "spe_composition": {
+            "AR": "0",
+            "C": "3",
+            "H": "5",
+            "HE": "0",
+            "N": "0",
+            "O": "1"
+        }
+    },
+    "109": {
+        "name": "formylethyl",
+        "phase": "G",
+        "charge": "0",
+        "molecular_weight": "57.072699999999998",
+        "temperature_low": "298",
+        "temperature_high": "3000",
+        "spe_composition": {
+            "AR": "0",
+            "C": "3",
+            "H": "5",
+            "HE": "0",
+            "N": "0",
+            "O": "1"
+        }
+    }
+}

@@ -1,0 +1,161 @@
+{
+    "dir": {
+        "include-path": "."
+    },
+    "system": {
+        "condition": "cv",
+        "initializer": "dlsode"
+    },
+    "network": {
+        "merge_chatterings": "yes"
+    },
+    "job": {
+        "job_type": "evaluate_path_integral_over_time"
+    },
+    "propagator": {
+        "primary_type": "from_file",
+        "type": "dlsode",
+        "sub_type": "time_propagator_cv_s2m_pgt",
+        "convert_molar_concentration_to_mole_fraction": "no",
+        "normalize_initial_concentration": "yes"
+    },
+    "time": {
+        "min_time": 0,
+        "max_time": 0.779074999626781,
+        "critical_time": 0.7519999998807062,
+        "sys_min_time": 1e-11,
+        "tau": 0.777655955130997
+    },
+    "chem_init": {
+        "pressure_atm": 9.86923,
+        "init_temperature": 650,
+        "species_index_concentration": {
+            "62": 0.2,
+            "9": 1.0,
+            "2": 3.72787,
+            "1": 0.0445909
+        }
+    },
+    "lsode_init": {
+        "dt": 2.5e-08,
+        "atol": 1e-16,
+        "rtol": 1e-16,
+        "mf": 22,
+        "jt": 2,
+        "itask": 1,
+        "iopt": 0,
+        "itol": 1,
+        "istate": 1,
+        "deltaN1": 5000,
+        "deltaN2": 1000
+    },
+    "ssa_init": {
+        "dt": 1e-06,
+        "fixed_size": 10000,
+        "order_parameter_ratio": 0.5,
+        "deltaN1": 1,
+        "deltaN2": 1
+    },
+    "T": {
+        "critical_temperature": 1100,
+        "end_temperature": 1900,
+        "target_temperature": 1800
+    },
+    "speciation": {
+        "number_of_Ks": 3
+    },
+    "pathway": {
+        "init_spe": 60,
+        "atom_followed": "HA3",
+        "super_atom": "X",
+        "begin_t": 0.0,
+        "end_t": 1.001,
+        "topN": [
+            500
+        ],
+        "trajectoryNumber": 10000,
+        "trajectoryNumberVector": [
+            1000,
+            1000,
+            1000,
+            1000,
+            1000
+        ],
+        "trajectory_count_limit": 1,
+        "terminal_species": [],
+        "chattering_species": {
+            "1": [
+                60,
+                78
+            ],
+            "2": [
+                61,
+                80
+            ],
+            "3": [
+                87,
+                90
+            ],
+            "4": [
+                78,
+                87
+            ],
+            "5": [
+                88,
+                91
+            ],
+            "6": [
+                89,
+                92
+            ],
+            "7": [
+                94,
+                101
+            ],
+            "8": [
+                72,
+                108
+            ],
+            "9": [
+                39,
+                50
+            ]
+        },
+        "non_zero_rate_reaction": [],
+        "max_path_length": [
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            15,
+            15,
+            15,
+            15
+        ]
+    },
+    "search_algorithm": {
+        "max_level": 1,
+        "top_k": 25
+    },
+    "SOHR_init": {
+        "single_source_species": -1,
+        "timeN1": 100,
+        "timeN2": 10,
+        "deltaConcentration": 1e-50,
+        "massConservationFactor": 1.0,
+        "iterationNumber": 5,
+        "timeIterationNumber": 0,
+        "P2C": [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+        ]
+    }
+}

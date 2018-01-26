@@ -1,0 +1,20 @@
+{
+    "0": {
+        "formula1": "O2+npropyl=>npropyloo",
+        "formula2": "npropyloo=>O2+npropyl",
+        "reaction1": 1068,
+        "reaction2": 1069
+    },
+    "1": {
+        "formula1": "O2+ipropyl=>ipropyloo",
+        "formula2": "ipropyloo=>O2+ipropyl",
+        "reaction1": 1096,
+        "reaction2": 1097
+    },
+    "2": {
+        "formula1": "O2+QOOH_1=>well_1",
+        "formula2": "well_1=>O2+QOOH_1",
+        "reaction1": 1116,
+        "reaction2": 1117
+    }
+}

@@ -1,0 +1,3690 @@
+0	1	H+O2=O+OH	
+reactants	3	H	9	O2	products	8	O	10	OH	
+net_reactants	3	H	9	O2	net_products	8	O	10	OH	
+1	-1	H+O2=O+OH	
+reactants	3	H	9	O2	products	8	O	10	OH	
+net_reactants	3	H	9	O2	net_products	8	O	10	OH	
+2	2	O+H2=H+OH	
+reactants	4	H2	8	O	products	3	H	10	OH	
+net_reactants	4	H2	8	O	net_products	3	H	10	OH	
+3	-2	O+H2=H+OH	
+reactants	4	H2	8	O	products	3	H	10	OH	
+net_reactants	4	H2	8	O	net_products	3	H	10	OH	
+4	3	H2+OH=H2O+H	
+reactants	4	H2	10	OH	products	3	H	11	H2O	
+net_reactants	4	H2	10	OH	net_products	3	H	11	H2O	
+5	-3	H2+OH=H2O+H	
+reactants	4	H2	10	OH	products	3	H	11	H2O	
+net_reactants	4	H2	10	OH	net_products	3	H	11	H2O	
+6	4	O+H2O=OH+OH	
+reactants	11	H2O	8	O	products	10	OH	
+net_reactants	11	H2O	8	O	net_products	10	OH	
+7	-4	O+H2O=OH+OH	
+reactants	11	H2O	8	O	products	10	OH	
+net_reactants	11	H2O	8	O	net_products	10	OH	
+8	5	H2+M=H+H+M	
+reactants	4	H2	products	3	H	
+net_reactants	4	H2	net_products	3	H	
+9	-5	H2+M=H+H+M	
+reactants	4	H2	products	3	H	
+net_reactants	4	H2	net_products	3	H	
+10	6	H2+AR=H+H+AR	
+reactants	1	AR	4	H2	products	1	AR	3	H	
+net_reactants	4	H2	net_products	3	H	
+11	-6	H2+AR=H+H+AR	
+reactants	1	AR	4	H2	products	1	AR	3	H	
+net_reactants	4	H2	net_products	3	H	
+12	7	H2+HE=H+H+HE	
+reactants	4	H2	0	HE	products	3	H	0	HE	
+net_reactants	4	H2	net_products	3	H	
+13	-7	H2+HE=H+H+HE	
+reactants	4	H2	0	HE	products	3	H	0	HE	
+net_reactants	4	H2	net_products	3	H	
+14	8	O+O+M=O2+M	
+reactants	8	O	products	9	O2	
+net_reactants	8	O	net_products	9	O2	
+15	-8	O+O+M=O2+M	
+reactants	8	O	products	9	O2	
+net_reactants	8	O	net_products	9	O2	
+16	9	O+O+AR=O2+AR	
+reactants	1	AR	8	O	products	1	AR	9	O2	
+net_reactants	8	O	net_products	9	O2	
+17	-9	O+O+AR=O2+AR	
+reactants	1	AR	8	O	products	1	AR	9	O2	
+net_reactants	8	O	net_products	9	O2	
+18	10	O+O+HE=O2+HE	
+reactants	0	HE	8	O	products	0	HE	9	O2	
+net_reactants	8	O	net_products	9	O2	
+19	-10	O+O+HE=O2+HE	
+reactants	0	HE	8	O	products	0	HE	9	O2	
+net_reactants	8	O	net_products	9	O2	
+20	11	O+H+M=OH+M	
+reactants	3	H	8	O	products	10	OH	
+net_reactants	3	H	8	O	net_products	10	OH	
+21	-11	O+H+M=OH+M	
+reactants	3	H	8	O	products	10	OH	
+net_reactants	3	H	8	O	net_products	10	OH	
+22	12	H+OH+M=H2O+M	
+reactants	3	H	10	OH	products	11	H2O	
+net_reactants	3	H	10	OH	net_products	11	H2O	
+23	-12	H+OH+M=H2O+M	
+reactants	3	H	10	OH	products	11	H2O	
+net_reactants	3	H	10	OH	net_products	11	H2O	
+24	13	H+O2(+M)=HO2(+M)	
+reactants	3	H	9	O2	products	12	HO2	
+net_reactants	3	H	9	O2	net_products	12	HO2	
+25	-13	H+O2(+M)=HO2(+M)	
+reactants	3	H	9	O2	products	12	HO2	
+net_reactants	3	H	9	O2	net_products	12	HO2	
+26	14	HO2+H=H2+O2	
+reactants	3	H	12	HO2	products	4	H2	9	O2	
+net_reactants	3	H	12	HO2	net_products	4	H2	9	O2	
+27	-14	HO2+H=H2+O2	
+reactants	3	H	12	HO2	products	4	H2	9	O2	
+net_reactants	3	H	12	HO2	net_products	4	H2	9	O2	
+28	15	HO2+H=OH+OH	
+reactants	3	H	12	HO2	products	10	OH	
+net_reactants	3	H	12	HO2	net_products	10	OH	
+29	-15	HO2+H=OH+OH	
+reactants	3	H	12	HO2	products	10	OH	
+net_reactants	3	H	12	HO2	net_products	10	OH	
+30	16	HO2+O=O2+OH	
+reactants	12	HO2	8	O	products	9	O2	10	OH	
+net_reactants	12	HO2	8	O	net_products	9	O2	10	OH	
+31	-16	HO2+O=O2+OH	
+reactants	12	HO2	8	O	products	9	O2	10	OH	
+net_reactants	12	HO2	8	O	net_products	9	O2	10	OH	
+32	17	HO2+OH=H2O+O2	
+reactants	12	HO2	10	OH	products	11	H2O	9	O2	
+net_reactants	12	HO2	10	OH	net_products	11	H2O	9	O2	
+33	-17	HO2+OH=H2O+O2	
+reactants	12	HO2	10	OH	products	11	H2O	9	O2	
+net_reactants	12	HO2	10	OH	net_products	11	H2O	9	O2	
+34	18	HO2+HO2=H2O2+O2	19	HO2+HO2=H2O2+O2	
+reactants	12	HO2	products	13	H2O2	9	O2	
+net_reactants	12	HO2	net_products	13	H2O2	9	O2	
+35	-18	HO2+HO2=H2O2+O2	-19	HO2+HO2=H2O2+O2	
+reactants	12	HO2	products	13	H2O2	9	O2	
+net_reactants	12	HO2	net_products	13	H2O2	9	O2	
+36	20	H2O2(+M)=OH+OH(+M)	
+reactants	13	H2O2	products	10	OH	
+net_reactants	13	H2O2	net_products	10	OH	
+37	-20	H2O2(+M)=OH+OH(+M)	
+reactants	13	H2O2	products	10	OH	
+net_reactants	13	H2O2	net_products	10	OH	
+38	21	H2O2+H=H2O+OH	
+reactants	3	H	13	H2O2	products	11	H2O	10	OH	
+net_reactants	3	H	13	H2O2	net_products	11	H2O	10	OH	
+39	-21	H2O2+H=H2O+OH	
+reactants	3	H	13	H2O2	products	11	H2O	10	OH	
+net_reactants	3	H	13	H2O2	net_products	11	H2O	10	OH	
+40	22	H2O2+H=HO2+H2	
+reactants	3	H	13	H2O2	products	4	H2	12	HO2	
+net_reactants	3	H	13	H2O2	net_products	4	H2	12	HO2	
+41	-22	H2O2+H=HO2+H2	
+reactants	3	H	13	H2O2	products	4	H2	12	HO2	
+net_reactants	3	H	13	H2O2	net_products	4	H2	12	HO2	
+42	23	H2O2+O=OH+HO2	
+reactants	13	H2O2	8	O	products	12	HO2	10	OH	
+net_reactants	13	H2O2	8	O	net_products	12	HO2	10	OH	
+43	-23	H2O2+O=OH+HO2	
+reactants	13	H2O2	8	O	products	12	HO2	10	OH	
+net_reactants	13	H2O2	8	O	net_products	12	HO2	10	OH	
+44	24	H2O2+OH=HO2+H2O	25	H2O2+OH=HO2+H2O	
+reactants	13	H2O2	10	OH	products	11	H2O	12	HO2	
+net_reactants	13	H2O2	10	OH	net_products	11	H2O	12	HO2	
+45	-24	H2O2+OH=HO2+H2O	-25	H2O2+OH=HO2+H2O	
+reactants	13	H2O2	10	OH	products	11	H2O	12	HO2	
+net_reactants	13	H2O2	10	OH	net_products	11	H2O	12	HO2	
+46	26	CO+O(+M)=CO2(+M)	
+reactants	14	CO	8	O	products	15	CO2	
+net_reactants	14	CO	8	O	net_products	15	CO2	
+47	-26	CO+O(+M)=CO2(+M)	
+reactants	14	CO	8	O	products	15	CO2	
+net_reactants	14	CO	8	O	net_products	15	CO2	
+48	27	CO+O2=CO2+O	
+reactants	14	CO	9	O2	products	15	CO2	8	O	
+net_reactants	14	CO	9	O2	net_products	15	CO2	8	O	
+49	-27	CO+O2=CO2+O	
+reactants	14	CO	9	O2	products	15	CO2	8	O	
+net_reactants	14	CO	9	O2	net_products	15	CO2	8	O	
+50	28	CO+HO2=CO2+OH	
+reactants	14	CO	12	HO2	products	15	CO2	10	OH	
+net_reactants	14	CO	12	HO2	net_products	15	CO2	10	OH	
+51	-28	CO+HO2=CO2+OH	
+reactants	14	CO	12	HO2	products	15	CO2	10	OH	
+net_reactants	14	CO	12	HO2	net_products	15	CO2	10	OH	
+52	29	CO+OH=CO2+H	
+reactants	14	CO	10	OH	products	15	CO2	3	H	
+net_reactants	14	CO	10	OH	net_products	15	CO2	3	H	
+53	-29	CO+OH=CO2+H	
+reactants	14	CO	10	OH	products	15	CO2	3	H	
+net_reactants	14	CO	10	OH	net_products	15	CO2	3	H	
+54	30	HCO+M=H+CO+M	
+reactants	16	HCO	products	14	CO	3	H	
+net_reactants	16	HCO	net_products	14	CO	3	H	
+55	-30	HCO+M=H+CO+M	
+reactants	16	HCO	products	14	CO	3	H	
+net_reactants	16	HCO	net_products	14	CO	3	H	
+56	31	HCO+O2=CO+HO2	
+reactants	16	HCO	9	O2	products	14	CO	12	HO2	
+net_reactants	16	HCO	9	O2	net_products	14	CO	12	HO2	
+57	-31	HCO+O2=CO+HO2	
+reactants	16	HCO	9	O2	products	14	CO	12	HO2	
+net_reactants	16	HCO	9	O2	net_products	14	CO	12	HO2	
+58	32	HCO+H=CO+H2	
+reactants	3	H	16	HCO	products	14	CO	4	H2	
+net_reactants	3	H	16	HCO	net_products	14	CO	4	H2	
+59	-32	HCO+H=CO+H2	
+reactants	3	H	16	HCO	products	14	CO	4	H2	
+net_reactants	3	H	16	HCO	net_products	14	CO	4	H2	
+60	33	HCO+O=CO+OH	
+reactants	16	HCO	8	O	products	14	CO	10	OH	
+net_reactants	16	HCO	8	O	net_products	14	CO	10	OH	
+61	-33	HCO+O=CO+OH	
+reactants	16	HCO	8	O	products	14	CO	10	OH	
+net_reactants	16	HCO	8	O	net_products	14	CO	10	OH	
+62	34	HCO+OH=CO+H2O	
+reactants	16	HCO	10	OH	products	14	CO	11	H2O	
+net_reactants	16	HCO	10	OH	net_products	14	CO	11	H2O	
+63	-34	HCO+OH=CO+H2O	
+reactants	16	HCO	10	OH	products	14	CO	11	H2O	
+net_reactants	16	HCO	10	OH	net_products	14	CO	11	H2O	
+64	35	HCO+O=CO2+H	
+reactants	16	HCO	8	O	products	15	CO2	3	H	
+net_reactants	16	HCO	8	O	net_products	15	CO2	3	H	
+65	-35	HCO+O=CO2+H	
+reactants	16	HCO	8	O	products	15	CO2	3	H	
+net_reactants	16	HCO	8	O	net_products	15	CO2	3	H	
+66	36	HCO+HO2=CO2+OH+H	
+reactants	16	HCO	12	HO2	products	15	CO2	3	H	10	OH	
+net_reactants	16	HCO	12	HO2	net_products	15	CO2	3	H	10	OH	
+67	-36	HCO+HO2=CO2+OH+H	
+reactants	16	HCO	12	HO2	products	15	CO2	3	H	10	OH	
+net_reactants	16	HCO	12	HO2	net_products	15	CO2	3	H	10	OH	
+68	37	HCO+CH3=CO+CH4	
+reactants	25	CH3	16	HCO	products	26	CH4	14	CO	
+net_reactants	25	CH3	16	HCO	net_products	26	CH4	14	CO	
+69	-37	HCO+CH3=CO+CH4	
+reactants	25	CH3	16	HCO	products	26	CH4	14	CO	
+net_reactants	25	CH3	16	HCO	net_products	26	CH4	14	CO	
+70	38	HCO+HCO=H2+CO+CO	
+reactants	16	HCO	products	14	CO	4	H2	
+net_reactants	16	HCO	net_products	14	CO	4	H2	
+71	-38	HCO+HCO=H2+CO+CO	
+reactants	16	HCO	products	14	CO	4	H2	
+net_reactants	16	HCO	net_products	14	CO	4	H2	
+72	39	HCO+HCO=CH2O+CO	
+reactants	16	HCO	products	17	CH2O	14	CO	
+net_reactants	16	HCO	net_products	17	CH2O	14	CO	
+73	-39	HCO+HCO=CH2O+CO	
+reactants	16	HCO	products	17	CH2O	14	CO	
+net_reactants	16	HCO	net_products	17	CH2O	14	CO	
+74	40	HCO+O2=formylperoxy	
+reactants	16	HCO	9	O2	products	19	formylperoxy	
+net_reactants	16	HCO	9	O2	net_products	19	formylperoxy	
+75	-40	HCO+O2=formylperoxy	
+reactants	16	HCO	9	O2	products	19	formylperoxy	
+net_reactants	16	HCO	9	O2	net_products	19	formylperoxy	
+76	41	CH2O+formylperoxy=HCO+formylooh	
+reactants	17	CH2O	19	formylperoxy	products	16	HCO	20	formylooh	
+net_reactants	17	CH2O	19	formylperoxy	net_products	16	HCO	20	formylooh	
+77	-41	CH2O+formylperoxy=HCO+formylooh	
+reactants	17	CH2O	19	formylperoxy	products	16	HCO	20	formylooh	
+net_reactants	17	CH2O	19	formylperoxy	net_products	16	HCO	20	formylooh	
+78	42	formylooh=formyloxy+OH	
+reactants	20	formylooh	products	10	OH	18	formyloxy	
+net_reactants	20	formylooh	net_products	10	OH	18	formyloxy	
+79	-42	formylooh=formyloxy+OH	
+reactants	20	formylooh	products	10	OH	18	formyloxy	
+net_reactants	20	formylooh	net_products	10	OH	18	formyloxy	
+80	43	H+CO2+M=formyloxy+M	
+reactants	15	CO2	3	H	products	18	formyloxy	
+net_reactants	15	CO2	3	H	net_products	18	formyloxy	
+81	-43	H+CO2+M=formyloxy+M	
+reactants	15	CO2	3	H	products	18	formyloxy	
+net_reactants	15	CO2	3	H	net_products	18	formyloxy	
+82	44	CH2O+M=HCO+H+M	
+reactants	17	CH2O	products	3	H	16	HCO	
+net_reactants	17	CH2O	net_products	3	H	16	HCO	
+83	-44	CH2O+M=HCO+H+M	
+reactants	17	CH2O	products	3	H	16	HCO	
+net_reactants	17	CH2O	net_products	3	H	16	HCO	
+84	45	CH2O+M=CO+H2+M	
+reactants	17	CH2O	products	14	CO	4	H2	
+net_reactants	17	CH2O	net_products	14	CO	4	H2	
+85	-45	CH2O+M=CO+H2+M	
+reactants	17	CH2O	products	14	CO	4	H2	
+net_reactants	17	CH2O	net_products	14	CO	4	H2	
+86	46	CH2O+H=HCO+H2	
+reactants	17	CH2O	3	H	products	4	H2	16	HCO	
+net_reactants	17	CH2O	3	H	net_products	4	H2	16	HCO	
+87	-46	CH2O+H=HCO+H2	
+reactants	17	CH2O	3	H	products	4	H2	16	HCO	
+net_reactants	17	CH2O	3	H	net_products	4	H2	16	HCO	
+88	47	CH2O+O=HCO+OH	
+reactants	17	CH2O	8	O	products	16	HCO	10	OH	
+net_reactants	17	CH2O	8	O	net_products	16	HCO	10	OH	
+89	-47	CH2O+O=HCO+OH	
+reactants	17	CH2O	8	O	products	16	HCO	10	OH	
+net_reactants	17	CH2O	8	O	net_products	16	HCO	10	OH	
+90	48	CH2O+OH=HCO+H2O	
+reactants	17	CH2O	10	OH	products	11	H2O	16	HCO	
+net_reactants	17	CH2O	10	OH	net_products	11	H2O	16	HCO	
+91	-48	CH2O+OH=HCO+H2O	
+reactants	17	CH2O	10	OH	products	11	H2O	16	HCO	
+net_reactants	17	CH2O	10	OH	net_products	11	H2O	16	HCO	
+92	49	CH2O+O2=HCO+HO2	
+reactants	17	CH2O	9	O2	products	16	HCO	12	HO2	
+net_reactants	17	CH2O	9	O2	net_products	16	HCO	12	HO2	
+93	-49	CH2O+O2=HCO+HO2	
+reactants	17	CH2O	9	O2	products	16	HCO	12	HO2	
+net_reactants	17	CH2O	9	O2	net_products	16	HCO	12	HO2	
+94	50	CH2O+HO2=HCO+H2O2	
+reactants	17	CH2O	12	HO2	products	13	H2O2	16	HCO	
+net_reactants	17	CH2O	12	HO2	net_products	13	H2O2	16	HCO	
+95	-50	CH2O+HO2=HCO+H2O2	
+reactants	17	CH2O	12	HO2	products	13	H2O2	16	HCO	
+net_reactants	17	CH2O	12	HO2	net_products	13	H2O2	16	HCO	
+96	51	CH2O+CH3=HCO+CH4	
+reactants	17	CH2O	25	CH3	products	26	CH4	16	HCO	
+net_reactants	17	CH2O	25	CH3	net_products	26	CH4	16	HCO	
+97	-51	CH2O+CH3=HCO+CH4	
+reactants	17	CH2O	25	CH3	products	26	CH4	16	HCO	
+net_reactants	17	CH2O	25	CH3	net_products	26	CH4	16	HCO	
+98	52	CH2O+HO2=OCH2OOH	
+reactants	17	CH2O	12	HO2	products	32	OCH2OOH	
+net_reactants	17	CH2O	12	HO2	net_products	32	OCH2OOH	
+99	-52	CH2O+HO2=OCH2OOH	
+reactants	17	CH2O	12	HO2	products	32	OCH2OOH	
+net_reactants	17	CH2O	12	HO2	net_products	32	OCH2OOH	
+100	53	OCH2OOH=HOCH2OO	
+reactants	32	OCH2OOH	products	33	HOCH2OO	
+net_reactants	32	OCH2OOH	net_products	33	HOCH2OO	
+101	-53	OCH2OOH=HOCH2OO	
+reactants	32	OCH2OOH	products	33	HOCH2OO	
+net_reactants	32	OCH2OOH	net_products	33	HOCH2OO	
+102	54	HOCH2OO+HO2=HOCH2OOH+O2	
+reactants	12	HO2	33	HOCH2OO	products	34	HOCH2OOH	9	O2	
+net_reactants	12	HO2	33	HOCH2OO	net_products	34	HOCH2OOH	9	O2	
+103	-54	HOCH2OO+HO2=HOCH2OOH+O2	
+reactants	12	HO2	33	HOCH2OO	products	34	HOCH2OOH	9	O2	
+net_reactants	12	HO2	33	HOCH2OO	net_products	34	HOCH2OOH	9	O2	
+104	55	HOCH2O+OH=HOCH2OOH	
+reactants	35	HOCH2O	10	OH	products	34	HOCH2OOH	
+net_reactants	35	HOCH2O	10	OH	net_products	34	HOCH2OOH	
+105	-55	HOCH2O+OH=HOCH2OOH	
+reactants	35	HOCH2O	10	OH	products	34	HOCH2OOH	
+net_reactants	35	HOCH2O	10	OH	net_products	34	HOCH2OOH	
+106	56	CH3+O=CH2O+H	
+reactants	25	CH3	8	O	products	17	CH2O	3	H	
+net_reactants	25	CH3	8	O	net_products	17	CH2O	3	H	
+107	-56	CH3+O=CH2O+H	
+reactants	25	CH3	8	O	products	17	CH2O	3	H	
+net_reactants	25	CH3	8	O	net_products	17	CH2O	3	H	
+108	57	CH3+O2=CH3O+O	
+reactants	25	CH3	9	O2	products	30	CH3O	8	O	
+net_reactants	25	CH3	9	O2	net_products	30	CH3O	8	O	
+109	-57	CH3+O2=CH3O+O	
+reactants	25	CH3	9	O2	products	30	CH3O	8	O	
+net_reactants	25	CH3	9	O2	net_products	30	CH3O	8	O	
+110	58	CH3+HO2=CH3O+OH	
+reactants	25	CH3	12	HO2	products	30	CH3O	10	OH	
+net_reactants	25	CH3	12	HO2	net_products	30	CH3O	10	OH	
+111	-58	CH3+HO2=CH3O+OH	
+reactants	25	CH3	12	HO2	products	30	CH3O	10	OH	
+net_reactants	25	CH3	12	HO2	net_products	30	CH3O	10	OH	
+112	59	CH3+HO2=CH4+O2	
+reactants	25	CH3	12	HO2	products	26	CH4	9	O2	
+net_reactants	25	CH3	12	HO2	net_products	26	CH4	9	O2	
+113	-59	CH3+HO2=CH4+O2	
+reactants	25	CH3	12	HO2	products	26	CH4	9	O2	
+net_reactants	25	CH3	12	HO2	net_products	26	CH4	9	O2	
+114	60	CH3+CH3(+M)=C2H6(+M)	
+reactants	25	CH3	products	40	C2H6	
+net_reactants	25	CH3	net_products	40	C2H6	
+115	-60	CH3+CH3(+M)=C2H6(+M)	
+reactants	25	CH3	products	40	C2H6	
+net_reactants	25	CH3	net_products	40	C2H6	
+116	61	CH3+H(+M)=CH4(+M)	
+reactants	25	CH3	3	H	products	26	CH4	
+net_reactants	25	CH3	3	H	net_products	26	CH4	
+117	-61	CH3+H(+M)=CH4(+M)	
+reactants	25	CH3	3	H	products	26	CH4	
+net_reactants	25	CH3	3	H	net_products	26	CH4	
+118	62	CH4+H=CH3+H2	
+reactants	26	CH4	3	H	products	25	CH3	4	H2	
+net_reactants	26	CH4	3	H	net_products	25	CH3	4	H2	
+119	-62	CH4+H=CH3+H2	
+reactants	26	CH4	3	H	products	25	CH3	4	H2	
+net_reactants	26	CH4	3	H	net_products	25	CH3	4	H2	
+120	63	CH4+O=CH3+OH	
+reactants	26	CH4	8	O	products	25	CH3	10	OH	
+net_reactants	26	CH4	8	O	net_products	25	CH3	10	OH	
+121	-63	CH4+O=CH3+OH	
+reactants	26	CH4	8	O	products	25	CH3	10	OH	
+net_reactants	26	CH4	8	O	net_products	25	CH3	10	OH	
+122	64	CH4+OH=CH3+H2O	
+reactants	26	CH4	10	OH	products	25	CH3	11	H2O	
+net_reactants	26	CH4	10	OH	net_products	25	CH3	11	H2O	
+123	-64	CH4+OH=CH3+H2O	
+reactants	26	CH4	10	OH	products	25	CH3	11	H2O	
+net_reactants	26	CH4	10	OH	net_products	25	CH3	11	H2O	
+124	65	CH4+HO2=CH3+H2O2	
+reactants	26	CH4	12	HO2	products	25	CH3	13	H2O2	
+net_reactants	26	CH4	12	HO2	net_products	25	CH3	13	H2O2	
+125	-65	CH4+HO2=CH3+H2O2	
+reactants	26	CH4	12	HO2	products	25	CH3	13	H2O2	
+net_reactants	26	CH4	12	HO2	net_products	25	CH3	13	H2O2	
+126	66	CH3+CH3OH=CH4+CH3O	
+reactants	25	CH3	31	CH3OH	products	30	CH3O	26	CH4	
+net_reactants	25	CH3	31	CH3OH	net_products	30	CH3O	26	CH4	
+127	-66	CH3+CH3OH=CH4+CH3O	
+reactants	25	CH3	31	CH3OH	products	30	CH3O	26	CH4	
+net_reactants	25	CH3	31	CH3OH	net_products	30	CH3O	26	CH4	
+128	67	CH3O+CH3=CH2O+CH4	
+reactants	25	CH3	30	CH3O	products	17	CH2O	26	CH4	
+net_reactants	25	CH3	30	CH3O	net_products	17	CH2O	26	CH4	
+129	-67	CH3O+CH3=CH2O+CH4	
+reactants	25	CH3	30	CH3O	products	17	CH2O	26	CH4	
+net_reactants	25	CH3	30	CH3O	net_products	17	CH2O	26	CH4	
+130	68	CH3O+H=CH2O+H2	
+reactants	30	CH3O	3	H	products	17	CH2O	4	H2	
+net_reactants	30	CH3O	3	H	net_products	17	CH2O	4	H2	
+131	-68	CH3O+H=CH2O+H2	
+reactants	30	CH3O	3	H	products	17	CH2O	4	H2	
+net_reactants	30	CH3O	3	H	net_products	17	CH2O	4	H2	
+132	69	CH3+O2(+M)=CH3OO(+M)	
+reactants	25	CH3	9	O2	products	27	CH3OO	
+net_reactants	25	CH3	9	O2	net_products	27	CH3OO	
+133	-69	CH3+O2(+M)=CH3OO(+M)	
+reactants	25	CH3	9	O2	products	27	CH3OO	
+net_reactants	25	CH3	9	O2	net_products	27	CH3OO	
+134	70	CH3OO+CH2O=CH3OOH+HCO	
+reactants	17	CH2O	27	CH3OO	products	28	CH3OOH	16	HCO	
+net_reactants	17	CH2O	27	CH3OO	net_products	28	CH3OOH	16	HCO	
+135	-70	CH3OO+CH2O=CH3OOH+HCO	
+reactants	17	CH2O	27	CH3OO	products	28	CH3OOH	16	HCO	
+net_reactants	17	CH2O	27	CH3OO	net_products	28	CH3OOH	16	HCO	
+136	71	CH4+CH3OO=CH3+CH3OOH	
+reactants	27	CH3OO	26	CH4	products	25	CH3	28	CH3OOH	
+net_reactants	27	CH3OO	26	CH4	net_products	25	CH3	28	CH3OOH	
+137	-71	CH4+CH3OO=CH3+CH3OOH	
+reactants	27	CH3OO	26	CH4	products	25	CH3	28	CH3OOH	
+net_reactants	27	CH3OO	26	CH4	net_products	25	CH3	28	CH3OOH	
+138	72	CH3OH+CH3OO=CH2OH+CH3OOH	
+reactants	31	CH3OH	27	CH3OO	products	29	CH2OH	28	CH3OOH	
+net_reactants	31	CH3OH	27	CH3OO	net_products	29	CH2OH	28	CH3OOH	
+139	-72	CH3OH+CH3OO=CH2OH+CH3OOH	
+reactants	31	CH3OH	27	CH3OO	products	29	CH2OH	28	CH3OOH	
+net_reactants	31	CH3OH	27	CH3OO	net_products	29	CH2OH	28	CH3OOH	
+140	73	CH3OO+CH3=CH3O+CH3O	
+reactants	25	CH3	27	CH3OO	products	30	CH3O	
+net_reactants	25	CH3	27	CH3OO	net_products	30	CH3O	
+141	-73	CH3OO+CH3=CH3O+CH3O	
+reactants	25	CH3	27	CH3OO	products	30	CH3O	
+net_reactants	25	CH3	27	CH3OO	net_products	30	CH3O	
+142	74	CH3OO+HO2=CH3OOH+O2	
+reactants	27	CH3OO	12	HO2	products	28	CH3OOH	9	O2	
+net_reactants	27	CH3OO	12	HO2	net_products	28	CH3OOH	9	O2	
+143	-74	CH3OO+HO2=CH3OOH+O2	
+reactants	27	CH3OO	12	HO2	products	28	CH3OOH	9	O2	
+net_reactants	27	CH3OO	12	HO2	net_products	28	CH3OOH	9	O2	
+144	75	CH3OO+CH3OO=CH2O+CH3OH+O2	
+reactants	27	CH3OO	products	17	CH2O	31	CH3OH	9	O2	
+net_reactants	27	CH3OO	net_products	17	CH2O	31	CH3OH	9	O2	
+145	-75	CH3OO+CH3OO=CH2O+CH3OH+O2	
+reactants	27	CH3OO	products	17	CH2O	31	CH3OH	9	O2	
+net_reactants	27	CH3OO	net_products	17	CH2O	31	CH3OH	9	O2	
+146	76	CH3OO+CH3OO=O2+CH3O+CH3O	
+reactants	27	CH3OO	products	30	CH3O	9	O2	
+net_reactants	27	CH3OO	net_products	30	CH3O	9	O2	
+147	-76	CH3OO+CH3OO=O2+CH3O+CH3O	
+reactants	27	CH3OO	products	30	CH3O	9	O2	
+net_reactants	27	CH3OO	net_products	30	CH3O	9	O2	
+148	77	CH3OO+H=CH3O+OH	
+reactants	27	CH3OO	3	H	products	30	CH3O	10	OH	
+net_reactants	27	CH3OO	3	H	net_products	30	CH3O	10	OH	
+149	-77	CH3OO+H=CH3O+OH	
+reactants	27	CH3OO	3	H	products	30	CH3O	10	OH	
+net_reactants	27	CH3OO	3	H	net_products	30	CH3O	10	OH	
+150	78	CH3OO+O=CH3O+O2	
+reactants	27	CH3OO	8	O	products	30	CH3O	9	O2	
+net_reactants	27	CH3OO	8	O	net_products	30	CH3O	9	O2	
+151	-78	CH3OO+O=CH3O+O2	
+reactants	27	CH3OO	8	O	products	30	CH3O	9	O2	
+net_reactants	27	CH3OO	8	O	net_products	30	CH3O	9	O2	
+152	79	CH3OO+OH=CH3OH+O2	
+reactants	27	CH3OO	10	OH	products	31	CH3OH	9	O2	
+net_reactants	27	CH3OO	10	OH	net_products	31	CH3OH	9	O2	
+153	-79	CH3OO+OH=CH3OH+O2	
+reactants	27	CH3OO	10	OH	products	31	CH3OH	9	O2	
+net_reactants	27	CH3OO	10	OH	net_products	31	CH3OH	9	O2	
+154	80	CH3OOH=CH3O+OH	
+reactants	28	CH3OOH	products	30	CH3O	10	OH	
+net_reactants	28	CH3OOH	net_products	30	CH3O	10	OH	
+155	-80	CH3OOH=CH3O+OH	
+reactants	28	CH3OOH	products	30	CH3O	10	OH	
+net_reactants	28	CH3OOH	net_products	30	CH3O	10	OH	
+156	81	CH2OH+M=CH2O+H+M	
+reactants	29	CH2OH	products	17	CH2O	3	H	
+net_reactants	29	CH2OH	net_products	17	CH2O	3	H	
+157	-81	CH2OH+M=CH2O+H+M	
+reactants	29	CH2OH	products	17	CH2O	3	H	
+net_reactants	29	CH2OH	net_products	17	CH2O	3	H	
+158	82	CH2OH+H=CH2O+H2	
+reactants	29	CH2OH	3	H	products	17	CH2O	4	H2	
+net_reactants	29	CH2OH	3	H	net_products	17	CH2O	4	H2	
+159	-82	CH2OH+H=CH2O+H2	
+reactants	29	CH2OH	3	H	products	17	CH2O	4	H2	
+net_reactants	29	CH2OH	3	H	net_products	17	CH2O	4	H2	
+160	83	CH2OH+H=CH3+OH	
+reactants	29	CH2OH	3	H	products	25	CH3	10	OH	
+net_reactants	29	CH2OH	3	H	net_products	25	CH3	10	OH	
+161	-83	CH2OH+H=CH3+OH	
+reactants	29	CH2OH	3	H	products	25	CH3	10	OH	
+net_reactants	29	CH2OH	3	H	net_products	25	CH3	10	OH	
+162	84	CH2OH+O=CH2O+OH	
+reactants	29	CH2OH	8	O	products	17	CH2O	10	OH	
+net_reactants	29	CH2OH	8	O	net_products	17	CH2O	10	OH	
+163	-84	CH2OH+O=CH2O+OH	
+reactants	29	CH2OH	8	O	products	17	CH2O	10	OH	
+net_reactants	29	CH2OH	8	O	net_products	17	CH2O	10	OH	
+164	85	CH2OH+OH=CH2O+H2O	
+reactants	29	CH2OH	10	OH	products	17	CH2O	11	H2O	
+net_reactants	29	CH2OH	10	OH	net_products	17	CH2O	11	H2O	
+165	-85	CH2OH+OH=CH2O+H2O	
+reactants	29	CH2OH	10	OH	products	17	CH2O	11	H2O	
+net_reactants	29	CH2OH	10	OH	net_products	17	CH2O	11	H2O	
+166	86	CH2OH+O2=CH2O+HO2	87	CH2OH+O2=CH2O+HO2	
+reactants	29	CH2OH	9	O2	products	17	CH2O	12	HO2	
+net_reactants	29	CH2OH	9	O2	net_products	17	CH2O	12	HO2	
+167	-86	CH2OH+O2=CH2O+HO2	-87	CH2OH+O2=CH2O+HO2	
+reactants	29	CH2OH	9	O2	products	17	CH2O	12	HO2	
+net_reactants	29	CH2OH	9	O2	net_products	17	CH2O	12	HO2	
+168	88	CH2OH+HO2=CH2O+H2O2	
+reactants	29	CH2OH	12	HO2	products	17	CH2O	13	H2O2	
+net_reactants	29	CH2OH	12	HO2	net_products	17	CH2O	13	H2O2	
+169	-88	CH2OH+HO2=CH2O+H2O2	
+reactants	29	CH2OH	12	HO2	products	17	CH2O	13	H2O2	
+net_reactants	29	CH2OH	12	HO2	net_products	17	CH2O	13	H2O2	
+170	89	CH2OH+HCO=CH3OH+CO	
+reactants	29	CH2OH	16	HCO	products	31	CH3OH	14	CO	
+net_reactants	29	CH2OH	16	HCO	net_products	31	CH3OH	14	CO	
+171	-89	CH2OH+HCO=CH3OH+CO	
+reactants	29	CH2OH	16	HCO	products	31	CH3OH	14	CO	
+net_reactants	29	CH2OH	16	HCO	net_products	31	CH3OH	14	CO	
+172	90	CH2OH+HCO=CH2O+CH2O	
+reactants	29	CH2OH	16	HCO	products	17	CH2O	
+net_reactants	29	CH2OH	16	HCO	net_products	17	CH2O	
+173	-90	CH2OH+HCO=CH2O+CH2O	
+reactants	29	CH2OH	16	HCO	products	17	CH2O	
+net_reactants	29	CH2OH	16	HCO	net_products	17	CH2O	
+174	91	2CH2OH=CH3OH+CH2O	
+reactants	29	CH2OH	products	17	CH2O	31	CH3OH	
+net_reactants	29	CH2OH	net_products	17	CH2O	31	CH3OH	
+175	-91	2CH2OH=CH3OH+CH2O	
+reactants	29	CH2OH	products	17	CH2O	31	CH3OH	
+net_reactants	29	CH2OH	net_products	17	CH2O	31	CH3OH	
+176	92	CH2OH+CH3O=CH3OH+CH2O	
+reactants	29	CH2OH	30	CH3O	products	17	CH2O	31	CH3OH	
+net_reactants	29	CH2OH	30	CH3O	net_products	17	CH2O	31	CH3OH	
+177	-92	CH2OH+CH3O=CH3OH+CH2O	
+reactants	29	CH2OH	30	CH3O	products	17	CH2O	31	CH3OH	
+net_reactants	29	CH2OH	30	CH3O	net_products	17	CH2O	31	CH3OH	
+178	93	CH2OH+HO2=HOCH2O+OH	
+reactants	29	CH2OH	12	HO2	products	35	HOCH2O	10	OH	
+net_reactants	29	CH2OH	12	HO2	net_products	35	HOCH2O	10	OH	
+179	-93	CH2OH+HO2=HOCH2O+OH	
+reactants	29	CH2OH	12	HO2	products	35	HOCH2O	10	OH	
+net_reactants	29	CH2OH	12	HO2	net_products	35	HOCH2O	10	OH	
+180	94	CH3O+M=CH2O+H+M	
+reactants	30	CH3O	products	17	CH2O	3	H	
+net_reactants	30	CH3O	net_products	17	CH2O	3	H	
+181	-94	CH3O+M=CH2O+H+M	
+reactants	30	CH3O	products	17	CH2O	3	H	
+net_reactants	30	CH3O	net_products	17	CH2O	3	H	
+182	95	CH3O+H=CH3+OH	
+reactants	30	CH3O	3	H	products	25	CH3	10	OH	
+net_reactants	30	CH3O	3	H	net_products	25	CH3	10	OH	
+183	-95	CH3O+H=CH3+OH	
+reactants	30	CH3O	3	H	products	25	CH3	10	OH	
+net_reactants	30	CH3O	3	H	net_products	25	CH3	10	OH	
+184	96	CH3O+O=CH2O+OH	
+reactants	30	CH3O	8	O	products	17	CH2O	10	OH	
+net_reactants	30	CH3O	8	O	net_products	17	CH2O	10	OH	
+185	-96	CH3O+O=CH2O+OH	
+reactants	30	CH3O	8	O	products	17	CH2O	10	OH	
+net_reactants	30	CH3O	8	O	net_products	17	CH2O	10	OH	
+186	97	CH3O+OH=CH2O+H2O	
+reactants	30	CH3O	10	OH	products	17	CH2O	11	H2O	
+net_reactants	30	CH3O	10	OH	net_products	17	CH2O	11	H2O	
+187	-97	CH3O+OH=CH2O+H2O	
+reactants	30	CH3O	10	OH	products	17	CH2O	11	H2O	
+net_reactants	30	CH3O	10	OH	net_products	17	CH2O	11	H2O	
+188	98	CH3O+O2=CH2O+HO2	99	CH3O+O2=CH2O+HO2	
+reactants	30	CH3O	9	O2	products	17	CH2O	12	HO2	
+net_reactants	30	CH3O	9	O2	net_products	17	CH2O	12	HO2	
+189	-98	CH3O+O2=CH2O+HO2	-99	CH3O+O2=CH2O+HO2	
+reactants	30	CH3O	9	O2	products	17	CH2O	12	HO2	
+net_reactants	30	CH3O	9	O2	net_products	17	CH2O	12	HO2	
+190	100	CH3O+HO2=CH2O+H2O2	
+reactants	30	CH3O	12	HO2	products	17	CH2O	13	H2O2	
+net_reactants	30	CH3O	12	HO2	net_products	17	CH2O	13	H2O2	
+191	-100	CH3O+HO2=CH2O+H2O2	
+reactants	30	CH3O	12	HO2	products	17	CH2O	13	H2O2	
+net_reactants	30	CH3O	12	HO2	net_products	17	CH2O	13	H2O2	
+192	101	CH3O+CO=CH3+CO2	
+reactants	30	CH3O	14	CO	products	25	CH3	15	CO2	
+net_reactants	30	CH3O	14	CO	net_products	25	CH3	15	CO2	
+193	-101	CH3O+CO=CH3+CO2	
+reactants	30	CH3O	14	CO	products	25	CH3	15	CO2	
+net_reactants	30	CH3O	14	CO	net_products	25	CH3	15	CO2	
+194	102	CH3O+HCO=CH3OH+CO	
+reactants	30	CH3O	16	HCO	products	31	CH3OH	14	CO	
+net_reactants	30	CH3O	16	HCO	net_products	31	CH3OH	14	CO	
+195	-102	CH3O+HCO=CH3OH+CO	
+reactants	30	CH3O	16	HCO	products	31	CH3OH	14	CO	
+net_reactants	30	CH3O	16	HCO	net_products	31	CH3OH	14	CO	
+196	103	2CH3O=CH3OH+CH2O	
+reactants	30	CH3O	products	17	CH2O	31	CH3OH	
+net_reactants	30	CH3O	net_products	17	CH2O	31	CH3OH	
+197	-103	2CH3O=CH3OH+CH2O	
+reactants	30	CH3O	products	17	CH2O	31	CH3OH	
+net_reactants	30	CH3O	net_products	17	CH2O	31	CH3OH	
+198	104	OH+CH3(+M)=CH3OH(+M)	
+reactants	25	CH3	10	OH	products	31	CH3OH	
+net_reactants	25	CH3	10	OH	net_products	31	CH3OH	
+199	-104	OH+CH3(+M)=CH3OH(+M)	
+reactants	25	CH3	10	OH	products	31	CH3OH	
+net_reactants	25	CH3	10	OH	net_products	31	CH3OH	
+200	105	H+CH2OH(+M)=CH3OH(+M)	
+reactants	29	CH2OH	3	H	products	31	CH3OH	
+net_reactants	29	CH2OH	3	H	net_products	31	CH3OH	
+201	-105	H+CH2OH(+M)=CH3OH(+M)	
+reactants	29	CH2OH	3	H	products	31	CH3OH	
+net_reactants	29	CH2OH	3	H	net_products	31	CH3OH	
+202	106	H+CH3O(+M)=CH3OH(+M)	
+reactants	30	CH3O	3	H	products	31	CH3OH	
+net_reactants	30	CH3O	3	H	net_products	31	CH3OH	
+203	-106	H+CH3O(+M)=CH3OH(+M)	
+reactants	30	CH3O	3	H	products	31	CH3OH	
+net_reactants	30	CH3O	3	H	net_products	31	CH3OH	
+204	107	CH3OH+H=CH2OH+H2	
+reactants	31	CH3OH	3	H	products	29	CH2OH	4	H2	
+net_reactants	31	CH3OH	3	H	net_products	29	CH2OH	4	H2	
+205	-107	CH3OH+H=CH2OH+H2	
+reactants	31	CH3OH	3	H	products	29	CH2OH	4	H2	
+net_reactants	31	CH3OH	3	H	net_products	29	CH2OH	4	H2	
+206	108	CH3OH+H=CH3O+H2	
+reactants	31	CH3OH	3	H	products	30	CH3O	4	H2	
+net_reactants	31	CH3OH	3	H	net_products	30	CH3O	4	H2	
+207	-108	CH3OH+H=CH3O+H2	
+reactants	31	CH3OH	3	H	products	30	CH3O	4	H2	
+net_reactants	31	CH3OH	3	H	net_products	30	CH3O	4	H2	
+208	109	CH3OH+O=CH2OH+OH	
+reactants	31	CH3OH	8	O	products	29	CH2OH	10	OH	
+net_reactants	31	CH3OH	8	O	net_products	29	CH2OH	10	OH	
+209	-109	CH3OH+O=CH2OH+OH	
+reactants	31	CH3OH	8	O	products	29	CH2OH	10	OH	
+net_reactants	31	CH3OH	8	O	net_products	29	CH2OH	10	OH	
+210	110	CH3OH+OH=CH3O+H2O	
+reactants	31	CH3OH	10	OH	products	30	CH3O	11	H2O	
+net_reactants	31	CH3OH	10	OH	net_products	30	CH3O	11	H2O	
+211	-110	CH3OH+OH=CH3O+H2O	
+reactants	31	CH3OH	10	OH	products	30	CH3O	11	H2O	
+net_reactants	31	CH3OH	10	OH	net_products	30	CH3O	11	H2O	
+212	111	CH3OH+OH=CH2OH+H2O	
+reactants	31	CH3OH	10	OH	products	29	CH2OH	11	H2O	
+net_reactants	31	CH3OH	10	OH	net_products	29	CH2OH	11	H2O	
+213	-111	CH3OH+OH=CH2OH+H2O	
+reactants	31	CH3OH	10	OH	products	29	CH2OH	11	H2O	
+net_reactants	31	CH3OH	10	OH	net_products	29	CH2OH	11	H2O	
+214	112	CH3OH+O2=CH2OH+HO2	
+reactants	31	CH3OH	9	O2	products	29	CH2OH	12	HO2	
+net_reactants	31	CH3OH	9	O2	net_products	29	CH2OH	12	HO2	
+215	-112	CH3OH+O2=CH2OH+HO2	
+reactants	31	CH3OH	9	O2	products	29	CH2OH	12	HO2	
+net_reactants	31	CH3OH	9	O2	net_products	29	CH2OH	12	HO2	
+216	113	CH3OH+HCO=CH2OH+CH2O	
+reactants	31	CH3OH	16	HCO	products	17	CH2O	29	CH2OH	
+net_reactants	31	CH3OH	16	HCO	net_products	17	CH2O	29	CH2OH	
+217	-113	CH3OH+HCO=CH2OH+CH2O	
+reactants	31	CH3OH	16	HCO	products	17	CH2O	29	CH2OH	
+net_reactants	31	CH3OH	16	HCO	net_products	17	CH2O	29	CH2OH	
+218	114	CH3OH+HO2=CH2OH+H2O2	
+reactants	31	CH3OH	12	HO2	products	29	CH2OH	13	H2O2	
+net_reactants	31	CH3OH	12	HO2	net_products	29	CH2OH	13	H2O2	
+219	-114	CH3OH+HO2=CH2OH+H2O2	
+reactants	31	CH3OH	12	HO2	products	29	CH2OH	13	H2O2	
+net_reactants	31	CH3OH	12	HO2	net_products	29	CH2OH	13	H2O2	
+220	115	CH3OH+CH3=CH2OH+CH4	
+reactants	25	CH3	31	CH3OH	products	29	CH2OH	26	CH4	
+net_reactants	25	CH3	31	CH3OH	net_products	29	CH2OH	26	CH4	
+221	-115	CH3OH+CH3=CH2OH+CH4	
+reactants	25	CH3	31	CH3OH	products	29	CH2OH	26	CH4	
+net_reactants	25	CH3	31	CH3OH	net_products	29	CH2OH	26	CH4	
+222	116	CH3O+CH3OH=CH3OH+CH2OH	
+reactants	30	CH3O	31	CH3OH	products	29	CH2OH	31	CH3OH	
+net_reactants	30	CH3O	net_products	29	CH2OH	
+223	-116	CH3O+CH3OH=CH3OH+CH2OH	
+reactants	30	CH3O	31	CH3OH	products	29	CH2OH	31	CH3OH	
+net_reactants	30	CH3O	net_products	29	CH2OH	
+224	117	CH3+CH3=H+C2H5	
+reactants	25	CH3	products	39	C2H5	3	H	
+net_reactants	25	CH3	net_products	39	C2H5	3	H	
+225	-117	CH3+CH3=H+C2H5	
+reactants	25	CH3	products	39	C2H5	3	H	
+net_reactants	25	CH3	net_products	39	C2H5	3	H	
+226	118	CH4+CH2=CH3+CH3	
+reactants	24	CH2	26	CH4	products	25	CH3	
+net_reactants	24	CH2	26	CH4	net_products	25	CH3	
+227	-118	CH4+CH2=CH3+CH3	
+reactants	24	CH2	26	CH4	products	25	CH3	
+net_reactants	24	CH2	26	CH4	net_products	25	CH3	
+228	119	CH3+OH=CH2+H2O	
+reactants	25	CH3	10	OH	products	24	CH2	11	H2O	
+net_reactants	25	CH3	10	OH	net_products	24	CH2	11	H2O	
+229	-119	CH3+OH=CH2+H2O	
+reactants	25	CH3	10	OH	products	24	CH2	11	H2O	
+net_reactants	25	CH3	10	OH	net_products	24	CH2	11	H2O	
+230	120	CH3+CH2=C2H4+H	
+reactants	24	CH2	25	CH3	products	38	C2H4	3	H	
+net_reactants	24	CH2	25	CH3	net_products	38	C2H4	3	H	
+231	-120	CH3+CH2=C2H4+H	
+reactants	24	CH2	25	CH3	products	38	C2H4	3	H	
+net_reactants	24	CH2	25	CH3	net_products	38	C2H4	3	H	
+232	121	CH2+H(+M)=CH3(+M)	
+reactants	24	CH2	3	H	products	25	CH3	
+net_reactants	24	CH2	3	H	net_products	25	CH3	
+233	-121	CH2+H(+M)=CH3(+M)	
+reactants	24	CH2	3	H	products	25	CH3	
+net_reactants	24	CH2	3	H	net_products	25	CH3	
+234	122	CH2+O=HCO+H	
+reactants	24	CH2	8	O	products	3	H	16	HCO	
+net_reactants	24	CH2	8	O	net_products	3	H	16	HCO	
+235	-122	CH2+O=HCO+H	
+reactants	24	CH2	8	O	products	3	H	16	HCO	
+net_reactants	24	CH2	8	O	net_products	3	H	16	HCO	
+236	123	CH2+OH=CH2O+H	
+reactants	24	CH2	10	OH	products	17	CH2O	3	H	
+net_reactants	24	CH2	10	OH	net_products	17	CH2O	3	H	
+237	-123	CH2+OH=CH2O+H	
+reactants	24	CH2	10	OH	products	17	CH2O	3	H	
+net_reactants	24	CH2	10	OH	net_products	17	CH2O	3	H	
+238	124	CH2+H2=H+CH3	
+reactants	24	CH2	4	H2	products	25	CH3	3	H	
+net_reactants	24	CH2	4	H2	net_products	25	CH3	3	H	
+239	-124	CH2+H2=H+CH3	
+reactants	24	CH2	4	H2	products	25	CH3	3	H	
+net_reactants	24	CH2	4	H2	net_products	25	CH3	3	H	
+240	125	CH2+O2=HCO+OH	
+reactants	24	CH2	9	O2	products	16	HCO	10	OH	
+net_reactants	24	CH2	9	O2	net_products	16	HCO	10	OH	
+241	-125	CH2+O2=HCO+OH	
+reactants	24	CH2	9	O2	products	16	HCO	10	OH	
+net_reactants	24	CH2	9	O2	net_products	16	HCO	10	OH	
+242	126	CH2+HO2=CH2O+OH	
+reactants	24	CH2	12	HO2	products	17	CH2O	10	OH	
+net_reactants	24	CH2	12	HO2	net_products	17	CH2O	10	OH	
+243	-126	CH2+HO2=CH2O+OH	
+reactants	24	CH2	12	HO2	products	17	CH2O	10	OH	
+net_reactants	24	CH2	12	HO2	net_products	17	CH2O	10	OH	
+244	127	CH2+CO(+M)=ketene(+M)	
+reactants	24	CH2	14	CO	products	41	ketene	
+net_reactants	24	CH2	14	CO	net_products	41	ketene	
+245	-127	CH2+CO(+M)=ketene(+M)	
+reactants	24	CH2	14	CO	products	41	ketene	
+net_reactants	24	CH2	14	CO	net_products	41	ketene	
+246	128	CH2+CH2=C2H2+H2	
+reactants	24	CH2	products	36	C2H2	4	H2	
+net_reactants	24	CH2	net_products	36	C2H2	4	H2	
+247	-128	CH2+CH2=C2H2+H2	
+reactants	24	CH2	products	36	C2H2	4	H2	
+net_reactants	24	CH2	net_products	36	C2H2	4	H2	
+248	129	CH2(S)+M=CH2+M	
+reactants	23	CH2(S)	products	24	CH2	
+net_reactants	23	CH2(S)	net_products	24	CH2	
+249	-129	CH2(S)+M=CH2+M	
+reactants	23	CH2(S)	products	24	CH2	
+net_reactants	23	CH2(S)	net_products	24	CH2	
+250	130	CH2(S)+H2O=CH2+H2O	
+reactants	23	CH2(S)	11	H2O	products	24	CH2	11	H2O	
+net_reactants	23	CH2(S)	net_products	24	CH2	
+251	-130	CH2(S)+H2O=CH2+H2O	
+reactants	23	CH2(S)	11	H2O	products	24	CH2	11	H2O	
+net_reactants	23	CH2(S)	net_products	24	CH2	
+252	131	CH2(S)+CO=CH2+CO	
+reactants	23	CH2(S)	14	CO	products	24	CH2	14	CO	
+net_reactants	23	CH2(S)	net_products	24	CH2	
+253	-131	CH2(S)+CO=CH2+CO	
+reactants	23	CH2(S)	14	CO	products	24	CH2	14	CO	
+net_reactants	23	CH2(S)	net_products	24	CH2	
+254	132	CH2(S)+CO2=CH2+CO2	
+reactants	23	CH2(S)	15	CO2	products	24	CH2	15	CO2	
+net_reactants	23	CH2(S)	net_products	24	CH2	
+255	-132	CH2(S)+CO2=CH2+CO2	
+reactants	23	CH2(S)	15	CO2	products	24	CH2	15	CO2	
+net_reactants	23	CH2(S)	net_products	24	CH2	
+256	133	CH2(S)+AR=CH2+AR	
+reactants	1	AR	23	CH2(S)	products	1	AR	24	CH2	
+net_reactants	23	CH2(S)	net_products	24	CH2	
+257	-133	CH2(S)+AR=CH2+AR	
+reactants	1	AR	23	CH2(S)	products	1	AR	24	CH2	
+net_reactants	23	CH2(S)	net_products	24	CH2	
+258	134	CH2(S)+O=CO+H2	
+reactants	23	CH2(S)	8	O	products	14	CO	4	H2	
+net_reactants	23	CH2(S)	8	O	net_products	14	CO	4	H2	
+259	-134	CH2(S)+O=CO+H2	
+reactants	23	CH2(S)	8	O	products	14	CO	4	H2	
+net_reactants	23	CH2(S)	8	O	net_products	14	CO	4	H2	
+260	135	CH2(S)+O=HCO+H	
+reactants	23	CH2(S)	8	O	products	3	H	16	HCO	
+net_reactants	23	CH2(S)	8	O	net_products	3	H	16	HCO	
+261	-135	CH2(S)+O=HCO+H	
+reactants	23	CH2(S)	8	O	products	3	H	16	HCO	
+net_reactants	23	CH2(S)	8	O	net_products	3	H	16	HCO	
+262	136	CH2(S)+OH=CH2O+H	
+reactants	23	CH2(S)	10	OH	products	17	CH2O	3	H	
+net_reactants	23	CH2(S)	10	OH	net_products	17	CH2O	3	H	
+263	-136	CH2(S)+OH=CH2O+H	
+reactants	23	CH2(S)	10	OH	products	17	CH2O	3	H	
+net_reactants	23	CH2(S)	10	OH	net_products	17	CH2O	3	H	
+264	137	CH2(S)+H2=CH3+H	
+reactants	23	CH2(S)	4	H2	products	25	CH3	3	H	
+net_reactants	23	CH2(S)	4	H2	net_products	25	CH3	3	H	
+265	-137	CH2(S)+H2=CH3+H	
+reactants	23	CH2(S)	4	H2	products	25	CH3	3	H	
+net_reactants	23	CH2(S)	4	H2	net_products	25	CH3	3	H	
+266	138	CH2(S)+O2=H+OH+CO	
+reactants	23	CH2(S)	9	O2	products	14	CO	3	H	10	OH	
+net_reactants	23	CH2(S)	9	O2	net_products	14	CO	3	H	10	OH	
+267	-138	CH2(S)+O2=H+OH+CO	
+reactants	23	CH2(S)	9	O2	products	14	CO	3	H	10	OH	
+net_reactants	23	CH2(S)	9	O2	net_products	14	CO	3	H	10	OH	
+268	139	CH2(S)+O2=CO+H2O	
+reactants	23	CH2(S)	9	O2	products	14	CO	11	H2O	
+net_reactants	23	CH2(S)	9	O2	net_products	14	CO	11	H2O	
+269	-139	CH2(S)+O2=CO+H2O	
+reactants	23	CH2(S)	9	O2	products	14	CO	11	H2O	
+net_reactants	23	CH2(S)	9	O2	net_products	14	CO	11	H2O	
+270	140	CH2(S)+CO2=CH2O+CO	
+reactants	23	CH2(S)	15	CO2	products	17	CH2O	14	CO	
+net_reactants	23	CH2(S)	15	CO2	net_products	17	CH2O	14	CO	
+271	-140	CH2(S)+CO2=CH2O+CO	
+reactants	23	CH2(S)	15	CO2	products	17	CH2O	14	CO	
+net_reactants	23	CH2(S)	15	CO2	net_products	17	CH2O	14	CO	
+272	141	CH2(S)+C2H6=CH3+C2H5	
+reactants	40	C2H6	23	CH2(S)	products	39	C2H5	25	CH3	
+net_reactants	40	C2H6	23	CH2(S)	net_products	39	C2H5	25	CH3	
+273	-141	CH2(S)+C2H6=CH3+C2H5	
+reactants	40	C2H6	23	CH2(S)	products	39	C2H5	25	CH3	
+net_reactants	40	C2H6	23	CH2(S)	net_products	39	C2H5	25	CH3	
+274	142	CH2(S)+ketene=C2H4+CO	
+reactants	23	CH2(S)	41	ketene	products	38	C2H4	14	CO	
+net_reactants	23	CH2(S)	41	ketene	net_products	38	C2H4	14	CO	
+275	-142	CH2(S)+ketene=C2H4+CO	
+reactants	23	CH2(S)	41	ketene	products	38	C2H4	14	CO	
+net_reactants	23	CH2(S)	41	ketene	net_products	38	C2H4	14	CO	
+276	143	H+HCCO=CH2(S)+CO	
+reactants	3	H	42	HCCO	products	23	CH2(S)	14	CO	
+net_reactants	3	H	42	HCCO	net_products	23	CH2(S)	14	CO	
+277	-143	H+HCCO=CH2(S)+CO	
+reactants	3	H	42	HCCO	products	23	CH2(S)	14	CO	
+net_reactants	3	H	42	HCCO	net_products	23	CH2(S)	14	CO	
+278	144	CH2(S)+H<=>CH+H2	
+reactants	23	CH2(S)	3	H	products	22	CH	4	H2	
+net_reactants	23	CH2(S)	3	H	net_products	22	CH	4	H2	
+279	-144	CH2(S)+H<=>CH+H2	
+reactants	23	CH2(S)	3	H	products	22	CH	4	H2	
+net_reactants	23	CH2(S)	3	H	net_products	22	CH	4	H2	
+280	145	CH2+H<=>CH+H2	
+reactants	24	CH2	3	H	products	22	CH	4	H2	
+net_reactants	24	CH2	3	H	net_products	22	CH	4	H2	
+281	-145	CH2+H<=>CH+H2	
+reactants	24	CH2	3	H	products	22	CH	4	H2	
+net_reactants	24	CH2	3	H	net_products	22	CH	4	H2	
+282	146	CH2+OH<=>CH+H2O	
+reactants	24	CH2	10	OH	products	22	CH	11	H2O	
+net_reactants	24	CH2	10	OH	net_products	22	CH	11	H2O	
+283	-146	CH2+OH<=>CH+H2O	
+reactants	24	CH2	10	OH	products	22	CH	11	H2O	
+net_reactants	24	CH2	10	OH	net_products	22	CH	11	H2O	
+284	147	CH+O2<=>HCO+O	
+reactants	22	CH	9	O2	products	16	HCO	8	O	
+net_reactants	22	CH	9	O2	net_products	16	HCO	8	O	
+285	-147	CH+O2<=>HCO+O	
+reactants	22	CH	9	O2	products	16	HCO	8	O	
+net_reactants	22	CH	9	O2	net_products	16	HCO	8	O	
+286	148	CH+H<=>C+H2	
+reactants	22	CH	3	H	products	21	C	4	H2	
+net_reactants	22	CH	3	H	net_products	21	C	4	H2	
+287	-148	CH+H<=>C+H2	
+reactants	22	CH	3	H	products	21	C	4	H2	
+net_reactants	22	CH	3	H	net_products	21	C	4	H2	
+288	149	CH+O<=>CO+H	
+reactants	22	CH	8	O	products	14	CO	3	H	
+net_reactants	22	CH	8	O	net_products	14	CO	3	H	
+289	-149	CH+O<=>CO+H	
+reactants	22	CH	8	O	products	14	CO	3	H	
+net_reactants	22	CH	8	O	net_products	14	CO	3	H	
+290	150	CH+OH<=>HCO+H	151	CH2+H<=>CH+H2	
+reactants	22	CH	10	OH	products	3	H	16	HCO	
+net_reactants	22	CH	10	OH	net_products	3	H	16	HCO	
+291	-150	CH+OH<=>HCO+H	-151	CH2+H<=>CH+H2	
+reactants	22	CH	10	OH	products	3	H	16	HCO	
+net_reactants	22	CH	10	OH	net_products	3	H	16	HCO	
+292	152	CH+H2O<=>H+CH2O	
+reactants	22	CH	11	H2O	products	17	CH2O	3	H	
+net_reactants	22	CH	11	H2O	net_products	17	CH2O	3	H	
+293	-152	CH+H2O<=>H+CH2O	
+reactants	22	CH	11	H2O	products	17	CH2O	3	H	
+net_reactants	22	CH	11	H2O	net_products	17	CH2O	3	H	
+294	153	CH+CO2<=>HCO+CO	
+reactants	22	CH	15	CO2	products	14	CO	16	HCO	
+net_reactants	22	CH	15	CO2	net_products	14	CO	16	HCO	
+295	-153	CH+CO2<=>HCO+CO	
+reactants	22	CH	15	CO2	products	14	CO	16	HCO	
+net_reactants	22	CH	15	CO2	net_products	14	CO	16	HCO	
+296	154	HCCO+M=CH+CO+M	
+reactants	42	HCCO	products	22	CH	14	CO	
+net_reactants	42	HCCO	net_products	22	CH	14	CO	
+297	-154	HCCO+M=CH+CO+M	
+reactants	42	HCCO	products	22	CH	14	CO	
+net_reactants	42	HCCO	net_products	22	CH	14	CO	
+298	155	CH+CH2O=H+ketene	
+reactants	22	CH	17	CH2O	products	3	H	41	ketene	
+net_reactants	22	CH	17	CH2O	net_products	3	H	41	ketene	
+299	-155	CH+CH2O=H+ketene	
+reactants	22	CH	17	CH2O	products	3	H	41	ketene	
+net_reactants	22	CH	17	CH2O	net_products	3	H	41	ketene	
+300	156	CH+HCCO=CO+C2H2	
+reactants	22	CH	42	HCCO	products	36	C2H2	14	CO	
+net_reactants	22	CH	42	HCCO	net_products	36	C2H2	14	CO	
+301	-156	CH+HCCO=CO+C2H2	
+reactants	22	CH	42	HCCO	products	36	C2H2	14	CO	
+net_reactants	22	CH	42	HCCO	net_products	36	C2H2	14	CO	
+302	157	CH+CH4=C2H4+H	
+reactants	22	CH	26	CH4	products	38	C2H4	3	H	
+net_reactants	22	CH	26	CH4	net_products	38	C2H4	3	H	
+303	-157	CH+CH4=C2H4+H	
+reactants	22	CH	26	CH4	products	38	C2H4	3	H	
+net_reactants	22	CH	26	CH4	net_products	38	C2H4	3	H	
+304	158	C2H6+CH=C2H5+CH2	
+reactants	40	C2H6	22	CH	products	39	C2H5	24	CH2	
+net_reactants	40	C2H6	22	CH	net_products	39	C2H5	24	CH2	
+305	-158	C2H6+CH=C2H5+CH2	
+reactants	40	C2H6	22	CH	products	39	C2H5	24	CH2	
+net_reactants	40	C2H6	22	CH	net_products	39	C2H5	24	CH2	
+306	159	C2H5+H(+M)=C2H6(+M)	
+reactants	39	C2H5	3	H	products	40	C2H6	
+net_reactants	39	C2H5	3	H	net_products	40	C2H6	
+307	-159	C2H5+H(+M)=C2H6(+M)	
+reactants	39	C2H5	3	H	products	40	C2H6	
+net_reactants	39	C2H5	3	H	net_products	40	C2H6	
+308	160	C2H6+H=C2H5+H2	
+reactants	40	C2H6	3	H	products	39	C2H5	4	H2	
+net_reactants	40	C2H6	3	H	net_products	39	C2H5	4	H2	
+309	-160	C2H6+H=C2H5+H2	
+reactants	40	C2H6	3	H	products	39	C2H5	4	H2	
+net_reactants	40	C2H6	3	H	net_products	39	C2H5	4	H2	
+310	161	C2H6+O=C2H5+OH	
+reactants	40	C2H6	8	O	products	39	C2H5	10	OH	
+net_reactants	40	C2H6	8	O	net_products	39	C2H5	10	OH	
+311	-161	C2H6+O=C2H5+OH	
+reactants	40	C2H6	8	O	products	39	C2H5	10	OH	
+net_reactants	40	C2H6	8	O	net_products	39	C2H5	10	OH	
+312	162	C2H6+OH=C2H5+H2O	
+reactants	40	C2H6	10	OH	products	39	C2H5	11	H2O	
+net_reactants	40	C2H6	10	OH	net_products	39	C2H5	11	H2O	
+313	-162	C2H6+OH=C2H5+H2O	
+reactants	40	C2H6	10	OH	products	39	C2H5	11	H2O	
+net_reactants	40	C2H6	10	OH	net_products	39	C2H5	11	H2O	
+314	163	C2H6+O2=C2H5+HO2	
+reactants	40	C2H6	9	O2	products	39	C2H5	12	HO2	
+net_reactants	40	C2H6	9	O2	net_products	39	C2H5	12	HO2	
+315	-163	C2H6+O2=C2H5+HO2	
+reactants	40	C2H6	9	O2	products	39	C2H5	12	HO2	
+net_reactants	40	C2H6	9	O2	net_products	39	C2H5	12	HO2	
+316	164	C2H6+CH3=C2H5+CH4	
+reactants	40	C2H6	25	CH3	products	39	C2H5	26	CH4	
+net_reactants	40	C2H6	25	CH3	net_products	39	C2H5	26	CH4	
+317	-164	C2H6+CH3=C2H5+CH4	
+reactants	40	C2H6	25	CH3	products	39	C2H5	26	CH4	
+net_reactants	40	C2H6	25	CH3	net_products	39	C2H5	26	CH4	
+318	165	C2H6+HO2=C2H5+H2O2	
+reactants	40	C2H6	12	HO2	products	39	C2H5	13	H2O2	
+net_reactants	40	C2H6	12	HO2	net_products	39	C2H5	13	H2O2	
+319	-165	C2H6+HO2=C2H5+H2O2	
+reactants	40	C2H6	12	HO2	products	39	C2H5	13	H2O2	
+net_reactants	40	C2H6	12	HO2	net_products	39	C2H5	13	H2O2	
+320	166	C2H6+CH3OO=C2H5+CH3OOH	
+reactants	40	C2H6	27	CH3OO	products	39	C2H5	28	CH3OOH	
+net_reactants	40	C2H6	27	CH3OO	net_products	39	C2H5	28	CH3OOH	
+321	-166	C2H6+CH3OO=C2H5+CH3OOH	
+reactants	40	C2H6	27	CH3OO	products	39	C2H5	28	CH3OOH	
+net_reactants	40	C2H6	27	CH3OO	net_products	39	C2H5	28	CH3OOH	
+322	167	C2H6+CH3O=C2H5+CH3OH	
+reactants	40	C2H6	30	CH3O	products	39	C2H5	31	CH3OH	
+net_reactants	40	C2H6	30	CH3O	net_products	39	C2H5	31	CH3OH	
+323	-167	C2H6+CH3O=C2H5+CH3OH	
+reactants	40	C2H6	30	CH3O	products	39	C2H5	31	CH3OH	
+net_reactants	40	C2H6	30	CH3O	net_products	39	C2H5	31	CH3OH	
+324	168	H+C2H4(+M)=C2H5(+M)	
+reactants	38	C2H4	3	H	products	39	C2H5	
+net_reactants	38	C2H4	3	H	net_products	39	C2H5	
+325	-168	H+C2H4(+M)=C2H5(+M)	
+reactants	38	C2H4	3	H	products	39	C2H5	
+net_reactants	38	C2H4	3	H	net_products	39	C2H5	
+326	169	H2+CH3OO=H+CH3OOH	
+reactants	27	CH3OO	4	H2	products	28	CH3OOH	3	H	
+net_reactants	27	CH3OO	4	H2	net_products	28	CH3OOH	3	H	
+327	-169	H2+CH3OO=H+CH3OOH	
+reactants	27	CH3OO	4	H2	products	28	CH3OOH	3	H	
+net_reactants	27	CH3OO	4	H2	net_products	28	CH3OOH	3	H	
+328	170	H2+CH3CH2OO=H+CH3CH2OOH	
+reactants	50	CH3CH2OO	4	H2	products	51	CH3CH2OOH	3	H	
+net_reactants	50	CH3CH2OO	4	H2	net_products	51	CH3CH2OOH	3	H	
+329	-170	H2+CH3CH2OO=H+CH3CH2OOH	
+reactants	50	CH3CH2OO	4	H2	products	51	CH3CH2OOH	3	H	
+net_reactants	50	CH3CH2OO	4	H2	net_products	51	CH3CH2OOH	3	H	
+330	171	C2H4+C2H4=C2H5+C2H3	
+reactants	38	C2H4	products	37	C2H3	39	C2H5	
+net_reactants	38	C2H4	net_products	37	C2H3	39	C2H5	
+331	-171	C2H4+C2H4=C2H5+C2H3	
+reactants	38	C2H4	products	37	C2H3	39	C2H5	
+net_reactants	38	C2H4	net_products	37	C2H3	39	C2H5	
+332	172	CH3+C2H5=CH4+C2H4	
+reactants	39	C2H5	25	CH3	products	38	C2H4	26	CH4	
+net_reactants	39	C2H5	25	CH3	net_products	38	C2H4	26	CH4	
+333	-172	CH3+C2H5=CH4+C2H4	
+reactants	39	C2H5	25	CH3	products	38	C2H4	26	CH4	
+net_reactants	39	C2H5	25	CH3	net_products	38	C2H4	26	CH4	
+334	173	C2H5+H=C2H4+H2	
+reactants	39	C2H5	3	H	products	38	C2H4	4	H2	
+net_reactants	39	C2H5	3	H	net_products	38	C2H4	4	H2	
+335	-173	C2H5+H=C2H4+H2	
+reactants	39	C2H5	3	H	products	38	C2H4	4	H2	
+net_reactants	39	C2H5	3	H	net_products	38	C2H4	4	H2	
+336	174	C2H5+O=acetaldehyde+H	
+reactants	39	C2H5	8	O	products	3	H	44	acetaldehyde	
+net_reactants	39	C2H5	8	O	net_products	3	H	44	acetaldehyde	
+337	-174	C2H5+O=acetaldehyde+H	
+reactants	39	C2H5	8	O	products	3	H	44	acetaldehyde	
+net_reactants	39	C2H5	8	O	net_products	3	H	44	acetaldehyde	
+338	175	C2H5+HO2=ethoxy+OH	
+reactants	39	C2H5	12	HO2	products	10	OH	49	ethoxy	
+net_reactants	39	C2H5	12	HO2	net_products	10	OH	49	ethoxy	
+339	-175	C2H5+HO2=ethoxy+OH	
+reactants	39	C2H5	12	HO2	products	10	OH	49	ethoxy	
+net_reactants	39	C2H5	12	HO2	net_products	10	OH	49	ethoxy	
+340	176	CH3OO+C2H5=CH3O+ethoxy	
+reactants	39	C2H5	27	CH3OO	products	30	CH3O	49	ethoxy	
+net_reactants	39	C2H5	27	CH3OO	net_products	30	CH3O	49	ethoxy	
+341	-176	CH3OO+C2H5=CH3O+ethoxy	
+reactants	39	C2H5	27	CH3OO	products	30	CH3O	49	ethoxy	
+net_reactants	39	C2H5	27	CH3OO	net_products	30	CH3O	49	ethoxy	
+342	177	ethoxy+O2=acetaldehyde+HO2	
+reactants	9	O2	49	ethoxy	products	12	HO2	44	acetaldehyde	
+net_reactants	9	O2	49	ethoxy	net_products	12	HO2	44	acetaldehyde	
+343	-177	ethoxy+O2=acetaldehyde+HO2	
+reactants	9	O2	49	ethoxy	products	12	HO2	44	acetaldehyde	
+net_reactants	9	O2	49	ethoxy	net_products	12	HO2	44	acetaldehyde	
+344	178	CH3+CH2O=ethoxy	
+reactants	17	CH2O	25	CH3	products	49	ethoxy	
+net_reactants	17	CH2O	25	CH3	net_products	49	ethoxy	
+345	-178	CH3+CH2O=ethoxy	
+reactants	17	CH2O	25	CH3	products	49	ethoxy	
+net_reactants	17	CH2O	25	CH3	net_products	49	ethoxy	
+346	179	acetaldehyde+H=ethoxy	
+reactants	3	H	44	acetaldehyde	products	49	ethoxy	
+net_reactants	3	H	44	acetaldehyde	net_products	49	ethoxy	
+347	-179	acetaldehyde+H=ethoxy	
+reactants	3	H	44	acetaldehyde	products	49	ethoxy	
+net_reactants	3	H	44	acetaldehyde	net_products	49	ethoxy	
+348	180	C2H5+O2=CH3CH2OO	
+reactants	39	C2H5	9	O2	products	50	CH3CH2OO	
+net_reactants	39	C2H5	9	O2	net_products	50	CH3CH2OO	
+349	-180	C2H5+O2=CH3CH2OO	
+reactants	39	C2H5	9	O2	products	50	CH3CH2OO	
+net_reactants	39	C2H5	9	O2	net_products	50	CH3CH2OO	
+350	181	CH3CH2OO+CH2O=CH3CH2OOH+HCO	
+reactants	17	CH2O	50	CH3CH2OO	products	51	CH3CH2OOH	16	HCO	
+net_reactants	17	CH2O	50	CH3CH2OO	net_products	51	CH3CH2OOH	16	HCO	
+351	-181	CH3CH2OO+CH2O=CH3CH2OOH+HCO	
+reactants	17	CH2O	50	CH3CH2OO	products	51	CH3CH2OOH	16	HCO	
+net_reactants	17	CH2O	50	CH3CH2OO	net_products	51	CH3CH2OOH	16	HCO	
+352	182	CH4+CH3CH2OO=CH3+CH3CH2OOH	
+reactants	50	CH3CH2OO	26	CH4	products	25	CH3	51	CH3CH2OOH	
+net_reactants	50	CH3CH2OO	26	CH4	net_products	25	CH3	51	CH3CH2OOH	
+353	-182	CH4+CH3CH2OO=CH3+CH3CH2OOH	
+reactants	50	CH3CH2OO	26	CH4	products	25	CH3	51	CH3CH2OOH	
+net_reactants	50	CH3CH2OO	26	CH4	net_products	25	CH3	51	CH3CH2OOH	
+354	183	CH3OH+CH3CH2OO=CH2OH+CH3CH2OOH	
+reactants	50	CH3CH2OO	31	CH3OH	products	29	CH2OH	51	CH3CH2OOH	
+net_reactants	50	CH3CH2OO	31	CH3OH	net_products	29	CH2OH	51	CH3CH2OOH	
+355	-183	CH3OH+CH3CH2OO=CH2OH+CH3CH2OOH	
+reactants	50	CH3CH2OO	31	CH3OH	products	29	CH2OH	51	CH3CH2OOH	
+net_reactants	50	CH3CH2OO	31	CH3OH	net_products	29	CH2OH	51	CH3CH2OOH	
+356	184	CH3CH2OO+HO2=CH3CH2OOH+O2	
+reactants	50	CH3CH2OO	12	HO2	products	51	CH3CH2OOH	9	O2	
+net_reactants	50	CH3CH2OO	12	HO2	net_products	51	CH3CH2OOH	9	O2	
+357	-184	CH3CH2OO+HO2=CH3CH2OOH+O2	
+reactants	50	CH3CH2OO	12	HO2	products	51	CH3CH2OOH	9	O2	
+net_reactants	50	CH3CH2OO	12	HO2	net_products	51	CH3CH2OOH	9	O2	
+358	185	C2H6+CH3CH2OO=C2H5+CH3CH2OOH	
+reactants	40	C2H6	50	CH3CH2OO	products	39	C2H5	51	CH3CH2OOH	
+net_reactants	40	C2H6	50	CH3CH2OO	net_products	39	C2H5	51	CH3CH2OOH	
+359	-185	C2H6+CH3CH2OO=C2H5+CH3CH2OOH	
+reactants	40	C2H6	50	CH3CH2OO	products	39	C2H5	51	CH3CH2OOH	
+net_reactants	40	C2H6	50	CH3CH2OO	net_products	39	C2H5	51	CH3CH2OOH	
+360	186	CH3CH2OOH=ethoxy+OH	
+reactants	51	CH3CH2OOH	products	10	OH	49	ethoxy	
+net_reactants	51	CH3CH2OOH	net_products	10	OH	49	ethoxy	
+361	-186	CH3CH2OOH=ethoxy+OH	
+reactants	51	CH3CH2OOH	products	10	OH	49	ethoxy	
+net_reactants	51	CH3CH2OOH	net_products	10	OH	49	ethoxy	
+362	187	C2H5+O2=CH2CH2OOH	
+reactants	39	C2H5	9	O2	products	52	CH2CH2OOH	
+net_reactants	39	C2H5	9	O2	net_products	52	CH2CH2OOH	
+363	-187	C2H5+O2=CH2CH2OOH	
+reactants	39	C2H5	9	O2	products	52	CH2CH2OOH	
+net_reactants	39	C2H5	9	O2	net_products	52	CH2CH2OOH	
+364	188	C2H5+O2=C2H4+HO2	189	C2H5+O2=C2H4+HO2	
+reactants	39	C2H5	9	O2	products	38	C2H4	12	HO2	
+net_reactants	39	C2H5	9	O2	net_products	38	C2H4	12	HO2	
+365	-188	C2H5+O2=C2H4+HO2	-189	C2H5+O2=C2H4+HO2	
+reactants	39	C2H5	9	O2	products	38	C2H4	12	HO2	
+net_reactants	39	C2H5	9	O2	net_products	38	C2H4	12	HO2	
+366	190	C2H5+O2=oxirane+OH	
+reactants	39	C2H5	9	O2	products	10	OH	56	oxirane	
+net_reactants	39	C2H5	9	O2	net_products	10	OH	56	oxirane	
+367	-190	C2H5+O2=oxirane+OH	
+reactants	39	C2H5	9	O2	products	10	OH	56	oxirane	
+net_reactants	39	C2H5	9	O2	net_products	10	OH	56	oxirane	
+368	191	C2H5+O2=acetaldehyde+OH	
+reactants	39	C2H5	9	O2	products	10	OH	44	acetaldehyde	
+net_reactants	39	C2H5	9	O2	net_products	10	OH	44	acetaldehyde	
+369	-191	C2H5+O2=acetaldehyde+OH	
+reactants	39	C2H5	9	O2	products	10	OH	44	acetaldehyde	
+net_reactants	39	C2H5	9	O2	net_products	10	OH	44	acetaldehyde	
+370	192	CH2CH2OOH=CH3CH2OO	
+reactants	52	CH2CH2OOH	products	50	CH3CH2OO	
+net_reactants	52	CH2CH2OOH	net_products	50	CH3CH2OO	
+371	-192	CH2CH2OOH=CH3CH2OO	
+reactants	52	CH2CH2OOH	products	50	CH3CH2OO	
+net_reactants	52	CH2CH2OOH	net_products	50	CH3CH2OO	
+372	193	CH3CH2OO=acetaldehyde+OH	
+reactants	50	CH3CH2OO	products	10	OH	44	acetaldehyde	
+net_reactants	50	CH3CH2OO	net_products	10	OH	44	acetaldehyde	
+373	-193	CH3CH2OO=acetaldehyde+OH	
+reactants	50	CH3CH2OO	products	10	OH	44	acetaldehyde	
+net_reactants	50	CH3CH2OO	net_products	10	OH	44	acetaldehyde	
+374	194	CH3CH2OO=C2H4+HO2	
+reactants	50	CH3CH2OO	products	38	C2H4	12	HO2	
+net_reactants	50	CH3CH2OO	net_products	38	C2H4	12	HO2	
+375	-194	CH3CH2OO=C2H4+HO2	
+reactants	50	CH3CH2OO	products	38	C2H4	12	HO2	
+net_reactants	50	CH3CH2OO	net_products	38	C2H4	12	HO2	
+376	195	CH3CH2OO=oxirane+OH	
+reactants	50	CH3CH2OO	products	10	OH	56	oxirane	
+net_reactants	50	CH3CH2OO	net_products	10	OH	56	oxirane	
+377	-195	CH3CH2OO=oxirane+OH	
+reactants	50	CH3CH2OO	products	10	OH	56	oxirane	
+net_reactants	50	CH3CH2OO	net_products	10	OH	56	oxirane	
+378	196	CH2CH2OOH=oxirane+OH	
+reactants	52	CH2CH2OOH	products	10	OH	56	oxirane	
+net_reactants	52	CH2CH2OOH	net_products	10	OH	56	oxirane	
+379	-196	CH2CH2OOH=oxirane+OH	
+reactants	52	CH2CH2OOH	products	10	OH	56	oxirane	
+net_reactants	52	CH2CH2OOH	net_products	10	OH	56	oxirane	
+380	197	CH2CH2OOH=C2H4+HO2	
+reactants	52	CH2CH2OOH	products	38	C2H4	12	HO2	
+net_reactants	52	CH2CH2OOH	net_products	38	C2H4	12	HO2	
+381	-197	CH2CH2OOH=C2H4+HO2	
+reactants	52	CH2CH2OOH	products	38	C2H4	12	HO2	
+net_reactants	52	CH2CH2OOH	net_products	38	C2H4	12	HO2	
+382	198	CH2CH2OOH=acetaldehyde+OH	
+reactants	52	CH2CH2OOH	products	10	OH	44	acetaldehyde	
+net_reactants	52	CH2CH2OOH	net_products	10	OH	44	acetaldehyde	
+383	-198	CH2CH2OOH=acetaldehyde+OH	
+reactants	52	CH2CH2OOH	products	10	OH	44	acetaldehyde	
+net_reactants	52	CH2CH2OOH	net_products	10	OH	44	acetaldehyde	
+384	199	oxirane=CH3+HCO	
+reactants	56	oxirane	products	25	CH3	16	HCO	
+net_reactants	56	oxirane	net_products	25	CH3	16	HCO	
+385	-199	oxirane=CH3+HCO	
+reactants	56	oxirane	products	25	CH3	16	HCO	
+net_reactants	56	oxirane	net_products	25	CH3	16	HCO	
+386	200	oxirane=acetaldehyde	
+reactants	56	oxirane	products	44	acetaldehyde	
+net_reactants	56	oxirane	net_products	44	acetaldehyde	
+387	-200	oxirane=acetaldehyde	
+reactants	56	oxirane	products	44	acetaldehyde	
+net_reactants	56	oxirane	net_products	44	acetaldehyde	
+388	201	oxirane+OH=oxiranyl+H2O	
+reactants	10	OH	56	oxirane	products	11	H2O	57	oxiranyl	
+net_reactants	10	OH	56	oxirane	net_products	11	H2O	57	oxiranyl	
+389	-201	oxirane+OH=oxiranyl+H2O	
+reactants	10	OH	56	oxirane	products	11	H2O	57	oxiranyl	
+net_reactants	10	OH	56	oxirane	net_products	11	H2O	57	oxiranyl	
+390	202	oxirane+H=oxiranyl+H2	
+reactants	3	H	56	oxirane	products	4	H2	57	oxiranyl	
+net_reactants	3	H	56	oxirane	net_products	4	H2	57	oxiranyl	
+391	-202	oxirane+H=oxiranyl+H2	
+reactants	3	H	56	oxirane	products	4	H2	57	oxiranyl	
+net_reactants	3	H	56	oxirane	net_products	4	H2	57	oxiranyl	
+392	203	oxirane+HO2=oxiranyl+H2O2	
+reactants	12	HO2	56	oxirane	products	13	H2O2	57	oxiranyl	
+net_reactants	12	HO2	56	oxirane	net_products	13	H2O2	57	oxiranyl	
+393	-203	oxirane+HO2=oxiranyl+H2O2	
+reactants	12	HO2	56	oxirane	products	13	H2O2	57	oxiranyl	
+net_reactants	12	HO2	56	oxirane	net_products	13	H2O2	57	oxiranyl	
+394	204	oxirane+CH3OO=oxiranyl+CH3OOH	
+reactants	27	CH3OO	56	oxirane	products	28	CH3OOH	57	oxiranyl	
+net_reactants	27	CH3OO	56	oxirane	net_products	28	CH3OOH	57	oxiranyl	
+395	-204	oxirane+CH3OO=oxiranyl+CH3OOH	
+reactants	27	CH3OO	56	oxirane	products	28	CH3OOH	57	oxiranyl	
+net_reactants	27	CH3OO	56	oxirane	net_products	28	CH3OOH	57	oxiranyl	
+396	205	oxirane+CH3CH2OO=oxiranyl+CH3CH2OOH	
+reactants	50	CH3CH2OO	56	oxirane	products	51	CH3CH2OOH	57	oxiranyl	
+net_reactants	50	CH3CH2OO	56	oxirane	net_products	51	CH3CH2OOH	57	oxiranyl	
+397	-205	oxirane+CH3CH2OO=oxiranyl+CH3CH2OOH	
+reactants	50	CH3CH2OO	56	oxirane	products	51	CH3CH2OOH	57	oxiranyl	
+net_reactants	50	CH3CH2OO	56	oxirane	net_products	51	CH3CH2OOH	57	oxiranyl	
+398	206	oxirane+CH3=oxiranyl+CH4	
+reactants	25	CH3	56	oxirane	products	26	CH4	57	oxiranyl	
+net_reactants	25	CH3	56	oxirane	net_products	26	CH4	57	oxiranyl	
+399	-206	oxirane+CH3=oxiranyl+CH4	
+reactants	25	CH3	56	oxirane	products	26	CH4	57	oxiranyl	
+net_reactants	25	CH3	56	oxirane	net_products	26	CH4	57	oxiranyl	
+400	207	oxirane+CH3O=oxiranyl+CH3OH	
+reactants	30	CH3O	56	oxirane	products	31	CH3OH	57	oxiranyl	
+net_reactants	30	CH3O	56	oxirane	net_products	31	CH3OH	57	oxiranyl	
+401	-207	oxirane+CH3O=oxiranyl+CH3OH	
+reactants	30	CH3O	56	oxirane	products	31	CH3OH	57	oxiranyl	
+net_reactants	30	CH3O	56	oxirane	net_products	31	CH3OH	57	oxiranyl	
+402	208	oxiranyl=acetyl	
+reactants	57	oxiranyl	products	45	acetyl	
+net_reactants	57	oxiranyl	net_products	45	acetyl	
+403	-208	oxiranyl=acetyl	
+reactants	57	oxiranyl	products	45	acetyl	
+net_reactants	57	oxiranyl	net_products	45	acetyl	
+404	209	oxiranyl=vinoxy	
+reactants	57	oxiranyl	products	46	vinoxy	
+net_reactants	57	oxiranyl	net_products	46	vinoxy	
+405	-209	oxiranyl=vinoxy	
+reactants	57	oxiranyl	products	46	vinoxy	
+net_reactants	57	oxiranyl	net_products	46	vinoxy	
+406	210	CH3+HCO=acetaldehyde	
+reactants	25	CH3	16	HCO	products	44	acetaldehyde	
+net_reactants	25	CH3	16	HCO	net_products	44	acetaldehyde	
+407	-210	CH3+HCO=acetaldehyde	
+reactants	25	CH3	16	HCO	products	44	acetaldehyde	
+net_reactants	25	CH3	16	HCO	net_products	44	acetaldehyde	
+408	211	acetaldehyde+H=acetyl+H2	
+reactants	3	H	44	acetaldehyde	products	4	H2	45	acetyl	
+net_reactants	3	H	44	acetaldehyde	net_products	4	H2	45	acetyl	
+409	-211	acetaldehyde+H=acetyl+H2	
+reactants	3	H	44	acetaldehyde	products	4	H2	45	acetyl	
+net_reactants	3	H	44	acetaldehyde	net_products	4	H2	45	acetyl	
+410	212	acetaldehyde+O=acetyl+OH	
+reactants	8	O	44	acetaldehyde	products	10	OH	45	acetyl	
+net_reactants	8	O	44	acetaldehyde	net_products	10	OH	45	acetyl	
+411	-212	acetaldehyde+O=acetyl+OH	
+reactants	8	O	44	acetaldehyde	products	10	OH	45	acetyl	
+net_reactants	8	O	44	acetaldehyde	net_products	10	OH	45	acetyl	
+412	213	acetaldehyde+OH=acetyl+H2O	
+reactants	10	OH	44	acetaldehyde	products	11	H2O	45	acetyl	
+net_reactants	10	OH	44	acetaldehyde	net_products	11	H2O	45	acetyl	
+413	-213	acetaldehyde+OH=acetyl+H2O	
+reactants	10	OH	44	acetaldehyde	products	11	H2O	45	acetyl	
+net_reactants	10	OH	44	acetaldehyde	net_products	11	H2O	45	acetyl	
+414	214	acetaldehyde+O2=acetyl+HO2	
+reactants	9	O2	44	acetaldehyde	products	12	HO2	45	acetyl	
+net_reactants	9	O2	44	acetaldehyde	net_products	12	HO2	45	acetyl	
+415	-214	acetaldehyde+O2=acetyl+HO2	
+reactants	9	O2	44	acetaldehyde	products	12	HO2	45	acetyl	
+net_reactants	9	O2	44	acetaldehyde	net_products	12	HO2	45	acetyl	
+416	215	acetaldehyde+CH3=acetyl+CH4	
+reactants	25	CH3	44	acetaldehyde	products	26	CH4	45	acetyl	
+net_reactants	25	CH3	44	acetaldehyde	net_products	26	CH4	45	acetyl	
+417	-215	acetaldehyde+CH3=acetyl+CH4	
+reactants	25	CH3	44	acetaldehyde	products	26	CH4	45	acetyl	
+net_reactants	25	CH3	44	acetaldehyde	net_products	26	CH4	45	acetyl	
+418	216	acetaldehyde+HO2=acetyl+H2O2	
+reactants	12	HO2	44	acetaldehyde	products	13	H2O2	45	acetyl	
+net_reactants	12	HO2	44	acetaldehyde	net_products	13	H2O2	45	acetyl	
+419	-216	acetaldehyde+HO2=acetyl+H2O2	
+reactants	12	HO2	44	acetaldehyde	products	13	H2O2	45	acetyl	
+net_reactants	12	HO2	44	acetaldehyde	net_products	13	H2O2	45	acetyl	
+420	217	CH3OO+acetaldehyde=CH3OOH+acetyl	
+reactants	27	CH3OO	44	acetaldehyde	products	28	CH3OOH	45	acetyl	
+net_reactants	27	CH3OO	44	acetaldehyde	net_products	28	CH3OOH	45	acetyl	
+421	-217	CH3OO+acetaldehyde=CH3OOH+acetyl	
+reactants	27	CH3OO	44	acetaldehyde	products	28	CH3OOH	45	acetyl	
+net_reactants	27	CH3OO	44	acetaldehyde	net_products	28	CH3OOH	45	acetyl	
+422	218	acetaldehyde+acetylperoxy=acetyl+CH3CO3H	
+reactants	44	acetaldehyde	47	acetylperoxy	products	84	CH3CO3H	45	acetyl	
+net_reactants	44	acetaldehyde	47	acetylperoxy	net_products	84	CH3CO3H	45	acetyl	
+423	-218	acetaldehyde+acetylperoxy=acetyl+CH3CO3H	
+reactants	44	acetaldehyde	47	acetylperoxy	products	84	CH3CO3H	45	acetyl	
+net_reactants	44	acetaldehyde	47	acetylperoxy	net_products	84	CH3CO3H	45	acetyl	
+424	219	acetaldehyde+OH=vinoxy+H2O	
+reactants	10	OH	44	acetaldehyde	products	11	H2O	46	vinoxy	
+net_reactants	10	OH	44	acetaldehyde	net_products	11	H2O	46	vinoxy	
+425	-219	acetaldehyde+OH=vinoxy+H2O	
+reactants	10	OH	44	acetaldehyde	products	11	H2O	46	vinoxy	
+net_reactants	10	OH	44	acetaldehyde	net_products	11	H2O	46	vinoxy	
+426	220	acetyl(+M)=CH3+CO(+M)	
+reactants	45	acetyl	products	25	CH3	14	CO	
+net_reactants	45	acetyl	net_products	25	CH3	14	CO	
+427	-220	acetyl(+M)=CH3+CO(+M)	
+reactants	45	acetyl	products	25	CH3	14	CO	
+net_reactants	45	acetyl	net_products	25	CH3	14	CO	
+428	221	acetyl+H=ketene+H2	
+reactants	3	H	45	acetyl	products	4	H2	41	ketene	
+net_reactants	3	H	45	acetyl	net_products	4	H2	41	ketene	
+429	-221	acetyl+H=ketene+H2	
+reactants	3	H	45	acetyl	products	4	H2	41	ketene	
+net_reactants	3	H	45	acetyl	net_products	4	H2	41	ketene	
+430	222	acetyl+O=ketene+OH	
+reactants	8	O	45	acetyl	products	10	OH	41	ketene	
+net_reactants	8	O	45	acetyl	net_products	10	OH	41	ketene	
+431	-222	acetyl+O=ketene+OH	
+reactants	8	O	45	acetyl	products	10	OH	41	ketene	
+net_reactants	8	O	45	acetyl	net_products	10	OH	41	ketene	
+432	223	acetyl+CH3=ketene+CH4	
+reactants	25	CH3	45	acetyl	products	26	CH4	41	ketene	
+net_reactants	25	CH3	45	acetyl	net_products	26	CH4	41	ketene	
+433	-223	acetyl+CH3=ketene+CH4	
+reactants	25	CH3	45	acetyl	products	26	CH4	41	ketene	
+net_reactants	25	CH3	45	acetyl	net_products	26	CH4	41	ketene	
+434	224	acetyl+O2=acetylperoxy	
+reactants	9	O2	45	acetyl	products	47	acetylperoxy	
+net_reactants	9	O2	45	acetyl	net_products	47	acetylperoxy	
+435	-224	acetyl+O2=acetylperoxy	
+reactants	9	O2	45	acetyl	products	47	acetylperoxy	
+net_reactants	9	O2	45	acetyl	net_products	47	acetylperoxy	
+436	225	acetylperoxy+HO2=CH3CO3H+O2	
+reactants	12	HO2	47	acetylperoxy	products	84	CH3CO3H	9	O2	
+net_reactants	12	HO2	47	acetylperoxy	net_products	84	CH3CO3H	9	O2	
+437	-225	acetylperoxy+HO2=CH3CO3H+O2	
+reactants	12	HO2	47	acetylperoxy	products	84	CH3CO3H	9	O2	
+net_reactants	12	HO2	47	acetylperoxy	net_products	84	CH3CO3H	9	O2	
+438	226	H2O2+acetylperoxy=HO2+CH3CO3H	
+reactants	13	H2O2	47	acetylperoxy	products	84	CH3CO3H	12	HO2	
+net_reactants	13	H2O2	47	acetylperoxy	net_products	84	CH3CO3H	12	HO2	
+439	-226	H2O2+acetylperoxy=HO2+CH3CO3H	
+reactants	13	H2O2	47	acetylperoxy	products	84	CH3CO3H	12	HO2	
+net_reactants	13	H2O2	47	acetylperoxy	net_products	84	CH3CO3H	12	HO2	
+440	227	CH4+acetylperoxy=CH3+CH3CO3H	
+reactants	26	CH4	47	acetylperoxy	products	25	CH3	84	CH3CO3H	
+net_reactants	26	CH4	47	acetylperoxy	net_products	25	CH3	84	CH3CO3H	
+441	-227	CH4+acetylperoxy=CH3+CH3CO3H	
+reactants	26	CH4	47	acetylperoxy	products	25	CH3	84	CH3CO3H	
+net_reactants	26	CH4	47	acetylperoxy	net_products	25	CH3	84	CH3CO3H	
+442	228	CH2O+acetylperoxy=HCO+CH3CO3H	
+reactants	17	CH2O	47	acetylperoxy	products	84	CH3CO3H	16	HCO	
+net_reactants	17	CH2O	47	acetylperoxy	net_products	84	CH3CO3H	16	HCO	
+443	-228	CH2O+acetylperoxy=HCO+CH3CO3H	
+reactants	17	CH2O	47	acetylperoxy	products	84	CH3CO3H	16	HCO	
+net_reactants	17	CH2O	47	acetylperoxy	net_products	84	CH3CO3H	16	HCO	
+444	229	C2H6+acetylperoxy=C2H5+CH3CO3H	
+reactants	40	C2H6	47	acetylperoxy	products	39	C2H5	84	CH3CO3H	
+net_reactants	40	C2H6	47	acetylperoxy	net_products	39	C2H5	84	CH3CO3H	
+445	-229	C2H6+acetylperoxy=C2H5+CH3CO3H	
+reactants	40	C2H6	47	acetylperoxy	products	39	C2H5	84	CH3CO3H	
+net_reactants	40	C2H6	47	acetylperoxy	net_products	39	C2H5	84	CH3CO3H	
+446	230	CH3CO3H=acetyloxy+OH	
+reactants	84	CH3CO3H	products	10	OH	48	acetyloxy	
+net_reactants	84	CH3CO3H	net_products	10	OH	48	acetyloxy	
+447	-230	CH3CO3H=acetyloxy+OH	
+reactants	84	CH3CO3H	products	10	OH	48	acetyloxy	
+net_reactants	84	CH3CO3H	net_products	10	OH	48	acetyloxy	
+448	231	acetyloxy+M=CH3+CO2+M	
+reactants	48	acetyloxy	products	25	CH3	15	CO2	
+net_reactants	48	acetyloxy	net_products	25	CH3	15	CO2	
+449	-231	acetyloxy+M=CH3+CO2+M	
+reactants	48	acetyloxy	products	25	CH3	15	CO2	
+net_reactants	48	acetyloxy	net_products	25	CH3	15	CO2	
+450	232	ketene+H=vinoxy	
+reactants	3	H	41	ketene	products	46	vinoxy	
+net_reactants	3	H	41	ketene	net_products	46	vinoxy	
+451	-232	ketene+H=vinoxy	
+reactants	3	H	41	ketene	products	46	vinoxy	
+net_reactants	3	H	41	ketene	net_products	46	vinoxy	
+452	233	vinoxy+O2=CH2O+CO+OH	
+reactants	9	O2	46	vinoxy	products	17	CH2O	14	CO	10	OH	
+net_reactants	9	O2	46	vinoxy	net_products	17	CH2O	14	CO	10	OH	
+453	-233	vinoxy+O2=CH2O+CO+OH	
+reactants	9	O2	46	vinoxy	products	17	CH2O	14	CO	10	OH	
+net_reactants	9	O2	46	vinoxy	net_products	17	CH2O	14	CO	10	OH	
+454	234	ketene+H=CH3+CO	
+reactants	3	H	41	ketene	products	25	CH3	14	CO	
+net_reactants	3	H	41	ketene	net_products	25	CH3	14	CO	
+455	-234	ketene+H=CH3+CO	
+reactants	3	H	41	ketene	products	25	CH3	14	CO	
+net_reactants	3	H	41	ketene	net_products	25	CH3	14	CO	
+456	235	ketene+H=HCCO+H2	
+reactants	3	H	41	ketene	products	4	H2	42	HCCO	
+net_reactants	3	H	41	ketene	net_products	4	H2	42	HCCO	
+457	-235	ketene+H=HCCO+H2	
+reactants	3	H	41	ketene	products	4	H2	42	HCCO	
+net_reactants	3	H	41	ketene	net_products	4	H2	42	HCCO	
+458	236	ketene+O=CH2+CO2	
+reactants	8	O	41	ketene	products	24	CH2	15	CO2	
+net_reactants	8	O	41	ketene	net_products	24	CH2	15	CO2	
+459	-236	ketene+O=CH2+CO2	
+reactants	8	O	41	ketene	products	24	CH2	15	CO2	
+net_reactants	8	O	41	ketene	net_products	24	CH2	15	CO2	
+460	237	ketene+O=HCCO+OH	
+reactants	8	O	41	ketene	products	42	HCCO	10	OH	
+net_reactants	8	O	41	ketene	net_products	42	HCCO	10	OH	
+461	-237	ketene+O=HCCO+OH	
+reactants	8	O	41	ketene	products	42	HCCO	10	OH	
+net_reactants	8	O	41	ketene	net_products	42	HCCO	10	OH	
+462	238	ketene+OH=HCCO+H2O	
+reactants	10	OH	41	ketene	products	11	H2O	42	HCCO	
+net_reactants	10	OH	41	ketene	net_products	11	H2O	42	HCCO	
+463	-238	ketene+OH=HCCO+H2O	
+reactants	10	OH	41	ketene	products	11	H2O	42	HCCO	
+net_reactants	10	OH	41	ketene	net_products	11	H2O	42	HCCO	
+464	239	ketene+OH=CH2OH+CO	
+reactants	10	OH	41	ketene	products	29	CH2OH	14	CO	
+net_reactants	10	OH	41	ketene	net_products	29	CH2OH	14	CO	
+465	-239	ketene+OH=CH2OH+CO	
+reactants	10	OH	41	ketene	products	29	CH2OH	14	CO	
+net_reactants	10	OH	41	ketene	net_products	29	CH2OH	14	CO	
+466	240	HCCO+OH=H2+CO+CO	
+reactants	42	HCCO	10	OH	products	14	CO	4	H2	
+net_reactants	42	HCCO	10	OH	net_products	14	CO	4	H2	
+467	-240	HCCO+OH=H2+CO+CO	
+reactants	42	HCCO	10	OH	products	14	CO	4	H2	
+net_reactants	42	HCCO	10	OH	net_products	14	CO	4	H2	
+468	241	HCCO+O=H+CO+CO	
+reactants	42	HCCO	8	O	products	14	CO	3	H	
+net_reactants	42	HCCO	8	O	net_products	14	CO	3	H	
+469	-241	HCCO+O=H+CO+CO	
+reactants	42	HCCO	8	O	products	14	CO	3	H	
+net_reactants	42	HCCO	8	O	net_products	14	CO	3	H	
+470	242	HCCO+O2=OH+CO+CO	
+reactants	42	HCCO	9	O2	products	14	CO	10	OH	
+net_reactants	42	HCCO	9	O2	net_products	14	CO	10	OH	
+471	-242	HCCO+O2=OH+CO+CO	
+reactants	42	HCCO	9	O2	products	14	CO	10	OH	
+net_reactants	42	HCCO	9	O2	net_products	14	CO	10	OH	
+472	243	C2H3+H(+M)=C2H4(+M)	
+reactants	37	C2H3	3	H	products	38	C2H4	
+net_reactants	37	C2H3	3	H	net_products	38	C2H4	
+473	-243	C2H3+H(+M)=C2H4(+M)	
+reactants	37	C2H3	3	H	products	38	C2H4	
+net_reactants	37	C2H3	3	H	net_products	38	C2H4	
+474	244	C2H4(+M)=C2H2+H2(+M)	
+reactants	38	C2H4	products	36	C2H2	4	H2	
+net_reactants	38	C2H4	net_products	36	C2H2	4	H2	
+475	-244	C2H4(+M)=C2H2+H2(+M)	
+reactants	38	C2H4	products	36	C2H2	4	H2	
+net_reactants	38	C2H4	net_products	36	C2H2	4	H2	
+476	245	C2H4+H=C2H3+H2	
+reactants	38	C2H4	3	H	products	37	C2H3	4	H2	
+net_reactants	38	C2H4	3	H	net_products	37	C2H3	4	H2	
+477	-245	C2H4+H=C2H3+H2	
+reactants	38	C2H4	3	H	products	37	C2H3	4	H2	
+net_reactants	38	C2H4	3	H	net_products	37	C2H3	4	H2	
+478	246	C2H4+O=CH3+HCO	
+reactants	38	C2H4	8	O	products	25	CH3	16	HCO	
+net_reactants	38	C2H4	8	O	net_products	25	CH3	16	HCO	
+479	-246	C2H4+O=CH3+HCO	
+reactants	38	C2H4	8	O	products	25	CH3	16	HCO	
+net_reactants	38	C2H4	8	O	net_products	25	CH3	16	HCO	
+480	247	C2H4+O=vinoxy+H	
+reactants	38	C2H4	8	O	products	3	H	46	vinoxy	
+net_reactants	38	C2H4	8	O	net_products	3	H	46	vinoxy	
+481	-247	C2H4+O=vinoxy+H	
+reactants	38	C2H4	8	O	products	3	H	46	vinoxy	
+net_reactants	38	C2H4	8	O	net_products	3	H	46	vinoxy	
+482	248	C2H4+OH=C2H3+H2O	
+reactants	38	C2H4	10	OH	products	37	C2H3	11	H2O	
+net_reactants	38	C2H4	10	OH	net_products	37	C2H3	11	H2O	
+483	-248	C2H4+OH=C2H3+H2O	
+reactants	38	C2H4	10	OH	products	37	C2H3	11	H2O	
+net_reactants	38	C2H4	10	OH	net_products	37	C2H3	11	H2O	
+484	249	C2H4+CH3=C2H3+CH4	
+reactants	38	C2H4	25	CH3	products	37	C2H3	26	CH4	
+net_reactants	38	C2H4	25	CH3	net_products	37	C2H3	26	CH4	
+485	-249	C2H4+CH3=C2H3+CH4	
+reactants	38	C2H4	25	CH3	products	37	C2H3	26	CH4	
+net_reactants	38	C2H4	25	CH3	net_products	37	C2H3	26	CH4	
+486	250	C2H4+O2=C2H3+HO2	
+reactants	38	C2H4	9	O2	products	37	C2H3	12	HO2	
+net_reactants	38	C2H4	9	O2	net_products	37	C2H3	12	HO2	
+487	-250	C2H4+O2=C2H3+HO2	
+reactants	38	C2H4	9	O2	products	37	C2H3	12	HO2	
+net_reactants	38	C2H4	9	O2	net_products	37	C2H3	12	HO2	
+488	251	C2H4+CH3O=C2H3+CH3OH	
+reactants	38	C2H4	30	CH3O	products	37	C2H3	31	CH3OH	
+net_reactants	38	C2H4	30	CH3O	net_products	37	C2H3	31	CH3OH	
+489	-251	C2H4+CH3O=C2H3+CH3OH	
+reactants	38	C2H4	30	CH3O	products	37	C2H3	31	CH3OH	
+net_reactants	38	C2H4	30	CH3O	net_products	37	C2H3	31	CH3OH	
+490	252	C2H4+CH3OO=C2H3+CH3OOH	
+reactants	38	C2H4	27	CH3OO	products	37	C2H3	28	CH3OOH	
+net_reactants	38	C2H4	27	CH3OO	net_products	37	C2H3	28	CH3OOH	
+491	-252	C2H4+CH3OO=C2H3+CH3OOH	
+reactants	38	C2H4	27	CH3OO	products	37	C2H3	28	CH3OOH	
+net_reactants	38	C2H4	27	CH3OO	net_products	37	C2H3	28	CH3OOH	
+492	253	C2H4+CH3CH2OO=C2H3+CH3CH2OOH	
+reactants	38	C2H4	50	CH3CH2OO	products	37	C2H3	51	CH3CH2OOH	
+net_reactants	38	C2H4	50	CH3CH2OO	net_products	37	C2H3	51	CH3CH2OOH	
+493	-253	C2H4+CH3CH2OO=C2H3+CH3CH2OOH	
+reactants	38	C2H4	50	CH3CH2OO	products	37	C2H3	51	CH3CH2OOH	
+net_reactants	38	C2H4	50	CH3CH2OO	net_products	37	C2H3	51	CH3CH2OOH	
+494	254	C2H4+acetylperoxy=C2H3+CH3CO3H	
+reactants	38	C2H4	47	acetylperoxy	products	37	C2H3	84	CH3CO3H	
+net_reactants	38	C2H4	47	acetylperoxy	net_products	37	C2H3	84	CH3CO3H	
+495	-254	C2H4+acetylperoxy=C2H3+CH3CO3H	
+reactants	38	C2H4	47	acetylperoxy	products	37	C2H3	84	CH3CO3H	
+net_reactants	38	C2H4	47	acetylperoxy	net_products	37	C2H3	84	CH3CO3H	
+496	255	C2H4+CH3OO=oxirane+CH3O	
+reactants	38	C2H4	27	CH3OO	products	30	CH3O	56	oxirane	
+net_reactants	38	C2H4	27	CH3OO	net_products	30	CH3O	56	oxirane	
+497	-255	C2H4+CH3OO=oxirane+CH3O	
+reactants	38	C2H4	27	CH3OO	products	30	CH3O	56	oxirane	
+net_reactants	38	C2H4	27	CH3OO	net_products	30	CH3O	56	oxirane	
+498	256	C2H4+CH3CH2OO=oxirane+ethoxy	
+reactants	38	C2H4	50	CH3CH2OO	products	49	ethoxy	56	oxirane	
+net_reactants	38	C2H4	50	CH3CH2OO	net_products	49	ethoxy	56	oxirane	
+499	-256	C2H4+CH3CH2OO=oxirane+ethoxy	
+reactants	38	C2H4	50	CH3CH2OO	products	49	ethoxy	56	oxirane	
+net_reactants	38	C2H4	50	CH3CH2OO	net_products	49	ethoxy	56	oxirane	
+500	257	C2H4+HO2=oxirane+OH	
+reactants	38	C2H4	12	HO2	products	10	OH	56	oxirane	
+net_reactants	38	C2H4	12	HO2	net_products	10	OH	56	oxirane	
+501	-257	C2H4+HO2=oxirane+OH	
+reactants	38	C2H4	12	HO2	products	10	OH	56	oxirane	
+net_reactants	38	C2H4	12	HO2	net_products	10	OH	56	oxirane	
+502	258	C2H2+H(+M)=C2H3(+M)	
+reactants	36	C2H2	3	H	products	37	C2H3	
+net_reactants	36	C2H2	3	H	net_products	37	C2H3	
+503	-258	C2H2+H(+M)=C2H3(+M)	
+reactants	36	C2H2	3	H	products	37	C2H3	
+net_reactants	36	C2H2	3	H	net_products	37	C2H3	
+504	259	C2H3+O2=HCO+CH2O	
+reactants	37	C2H3	9	O2	products	17	CH2O	16	HCO	
+net_reactants	37	C2H3	9	O2	net_products	17	CH2O	16	HCO	
+505	-259	C2H3+O2=HCO+CH2O	
+reactants	37	C2H3	9	O2	products	17	CH2O	16	HCO	
+net_reactants	37	C2H3	9	O2	net_products	17	CH2O	16	HCO	
+506	260	C2H3+O2=HO2+C2H2	
+reactants	37	C2H3	9	O2	products	36	C2H2	12	HO2	
+net_reactants	37	C2H3	9	O2	net_products	36	C2H2	12	HO2	
+507	-260	C2H3+O2=HO2+C2H2	
+reactants	37	C2H3	9	O2	products	36	C2H2	12	HO2	
+net_reactants	37	C2H3	9	O2	net_products	36	C2H2	12	HO2	
+508	261	C2H3+O2=O+vinoxy	
+reactants	37	C2H3	9	O2	products	8	O	46	vinoxy	
+net_reactants	37	C2H3	9	O2	net_products	8	O	46	vinoxy	
+509	-261	C2H3+O2=O+vinoxy	
+reactants	37	C2H3	9	O2	products	8	O	46	vinoxy	
+net_reactants	37	C2H3	9	O2	net_products	8	O	46	vinoxy	
+510	262	CH3+C2H3=CH4+C2H2	
+reactants	37	C2H3	25	CH3	products	36	C2H2	26	CH4	
+net_reactants	37	C2H3	25	CH3	net_products	36	C2H2	26	CH4	
+511	-262	CH3+C2H3=CH4+C2H2	
+reactants	37	C2H3	25	CH3	products	36	C2H2	26	CH4	
+net_reactants	37	C2H3	25	CH3	net_products	36	C2H2	26	CH4	
+512	263	C2H3+H=C2H2+H2	
+reactants	37	C2H3	3	H	products	36	C2H2	4	H2	
+net_reactants	37	C2H3	3	H	net_products	36	C2H2	4	H2	
+513	-263	C2H3+H=C2H2+H2	
+reactants	37	C2H3	3	H	products	36	C2H2	4	H2	
+net_reactants	37	C2H3	3	H	net_products	36	C2H2	4	H2	
+514	264	C2H3+OH=C2H2+H2O	
+reactants	37	C2H3	10	OH	products	36	C2H2	11	H2O	
+net_reactants	37	C2H3	10	OH	net_products	36	C2H2	11	H2O	
+515	-264	C2H3+OH=C2H2+H2O	
+reactants	37	C2H3	10	OH	products	36	C2H2	11	H2O	
+net_reactants	37	C2H3	10	OH	net_products	36	C2H2	11	H2O	
+516	265	C2H2+O2=HCCO+OH	
+reactants	36	C2H2	9	O2	products	42	HCCO	10	OH	
+net_reactants	36	C2H2	9	O2	net_products	42	HCCO	10	OH	
+517	-265	C2H2+O2=HCCO+OH	
+reactants	36	C2H2	9	O2	products	42	HCCO	10	OH	
+net_reactants	36	C2H2	9	O2	net_products	42	HCCO	10	OH	
+518	266	C2H2+O=CH2+CO	
+reactants	36	C2H2	8	O	products	24	CH2	14	CO	
+net_reactants	36	C2H2	8	O	net_products	24	CH2	14	CO	
+519	-266	C2H2+O=CH2+CO	
+reactants	36	C2H2	8	O	products	24	CH2	14	CO	
+net_reactants	36	C2H2	8	O	net_products	24	CH2	14	CO	
+520	267	C2H2+O=HCCO+H	
+reactants	36	C2H2	8	O	products	3	H	42	HCCO	
+net_reactants	36	C2H2	8	O	net_products	3	H	42	HCCO	
+521	-267	C2H2+O=HCCO+H	
+reactants	36	C2H2	8	O	products	3	H	42	HCCO	
+net_reactants	36	C2H2	8	O	net_products	3	H	42	HCCO	
+522	268	C2H2+OH=ketene+H	
+reactants	36	C2H2	10	OH	products	3	H	41	ketene	
+net_reactants	36	C2H2	10	OH	net_products	3	H	41	ketene	
+523	-268	C2H2+OH=ketene+H	
+reactants	36	C2H2	10	OH	products	3	H	41	ketene	
+net_reactants	36	C2H2	10	OH	net_products	3	H	41	ketene	
+524	269	C2H2+OH=CH3+CO	
+reactants	36	C2H2	10	OH	products	25	CH3	14	CO	
+net_reactants	36	C2H2	10	OH	net_products	25	CH3	14	CO	
+525	-269	C2H2+OH=CH3+CO	
+reactants	36	C2H2	10	OH	products	25	CH3	14	CO	
+net_reactants	36	C2H2	10	OH	net_products	25	CH3	14	CO	
+526	270	OH+C2H2=H+ethynol	
+reactants	36	C2H2	10	OH	products	3	H	43	ethynol	
+net_reactants	36	C2H2	10	OH	net_products	3	H	43	ethynol	
+527	-270	OH+C2H2=H+ethynol	
+reactants	36	C2H2	10	OH	products	3	H	43	ethynol	
+net_reactants	36	C2H2	10	OH	net_products	3	H	43	ethynol	
+528	271	H+ethynol=H+ketene	
+reactants	3	H	43	ethynol	products	3	H	41	ketene	
+net_reactants	43	ethynol	net_products	41	ketene	
+529	-271	H+ethynol=H+ketene	
+reactants	3	H	43	ethynol	products	3	H	41	ketene	
+net_reactants	43	ethynol	net_products	41	ketene	
+530	272	ethanol(+M)=CH2OH+CH3(+M)	
+reactants	53	ethanol	products	29	CH2OH	25	CH3	
+net_reactants	53	ethanol	net_products	29	CH2OH	25	CH3	
+531	-272	ethanol(+M)=CH2OH+CH3(+M)	
+reactants	53	ethanol	products	29	CH2OH	25	CH3	
+net_reactants	53	ethanol	net_products	29	CH2OH	25	CH3	
+532	273	ethanol(+M)=C2H5+OH(+M)	
+reactants	53	ethanol	products	39	C2H5	10	OH	
+net_reactants	53	ethanol	net_products	39	C2H5	10	OH	
+533	-273	ethanol(+M)=C2H5+OH(+M)	
+reactants	53	ethanol	products	39	C2H5	10	OH	
+net_reactants	53	ethanol	net_products	39	C2H5	10	OH	
+534	274	ethanol(+M)=C2H4+H2O(+M)	
+reactants	53	ethanol	products	38	C2H4	11	H2O	
+net_reactants	53	ethanol	net_products	38	C2H4	11	H2O	
+535	-274	ethanol(+M)=C2H4+H2O(+M)	
+reactants	53	ethanol	products	38	C2H4	11	H2O	
+net_reactants	53	ethanol	net_products	38	C2H4	11	H2O	
+536	275	ethanol(+M)=acetaldehyde+H2(+M)	
+reactants	53	ethanol	products	4	H2	44	acetaldehyde	
+net_reactants	53	ethanol	net_products	4	H2	44	acetaldehyde	
+537	-275	ethanol(+M)=acetaldehyde+H2(+M)	
+reactants	53	ethanol	products	4	H2	44	acetaldehyde	
+net_reactants	53	ethanol	net_products	4	H2	44	acetaldehyde	
+538	276	ethanol+O2=CH2CH2OH+HO2	
+reactants	9	O2	53	ethanol	products	54	CH2CH2OH	12	HO2	
+net_reactants	9	O2	53	ethanol	net_products	54	CH2CH2OH	12	HO2	
+539	-276	ethanol+O2=CH2CH2OH+HO2	
+reactants	9	O2	53	ethanol	products	54	CH2CH2OH	12	HO2	
+net_reactants	9	O2	53	ethanol	net_products	54	CH2CH2OH	12	HO2	
+540	277	ethanol+O2=CH3CHOH+HO2	
+reactants	9	O2	53	ethanol	products	55	CH3CHOH	12	HO2	
+net_reactants	9	O2	53	ethanol	net_products	55	CH3CHOH	12	HO2	
+541	-277	ethanol+O2=CH3CHOH+HO2	
+reactants	9	O2	53	ethanol	products	55	CH3CHOH	12	HO2	
+net_reactants	9	O2	53	ethanol	net_products	55	CH3CHOH	12	HO2	
+542	278	ethanol+OH=CH2CH2OH+H2O	
+reactants	10	OH	53	ethanol	products	54	CH2CH2OH	11	H2O	
+net_reactants	10	OH	53	ethanol	net_products	54	CH2CH2OH	11	H2O	
+543	-278	ethanol+OH=CH2CH2OH+H2O	
+reactants	10	OH	53	ethanol	products	54	CH2CH2OH	11	H2O	
+net_reactants	10	OH	53	ethanol	net_products	54	CH2CH2OH	11	H2O	
+544	279	ethanol+OH=CH3CHOH+H2O	
+reactants	10	OH	53	ethanol	products	55	CH3CHOH	11	H2O	
+net_reactants	10	OH	53	ethanol	net_products	55	CH3CHOH	11	H2O	
+545	-279	ethanol+OH=CH3CHOH+H2O	
+reactants	10	OH	53	ethanol	products	55	CH3CHOH	11	H2O	
+net_reactants	10	OH	53	ethanol	net_products	55	CH3CHOH	11	H2O	
+546	280	ethanol+OH=ethoxy+H2O	
+reactants	10	OH	53	ethanol	products	11	H2O	49	ethoxy	
+net_reactants	10	OH	53	ethanol	net_products	11	H2O	49	ethoxy	
+547	-280	ethanol+OH=ethoxy+H2O	
+reactants	10	OH	53	ethanol	products	11	H2O	49	ethoxy	
+net_reactants	10	OH	53	ethanol	net_products	11	H2O	49	ethoxy	
+548	281	ethanol+H=CH2CH2OH+H2	
+reactants	3	H	53	ethanol	products	54	CH2CH2OH	4	H2	
+net_reactants	3	H	53	ethanol	net_products	54	CH2CH2OH	4	H2	
+549	-281	ethanol+H=CH2CH2OH+H2	
+reactants	3	H	53	ethanol	products	54	CH2CH2OH	4	H2	
+net_reactants	3	H	53	ethanol	net_products	54	CH2CH2OH	4	H2	
+550	282	ethanol+H=CH3CHOH+H2	
+reactants	3	H	53	ethanol	products	55	CH3CHOH	4	H2	
+net_reactants	3	H	53	ethanol	net_products	55	CH3CHOH	4	H2	
+551	-282	ethanol+H=CH3CHOH+H2	
+reactants	3	H	53	ethanol	products	55	CH3CHOH	4	H2	
+net_reactants	3	H	53	ethanol	net_products	55	CH3CHOH	4	H2	
+552	283	ethanol+H=ethoxy+H2	
+reactants	3	H	53	ethanol	products	4	H2	49	ethoxy	
+net_reactants	3	H	53	ethanol	net_products	4	H2	49	ethoxy	
+553	-283	ethanol+H=ethoxy+H2	
+reactants	3	H	53	ethanol	products	4	H2	49	ethoxy	
+net_reactants	3	H	53	ethanol	net_products	4	H2	49	ethoxy	
+554	284	ethanol+HO2=CH2CH2OH+H2O2	
+reactants	12	HO2	53	ethanol	products	54	CH2CH2OH	13	H2O2	
+net_reactants	12	HO2	53	ethanol	net_products	54	CH2CH2OH	13	H2O2	
+555	-284	ethanol+HO2=CH2CH2OH+H2O2	
+reactants	12	HO2	53	ethanol	products	54	CH2CH2OH	13	H2O2	
+net_reactants	12	HO2	53	ethanol	net_products	54	CH2CH2OH	13	H2O2	
+556	285	ethanol+HO2=CH3CHOH+H2O2	
+reactants	12	HO2	53	ethanol	products	55	CH3CHOH	13	H2O2	
+net_reactants	12	HO2	53	ethanol	net_products	55	CH3CHOH	13	H2O2	
+557	-285	ethanol+HO2=CH3CHOH+H2O2	
+reactants	12	HO2	53	ethanol	products	55	CH3CHOH	13	H2O2	
+net_reactants	12	HO2	53	ethanol	net_products	55	CH3CHOH	13	H2O2	
+558	286	ethanol+HO2=ethoxy+H2O2	
+reactants	12	HO2	53	ethanol	products	13	H2O2	49	ethoxy	
+net_reactants	12	HO2	53	ethanol	net_products	13	H2O2	49	ethoxy	
+559	-286	ethanol+HO2=ethoxy+H2O2	
+reactants	12	HO2	53	ethanol	products	13	H2O2	49	ethoxy	
+net_reactants	12	HO2	53	ethanol	net_products	13	H2O2	49	ethoxy	
+560	287	ethanol+CH3OO=CH2CH2OH+CH3OOH	
+reactants	27	CH3OO	53	ethanol	products	54	CH2CH2OH	28	CH3OOH	
+net_reactants	27	CH3OO	53	ethanol	net_products	54	CH2CH2OH	28	CH3OOH	
+561	-287	ethanol+CH3OO=CH2CH2OH+CH3OOH	
+reactants	27	CH3OO	53	ethanol	products	54	CH2CH2OH	28	CH3OOH	
+net_reactants	27	CH3OO	53	ethanol	net_products	54	CH2CH2OH	28	CH3OOH	
+562	288	ethanol+CH3OO=CH3CHOH+CH3OOH	
+reactants	27	CH3OO	53	ethanol	products	55	CH3CHOH	28	CH3OOH	
+net_reactants	27	CH3OO	53	ethanol	net_products	55	CH3CHOH	28	CH3OOH	
+563	-288	ethanol+CH3OO=CH3CHOH+CH3OOH	
+reactants	27	CH3OO	53	ethanol	products	55	CH3CHOH	28	CH3OOH	
+net_reactants	27	CH3OO	53	ethanol	net_products	55	CH3CHOH	28	CH3OOH	
+564	289	ethanol+CH3OO=ethoxy+CH3OOH	
+reactants	27	CH3OO	53	ethanol	products	28	CH3OOH	49	ethoxy	
+net_reactants	27	CH3OO	53	ethanol	net_products	28	CH3OOH	49	ethoxy	
+565	-289	ethanol+CH3OO=ethoxy+CH3OOH	
+reactants	27	CH3OO	53	ethanol	products	28	CH3OOH	49	ethoxy	
+net_reactants	27	CH3OO	53	ethanol	net_products	28	CH3OOH	49	ethoxy	
+566	290	ethanol+O=CH2CH2OH+OH	
+reactants	8	O	53	ethanol	products	54	CH2CH2OH	10	OH	
+net_reactants	8	O	53	ethanol	net_products	54	CH2CH2OH	10	OH	
+567	-290	ethanol+O=CH2CH2OH+OH	
+reactants	8	O	53	ethanol	products	54	CH2CH2OH	10	OH	
+net_reactants	8	O	53	ethanol	net_products	54	CH2CH2OH	10	OH	
+568	291	ethanol+O=CH3CHOH+OH	
+reactants	8	O	53	ethanol	products	55	CH3CHOH	10	OH	
+net_reactants	8	O	53	ethanol	net_products	55	CH3CHOH	10	OH	
+569	-291	ethanol+O=CH3CHOH+OH	
+reactants	8	O	53	ethanol	products	55	CH3CHOH	10	OH	
+net_reactants	8	O	53	ethanol	net_products	55	CH3CHOH	10	OH	
+570	292	ethanol+O=ethoxy+OH	
+reactants	8	O	53	ethanol	products	10	OH	49	ethoxy	
+net_reactants	8	O	53	ethanol	net_products	10	OH	49	ethoxy	
+571	-292	ethanol+O=ethoxy+OH	
+reactants	8	O	53	ethanol	products	10	OH	49	ethoxy	
+net_reactants	8	O	53	ethanol	net_products	10	OH	49	ethoxy	
+572	293	ethanol+CH3=CH2CH2OH+CH4	
+reactants	25	CH3	53	ethanol	products	54	CH2CH2OH	26	CH4	
+net_reactants	25	CH3	53	ethanol	net_products	54	CH2CH2OH	26	CH4	
+573	-293	ethanol+CH3=CH2CH2OH+CH4	
+reactants	25	CH3	53	ethanol	products	54	CH2CH2OH	26	CH4	
+net_reactants	25	CH3	53	ethanol	net_products	54	CH2CH2OH	26	CH4	
+574	294	ethanol+CH3=CH3CHOH+CH4	
+reactants	25	CH3	53	ethanol	products	55	CH3CHOH	26	CH4	
+net_reactants	25	CH3	53	ethanol	net_products	55	CH3CHOH	26	CH4	
+575	-294	ethanol+CH3=CH3CHOH+CH4	
+reactants	25	CH3	53	ethanol	products	55	CH3CHOH	26	CH4	
+net_reactants	25	CH3	53	ethanol	net_products	55	CH3CHOH	26	CH4	
+576	295	ethanol+CH3=ethoxy+CH4	
+reactants	25	CH3	53	ethanol	products	26	CH4	49	ethoxy	
+net_reactants	25	CH3	53	ethanol	net_products	26	CH4	49	ethoxy	
+577	-295	ethanol+CH3=ethoxy+CH4	
+reactants	25	CH3	53	ethanol	products	26	CH4	49	ethoxy	
+net_reactants	25	CH3	53	ethanol	net_products	26	CH4	49	ethoxy	
+578	296	ethanol+C2H5=CH2CH2OH+C2H6	
+reactants	39	C2H5	53	ethanol	products	40	C2H6	54	CH2CH2OH	
+net_reactants	39	C2H5	53	ethanol	net_products	40	C2H6	54	CH2CH2OH	
+579	-296	ethanol+C2H5=CH2CH2OH+C2H6	
+reactants	39	C2H5	53	ethanol	products	40	C2H6	54	CH2CH2OH	
+net_reactants	39	C2H5	53	ethanol	net_products	40	C2H6	54	CH2CH2OH	
+580	297	ethanol+C2H5=CH3CHOH+C2H6	
+reactants	39	C2H5	53	ethanol	products	40	C2H6	55	CH3CHOH	
+net_reactants	39	C2H5	53	ethanol	net_products	40	C2H6	55	CH3CHOH	
+581	-297	ethanol+C2H5=CH3CHOH+C2H6	
+reactants	39	C2H5	53	ethanol	products	40	C2H6	55	CH3CHOH	
+net_reactants	39	C2H5	53	ethanol	net_products	40	C2H6	55	CH3CHOH	
+582	298	C2H4+OH=CH2CH2OH	
+reactants	38	C2H4	10	OH	products	54	CH2CH2OH	
+net_reactants	38	C2H4	10	OH	net_products	54	CH2CH2OH	
+583	-298	C2H4+OH=CH2CH2OH	
+reactants	38	C2H4	10	OH	products	54	CH2CH2OH	
+net_reactants	38	C2H4	10	OH	net_products	54	CH2CH2OH	
+584	299	CH3CHOH+M=acetaldehyde+H+M	
+reactants	55	CH3CHOH	products	3	H	44	acetaldehyde	
+net_reactants	55	CH3CHOH	net_products	3	H	44	acetaldehyde	
+585	-299	CH3CHOH+M=acetaldehyde+H+M	
+reactants	55	CH3CHOH	products	3	H	44	acetaldehyde	
+net_reactants	55	CH3CHOH	net_products	3	H	44	acetaldehyde	
+586	300	O2C2H4OH=CH2CH2OH+O2	
+reactants	85	O2C2H4OH	products	54	CH2CH2OH	9	O2	
+net_reactants	85	O2C2H4OH	net_products	54	CH2CH2OH	9	O2	
+587	-300	O2C2H4OH=CH2CH2OH+O2	
+reactants	85	O2C2H4OH	products	54	CH2CH2OH	9	O2	
+net_reactants	85	O2C2H4OH	net_products	54	CH2CH2OH	9	O2	
+588	301	O2C2H4OH=OH+CH2O+CH2O	
+reactants	85	O2C2H4OH	products	17	CH2O	10	OH	
+net_reactants	85	O2C2H4OH	net_products	17	CH2O	10	OH	
+589	-301	O2C2H4OH=OH+CH2O+CH2O	
+reactants	85	O2C2H4OH	products	17	CH2O	10	OH	
+net_reactants	85	O2C2H4OH	net_products	17	CH2O	10	OH	
+590	302	CH3CHOH+O2=acetaldehyde+HO2	
+reactants	55	CH3CHOH	9	O2	products	12	HO2	44	acetaldehyde	
+net_reactants	55	CH3CHOH	9	O2	net_products	12	HO2	44	acetaldehyde	
+591	-302	CH3CHOH+O2=acetaldehyde+HO2	
+reactants	55	CH3CHOH	9	O2	products	12	HO2	44	acetaldehyde	
+net_reactants	55	CH3CHOH	9	O2	net_products	12	HO2	44	acetaldehyde	
+592	303	acetone(+M)=acetyl+CH3(+M)	
+reactants	66	acetone	products	25	CH3	45	acetyl	
+net_reactants	66	acetone	net_products	25	CH3	45	acetyl	
+593	-303	acetone(+M)=acetyl+CH3(+M)	
+reactants	66	acetone	products	25	CH3	45	acetyl	
+net_reactants	66	acetone	net_products	25	CH3	45	acetyl	
+594	304	acetone+OH=propen2oxy+H2O	
+reactants	10	OH	66	acetone	products	11	H2O	106	propen2oxy	
+net_reactants	10	OH	66	acetone	net_products	11	H2O	106	propen2oxy	
+595	-304	acetone+OH=propen2oxy+H2O	
+reactants	10	OH	66	acetone	products	11	H2O	106	propen2oxy	
+net_reactants	10	OH	66	acetone	net_products	11	H2O	106	propen2oxy	
+596	305	acetone+H=propen2oxy+H2	
+reactants	3	H	66	acetone	products	4	H2	106	propen2oxy	
+net_reactants	3	H	66	acetone	net_products	4	H2	106	propen2oxy	
+597	-305	acetone+H=propen2oxy+H2	
+reactants	3	H	66	acetone	products	4	H2	106	propen2oxy	
+net_reactants	3	H	66	acetone	net_products	4	H2	106	propen2oxy	
+598	306	acetone+O=propen2oxy+OH	
+reactants	8	O	66	acetone	products	10	OH	106	propen2oxy	
+net_reactants	8	O	66	acetone	net_products	10	OH	106	propen2oxy	
+599	-306	acetone+O=propen2oxy+OH	
+reactants	8	O	66	acetone	products	10	OH	106	propen2oxy	
+net_reactants	8	O	66	acetone	net_products	10	OH	106	propen2oxy	
+600	307	acetone+CH3=propen2oxy+CH4	
+reactants	25	CH3	66	acetone	products	26	CH4	106	propen2oxy	
+net_reactants	25	CH3	66	acetone	net_products	26	CH4	106	propen2oxy	
+601	-307	acetone+CH3=propen2oxy+CH4	
+reactants	25	CH3	66	acetone	products	26	CH4	106	propen2oxy	
+net_reactants	25	CH3	66	acetone	net_products	26	CH4	106	propen2oxy	
+602	308	acetone+CH3O=propen2oxy+CH3OH	
+reactants	30	CH3O	66	acetone	products	31	CH3OH	106	propen2oxy	
+net_reactants	30	CH3O	66	acetone	net_products	31	CH3OH	106	propen2oxy	
+603	-308	acetone+CH3O=propen2oxy+CH3OH	
+reactants	30	CH3O	66	acetone	products	31	CH3OH	106	propen2oxy	
+net_reactants	30	CH3O	66	acetone	net_products	31	CH3OH	106	propen2oxy	
+604	309	acetone+O2=propen2oxy+HO2	
+reactants	9	O2	66	acetone	products	12	HO2	106	propen2oxy	
+net_reactants	9	O2	66	acetone	net_products	12	HO2	106	propen2oxy	
+605	-309	acetone+O2=propen2oxy+HO2	
+reactants	9	O2	66	acetone	products	12	HO2	106	propen2oxy	
+net_reactants	9	O2	66	acetone	net_products	12	HO2	106	propen2oxy	
+606	310	acetone+HO2=propen2oxy+H2O2	
+reactants	12	HO2	66	acetone	products	13	H2O2	106	propen2oxy	
+net_reactants	12	HO2	66	acetone	net_products	13	H2O2	106	propen2oxy	
+607	-310	acetone+HO2=propen2oxy+H2O2	
+reactants	12	HO2	66	acetone	products	13	H2O2	106	propen2oxy	
+net_reactants	12	HO2	66	acetone	net_products	13	H2O2	106	propen2oxy	
+608	311	acetone+CH3OO=propen2oxy+CH3OOH	
+reactants	27	CH3OO	66	acetone	products	28	CH3OOH	106	propen2oxy	
+net_reactants	27	CH3OO	66	acetone	net_products	28	CH3OOH	106	propen2oxy	
+609	-311	acetone+CH3OO=propen2oxy+CH3OOH	
+reactants	27	CH3OO	66	acetone	products	28	CH3OOH	106	propen2oxy	
+net_reactants	27	CH3OO	66	acetone	net_products	28	CH3OOH	106	propen2oxy	
+610	312	propen2oxy=ketene+CH3	
+reactants	106	propen2oxy	products	25	CH3	41	ketene	
+net_reactants	106	propen2oxy	net_products	25	CH3	41	ketene	
+611	-312	propen2oxy=ketene+CH3	
+reactants	106	propen2oxy	products	25	CH3	41	ketene	
+net_reactants	106	propen2oxy	net_products	25	CH3	41	ketene	
+612	313	ipropyl+O=acetone+H	
+reactants	8	O	61	ipropyl	products	3	H	66	acetone	
+net_reactants	8	O	61	ipropyl	net_products	3	H	66	acetone	
+613	-313	ipropyl+O=acetone+H	
+reactants	8	O	61	ipropyl	products	3	H	66	acetone	
+net_reactants	8	O	61	ipropyl	net_products	3	H	66	acetone	
+614	314	acetone+H=ipropyloxy	
+reactants	3	H	66	acetone	products	77	ipropyloxy	
+net_reactants	3	H	66	acetone	net_products	77	ipropyloxy	
+615	-314	acetone+H=ipropyloxy	
+reactants	3	H	66	acetone	products	77	ipropyloxy	
+net_reactants	3	H	66	acetone	net_products	77	ipropyloxy	
+616	315	ipropyloxy+O2=acetone+HO2	
+reactants	9	O2	77	ipropyloxy	products	12	HO2	66	acetone	
+net_reactants	9	O2	77	ipropyloxy	net_products	12	HO2	66	acetone	
+617	-315	ipropyloxy+O2=acetone+HO2	
+reactants	9	O2	77	ipropyloxy	products	12	HO2	66	acetone	
+net_reactants	9	O2	77	ipropyloxy	net_products	12	HO2	66	acetone	
+618	316	C2H3+HCO=acrolein	
+reactants	37	C2H3	16	HCO	products	69	acrolein	
+net_reactants	37	C2H3	16	HCO	net_products	69	acrolein	
+619	-316	C2H3+HCO=acrolein	
+reactants	37	C2H3	16	HCO	products	69	acrolein	
+net_reactants	37	C2H3	16	HCO	net_products	69	acrolein	
+620	317	acrolein+H=CH2CHCO+H2	
+reactants	3	H	69	acrolein	products	70	CH2CHCO	4	H2	
+net_reactants	3	H	69	acrolein	net_products	70	CH2CHCO	4	H2	
+621	-317	acrolein+H=CH2CHCO+H2	
+reactants	3	H	69	acrolein	products	70	CH2CHCO	4	H2	
+net_reactants	3	H	69	acrolein	net_products	70	CH2CHCO	4	H2	
+622	318	acrolein+O=CH2CHCO+OH	
+reactants	8	O	69	acrolein	products	70	CH2CHCO	10	OH	
+net_reactants	8	O	69	acrolein	net_products	70	CH2CHCO	10	OH	
+623	-318	acrolein+O=CH2CHCO+OH	
+reactants	8	O	69	acrolein	products	70	CH2CHCO	10	OH	
+net_reactants	8	O	69	acrolein	net_products	70	CH2CHCO	10	OH	
+624	319	acrolein+H=C2H4+HCO	
+reactants	3	H	69	acrolein	products	38	C2H4	16	HCO	
+net_reactants	3	H	69	acrolein	net_products	38	C2H4	16	HCO	
+625	-319	acrolein+H=C2H4+HCO	
+reactants	3	H	69	acrolein	products	38	C2H4	16	HCO	
+net_reactants	3	H	69	acrolein	net_products	38	C2H4	16	HCO	
+626	320	acrolein+O=ketene+HCO+H	
+reactants	8	O	69	acrolein	products	3	H	16	HCO	41	ketene	
+net_reactants	8	O	69	acrolein	net_products	3	H	16	HCO	41	ketene	
+627	-320	acrolein+O=ketene+HCO+H	
+reactants	8	O	69	acrolein	products	3	H	16	HCO	41	ketene	
+net_reactants	8	O	69	acrolein	net_products	3	H	16	HCO	41	ketene	
+628	321	acrolein+OH=CH2CHCO+H2O	
+reactants	10	OH	69	acrolein	products	70	CH2CHCO	11	H2O	
+net_reactants	10	OH	69	acrolein	net_products	70	CH2CHCO	11	H2O	
+629	-321	acrolein+OH=CH2CHCO+H2O	
+reactants	10	OH	69	acrolein	products	70	CH2CHCO	11	H2O	
+net_reactants	10	OH	69	acrolein	net_products	70	CH2CHCO	11	H2O	
+630	322	acrolein+O2=CH2CHCO+HO2	
+reactants	9	O2	69	acrolein	products	70	CH2CHCO	12	HO2	
+net_reactants	9	O2	69	acrolein	net_products	70	CH2CHCO	12	HO2	
+631	-322	acrolein+O2=CH2CHCO+HO2	
+reactants	9	O2	69	acrolein	products	70	CH2CHCO	12	HO2	
+net_reactants	9	O2	69	acrolein	net_products	70	CH2CHCO	12	HO2	
+632	323	acrolein+HO2=CH2CHCO+H2O2	
+reactants	12	HO2	69	acrolein	products	70	CH2CHCO	13	H2O2	
+net_reactants	12	HO2	69	acrolein	net_products	70	CH2CHCO	13	H2O2	
+633	-323	acrolein+HO2=CH2CHCO+H2O2	
+reactants	12	HO2	69	acrolein	products	70	CH2CHCO	13	H2O2	
+net_reactants	12	HO2	69	acrolein	net_products	70	CH2CHCO	13	H2O2	
+634	324	acrolein+CH3=CH2CHCO+CH4	
+reactants	25	CH3	69	acrolein	products	70	CH2CHCO	26	CH4	
+net_reactants	25	CH3	69	acrolein	net_products	70	CH2CHCO	26	CH4	
+635	-324	acrolein+CH3=CH2CHCO+CH4	
+reactants	25	CH3	69	acrolein	products	70	CH2CHCO	26	CH4	
+net_reactants	25	CH3	69	acrolein	net_products	70	CH2CHCO	26	CH4	
+636	325	acrolein+C2H3=CH2CHCO+C2H4	
+reactants	37	C2H3	69	acrolein	products	38	C2H4	70	CH2CHCO	
+net_reactants	37	C2H3	69	acrolein	net_products	38	C2H4	70	CH2CHCO	
+637	-325	acrolein+C2H3=CH2CHCO+C2H4	
+reactants	37	C2H3	69	acrolein	products	38	C2H4	70	CH2CHCO	
+net_reactants	37	C2H3	69	acrolein	net_products	38	C2H4	70	CH2CHCO	
+638	326	acrolein+CH3O=CH2CHCO+CH3OH	
+reactants	30	CH3O	69	acrolein	products	70	CH2CHCO	31	CH3OH	
+net_reactants	30	CH3O	69	acrolein	net_products	70	CH2CHCO	31	CH3OH	
+639	-326	acrolein+CH3O=CH2CHCO+CH3OH	
+reactants	30	CH3O	69	acrolein	products	70	CH2CHCO	31	CH3OH	
+net_reactants	30	CH3O	69	acrolein	net_products	70	CH2CHCO	31	CH3OH	
+640	327	acrolein+CH3OO=CH2CHCO+CH3OOH	
+reactants	27	CH3OO	69	acrolein	products	70	CH2CHCO	28	CH3OOH	
+net_reactants	27	CH3OO	69	acrolein	net_products	70	CH2CHCO	28	CH3OOH	
+641	-327	acrolein+CH3OO=CH2CHCO+CH3OOH	
+reactants	27	CH3OO	69	acrolein	products	70	CH2CHCO	28	CH3OOH	
+net_reactants	27	CH3OO	69	acrolein	net_products	70	CH2CHCO	28	CH3OOH	
+642	328	C2H3+CO=CH2CHCO	
+reactants	37	C2H3	14	CO	products	70	CH2CHCO	
+net_reactants	37	C2H3	14	CO	net_products	70	CH2CHCO	
+643	-328	C2H3+CO=CH2CHCO	
+reactants	37	C2H3	14	CO	products	70	CH2CHCO	
+net_reactants	37	C2H3	14	CO	net_products	70	CH2CHCO	
+644	329	CH2CHCO+O2=vinoxy+CO2	
+reactants	70	CH2CHCO	9	O2	products	15	CO2	46	vinoxy	
+net_reactants	70	CH2CHCO	9	O2	net_products	15	CO2	46	vinoxy	
+645	-329	CH2CHCO+O2=vinoxy+CO2	
+reactants	70	CH2CHCO	9	O2	products	15	CO2	46	vinoxy	
+net_reactants	70	CH2CHCO	9	O2	net_products	15	CO2	46	vinoxy	
+646	330	CH2CHCO+O=C2H3+CO2	
+reactants	70	CH2CHCO	8	O	products	37	C2H3	15	CO2	
+net_reactants	70	CH2CHCO	8	O	net_products	37	C2H3	15	CO2	
+647	-330	CH2CHCO+O=C2H3+CO2	
+reactants	70	CH2CHCO	8	O	products	37	C2H3	15	CO2	
+net_reactants	70	CH2CHCO	8	O	net_products	37	C2H3	15	CO2	
+648	331	C2H5+HCO=propanal	
+reactants	39	C2H5	16	HCO	products	74	propanal	
+net_reactants	39	C2H5	16	HCO	net_products	74	propanal	
+649	-331	C2H5+HCO=propanal	
+reactants	39	C2H5	16	HCO	products	74	propanal	
+net_reactants	39	C2H5	16	HCO	net_products	74	propanal	
+650	332	propanal+H=propionyl+H2	
+reactants	3	H	74	propanal	products	4	H2	75	propionyl	
+net_reactants	3	H	74	propanal	net_products	4	H2	75	propionyl	
+651	-332	propanal+H=propionyl+H2	
+reactants	3	H	74	propanal	products	4	H2	75	propionyl	
+net_reactants	3	H	74	propanal	net_products	4	H2	75	propionyl	
+652	333	propanal+O=propionyl+OH	
+reactants	8	O	74	propanal	products	10	OH	75	propionyl	
+net_reactants	8	O	74	propanal	net_products	10	OH	75	propionyl	
+653	-333	propanal+O=propionyl+OH	
+reactants	8	O	74	propanal	products	10	OH	75	propionyl	
+net_reactants	8	O	74	propanal	net_products	10	OH	75	propionyl	
+654	334	propanal+OH=propionyl+H2O	
+reactants	10	OH	74	propanal	products	11	H2O	75	propionyl	
+net_reactants	10	OH	74	propanal	net_products	11	H2O	75	propionyl	
+655	-334	propanal+OH=propionyl+H2O	
+reactants	10	OH	74	propanal	products	11	H2O	75	propionyl	
+net_reactants	10	OH	74	propanal	net_products	11	H2O	75	propionyl	
+656	335	propanal+CH3=propionyl+CH4	
+reactants	25	CH3	74	propanal	products	26	CH4	75	propionyl	
+net_reactants	25	CH3	74	propanal	net_products	26	CH4	75	propionyl	
+657	-335	propanal+CH3=propionyl+CH4	
+reactants	25	CH3	74	propanal	products	26	CH4	75	propionyl	
+net_reactants	25	CH3	74	propanal	net_products	26	CH4	75	propionyl	
+658	336	propanal+HO2=propionyl+H2O2	
+reactants	12	HO2	74	propanal	products	13	H2O2	75	propionyl	
+net_reactants	12	HO2	74	propanal	net_products	13	H2O2	75	propionyl	
+659	-336	propanal+HO2=propionyl+H2O2	
+reactants	12	HO2	74	propanal	products	13	H2O2	75	propionyl	
+net_reactants	12	HO2	74	propanal	net_products	13	H2O2	75	propionyl	
+660	337	propanal+CH3O=propionyl+CH3OH	
+reactants	30	CH3O	74	propanal	products	31	CH3OH	75	propionyl	
+net_reactants	30	CH3O	74	propanal	net_products	31	CH3OH	75	propionyl	
+661	-337	propanal+CH3O=propionyl+CH3OH	
+reactants	30	CH3O	74	propanal	products	31	CH3OH	75	propionyl	
+net_reactants	30	CH3O	74	propanal	net_products	31	CH3OH	75	propionyl	
+662	338	propanal+CH3OO=propionyl+CH3OOH	
+reactants	27	CH3OO	74	propanal	products	28	CH3OOH	75	propionyl	
+net_reactants	27	CH3OO	74	propanal	net_products	28	CH3OOH	75	propionyl	
+663	-338	propanal+CH3OO=propionyl+CH3OOH	
+reactants	27	CH3OO	74	propanal	products	28	CH3OOH	75	propionyl	
+net_reactants	27	CH3OO	74	propanal	net_products	28	CH3OOH	75	propionyl	
+664	339	propanal+C2H5=propionyl+C2H6	
+reactants	39	C2H5	74	propanal	products	40	C2H6	75	propionyl	
+net_reactants	39	C2H5	74	propanal	net_products	40	C2H6	75	propionyl	
+665	-339	propanal+C2H5=propionyl+C2H6	
+reactants	39	C2H5	74	propanal	products	40	C2H6	75	propionyl	
+net_reactants	39	C2H5	74	propanal	net_products	40	C2H6	75	propionyl	
+666	340	propanal+ethoxy=propionyl+ethanol	
+reactants	49	ethoxy	74	propanal	products	53	ethanol	75	propionyl	
+net_reactants	49	ethoxy	74	propanal	net_products	53	ethanol	75	propionyl	
+667	-340	propanal+ethoxy=propionyl+ethanol	
+reactants	49	ethoxy	74	propanal	products	53	ethanol	75	propionyl	
+net_reactants	49	ethoxy	74	propanal	net_products	53	ethanol	75	propionyl	
+668	341	propanal+CH3CH2OO=propionyl+CH3CH2OOH	
+reactants	50	CH3CH2OO	74	propanal	products	51	CH3CH2OOH	75	propionyl	
+net_reactants	50	CH3CH2OO	74	propanal	net_products	51	CH3CH2OOH	75	propionyl	
+669	-341	propanal+CH3CH2OO=propionyl+CH3CH2OOH	
+reactants	50	CH3CH2OO	74	propanal	products	51	CH3CH2OOH	75	propionyl	
+net_reactants	50	CH3CH2OO	74	propanal	net_products	51	CH3CH2OOH	75	propionyl	
+670	342	propanal+O2=propionyl+HO2	
+reactants	9	O2	74	propanal	products	12	HO2	75	propionyl	
+net_reactants	9	O2	74	propanal	net_products	12	HO2	75	propionyl	
+671	-342	propanal+O2=propionyl+HO2	
+reactants	9	O2	74	propanal	products	12	HO2	75	propionyl	
+net_reactants	9	O2	74	propanal	net_products	12	HO2	75	propionyl	
+672	343	propanal+acetylperoxy=propionyl+CH3CO3H	
+reactants	47	acetylperoxy	74	propanal	products	84	CH3CO3H	75	propionyl	
+net_reactants	47	acetylperoxy	74	propanal	net_products	84	CH3CO3H	75	propionyl	
+673	-343	propanal+acetylperoxy=propionyl+CH3CO3H	
+reactants	47	acetylperoxy	74	propanal	products	84	CH3CO3H	75	propionyl	
+net_reactants	47	acetylperoxy	74	propanal	net_products	84	CH3CO3H	75	propionyl	
+674	344	propanal+C2H3=propionyl+C2H4	
+reactants	37	C2H3	74	propanal	products	38	C2H4	75	propionyl	
+net_reactants	37	C2H3	74	propanal	net_products	38	C2H4	75	propionyl	
+675	-344	propanal+C2H3=propionyl+C2H4	
+reactants	37	C2H3	74	propanal	products	38	C2H4	75	propionyl	
+net_reactants	37	C2H3	74	propanal	net_products	38	C2H4	75	propionyl	
+676	345	C2H5+CO=propionyl	
+reactants	39	C2H5	14	CO	products	75	propionyl	
+net_reactants	39	C2H5	14	CO	net_products	75	propionyl	
+677	-345	C2H5+CO=propionyl	
+reactants	39	C2H5	14	CO	products	75	propionyl	
+net_reactants	39	C2H5	14	CO	net_products	75	propionyl	
+678	346	CH3OCH3(+M)<=>CH3+CH3O(+M)	
+reactants	67	CH3OCH3	products	25	CH3	30	CH3O	
+net_reactants	67	CH3OCH3	net_products	25	CH3	30	CH3O	
+679	-346	CH3OCH3(+M)<=>CH3+CH3O(+M)	
+reactants	67	CH3OCH3	products	25	CH3	30	CH3O	
+net_reactants	67	CH3OCH3	net_products	25	CH3	30	CH3O	
+680	347	CH3OCH3+OH<=>CH3OCH2+H2O	
+reactants	67	CH3OCH3	10	OH	products	68	CH3OCH2	11	H2O	
+net_reactants	67	CH3OCH3	10	OH	net_products	68	CH3OCH2	11	H2O	
+681	-347	CH3OCH3+OH<=>CH3OCH2+H2O	
+reactants	67	CH3OCH3	10	OH	products	68	CH3OCH2	11	H2O	
+net_reactants	67	CH3OCH3	10	OH	net_products	68	CH3OCH2	11	H2O	
+682	348	CH3OCH3+H<=>CH3OCH2+H2	
+reactants	67	CH3OCH3	3	H	products	68	CH3OCH2	4	H2	
+net_reactants	67	CH3OCH3	3	H	net_products	68	CH3OCH2	4	H2	
+683	-348	CH3OCH3+H<=>CH3OCH2+H2	
+reactants	67	CH3OCH3	3	H	products	68	CH3OCH2	4	H2	
+net_reactants	67	CH3OCH3	3	H	net_products	68	CH3OCH2	4	H2	
+684	349	CH3OCH3+O<=>CH3OCH2+OH	
+reactants	67	CH3OCH3	8	O	products	68	CH3OCH2	10	OH	
+net_reactants	67	CH3OCH3	8	O	net_products	68	CH3OCH2	10	OH	
+685	-349	CH3OCH3+O<=>CH3OCH2+OH	
+reactants	67	CH3OCH3	8	O	products	68	CH3OCH2	10	OH	
+net_reactants	67	CH3OCH3	8	O	net_products	68	CH3OCH2	10	OH	
+686	350	CH3OCH3+HO2<=>CH3OCH2+H2O2	
+reactants	67	CH3OCH3	12	HO2	products	68	CH3OCH2	13	H2O2	
+net_reactants	67	CH3OCH3	12	HO2	net_products	68	CH3OCH2	13	H2O2	
+687	-350	CH3OCH3+HO2<=>CH3OCH2+H2O2	
+reactants	67	CH3OCH3	12	HO2	products	68	CH3OCH2	13	H2O2	
+net_reactants	67	CH3OCH3	12	HO2	net_products	68	CH3OCH2	13	H2O2	
+688	351	CH3OCH3+CH3OO<=>CH3OCH2+CH3OOH	
+reactants	67	CH3OCH3	27	CH3OO	products	68	CH3OCH2	28	CH3OOH	
+net_reactants	67	CH3OCH3	27	CH3OO	net_products	68	CH3OCH2	28	CH3OOH	
+689	-351	CH3OCH3+CH3OO<=>CH3OCH2+CH3OOH	
+reactants	67	CH3OCH3	27	CH3OO	products	68	CH3OCH2	28	CH3OOH	
+net_reactants	67	CH3OCH3	27	CH3OO	net_products	68	CH3OCH2	28	CH3OOH	
+690	352	CH3OCH3+CH3=CH3OCH2+CH4	
+reactants	25	CH3	67	CH3OCH3	products	68	CH3OCH2	26	CH4	
+net_reactants	25	CH3	67	CH3OCH3	net_products	68	CH3OCH2	26	CH4	
+691	-352	CH3OCH3+CH3=CH3OCH2+CH4	
+reactants	25	CH3	67	CH3OCH3	products	68	CH3OCH2	26	CH4	
+net_reactants	25	CH3	67	CH3OCH3	net_products	68	CH3OCH2	26	CH4	
+692	353	CH3OCH3+O2=CH3OCH2+HO2	
+reactants	67	CH3OCH3	9	O2	products	68	CH3OCH2	12	HO2	
+net_reactants	67	CH3OCH3	9	O2	net_products	68	CH3OCH2	12	HO2	
+693	-353	CH3OCH3+O2=CH3OCH2+HO2	
+reactants	67	CH3OCH3	9	O2	products	68	CH3OCH2	12	HO2	
+net_reactants	67	CH3OCH3	9	O2	net_products	68	CH3OCH2	12	HO2	
+694	354	CH3OCH3+CH3O=CH3OCH2+CH3OH	
+reactants	30	CH3O	67	CH3OCH3	products	68	CH3OCH2	31	CH3OH	
+net_reactants	30	CH3O	67	CH3OCH3	net_products	68	CH3OCH2	31	CH3OH	
+695	-354	CH3OCH3+CH3O=CH3OCH2+CH3OH	
+reactants	30	CH3O	67	CH3OCH3	products	68	CH3OCH2	31	CH3OH	
+net_reactants	30	CH3O	67	CH3OCH3	net_products	68	CH3OCH2	31	CH3OH	
+696	355	CH3OCH3+formylperoxy=CH3OCH2+formylooh	
+reactants	67	CH3OCH3	19	formylperoxy	products	68	CH3OCH2	20	formylooh	
+net_reactants	67	CH3OCH3	19	formylperoxy	net_products	68	CH3OCH2	20	formylooh	
+697	-355	CH3OCH3+formylperoxy=CH3OCH2+formylooh	
+reactants	67	CH3OCH3	19	formylperoxy	products	68	CH3OCH2	20	formylooh	
+net_reactants	67	CH3OCH3	19	formylperoxy	net_products	68	CH3OCH2	20	formylooh	
+698	356	CH3OCH2=CH2O+CH3	
+reactants	68	CH3OCH2	products	17	CH2O	25	CH3	
+net_reactants	68	CH3OCH2	net_products	17	CH2O	25	CH3	
+699	-356	CH3OCH2=CH2O+CH3	
+reactants	68	CH3OCH2	products	17	CH2O	25	CH3	
+net_reactants	68	CH3OCH2	net_products	17	CH2O	25	CH3	
+700	357	CH3OCH2+CH3O=CH3OCH3+CH2O	
+reactants	30	CH3O	68	CH3OCH2	products	17	CH2O	67	CH3OCH3	
+net_reactants	30	CH3O	68	CH3OCH2	net_products	17	CH2O	67	CH3OCH3	
+701	-357	CH3OCH2+CH3O=CH3OCH3+CH2O	
+reactants	30	CH3O	68	CH3OCH2	products	17	CH2O	67	CH3OCH3	
+net_reactants	30	CH3O	68	CH3OCH2	net_products	17	CH2O	67	CH3OCH3	
+702	358	CH3OCH2+CH2O=CH3OCH3+HCO	
+reactants	17	CH2O	68	CH3OCH2	products	67	CH3OCH3	16	HCO	
+net_reactants	17	CH2O	68	CH3OCH2	net_products	67	CH3OCH3	16	HCO	
+703	-358	CH3OCH2+CH2O=CH3OCH3+HCO	
+reactants	17	CH2O	68	CH3OCH2	products	67	CH3OCH3	16	HCO	
+net_reactants	17	CH2O	68	CH3OCH2	net_products	67	CH3OCH3	16	HCO	
+704	359	CH3OCH2+acetaldehyde=CH3OCH3+acetyl	
+reactants	68	CH3OCH2	44	acetaldehyde	products	67	CH3OCH3	45	acetyl	
+net_reactants	68	CH3OCH2	44	acetaldehyde	net_products	67	CH3OCH3	45	acetyl	
+705	-359	CH3OCH2+acetaldehyde=CH3OCH3+acetyl	
+reactants	68	CH3OCH2	44	acetaldehyde	products	67	CH3OCH3	45	acetyl	
+net_reactants	68	CH3OCH2	44	acetaldehyde	net_products	67	CH3OCH3	45	acetyl	
+706	360	npropyloo+C3H8=npropylooh+npropyl	
+reactants	62	C3H8	78	npropyloo	products	60	npropyl	79	npropylooh	
+net_reactants	62	C3H8	78	npropyloo	net_products	60	npropyl	79	npropylooh	
+707	-360	npropyloo+C3H8=npropylooh+npropyl	
+reactants	62	C3H8	78	npropyloo	products	60	npropyl	79	npropylooh	
+net_reactants	62	C3H8	78	npropyloo	net_products	60	npropyl	79	npropylooh	
+708	361	ipropyloo+C3H8=ipropylooh+npropyl	
+reactants	62	C3H8	80	ipropyloo	products	81	ipropylooh	60	npropyl	
+net_reactants	62	C3H8	80	ipropyloo	net_products	81	ipropylooh	60	npropyl	
+709	-361	ipropyloo+C3H8=ipropylooh+npropyl	
+reactants	62	C3H8	80	ipropyloo	products	81	ipropylooh	60	npropyl	
+net_reactants	62	C3H8	80	ipropyloo	net_products	81	ipropylooh	60	npropyl	
+710	362	npropyloo+C3H8=npropylooh+ipropyl	
+reactants	62	C3H8	78	npropyloo	products	61	ipropyl	79	npropylooh	
+net_reactants	62	C3H8	78	npropyloo	net_products	61	ipropyl	79	npropylooh	
+711	-362	npropyloo+C3H8=npropylooh+ipropyl	
+reactants	62	C3H8	78	npropyloo	products	61	ipropyl	79	npropylooh	
+net_reactants	62	C3H8	78	npropyloo	net_products	61	ipropyl	79	npropylooh	
+712	363	ipropyloo+C3H8=ipropylooh+ipropyl	
+reactants	62	C3H8	80	ipropyloo	products	61	ipropyl	81	ipropylooh	
+net_reactants	62	C3H8	80	ipropyloo	net_products	61	ipropyl	81	ipropylooh	
+713	-363	ipropyloo+C3H8=ipropylooh+ipropyl	
+reactants	62	C3H8	80	ipropyloo	products	61	ipropyl	81	ipropylooh	
+net_reactants	62	C3H8	80	ipropyloo	net_products	61	ipropyl	81	ipropylooh	
+714	364	npropylooh=npropyloxy+OH	
+reactants	79	npropylooh	products	10	OH	76	npropyloxy	
+net_reactants	79	npropylooh	net_products	10	OH	76	npropyloxy	
+715	-364	npropylooh=npropyloxy+OH	
+reactants	79	npropylooh	products	10	OH	76	npropyloxy	
+net_reactants	79	npropylooh	net_products	10	OH	76	npropyloxy	
+716	365	ipropylooh=ipropyloxy+OH	
+reactants	81	ipropylooh	products	10	OH	77	ipropyloxy	
+net_reactants	81	ipropylooh	net_products	10	OH	77	ipropyloxy	
+717	-365	ipropylooh=ipropyloxy+OH	
+reactants	81	ipropylooh	products	10	OH	77	ipropyloxy	
+net_reactants	81	ipropylooh	net_products	10	OH	77	ipropyloxy	
+718	366	C3H8(+M)=CH3+C2H5(+M)	
+reactants	62	C3H8	products	39	C2H5	25	CH3	
+net_reactants	62	C3H8	net_products	39	C2H5	25	CH3	
+719	-366	C3H8(+M)=CH3+C2H5(+M)	
+reactants	62	C3H8	products	39	C2H5	25	CH3	
+net_reactants	62	C3H8	net_products	39	C2H5	25	CH3	
+720	367	npropyl+H=C3H8	
+reactants	3	H	60	npropyl	products	62	C3H8	
+net_reactants	3	H	60	npropyl	net_products	62	C3H8	
+721	-367	npropyl+H=C3H8	
+reactants	3	H	60	npropyl	products	62	C3H8	
+net_reactants	3	H	60	npropyl	net_products	62	C3H8	
+722	368	ipropyl+H=C3H8	
+reactants	3	H	61	ipropyl	products	62	C3H8	
+net_reactants	3	H	61	ipropyl	net_products	62	C3H8	
+723	-368	ipropyl+H=C3H8	
+reactants	3	H	61	ipropyl	products	62	C3H8	
+net_reactants	3	H	61	ipropyl	net_products	62	C3H8	
+724	369	C3H8+O2=ipropyl+HO2	
+reactants	62	C3H8	9	O2	products	12	HO2	61	ipropyl	
+net_reactants	62	C3H8	9	O2	net_products	12	HO2	61	ipropyl	
+725	-369	C3H8+O2=ipropyl+HO2	
+reactants	62	C3H8	9	O2	products	12	HO2	61	ipropyl	
+net_reactants	62	C3H8	9	O2	net_products	12	HO2	61	ipropyl	
+726	370	C3H8+O2=npropyl+HO2	
+reactants	62	C3H8	9	O2	products	12	HO2	60	npropyl	
+net_reactants	62	C3H8	9	O2	net_products	12	HO2	60	npropyl	
+727	-370	C3H8+O2=npropyl+HO2	
+reactants	62	C3H8	9	O2	products	12	HO2	60	npropyl	
+net_reactants	62	C3H8	9	O2	net_products	12	HO2	60	npropyl	
+728	371	H+C3H8=H2+ipropyl	
+reactants	62	C3H8	3	H	products	4	H2	61	ipropyl	
+net_reactants	62	C3H8	3	H	net_products	4	H2	61	ipropyl	
+729	-371	H+C3H8=H2+ipropyl	
+reactants	62	C3H8	3	H	products	4	H2	61	ipropyl	
+net_reactants	62	C3H8	3	H	net_products	4	H2	61	ipropyl	
+730	372	H+C3H8=H2+npropyl	
+reactants	62	C3H8	3	H	products	4	H2	60	npropyl	
+net_reactants	62	C3H8	3	H	net_products	4	H2	60	npropyl	
+731	-372	H+C3H8=H2+npropyl	
+reactants	62	C3H8	3	H	products	4	H2	60	npropyl	
+net_reactants	62	C3H8	3	H	net_products	4	H2	60	npropyl	
+732	373	C3H8+O=ipropyl+OH	
+reactants	62	C3H8	8	O	products	10	OH	61	ipropyl	
+net_reactants	62	C3H8	8	O	net_products	10	OH	61	ipropyl	
+733	-373	C3H8+O=ipropyl+OH	
+reactants	62	C3H8	8	O	products	10	OH	61	ipropyl	
+net_reactants	62	C3H8	8	O	net_products	10	OH	61	ipropyl	
+734	374	C3H8+O=npropyl+OH	
+reactants	62	C3H8	8	O	products	10	OH	60	npropyl	
+net_reactants	62	C3H8	8	O	net_products	10	OH	60	npropyl	
+735	-374	C3H8+O=npropyl+OH	
+reactants	62	C3H8	8	O	products	10	OH	60	npropyl	
+net_reactants	62	C3H8	8	O	net_products	10	OH	60	npropyl	
+736	375	C3H8+OH=npropyl+H2O	
+reactants	62	C3H8	10	OH	products	11	H2O	60	npropyl	
+net_reactants	62	C3H8	10	OH	net_products	11	H2O	60	npropyl	
+737	-375	C3H8+OH=npropyl+H2O	
+reactants	62	C3H8	10	OH	products	11	H2O	60	npropyl	
+net_reactants	62	C3H8	10	OH	net_products	11	H2O	60	npropyl	
+738	376	C3H8+OH=ipropyl+H2O	
+reactants	62	C3H8	10	OH	products	11	H2O	61	ipropyl	
+net_reactants	62	C3H8	10	OH	net_products	11	H2O	61	ipropyl	
+739	-376	C3H8+OH=ipropyl+H2O	
+reactants	62	C3H8	10	OH	products	11	H2O	61	ipropyl	
+net_reactants	62	C3H8	10	OH	net_products	11	H2O	61	ipropyl	
+740	377	C3H8+HO2=ipropyl+H2O2	
+reactants	62	C3H8	12	HO2	products	13	H2O2	61	ipropyl	
+net_reactants	62	C3H8	12	HO2	net_products	13	H2O2	61	ipropyl	
+741	-377	C3H8+HO2=ipropyl+H2O2	
+reactants	62	C3H8	12	HO2	products	13	H2O2	61	ipropyl	
+net_reactants	62	C3H8	12	HO2	net_products	13	H2O2	61	ipropyl	
+742	378	C3H8+HO2=npropyl+H2O2	
+reactants	62	C3H8	12	HO2	products	13	H2O2	60	npropyl	
+net_reactants	62	C3H8	12	HO2	net_products	13	H2O2	60	npropyl	
+743	-378	C3H8+HO2=npropyl+H2O2	
+reactants	62	C3H8	12	HO2	products	13	H2O2	60	npropyl	
+net_reactants	62	C3H8	12	HO2	net_products	13	H2O2	60	npropyl	
+744	379	CH3+C3H8=CH4+ipropyl	
+reactants	62	C3H8	25	CH3	products	26	CH4	61	ipropyl	
+net_reactants	62	C3H8	25	CH3	net_products	26	CH4	61	ipropyl	
+745	-379	CH3+C3H8=CH4+ipropyl	
+reactants	62	C3H8	25	CH3	products	26	CH4	61	ipropyl	
+net_reactants	62	C3H8	25	CH3	net_products	26	CH4	61	ipropyl	
+746	380	CH3+C3H8=CH4+npropyl	
+reactants	62	C3H8	25	CH3	products	26	CH4	60	npropyl	
+net_reactants	62	C3H8	25	CH3	net_products	26	CH4	60	npropyl	
+747	-380	CH3+C3H8=CH4+npropyl	
+reactants	62	C3H8	25	CH3	products	26	CH4	60	npropyl	
+net_reactants	62	C3H8	25	CH3	net_products	26	CH4	60	npropyl	
+748	381	ipropyl+C3H8=npropyl+C3H8	
+reactants	62	C3H8	61	ipropyl	products	62	C3H8	60	npropyl	
+net_reactants	61	ipropyl	net_products	60	npropyl	
+749	-381	ipropyl+C3H8=npropyl+C3H8	
+reactants	62	C3H8	61	ipropyl	products	62	C3H8	60	npropyl	
+net_reactants	61	ipropyl	net_products	60	npropyl	
+750	382	C2H3+C3H8=C2H4+ipropyl	
+reactants	37	C2H3	62	C3H8	products	38	C2H4	61	ipropyl	
+net_reactants	37	C2H3	62	C3H8	net_products	38	C2H4	61	ipropyl	
+751	-382	C2H3+C3H8=C2H4+ipropyl	
+reactants	37	C2H3	62	C3H8	products	38	C2H4	61	ipropyl	
+net_reactants	37	C2H3	62	C3H8	net_products	38	C2H4	61	ipropyl	
+752	383	C2H3+C3H8=C2H4+npropyl	
+reactants	37	C2H3	62	C3H8	products	38	C2H4	60	npropyl	
+net_reactants	37	C2H3	62	C3H8	net_products	38	C2H4	60	npropyl	
+753	-383	C2H3+C3H8=C2H4+npropyl	
+reactants	37	C2H3	62	C3H8	products	38	C2H4	60	npropyl	
+net_reactants	37	C2H3	62	C3H8	net_products	38	C2H4	60	npropyl	
+754	384	C2H5+C3H8=C2H6+ipropyl	
+reactants	39	C2H5	62	C3H8	products	40	C2H6	61	ipropyl	
+net_reactants	39	C2H5	62	C3H8	net_products	40	C2H6	61	ipropyl	
+755	-384	C2H5+C3H8=C2H6+ipropyl	
+reactants	39	C2H5	62	C3H8	products	40	C2H6	61	ipropyl	
+net_reactants	39	C2H5	62	C3H8	net_products	40	C2H6	61	ipropyl	
+756	385	C2H5+C3H8=C2H6+npropyl	
+reactants	39	C2H5	62	C3H8	products	40	C2H6	60	npropyl	
+net_reactants	39	C2H5	62	C3H8	net_products	40	C2H6	60	npropyl	
+757	-385	C2H5+C3H8=C2H6+npropyl	
+reactants	39	C2H5	62	C3H8	products	40	C2H6	60	npropyl	
+net_reactants	39	C2H5	62	C3H8	net_products	40	C2H6	60	npropyl	
+758	386	C3H8+allyl=npropyl+C3H6	
+reactants	62	C3H8	63	allyl	products	59	C3H6	60	npropyl	
+net_reactants	62	C3H8	63	allyl	net_products	59	C3H6	60	npropyl	
+759	-386	C3H8+allyl=npropyl+C3H6	
+reactants	62	C3H8	63	allyl	products	59	C3H6	60	npropyl	
+net_reactants	62	C3H8	63	allyl	net_products	59	C3H6	60	npropyl	
+760	387	C3H8+allyl=ipropyl+C3H6	
+reactants	62	C3H8	63	allyl	products	59	C3H6	61	ipropyl	
+net_reactants	62	C3H8	63	allyl	net_products	59	C3H6	61	ipropyl	
+761	-387	C3H8+allyl=ipropyl+C3H6	
+reactants	62	C3H8	63	allyl	products	59	C3H6	61	ipropyl	
+net_reactants	62	C3H8	63	allyl	net_products	59	C3H6	61	ipropyl	
+762	388	C3H8+CH3O=npropyl+CH3OH	
+reactants	62	C3H8	30	CH3O	products	31	CH3OH	60	npropyl	
+net_reactants	62	C3H8	30	CH3O	net_products	31	CH3OH	60	npropyl	
+763	-388	C3H8+CH3O=npropyl+CH3OH	
+reactants	62	C3H8	30	CH3O	products	31	CH3OH	60	npropyl	
+net_reactants	62	C3H8	30	CH3O	net_products	31	CH3OH	60	npropyl	
+764	389	C3H8+CH3O=ipropyl+CH3OH	
+reactants	62	C3H8	30	CH3O	products	31	CH3OH	61	ipropyl	
+net_reactants	62	C3H8	30	CH3O	net_products	31	CH3OH	61	ipropyl	
+765	-389	C3H8+CH3O=ipropyl+CH3OH	
+reactants	62	C3H8	30	CH3O	products	31	CH3OH	61	ipropyl	
+net_reactants	62	C3H8	30	CH3O	net_products	31	CH3OH	61	ipropyl	
+766	390	CH3OO+C3H8=CH3OOH+npropyl	
+reactants	62	C3H8	27	CH3OO	products	28	CH3OOH	60	npropyl	
+net_reactants	62	C3H8	27	CH3OO	net_products	28	CH3OOH	60	npropyl	
+767	-390	CH3OO+C3H8=CH3OOH+npropyl	
+reactants	62	C3H8	27	CH3OO	products	28	CH3OOH	60	npropyl	
+net_reactants	62	C3H8	27	CH3OO	net_products	28	CH3OOH	60	npropyl	
+768	391	CH3OO+C3H8=CH3OOH+ipropyl	
+reactants	62	C3H8	27	CH3OO	products	28	CH3OOH	61	ipropyl	
+net_reactants	62	C3H8	27	CH3OO	net_products	28	CH3OOH	61	ipropyl	
+769	-391	CH3OO+C3H8=CH3OOH+ipropyl	
+reactants	62	C3H8	27	CH3OO	products	28	CH3OOH	61	ipropyl	
+net_reactants	62	C3H8	27	CH3OO	net_products	28	CH3OOH	61	ipropyl	
+770	392	CH3CH2OO+C3H8=CH3CH2OOH+npropyl	
+reactants	62	C3H8	50	CH3CH2OO	products	51	CH3CH2OOH	60	npropyl	
+net_reactants	62	C3H8	50	CH3CH2OO	net_products	51	CH3CH2OOH	60	npropyl	
+771	-392	CH3CH2OO+C3H8=CH3CH2OOH+npropyl	
+reactants	62	C3H8	50	CH3CH2OO	products	51	CH3CH2OOH	60	npropyl	
+net_reactants	62	C3H8	50	CH3CH2OO	net_products	51	CH3CH2OOH	60	npropyl	
+772	393	CH3CH2OO+C3H8=CH3CH2OOH+ipropyl	
+reactants	62	C3H8	50	CH3CH2OO	products	51	CH3CH2OOH	61	ipropyl	
+net_reactants	62	C3H8	50	CH3CH2OO	net_products	51	CH3CH2OOH	61	ipropyl	
+773	-393	CH3CH2OO+C3H8=CH3CH2OOH+ipropyl	
+reactants	62	C3H8	50	CH3CH2OO	products	51	CH3CH2OOH	61	ipropyl	
+net_reactants	62	C3H8	50	CH3CH2OO	net_products	51	CH3CH2OOH	61	ipropyl	
+774	394	C3H8+acetylperoxy=ipropyl+CH3CO3H	
+reactants	62	C3H8	47	acetylperoxy	products	84	CH3CO3H	61	ipropyl	
+net_reactants	62	C3H8	47	acetylperoxy	net_products	84	CH3CO3H	61	ipropyl	
+775	-394	C3H8+acetylperoxy=ipropyl+CH3CO3H	
+reactants	62	C3H8	47	acetylperoxy	products	84	CH3CO3H	61	ipropyl	
+net_reactants	62	C3H8	47	acetylperoxy	net_products	84	CH3CO3H	61	ipropyl	
+776	395	C3H8+acetylperoxy=npropyl+CH3CO3H	
+reactants	62	C3H8	47	acetylperoxy	products	84	CH3CO3H	60	npropyl	
+net_reactants	62	C3H8	47	acetylperoxy	net_products	84	CH3CO3H	60	npropyl	
+777	-395	C3H8+acetylperoxy=npropyl+CH3CO3H	
+reactants	62	C3H8	47	acetylperoxy	products	84	CH3CO3H	60	npropyl	
+net_reactants	62	C3H8	47	acetylperoxy	net_products	84	CH3CO3H	60	npropyl	
+778	396	C3H8+formylperoxy=npropyl+formylooh	
+reactants	62	C3H8	19	formylperoxy	products	20	formylooh	60	npropyl	
+net_reactants	62	C3H8	19	formylperoxy	net_products	20	formylooh	60	npropyl	
+779	-396	C3H8+formylperoxy=npropyl+formylooh	
+reactants	62	C3H8	19	formylperoxy	products	20	formylooh	60	npropyl	
+net_reactants	62	C3H8	19	formylperoxy	net_products	20	formylooh	60	npropyl	
+780	397	C3H8+formylperoxy=ipropyl+formylooh	
+reactants	62	C3H8	19	formylperoxy	products	20	formylooh	61	ipropyl	
+net_reactants	62	C3H8	19	formylperoxy	net_products	20	formylooh	61	ipropyl	
+781	-397	C3H8+formylperoxy=ipropyl+formylooh	
+reactants	62	C3H8	19	formylperoxy	products	20	formylooh	61	ipropyl	
+net_reactants	62	C3H8	19	formylperoxy	net_products	20	formylooh	61	ipropyl	
+782	398	H+C3H6=ipropyl	
+reactants	59	C3H6	3	H	products	61	ipropyl	
+net_reactants	59	C3H6	3	H	net_products	61	ipropyl	
+783	-398	H+C3H6=ipropyl	
+reactants	59	C3H6	3	H	products	61	ipropyl	
+net_reactants	59	C3H6	3	H	net_products	61	ipropyl	
+784	399	ipropyl+H=C2H5+CH3	
+reactants	3	H	61	ipropyl	products	39	C2H5	25	CH3	
+net_reactants	3	H	61	ipropyl	net_products	39	C2H5	25	CH3	
+785	-399	ipropyl+H=C2H5+CH3	
+reactants	3	H	61	ipropyl	products	39	C2H5	25	CH3	
+net_reactants	3	H	61	ipropyl	net_products	39	C2H5	25	CH3	
+786	400	ipropyl+OH=C3H6+H2O	
+reactants	10	OH	61	ipropyl	products	59	C3H6	11	H2O	
+net_reactants	10	OH	61	ipropyl	net_products	59	C3H6	11	H2O	
+787	-400	ipropyl+OH=C3H6+H2O	
+reactants	10	OH	61	ipropyl	products	59	C3H6	11	H2O	
+net_reactants	10	OH	61	ipropyl	net_products	59	C3H6	11	H2O	
+788	401	ipropyl+O=acetaldehyde+CH3	
+reactants	8	O	61	ipropyl	products	25	CH3	44	acetaldehyde	
+net_reactants	8	O	61	ipropyl	net_products	25	CH3	44	acetaldehyde	
+789	-401	ipropyl+O=acetaldehyde+CH3	
+reactants	8	O	61	ipropyl	products	25	CH3	44	acetaldehyde	
+net_reactants	8	O	61	ipropyl	net_products	25	CH3	44	acetaldehyde	
+790	402	npropyl=CH3+C2H4	
+reactants	60	npropyl	products	38	C2H4	25	CH3	
+net_reactants	60	npropyl	net_products	38	C2H4	25	CH3	
+791	-402	npropyl=CH3+C2H4	
+reactants	60	npropyl	products	38	C2H4	25	CH3	
+net_reactants	60	npropyl	net_products	38	C2H4	25	CH3	
+792	403	npropyl=H+C3H6	
+reactants	60	npropyl	products	59	C3H6	3	H	
+net_reactants	60	npropyl	net_products	59	C3H6	3	H	
+793	-403	npropyl=H+C3H6	
+reactants	60	npropyl	products	59	C3H6	3	H	
+net_reactants	60	npropyl	net_products	59	C3H6	3	H	
+794	404	propanal+npropyl=propionyl+C3H8	
+reactants	60	npropyl	74	propanal	products	62	C3H8	75	propionyl	
+net_reactants	60	npropyl	74	propanal	net_products	62	C3H8	75	propionyl	
+795	-404	propanal+npropyl=propionyl+C3H8	
+reactants	60	npropyl	74	propanal	products	62	C3H8	75	propionyl	
+net_reactants	60	npropyl	74	propanal	net_products	62	C3H8	75	propionyl	
+796	405	propanal+ipropyl=propionyl+C3H8	
+reactants	61	ipropyl	74	propanal	products	62	C3H8	75	propionyl	
+net_reactants	61	ipropyl	74	propanal	net_products	62	C3H8	75	propionyl	
+797	-405	propanal+ipropyl=propionyl+C3H8	
+reactants	61	ipropyl	74	propanal	products	62	C3H8	75	propionyl	
+net_reactants	61	ipropyl	74	propanal	net_products	62	C3H8	75	propionyl	
+798	406	propanal+allyl=propionyl+C3H6	
+reactants	63	allyl	74	propanal	products	59	C3H6	75	propionyl	
+net_reactants	63	allyl	74	propanal	net_products	59	C3H6	75	propionyl	
+799	-406	propanal+allyl=propionyl+C3H6	
+reactants	63	allyl	74	propanal	products	59	C3H6	75	propionyl	
+net_reactants	63	allyl	74	propanal	net_products	59	C3H6	75	propionyl	
+800	407	allyl+H(+M)=C3H6(+M)	
+reactants	3	H	63	allyl	products	59	C3H6	
+net_reactants	3	H	63	allyl	net_products	59	C3H6	
+801	-407	allyl+H(+M)=C3H6(+M)	
+reactants	3	H	63	allyl	products	59	C3H6	
+net_reactants	3	H	63	allyl	net_products	59	C3H6	
+802	408	C2H3+CH3(+M)=C3H6(+M)	
+reactants	37	C2H3	25	CH3	products	59	C3H6	
+net_reactants	37	C2H3	25	CH3	net_products	59	C3H6	
+803	-408	C2H3+CH3(+M)=C3H6(+M)	
+reactants	37	C2H3	25	CH3	products	59	C3H6	
+net_reactants	37	C2H3	25	CH3	net_products	59	C3H6	
+804	409	C3H6=propen1yl+H	
+reactants	59	C3H6	products	3	H	64	propen1yl	
+net_reactants	59	C3H6	net_products	3	H	64	propen1yl	
+805	-409	C3H6=propen1yl+H	
+reactants	59	C3H6	products	3	H	64	propen1yl	
+net_reactants	59	C3H6	net_products	3	H	64	propen1yl	
+806	410	C3H6=propen2yl+H	
+reactants	59	C3H6	products	3	H	65	propen2yl	
+net_reactants	59	C3H6	net_products	3	H	65	propen2yl	
+807	-410	C3H6=propen2yl+H	
+reactants	59	C3H6	products	3	H	65	propen2yl	
+net_reactants	59	C3H6	net_products	3	H	65	propen2yl	
+808	411	C3H6+O=C2H5+HCO	
+reactants	59	C3H6	8	O	products	39	C2H5	16	HCO	
+net_reactants	59	C3H6	8	O	net_products	39	C2H5	16	HCO	
+809	-411	C3H6+O=C2H5+HCO	
+reactants	59	C3H6	8	O	products	39	C2H5	16	HCO	
+net_reactants	59	C3H6	8	O	net_products	39	C2H5	16	HCO	
+810	412	C3H6+O=ketene+CH3+H	
+reactants	59	C3H6	8	O	products	25	CH3	3	H	41	ketene	
+net_reactants	59	C3H6	8	O	net_products	25	CH3	3	H	41	ketene	
+811	-412	C3H6+O=ketene+CH3+H	
+reactants	59	C3H6	8	O	products	25	CH3	3	H	41	ketene	
+net_reactants	59	C3H6	8	O	net_products	25	CH3	3	H	41	ketene	
+812	413	C3H6+O=CH3CHCO+H+H	
+reactants	59	C3H6	8	O	products	71	CH3CHCO	3	H	
+net_reactants	59	C3H6	8	O	net_products	71	CH3CHCO	3	H	
+813	-413	C3H6+O=CH3CHCO+H+H	
+reactants	59	C3H6	8	O	products	71	CH3CHCO	3	H	
+net_reactants	59	C3H6	8	O	net_products	71	CH3CHCO	3	H	
+814	414	C3H6+O=allyl+OH	
+reactants	59	C3H6	8	O	products	10	OH	63	allyl	
+net_reactants	59	C3H6	8	O	net_products	10	OH	63	allyl	
+815	-414	C3H6+O=allyl+OH	
+reactants	59	C3H6	8	O	products	10	OH	63	allyl	
+net_reactants	59	C3H6	8	O	net_products	10	OH	63	allyl	
+816	415	C3H6+O=propen1yl+OH	
+reactants	59	C3H6	8	O	products	10	OH	64	propen1yl	
+net_reactants	59	C3H6	8	O	net_products	10	OH	64	propen1yl	
+817	-415	C3H6+O=propen1yl+OH	
+reactants	59	C3H6	8	O	products	10	OH	64	propen1yl	
+net_reactants	59	C3H6	8	O	net_products	10	OH	64	propen1yl	
+818	416	C3H6+O=propen2yl+OH	
+reactants	59	C3H6	8	O	products	10	OH	65	propen2yl	
+net_reactants	59	C3H6	8	O	net_products	10	OH	65	propen2yl	
+819	-416	C3H6+O=propen2yl+OH	
+reactants	59	C3H6	8	O	products	10	OH	65	propen2yl	
+net_reactants	59	C3H6	8	O	net_products	10	OH	65	propen2yl	
+820	417	C3H6+HO2=allyl+H2O2	
+reactants	59	C3H6	12	HO2	products	13	H2O2	63	allyl	
+net_reactants	59	C3H6	12	HO2	net_products	13	H2O2	63	allyl	
+821	-417	C3H6+HO2=allyl+H2O2	
+reactants	59	C3H6	12	HO2	products	13	H2O2	63	allyl	
+net_reactants	59	C3H6	12	HO2	net_products	13	H2O2	63	allyl	
+822	418	C3H6+HO2=propen1yl+H2O2	
+reactants	59	C3H6	12	HO2	products	13	H2O2	64	propen1yl	
+net_reactants	59	C3H6	12	HO2	net_products	13	H2O2	64	propen1yl	
+823	-418	C3H6+HO2=propen1yl+H2O2	
+reactants	59	C3H6	12	HO2	products	13	H2O2	64	propen1yl	
+net_reactants	59	C3H6	12	HO2	net_products	13	H2O2	64	propen1yl	
+824	419	C3H6+HO2=propen2yl+H2O2	
+reactants	59	C3H6	12	HO2	products	13	H2O2	65	propen2yl	
+net_reactants	59	C3H6	12	HO2	net_products	13	H2O2	65	propen2yl	
+825	-419	C3H6+HO2=propen2yl+H2O2	
+reactants	59	C3H6	12	HO2	products	13	H2O2	65	propen2yl	
+net_reactants	59	C3H6	12	HO2	net_products	13	H2O2	65	propen2yl	
+826	420	C3H6+H=C2H4+CH3	
+reactants	59	C3H6	3	H	products	38	C2H4	25	CH3	
+net_reactants	59	C3H6	3	H	net_products	38	C2H4	25	CH3	
+827	-420	C3H6+H=C2H4+CH3	
+reactants	59	C3H6	3	H	products	38	C2H4	25	CH3	
+net_reactants	59	C3H6	3	H	net_products	38	C2H4	25	CH3	
+828	421	C3H6+H=allyl+H2	
+reactants	59	C3H6	3	H	products	4	H2	63	allyl	
+net_reactants	59	C3H6	3	H	net_products	4	H2	63	allyl	
+829	-421	C3H6+H=allyl+H2	
+reactants	59	C3H6	3	H	products	4	H2	63	allyl	
+net_reactants	59	C3H6	3	H	net_products	4	H2	63	allyl	
+830	422	C3H6+H=propen2yl+H2	
+reactants	59	C3H6	3	H	products	4	H2	65	propen2yl	
+net_reactants	59	C3H6	3	H	net_products	4	H2	65	propen2yl	
+831	-422	C3H6+H=propen2yl+H2	
+reactants	59	C3H6	3	H	products	4	H2	65	propen2yl	
+net_reactants	59	C3H6	3	H	net_products	4	H2	65	propen2yl	
+832	423	C3H6+H=propen1yl+H2	
+reactants	59	C3H6	3	H	products	4	H2	64	propen1yl	
+net_reactants	59	C3H6	3	H	net_products	4	H2	64	propen1yl	
+833	-423	C3H6+H=propen1yl+H2	
+reactants	59	C3H6	3	H	products	4	H2	64	propen1yl	
+net_reactants	59	C3H6	3	H	net_products	4	H2	64	propen1yl	
+834	424	C3H6+O2=allyl+HO2	
+reactants	59	C3H6	9	O2	products	12	HO2	63	allyl	
+net_reactants	59	C3H6	9	O2	net_products	12	HO2	63	allyl	
+835	-424	C3H6+O2=allyl+HO2	
+reactants	59	C3H6	9	O2	products	12	HO2	63	allyl	
+net_reactants	59	C3H6	9	O2	net_products	12	HO2	63	allyl	
+836	425	C3H6+O2=propen1yl+HO2	
+reactants	59	C3H6	9	O2	products	12	HO2	64	propen1yl	
+net_reactants	59	C3H6	9	O2	net_products	12	HO2	64	propen1yl	
+837	-425	C3H6+O2=propen1yl+HO2	
+reactants	59	C3H6	9	O2	products	12	HO2	64	propen1yl	
+net_reactants	59	C3H6	9	O2	net_products	12	HO2	64	propen1yl	
+838	426	C3H6+O2=propen2yl+HO2	
+reactants	59	C3H6	9	O2	products	12	HO2	65	propen2yl	
+net_reactants	59	C3H6	9	O2	net_products	12	HO2	65	propen2yl	
+839	-426	C3H6+O2=propen2yl+HO2	
+reactants	59	C3H6	9	O2	products	12	HO2	65	propen2yl	
+net_reactants	59	C3H6	9	O2	net_products	12	HO2	65	propen2yl	
+840	427	C3H6+CH3=allyl+CH4	
+reactants	59	C3H6	25	CH3	products	26	CH4	63	allyl	
+net_reactants	59	C3H6	25	CH3	net_products	26	CH4	63	allyl	
+841	-427	C3H6+CH3=allyl+CH4	
+reactants	59	C3H6	25	CH3	products	26	CH4	63	allyl	
+net_reactants	59	C3H6	25	CH3	net_products	26	CH4	63	allyl	
+842	428	C3H6+CH3=propen1yl+CH4	
+reactants	59	C3H6	25	CH3	products	26	CH4	64	propen1yl	
+net_reactants	59	C3H6	25	CH3	net_products	26	CH4	64	propen1yl	
+843	-428	C3H6+CH3=propen1yl+CH4	
+reactants	59	C3H6	25	CH3	products	26	CH4	64	propen1yl	
+net_reactants	59	C3H6	25	CH3	net_products	26	CH4	64	propen1yl	
+844	429	C3H6+CH3=propen2yl+CH4	
+reactants	59	C3H6	25	CH3	products	26	CH4	65	propen2yl	
+net_reactants	59	C3H6	25	CH3	net_products	26	CH4	65	propen2yl	
+845	-429	C3H6+CH3=propen2yl+CH4	
+reactants	59	C3H6	25	CH3	products	26	CH4	65	propen2yl	
+net_reactants	59	C3H6	25	CH3	net_products	26	CH4	65	propen2yl	
+846	430	C3H6+C2H5=allyl+C2H6	
+reactants	39	C2H5	59	C3H6	products	40	C2H6	63	allyl	
+net_reactants	39	C2H5	59	C3H6	net_products	40	C2H6	63	allyl	
+847	-430	C3H6+C2H5=allyl+C2H6	
+reactants	39	C2H5	59	C3H6	products	40	C2H6	63	allyl	
+net_reactants	39	C2H5	59	C3H6	net_products	40	C2H6	63	allyl	
+848	431	C3H6+acetylperoxy=allyl+CH3CO3H	
+reactants	59	C3H6	47	acetylperoxy	products	84	CH3CO3H	63	allyl	
+net_reactants	59	C3H6	47	acetylperoxy	net_products	84	CH3CO3H	63	allyl	
+849	-431	C3H6+acetylperoxy=allyl+CH3CO3H	
+reactants	59	C3H6	47	acetylperoxy	products	84	CH3CO3H	63	allyl	
+net_reactants	59	C3H6	47	acetylperoxy	net_products	84	CH3CO3H	63	allyl	
+850	432	C3H6+CH3OO=allyl+CH3OOH	
+reactants	59	C3H6	27	CH3OO	products	28	CH3OOH	63	allyl	
+net_reactants	59	C3H6	27	CH3OO	net_products	28	CH3OOH	63	allyl	
+851	-432	C3H6+CH3OO=allyl+CH3OOH	
+reactants	59	C3H6	27	CH3OO	products	28	CH3OOH	63	allyl	
+net_reactants	59	C3H6	27	CH3OO	net_products	28	CH3OOH	63	allyl	
+852	433	C3H6+HO2=propen1ol+OH	
+reactants	59	C3H6	12	HO2	products	10	OH	82	propen1ol	
+net_reactants	59	C3H6	12	HO2	net_products	10	OH	82	propen1ol	
+853	-433	C3H6+HO2=propen1ol+OH	
+reactants	59	C3H6	12	HO2	products	10	OH	82	propen1ol	
+net_reactants	59	C3H6	12	HO2	net_products	10	OH	82	propen1ol	
+854	434	C3H6+CH3CH2OO=allyl+CH3CH2OOH	
+reactants	59	C3H6	50	CH3CH2OO	products	51	CH3CH2OOH	63	allyl	
+net_reactants	59	C3H6	50	CH3CH2OO	net_products	51	CH3CH2OOH	63	allyl	
+855	-434	C3H6+CH3CH2OO=allyl+CH3CH2OOH	
+reactants	59	C3H6	50	CH3CH2OO	products	51	CH3CH2OOH	63	allyl	
+net_reactants	59	C3H6	50	CH3CH2OO	net_products	51	CH3CH2OOH	63	allyl	
+856	435	C3H6+npropyloo=allyl+npropylooh	
+reactants	59	C3H6	78	npropyloo	products	63	allyl	79	npropylooh	
+net_reactants	59	C3H6	78	npropyloo	net_products	63	allyl	79	npropylooh	
+857	-435	C3H6+npropyloo=allyl+npropylooh	
+reactants	59	C3H6	78	npropyloo	products	63	allyl	79	npropylooh	
+net_reactants	59	C3H6	78	npropyloo	net_products	63	allyl	79	npropylooh	
+858	436	C3H6+ipropyloo=allyl+ipropylooh	
+reactants	59	C3H6	80	ipropyloo	products	63	allyl	81	ipropylooh	
+net_reactants	59	C3H6	80	ipropyloo	net_products	63	allyl	81	ipropylooh	
+859	-436	C3H6+ipropyloo=allyl+ipropylooh	
+reactants	59	C3H6	80	ipropyloo	products	63	allyl	81	ipropylooh	
+net_reactants	59	C3H6	80	ipropyloo	net_products	63	allyl	81	ipropylooh	
+860	437	allyl+O=acrolein+H	
+reactants	8	O	63	allyl	products	3	H	69	acrolein	
+net_reactants	8	O	63	allyl	net_products	3	H	69	acrolein	
+861	-437	allyl+O=acrolein+H	
+reactants	8	O	63	allyl	products	3	H	69	acrolein	
+net_reactants	8	O	63	allyl	net_products	3	H	69	acrolein	
+862	438	allyl+OH=acrolein+H+H	
+reactants	10	OH	63	allyl	products	3	H	69	acrolein	
+net_reactants	10	OH	63	allyl	net_products	3	H	69	acrolein	
+863	-438	allyl+OH=acrolein+H+H	
+reactants	10	OH	63	allyl	products	3	H	69	acrolein	
+net_reactants	10	OH	63	allyl	net_products	3	H	69	acrolein	
+864	439	allyl+O2=acetyl+CH2O	
+reactants	9	O2	63	allyl	products	17	CH2O	45	acetyl	
+net_reactants	9	O2	63	allyl	net_products	17	CH2O	45	acetyl	
+865	-439	allyl+O2=acetyl+CH2O	
+reactants	9	O2	63	allyl	products	17	CH2O	45	acetyl	
+net_reactants	9	O2	63	allyl	net_products	17	CH2O	45	acetyl	
+866	440	allyl+O2=acrolein+OH	
+reactants	9	O2	63	allyl	products	10	OH	69	acrolein	
+net_reactants	9	O2	63	allyl	net_products	10	OH	69	acrolein	
+867	-440	allyl+O2=acrolein+OH	
+reactants	9	O2	63	allyl	products	10	OH	69	acrolein	
+net_reactants	9	O2	63	allyl	net_products	10	OH	69	acrolein	
+868	441	allyl+HCO=C3H6+CO	
+reactants	16	HCO	63	allyl	products	59	C3H6	14	CO	
+net_reactants	16	HCO	63	allyl	net_products	59	C3H6	14	CO	
+869	-441	allyl+HCO=C3H6+CO	
+reactants	16	HCO	63	allyl	products	59	C3H6	14	CO	
+net_reactants	16	HCO	63	allyl	net_products	59	C3H6	14	CO	
+870	442	allyl=propen2yl	
+reactants	63	allyl	products	65	propen2yl	
+net_reactants	63	allyl	net_products	65	propen2yl	
+871	-442	allyl=propen2yl	
+reactants	63	allyl	products	65	propen2yl	
+net_reactants	63	allyl	net_products	65	propen2yl	
+872	443	allyl=propen1yl	
+reactants	63	allyl	products	64	propen1yl	
+net_reactants	63	allyl	net_products	64	propen1yl	
+873	-443	allyl=propen1yl	
+reactants	63	allyl	products	64	propen1yl	
+net_reactants	63	allyl	net_products	64	propen1yl	
+874	444	C2H2+CH3=allyl	
+reactants	36	C2H2	25	CH3	products	63	allyl	
+net_reactants	36	C2H2	25	CH3	net_products	63	allyl	
+875	-444	C2H2+CH3=allyl	
+reactants	36	C2H2	25	CH3	products	63	allyl	
+net_reactants	36	C2H2	25	CH3	net_products	63	allyl	
+876	445	allyl+CH3OO=allyloxy+CH3O	
+reactants	27	CH3OO	63	allyl	products	30	CH3O	72	allyloxy	
+net_reactants	27	CH3OO	63	allyl	net_products	30	CH3O	72	allyloxy	
+877	-445	allyl+CH3OO=allyloxy+CH3O	
+reactants	27	CH3OO	63	allyl	products	30	CH3O	72	allyloxy	
+net_reactants	27	CH3OO	63	allyl	net_products	30	CH3O	72	allyloxy	
+878	446	allyl+C2H5=C2H4+C3H6	
+reactants	39	C2H5	63	allyl	products	38	C2H4	59	C3H6	
+net_reactants	39	C2H5	63	allyl	net_products	38	C2H4	59	C3H6	
+879	-446	allyl+C2H5=C2H4+C3H6	
+reactants	39	C2H5	63	allyl	products	38	C2H4	59	C3H6	
+net_reactants	39	C2H5	63	allyl	net_products	38	C2H4	59	C3H6	
+880	447	C2H2+CH3=propen1yl	
+reactants	36	C2H2	25	CH3	products	64	propen1yl	
+net_reactants	36	C2H2	25	CH3	net_products	64	propen1yl	
+881	-447	C2H2+CH3=propen1yl	
+reactants	36	C2H2	25	CH3	products	64	propen1yl	
+net_reactants	36	C2H2	25	CH3	net_products	64	propen1yl	
+882	448	propen1yl+O=C2H4+HCO	
+reactants	8	O	64	propen1yl	products	38	C2H4	16	HCO	
+net_reactants	8	O	64	propen1yl	net_products	38	C2H4	16	HCO	
+883	-448	propen1yl+O=C2H4+HCO	
+reactants	8	O	64	propen1yl	products	38	C2H4	16	HCO	
+net_reactants	8	O	64	propen1yl	net_products	38	C2H4	16	HCO	
+884	449	propen1yl+OH=C2H4+HCO+H	
+reactants	10	OH	64	propen1yl	products	38	C2H4	3	H	16	HCO	
+net_reactants	10	OH	64	propen1yl	net_products	38	C2H4	3	H	16	HCO	
+885	-449	propen1yl+OH=C2H4+HCO+H	
+reactants	10	OH	64	propen1yl	products	38	C2H4	3	H	16	HCO	
+net_reactants	10	OH	64	propen1yl	net_products	38	C2H4	3	H	16	HCO	
+886	450	propen1yl+O2=acetaldehyde+HCO	
+reactants	9	O2	64	propen1yl	products	16	HCO	44	acetaldehyde	
+net_reactants	9	O2	64	propen1yl	net_products	16	HCO	44	acetaldehyde	
+887	-450	propen1yl+O2=acetaldehyde+HCO	
+reactants	9	O2	64	propen1yl	products	16	HCO	44	acetaldehyde	
+net_reactants	9	O2	64	propen1yl	net_products	16	HCO	44	acetaldehyde	
+888	451	propen1yl+HO2=C2H4+HCO+OH	
+reactants	12	HO2	64	propen1yl	products	38	C2H4	16	HCO	10	OH	
+net_reactants	12	HO2	64	propen1yl	net_products	38	C2H4	16	HCO	10	OH	
+889	-451	propen1yl+HO2=C2H4+HCO+OH	
+reactants	12	HO2	64	propen1yl	products	38	C2H4	16	HCO	10	OH	
+net_reactants	12	HO2	64	propen1yl	net_products	38	C2H4	16	HCO	10	OH	
+890	452	propen1yl+HCO=C3H6+CO	
+reactants	16	HCO	64	propen1yl	products	59	C3H6	14	CO	
+net_reactants	16	HCO	64	propen1yl	net_products	59	C3H6	14	CO	
+891	-452	propen1yl+HCO=C3H6+CO	
+reactants	16	HCO	64	propen1yl	products	59	C3H6	14	CO	
+net_reactants	16	HCO	64	propen1yl	net_products	59	C3H6	14	CO	
+892	453	C2H2+CH3=propen2yl	
+reactants	36	C2H2	25	CH3	products	65	propen2yl	
+net_reactants	36	C2H2	25	CH3	net_products	65	propen2yl	
+893	-453	C2H2+CH3=propen2yl	
+reactants	36	C2H2	25	CH3	products	65	propen2yl	
+net_reactants	36	C2H2	25	CH3	net_products	65	propen2yl	
+894	454	propen2yl=propen1yl	
+reactants	65	propen2yl	products	64	propen1yl	
+net_reactants	65	propen2yl	net_products	64	propen1yl	
+895	-454	propen2yl=propen1yl	
+reactants	65	propen2yl	products	64	propen1yl	
+net_reactants	65	propen2yl	net_products	64	propen1yl	
+896	455	propen2yl+O=CH3+ketene	
+reactants	8	O	65	propen2yl	products	25	CH3	41	ketene	
+net_reactants	8	O	65	propen2yl	net_products	25	CH3	41	ketene	
+897	-455	propen2yl+O=CH3+ketene	
+reactants	8	O	65	propen2yl	products	25	CH3	41	ketene	
+net_reactants	8	O	65	propen2yl	net_products	25	CH3	41	ketene	
+898	456	propen2yl+OH=CH3+ketene+H	
+reactants	10	OH	65	propen2yl	products	25	CH3	3	H	41	ketene	
+net_reactants	10	OH	65	propen2yl	net_products	25	CH3	3	H	41	ketene	
+899	-456	propen2yl+OH=CH3+ketene+H	
+reactants	10	OH	65	propen2yl	products	25	CH3	3	H	41	ketene	
+net_reactants	10	OH	65	propen2yl	net_products	25	CH3	3	H	41	ketene	
+900	457	propen2yl+O2=acetyl+CH2O	
+reactants	9	O2	65	propen2yl	products	17	CH2O	45	acetyl	
+net_reactants	9	O2	65	propen2yl	net_products	17	CH2O	45	acetyl	
+901	-457	propen2yl+O2=acetyl+CH2O	
+reactants	9	O2	65	propen2yl	products	17	CH2O	45	acetyl	
+net_reactants	9	O2	65	propen2yl	net_products	17	CH2O	45	acetyl	
+902	458	propen2yl+HO2=CH3+ketene+OH	
+reactants	12	HO2	65	propen2yl	products	25	CH3	10	OH	41	ketene	
+net_reactants	12	HO2	65	propen2yl	net_products	25	CH3	10	OH	41	ketene	
+903	-458	propen2yl+HO2=CH3+ketene+OH	
+reactants	12	HO2	65	propen2yl	products	25	CH3	10	OH	41	ketene	
+net_reactants	12	HO2	65	propen2yl	net_products	25	CH3	10	OH	41	ketene	
+904	459	propen2yl+HCO=C3H6+CO	
+reactants	16	HCO	65	propen2yl	products	59	C3H6	14	CO	
+net_reactants	16	HCO	65	propen2yl	net_products	59	C3H6	14	CO	
+905	-459	propen2yl+HCO=C3H6+CO	
+reactants	16	HCO	65	propen2yl	products	59	C3H6	14	CO	
+net_reactants	16	HCO	65	propen2yl	net_products	59	C3H6	14	CO	
+906	460	npropyl+HO2=npropyloxy+OH	
+reactants	12	HO2	60	npropyl	products	10	OH	76	npropyloxy	
+net_reactants	12	HO2	60	npropyl	net_products	10	OH	76	npropyloxy	
+907	-460	npropyl+HO2=npropyloxy+OH	
+reactants	12	HO2	60	npropyl	products	10	OH	76	npropyloxy	
+net_reactants	12	HO2	60	npropyl	net_products	10	OH	76	npropyloxy	
+908	461	ipropyl+HO2=ipropyloxy+OH	
+reactants	12	HO2	61	ipropyl	products	10	OH	77	ipropyloxy	
+net_reactants	12	HO2	61	ipropyl	net_products	10	OH	77	ipropyloxy	
+909	-461	ipropyl+HO2=ipropyloxy+OH	
+reactants	12	HO2	61	ipropyl	products	10	OH	77	ipropyloxy	
+net_reactants	12	HO2	61	ipropyl	net_products	10	OH	77	ipropyloxy	
+910	462	CH3OO+npropyl=CH3O+npropyloxy	
+reactants	27	CH3OO	60	npropyl	products	30	CH3O	76	npropyloxy	
+net_reactants	27	CH3OO	60	npropyl	net_products	30	CH3O	76	npropyloxy	
+911	-462	CH3OO+npropyl=CH3O+npropyloxy	
+reactants	27	CH3OO	60	npropyl	products	30	CH3O	76	npropyloxy	
+net_reactants	27	CH3OO	60	npropyl	net_products	30	CH3O	76	npropyloxy	
+912	463	CH3OO+ipropyl=CH3O+ipropyloxy	
+reactants	27	CH3OO	61	ipropyl	products	30	CH3O	77	ipropyloxy	
+net_reactants	27	CH3OO	61	ipropyl	net_products	30	CH3O	77	ipropyloxy	
+913	-463	CH3OO+ipropyl=CH3O+ipropyloxy	
+reactants	27	CH3OO	61	ipropyl	products	30	CH3O	77	ipropyloxy	
+net_reactants	27	CH3OO	61	ipropyl	net_products	30	CH3O	77	ipropyloxy	
+914	464	npropyloo+CH2O=npropylooh+HCO	
+reactants	17	CH2O	78	npropyloo	products	16	HCO	79	npropylooh	
+net_reactants	17	CH2O	78	npropyloo	net_products	16	HCO	79	npropylooh	
+915	-464	npropyloo+CH2O=npropylooh+HCO	
+reactants	17	CH2O	78	npropyloo	products	16	HCO	79	npropylooh	
+net_reactants	17	CH2O	78	npropyloo	net_products	16	HCO	79	npropylooh	
+916	465	npropyloo+acetaldehyde=npropylooh+acetyl	
+reactants	44	acetaldehyde	78	npropyloo	products	45	acetyl	79	npropylooh	
+net_reactants	44	acetaldehyde	78	npropyloo	net_products	45	acetyl	79	npropylooh	
+917	-465	npropyloo+acetaldehyde=npropylooh+acetyl	
+reactants	44	acetaldehyde	78	npropyloo	products	45	acetyl	79	npropylooh	
+net_reactants	44	acetaldehyde	78	npropyloo	net_products	45	acetyl	79	npropylooh	
+918	466	ipropyloo+CH2O=ipropylooh+HCO	
+reactants	17	CH2O	80	ipropyloo	products	16	HCO	81	ipropylooh	
+net_reactants	17	CH2O	80	ipropyloo	net_products	16	HCO	81	ipropylooh	
+919	-466	ipropyloo+CH2O=ipropylooh+HCO	
+reactants	17	CH2O	80	ipropyloo	products	16	HCO	81	ipropylooh	
+net_reactants	17	CH2O	80	ipropyloo	net_products	16	HCO	81	ipropylooh	
+920	467	ipropyloo+acetaldehyde=ipropylooh+acetyl	
+reactants	44	acetaldehyde	80	ipropyloo	products	45	acetyl	81	ipropylooh	
+net_reactants	44	acetaldehyde	80	ipropyloo	net_products	45	acetyl	81	ipropylooh	
+921	-467	ipropyloo+acetaldehyde=ipropylooh+acetyl	
+reactants	44	acetaldehyde	80	ipropyloo	products	45	acetyl	81	ipropylooh	
+net_reactants	44	acetaldehyde	80	ipropyloo	net_products	45	acetyl	81	ipropylooh	
+922	468	npropyloo+HO2=npropylooh+O2	
+reactants	12	HO2	78	npropyloo	products	9	O2	79	npropylooh	
+net_reactants	12	HO2	78	npropyloo	net_products	9	O2	79	npropylooh	
+923	-468	npropyloo+HO2=npropylooh+O2	
+reactants	12	HO2	78	npropyloo	products	9	O2	79	npropylooh	
+net_reactants	12	HO2	78	npropyloo	net_products	9	O2	79	npropylooh	
+924	469	ipropyloo+HO2=ipropylooh+O2	
+reactants	12	HO2	80	ipropyloo	products	9	O2	81	ipropylooh	
+net_reactants	12	HO2	80	ipropyloo	net_products	9	O2	81	ipropylooh	
+925	-469	ipropyloo+HO2=ipropylooh+O2	
+reactants	12	HO2	80	ipropyloo	products	9	O2	81	ipropylooh	
+net_reactants	12	HO2	80	ipropyloo	net_products	9	O2	81	ipropylooh	
+926	470	C2H4+npropyloo=C2H3+npropylooh	
+reactants	38	C2H4	78	npropyloo	products	37	C2H3	79	npropylooh	
+net_reactants	38	C2H4	78	npropyloo	net_products	37	C2H3	79	npropylooh	
+927	-470	C2H4+npropyloo=C2H3+npropylooh	
+reactants	38	C2H4	78	npropyloo	products	37	C2H3	79	npropylooh	
+net_reactants	38	C2H4	78	npropyloo	net_products	37	C2H3	79	npropylooh	
+928	471	C2H4+ipropyloo=C2H3+ipropylooh	
+reactants	38	C2H4	80	ipropyloo	products	37	C2H3	81	ipropylooh	
+net_reactants	38	C2H4	80	ipropyloo	net_products	37	C2H3	81	ipropylooh	
+929	-471	C2H4+ipropyloo=C2H3+ipropylooh	
+reactants	38	C2H4	80	ipropyloo	products	37	C2H3	81	ipropylooh	
+net_reactants	38	C2H4	80	ipropyloo	net_products	37	C2H3	81	ipropylooh	
+930	472	CH3OH+npropyloo=CH2OH+npropylooh	
+reactants	31	CH3OH	78	npropyloo	products	29	CH2OH	79	npropylooh	
+net_reactants	31	CH3OH	78	npropyloo	net_products	29	CH2OH	79	npropylooh	
+931	-472	CH3OH+npropyloo=CH2OH+npropylooh	
+reactants	31	CH3OH	78	npropyloo	products	29	CH2OH	79	npropylooh	
+net_reactants	31	CH3OH	78	npropyloo	net_products	29	CH2OH	79	npropylooh	
+932	473	CH3OH+ipropyloo=CH2OH+ipropylooh	
+reactants	31	CH3OH	80	ipropyloo	products	29	CH2OH	81	ipropylooh	
+net_reactants	31	CH3OH	80	ipropyloo	net_products	29	CH2OH	81	ipropylooh	
+933	-473	CH3OH+ipropyloo=CH2OH+ipropylooh	
+reactants	31	CH3OH	80	ipropyloo	products	29	CH2OH	81	ipropylooh	
+net_reactants	31	CH3OH	80	ipropyloo	net_products	29	CH2OH	81	ipropylooh	
+934	474	acrolein+npropyloo=CH2CHCO+npropylooh	
+reactants	69	acrolein	78	npropyloo	products	70	CH2CHCO	79	npropylooh	
+net_reactants	69	acrolein	78	npropyloo	net_products	70	CH2CHCO	79	npropylooh	
+935	-474	acrolein+npropyloo=CH2CHCO+npropylooh	
+reactants	69	acrolein	78	npropyloo	products	70	CH2CHCO	79	npropylooh	
+net_reactants	69	acrolein	78	npropyloo	net_products	70	CH2CHCO	79	npropylooh	
+936	475	acrolein+ipropyloo=CH2CHCO+ipropylooh	
+reactants	69	acrolein	80	ipropyloo	products	70	CH2CHCO	81	ipropylooh	
+net_reactants	69	acrolein	80	ipropyloo	net_products	70	CH2CHCO	81	ipropylooh	
+937	-475	acrolein+ipropyloo=CH2CHCO+ipropylooh	
+reactants	69	acrolein	80	ipropyloo	products	70	CH2CHCO	81	ipropylooh	
+net_reactants	69	acrolein	80	ipropyloo	net_products	70	CH2CHCO	81	ipropylooh	
+938	476	CH4+npropyloo=CH3+npropylooh	
+reactants	26	CH4	78	npropyloo	products	25	CH3	79	npropylooh	
+net_reactants	26	CH4	78	npropyloo	net_products	25	CH3	79	npropylooh	
+939	-476	CH4+npropyloo=CH3+npropylooh	
+reactants	26	CH4	78	npropyloo	products	25	CH3	79	npropylooh	
+net_reactants	26	CH4	78	npropyloo	net_products	25	CH3	79	npropylooh	
+940	477	CH4+ipropyloo=CH3+ipropylooh	
+reactants	26	CH4	80	ipropyloo	products	25	CH3	81	ipropylooh	
+net_reactants	26	CH4	80	ipropyloo	net_products	25	CH3	81	ipropylooh	
+941	-477	CH4+ipropyloo=CH3+ipropylooh	
+reactants	26	CH4	80	ipropyloo	products	25	CH3	81	ipropylooh	
+net_reactants	26	CH4	80	ipropyloo	net_products	25	CH3	81	ipropylooh	
+942	478	npropyloo+CH3OO=npropyloxy+CH3O+O2	
+reactants	27	CH3OO	78	npropyloo	products	30	CH3O	9	O2	76	npropyloxy	
+net_reactants	27	CH3OO	78	npropyloo	net_products	30	CH3O	9	O2	76	npropyloxy	
+943	-478	npropyloo+CH3OO=npropyloxy+CH3O+O2	
+reactants	27	CH3OO	78	npropyloo	products	30	CH3O	9	O2	76	npropyloxy	
+net_reactants	27	CH3OO	78	npropyloo	net_products	30	CH3O	9	O2	76	npropyloxy	
+944	479	ipropyloo+CH3OO=ipropyloxy+CH3O+O2	
+reactants	27	CH3OO	80	ipropyloo	products	30	CH3O	9	O2	77	ipropyloxy	
+net_reactants	27	CH3OO	80	ipropyloo	net_products	30	CH3O	9	O2	77	ipropyloxy	
+945	-479	ipropyloo+CH3OO=ipropyloxy+CH3O+O2	
+reactants	27	CH3OO	80	ipropyloo	products	30	CH3O	9	O2	77	ipropyloxy	
+net_reactants	27	CH3OO	80	ipropyloo	net_products	30	CH3O	9	O2	77	ipropyloxy	
+946	480	H2+npropyloo=H+npropylooh	
+reactants	4	H2	78	npropyloo	products	3	H	79	npropylooh	
+net_reactants	4	H2	78	npropyloo	net_products	3	H	79	npropylooh	
+947	-480	H2+npropyloo=H+npropylooh	
+reactants	4	H2	78	npropyloo	products	3	H	79	npropylooh	
+net_reactants	4	H2	78	npropyloo	net_products	3	H	79	npropylooh	
+948	481	H2+ipropyloo=H+ipropylooh	
+reactants	4	H2	80	ipropyloo	products	3	H	81	ipropylooh	
+net_reactants	4	H2	80	ipropyloo	net_products	3	H	81	ipropylooh	
+949	-481	H2+ipropyloo=H+ipropylooh	
+reactants	4	H2	80	ipropyloo	products	3	H	81	ipropylooh	
+net_reactants	4	H2	80	ipropyloo	net_products	3	H	81	ipropylooh	
+950	482	ipropyloo+C2H6=ipropylooh+C2H5	
+reactants	40	C2H6	80	ipropyloo	products	39	C2H5	81	ipropylooh	
+net_reactants	40	C2H6	80	ipropyloo	net_products	39	C2H5	81	ipropylooh	
+951	-482	ipropyloo+C2H6=ipropylooh+C2H5	
+reactants	40	C2H6	80	ipropyloo	products	39	C2H5	81	ipropylooh	
+net_reactants	40	C2H6	80	ipropyloo	net_products	39	C2H5	81	ipropylooh	
+952	483	npropyloo+C2H6=npropylooh+C2H5	
+reactants	40	C2H6	78	npropyloo	products	39	C2H5	79	npropylooh	
+net_reactants	40	C2H6	78	npropyloo	net_products	39	C2H5	79	npropylooh	
+953	-483	npropyloo+C2H6=npropylooh+C2H5	
+reactants	40	C2H6	78	npropyloo	products	39	C2H5	79	npropylooh	
+net_reactants	40	C2H6	78	npropyloo	net_products	39	C2H5	79	npropylooh	
+954	484	ipropyloo+propanal=ipropylooh+propionyl	
+reactants	80	ipropyloo	74	propanal	products	81	ipropylooh	75	propionyl	
+net_reactants	80	ipropyloo	74	propanal	net_products	81	ipropylooh	75	propionyl	
+955	-484	ipropyloo+propanal=ipropylooh+propionyl	
+reactants	80	ipropyloo	74	propanal	products	81	ipropylooh	75	propionyl	
+net_reactants	80	ipropyloo	74	propanal	net_products	81	ipropylooh	75	propionyl	
+956	485	npropyloo+propanal=npropylooh+propionyl	
+reactants	78	npropyloo	74	propanal	products	79	npropylooh	75	propionyl	
+net_reactants	78	npropyloo	74	propanal	net_products	79	npropylooh	75	propionyl	
+957	-485	npropyloo+propanal=npropylooh+propionyl	
+reactants	78	npropyloo	74	propanal	products	79	npropylooh	75	propionyl	
+net_reactants	78	npropyloo	74	propanal	net_products	79	npropylooh	75	propionyl	
+958	486	ipropyloo+acetylperoxy=ipropyloxy+acetyloxy+O2	
+reactants	47	acetylperoxy	80	ipropyloo	products	9	O2	48	acetyloxy	77	ipropyloxy	
+net_reactants	47	acetylperoxy	80	ipropyloo	net_products	9	O2	48	acetyloxy	77	ipropyloxy	
+959	-486	ipropyloo+acetylperoxy=ipropyloxy+acetyloxy+O2	
+reactants	47	acetylperoxy	80	ipropyloo	products	9	O2	48	acetyloxy	77	ipropyloxy	
+net_reactants	47	acetylperoxy	80	ipropyloo	net_products	9	O2	48	acetyloxy	77	ipropyloxy	
+960	487	npropyloo+acetylperoxy=npropyloxy+acetyloxy+O2	
+reactants	47	acetylperoxy	78	npropyloo	products	9	O2	48	acetyloxy	76	npropyloxy	
+net_reactants	47	acetylperoxy	78	npropyloo	net_products	9	O2	48	acetyloxy	76	npropyloxy	
+961	-487	npropyloo+acetylperoxy=npropyloxy+acetyloxy+O2	
+reactants	47	acetylperoxy	78	npropyloo	products	9	O2	48	acetyloxy	76	npropyloxy	
+net_reactants	47	acetylperoxy	78	npropyloo	net_products	9	O2	48	acetyloxy	76	npropyloxy	
+962	488	ipropyloo+CH3CH2OO=ipropyloxy+ethoxy+O2	
+reactants	50	CH3CH2OO	80	ipropyloo	products	9	O2	49	ethoxy	77	ipropyloxy	
+net_reactants	50	CH3CH2OO	80	ipropyloo	net_products	9	O2	49	ethoxy	77	ipropyloxy	
+963	-488	ipropyloo+CH3CH2OO=ipropyloxy+ethoxy+O2	
+reactants	50	CH3CH2OO	80	ipropyloo	products	9	O2	49	ethoxy	77	ipropyloxy	
+net_reactants	50	CH3CH2OO	80	ipropyloo	net_products	9	O2	49	ethoxy	77	ipropyloxy	
+964	489	npropyloo+CH3CH2OO=npropyloxy+ethoxy+O2	
+reactants	50	CH3CH2OO	78	npropyloo	products	9	O2	49	ethoxy	76	npropyloxy	
+net_reactants	50	CH3CH2OO	78	npropyloo	net_products	9	O2	49	ethoxy	76	npropyloxy	
+965	-489	npropyloo+CH3CH2OO=npropyloxy+ethoxy+O2	
+reactants	50	CH3CH2OO	78	npropyloo	products	9	O2	49	ethoxy	76	npropyloxy	
+net_reactants	50	CH3CH2OO	78	npropyloo	net_products	9	O2	49	ethoxy	76	npropyloxy	
+966	490	ipropyloo+ipropyloo=O2+ipropyloxy+ipropyloxy	
+reactants	80	ipropyloo	products	9	O2	77	ipropyloxy	
+net_reactants	80	ipropyloo	net_products	9	O2	77	ipropyloxy	
+967	-490	ipropyloo+ipropyloo=O2+ipropyloxy+ipropyloxy	
+reactants	80	ipropyloo	products	9	O2	77	ipropyloxy	
+net_reactants	80	ipropyloo	net_products	9	O2	77	ipropyloxy	
+968	491	npropyloo+npropyloo=O2+npropyloxy+npropyloxy	
+reactants	78	npropyloo	products	9	O2	76	npropyloxy	
+net_reactants	78	npropyloo	net_products	9	O2	76	npropyloxy	
+969	-491	npropyloo+npropyloo=O2+npropyloxy+npropyloxy	
+reactants	78	npropyloo	products	9	O2	76	npropyloxy	
+net_reactants	78	npropyloo	net_products	9	O2	76	npropyloxy	
+970	492	ipropyloo+npropyloo=ipropyloxy+npropyloxy+O2	
+reactants	80	ipropyloo	78	npropyloo	products	9	O2	77	ipropyloxy	76	npropyloxy	
+net_reactants	80	ipropyloo	78	npropyloo	net_products	9	O2	77	ipropyloxy	76	npropyloxy	
+971	-492	ipropyloo+npropyloo=ipropyloxy+npropyloxy+O2	
+reactants	80	ipropyloo	78	npropyloo	products	9	O2	77	ipropyloxy	76	npropyloxy	
+net_reactants	80	ipropyloo	78	npropyloo	net_products	9	O2	77	ipropyloxy	76	npropyloxy	
+972	493	ipropyloo+CH3=ipropyloxy+CH3O	
+reactants	25	CH3	80	ipropyloo	products	30	CH3O	77	ipropyloxy	
+net_reactants	25	CH3	80	ipropyloo	net_products	30	CH3O	77	ipropyloxy	
+973	-493	ipropyloo+CH3=ipropyloxy+CH3O	
+reactants	25	CH3	80	ipropyloo	products	30	CH3O	77	ipropyloxy	
+net_reactants	25	CH3	80	ipropyloo	net_products	30	CH3O	77	ipropyloxy	
+974	494	ipropyloo+C2H5=ipropyloxy+ethoxy	
+reactants	39	C2H5	80	ipropyloo	products	49	ethoxy	77	ipropyloxy	
+net_reactants	39	C2H5	80	ipropyloo	net_products	49	ethoxy	77	ipropyloxy	
+975	-494	ipropyloo+C2H5=ipropyloxy+ethoxy	
+reactants	39	C2H5	80	ipropyloo	products	49	ethoxy	77	ipropyloxy	
+net_reactants	39	C2H5	80	ipropyloo	net_products	49	ethoxy	77	ipropyloxy	
+976	495	ipropyloo+ipropyl=ipropyloxy+ipropyloxy	
+reactants	61	ipropyl	80	ipropyloo	products	77	ipropyloxy	
+net_reactants	61	ipropyl	80	ipropyloo	net_products	77	ipropyloxy	
+977	-495	ipropyloo+ipropyl=ipropyloxy+ipropyloxy	
+reactants	61	ipropyl	80	ipropyloo	products	77	ipropyloxy	
+net_reactants	61	ipropyl	80	ipropyloo	net_products	77	ipropyloxy	
+978	496	ipropyloo+npropyl=ipropyloxy+npropyloxy	
+reactants	80	ipropyloo	60	npropyl	products	77	ipropyloxy	76	npropyloxy	
+net_reactants	80	ipropyloo	60	npropyl	net_products	77	ipropyloxy	76	npropyloxy	
+979	-496	ipropyloo+npropyl=ipropyloxy+npropyloxy	
+reactants	80	ipropyloo	60	npropyl	products	77	ipropyloxy	76	npropyloxy	
+net_reactants	80	ipropyloo	60	npropyl	net_products	77	ipropyloxy	76	npropyloxy	
+980	497	ipropyloo+allyl=ipropyloxy+allyloxy	
+reactants	63	allyl	80	ipropyloo	products	72	allyloxy	77	ipropyloxy	
+net_reactants	63	allyl	80	ipropyloo	net_products	72	allyloxy	77	ipropyloxy	
+981	-497	ipropyloo+allyl=ipropyloxy+allyloxy	
+reactants	63	allyl	80	ipropyloo	products	72	allyloxy	77	ipropyloxy	
+net_reactants	63	allyl	80	ipropyloo	net_products	72	allyloxy	77	ipropyloxy	
+982	498	npropyloo+CH3=npropyloxy+CH3O	
+reactants	25	CH3	78	npropyloo	products	30	CH3O	76	npropyloxy	
+net_reactants	25	CH3	78	npropyloo	net_products	30	CH3O	76	npropyloxy	
+983	-498	npropyloo+CH3=npropyloxy+CH3O	
+reactants	25	CH3	78	npropyloo	products	30	CH3O	76	npropyloxy	
+net_reactants	25	CH3	78	npropyloo	net_products	30	CH3O	76	npropyloxy	
+984	499	npropyloo+C2H5=npropyloxy+ethoxy	
+reactants	39	C2H5	78	npropyloo	products	49	ethoxy	76	npropyloxy	
+net_reactants	39	C2H5	78	npropyloo	net_products	49	ethoxy	76	npropyloxy	
+985	-499	npropyloo+C2H5=npropyloxy+ethoxy	
+reactants	39	C2H5	78	npropyloo	products	49	ethoxy	76	npropyloxy	
+net_reactants	39	C2H5	78	npropyloo	net_products	49	ethoxy	76	npropyloxy	
+986	500	npropyloo+ipropyl=npropyloxy+ipropyloxy	
+reactants	61	ipropyl	78	npropyloo	products	77	ipropyloxy	76	npropyloxy	
+net_reactants	61	ipropyl	78	npropyloo	net_products	77	ipropyloxy	76	npropyloxy	
+987	-500	npropyloo+ipropyl=npropyloxy+ipropyloxy	
+reactants	61	ipropyl	78	npropyloo	products	77	ipropyloxy	76	npropyloxy	
+net_reactants	61	ipropyl	78	npropyloo	net_products	77	ipropyloxy	76	npropyloxy	
+988	501	npropyloo+npropyl=npropyloxy+npropyloxy	
+reactants	60	npropyl	78	npropyloo	products	76	npropyloxy	
+net_reactants	60	npropyl	78	npropyloo	net_products	76	npropyloxy	
+989	-501	npropyloo+npropyl=npropyloxy+npropyloxy	
+reactants	60	npropyl	78	npropyloo	products	76	npropyloxy	
+net_reactants	60	npropyl	78	npropyloo	net_products	76	npropyloxy	
+990	502	npropyloo+allyl=npropyloxy+allyloxy	
+reactants	63	allyl	78	npropyloo	products	72	allyloxy	76	npropyloxy	
+net_reactants	63	allyl	78	npropyloo	net_products	72	allyloxy	76	npropyloxy	
+991	-502	npropyloo+allyl=npropyloxy+allyloxy	
+reactants	63	allyl	78	npropyloo	products	72	allyloxy	76	npropyloxy	
+net_reactants	63	allyl	78	npropyloo	net_products	72	allyloxy	76	npropyloxy	
+992	503	C2H5+CH2O=npropyloxy	
+reactants	39	C2H5	17	CH2O	products	76	npropyloxy	
+net_reactants	39	C2H5	17	CH2O	net_products	76	npropyloxy	
+993	-503	C2H5+CH2O=npropyloxy	
+reactants	39	C2H5	17	CH2O	products	76	npropyloxy	
+net_reactants	39	C2H5	17	CH2O	net_products	76	npropyloxy	
+994	504	propanal+H=npropyloxy	
+reactants	3	H	74	propanal	products	76	npropyloxy	
+net_reactants	3	H	74	propanal	net_products	76	npropyloxy	
+995	-504	propanal+H=npropyloxy	
+reactants	3	H	74	propanal	products	76	npropyloxy	
+net_reactants	3	H	74	propanal	net_products	76	npropyloxy	
+996	505	CH3+acetaldehyde=ipropyloxy	
+reactants	25	CH3	44	acetaldehyde	products	77	ipropyloxy	
+net_reactants	25	CH3	44	acetaldehyde	net_products	77	ipropyloxy	
+997	-505	CH3+acetaldehyde=ipropyloxy	
+reactants	25	CH3	44	acetaldehyde	products	77	ipropyloxy	
+net_reactants	25	CH3	44	acetaldehyde	net_products	77	ipropyloxy	
+998	506	allyloxy+O2=acrolein+HO2	
+reactants	9	O2	72	allyloxy	products	12	HO2	69	acrolein	
+net_reactants	9	O2	72	allyloxy	net_products	12	HO2	69	acrolein	
+999	-506	allyloxy+O2=acrolein+HO2	
+reactants	9	O2	72	allyloxy	products	12	HO2	69	acrolein	
+net_reactants	9	O2	72	allyloxy	net_products	12	HO2	69	acrolein	
+1000	507	propen1ol=C2H4+CH2O	
+reactants	82	propen1ol	products	38	C2H4	17	CH2O	
+net_reactants	82	propen1ol	net_products	38	C2H4	17	CH2O	
+1001	-507	propen1ol=C2H4+CH2O	
+reactants	82	propen1ol	products	38	C2H4	17	CH2O	
+net_reactants	82	propen1ol	net_products	38	C2H4	17	CH2O	
+1002	508	propen1ol+OH=CH2O+C2H3+H2O	
+reactants	10	OH	82	propen1ol	products	37	C2H3	17	CH2O	11	H2O	
+net_reactants	10	OH	82	propen1ol	net_products	37	C2H3	17	CH2O	11	H2O	
+1003	-508	propen1ol+OH=CH2O+C2H3+H2O	
+reactants	10	OH	82	propen1ol	products	37	C2H3	17	CH2O	11	H2O	
+net_reactants	10	OH	82	propen1ol	net_products	37	C2H3	17	CH2O	11	H2O	
+1004	509	propen1ol+H=CH2O+C2H3+H2	
+reactants	3	H	82	propen1ol	products	37	C2H3	17	CH2O	4	H2	
+net_reactants	3	H	82	propen1ol	net_products	37	C2H3	17	CH2O	4	H2	
+1005	-509	propen1ol+H=CH2O+C2H3+H2	
+reactants	3	H	82	propen1ol	products	37	C2H3	17	CH2O	4	H2	
+net_reactants	3	H	82	propen1ol	net_products	37	C2H3	17	CH2O	4	H2	
+1006	510	propen1ol+O=CH2O+C2H3+OH	
+reactants	8	O	82	propen1ol	products	37	C2H3	17	CH2O	10	OH	
+net_reactants	8	O	82	propen1ol	net_products	37	C2H3	17	CH2O	10	OH	
+1007	-510	propen1ol+O=CH2O+C2H3+OH	
+reactants	8	O	82	propen1ol	products	37	C2H3	17	CH2O	10	OH	
+net_reactants	8	O	82	propen1ol	net_products	37	C2H3	17	CH2O	10	OH	
+1008	511	propen1ol+HO2=CH2O+C2H3+H2O2	
+reactants	12	HO2	82	propen1ol	products	37	C2H3	17	CH2O	13	H2O2	
+net_reactants	12	HO2	82	propen1ol	net_products	37	C2H3	17	CH2O	13	H2O2	
+1009	-511	propen1ol+HO2=CH2O+C2H3+H2O2	
+reactants	12	HO2	82	propen1ol	products	37	C2H3	17	CH2O	13	H2O2	
+net_reactants	12	HO2	82	propen1ol	net_products	37	C2H3	17	CH2O	13	H2O2	
+1010	512	propen1ol+CH3OO=CH2O+C2H3+CH3OOH	
+reactants	27	CH3OO	82	propen1ol	products	37	C2H3	17	CH2O	28	CH3OOH	
+net_reactants	27	CH3OO	82	propen1ol	net_products	37	C2H3	17	CH2O	28	CH3OOH	
+1011	-512	propen1ol+CH3OO=CH2O+C2H3+CH3OOH	
+reactants	27	CH3OO	82	propen1ol	products	37	C2H3	17	CH2O	28	CH3OOH	
+net_reactants	27	CH3OO	82	propen1ol	net_products	37	C2H3	17	CH2O	28	CH3OOH	
+1012	513	propen1ol+CH3=CH2O+C2H3+CH4	
+reactants	25	CH3	82	propen1ol	products	37	C2H3	17	CH2O	26	CH4	
+net_reactants	25	CH3	82	propen1ol	net_products	37	C2H3	17	CH2O	26	CH4	
+1013	-513	propen1ol+CH3=CH2O+C2H3+CH4	
+reactants	25	CH3	82	propen1ol	products	37	C2H3	17	CH2O	26	CH4	
+net_reactants	25	CH3	82	propen1ol	net_products	37	C2H3	17	CH2O	26	CH4	
+1014	514	C3H6+OH=allyl+H2O	515	C3H6+OH=allyl+H2O	
+reactants	59	C3H6	10	OH	products	11	H2O	63	allyl	
+net_reactants	59	C3H6	10	OH	net_products	11	H2O	63	allyl	
+1015	-514	C3H6+OH=allyl+H2O	-515	C3H6+OH=allyl+H2O	
+reactants	59	C3H6	10	OH	products	11	H2O	63	allyl	
+net_reactants	59	C3H6	10	OH	net_products	11	H2O	63	allyl	
+1016	516	C3H6+OH=propen1yl+H2O	517	C3H6+OH=propen1yl+H2O	
+reactants	59	C3H6	10	OH	products	11	H2O	64	propen1yl	
+net_reactants	59	C3H6	10	OH	net_products	11	H2O	64	propen1yl	
+1017	-516	C3H6+OH=propen1yl+H2O	-517	C3H6+OH=propen1yl+H2O	
+reactants	59	C3H6	10	OH	products	11	H2O	64	propen1yl	
+net_reactants	59	C3H6	10	OH	net_products	11	H2O	64	propen1yl	
+1018	518	C3H6+OH=propen2yl+H2O	519	C3H6+OH=propen2yl+H2O	
+reactants	59	C3H6	10	OH	products	11	H2O	65	propen2yl	
+net_reactants	59	C3H6	10	OH	net_products	11	H2O	65	propen2yl	
+1019	-518	C3H6+OH=propen2yl+H2O	-519	C3H6+OH=propen2yl+H2O	
+reactants	59	C3H6	10	OH	products	11	H2O	65	propen2yl	
+net_reactants	59	C3H6	10	OH	net_products	11	H2O	65	propen2yl	
+1020	520	C3H6+OH=allyl-alcohol+H	521	C3H6+OH=allyl-alcohol+H	
+reactants	59	C3H6	10	OH	products	3	H	73	allyl-alcohol	
+net_reactants	59	C3H6	10	OH	net_products	3	H	73	allyl-alcohol	
+1021	-520	C3H6+OH=allyl-alcohol+H	-521	C3H6+OH=allyl-alcohol+H	
+reactants	59	C3H6	10	OH	products	3	H	73	allyl-alcohol	
+net_reactants	59	C3H6	10	OH	net_products	3	H	73	allyl-alcohol	
+1022	522	C3H6+OH=ethenol+CH3	523	C3H6+OH=ethenol+CH3	
+reactants	59	C3H6	10	OH	products	25	CH3	58	ethenol	
+net_reactants	59	C3H6	10	OH	net_products	25	CH3	58	ethenol	
+1023	-522	C3H6+OH=ethenol+CH3	-523	C3H6+OH=ethenol+CH3	
+reactants	59	C3H6	10	OH	products	25	CH3	58	ethenol	
+net_reactants	59	C3H6	10	OH	net_products	25	CH3	58	ethenol	
+1024	524	C3H6+OH=propen1ol+H	525	C3H6+OH=propen1ol+H	
+reactants	59	C3H6	10	OH	products	3	H	82	propen1ol	
+net_reactants	59	C3H6	10	OH	net_products	3	H	82	propen1ol	
+1025	-524	C3H6+OH=propen1ol+H	-525	C3H6+OH=propen1ol+H	
+reactants	59	C3H6	10	OH	products	3	H	82	propen1ol	
+net_reactants	59	C3H6	10	OH	net_products	3	H	82	propen1ol	
+1026	526	C3H6+OH=propen2ol+H	527	C3H6+OH=propen2ol+H	
+reactants	59	C3H6	10	OH	products	3	H	83	propen2ol	
+net_reactants	59	C3H6	10	OH	net_products	3	H	83	propen2ol	
+1027	-526	C3H6+OH=propen2ol+H	-527	C3H6+OH=propen2ol+H	
+reactants	59	C3H6	10	OH	products	3	H	83	propen2ol	
+net_reactants	59	C3H6	10	OH	net_products	3	H	83	propen2ol	
+1028	528	C3H6+OH=acetaldehyde+CH3	529	C3H6+OH=acetaldehyde+CH3	
+reactants	59	C3H6	10	OH	products	25	CH3	44	acetaldehyde	
+net_reactants	59	C3H6	10	OH	net_products	25	CH3	44	acetaldehyde	
+1029	-528	C3H6+OH=acetaldehyde+CH3	-529	C3H6+OH=acetaldehyde+CH3	
+reactants	59	C3H6	10	OH	products	25	CH3	44	acetaldehyde	
+net_reactants	59	C3H6	10	OH	net_products	25	CH3	44	acetaldehyde	
+1030	530	allyl+HO2=prod_2	
+reactants	12	HO2	63	allyl	products	95	prod_2	
+net_reactants	12	HO2	63	allyl	net_products	95	prod_2	
+1031	-530	allyl+HO2=prod_2	
+reactants	12	HO2	63	allyl	products	95	prod_2	
+net_reactants	12	HO2	63	allyl	net_products	95	prod_2	
+1032	531	allyl+HO2=acrolein+H2O	
+reactants	12	HO2	63	allyl	products	11	H2O	69	acrolein	
+net_reactants	12	HO2	63	allyl	net_products	11	H2O	69	acrolein	
+1033	-531	allyl+HO2=acrolein+H2O	
+reactants	12	HO2	63	allyl	products	11	H2O	69	acrolein	
+net_reactants	12	HO2	63	allyl	net_products	11	H2O	69	acrolein	
+1034	532	allyl+HO2=allyloxy+OH	
+reactants	12	HO2	63	allyl	products	10	OH	72	allyloxy	
+net_reactants	12	HO2	63	allyl	net_products	10	OH	72	allyloxy	
+1035	-532	allyl+HO2=allyloxy+OH	
+reactants	12	HO2	63	allyl	products	10	OH	72	allyloxy	
+net_reactants	12	HO2	63	allyl	net_products	10	OH	72	allyloxy	
+1036	533	prod_2=acrolein+H2O	
+reactants	95	prod_2	products	11	H2O	69	acrolein	
+net_reactants	95	prod_2	net_products	11	H2O	69	acrolein	
+1037	-533	prod_2=acrolein+H2O	
+reactants	95	prod_2	products	11	H2O	69	acrolein	
+net_reactants	95	prod_2	net_products	11	H2O	69	acrolein	
+1038	534	prod_2=allyloxy+OH	
+reactants	95	prod_2	products	10	OH	72	allyloxy	
+net_reactants	95	prod_2	net_products	10	OH	72	allyloxy	
+1039	-534	prod_2=allyloxy+OH	
+reactants	95	prod_2	products	10	OH	72	allyloxy	
+net_reactants	95	prod_2	net_products	10	OH	72	allyloxy	
+1040	535	allyloxy=C2H3+CH2O	
+reactants	72	allyloxy	products	37	C2H3	17	CH2O	
+net_reactants	72	allyloxy	net_products	37	C2H3	17	CH2O	
+1041	-535	allyloxy=C2H3+CH2O	
+reactants	72	allyloxy	products	37	C2H3	17	CH2O	
+net_reactants	72	allyloxy	net_products	37	C2H3	17	CH2O	
+1042	536	allyloxy=vinoxylmethyl	
+reactants	72	allyloxy	products	108	vinoxylmethyl	
+net_reactants	72	allyloxy	net_products	108	vinoxylmethyl	
+1043	-536	allyloxy=vinoxylmethyl	
+reactants	72	allyloxy	products	108	vinoxylmethyl	
+net_reactants	72	allyloxy	net_products	108	vinoxylmethyl	
+1044	537	allyloxy=formylethyl	
+reactants	72	allyloxy	products	109	formylethyl	
+net_reactants	72	allyloxy	net_products	109	formylethyl	
+1045	-537	allyloxy=formylethyl	
+reactants	72	allyloxy	products	109	formylethyl	
+net_reactants	72	allyloxy	net_products	109	formylethyl	
+1046	538	allyloxy=acrolein+H	
+reactants	72	allyloxy	products	3	H	69	acrolein	
+net_reactants	72	allyloxy	net_products	3	H	69	acrolein	
+1047	-538	allyloxy=acrolein+H	
+reactants	72	allyloxy	products	3	H	69	acrolein	
+net_reactants	72	allyloxy	net_products	3	H	69	acrolein	
+1048	539	allyloxy=C2H4+HCO	
+reactants	72	allyloxy	products	38	C2H4	16	HCO	
+net_reactants	72	allyloxy	net_products	38	C2H4	16	HCO	
+1049	-539	allyloxy=C2H4+HCO	
+reactants	72	allyloxy	products	38	C2H4	16	HCO	
+net_reactants	72	allyloxy	net_products	38	C2H4	16	HCO	
+1050	540	vinoxylmethyl=C2H3+CH2O	
+reactants	108	vinoxylmethyl	products	37	C2H3	17	CH2O	
+net_reactants	108	vinoxylmethyl	net_products	37	C2H3	17	CH2O	
+1051	-540	vinoxylmethyl=C2H3+CH2O	
+reactants	108	vinoxylmethyl	products	37	C2H3	17	CH2O	
+net_reactants	108	vinoxylmethyl	net_products	37	C2H3	17	CH2O	
+1052	541	vinoxylmethyl=formylethyl	
+reactants	108	vinoxylmethyl	products	109	formylethyl	
+net_reactants	108	vinoxylmethyl	net_products	109	formylethyl	
+1053	-541	vinoxylmethyl=formylethyl	
+reactants	108	vinoxylmethyl	products	109	formylethyl	
+net_reactants	108	vinoxylmethyl	net_products	109	formylethyl	
+1054	542	vinoxylmethyl=acrolein+H	
+reactants	108	vinoxylmethyl	products	3	H	69	acrolein	
+net_reactants	108	vinoxylmethyl	net_products	3	H	69	acrolein	
+1055	-542	vinoxylmethyl=acrolein+H	
+reactants	108	vinoxylmethyl	products	3	H	69	acrolein	
+net_reactants	108	vinoxylmethyl	net_products	3	H	69	acrolein	
+1056	543	vinoxylmethyl=C2H4+HCO	
+reactants	108	vinoxylmethyl	products	38	C2H4	16	HCO	
+net_reactants	108	vinoxylmethyl	net_products	38	C2H4	16	HCO	
+1057	-543	vinoxylmethyl=C2H4+HCO	
+reactants	108	vinoxylmethyl	products	38	C2H4	16	HCO	
+net_reactants	108	vinoxylmethyl	net_products	38	C2H4	16	HCO	
+1058	544	formylethyl=C2H3+CH2O	
+reactants	109	formylethyl	products	37	C2H3	17	CH2O	
+net_reactants	109	formylethyl	net_products	37	C2H3	17	CH2O	
+1059	-544	formylethyl=C2H3+CH2O	
+reactants	109	formylethyl	products	37	C2H3	17	CH2O	
+net_reactants	109	formylethyl	net_products	37	C2H3	17	CH2O	
+1060	545	formylethyl=acrolein+H	
+reactants	109	formylethyl	products	3	H	69	acrolein	
+net_reactants	109	formylethyl	net_products	3	H	69	acrolein	
+1061	-545	formylethyl=acrolein+H	
+reactants	109	formylethyl	products	3	H	69	acrolein	
+net_reactants	109	formylethyl	net_products	3	H	69	acrolein	
+1062	546	formylethyl=C2H4+HCO	
+reactants	109	formylethyl	products	38	C2H4	16	HCO	
+net_reactants	109	formylethyl	net_products	38	C2H4	16	HCO	
+1063	-546	formylethyl=C2H4+HCO	
+reactants	109	formylethyl	products	38	C2H4	16	HCO	
+net_reactants	109	formylethyl	net_products	38	C2H4	16	HCO	
+1064	547	C2H3+CH2O=acrolein+H	
+reactants	37	C2H3	17	CH2O	products	3	H	69	acrolein	
+net_reactants	37	C2H3	17	CH2O	net_products	3	H	69	acrolein	
+1065	-547	C2H3+CH2O=acrolein+H	
+reactants	37	C2H3	17	CH2O	products	3	H	69	acrolein	
+net_reactants	37	C2H3	17	CH2O	net_products	3	H	69	acrolein	
+1066	548	C2H3+CH2O=C2H4+HCO	
+reactants	37	C2H3	17	CH2O	products	38	C2H4	16	HCO	
+net_reactants	37	C2H3	17	CH2O	net_products	38	C2H4	16	HCO	
+1067	-548	C2H3+CH2O=C2H4+HCO	
+reactants	37	C2H3	17	CH2O	products	38	C2H4	16	HCO	
+net_reactants	37	C2H3	17	CH2O	net_products	38	C2H4	16	HCO	
+1068	549	O2+npropyl=npropyloo	
+reactants	9	O2	60	npropyl	products	78	npropyloo	
+net_reactants	9	O2	60	npropyl	net_products	78	npropyloo	
+1069	-549	O2+npropyl=npropyloo	
+reactants	9	O2	60	npropyl	products	78	npropyloo	
+net_reactants	9	O2	60	npropyl	net_products	78	npropyloo	
+1070	550	O2+npropyl=QOOH_2	
+reactants	9	O2	60	npropyl	products	88	QOOH_2	
+net_reactants	9	O2	60	npropyl	net_products	88	QOOH_2	
+1071	-550	O2+npropyl=QOOH_2	
+reactants	9	O2	60	npropyl	products	88	QOOH_2	
+net_reactants	9	O2	60	npropyl	net_products	88	QOOH_2	
+1072	551	O2+npropyl=QOOH_1	552	O2+npropyl=QOOH_1	
+reactants	9	O2	60	npropyl	products	87	QOOH_1	
+net_reactants	9	O2	60	npropyl	net_products	87	QOOH_1	
+1073	-551	O2+npropyl=QOOH_1	-552	O2+npropyl=QOOH_1	
+reactants	9	O2	60	npropyl	products	87	QOOH_1	
+net_reactants	9	O2	60	npropyl	net_products	87	QOOH_1	
+1074	553	O2+npropyl=HO2+C3H6	
+reactants	9	O2	60	npropyl	products	59	C3H6	12	HO2	
+net_reactants	9	O2	60	npropyl	net_products	59	C3H6	12	HO2	
+1075	-553	O2+npropyl=HO2+C3H6	
+reactants	9	O2	60	npropyl	products	59	C3H6	12	HO2	
+net_reactants	9	O2	60	npropyl	net_products	59	C3H6	12	HO2	
+1076	554	O2+npropyl=OH+propoxide	
+reactants	9	O2	60	npropyl	products	10	OH	86	propoxide	
+net_reactants	9	O2	60	npropyl	net_products	10	OH	86	propoxide	
+1077	-554	O2+npropyl=OH+propoxide	
+reactants	9	O2	60	npropyl	products	10	OH	86	propoxide	
+net_reactants	9	O2	60	npropyl	net_products	10	OH	86	propoxide	
+1078	555	npropyloo=QOOH_2	
+reactants	78	npropyloo	products	88	QOOH_2	
+net_reactants	78	npropyloo	net_products	88	QOOH_2	
+1079	-555	npropyloo=QOOH_2	
+reactants	78	npropyloo	products	88	QOOH_2	
+net_reactants	78	npropyloo	net_products	88	QOOH_2	
+1080	556	npropyloo=QOOH_1	557	npropyloo=QOOH_1	
+reactants	78	npropyloo	products	87	QOOH_1	
+net_reactants	78	npropyloo	net_products	87	QOOH_1	
+1081	-556	npropyloo=QOOH_1	-557	npropyloo=QOOH_1	
+reactants	78	npropyloo	products	87	QOOH_1	
+net_reactants	78	npropyloo	net_products	87	QOOH_1	
+1082	558	npropyloo=HO2+C3H6	
+reactants	78	npropyloo	products	59	C3H6	12	HO2	
+net_reactants	78	npropyloo	net_products	59	C3H6	12	HO2	
+1083	-558	npropyloo=HO2+C3H6	
+reactants	78	npropyloo	products	59	C3H6	12	HO2	
+net_reactants	78	npropyloo	net_products	59	C3H6	12	HO2	
+1084	559	npropyloo=OH+propoxide	
+reactants	78	npropyloo	products	10	OH	86	propoxide	
+net_reactants	78	npropyloo	net_products	10	OH	86	propoxide	
+1085	-559	npropyloo=OH+propoxide	
+reactants	78	npropyloo	products	10	OH	86	propoxide	
+net_reactants	78	npropyloo	net_products	10	OH	86	propoxide	
+1086	560	QOOH_2=QOOH_1	
+reactants	88	QOOH_2	products	87	QOOH_1	
+net_reactants	88	QOOH_2	net_products	87	QOOH_1	
+1087	-560	QOOH_2=QOOH_1	
+reactants	88	QOOH_2	products	87	QOOH_1	
+net_reactants	88	QOOH_2	net_products	87	QOOH_1	
+1088	561	QOOH_2=HO2+C3H6	
+reactants	88	QOOH_2	products	59	C3H6	12	HO2	
+net_reactants	88	QOOH_2	net_products	59	C3H6	12	HO2	
+1089	-561	QOOH_2=HO2+C3H6	
+reactants	88	QOOH_2	products	59	C3H6	12	HO2	
+net_reactants	88	QOOH_2	net_products	59	C3H6	12	HO2	
+1090	562	QOOH_2=OH+propoxide	
+reactants	88	QOOH_2	products	10	OH	86	propoxide	
+net_reactants	88	QOOH_2	net_products	10	OH	86	propoxide	
+1091	-562	QOOH_2=OH+propoxide	
+reactants	88	QOOH_2	products	10	OH	86	propoxide	
+net_reactants	88	QOOH_2	net_products	10	OH	86	propoxide	
+1092	563	QOOH_1=HO2+C3H6	
+reactants	87	QOOH_1	products	59	C3H6	12	HO2	
+net_reactants	87	QOOH_1	net_products	59	C3H6	12	HO2	
+1093	-563	QOOH_1=HO2+C3H6	
+reactants	87	QOOH_1	products	59	C3H6	12	HO2	
+net_reactants	87	QOOH_1	net_products	59	C3H6	12	HO2	
+1094	564	QOOH_1=OH+propoxide	
+reactants	87	QOOH_1	products	10	OH	86	propoxide	
+net_reactants	87	QOOH_1	net_products	10	OH	86	propoxide	
+1095	-564	QOOH_1=OH+propoxide	
+reactants	87	QOOH_1	products	10	OH	86	propoxide	
+net_reactants	87	QOOH_1	net_products	10	OH	86	propoxide	
+1096	565	O2+ipropyl=ipropyloo	
+reactants	9	O2	61	ipropyl	products	80	ipropyloo	
+net_reactants	9	O2	61	ipropyl	net_products	80	ipropyloo	
+1097	-565	O2+ipropyl=ipropyloo	
+reactants	9	O2	61	ipropyl	products	80	ipropyloo	
+net_reactants	9	O2	61	ipropyl	net_products	80	ipropyloo	
+1098	566	O2+ipropyl=QOOH_3	
+reactants	9	O2	61	ipropyl	products	89	QOOH_3	
+net_reactants	9	O2	61	ipropyl	net_products	89	QOOH_3	
+1099	-566	O2+ipropyl=QOOH_3	
+reactants	9	O2	61	ipropyl	products	89	QOOH_3	
+net_reactants	9	O2	61	ipropyl	net_products	89	QOOH_3	
+1100	567	O2+ipropyl=HO2+C3H6	
+reactants	9	O2	61	ipropyl	products	59	C3H6	12	HO2	
+net_reactants	9	O2	61	ipropyl	net_products	59	C3H6	12	HO2	
+1101	-567	O2+ipropyl=HO2+C3H6	
+reactants	9	O2	61	ipropyl	products	59	C3H6	12	HO2	
+net_reactants	9	O2	61	ipropyl	net_products	59	C3H6	12	HO2	
+1102	568	O2+ipropyl=OH+propoxide	
+reactants	9	O2	61	ipropyl	products	10	OH	86	propoxide	
+net_reactants	9	O2	61	ipropyl	net_products	10	OH	86	propoxide	
+1103	-568	O2+ipropyl=OH+propoxide	
+reactants	9	O2	61	ipropyl	products	10	OH	86	propoxide	
+net_reactants	9	O2	61	ipropyl	net_products	10	OH	86	propoxide	
+1104	569	ipropyloo=QOOH_3	
+reactants	80	ipropyloo	products	89	QOOH_3	
+net_reactants	80	ipropyloo	net_products	89	QOOH_3	
+1105	-569	ipropyloo=QOOH_3	
+reactants	80	ipropyloo	products	89	QOOH_3	
+net_reactants	80	ipropyloo	net_products	89	QOOH_3	
+1106	570	ipropyloo=HO2+C3H6	
+reactants	80	ipropyloo	products	59	C3H6	12	HO2	
+net_reactants	80	ipropyloo	net_products	59	C3H6	12	HO2	
+1107	-570	ipropyloo=HO2+C3H6	
+reactants	80	ipropyloo	products	59	C3H6	12	HO2	
+net_reactants	80	ipropyloo	net_products	59	C3H6	12	HO2	
+1108	571	ipropyloo=OH+propoxide	
+reactants	80	ipropyloo	products	10	OH	86	propoxide	
+net_reactants	80	ipropyloo	net_products	10	OH	86	propoxide	
+1109	-571	ipropyloo=OH+propoxide	
+reactants	80	ipropyloo	products	10	OH	86	propoxide	
+net_reactants	80	ipropyloo	net_products	10	OH	86	propoxide	
+1110	572	QOOH_3=HO2+C3H6	
+reactants	89	QOOH_3	products	59	C3H6	12	HO2	
+net_reactants	89	QOOH_3	net_products	59	C3H6	12	HO2	
+1111	-572	QOOH_3=HO2+C3H6	
+reactants	89	QOOH_3	products	59	C3H6	12	HO2	
+net_reactants	89	QOOH_3	net_products	59	C3H6	12	HO2	
+1112	573	QOOH_3=OH+propoxide	
+reactants	89	QOOH_3	products	10	OH	86	propoxide	
+net_reactants	89	QOOH_3	net_products	10	OH	86	propoxide	
+1113	-573	QOOH_3=OH+propoxide	
+reactants	89	QOOH_3	products	10	OH	86	propoxide	
+net_reactants	89	QOOH_3	net_products	10	OH	86	propoxide	
+1114	574	HO2+C3H6=OH+propoxide	
+reactants	59	C3H6	12	HO2	products	10	OH	86	propoxide	
+net_reactants	59	C3H6	12	HO2	net_products	10	OH	86	propoxide	
+1115	-574	HO2+C3H6=OH+propoxide	
+reactants	59	C3H6	12	HO2	products	10	OH	86	propoxide	
+net_reactants	59	C3H6	12	HO2	net_products	10	OH	86	propoxide	
+1116	575	O2+QOOH_1=well_1	
+reactants	9	O2	87	QOOH_1	products	90	well_1	
+net_reactants	9	O2	87	QOOH_1	net_products	90	well_1	
+1117	-575	O2+QOOH_1=well_1	
+reactants	9	O2	87	QOOH_1	products	90	well_1	
+net_reactants	9	O2	87	QOOH_1	net_products	90	well_1	
+1118	576	O2+QOOH_1=OH+OH+frag_1	
+reactants	9	O2	87	QOOH_1	products	10	OH	101	frag_1	
+net_reactants	9	O2	87	QOOH_1	net_products	10	OH	101	frag_1	
+1119	-576	O2+QOOH_1=OH+OH+frag_1	
+reactants	9	O2	87	QOOH_1	products	10	OH	101	frag_1	
+net_reactants	9	O2	87	QOOH_1	net_products	10	OH	101	frag_1	
+1120	577	O2+QOOH_1=HO2+prod_2	
+reactants	9	O2	87	QOOH_1	products	12	HO2	95	prod_2	
+net_reactants	9	O2	87	QOOH_1	net_products	12	HO2	95	prod_2	
+1121	-577	O2+QOOH_1=HO2+prod_2	
+reactants	9	O2	87	QOOH_1	products	12	HO2	95	prod_2	
+net_reactants	9	O2	87	QOOH_1	net_products	12	HO2	95	prod_2	
+1122	578	O2+QOOH_1=OH+prod_3	
+reactants	9	O2	87	QOOH_1	products	10	OH	96	prod_3	
+net_reactants	9	O2	87	QOOH_1	net_products	10	OH	96	prod_3	
+1123	-578	O2+QOOH_1=OH+prod_3	
+reactants	9	O2	87	QOOH_1	products	10	OH	96	prod_3	
+net_reactants	9	O2	87	QOOH_1	net_products	10	OH	96	prod_3	
+1124	579	O2+QOOH_2=well_2	
+reactants	9	O2	88	QOOH_2	products	91	well_2	
+net_reactants	9	O2	88	QOOH_2	net_products	91	well_2	
+1125	-579	O2+QOOH_2=well_2	
+reactants	9	O2	88	QOOH_2	products	91	well_2	
+net_reactants	9	O2	88	QOOH_2	net_products	91	well_2	
+1126	580	O2+QOOH_2=well_3	
+reactants	9	O2	88	QOOH_2	products	92	well_3	
+net_reactants	9	O2	88	QOOH_2	net_products	92	well_3	
+1127	-580	O2+QOOH_2=well_3	
+reactants	9	O2	88	QOOH_2	products	92	well_3	
+net_reactants	9	O2	88	QOOH_2	net_products	92	well_3	
+1128	581	O2+QOOH_2=well_5	
+reactants	9	O2	88	QOOH_2	products	93	well_5	
+net_reactants	9	O2	88	QOOH_2	net_products	93	well_5	
+1129	-581	O2+QOOH_2=well_5	
+reactants	9	O2	88	QOOH_2	products	93	well_5	
+net_reactants	9	O2	88	QOOH_2	net_products	93	well_5	
+1130	582	O2+QOOH_2=OH+prod_3	
+reactants	9	O2	88	QOOH_2	products	10	OH	96	prod_3	
+net_reactants	9	O2	88	QOOH_2	net_products	10	OH	96	prod_3	
+1131	-582	O2+QOOH_2=OH+prod_3	
+reactants	9	O2	88	QOOH_2	products	10	OH	96	prod_3	
+net_reactants	9	O2	88	QOOH_2	net_products	10	OH	96	prod_3	
+1132	583	O2+QOOH_2=OH+OH+frag_4	
+reactants	9	O2	88	QOOH_2	products	10	OH	103	frag_4	
+net_reactants	9	O2	88	QOOH_2	net_products	10	OH	103	frag_4	
+1133	-583	O2+QOOH_2=OH+OH+frag_4	
+reactants	9	O2	88	QOOH_2	products	10	OH	103	frag_4	
+net_reactants	9	O2	88	QOOH_2	net_products	10	OH	103	frag_4	
+1134	584	O2+QOOH_2=OH+OH+frag_5	
+reactants	9	O2	88	QOOH_2	products	10	OH	104	frag_5	
+net_reactants	9	O2	88	QOOH_2	net_products	10	OH	104	frag_5	
+1135	-584	O2+QOOH_2=OH+OH+frag_5	
+reactants	9	O2	88	QOOH_2	products	10	OH	104	frag_5	
+net_reactants	9	O2	88	QOOH_2	net_products	10	OH	104	frag_5	
+1136	585	O2+QOOH_2=HO2+prod_2	
+reactants	9	O2	88	QOOH_2	products	12	HO2	95	prod_2	
+net_reactants	9	O2	88	QOOH_2	net_products	12	HO2	95	prod_2	
+1137	-585	O2+QOOH_2=HO2+prod_2	
+reactants	9	O2	88	QOOH_2	products	12	HO2	95	prod_2	
+net_reactants	9	O2	88	QOOH_2	net_products	12	HO2	95	prod_2	
+1138	586	O2+QOOH_2=HO2+prod_6	
+reactants	9	O2	88	QOOH_2	products	12	HO2	99	prod_6	
+net_reactants	9	O2	88	QOOH_2	net_products	12	HO2	99	prod_6	
+1139	-586	O2+QOOH_2=HO2+prod_6	
+reactants	9	O2	88	QOOH_2	products	12	HO2	99	prod_6	
+net_reactants	9	O2	88	QOOH_2	net_products	12	HO2	99	prod_6	
+1140	587	O2+QOOH_2=HO2+prod_7	
+reactants	9	O2	88	QOOH_2	products	12	HO2	100	prod_7	
+net_reactants	9	O2	88	QOOH_2	net_products	12	HO2	100	prod_7	
+1141	-587	O2+QOOH_2=HO2+prod_7	
+reactants	9	O2	88	QOOH_2	products	12	HO2	100	prod_7	
+net_reactants	9	O2	88	QOOH_2	net_products	12	HO2	100	prod_7	
+1142	588	O2+QOOH_2=O2+QOOH_3	
+reactants	9	O2	88	QOOH_2	products	9	O2	89	QOOH_3	
+net_reactants	88	QOOH_2	net_products	89	QOOH_3	
+1143	-588	O2+QOOH_2=O2+QOOH_3	
+reactants	9	O2	88	QOOH_2	products	9	O2	89	QOOH_3	
+net_reactants	88	QOOH_2	net_products	89	QOOH_3	
+1144	589	O2+QOOH_3=well_2	
+reactants	9	O2	89	QOOH_3	products	91	well_2	
+net_reactants	9	O2	89	QOOH_3	net_products	91	well_2	
+1145	-589	O2+QOOH_3=well_2	
+reactants	9	O2	89	QOOH_3	products	91	well_2	
+net_reactants	9	O2	89	QOOH_3	net_products	91	well_2	
+1146	590	O2+QOOH_3=well_3	
+reactants	9	O2	89	QOOH_3	products	92	well_3	
+net_reactants	9	O2	89	QOOH_3	net_products	92	well_3	
+1147	-590	O2+QOOH_3=well_3	
+reactants	9	O2	89	QOOH_3	products	92	well_3	
+net_reactants	9	O2	89	QOOH_3	net_products	92	well_3	
+1148	591	O2+QOOH_3=well_5	
+reactants	9	O2	89	QOOH_3	products	93	well_5	
+net_reactants	9	O2	89	QOOH_3	net_products	93	well_5	
+1149	-591	O2+QOOH_3=well_5	
+reactants	9	O2	89	QOOH_3	products	93	well_5	
+net_reactants	9	O2	89	QOOH_3	net_products	93	well_5	
+1150	592	O2+QOOH_3=OH+prod_3	
+reactants	9	O2	89	QOOH_3	products	10	OH	96	prod_3	
+net_reactants	9	O2	89	QOOH_3	net_products	10	OH	96	prod_3	
+1151	-592	O2+QOOH_3=OH+prod_3	
+reactants	9	O2	89	QOOH_3	products	10	OH	96	prod_3	
+net_reactants	9	O2	89	QOOH_3	net_products	10	OH	96	prod_3	
+1152	593	O2+QOOH_3=OH+OH+frag_4	
+reactants	9	O2	89	QOOH_3	products	10	OH	103	frag_4	
+net_reactants	9	O2	89	QOOH_3	net_products	10	OH	103	frag_4	
+1153	-593	O2+QOOH_3=OH+OH+frag_4	
+reactants	9	O2	89	QOOH_3	products	10	OH	103	frag_4	
+net_reactants	9	O2	89	QOOH_3	net_products	10	OH	103	frag_4	
+1154	594	O2+QOOH_3=OH+OH+frag_5	
+reactants	9	O2	89	QOOH_3	products	10	OH	104	frag_5	
+net_reactants	9	O2	89	QOOH_3	net_products	10	OH	104	frag_5	
+1155	-594	O2+QOOH_3=OH+OH+frag_5	
+reactants	9	O2	89	QOOH_3	products	10	OH	104	frag_5	
+net_reactants	9	O2	89	QOOH_3	net_products	10	OH	104	frag_5	
+1156	595	O2+QOOH_3=HO2+prod_2	
+reactants	9	O2	89	QOOH_3	products	12	HO2	95	prod_2	
+net_reactants	9	O2	89	QOOH_3	net_products	12	HO2	95	prod_2	
+1157	-595	O2+QOOH_3=HO2+prod_2	
+reactants	9	O2	89	QOOH_3	products	12	HO2	95	prod_2	
+net_reactants	9	O2	89	QOOH_3	net_products	12	HO2	95	prod_2	
+1158	596	O2+QOOH_3=HO2+prod_6	
+reactants	9	O2	89	QOOH_3	products	12	HO2	99	prod_6	
+net_reactants	9	O2	89	QOOH_3	net_products	12	HO2	99	prod_6	
+1159	-596	O2+QOOH_3=HO2+prod_6	
+reactants	9	O2	89	QOOH_3	products	12	HO2	99	prod_6	
+net_reactants	9	O2	89	QOOH_3	net_products	12	HO2	99	prod_6	
+1160	597	O2+QOOH_3=HO2+prod_7	
+reactants	9	O2	89	QOOH_3	products	12	HO2	100	prod_7	
+net_reactants	9	O2	89	QOOH_3	net_products	12	HO2	100	prod_7	
+1161	-597	O2+QOOH_3=HO2+prod_7	
+reactants	9	O2	89	QOOH_3	products	12	HO2	100	prod_7	
+net_reactants	9	O2	89	QOOH_3	net_products	12	HO2	100	prod_7	
+1162	598	well_1=OH+prod_1	
+reactants	90	well_1	products	10	OH	94	prod_1	
+net_reactants	90	well_1	net_products	10	OH	94	prod_1	
+1163	-598	well_1=OH+prod_1	
+reactants	90	well_1	products	10	OH	94	prod_1	
+net_reactants	90	well_1	net_products	10	OH	94	prod_1	
+1164	599	well_1=HO2+prod_2	
+reactants	90	well_1	products	12	HO2	95	prod_2	
+net_reactants	90	well_1	net_products	12	HO2	95	prod_2	
+1165	-599	well_1=HO2+prod_2	
+reactants	90	well_1	products	12	HO2	95	prod_2	
+net_reactants	90	well_1	net_products	12	HO2	95	prod_2	
+1166	600	well_1=OH+prod_3	
+reactants	90	well_1	products	10	OH	96	prod_3	
+net_reactants	90	well_1	net_products	10	OH	96	prod_3	
+1167	-600	well_1=OH+prod_3	
+reactants	90	well_1	products	10	OH	96	prod_3	
+net_reactants	90	well_1	net_products	10	OH	96	prod_3	
+1168	601	well_2=well_3	
+reactants	91	well_2	products	92	well_3	
+net_reactants	91	well_2	net_products	92	well_3	
+1169	-601	well_2=well_3	
+reactants	91	well_2	products	92	well_3	
+net_reactants	91	well_2	net_products	92	well_3	
+1170	602	well_2=well_5	
+reactants	91	well_2	products	93	well_5	
+net_reactants	91	well_2	net_products	93	well_5	
+1171	-602	well_2=well_5	
+reactants	91	well_2	products	93	well_5	
+net_reactants	91	well_2	net_products	93	well_5	
+1172	603	well_2=OH+prod_3	
+reactants	91	well_2	products	10	OH	96	prod_3	
+net_reactants	91	well_2	net_products	10	OH	96	prod_3	
+1173	-603	well_2=OH+prod_3	
+reactants	91	well_2	products	10	OH	96	prod_3	
+net_reactants	91	well_2	net_products	10	OH	96	prod_3	
+1174	604	well_2=OH+prod_4	
+reactants	91	well_2	products	10	OH	97	prod_4	
+net_reactants	91	well_2	net_products	10	OH	97	prod_4	
+1175	-604	well_2=OH+prod_4	
+reactants	91	well_2	products	10	OH	97	prod_4	
+net_reactants	91	well_2	net_products	10	OH	97	prod_4	
+1176	605	well_2=OH+prod_5	
+reactants	91	well_2	products	10	OH	98	prod_5	
+net_reactants	91	well_2	net_products	10	OH	98	prod_5	
+1177	-605	well_2=OH+prod_5	
+reactants	91	well_2	products	10	OH	98	prod_5	
+net_reactants	91	well_2	net_products	10	OH	98	prod_5	
+1178	606	well_2=HO2+prod_2	
+reactants	91	well_2	products	12	HO2	95	prod_2	
+net_reactants	91	well_2	net_products	12	HO2	95	prod_2	
+1179	-606	well_2=HO2+prod_2	
+reactants	91	well_2	products	12	HO2	95	prod_2	
+net_reactants	91	well_2	net_products	12	HO2	95	prod_2	
+1180	607	well_2=HO2+prod_6	
+reactants	91	well_2	products	12	HO2	99	prod_6	
+net_reactants	91	well_2	net_products	12	HO2	99	prod_6	
+1181	-607	well_2=HO2+prod_6	
+reactants	91	well_2	products	12	HO2	99	prod_6	
+net_reactants	91	well_2	net_products	12	HO2	99	prod_6	
+1182	608	well_2=HO2+prod_7	
+reactants	91	well_2	products	12	HO2	100	prod_7	
+net_reactants	91	well_2	net_products	12	HO2	100	prod_7	
+1183	-608	well_2=HO2+prod_7	
+reactants	91	well_2	products	12	HO2	100	prod_7	
+net_reactants	91	well_2	net_products	12	HO2	100	prod_7	
+1184	609	well_3=well_5	
+reactants	92	well_3	products	93	well_5	
+net_reactants	92	well_3	net_products	93	well_5	
+1185	-609	well_3=well_5	
+reactants	92	well_3	products	93	well_5	
+net_reactants	92	well_3	net_products	93	well_5	
+1186	610	well_3=OH+prod_3	
+reactants	92	well_3	products	10	OH	96	prod_3	
+net_reactants	92	well_3	net_products	10	OH	96	prod_3	
+1187	-610	well_3=OH+prod_3	
+reactants	92	well_3	products	10	OH	96	prod_3	
+net_reactants	92	well_3	net_products	10	OH	96	prod_3	
+1188	611	well_3=OH+prod_4	
+reactants	92	well_3	products	10	OH	97	prod_4	
+net_reactants	92	well_3	net_products	10	OH	97	prod_4	
+1189	-611	well_3=OH+prod_4	
+reactants	92	well_3	products	10	OH	97	prod_4	
+net_reactants	92	well_3	net_products	10	OH	97	prod_4	
+1190	612	well_3=OH+prod_5	
+reactants	92	well_3	products	10	OH	98	prod_5	
+net_reactants	92	well_3	net_products	10	OH	98	prod_5	
+1191	-612	well_3=OH+prod_5	
+reactants	92	well_3	products	10	OH	98	prod_5	
+net_reactants	92	well_3	net_products	10	OH	98	prod_5	
+1192	613	well_3=HO2+prod_2	
+reactants	92	well_3	products	12	HO2	95	prod_2	
+net_reactants	92	well_3	net_products	12	HO2	95	prod_2	
+1193	-613	well_3=HO2+prod_2	
+reactants	92	well_3	products	12	HO2	95	prod_2	
+net_reactants	92	well_3	net_products	12	HO2	95	prod_2	
+1194	614	well_3=HO2+prod_6	
+reactants	92	well_3	products	12	HO2	99	prod_6	
+net_reactants	92	well_3	net_products	12	HO2	99	prod_6	
+1195	-614	well_3=HO2+prod_6	
+reactants	92	well_3	products	12	HO2	99	prod_6	
+net_reactants	92	well_3	net_products	12	HO2	99	prod_6	
+1196	615	well_3=HO2+prod_7	
+reactants	92	well_3	products	12	HO2	100	prod_7	
+net_reactants	92	well_3	net_products	12	HO2	100	prod_7	
+1197	-615	well_3=HO2+prod_7	
+reactants	92	well_3	products	12	HO2	100	prod_7	
+net_reactants	92	well_3	net_products	12	HO2	100	prod_7	
+1198	616	well_5=OH+prod_3	
+reactants	93	well_5	products	10	OH	96	prod_3	
+net_reactants	93	well_5	net_products	10	OH	96	prod_3	
+1199	-616	well_5=OH+prod_3	
+reactants	93	well_5	products	10	OH	96	prod_3	
+net_reactants	93	well_5	net_products	10	OH	96	prod_3	
+1200	617	well_5=OH+prod_4	
+reactants	93	well_5	products	10	OH	97	prod_4	
+net_reactants	93	well_5	net_products	10	OH	97	prod_4	
+1201	-617	well_5=OH+prod_4	
+reactants	93	well_5	products	10	OH	97	prod_4	
+net_reactants	93	well_5	net_products	10	OH	97	prod_4	
+1202	618	well_5=OH+prod_5	
+reactants	93	well_5	products	10	OH	98	prod_5	
+net_reactants	93	well_5	net_products	10	OH	98	prod_5	
+1203	-618	well_5=OH+prod_5	
+reactants	93	well_5	products	10	OH	98	prod_5	
+net_reactants	93	well_5	net_products	10	OH	98	prod_5	
+1204	619	well_5=HO2+prod_2	
+reactants	93	well_5	products	12	HO2	95	prod_2	
+net_reactants	93	well_5	net_products	12	HO2	95	prod_2	
+1205	-619	well_5=HO2+prod_2	
+reactants	93	well_5	products	12	HO2	95	prod_2	
+net_reactants	93	well_5	net_products	12	HO2	95	prod_2	
+1206	620	well_5=HO2+prod_6	
+reactants	93	well_5	products	12	HO2	99	prod_6	
+net_reactants	93	well_5	net_products	12	HO2	99	prod_6	
+1207	-620	well_5=HO2+prod_6	
+reactants	93	well_5	products	12	HO2	99	prod_6	
+net_reactants	93	well_5	net_products	12	HO2	99	prod_6	
+1208	621	well_5=HO2+prod_7	
+reactants	93	well_5	products	12	HO2	100	prod_7	
+net_reactants	93	well_5	net_products	12	HO2	100	prod_7	
+1209	-621	well_5=HO2+prod_7	
+reactants	93	well_5	products	12	HO2	100	prod_7	
+net_reactants	93	well_5	net_products	12	HO2	100	prod_7	
+1210	622	prod_6=propen1oxy+OH	
+reactants	99	prod_6	products	10	OH	105	propen1oxy	
+net_reactants	99	prod_6	net_products	10	OH	105	propen1oxy	
+1211	-622	prod_6=propen1oxy+OH	
+reactants	99	prod_6	products	10	OH	105	propen1oxy	
+net_reactants	99	prod_6	net_products	10	OH	105	propen1oxy	
+1212	623	prod_7=propen2oxy+OH	
+reactants	100	prod_7	products	10	OH	106	propen2oxy	
+net_reactants	100	prod_7	net_products	10	OH	106	propen2oxy	
+1213	-623	prod_7=propen2oxy+OH	
+reactants	100	prod_7	products	10	OH	106	propen2oxy	
+net_reactants	100	prod_7	net_products	10	OH	106	propen2oxy	
+1214	624	prod_1=frag_1+OH	
+reactants	94	prod_1	products	10	OH	101	frag_1	
+net_reactants	94	prod_1	net_products	10	OH	101	frag_1	
+1215	-624	prod_1=frag_1+OH	
+reactants	94	prod_1	products	10	OH	101	frag_1	
+net_reactants	94	prod_1	net_products	10	OH	101	frag_1	
+1216	625	prod_3=frag_3+OH	
+reactants	96	prod_3	products	10	OH	102	frag_3	
+net_reactants	96	prod_3	net_products	10	OH	102	frag_3	
+1217	-625	prod_3=frag_3+OH	
+reactants	96	prod_3	products	10	OH	102	frag_3	
+net_reactants	96	prod_3	net_products	10	OH	102	frag_3	
+1218	626	prod_4=frag_4+OH	
+reactants	97	prod_4	products	10	OH	103	frag_4	
+net_reactants	97	prod_4	net_products	10	OH	103	frag_4	
+1219	-626	prod_4=frag_4+OH	
+reactants	97	prod_4	products	10	OH	103	frag_4	
+net_reactants	97	prod_4	net_products	10	OH	103	frag_4	
+1220	627	prod_5=frag_5+OH	
+reactants	98	prod_5	products	10	OH	104	frag_5	
+net_reactants	98	prod_5	net_products	10	OH	104	frag_5	
+1221	-627	prod_5=frag_5+OH	
+reactants	98	prod_5	products	10	OH	104	frag_5	
+net_reactants	98	prod_5	net_products	10	OH	104	frag_5	
+1222	628	frag_1=vinoxy+CH2O	
+reactants	101	frag_1	products	17	CH2O	46	vinoxy	
+net_reactants	101	frag_1	net_products	17	CH2O	46	vinoxy	
+1223	-628	frag_1=vinoxy+CH2O	
+reactants	101	frag_1	products	17	CH2O	46	vinoxy	
+net_reactants	101	frag_1	net_products	17	CH2O	46	vinoxy	
+1224	629	frag_4=acetyl+CH2O	
+reactants	103	frag_4	products	17	CH2O	45	acetyl	
+net_reactants	103	frag_4	net_products	17	CH2O	45	acetyl	
+1225	-629	frag_4=acetyl+CH2O	
+reactants	103	frag_4	products	17	CH2O	45	acetyl	
+net_reactants	103	frag_4	net_products	17	CH2O	45	acetyl	
+1226	630	frag_5=CH3+glyoxal	
+reactants	104	frag_5	products	25	CH3	107	glyoxal	
+net_reactants	104	frag_5	net_products	25	CH3	107	glyoxal	
+1227	-630	frag_5=CH3+glyoxal	
+reactants	104	frag_5	products	25	CH3	107	glyoxal	
+net_reactants	104	frag_5	net_products	25	CH3	107	glyoxal	
+1228	631	frag_5=HCO+acetaldehyde	
+reactants	104	frag_5	products	16	HCO	44	acetaldehyde	
+net_reactants	104	frag_5	net_products	16	HCO	44	acetaldehyde	
+1229	-631	frag_5=HCO+acetaldehyde	
+reactants	104	frag_5	products	16	HCO	44	acetaldehyde	
+net_reactants	104	frag_5	net_products	16	HCO	44	acetaldehyde	

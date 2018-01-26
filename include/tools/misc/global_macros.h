@@ -24,8 +24,8 @@
 #elif __linux
     #define __LINUX_
 	#define __CANTERA_AVAILABLE_
-	#define __USE_CANTERA_
-	// #define __NO_USE_CANTERA_
+	// #define __USE_CANTERA_
+	#define __NO_USE_CANTERA_
 
 	#define __CHEMKIN_AVAILABLE_
 	#define __LSODE_AVAILABLE_
