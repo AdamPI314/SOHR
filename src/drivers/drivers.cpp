@@ -498,6 +498,20 @@ void driver::evaluate_path_AT_with_SP_over_time(const std::string &main_cwd, con
 	fout2.close();
 }
 
+
+/*change initial concentrations, see how that will affect ignition delay time,
+	save local uncertainties to file local_uncertainty.csv, save ignition delay time to ign.csv*/
+void driver::evaluate_ignition_delay_time_once(const std::string &main_cwd, const boost::property_tree::ptree &pt) {
+	std::vector<double> uncertainties;
+	fileIO::fileIO::read_generate_uncertainties_w2f_nominal(uncertainties,
+		main_cwd + std::string("/input/uncertainties.inp"));
+
+		pgt::dlsodePropagator pgt_obj(uncertainties, main_cwd);
+
+		double target_time_db = pgt_obj.return_temperature_target_time();
+		std::cout << target_time_db << std::endl;
+}
+
 #endif // __NO_USE_MPI_
 
 #if defined(__USE_MPI_)
