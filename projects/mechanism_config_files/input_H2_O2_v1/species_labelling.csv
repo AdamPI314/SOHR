@@ -1,0 +1,8 @@
+0	-->	O2	phase-->G	charge-->0	molecular weight-->31.9988	temperature low-->300	temperature high-->5000	H:0	O:2	
+1	-->	H2O	phase-->G	charge-->0	molecular weight-->18.0153	temperature low-->300	temperature high-->5000	H:2	O:1	
+2	-->	H2	phase-->G	charge-->0	molecular weight-->2.01594	temperature low-->300	temperature high-->5000	H:2	O:0	
+3	-->	H2O2	phase-->G	charge-->0	molecular weight-->34.0147	temperature low-->300	temperature high-->5000	H:2	O:2	
+4	-->	H	phase-->G	charge-->0	molecular weight-->1.00797	temperature low-->300	temperature high-->5000	H:1	O:0	
+5	-->	OH	phase-->G	charge-->0	molecular weight-->17.0074	temperature low-->200	temperature high-->6000	H:1	O:1	
+6	-->	HO2	phase-->G	charge-->0	molecular weight-->33.0068	temperature low-->200	temperature high-->3500	H:1	O:2	
+7	-->	O	phase-->G	charge-->0	molecular weight-->15.9994	temperature low-->300	temperature high-->5000	H:0	O:1	

@@ -1,0 +1,122 @@
+{
+    "dir": {
+        "include-path": "."
+    },
+    "system": {
+        "condition": "cv",
+        "initializer": "dlsode"
+    },
+    "network": {
+        "merge_chatterings": "yes"
+    },
+    "job": {
+        "job_type": "write_concentration_at_time_to_file"
+    },
+    "propagator": {
+        "primary_type": "from_file",
+        "type": "dlsode",
+        "sub_type": "time_propagator_cv_s2m_pgt",
+        "convert_molar_concentration_to_mole_fraction": "no",
+        "normalize_initial_concentration": "yes"
+    },
+    "time": {
+        "min_time": 0,
+        "max_time": 0.004375545109,
+        "critical_time": 0.004375545109,
+        "sys_min_time": 1e-11,
+        "tau": 0.004375545109
+    },
+    "chem_init": {
+        "pressure_atm": 5.54651,
+        "init_temperature": 1000,
+        "species_index_concentration": {
+            "0": 1,
+            "2": 2
+        }
+    },
+    "lsode_init": {
+        "dt": 1e-07,
+        "atol": 1e-10,
+        "rtol": 1e-10,
+        "mf": 22,
+        "jt": 2,
+        "itask": 1,
+        "iopt": 0,
+        "itol": 1,
+        "istate": 1,
+        "deltaN1": 1,
+        "deltaN2": 1
+    },
+    "ssa_init": {
+        "dt": 1e-06,
+        "fixed_size": 10000,
+        "order_parameter_ratio": 0.5,
+        "deltaN1": 1,
+        "deltaN2": 1
+    },
+    "T": {
+        "critical_temperature": 1100,
+        "end_temperature": 1900,
+        "target_temperature": 1800
+    },
+    "speciation": {
+        "number_of_Ks": 3
+    },
+    "pathway": {
+        "init_spe": 2,
+        "atom_followed": "H",
+        "super_atom": "X",
+        "begin_t": 0.0,
+        "end_t": 0.8,
+        "topN": [
+            500
+        ],
+        "trajectoryNumber": 1000000,
+        "trajectoryNumberVector": [
+            1000,
+            1000,
+            1000,
+            1000,
+            1000
+        ],
+        "trajectory_count_limit": 1,
+        "terminal_species": [],
+        "chattering_species": {},
+        "non_zero_rate_reaction": [],
+        "max_path_length": [
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            15,
+            15,
+            15,
+            15
+        ]
+    },
+    "search_algorithm": {
+        "max_level": 1,
+        "top_k": 25
+    },
+    "SOHR_init": {
+        "single_source_species": -1,
+        "timeN1": 100,
+        "timeN2": 10,
+        "deltaConcentration": 1e-50,
+        "massConservationFactor": 1.0,
+        "iterationNumber": 5,
+        "timeIterationNumber": 0,
+        "P2C": [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+        ]
+    }
+}

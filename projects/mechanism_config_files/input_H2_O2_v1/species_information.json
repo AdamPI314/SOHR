@@ -1,0 +1,98 @@
+{
+    "0": {
+        "name": "O2",
+        "phase": "G",
+        "charge": "0",
+        "molecular_weight": "31.998799999999999",
+        "temperature_low": "300",
+        "temperature_high": "5000",
+        "spe_composition": {
+            "H": "0",
+            "O": "2"
+        }
+    },
+    "1": {
+        "name": "H2O",
+        "phase": "G",
+        "charge": "0",
+        "molecular_weight": "18.015339999999998",
+        "temperature_low": "300",
+        "temperature_high": "5000",
+        "spe_composition": {
+            "H": "2",
+            "O": "1"
+        }
+    },
+    "2": {
+        "name": "H2",
+        "phase": "G",
+        "charge": "0",
+        "molecular_weight": "2.0159400000000001",
+        "temperature_low": "300",
+        "temperature_high": "5000",
+        "spe_composition": {
+            "H": "2",
+            "O": "0"
+        }
+    },
+    "3": {
+        "name": "H2O2",
+        "phase": "G",
+        "charge": "0",
+        "molecular_weight": "34.014740000000003",
+        "temperature_low": "300",
+        "temperature_high": "5000",
+        "spe_composition": {
+            "H": "2",
+            "O": "2"
+        }
+    },
+    "4": {
+        "name": "H",
+        "phase": "G",
+        "charge": "0",
+        "molecular_weight": "1.00797",
+        "temperature_low": "300",
+        "temperature_high": "5000",
+        "spe_composition": {
+            "H": "1",
+            "O": "0"
+        }
+    },
+    "5": {
+        "name": "OH",
+        "phase": "G",
+        "charge": "0",
+        "molecular_weight": "17.007370000000002",
+        "temperature_low": "200",
+        "temperature_high": "6000",
+        "spe_composition": {
+            "H": "1",
+            "O": "1"
+        }
+    },
+    "6": {
+        "name": "HO2",
+        "phase": "G",
+        "charge": "0",
+        "molecular_weight": "33.006770000000003",
+        "temperature_low": "200",
+        "temperature_high": "3500",
+        "spe_composition": {
+            "H": "1",
+            "O": "2"
+        }
+    },
+    "7": {
+        "name": "O",
+        "phase": "G",
+        "charge": "0",
+        "molecular_weight": "15.9994",
+        "temperature_low": "300",
+        "temperature_high": "5000",
+        "spe_composition": {
+            "H": "0",
+            "O": "1"
+        }
+    }
+}

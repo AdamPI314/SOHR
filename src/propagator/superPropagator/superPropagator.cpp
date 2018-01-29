@@ -857,6 +857,7 @@ namespace propagator_sr {
 
 	void superPropagator::spe_concentration_w2f_pgt(double in_time, std::string tag) const
 	{
+		std::cout << in_time << std::endl;
 		std::ofstream fout((this->cwd_pgt + std::string("/output/spe_concentration_") + tag + std::string(".csv")).c_str());
 		for (std::size_t i = 0; i < concentration_data_pgt.size(); ++i) {
 			fout << std::setprecision(std::numeric_limits<double>::max_digits10 + 1) << this->evaluate_concentration_at_time(in_time, i);

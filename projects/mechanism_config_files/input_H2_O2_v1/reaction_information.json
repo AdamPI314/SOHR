@@ -1,0 +1,1600 @@
+{
+    "0": {
+        "reverse_reaction": "1",
+        "reaction_name": "H+O2=>O+OH",
+        "original_index": {
+            "0": "1"
+        },
+        "reactant": {
+            "0": {
+                "species_index": "4",
+                "coefficient": "1"
+            },
+            "1": {
+                "species_index": "0",
+                "coefficient": "1"
+            }
+        },
+        "product": {
+            "0": {
+                "species_index": "7",
+                "coefficient": "1"
+            },
+            "1": {
+                "species_index": "5",
+                "coefficient": "1"
+            }
+        },
+        "net_reactant": {
+            "0": {
+                "species_index": "4",
+                "coefficient": "1"
+            },
+            "1": {
+                "species_index": "0",
+                "coefficient": "1"
+            }
+        },
+        "net_product": {
+            "0": {
+                "species_index": "7",
+                "coefficient": "1"
+            },
+            "1": {
+                "species_index": "5",
+                "coefficient": "1"
+            }
+        }
+    },
+    "1": {
+        "reverse_reaction": "0",
+        "reaction_name": "O+OH=>H+O2",
+        "original_index": {
+            "0": "-1"
+        },
+        "reactant": {
+            "0": {
+                "species_index": "7",
+                "coefficient": "1"
+            },
+            "1": {
+                "species_index": "5",
+                "coefficient": "1"
+            }
+        },
+        "product": {
+            "0": {
+                "species_index": "4",
+                "coefficient": "1"
+            },
+            "1": {
+                "species_index": "0",
+                "coefficient": "1"
+            }
+        },
+        "net_reactant": {
+            "0": {
+                "species_index": "7",
+                "coefficient": "1"
+            },
+            "1": {
+                "species_index": "5",
+                "coefficient": "1"
+            }
+        },
+        "net_product": {
+            "0": {
+                "species_index": "4",
+                "coefficient": "1"
+            },
+            "1": {
+                "species_index": "0",
+                "coefficient": "1"
+            }
+        }
+    },
+    "2": {
+        "reverse_reaction": "3",
+        "reaction_name": "O+H2=>H+OH",
+        "original_index": {
+            "0": "2"
+        },
+        "reactant": {
+            "0": {
+                "species_index": "2",
+                "coefficient": "1"
+            },
+            "1": {
+                "species_index": "7",
+                "coefficient": "1"
+            }
+        },
+        "product": {
+            "0": {
+                "species_index": "4",
+                "coefficient": "1"
+            },
+            "1": {
+                "species_index": "5",
+                "coefficient": "1"
+            }
+        },
+        "net_reactant": {
+            "0": {
+                "species_index": "2",
+                "coefficient": "1"
+            },
+            "1": {
+                "species_index": "7",
+                "coefficient": "1"
+            }
+        },
+        "net_product": {
+            "0": {
+                "species_index": "4",
+                "coefficient": "1"
+            },
+            "1": {
+                "species_index": "5",
+                "coefficient": "1"
+            }
+        }
+    },
+    "3": {
+        "reverse_reaction": "2",
+        "reaction_name": "H+OH=>O+H2",
+        "original_index": {
+            "0": "-2"
+        },
+        "reactant": {
+            "0": {
+                "species_index": "4",
+                "coefficient": "1"
+            },
+            "1": {
+                "species_index": "5",
+                "coefficient": "1"
+            }
+        },
+        "product": {
+            "0": {
+                "species_index": "2",
+                "coefficient": "1"
+            },
+            "1": {
+                "species_index": "7",
+                "coefficient": "1"
+            }
+        },
+        "net_reactant": {
+            "0": {
+                "species_index": "4",
+                "coefficient": "1"
+            },
+            "1": {
+                "species_index": "5",
+                "coefficient": "1"
+            }
+        },
+        "net_product": {
+            "0": {
+                "species_index": "2",
+                "coefficient": "1"
+            },
+            "1": {
+                "species_index": "7",
+                "coefficient": "1"
+            }
+        }
+    },
+    "4": {
+        "reverse_reaction": "5",
+        "reaction_name": "H2+OH=>H2O+H",
+        "original_index": {
+            "0": "3"
+        },
+        "reactant": {
+            "0": {
+                "species_index": "2",
+                "coefficient": "1"
+            },
+            "1": {
+                "species_index": "5",
+                "coefficient": "1"
+            }
+        },
+        "product": {
+            "0": {
+                "species_index": "4",
+                "coefficient": "1"
+            },
+            "1": {
+                "species_index": "1",
+                "coefficient": "1"
+            }
+        },
+        "net_reactant": {
+            "0": {
+                "species_index": "2",
+                "coefficient": "1"
+            },
+            "1": {
+                "species_index": "5",
+                "coefficient": "1"
+            }
+        },
+        "net_product": {
+            "0": {
+                "species_index": "4",
+                "coefficient": "1"
+            },
+            "1": {
+                "species_index": "1",
+                "coefficient": "1"
+            }
+        }
+    },
+    "5": {
+        "reverse_reaction": "4",
+        "reaction_name": "H2O+H=>H2+OH",
+        "original_index": {
+            "0": "-3"
+        },
+        "reactant": {
+            "0": {
+                "species_index": "4",
+                "coefficient": "1"
+            },
+            "1": {
+                "species_index": "1",
+                "coefficient": "1"
+            }
+        },
+        "product": {
+            "0": {
+                "species_index": "2",
+                "coefficient": "1"
+            },
+            "1": {
+                "species_index": "5",
+                "coefficient": "1"
+            }
+        },
+        "net_reactant": {
+            "0": {
+                "species_index": "4",
+                "coefficient": "1"
+            },
+            "1": {
+                "species_index": "1",
+                "coefficient": "1"
+            }
+        },
+        "net_product": {
+            "0": {
+                "species_index": "2",
+                "coefficient": "1"
+            },
+            "1": {
+                "species_index": "5",
+                "coefficient": "1"
+            }
+        }
+    },
+    "6": {
+        "reverse_reaction": "7",
+        "reaction_name": "O+H2O=>OH+OH",
+        "original_index": {
+            "0": "4"
+        },
+        "reactant": {
+            "0": {
+                "species_index": "1",
+                "coefficient": "1"
+            },
+            "1": {
+                "species_index": "7",
+                "coefficient": "1"
+            }
+        },
+        "product": {
+            "0": {
+                "species_index": "5",
+                "coefficient": "2"
+            }
+        },
+        "net_reactant": {
+            "0": {
+                "species_index": "1",
+                "coefficient": "1"
+            },
+            "1": {
+                "species_index": "7",
+                "coefficient": "1"
+            }
+        },
+        "net_product": {
+            "0": {
+                "species_index": "5",
+                "coefficient": "2"
+            }
+        }
+    },
+    "7": {
+        "reverse_reaction": "6",
+        "reaction_name": "OH+OH=>O+H2O",
+        "original_index": {
+            "0": "-4"
+        },
+        "reactant": {
+            "0": {
+                "species_index": "5",
+                "coefficient": "2"
+            }
+        },
+        "product": {
+            "0": {
+                "species_index": "1",
+                "coefficient": "1"
+            },
+            "1": {
+                "species_index": "7",
+                "coefficient": "1"
+            }
+        },
+        "net_reactant": {
+            "0": {
+                "species_index": "5",
+                "coefficient": "2"
+            }
+        },
+        "net_product": {
+            "0": {
+                "species_index": "1",
+                "coefficient": "1"
+            },
+            "1": {
+                "species_index": "7",
+                "coefficient": "1"
+            }
+        }
+    },
+    "8": {
+        "reverse_reaction": "9",
+        "reaction_name": "H2+M=>H+H+M",
+        "original_index": {
+            "0": "5"
+        },
+        "reactant": {
+            "0": {
+                "species_index": "2",
+                "coefficient": "1"
+            }
+        },
+        "product": {
+            "0": {
+                "species_index": "4",
+                "coefficient": "2"
+            }
+        },
+        "net_reactant": {
+            "0": {
+                "species_index": "2",
+                "coefficient": "1"
+            }
+        },
+        "net_product": {
+            "0": {
+                "species_index": "4",
+                "coefficient": "2"
+            }
+        }
+    },
+    "9": {
+        "reverse_reaction": "8",
+        "reaction_name": "H+H+M=>H2+M",
+        "original_index": {
+            "0": "-5"
+        },
+        "reactant": {
+            "0": {
+                "species_index": "4",
+                "coefficient": "2"
+            }
+        },
+        "product": {
+            "0": {
+                "species_index": "2",
+                "coefficient": "1"
+            }
+        },
+        "net_reactant": {
+            "0": {
+                "species_index": "4",
+                "coefficient": "2"
+            }
+        },
+        "net_product": {
+            "0": {
+                "species_index": "2",
+                "coefficient": "1"
+            }
+        }
+    },
+    "10": {
+        "reverse_reaction": "11",
+        "reaction_name": "O+O+M=>O2+M",
+        "original_index": {
+            "0": "6"
+        },
+        "reactant": {
+            "0": {
+                "species_index": "7",
+                "coefficient": "2"
+            }
+        },
+        "product": {
+            "0": {
+                "species_index": "0",
+                "coefficient": "1"
+            }
+        },
+        "net_reactant": {
+            "0": {
+                "species_index": "7",
+                "coefficient": "2"
+            }
+        },
+        "net_product": {
+            "0": {
+                "species_index": "0",
+                "coefficient": "1"
+            }
+        }
+    },
+    "11": {
+        "reverse_reaction": "10",
+        "reaction_name": "O2+M=>O+O+M",
+        "original_index": {
+            "0": "-6"
+        },
+        "reactant": {
+            "0": {
+                "species_index": "0",
+                "coefficient": "1"
+            }
+        },
+        "product": {
+            "0": {
+                "species_index": "7",
+                "coefficient": "2"
+            }
+        },
+        "net_reactant": {
+            "0": {
+                "species_index": "0",
+                "coefficient": "1"
+            }
+        },
+        "net_product": {
+            "0": {
+                "species_index": "7",
+                "coefficient": "2"
+            }
+        }
+    },
+    "12": {
+        "reverse_reaction": "13",
+        "reaction_name": "O+H+M=>OH+M",
+        "original_index": {
+            "0": "7"
+        },
+        "reactant": {
+            "0": {
+                "species_index": "4",
+                "coefficient": "1"
+            },
+            "1": {
+                "species_index": "7",
+                "coefficient": "1"
+            }
+        },
+        "product": {
+            "0": {
+                "species_index": "5",
+                "coefficient": "1"
+            }
+        },
+        "net_reactant": {
+            "0": {
+                "species_index": "4",
+                "coefficient": "1"
+            },
+            "1": {
+                "species_index": "7",
+                "coefficient": "1"
+            }
+        },
+        "net_product": {
+            "0": {
+                "species_index": "5",
+                "coefficient": "1"
+            }
+        }
+    },
+    "13": {
+        "reverse_reaction": "12",
+        "reaction_name": "OH+M=>O+H+M",
+        "original_index": {
+            "0": "-7"
+        },
+        "reactant": {
+            "0": {
+                "species_index": "5",
+                "coefficient": "1"
+            }
+        },
+        "product": {
+            "0": {
+                "species_index": "4",
+                "coefficient": "1"
+            },
+            "1": {
+                "species_index": "7",
+                "coefficient": "1"
+            }
+        },
+        "net_reactant": {
+            "0": {
+                "species_index": "5",
+                "coefficient": "1"
+            }
+        },
+        "net_product": {
+            "0": {
+                "species_index": "4",
+                "coefficient": "1"
+            },
+            "1": {
+                "species_index": "7",
+                "coefficient": "1"
+            }
+        }
+    },
+    "14": {
+        "reverse_reaction": "15",
+        "reaction_name": "H+OH+M=>H2O+M",
+        "original_index": {
+            "0": "8"
+        },
+        "reactant": {
+            "0": {
+                "species_index": "4",
+                "coefficient": "1"
+            },
+            "1": {
+                "species_index": "5",
+                "coefficient": "1"
+            }
+        },
+        "product": {
+            "0": {
+                "species_index": "1",
+                "coefficient": "1"
+            }
+        },
+        "net_reactant": {
+            "0": {
+                "species_index": "4",
+                "coefficient": "1"
+            },
+            "1": {
+                "species_index": "5",
+                "coefficient": "1"
+            }
+        },
+        "net_product": {
+            "0": {
+                "species_index": "1",
+                "coefficient": "1"
+            }
+        }
+    },
+    "15": {
+        "reverse_reaction": "14",
+        "reaction_name": "H2O+M=>H+OH+M",
+        "original_index": {
+            "0": "-8"
+        },
+        "reactant": {
+            "0": {
+                "species_index": "1",
+                "coefficient": "1"
+            }
+        },
+        "product": {
+            "0": {
+                "species_index": "4",
+                "coefficient": "1"
+            },
+            "1": {
+                "species_index": "5",
+                "coefficient": "1"
+            }
+        },
+        "net_reactant": {
+            "0": {
+                "species_index": "1",
+                "coefficient": "1"
+            }
+        },
+        "net_product": {
+            "0": {
+                "species_index": "4",
+                "coefficient": "1"
+            },
+            "1": {
+                "species_index": "5",
+                "coefficient": "1"
+            }
+        }
+    },
+    "16": {
+        "reverse_reaction": "17",
+        "reaction_name": "H+O2(+M)=>HO2(+M)",
+        "original_index": {
+            "0": "9"
+        },
+        "reactant": {
+            "0": {
+                "species_index": "4",
+                "coefficient": "1"
+            },
+            "1": {
+                "species_index": "0",
+                "coefficient": "1"
+            }
+        },
+        "product": {
+            "0": {
+                "species_index": "6",
+                "coefficient": "1"
+            }
+        },
+        "net_reactant": {
+            "0": {
+                "species_index": "4",
+                "coefficient": "1"
+            },
+            "1": {
+                "species_index": "0",
+                "coefficient": "1"
+            }
+        },
+        "net_product": {
+            "0": {
+                "species_index": "6",
+                "coefficient": "1"
+            }
+        }
+    },
+    "17": {
+        "reverse_reaction": "16",
+        "reaction_name": "HO2(+M)=>H+O2(+M)",
+        "original_index": {
+            "0": "-9"
+        },
+        "reactant": {
+            "0": {
+                "species_index": "6",
+                "coefficient": "1"
+            }
+        },
+        "product": {
+            "0": {
+                "species_index": "4",
+                "coefficient": "1"
+            },
+            "1": {
+                "species_index": "0",
+                "coefficient": "1"
+            }
+        },
+        "net_reactant": {
+            "0": {
+                "species_index": "6",
+                "coefficient": "1"
+            }
+        },
+        "net_product": {
+            "0": {
+                "species_index": "4",
+                "coefficient": "1"
+            },
+            "1": {
+                "species_index": "0",
+                "coefficient": "1"
+            }
+        }
+    },
+    "18": {
+        "reverse_reaction": "19",
+        "reaction_name": "HO2+H=>H2+O2",
+        "original_index": {
+            "0": "10"
+        },
+        "reactant": {
+            "0": {
+                "species_index": "4",
+                "coefficient": "1"
+            },
+            "1": {
+                "species_index": "6",
+                "coefficient": "1"
+            }
+        },
+        "product": {
+            "0": {
+                "species_index": "2",
+                "coefficient": "1"
+            },
+            "1": {
+                "species_index": "0",
+                "coefficient": "1"
+            }
+        },
+        "net_reactant": {
+            "0": {
+                "species_index": "4",
+                "coefficient": "1"
+            },
+            "1": {
+                "species_index": "6",
+                "coefficient": "1"
+            }
+        },
+        "net_product": {
+            "0": {
+                "species_index": "2",
+                "coefficient": "1"
+            },
+            "1": {
+                "species_index": "0",
+                "coefficient": "1"
+            }
+        }
+    },
+    "19": {
+        "reverse_reaction": "18",
+        "reaction_name": "H2+O2=>HO2+H",
+        "original_index": {
+            "0": "-10"
+        },
+        "reactant": {
+            "0": {
+                "species_index": "2",
+                "coefficient": "1"
+            },
+            "1": {
+                "species_index": "0",
+                "coefficient": "1"
+            }
+        },
+        "product": {
+            "0": {
+                "species_index": "4",
+                "coefficient": "1"
+            },
+            "1": {
+                "species_index": "6",
+                "coefficient": "1"
+            }
+        },
+        "net_reactant": {
+            "0": {
+                "species_index": "2",
+                "coefficient": "1"
+            },
+            "1": {
+                "species_index": "0",
+                "coefficient": "1"
+            }
+        },
+        "net_product": {
+            "0": {
+                "species_index": "4",
+                "coefficient": "1"
+            },
+            "1": {
+                "species_index": "6",
+                "coefficient": "1"
+            }
+        }
+    },
+    "20": {
+        "reverse_reaction": "21",
+        "reaction_name": "HO2+H=>OH+OH",
+        "original_index": {
+            "0": "11"
+        },
+        "reactant": {
+            "0": {
+                "species_index": "4",
+                "coefficient": "1"
+            },
+            "1": {
+                "species_index": "6",
+                "coefficient": "1"
+            }
+        },
+        "product": {
+            "0": {
+                "species_index": "5",
+                "coefficient": "2"
+            }
+        },
+        "net_reactant": {
+            "0": {
+                "species_index": "4",
+                "coefficient": "1"
+            },
+            "1": {
+                "species_index": "6",
+                "coefficient": "1"
+            }
+        },
+        "net_product": {
+            "0": {
+                "species_index": "5",
+                "coefficient": "2"
+            }
+        }
+    },
+    "21": {
+        "reverse_reaction": "20",
+        "reaction_name": "OH+OH=>HO2+H",
+        "original_index": {
+            "0": "-11"
+        },
+        "reactant": {
+            "0": {
+                "species_index": "5",
+                "coefficient": "2"
+            }
+        },
+        "product": {
+            "0": {
+                "species_index": "4",
+                "coefficient": "1"
+            },
+            "1": {
+                "species_index": "6",
+                "coefficient": "1"
+            }
+        },
+        "net_reactant": {
+            "0": {
+                "species_index": "5",
+                "coefficient": "2"
+            }
+        },
+        "net_product": {
+            "0": {
+                "species_index": "4",
+                "coefficient": "1"
+            },
+            "1": {
+                "species_index": "6",
+                "coefficient": "1"
+            }
+        }
+    },
+    "22": {
+        "reverse_reaction": "23",
+        "reaction_name": "HO2+O=>O2+OH",
+        "original_index": {
+            "0": "12"
+        },
+        "reactant": {
+            "0": {
+                "species_index": "6",
+                "coefficient": "1"
+            },
+            "1": {
+                "species_index": "7",
+                "coefficient": "1"
+            }
+        },
+        "product": {
+            "0": {
+                "species_index": "0",
+                "coefficient": "1"
+            },
+            "1": {
+                "species_index": "5",
+                "coefficient": "1"
+            }
+        },
+        "net_reactant": {
+            "0": {
+                "species_index": "6",
+                "coefficient": "1"
+            },
+            "1": {
+                "species_index": "7",
+                "coefficient": "1"
+            }
+        },
+        "net_product": {
+            "0": {
+                "species_index": "0",
+                "coefficient": "1"
+            },
+            "1": {
+                "species_index": "5",
+                "coefficient": "1"
+            }
+        }
+    },
+    "23": {
+        "reverse_reaction": "22",
+        "reaction_name": "O2+OH=>HO2+O",
+        "original_index": {
+            "0": "-12"
+        },
+        "reactant": {
+            "0": {
+                "species_index": "0",
+                "coefficient": "1"
+            },
+            "1": {
+                "species_index": "5",
+                "coefficient": "1"
+            }
+        },
+        "product": {
+            "0": {
+                "species_index": "6",
+                "coefficient": "1"
+            },
+            "1": {
+                "species_index": "7",
+                "coefficient": "1"
+            }
+        },
+        "net_reactant": {
+            "0": {
+                "species_index": "0",
+                "coefficient": "1"
+            },
+            "1": {
+                "species_index": "5",
+                "coefficient": "1"
+            }
+        },
+        "net_product": {
+            "0": {
+                "species_index": "6",
+                "coefficient": "1"
+            },
+            "1": {
+                "species_index": "7",
+                "coefficient": "1"
+            }
+        }
+    },
+    "24": {
+        "reverse_reaction": "25",
+        "reaction_name": "HO2+OH=>H2O+O2",
+        "original_index": {
+            "0": "13"
+        },
+        "reactant": {
+            "0": {
+                "species_index": "6",
+                "coefficient": "1"
+            },
+            "1": {
+                "species_index": "5",
+                "coefficient": "1"
+            }
+        },
+        "product": {
+            "0": {
+                "species_index": "1",
+                "coefficient": "1"
+            },
+            "1": {
+                "species_index": "0",
+                "coefficient": "1"
+            }
+        },
+        "net_reactant": {
+            "0": {
+                "species_index": "6",
+                "coefficient": "1"
+            },
+            "1": {
+                "species_index": "5",
+                "coefficient": "1"
+            }
+        },
+        "net_product": {
+            "0": {
+                "species_index": "1",
+                "coefficient": "1"
+            },
+            "1": {
+                "species_index": "0",
+                "coefficient": "1"
+            }
+        }
+    },
+    "25": {
+        "reverse_reaction": "24",
+        "reaction_name": "H2O+O2=>HO2+OH",
+        "original_index": {
+            "0": "-13"
+        },
+        "reactant": {
+            "0": {
+                "species_index": "1",
+                "coefficient": "1"
+            },
+            "1": {
+                "species_index": "0",
+                "coefficient": "1"
+            }
+        },
+        "product": {
+            "0": {
+                "species_index": "6",
+                "coefficient": "1"
+            },
+            "1": {
+                "species_index": "5",
+                "coefficient": "1"
+            }
+        },
+        "net_reactant": {
+            "0": {
+                "species_index": "1",
+                "coefficient": "1"
+            },
+            "1": {
+                "species_index": "0",
+                "coefficient": "1"
+            }
+        },
+        "net_product": {
+            "0": {
+                "species_index": "6",
+                "coefficient": "1"
+            },
+            "1": {
+                "species_index": "5",
+                "coefficient": "1"
+            }
+        }
+    },
+    "26": {
+        "reverse_reaction": "27",
+        "reaction_name": "HO2+HO2=>H2O2+O2",
+        "original_index": {
+            "0": "14",
+            "1": "15"
+        },
+        "reactant": {
+            "0": {
+                "species_index": "6",
+                "coefficient": "2"
+            }
+        },
+        "product": {
+            "0": {
+                "species_index": "3",
+                "coefficient": "1"
+            },
+            "1": {
+                "species_index": "0",
+                "coefficient": "1"
+            }
+        },
+        "net_reactant": {
+            "0": {
+                "species_index": "6",
+                "coefficient": "2"
+            }
+        },
+        "net_product": {
+            "0": {
+                "species_index": "3",
+                "coefficient": "1"
+            },
+            "1": {
+                "species_index": "0",
+                "coefficient": "1"
+            }
+        }
+    },
+    "27": {
+        "reverse_reaction": "26",
+        "reaction_name": "H2O2+O2=>HO2+HO2",
+        "original_index": {
+            "0": "-14",
+            "1": "-15"
+        },
+        "reactant": {
+            "0": {
+                "species_index": "3",
+                "coefficient": "1"
+            },
+            "1": {
+                "species_index": "0",
+                "coefficient": "1"
+            }
+        },
+        "product": {
+            "0": {
+                "species_index": "6",
+                "coefficient": "2"
+            }
+        },
+        "net_reactant": {
+            "0": {
+                "species_index": "3",
+                "coefficient": "1"
+            },
+            "1": {
+                "species_index": "0",
+                "coefficient": "1"
+            }
+        },
+        "net_product": {
+            "0": {
+                "species_index": "6",
+                "coefficient": "2"
+            }
+        }
+    },
+    "28": {
+        "reverse_reaction": "29",
+        "reaction_name": "H2O2(+M)=>OH+OH(+M)",
+        "original_index": {
+            "0": "16"
+        },
+        "reactant": {
+            "0": {
+                "species_index": "3",
+                "coefficient": "1"
+            }
+        },
+        "product": {
+            "0": {
+                "species_index": "5",
+                "coefficient": "2"
+            }
+        },
+        "net_reactant": {
+            "0": {
+                "species_index": "3",
+                "coefficient": "1"
+            }
+        },
+        "net_product": {
+            "0": {
+                "species_index": "5",
+                "coefficient": "2"
+            }
+        }
+    },
+    "29": {
+        "reverse_reaction": "28",
+        "reaction_name": "OH+OH(+M)=>H2O2(+M)",
+        "original_index": {
+            "0": "-16"
+        },
+        "reactant": {
+            "0": {
+                "species_index": "5",
+                "coefficient": "2"
+            }
+        },
+        "product": {
+            "0": {
+                "species_index": "3",
+                "coefficient": "1"
+            }
+        },
+        "net_reactant": {
+            "0": {
+                "species_index": "5",
+                "coefficient": "2"
+            }
+        },
+        "net_product": {
+            "0": {
+                "species_index": "3",
+                "coefficient": "1"
+            }
+        }
+    },
+    "30": {
+        "reverse_reaction": "31",
+        "reaction_name": "H2O2+H=>H2O+OH",
+        "original_index": {
+            "0": "17"
+        },
+        "reactant": {
+            "0": {
+                "species_index": "4",
+                "coefficient": "1"
+            },
+            "1": {
+                "species_index": "3",
+                "coefficient": "1"
+            }
+        },
+        "product": {
+            "0": {
+                "species_index": "1",
+                "coefficient": "1"
+            },
+            "1": {
+                "species_index": "5",
+                "coefficient": "1"
+            }
+        },
+        "net_reactant": {
+            "0": {
+                "species_index": "4",
+                "coefficient": "1"
+            },
+            "1": {
+                "species_index": "3",
+                "coefficient": "1"
+            }
+        },
+        "net_product": {
+            "0": {
+                "species_index": "1",
+                "coefficient": "1"
+            },
+            "1": {
+                "species_index": "5",
+                "coefficient": "1"
+            }
+        }
+    },
+    "31": {
+        "reverse_reaction": "30",
+        "reaction_name": "H2O+OH=>H2O2+H",
+        "original_index": {
+            "0": "-17"
+        },
+        "reactant": {
+            "0": {
+                "species_index": "1",
+                "coefficient": "1"
+            },
+            "1": {
+                "species_index": "5",
+                "coefficient": "1"
+            }
+        },
+        "product": {
+            "0": {
+                "species_index": "4",
+                "coefficient": "1"
+            },
+            "1": {
+                "species_index": "3",
+                "coefficient": "1"
+            }
+        },
+        "net_reactant": {
+            "0": {
+                "species_index": "1",
+                "coefficient": "1"
+            },
+            "1": {
+                "species_index": "5",
+                "coefficient": "1"
+            }
+        },
+        "net_product": {
+            "0": {
+                "species_index": "4",
+                "coefficient": "1"
+            },
+            "1": {
+                "species_index": "3",
+                "coefficient": "1"
+            }
+        }
+    },
+    "32": {
+        "reverse_reaction": "33",
+        "reaction_name": "H2O2+H=>HO2+H2",
+        "original_index": {
+            "0": "18"
+        },
+        "reactant": {
+            "0": {
+                "species_index": "4",
+                "coefficient": "1"
+            },
+            "1": {
+                "species_index": "3",
+                "coefficient": "1"
+            }
+        },
+        "product": {
+            "0": {
+                "species_index": "2",
+                "coefficient": "1"
+            },
+            "1": {
+                "species_index": "6",
+                "coefficient": "1"
+            }
+        },
+        "net_reactant": {
+            "0": {
+                "species_index": "4",
+                "coefficient": "1"
+            },
+            "1": {
+                "species_index": "3",
+                "coefficient": "1"
+            }
+        },
+        "net_product": {
+            "0": {
+                "species_index": "2",
+                "coefficient": "1"
+            },
+            "1": {
+                "species_index": "6",
+                "coefficient": "1"
+            }
+        }
+    },
+    "33": {
+        "reverse_reaction": "32",
+        "reaction_name": "HO2+H2=>H2O2+H",
+        "original_index": {
+            "0": "-18"
+        },
+        "reactant": {
+            "0": {
+                "species_index": "2",
+                "coefficient": "1"
+            },
+            "1": {
+                "species_index": "6",
+                "coefficient": "1"
+            }
+        },
+        "product": {
+            "0": {
+                "species_index": "4",
+                "coefficient": "1"
+            },
+            "1": {
+                "species_index": "3",
+                "coefficient": "1"
+            }
+        },
+        "net_reactant": {
+            "0": {
+                "species_index": "2",
+                "coefficient": "1"
+            },
+            "1": {
+                "species_index": "6",
+                "coefficient": "1"
+            }
+        },
+        "net_product": {
+            "0": {
+                "species_index": "4",
+                "coefficient": "1"
+            },
+            "1": {
+                "species_index": "3",
+                "coefficient": "1"
+            }
+        }
+    },
+    "34": {
+        "reverse_reaction": "35",
+        "reaction_name": "H2O2+O=>OH+HO2",
+        "original_index": {
+            "0": "19"
+        },
+        "reactant": {
+            "0": {
+                "species_index": "3",
+                "coefficient": "1"
+            },
+            "1": {
+                "species_index": "7",
+                "coefficient": "1"
+            }
+        },
+        "product": {
+            "0": {
+                "species_index": "6",
+                "coefficient": "1"
+            },
+            "1": {
+                "species_index": "5",
+                "coefficient": "1"
+            }
+        },
+        "net_reactant": {
+            "0": {
+                "species_index": "3",
+                "coefficient": "1"
+            },
+            "1": {
+                "species_index": "7",
+                "coefficient": "1"
+            }
+        },
+        "net_product": {
+            "0": {
+                "species_index": "6",
+                "coefficient": "1"
+            },
+            "1": {
+                "species_index": "5",
+                "coefficient": "1"
+            }
+        }
+    },
+    "35": {
+        "reverse_reaction": "34",
+        "reaction_name": "OH+HO2=>H2O2+O",
+        "original_index": {
+            "0": "-19"
+        },
+        "reactant": {
+            "0": {
+                "species_index": "6",
+                "coefficient": "1"
+            },
+            "1": {
+                "species_index": "5",
+                "coefficient": "1"
+            }
+        },
+        "product": {
+            "0": {
+                "species_index": "3",
+                "coefficient": "1"
+            },
+            "1": {
+                "species_index": "7",
+                "coefficient": "1"
+            }
+        },
+        "net_reactant": {
+            "0": {
+                "species_index": "6",
+                "coefficient": "1"
+            },
+            "1": {
+                "species_index": "5",
+                "coefficient": "1"
+            }
+        },
+        "net_product": {
+            "0": {
+                "species_index": "3",
+                "coefficient": "1"
+            },
+            "1": {
+                "species_index": "7",
+                "coefficient": "1"
+            }
+        }
+    },
+    "36": {
+        "reverse_reaction": "37",
+        "reaction_name": "H2O2+OH=>HO2+H2O",
+        "original_index": {
+            "0": "20",
+            "1": "21"
+        },
+        "reactant": {
+            "0": {
+                "species_index": "3",
+                "coefficient": "1"
+            },
+            "1": {
+                "species_index": "5",
+                "coefficient": "1"
+            }
+        },
+        "product": {
+            "0": {
+                "species_index": "1",
+                "coefficient": "1"
+            },
+            "1": {
+                "species_index": "6",
+                "coefficient": "1"
+            }
+        },
+        "net_reactant": {
+            "0": {
+                "species_index": "3",
+                "coefficient": "1"
+            },
+            "1": {
+                "species_index": "5",
+                "coefficient": "1"
+            }
+        },
+        "net_product": {
+            "0": {
+                "species_index": "1",
+                "coefficient": "1"
+            },
+            "1": {
+                "species_index": "6",
+                "coefficient": "1"
+            }
+        }
+    },
+    "37": {
+        "reverse_reaction": "36",
+        "reaction_name": "HO2+H2O=>H2O2+OH",
+        "original_index": {
+            "0": "-20",
+            "1": "-21"
+        },
+        "reactant": {
+            "0": {
+                "species_index": "1",
+                "coefficient": "1"
+            },
+            "1": {
+                "species_index": "6",
+                "coefficient": "1"
+            }
+        },
+        "product": {
+            "0": {
+                "species_index": "3",
+                "coefficient": "1"
+            },
+            "1": {
+                "species_index": "5",
+                "coefficient": "1"
+            }
+        },
+        "net_reactant": {
+            "0": {
+                "species_index": "1",
+                "coefficient": "1"
+            },
+            "1": {
+                "species_index": "6",
+                "coefficient": "1"
+            }
+        },
+        "net_product": {
+            "0": {
+                "species_index": "3",
+                "coefficient": "1"
+            },
+            "1": {
+                "species_index": "5",
+                "coefficient": "1"
+            }
+        }
+    }
+}

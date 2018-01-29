@@ -1,0 +1,6152 @@
+{
+    "0": {
+        "formula": "H+O2=>O+OH",
+        "time_scale": -13.727811181210251,
+        "reverse_reaction": "1"
+    },
+    "1": {
+        "formula": "O+OH=>H+O2",
+        "time_scale": -21.124082889085578,
+        "reverse_reaction": "0"
+    },
+    "2": {
+        "formula": "O+H2=>H+OH",
+        "time_scale": -22.57167302946599,
+        "reverse_reaction": "3"
+    },
+    "3": {
+        "formula": "H+OH=>O+H2",
+        "time_scale": -23.837543377031956,
+        "reverse_reaction": "2"
+    },
+    "4": {
+        "formula": "H2+OH=>H2O+H",
+        "time_scale": -17.51991883650003,
+        "reverse_reaction": "5"
+    },
+    "5": {
+        "formula": "H2O+H=>H2+OH",
+        "time_scale": -20.871511946931605,
+        "reverse_reaction": "4"
+    },
+    "6": {
+        "formula": "O+H2O=>OH+OH",
+        "time_scale": -21.314836118959782,
+        "reverse_reaction": "7"
+    },
+    "7": {
+        "formula": "OH+OH=>O+H2O",
+        "time_scale": -19.22911335609411,
+        "reverse_reaction": "6"
+    },
+    "8": {
+        "formula": "H2+M=>H+H+M",
+        "time_scale": -36.610445447201535,
+        "reverse_reaction": "9"
+    },
+    "9": {
+        "formula": "H+H+M=>H2+M",
+        "time_scale": -24.885643223265195,
+        "reverse_reaction": "8"
+    },
+    "10": {
+        "formula": "H2+AR=>H+H+AR",
+        "time_scale": -38.704154962438864,
+        "reverse_reaction": "11"
+    },
+    "11": {
+        "formula": "H+H+AR=>H2+AR",
+        "time_scale": -26.97935273850253,
+        "reverse_reaction": "10"
+    },
+    "12": {
+        "formula": "H2+HE=>H+H+HE",
+        "time_scale": -100,
+        "reverse_reaction": "13"
+    },
+    "13": {
+        "formula": "H+H+HE=>H2+HE",
+        "time_scale": -100,
+        "reverse_reaction": "12"
+    },
+    "14": {
+        "formula": "O+O+M=>O2+M",
+        "time_scale": -27.699701636918284,
+        "reverse_reaction": "15"
+    },
+    "15": {
+        "formula": "O2+M=>O+O+M",
+        "time_scale": -33.294102500541136,
+        "reverse_reaction": "14"
+    },
+    "16": {
+        "formula": "O+O+AR=>O2+AR",
+        "time_scale": -30.249857698986418,
+        "reverse_reaction": "17"
+    },
+    "17": {
+        "formula": "O2+AR=>O+O+AR",
+        "time_scale": -35.84425856260927,
+        "reverse_reaction": "16"
+    },
+    "18": {
+        "formula": "O+O+HE=>O2+HE",
+        "time_scale": -100,
+        "reverse_reaction": "19"
+    },
+    "19": {
+        "formula": "O2+HE=>O+O+HE",
+        "time_scale": -100,
+        "reverse_reaction": "18"
+    },
+    "20": {
+        "formula": "O+H+M=>OH+M",
+        "time_scale": -25.17161576446849,
+        "reverse_reaction": "21"
+    },
+    "21": {
+        "formula": "OH+M=>O+H+M",
+        "time_scale": -38.16228833597017,
+        "reverse_reaction": "20"
+    },
+    "22": {
+        "formula": "H+OH+M=>H2O+M",
+        "time_scale": -20.355076624688017,
+        "reverse_reaction": "23"
+    },
+    "23": {
+        "formula": "H2O+M=>H+OH+M",
+        "time_scale": -35.43147195905563,
+        "reverse_reaction": "22"
+    },
+    "24": {
+        "formula": "H+O2(+M)=>HO2(+M)",
+        "time_scale": -10.546335741989209,
+        "reverse_reaction": "25"
+    },
+    "25": {
+        "formula": "HO2(+M)=>H+O2(+M)",
+        "time_scale": -14.754101048365845,
+        "reverse_reaction": "24"
+    },
+    "26": {
+        "formula": "HO2+H=>H2+O2",
+        "time_scale": -15.515475227145057,
+        "reverse_reaction": "27"
+    },
+    "27": {
+        "formula": "H2+O2=>HO2+H",
+        "time_scale": -23.032512144703368,
+        "reverse_reaction": "26"
+    },
+    "28": {
+        "formula": "HO2+H=>OH+OH",
+        "time_scale": -14.708077945359776,
+        "reverse_reaction": "29"
+    },
+    "29": {
+        "formula": "OH+OH=>HO2+H",
+        "time_scale": -30.88725691835925,
+        "reverse_reaction": "28"
+    },
+    "30": {
+        "formula": "HO2+O=>O2+OH",
+        "time_scale": -15.99512824612048,
+        "reverse_reaction": "31"
+    },
+    "31": {
+        "formula": "O2+OH=>HO2+O",
+        "time_scale": -24.778035511244244,
+        "reverse_reaction": "30"
+    },
+    "32": {
+        "formula": "HO2+OH=>H2O+O2",
+        "time_scale": -12.15449225311416,
+        "reverse_reaction": "33"
+    },
+    "33": {
+        "formula": "H2O+O2=>HO2+OH",
+        "time_scale": -23.023122281103923,
+        "reverse_reaction": "32"
+    },
+    "34": {
+        "formula": "HO2+HO2=>H2O2+O2",
+        "time_scale": -8.970018616810913,
+        "reverse_reaction": "35"
+    },
+    "35": {
+        "formula": "H2O2+O2=>HO2+HO2",
+        "time_scale": -14.526640294742108,
+        "reverse_reaction": "34"
+    },
+    "36": {
+        "formula": "H2O2(+M)=>OH+OH(+M)",
+        "time_scale": -12.589696827249277,
+        "reverse_reaction": "37"
+    },
+    "37": {
+        "formula": "OH+OH(+M)=>H2O2(+M)",
+        "time_scale": -19.004488815940007,
+        "reverse_reaction": "36"
+    },
+    "38": {
+        "formula": "H2O2+H=>H2O+OH",
+        "time_scale": -16.19929865402301,
+        "reverse_reaction": "39"
+    },
+    "39": {
+        "formula": "H2O+OH=>H2O2+H",
+        "time_scale": -37.69048597708135,
+        "reverse_reaction": "38"
+    },
+    "40": {
+        "formula": "H2O2+H=>HO2+H2",
+        "time_scale": -17.23649434176058,
+        "reverse_reaction": "41"
+    },
+    "41": {
+        "formula": "HO2+H2=>H2O2+H",
+        "time_scale": -19.196909581387857,
+        "reverse_reaction": "40"
+    },
+    "42": {
+        "formula": "H2O2+O=>OH+HO2",
+        "time_scale": -18.023624812241724,
+        "reverse_reaction": "43"
+    },
+    "43": {
+        "formula": "OH+HO2=>H2O2+O",
+        "time_scale": -21.249910399434775,
+        "reverse_reaction": "42"
+    },
+    "44": {
+        "formula": "H2O2+OH=>HO2+H2O",
+        "time_scale": -13.43821198094449,
+        "reverse_reaction": "45"
+    },
+    "45": {
+        "formula": "HO2+H2O=>H2O2+OH",
+        "time_scale": -18.750220331003284,
+        "reverse_reaction": "44"
+    },
+    "46": {
+        "formula": "CO+O(+M)=>CO2(+M)",
+        "time_scale": -20.13264891905677,
+        "reverse_reaction": "47"
+    },
+    "47": {
+        "formula": "CO2(+M)=>CO+O(+M)",
+        "time_scale": -46.224031966623656,
+        "reverse_reaction": "46"
+    },
+    "48": {
+        "formula": "CO+O2=>CO2+O",
+        "time_scale": -18.47004986016839,
+        "reverse_reaction": "49"
+    },
+    "49": {
+        "formula": "CO2+O=>CO+O2",
+        "time_scale": -38.9670320441078,
+        "reverse_reaction": "48"
+    },
+    "50": {
+        "formula": "CO+HO2=>CO2+OH",
+        "time_scale": -14.993975798907503,
+        "reverse_reaction": "51"
+    },
+    "51": {
+        "formula": "CO2+OH=>CO+HO2",
+        "time_scale": -44.27386524797102,
+        "reverse_reaction": "50"
+    },
+    "52": {
+        "formula": "CO+OH=>CO2+H",
+        "time_scale": -14.799971090703483,
+        "reverse_reaction": "53"
+    },
+    "53": {
+        "formula": "CO2+H=>CO+OH",
+        "time_scale": -27.900681566767318,
+        "reverse_reaction": "52"
+    },
+    "54": {
+        "formula": "HCO+M=>H+CO+M",
+        "time_scale": -14.512114914988224,
+        "reverse_reaction": "55"
+    },
+    "55": {
+        "formula": "H+CO+M=>HCO+M",
+        "time_scale": -18.513795095763356,
+        "reverse_reaction": "54"
+    },
+    "56": {
+        "formula": "HCO+O2=>CO+HO2",
+        "time_scale": -10.995952939128225,
+        "reverse_reaction": "57"
+    },
+    "57": {
+        "formula": "CO+HO2=>HCO+O2",
+        "time_scale": -19.20539842628133,
+        "reverse_reaction": "56"
+    },
+    "58": {
+        "formula": "HCO+H=>CO+H2",
+        "time_scale": -23.57444743512544,
+        "reverse_reaction": "59"
+    },
+    "59": {
+        "formula": "CO+H2=>HCO+H",
+        "time_scale": -39.30092983983682,
+        "reverse_reaction": "58"
+    },
+    "60": {
+        "formula": "HCO+O=>CO+OH",
+        "time_scale": -25.00173063349765,
+        "reverse_reaction": "61"
+    },
+    "61": {
+        "formula": "CO+OH=>HCO+O",
+        "time_scale": -41.99408338577497,
+        "reverse_reaction": "60"
+    },
+    "62": {
+        "formula": "HCO+OH=>CO+H2O",
+        "time_scale": -21.27721921388982,
+        "reverse_reaction": "63"
+    },
+    "63": {
+        "formula": "CO+H2O=>HCO+OH",
+        "time_scale": -40.35529472903277,
+        "reverse_reaction": "62"
+    },
+    "64": {
+        "formula": "HCO+O=>CO2+H",
+        "time_scale": -25.004616321735142,
+        "reverse_reaction": "65"
+    },
+    "65": {
+        "formula": "CO2+H=>HCO+O",
+        "time_scale": -55.09767955007629,
+        "reverse_reaction": "64"
+    },
+    "66": {
+        "formula": "HCO+HO2=>CO2+OH+H",
+        "time_scale": -16.165084323253843,
+        "reverse_reaction": "67"
+    },
+    "67": {
+        "formula": "CO2+OH+H=>HCO+HO2",
+        "time_scale": -49.446653953088074,
+        "reverse_reaction": "66"
+    },
+    "68": {
+        "formula": "HCO+CH3=>CO+CH4",
+        "time_scale": -21.719823606459943,
+        "reverse_reaction": "69"
+    },
+    "69": {
+        "formula": "CO+CH4=>HCO+CH3",
+        "time_scale": -39.29118266751719,
+        "reverse_reaction": "68"
+    },
+    "70": {
+        "formula": "HCO+HCO=>H2+CO+CO",
+        "time_scale": -26.139810292609166,
+        "reverse_reaction": "71"
+    },
+    "71": {
+        "formula": "H2+CO+CO=>HCO+HCO",
+        "time_scale": -45.86797287809185,
+        "reverse_reaction": "70"
+    },
+    "72": {
+        "formula": "HCO+HCO=>CH2O+CO",
+        "time_scale": -25.139810292609166,
+        "reverse_reaction": "73"
+    },
+    "73": {
+        "formula": "CH2O+CO=>HCO+HCO",
+        "time_scale": -29.776783234288228,
+        "reverse_reaction": "72"
+    },
+    "74": {
+        "formula": "HCO+O2=>formylperoxy",
+        "time_scale": -12.288722109281412,
+        "reverse_reaction": "75"
+    },
+    "75": {
+        "formula": "formylperoxy=>HCO+O2",
+        "time_scale": -12.378039763566505,
+        "reverse_reaction": "74"
+    },
+    "76": {
+        "formula": "CH2O+formylperoxy=>HCO+formylooh",
+        "time_scale": -16.812555465268655,
+        "reverse_reaction": "77"
+    },
+    "77": {
+        "formula": "HCO+formylooh=>CH2O+formylperoxy",
+        "time_scale": -29.288978083125226,
+        "reverse_reaction": "76"
+    },
+    "78": {
+        "formula": "formylooh=>formyloxy+OH",
+        "time_scale": -13.961002969019018,
+        "reverse_reaction": "79"
+    },
+    "79": {
+        "formula": "formyloxy+OH=>formylooh",
+        "time_scale": -19.202684930662098,
+        "reverse_reaction": "78"
+    },
+    "80": {
+        "formula": "H+CO2+M=>formyloxy+M",
+        "time_scale": -33.01317449554384,
+        "reverse_reaction": "81"
+    },
+    "81": {
+        "formula": "formyloxy+M=>H+CO2+M",
+        "time_scale": -13.966554554016183,
+        "reverse_reaction": "80"
+    },
+    "82": {
+        "formula": "CH2O+M=>HCO+H+M",
+        "time_scale": -25.611777753710427,
+        "reverse_reaction": "83"
+    },
+    "83": {
+        "formula": "HCO+H+M=>CH2O+M",
+        "time_scale": -24.976484992806643,
+        "reverse_reaction": "82"
+    },
+    "84": {
+        "formula": "CH2O+M=>CO+H2+M",
+        "time_scale": -23.617285567781458,
+        "reverse_reaction": "85"
+    },
+    "85": {
+        "formula": "CO+H2+M=>CH2O+M",
+        "time_scale": -38.70847521158905,
+        "reverse_reaction": "84"
+    },
+    "86": {
+        "formula": "CH2O+H=>HCO+H2",
+        "time_scale": -16.030714849727588,
+        "reverse_reaction": "87"
+    },
+    "87": {
+        "formula": "HCO+H2=>CH2O+H",
+        "time_scale": -27.12022431275989,
+        "reverse_reaction": "86"
+    },
+    "88": {
+        "formula": "CH2O+O=>HCO+OH",
+        "time_scale": -17.036076543845812,
+        "reverse_reaction": "89"
+    },
+    "89": {
+        "formula": "HCO+OH=>CH2O+O",
+        "time_scale": -29.391456354444102,
+        "reverse_reaction": "88"
+    },
+    "90": {
+        "formula": "CH2O+OH=>HCO+H2O",
+        "time_scale": -12.528794311975947,
+        "reverse_reaction": "91"
+    },
+    "91": {
+        "formula": "HCO+H2O=>CH2O+OH",
+        "time_scale": -26.96989688543986,
+        "reverse_reaction": "90"
+    },
+    "92": {
+        "formula": "CH2O+O2=>HCO+HO2",
+        "time_scale": -17.469861947859876,
+        "reverse_reaction": "93"
+    },
+    "93": {
+        "formula": "HCO+HO2=>CH2O+O2",
+        "time_scale": -21.042334493334124,
+        "reverse_reaction": "92"
+    },
+    "94": {
+        "formula": "CH2O+HO2=>HCO+H2O2",
+        "time_scale": -12.205456253768933,
+        "reverse_reaction": "95"
+    },
+    "95": {
+        "formula": "HCO+H2O2=>CH2O+HO2",
+        "time_scale": -21.334550477174048,
+        "reverse_reaction": "94"
+    },
+    "96": {
+        "formula": "CH2O+CH3=>HCO+CH4",
+        "time_scale": -16.448391789440354,
+        "reverse_reaction": "97"
+    },
+    "97": {
+        "formula": "HCO+CH4=>CH2O+CH3",
+        "time_scale": -29.382777908818554,
+        "reverse_reaction": "96"
+    },
+    "98": {
+        "formula": "CH2O+HO2=>OCH2OOH",
+        "time_scale": -13.24374757163066,
+        "reverse_reaction": "99"
+    },
+    "99": {
+        "formula": "OCH2OOH=>CH2O+HO2",
+        "time_scale": -13.245145007436493,
+        "reverse_reaction": "98"
+    },
+    "100": {
+        "formula": "OCH2OOH=>HOCH2OO",
+        "time_scale": -15.031502532191046,
+        "reverse_reaction": "101"
+    },
+    "101": {
+        "formula": "HOCH2OO=>OCH2OOH",
+        "time_scale": -15.12695645233146,
+        "reverse_reaction": "100"
+    },
+    "102": {
+        "formula": "HOCH2OO+HO2=>HOCH2OOH+O2",
+        "time_scale": -16.47473217226348,
+        "reverse_reaction": "103"
+    },
+    "103": {
+        "formula": "HOCH2OOH+O2=>HOCH2OO+HO2",
+        "time_scale": -23.327388705061274,
+        "reverse_reaction": "102"
+    },
+    "104": {
+        "formula": "HOCH2O+OH=>HOCH2OOH",
+        "time_scale": -21.938696956519905,
+        "reverse_reaction": "105"
+    },
+    "105": {
+        "formula": "HOCH2OOH=>HOCH2O+OH",
+        "time_scale": -17.32866735650327,
+        "reverse_reaction": "104"
+    },
+    "106": {
+        "formula": "CH3+O=>CH2O+H",
+        "time_scale": -21.082047934897947,
+        "reverse_reaction": "107"
+    },
+    "107": {
+        "formula": "CH2O+H=>CH3+O",
+        "time_scale": -36.70065010800429,
+        "reverse_reaction": "106"
+    },
+    "108": {
+        "formula": "CH3+O2=>CH3O+O",
+        "time_scale": -16.209558784861674,
+        "reverse_reaction": "109"
+    },
+    "109": {
+        "formula": "CH3O+O=>CH3+O2",
+        "time_scale": -21.049368106261195,
+        "reverse_reaction": "108"
+    },
+    "110": {
+        "formula": "CH3+HO2=>CH3O+OH",
+        "time_scale": -13.181195115662556,
+        "reverse_reaction": "111"
+    },
+    "111": {
+        "formula": "CH3O+OH=>CH3+HO2",
+        "time_scale": -26.803911702186042,
+        "reverse_reaction": "110"
+    },
+    "112": {
+        "formula": "CH3+HO2=>CH4+O2",
+        "time_scale": -13.809995721370314,
+        "reverse_reaction": "113"
+    },
+    "113": {
+        "formula": "CH4+O2=>CH3+HO2",
+        "time_scale": -23.17190929527447,
+        "reverse_reaction": "112"
+    },
+    "114": {
+        "formula": "CH3+CH3(+M)=>C2H6(+M)",
+        "time_scale": -18.33376240070686,
+        "reverse_reaction": "115"
+    },
+    "115": {
+        "formula": "C2H6(+M)=>CH3+CH3(+M)",
+        "time_scale": -28.62016673800462,
+        "reverse_reaction": "114"
+    },
+    "116": {
+        "formula": "CH3+H(+M)=>CH4(+M)",
+        "time_scale": -19.869494344104776,
+        "reverse_reaction": "117"
+    },
+    "117": {
+        "formula": "CH4(+M)=>CH3+H(+M)",
+        "time_scale": -33.43917322438683,
+        "reverse_reaction": "116"
+    },
+    "118": {
+        "formula": "CH4+H=>CH3+H2",
+        "time_scale": -22.817034353964747,
+        "reverse_reaction": "119"
+    },
+    "119": {
+        "formula": "CH3+H2=>CH4+H",
+        "time_scale": -20.97215769761888,
+        "reverse_reaction": "118"
+    },
+    "120": {
+        "formula": "CH4+O=>CH3+OH",
+        "time_scale": -22.930516297613433,
+        "reverse_reaction": "121"
+    },
+    "121": {
+        "formula": "CH3+OH=>CH4+O",
+        "time_scale": -22.35150998883348,
+        "reverse_reaction": "120"
+    },
+    "122": {
+        "formula": "CH4+OH=>CH3+H2O",
+        "time_scale": -18.267502726878316,
+        "reverse_reaction": "123"
+    },
+    "123": {
+        "formula": "CH3+H2O=>CH4+OH",
+        "time_scale": -19.77421918096401,
+        "reverse_reaction": "122"
+    },
+    "124": {
+        "formula": "CH4+HO2=>CH3+H2O2",
+        "time_scale": -19.525485894992745,
+        "reverse_reaction": "125"
+    },
+    "125": {
+        "formula": "CH3+H2O2=>CH4+HO2",
+        "time_scale": -15.720193999019621,
+        "reverse_reaction": "124"
+    },
+    "126": {
+        "formula": "CH3+CH3OH=>CH4+CH3O",
+        "time_scale": -22.59331981283375,
+        "reverse_reaction": "127"
+    },
+    "127": {
+        "formula": "CH4+CH3O=>CH3+CH3OH",
+        "time_scale": -22.282794672226927,
+        "reverse_reaction": "126"
+    },
+    "128": {
+        "formula": "CH3O+CH3=>CH2O+CH4",
+        "time_scale": -19.59983825610359,
+        "reverse_reaction": "129"
+    },
+    "129": {
+        "formula": "CH2O+CH4=>CH3O+CH3",
+        "time_scale": -38.35390912446603,
+        "reverse_reaction": "128"
+    },
+    "130": {
+        "formula": "CH3O+H=>CH2O+H2",
+        "time_scale": -21.668505758510335,
+        "reverse_reaction": "131"
+    },
+    "131": {
+        "formula": "CH2O+H2=>CH3O+H",
+        "time_scale": -38.57769997052702,
+        "reverse_reaction": "130"
+    },
+    "132": {
+        "formula": "CH3+O2(+M)=>CH3OO(+M)",
+        "time_scale": -8.130281827403774,
+        "reverse_reaction": "133"
+    },
+    "133": {
+        "formula": "CH3OO(+M)=>CH3+O2(+M)",
+        "time_scale": -8.146700950313837,
+        "reverse_reaction": "132"
+    },
+    "134": {
+        "formula": "CH3OO+CH2O=>CH3OOH+HCO",
+        "time_scale": -13.456757223089024,
+        "reverse_reaction": "135"
+    },
+    "135": {
+        "formula": "CH3OOH+HCO=>CH3OO+CH2O",
+        "time_scale": -22.725121130758883,
+        "reverse_reaction": "134"
+    },
+    "136": {
+        "formula": "CH4+CH3OO=>CH3+CH3OOH",
+        "time_scale": -20.908330629050397,
+        "reverse_reaction": "137"
+    },
+    "137": {
+        "formula": "CH3+CH3OOH=>CH4+CH3OO",
+        "time_scale": -17.242308417342123,
+        "reverse_reaction": "136"
+    },
+    "138": {
+        "formula": "CH3OH+CH3OO=>CH2OH+CH3OOH",
+        "time_scale": -18.407669125897574,
+        "reverse_reaction": "139"
+    },
+    "139": {
+        "formula": "CH2OH+CH3OOH=>CH3OH+CH3OO",
+        "time_scale": -23.820350578222012,
+        "reverse_reaction": "138"
+    },
+    "140": {
+        "formula": "CH3OO+CH3=>CH3O+CH3O",
+        "time_scale": -14.404517027553934,
+        "reverse_reaction": "141"
+    },
+    "141": {
+        "formula": "CH3O+CH3O=>CH3OO+CH3",
+        "time_scale": -29.662117411068387,
+        "reverse_reaction": "140"
+    },
+    "142": {
+        "formula": "CH3OO+HO2=>CH3OOH+O2",
+        "time_scale": -10.163358104340547,
+        "reverse_reaction": "143"
+    },
+    "143": {
+        "formula": "CH3OOH+O2=>CH3OO+HO2",
+        "time_scale": -15.859249466537047,
+        "reverse_reaction": "142"
+    },
+    "144": {
+        "formula": "CH3OO+CH3OO=>CH2O+CH3OH+O2",
+        "time_scale": -13.183071164766845,
+        "reverse_reaction": "145"
+    },
+    "145": {
+        "formula": "CH2O+CH3OH+O2=>CH3OO+CH3OO",
+        "time_scale": -47.488848434340895,
+        "reverse_reaction": "144"
+    },
+    "146": {
+        "formula": "CH3OO+CH3OO=>O2+CH3O+CH3O",
+        "time_scale": -12.508491197608388,
+        "reverse_reaction": "147"
+    },
+    "147": {
+        "formula": "O2+CH3O+CH3O=>CH3OO+CH3OO",
+        "time_scale": -27.74967245821276,
+        "reverse_reaction": "146"
+    },
+    "148": {
+        "formula": "CH3OO+H=>CH3O+OH",
+        "time_scale": -15.893057024972197,
+        "reverse_reaction": "149"
+    },
+    "149": {
+        "formula": "CH3O+OH=>CH3OO+H",
+        "time_scale": -33.70711979496349,
+        "reverse_reaction": "148"
+    },
+    "150": {
+        "formula": "CH3OO+O=>CH3O+O2",
+        "time_scale": -17.367177601279273,
+        "reverse_reaction": "151"
+    },
+    "151": {
+        "formula": "CH3O+O2=>CH3OO+O",
+        "time_scale": -27.784968663396292,
+        "reverse_reaction": "150"
+    },
+    "152": {
+        "formula": "CH3OO+OH=>CH3OH+O2",
+        "time_scale": -13.420817432055063,
+        "reverse_reaction": "153"
+    },
+    "153": {
+        "formula": "CH3OH+O2=>CH3OO+OH",
+        "time_scale": -24.728139943559015,
+        "reverse_reaction": "152"
+    },
+    "154": {
+        "formula": "CH3OOH=>CH3O+OH",
+        "time_scale": -11.002402944576545,
+        "reverse_reaction": "155"
+    },
+    "155": {
+        "formula": "CH3O+OH=>CH3OOH",
+        "time_scale": -18.91280904599346,
+        "reverse_reaction": "154"
+    },
+    "156": {
+        "formula": "CH2OH+M=>CH2O+H+M",
+        "time_scale": -20.661653681232096,
+        "reverse_reaction": "157"
+    },
+    "157": {
+        "formula": "CH2O+H+M=>CH2OH+M",
+        "time_scale": -16.45681686467004,
+        "reverse_reaction": "156"
+    },
+    "158": {
+        "formula": "CH2OH+H=>CH2O+H2",
+        "time_scale": -27.836334966619656,
+        "reverse_reaction": "159"
+    },
+    "159": {
+        "formula": "CH2O+H2=>CH2OH+H",
+        "time_scale": -35.356300373996326,
+        "reverse_reaction": "158"
+    },
+    "160": {
+        "formula": "CH2OH+H=>CH3+OH",
+        "time_scale": -26.63063449801183,
+        "reverse_reaction": "161"
+    },
+    "161": {
+        "formula": "CH3+OH=>CH2OH+H",
+        "time_scale": -19.79786807984811,
+        "reverse_reaction": "160"
+    },
+    "162": {
+        "formula": "CH2OH+O=>CH2O+OH",
+        "time_scale": -28.039388770640443,
+        "reverse_reaction": "163"
+    },
+    "163": {
+        "formula": "CH2O+OH=>CH2OH+O",
+        "time_scale": -36.825224525582854,
+        "reverse_reaction": "162"
+    },
+    "164": {
+        "formula": "CH2OH+OH=>CH2O+H2O",
+        "time_scale": -24.55791539971902,
+        "reverse_reaction": "165"
+    },
+    "165": {
+        "formula": "CH2O+H2O=>CH2OH+OH",
+        "time_scale": -35.42947391752694,
+        "reverse_reaction": "164"
+    },
+    "166": {
+        "formula": "CH2OH+O2=>CH2O+HO2",
+        "time_scale": -14.056603404500544,
+        "reverse_reaction": "167"
+    },
+    "167": {
+        "formula": "CH2O+HO2=>CH2OH+O2",
+        "time_scale": -14.059531894316468,
+        "reverse_reaction": "166"
+    },
+    "168": {
+        "formula": "CH2OH+HO2=>CH2O+H2O2",
+        "time_scale": -19.743924816510074,
+        "reverse_reaction": "169"
+    },
+    "169": {
+        "formula": "CH2O+H2O2=>CH2OH+HO2",
+        "time_scale": -25.303474984258628,
+        "reverse_reaction": "168"
+    },
+    "170": {
+        "formula": "CH2OH+HCO=>CH3OH+CO",
+        "time_scale": -28.797832031912147,
+        "reverse_reaction": "171"
+    },
+    "171": {
+        "formula": "CH3OH+CO=>CH2OH+HCO",
+        "time_scale": -37.29048742893614,
+        "reverse_reaction": "170"
+    },
+    "172": {
+        "formula": "CH2OH+HCO=>CH2O+CH2O",
+        "time_scale": -28.621740772856466,
+        "reverse_reaction": "173"
+    },
+    "173": {
+        "formula": "CH2O+CH2O=>CH2OH+HCO",
+        "time_scale": -25.05219671720084,
+        "reverse_reaction": "172"
+    },
+    "174": {
+        "formula": "2CH2OH=>CH3OH+CH2O",
+        "time_scale": -32.50161126177426,
+        "reverse_reaction": "175"
+    },
+    "175": {
+        "formula": "CH3OH+CH2O=>2CH2OH",
+        "time_scale": -32.78774966146509,
+        "reverse_reaction": "174"
+    },
+    "176": {
+        "formula": "CH2OH+CH3O=>CH3OH+CH2O",
+        "time_scale": -25.953570811954137,
+        "reverse_reaction": "177"
+    },
+    "177": {
+        "formula": "CH3OH+CH2O=>CH2OH+CH3O",
+        "time_scale": -35.62893801628418,
+        "reverse_reaction": "176"
+    },
+    "178": {
+        "formula": "CH2OH+HO2=>HOCH2O+OH",
+        "time_scale": -19.8231060625577,
+        "reverse_reaction": "179"
+    },
+    "179": {
+        "formula": "HOCH2O+OH=>CH2OH+HO2",
+        "time_scale": -31.385572041134296,
+        "reverse_reaction": "178"
+    },
+    "180": {
+        "formula": "CH3O+M=>CH2O+H+M",
+        "time_scale": -11.245247694719408,
+        "reverse_reaction": "181"
+    },
+    "181": {
+        "formula": "CH2O+H+M=>CH3O+M",
+        "time_scale": -16.42963968279865,
+        "reverse_reaction": "180"
+    },
+    "182": {
+        "formula": "CH3O+H=>CH3+OH",
+        "time_scale": -21.46438577585441,
+        "reverse_reaction": "183"
+    },
+    "183": {
+        "formula": "CH3+OH=>CH3O+H",
+        "time_scale": -24.020848162330708,
+        "reverse_reaction": "182"
+    },
+    "184": {
+        "formula": "CH3O+O=>CH2O+OH",
+        "time_scale": -23.239536347825606,
+        "reverse_reaction": "185"
+    },
+    "185": {
+        "formula": "CH2O+OH=>CH3O+O",
+        "time_scale": -41.41460090740814,
+        "reverse_reaction": "184"
+    },
+    "186": {
+        "formula": "CH3O+OH=>CH2O+H2O",
+        "time_scale": -19.037903673498167,
+        "reverse_reaction": "187"
+    },
+    "187": {
+        "formula": "CH2O+H2O=>CH3O+OH",
+        "time_scale": -39.29869099594628,
+        "reverse_reaction": "186"
+    },
+    "188": {
+        "formula": "CH3O+O2=>CH2O+HO2",
+        "time_scale": -11.122931886856865,
+        "reverse_reaction": "189"
+    },
+    "189": {
+        "formula": "CH2O+HO2=>CH3O+O2",
+        "time_scale": -20.51508918131409,
+        "reverse_reaction": "188"
+    },
+    "190": {
+        "formula": "CH3O+HO2=>CH2O+H2O2",
+        "time_scale": -15.701034345008605,
+        "reverse_reaction": "191"
+    },
+    "191": {
+        "formula": "CH2O+H2O2=>CH3O+HO2",
+        "time_scale": -30.649813317397623,
+        "reverse_reaction": "190"
+    },
+    "192": {
+        "formula": "CH3O+CO=>CH3+CO2",
+        "time_scale": -18.01323708333274,
+        "reverse_reaction": "193"
+    },
+    "193": {
+        "formula": "CH3+CO2=>CH3O+CO",
+        "time_scale": -33.67040994587294,
+        "reverse_reaction": "192"
+    },
+    "194": {
+        "formula": "CH3O+HCO=>CH3OH+CO",
+        "time_scale": -22.198639059643845,
+        "reverse_reaction": "195"
+    },
+    "195": {
+        "formula": "CH3OH+CO=>CH3O+HCO",
+        "time_scale": -40.080523261307846,
+        "reverse_reaction": "194"
+    },
+    "196": {
+        "formula": "2CH3O=>CH3OH+CH2O",
+        "time_scale": -19.910680340453506,
+        "reverse_reaction": "197"
+    },
+    "197": {
+        "formula": "CH3OH+CH2O=>2CH3O",
+        "time_scale": -38.975276349423176,
+        "reverse_reaction": "196"
+    },
+    "198": {
+        "formula": "OH+CH3(+M)=>CH3OH(+M)",
+        "time_scale": -17.550944456490267,
+        "reverse_reaction": "199"
+    },
+    "199": {
+        "formula": "CH3OH(+M)=>OH+CH3(+M)",
+        "time_scale": -28.874686090904305,
+        "reverse_reaction": "198"
+    },
+    "200": {
+        "formula": "H+CH2OH(+M)=>CH3OH(+M)",
+        "time_scale": -27.86095651979535,
+        "reverse_reaction": "201"
+    },
+    "201": {
+        "formula": "CH3OH(+M)=>H+CH2OH(+M)",
+        "time_scale": -32.351931736045664,
+        "reverse_reaction": "200"
+    },
+    "202": {
+        "formula": "H+CH3O(+M)=>CH3OH(+M)",
+        "time_scale": -22.756009782015777,
+        "reverse_reaction": "203"
+    },
+    "203": {
+        "formula": "CH3OH(+M)=>H+CH3O(+M)",
+        "time_scale": -36.63621380290611,
+        "reverse_reaction": "202"
+    },
+    "204": {
+        "formula": "CH3OH+H=>CH2OH+H2",
+        "time_scale": -20.974659990211663,
+        "reverse_reaction": "205"
+    },
+    "205": {
+        "formula": "CH2OH+H2=>CH3OH+H",
+        "time_scale": -28.20848699789904,
+        "reverse_reaction": "204"
+    },
+    "206": {
+        "formula": "CH3OH+H=>CH3O+H2",
+        "time_scale": -21.576719981539625,
+        "reverse_reaction": "207"
+    },
+    "207": {
+        "formula": "CH3O+H2=>CH3OH+H",
+        "time_scale": -19.421318184587022,
+        "reverse_reaction": "206"
+    },
+    "208": {
+        "formula": "CH3OH+O=>CH2OH+OH",
+        "time_scale": -21.893074500145293,
+        "reverse_reaction": "209"
+    },
+    "209": {
+        "formula": "CH2OH+OH=>CH3OH+O",
+        "time_scale": -30.392771855398912,
+        "reverse_reaction": "208"
+    },
+    "210": {
+        "formula": "CH3OH+OH=>CH3O+H2O",
+        "time_scale": -18.013960062435082,
+        "reverse_reaction": "211"
+    },
+    "211": {
+        "formula": "CH3O+H2O=>CH3OH+OH",
+        "time_scale": -19.21015137591397,
+        "reverse_reaction": "210"
+    },
+    "212": {
+        "formula": "CH3OH+OH=>CH2OH+H2O",
+        "time_scale": -17.639170781997674,
+        "reverse_reaction": "213"
+    },
+    "213": {
+        "formula": "CH2OH+H2O=>CH3OH+OH",
+        "time_scale": -28.22459090011664,
+        "reverse_reaction": "212"
+    },
+    "214": {
+        "formula": "CH3OH+O2=>CH2OH+HO2",
+        "time_scale": -20.51993551333588,
+        "reverse_reaction": "215"
+    },
+    "215": {
+        "formula": "CH2OH+HO2=>CH3OH+O2",
+        "time_scale": -20.236725603464464,
+        "reverse_reaction": "214"
+    },
+    "216": {
+        "formula": "CH3OH+HCO=>CH2OH+CH2O",
+        "time_scale": -25.880543823475943,
+        "reverse_reaction": "217"
+    },
+    "217": {
+        "formula": "CH2OH+CH2O=>CH3OH+HCO",
+        "time_scale": -22.024861368131173,
+        "reverse_reaction": "216"
+    },
+    "218": {
+        "formula": "CH3OH+HO2=>CH2OH+H2O2",
+        "time_scale": -17.562188128358088,
+        "reverse_reaction": "219"
+    },
+    "219": {
+        "formula": "CH2OH+H2O2=>CH3OH+HO2",
+        "time_scale": -22.835599896417914,
+        "reverse_reaction": "218"
+    },
+    "220": {
+        "formula": "CH3OH+CH3=>CH2OH+CH4",
+        "time_scale": -22.13067555769165,
+        "reverse_reaction": "221"
+    },
+    "221": {
+        "formula": "CH2OH+CH4=>CH3OH+CH3",
+        "time_scale": -31.20937922172486,
+        "reverse_reaction": "220"
+    },
+    "222": {
+        "formula": "CH3O+CH3OH=>CH3OH+CH2OH",
+        "time_scale": -21.037741016373598,
+        "reverse_reaction": "223"
+    },
+    "223": {
+        "formula": "CH3OH+CH2OH=>CH3O+CH3OH",
+        "time_scale": -30.42696982101312,
+        "reverse_reaction": "222"
+    },
+    "224": {
+        "formula": "CH3+CH3=>H+C2H5",
+        "time_scale": -22.253933554286423,
+        "reverse_reaction": "225"
+    },
+    "225": {
+        "formula": "H+C2H5=>CH3+CH3",
+        "time_scale": -20.00201620109225,
+        "reverse_reaction": "224"
+    },
+    "226": {
+        "formula": "CH4+CH2=>CH3+CH3",
+        "time_scale": -33.87374618197088,
+        "reverse_reaction": "227"
+    },
+    "227": {
+        "formula": "CH3+CH3=>CH4+CH2",
+        "time_scale": -24.90114060319736,
+        "reverse_reaction": "226"
+    },
+    "228": {
+        "formula": "CH3+OH=>CH2+H2O",
+        "time_scale": -20.856912417673016,
+        "reverse_reaction": "229"
+    },
+    "229": {
+        "formula": "CH2+H2O=>CH3+OH",
+        "time_scale": -31.336234450532377,
+        "reverse_reaction": "228"
+    },
+    "230": {
+        "formula": "CH3+CH2=>C2H4+H",
+        "time_scale": -31.14024944343928,
+        "reverse_reaction": "231"
+    },
+    "231": {
+        "formula": "C2H4+H=>CH3+CH2",
+        "time_scale": -34.92862570643906,
+        "reverse_reaction": "230"
+    },
+    "232": {
+        "formula": "CH2+H(+M)=>CH3(+M)",
+        "time_scale": -33.33784586959294,
+        "reverse_reaction": "233"
+    },
+    "233": {
+        "formula": "CH3(+M)=>CH2+H(+M)",
+        "time_scale": -37.934919171101214,
+        "reverse_reaction": "232"
+    },
+    "234": {
+        "formula": "CH2+O=>HCO+H",
+        "time_scale": -34.17788754383331,
+        "reverse_reaction": "235"
+    },
+    "235": {
+        "formula": "HCO+H=>CH2+O",
+        "time_scale": -53.75827025754409,
+        "reverse_reaction": "234"
+    },
+    "236": {
+        "formula": "CH2+OH=>CH2O+H",
+        "time_scale": -31.05543611555358,
+        "reverse_reaction": "237"
+    },
+    "237": {
+        "formula": "CH2O+H=>CH2+OH",
+        "time_scale": -38.280439018665945,
+        "reverse_reaction": "236"
+    },
+    "238": {
+        "formula": "CH2+H2=>H+CH3",
+        "time_scale": -33.51372019954958,
+        "reverse_reaction": "239"
+    },
+    "239": {
+        "formula": "H+CH3=>CH2+H2",
+        "time_scale": -26.385991277122123,
+        "reverse_reaction": "238"
+    },
+    "240": {
+        "formula": "CH2+O2=>HCO+OH",
+        "time_scale": -20.720787161623157,
+        "reverse_reaction": "241"
+    },
+    "241": {
+        "formula": "HCO+OH=>CH2+O2",
+        "time_scale": -47.69744158320643,
+        "reverse_reaction": "240"
+    },
+    "242": {
+        "formula": "CH2+HO2=>CH2O+OH",
+        "time_scale": -25.9404155366808,
+        "reverse_reaction": "243"
+    },
+    "243": {
+        "formula": "CH2O+OH=>CH2+HO2",
+        "time_scale": -49.344597412792,
+        "reverse_reaction": "242"
+    },
+    "244": {
+        "formula": "CH2+CO(+M)=>ketene(+M)",
+        "time_scale": -27.774126240932468,
+        "reverse_reaction": "245"
+    },
+    "245": {
+        "formula": "ketene(+M)=>CH2+CO(+M)",
+        "time_scale": -25.775170686300722,
+        "reverse_reaction": "244"
+    },
+    "246": {
+        "formula": "CH2+CH2=>C2H2+H2",
+        "time_scale": -44.31026147774678,
+        "reverse_reaction": "247"
+    },
+    "247": {
+        "formula": "C2H2+H2=>CH2+CH2",
+        "time_scale": -56.849972623376885,
+        "reverse_reaction": "246"
+    },
+    "248": {
+        "formula": "CH2(S)+M=>CH2+M",
+        "time_scale": -23.51297784527456,
+        "reverse_reaction": "249"
+    },
+    "249": {
+        "formula": "CH2+M=>CH2(S)+M",
+        "time_scale": -23.142573961472657,
+        "reverse_reaction": "248"
+    },
+    "250": {
+        "formula": "CH2(S)+H2O=>CH2+H2O",
+        "time_scale": -28.842555041122814,
+        "reverse_reaction": "251"
+    },
+    "251": {
+        "formula": "CH2+H2O=>CH2(S)+H2O",
+        "time_scale": -28.472151157320926,
+        "reverse_reaction": "250"
+    },
+    "252": {
+        "formula": "CH2(S)+CO=>CH2+CO",
+        "time_scale": -29.979936715342838,
+        "reverse_reaction": "253"
+    },
+    "253": {
+        "formula": "CH2+CO=>CH2(S)+CO",
+        "time_scale": -29.60953283154095,
+        "reverse_reaction": "252"
+    },
+    "254": {
+        "formula": "CH2(S)+CO2=>CH2+CO2",
+        "time_scale": -34.963245401666796,
+        "reverse_reaction": "255"
+    },
+    "255": {
+        "formula": "CH2+CO2=>CH2(S)+CO2",
+        "time_scale": -34.59284151786491,
+        "reverse_reaction": "254"
+    },
+    "256": {
+        "formula": "CH2(S)+AR=>CH2+AR",
+        "time_scale": -25.556390421585327,
+        "reverse_reaction": "257"
+    },
+    "257": {
+        "formula": "CH2+AR=>CH2(S)+AR",
+        "time_scale": -25.185986537783425,
+        "reverse_reaction": "256"
+    },
+    "258": {
+        "formula": "CH2(S)+O=>CO+H2",
+        "time_scale": -38.52602228290653,
+        "reverse_reaction": "259"
+    },
+    "259": {
+        "formula": "CO+H2=>CH2(S)+O",
+        "time_scale": -73.4624835175268,
+        "reverse_reaction": "258"
+    },
+    "260": {
+        "formula": "CH2(S)+O=>HCO+H",
+        "time_scale": -38.52602228290653,
+        "reverse_reaction": "261"
+    },
+    "261": {
+        "formula": "HCO+H=>CH2(S)+O",
+        "time_scale": -57.73600111281543,
+        "reverse_reaction": "260"
+    },
+    "262": {
+        "formula": "CH2(S)+OH=>CH2O+H",
+        "time_scale": -34.50048086763486,
+        "reverse_reaction": "263"
+    },
+    "263": {
+        "formula": "CH2O+H=>CH2(S)+OH",
+        "time_scale": -41.35507988694534,
+        "reverse_reaction": "262"
+    },
+    "264": {
+        "formula": "CH2(S)+H2=>CH3+H",
+        "time_scale": -32.18356961950567,
+        "reverse_reaction": "265"
+    },
+    "265": {
+        "formula": "CH3+H=>CH2(S)+H2",
+        "time_scale": -24.68543681327632,
+        "reverse_reaction": "264"
+    },
+    "266": {
+        "formula": "CH2(S)+O2=>H+OH+CO",
+        "time_scale": -23.51098265928147,
+        "reverse_reaction": "267"
+    },
+    "267": {
+        "formula": "H+OH+CO=>CH2(S)+O2",
+        "time_scale": -54.11891337783461,
+        "reverse_reaction": "266"
+    },
+    "268": {
+        "formula": "CH2(S)+O2=>CO+H2O",
+        "time_scale": -23.878959444576065,
+        "reverse_reaction": "269"
+    },
+    "269": {
+        "formula": "CO+H2O=>CH2(S)+O2",
+        "time_scale": -69.56328549750037,
+        "reverse_reaction": "268"
+    },
+    "270": {
+        "formula": "CH2(S)+CO2=>CH2O+CO",
+        "time_scale": -34.662215406002815,
+        "reverse_reaction": "271"
+    },
+    "271": {
+        "formula": "CH2O+CO=>CH2(S)+CO2",
+        "time_scale": -28.41610394925057,
+        "reverse_reaction": "270"
+    },
+    "272": {
+        "formula": "CH2(S)+C2H6=>CH3+C2H5",
+        "time_scale": -33.85800167998606,
+        "reverse_reaction": "273"
+    },
+    "273": {
+        "formula": "CH3+C2H5=>CH2(S)+C2H6",
+        "time_scale": -25.546349407201326,
+        "reverse_reaction": "272"
+    },
+    "274": {
+        "formula": "CH2(S)+ketene=>C2H4+CO",
+        "time_scale": -32.25398860184466,
+        "reverse_reaction": "275"
+    },
+    "275": {
+        "formula": "C2H4+CO=>CH2(S)+ketene",
+        "time_scale": -42.26798983718248,
+        "reverse_reaction": "274"
+    },
+    "276": {
+        "formula": "H+HCCO=>CH2(S)+CO",
+        "time_scale": -27.813496647095835,
+        "reverse_reaction": "277"
+    },
+    "277": {
+        "formula": "CH2(S)+CO=>H+HCCO",
+        "time_scale": -37.274610737431395,
+        "reverse_reaction": "276"
+    },
+    "278": {
+        "formula": "CH2(S)+H=>CH+H2",
+        "time_scale": -37.176840443207446,
+        "reverse_reaction": "279"
+    },
+    "279": {
+        "formula": "CH+H2=>CH2(S)+H",
+        "time_scale": -100,
+        "reverse_reaction": "278"
+    },
+    "280": {
+        "formula": "CH2+H=>CH+H2",
+        "time_scale": -33.42098038509978,
+        "reverse_reaction": "281"
+    },
+    "281": {
+        "formula": "CH+H2=>CH2+H",
+        "time_scale": -100,
+        "reverse_reaction": "280"
+    },
+    "282": {
+        "formula": "CH2+OH=>CH+H2O",
+        "time_scale": -32.68626113761151,
+        "reverse_reaction": "283"
+    },
+    "283": {
+        "formula": "CH+H2O=>CH2+OH",
+        "time_scale": -100,
+        "reverse_reaction": "282"
+    },
+    "284": {
+        "formula": "CH+O2=>HCO+O",
+        "time_scale": -100,
+        "reverse_reaction": "285"
+    },
+    "285": {
+        "formula": "HCO+O=>CH+O2",
+        "time_scale": -48.76252472169746,
+        "reverse_reaction": "284"
+    },
+    "286": {
+        "formula": "CH+H=>C+H2",
+        "time_scale": -100,
+        "reverse_reaction": "287"
+    },
+    "287": {
+        "formula": "C+H2=>CH+H",
+        "time_scale": -40.20174968205119,
+        "reverse_reaction": "286"
+    },
+    "288": {
+        "formula": "CH+O=>CO+H",
+        "time_scale": -100,
+        "reverse_reaction": "289"
+    },
+    "289": {
+        "formula": "CO+H=>CH+O",
+        "time_scale": -72.86521770164626,
+        "reverse_reaction": "288"
+    },
+    "290": {
+        "formula": "CH+OH=>HCO+H",
+        "time_scale": -42.3581122866987,
+        "reverse_reaction": "291"
+    },
+    "291": {
+        "formula": "HCO+H=>CH+OH",
+        "time_scale": -52.427107130713914,
+        "reverse_reaction": "290"
+    },
+    "292": {
+        "formula": "CH+H2O=>H+CH2O",
+        "time_scale": -100,
+        "reverse_reaction": "293"
+    },
+    "293": {
+        "formula": "H+CH2O=>CH+H2O",
+        "time_scale": -32.31758322777675,
+        "reverse_reaction": "292"
+    },
+    "294": {
+        "formula": "CH+CO2=>HCO+CO",
+        "time_scale": -100,
+        "reverse_reaction": "295"
+    },
+    "295": {
+        "formula": "HCO+CO=>CH+CO2",
+        "time_scale": -40.634133069412094,
+        "reverse_reaction": "294"
+    },
+    "296": {
+        "formula": "HCCO+M=>CH+CO+M",
+        "time_scale": -30.427075611774058,
+        "reverse_reaction": "297"
+    },
+    "297": {
+        "formula": "CH+CO+M=>HCCO+M",
+        "time_scale": -100,
+        "reverse_reaction": "296"
+    },
+    "298": {
+        "formula": "CH+CH2O=>H+ketene",
+        "time_scale": -100,
+        "reverse_reaction": "299"
+    },
+    "299": {
+        "formula": "H+ketene=>CH+CH2O",
+        "time_scale": -41.16900770082793,
+        "reverse_reaction": "298"
+    },
+    "300": {
+        "formula": "CH+HCCO=>CO+C2H2",
+        "time_scale": -100,
+        "reverse_reaction": "301"
+    },
+    "301": {
+        "formula": "CO+C2H2=>CH+HCCO",
+        "time_scale": -62.80217635742956,
+        "reverse_reaction": "300"
+    },
+    "302": {
+        "formula": "CH+CH4=>C2H4+H",
+        "time_scale": -100,
+        "reverse_reaction": "303"
+    },
+    "303": {
+        "formula": "C2H4+H=>CH+CH4",
+        "time_scale": -34.50843388466282,
+        "reverse_reaction": "302"
+    },
+    "304": {
+        "formula": "C2H6+CH=>C2H5+CH2",
+        "time_scale": -100,
+        "reverse_reaction": "305"
+    },
+    "305": {
+        "formula": "C2H5+CH2=>C2H6+CH",
+        "time_scale": -32.60696289294182,
+        "reverse_reaction": "304"
+    },
+    "306": {
+        "formula": "C2H5+H(+M)=>C2H6(+M)",
+        "time_scale": -20.208184846944697,
+        "reverse_reaction": "307"
+    },
+    "307": {
+        "formula": "C2H6(+M)=>C2H5+H(+M)",
+        "time_scale": -32.74650653743662,
+        "reverse_reaction": "306"
+    },
+    "308": {
+        "formula": "C2H6+H=>C2H5+H2",
+        "time_scale": -22.660085111275713,
+        "reverse_reaction": "309"
+    },
+    "309": {
+        "formula": "C2H5+H2=>C2H6+H",
+        "time_scale": -21.84656564472023,
+        "reverse_reaction": "308"
+    },
+    "310": {
+        "formula": "C2H6+O=>C2H5+OH",
+        "time_scale": -23.24064266828601,
+        "reverse_reaction": "311"
+    },
+    "311": {
+        "formula": "C2H5+OH=>C2H6+O",
+        "time_scale": -23.692993549296492,
+        "reverse_reaction": "310"
+    },
+    "312": {
+        "formula": "C2H6+OH=>C2H5+H2O",
+        "time_scale": -18.6617181941332,
+        "reverse_reaction": "313"
+    },
+    "313": {
+        "formula": "C2H5+H2O=>C2H6+OH",
+        "time_scale": -21.199791838009283,
+        "reverse_reaction": "312"
+    },
+    "314": {
+        "formula": "C2H6+O2=>C2H5+HO2",
+        "time_scale": -23.497967599547845,
+        "reverse_reaction": "315"
+    },
+    "315": {
+        "formula": "C2H5+HO2=>C2H6+O2",
+        "time_scale": -15.167411215433964,
+        "reverse_reaction": "314"
+    },
+    "316": {
+        "formula": "C2H6+CH3=>C2H5+CH4",
+        "time_scale": -23.219678696867085,
+        "reverse_reaction": "317"
+    },
+    "317": {
+        "formula": "C2H5+CH4=>C2H6+CH3",
+        "time_scale": -24.251035886657462,
+        "reverse_reaction": "316"
+    },
+    "318": {
+        "formula": "C2H6+HO2=>C2H5+H2O2",
+        "time_scale": -19.73750519584274,
+        "reverse_reaction": "319"
+    },
+    "319": {
+        "formula": "C2H5+H2O2=>C2H6+HO2",
+        "time_scale": -16.963570489659947,
+        "reverse_reaction": "318"
+    },
+    "320": {
+        "formula": "C2H6+CH3OO=>C2H5+CH3OOH",
+        "time_scale": -21.381383238901325,
+        "reverse_reaction": "321"
+    },
+    "321": {
+        "formula": "C2H5+CH3OOH=>C2H6+CH3OO",
+        "time_scale": -18.74671821698335,
+        "reverse_reaction": "320"
+    },
+    "322": {
+        "formula": "C2H6+CH3O=>C2H5+CH3OH",
+        "time_scale": -23.25466458677071,
+        "reverse_reaction": "323"
+    },
+    "323": {
+        "formula": "C2H5+CH3OH=>C2H6+CH3O",
+        "time_scale": -24.59654691716784,
+        "reverse_reaction": "322"
+    },
+    "324": {
+        "formula": "H+C2H4(+M)=>C2H5(+M)",
+        "time_scale": -17.362248002477006,
+        "reverse_reaction": "325"
+    },
+    "325": {
+        "formula": "C2H5(+M)=>H+C2H4(+M)",
+        "time_scale": -15.91902768779145,
+        "reverse_reaction": "324"
+    },
+    "326": {
+        "formula": "H2+CH3OO=>H+CH3OOH",
+        "time_scale": -19.826207920082265,
+        "reverse_reaction": "327"
+    },
+    "327": {
+        "formula": "H+CH3OOH=>H2+CH3OO",
+        "time_scale": -18.005062364719794,
+        "reverse_reaction": "326"
+    },
+    "328": {
+        "formula": "H2+CH3CH2OO=>H+CH3CH2OOH",
+        "time_scale": -20.126354218440508,
+        "reverse_reaction": "329"
+    },
+    "329": {
+        "formula": "H+CH3CH2OOH=>H2+CH3CH2OO",
+        "time_scale": -17.88722493857723,
+        "reverse_reaction": "328"
+    },
+    "330": {
+        "formula": "C2H4+C2H4=>C2H5+C2H3",
+        "time_scale": -32.846071944609925,
+        "reverse_reaction": "331"
+    },
+    "331": {
+        "formula": "C2H5+C2H3=>C2H4+C2H4",
+        "time_scale": -22.631638788311616,
+        "reverse_reaction": "330"
+    },
+    "332": {
+        "formula": "CH3+C2H5=>CH4+C2H4",
+        "time_scale": -20.210543257095477,
+        "reverse_reaction": "333"
+    },
+    "333": {
+        "formula": "CH4+C2H4=>CH3+C2H5",
+        "time_scale": -35.2234424520632,
+        "reverse_reaction": "332"
+    },
+    "334": {
+        "formula": "C2H5+H=>C2H4+H2",
+        "time_scale": -22.14571478843157,
+        "reverse_reaction": "335"
+    },
+    "335": {
+        "formula": "C2H4+H2=>C2H5+H",
+        "time_scale": -35.31373732705342,
+        "reverse_reaction": "334"
+    },
+    "336": {
+        "formula": "C2H5+O=>acetaldehyde+H",
+        "time_scale": -21.453503942972162,
+        "reverse_reaction": "337"
+    },
+    "337": {
+        "formula": "acetaldehyde+H=>C2H5+O",
+        "time_scale": -39.93842589582202,
+        "reverse_reaction": "336"
+    },
+    "338": {
+        "formula": "C2H5+HO2=>ethoxy+OH",
+        "time_scale": -13.668216234270375,
+        "reverse_reaction": "339"
+    },
+    "339": {
+        "formula": "ethoxy+OH=>C2H5+HO2",
+        "time_scale": -29.461768067402797,
+        "reverse_reaction": "338"
+    },
+    "340": {
+        "formula": "CH3OO+C2H5=>CH3O+ethoxy",
+        "time_scale": -14.832505528709405,
+        "reverse_reaction": "341"
+    },
+    "341": {
+        "formula": "CH3O+ethoxy=>CH3OO+C2H5",
+        "time_scale": -32.2609411588329,
+        "reverse_reaction": "340"
+    },
+    "342": {
+        "formula": "ethoxy+O2=>acetaldehyde+HO2",
+        "time_scale": -13.018085654843768,
+        "reverse_reaction": "343"
+    },
+    "343": {
+        "formula": "acetaldehyde+HO2=>ethoxy+O2",
+        "time_scale": -23.105727482435558,
+        "reverse_reaction": "342"
+    },
+    "344": {
+        "formula": "CH3+CH2O=>ethoxy",
+        "time_scale": -16.57275542249895,
+        "reverse_reaction": "345"
+    },
+    "345": {
+        "formula": "ethoxy=>CH3+CH2O",
+        "time_scale": -11.307281327834628,
+        "reverse_reaction": "344"
+    },
+    "346": {
+        "formula": "acetaldehyde+H=>ethoxy",
+        "time_scale": -18.71899846363074,
+        "reverse_reaction": "347"
+    },
+    "347": {
+        "formula": "ethoxy=>acetaldehyde+H",
+        "time_scale": -12.839121942417057,
+        "reverse_reaction": "346"
+    },
+    "348": {
+        "formula": "C2H5+O2=>CH3CH2OO",
+        "time_scale": -8.08247869265893,
+        "reverse_reaction": "349"
+    },
+    "349": {
+        "formula": "CH3CH2OO=>C2H5+O2",
+        "time_scale": -8.091418323608341,
+        "reverse_reaction": "348"
+    },
+    "350": {
+        "formula": "CH3CH2OO+CH2O=>CH3CH2OOH+HCO",
+        "time_scale": -13.756903521447295,
+        "reverse_reaction": "351"
+    },
+    "351": {
+        "formula": "CH3CH2OOH+HCO=>CH3CH2OO+CH2O",
+        "time_scale": -22.60728370461631,
+        "reverse_reaction": "350"
+    },
+    "352": {
+        "formula": "CH4+CH3CH2OO=>CH3+CH3CH2OOH",
+        "time_scale": -21.208476927408658,
+        "reverse_reaction": "353"
+    },
+    "353": {
+        "formula": "CH3+CH3CH2OOH=>CH4+CH3CH2OO",
+        "time_scale": -17.12447099119954,
+        "reverse_reaction": "352"
+    },
+    "354": {
+        "formula": "CH3OH+CH3CH2OO=>CH2OH+CH3CH2OOH",
+        "time_scale": -18.707815424255642,
+        "reverse_reaction": "355"
+    },
+    "355": {
+        "formula": "CH2OH+CH3CH2OOH=>CH3OH+CH3CH2OO",
+        "time_scale": -23.702513152079565,
+        "reverse_reaction": "354"
+    },
+    "356": {
+        "formula": "CH3CH2OO+HO2=>CH3CH2OOH+O2",
+        "time_scale": -11.039878184106604,
+        "reverse_reaction": "357"
+    },
+    "357": {
+        "formula": "CH3CH2OOH+O2=>CH3CH2OO+HO2",
+        "time_scale": -16.31778582180193,
+        "reverse_reaction": "356"
+    },
+    "358": {
+        "formula": "C2H6+CH3CH2OO=>C2H5+CH3CH2OOH",
+        "time_scale": -21.730906215427265,
+        "reverse_reaction": "359"
+    },
+    "359": {
+        "formula": "C2H5+CH3CH2OOH=>C2H6+CH3CH2OO",
+        "time_scale": -18.678257469008503,
+        "reverse_reaction": "358"
+    },
+    "360": {
+        "formula": "CH3CH2OOH=>ethoxy+OH",
+        "time_scale": -11.42773744868735,
+        "reverse_reaction": "361"
+    },
+    "361": {
+        "formula": "ethoxy+OH=>CH3CH2OOH",
+        "time_scale": -21.934442013175033,
+        "reverse_reaction": "360"
+    },
+    "362": {
+        "formula": "C2H5+O2=>CH2CH2OOH",
+        "time_scale": -12.749931885571428,
+        "reverse_reaction": "363"
+    },
+    "363": {
+        "formula": "CH2CH2OOH=>C2H5+O2",
+        "time_scale": -15.439373660836008,
+        "reverse_reaction": "362"
+    },
+    "364": {
+        "formula": "C2H5+O2=>C2H4+HO2",
+        "time_scale": -10.31017221439833,
+        "reverse_reaction": "365"
+    },
+    "365": {
+        "formula": "C2H4+HO2=>C2H5+O2",
+        "time_scale": -15.961157835461968,
+        "reverse_reaction": "364"
+    },
+    "366": {
+        "formula": "C2H5+O2=>oxirane+OH",
+        "time_scale": -12.479669630539492,
+        "reverse_reaction": "367"
+    },
+    "367": {
+        "formula": "oxirane+OH=>C2H5+O2",
+        "time_scale": -30.604445739379695,
+        "reverse_reaction": "366"
+    },
+    "368": {
+        "formula": "C2H5+O2=>acetaldehyde+OH",
+        "time_scale": -12.831560256938204,
+        "reverse_reaction": "369"
+    },
+    "369": {
+        "formula": "acetaldehyde+OH=>C2H5+O2",
+        "time_scale": -38.7127539176634,
+        "reverse_reaction": "368"
+    },
+    "370": {
+        "formula": "CH2CH2OOH=>CH3CH2OO",
+        "time_scale": -15.221542525903772,
+        "reverse_reaction": "371"
+    },
+    "371": {
+        "formula": "CH3CH2OO=>CH2CH2OOH",
+        "time_scale": -12.541040381588603,
+        "reverse_reaction": "370"
+    },
+    "372": {
+        "formula": "CH3CH2OO=>acetaldehyde+OH",
+        "time_scale": -14.037680661346224,
+        "reverse_reaction": "373"
+    },
+    "373": {
+        "formula": "acetaldehyde+OH=>CH3CH2OO",
+        "time_scale": -39.90993469112201,
+        "reverse_reaction": "372"
+    },
+    "374": {
+        "formula": "CH3CH2OO=>C2H4+HO2",
+        "time_scale": -10.300692251781227,
+        "reverse_reaction": "375"
+    },
+    "375": {
+        "formula": "C2H4+HO2=>CH3CH2OO",
+        "time_scale": -15.942738241895453,
+        "reverse_reaction": "374"
+    },
+    "376": {
+        "formula": "CH3CH2OO=>oxirane+OH",
+        "time_scale": -13.197144655818144,
+        "reverse_reaction": "377"
+    },
+    "377": {
+        "formula": "oxirane+OH=>CH3CH2OO",
+        "time_scale": -31.312981133708934,
+        "reverse_reaction": "376"
+    },
+    "378": {
+        "formula": "CH2CH2OOH=>oxirane+OH",
+        "time_scale": -12.45000650598427,
+        "reverse_reaction": "379"
+    },
+    "379": {
+        "formula": "oxirane+OH=>CH2CH2OOH",
+        "time_scale": -27.88534083955989,
+        "reverse_reaction": "378"
+    },
+    "380": {
+        "formula": "CH2CH2OOH=>C2H4+HO2",
+        "time_scale": -12.958939978641116,
+        "reverse_reaction": "381"
+    },
+    "381": {
+        "formula": "C2H4+HO2=>CH2CH2OOH",
+        "time_scale": -15.920483824440174,
+        "reverse_reaction": "380"
+    },
+    "382": {
+        "formula": "CH2CH2OOH=>acetaldehyde+OH",
+        "time_scale": -20.466850589857398,
+        "reverse_reaction": "383"
+    },
+    "383": {
+        "formula": "acetaldehyde+OH=>CH2CH2OOH",
+        "time_scale": -43.65860247531801,
+        "reverse_reaction": "382"
+    },
+    "384": {
+        "formula": "oxirane=>CH3+HCO",
+        "time_scale": -19.568167827484235,
+        "reverse_reaction": "385"
+    },
+    "385": {
+        "formula": "CH3+HCO=>oxirane",
+        "time_scale": -26.074890191915777,
+        "reverse_reaction": "384"
+    },
+    "386": {
+        "formula": "oxirane=>acetaldehyde",
+        "time_scale": -19.115224237626222,
+        "reverse_reaction": "387"
+    },
+    "387": {
+        "formula": "acetaldehyde=>oxirane",
+        "time_scale": -26.87164178951126,
+        "reverse_reaction": "386"
+    },
+    "388": {
+        "formula": "oxirane+OH=>oxiranyl+H2O",
+        "time_scale": -17.307441372716188,
+        "reverse_reaction": "389"
+    },
+    "389": {
+        "formula": "oxiranyl+H2O=>oxirane+OH",
+        "time_scale": -31.04592157842282,
+        "reverse_reaction": "388"
+    },
+    "390": {
+        "formula": "oxirane+H=>oxiranyl+H2",
+        "time_scale": -21.37209324959793,
+        "reverse_reaction": "391"
+    },
+    "391": {
+        "formula": "oxiranyl+H2=>oxirane+H",
+        "time_scale": -31.758980344872704,
+        "reverse_reaction": "390"
+    },
+    "392": {
+        "formula": "oxirane+HO2=>oxiranyl+H2O2",
+        "time_scale": -21.407655023228433,
+        "reverse_reaction": "393"
+    },
+    "393": {
+        "formula": "oxiranyl+H2O2=>oxirane+HO2",
+        "time_scale": -29.834126878876233,
+        "reverse_reaction": "392"
+    },
+    "394": {
+        "formula": "oxirane+CH3OO=>oxiranyl+CH3OOH",
+        "time_scale": -22.824123518175515,
+        "reverse_reaction": "395"
+    },
+    "395": {
+        "formula": "oxiranyl+CH3OOH=>oxirane+CH3OO",
+        "time_scale": -31.389865058087356,
+        "reverse_reaction": "394"
+    },
+    "396": {
+        "formula": "oxirane+CH3CH2OO=>oxiranyl+CH3CH2OOH",
+        "time_scale": -23.124269816533747,
+        "reverse_reaction": "397"
+    },
+    "397": {
+        "formula": "oxiranyl+CH3CH2OOH=>oxirane+CH3CH2OO",
+        "time_scale": -31.272027631944958,
+        "reverse_reaction": "396"
+    },
+    "398": {
+        "formula": "oxirane+CH3=>oxiranyl+CH4",
+        "time_scale": -21.678194066005418,
+        "reverse_reaction": "399"
+    },
+    "399": {
+        "formula": "oxiranyl+CH4=>oxirane+CH3",
+        "time_scale": -33.90995781762621,
+        "reverse_reaction": "398"
+    },
+    "400": {
+        "formula": "oxirane+CH3O=>oxiranyl+CH3OH",
+        "time_scale": -21.930121633143454,
+        "reverse_reaction": "401"
+    },
+    "401": {
+        "formula": "oxiranyl+CH3OH=>oxirane+CH3O",
+        "time_scale": -34.472410525369554,
+        "reverse_reaction": "400"
+    },
+    "402": {
+        "formula": "oxiranyl=>acetyl",
+        "time_scale": -17.34997970033948,
+        "reverse_reaction": "403"
+    },
+    "403": {
+        "formula": "acetyl=>oxiranyl",
+        "time_scale": -23.800180041839074,
+        "reverse_reaction": "402"
+    },
+    "404": {
+        "formula": "oxiranyl=>vinoxy",
+        "time_scale": -18.279398626053773,
+        "reverse_reaction": "405"
+    },
+    "405": {
+        "formula": "vinoxy=>oxiranyl",
+        "time_scale": -19.189277661771555,
+        "reverse_reaction": "404"
+    },
+    "406": {
+        "formula": "CH3+HCO=>acetaldehyde",
+        "time_scale": -21.90003143171046,
+        "reverse_reaction": "407"
+    },
+    "407": {
+        "formula": "acetaldehyde=>CH3+HCO",
+        "time_scale": -23.14972661916395,
+        "reverse_reaction": "406"
+    },
+    "408": {
+        "formula": "acetaldehyde+H=>acetyl+H2",
+        "time_scale": -17.47054373857193,
+        "reverse_reaction": "409"
+    },
+    "409": {
+        "formula": "acetyl+H2=>acetaldehyde+H",
+        "time_scale": -26.551213623465106,
+        "reverse_reaction": "408"
+    },
+    "410": {
+        "formula": "acetaldehyde+O=>acetyl+OH",
+        "time_scale": -18.372625006164824,
+        "reverse_reaction": "411"
+    },
+    "411": {
+        "formula": "acetyl+OH=>acetaldehyde+O",
+        "time_scale": -28.719165238623944,
+        "reverse_reaction": "410"
+    },
+    "412": {
+        "formula": "acetaldehyde+OH=>acetyl+H2O",
+        "time_scale": -15.866631652895435,
+        "reverse_reaction": "413"
+    },
+    "413": {
+        "formula": "acetyl+H2O=>acetaldehyde+OH",
+        "time_scale": -28.298894648220173,
+        "reverse_reaction": "412"
+    },
+    "414": {
+        "formula": "acetaldehyde+O2=>acetyl+HO2",
+        "time_scale": -15.4594826390292,
+        "reverse_reaction": "415"
+    },
+    "415": {
+        "formula": "acetyl+HO2=>acetaldehyde+O2",
+        "time_scale": -17.023115606363938,
+        "reverse_reaction": "414"
+    },
+    "416": {
+        "formula": "acetaldehyde+CH3=>acetyl+CH4",
+        "time_scale": -17.750469095141717,
+        "reverse_reaction": "417"
+    },
+    "417": {
+        "formula": "acetyl+CH4=>acetaldehyde+CH3",
+        "time_scale": -28.67601563638075,
+        "reverse_reaction": "416"
+    },
+    "418": {
+        "formula": "acetaldehyde+HO2=>acetyl+H2O2",
+        "time_scale": -13.208173401682085,
+        "reverse_reaction": "419"
+    },
+    "419": {
+        "formula": "acetyl+H2O2=>acetaldehyde+HO2",
+        "time_scale": -20.32842804694794,
+        "reverse_reaction": "418"
+    },
+    "420": {
+        "formula": "CH3OO+acetaldehyde=>CH3OOH+acetyl",
+        "time_scale": -14.624641896629155,
+        "reverse_reaction": "421"
+    },
+    "421": {
+        "formula": "CH3OOH+acetyl=>CH3OO+acetaldehyde",
+        "time_scale": -21.884166226159863,
+        "reverse_reaction": "420"
+    },
+    "422": {
+        "formula": "acetaldehyde+acetylperoxy=>acetyl+CH3CO3H",
+        "time_scale": -17.75733663335451,
+        "reverse_reaction": "423"
+    },
+    "423": {
+        "formula": "acetyl+CH3CO3H=>acetaldehyde+acetylperoxy",
+        "time_scale": -27.873604056355074,
+        "reverse_reaction": "422"
+    },
+    "424": {
+        "formula": "acetaldehyde+OH=>vinoxy+H2O",
+        "time_scale": -15.081306154295694,
+        "reverse_reaction": "425"
+    },
+    "425": {
+        "formula": "vinoxy+H2O=>acetaldehyde+OH",
+        "time_scale": -21.973247843838987,
+        "reverse_reaction": "424"
+    },
+    "426": {
+        "formula": "acetyl(+M)=>CH3+CO(+M)",
+        "time_scale": -12.389874012902785,
+        "reverse_reaction": "427"
+    },
+    "427": {
+        "formula": "CH3+CO(+M)=>acetyl(+M)",
+        "time_scale": -17.785991345267764,
+        "reverse_reaction": "426"
+    },
+    "428": {
+        "formula": "acetyl+H=>ketene+H2",
+        "time_scale": -23.886735735469482,
+        "reverse_reaction": "429"
+    },
+    "429": {
+        "formula": "ketene+H2=>acetyl+H",
+        "time_scale": -34.41162643563073,
+        "reverse_reaction": "428"
+    },
+    "430": {
+        "formula": "acetyl+O=>ketene+OH",
+        "time_scale": -24.93488757950431,
+        "reverse_reaction": "431"
+    },
+    "431": {
+        "formula": "ketene+OH=>acetyl+O",
+        "time_scale": -36.72564862723148,
+        "reverse_reaction": "430"
+    },
+    "432": {
+        "formula": "acetyl+CH3=>ketene+CH4",
+        "time_scale": -21.19827947477422,
+        "reverse_reaction": "433"
+    },
+    "433": {
+        "formula": "ketene+CH4=>acetyl+CH3",
+        "time_scale": -33.568046831281336,
+        "reverse_reaction": "432"
+    },
+    "434": {
+        "formula": "acetyl+O2=>acetylperoxy",
+        "time_scale": -12.042902107994825,
+        "reverse_reaction": "435"
+    },
+    "435": {
+        "formula": "acetylperoxy=>acetyl+O2",
+        "time_scale": -12.1198781226404,
+        "reverse_reaction": "434"
+    },
+    "436": {
+        "formula": "acetylperoxy+HO2=>CH3CO3H+O2",
+        "time_scale": -13.872426622473665,
+        "reverse_reaction": "437"
+    },
+    "437": {
+        "formula": "CH3CO3H+O2=>acetylperoxy+HO2",
+        "time_scale": -22.425061078139684,
+        "reverse_reaction": "436"
+    },
+    "438": {
+        "formula": "H2O2+acetylperoxy=>HO2+CH3CO3H",
+        "time_scale": -15.963075305915778,
+        "reverse_reaction": "439"
+    },
+    "439": {
+        "formula": "HO2+CH3CO3H=>H2O2+acetylperoxy",
+        "time_scale": -18.959088083650553,
+        "reverse_reaction": "438"
+    },
+    "440": {
+        "formula": "CH4+acetylperoxy=>CH3+CH3CO3H",
+        "time_scale": -24.041025365775774,
+        "reverse_reaction": "441"
+    },
+    "441": {
+        "formula": "CH3+CH3CO3H=>CH4+acetylperoxy",
+        "time_scale": -23.231746247537323,
+        "reverse_reaction": "440"
+    },
+    "442": {
+        "formula": "CH2O+acetylperoxy=>HCO+CH3CO3H",
+        "time_scale": -16.589451959814408,
+        "reverse_reaction": "443"
+    },
+    "443": {
+        "formula": "HCO+CH3CO3H=>CH2O+acetylperoxy",
+        "time_scale": -28.7145589609541,
+        "reverse_reaction": "442"
+    },
+    "444": {
+        "formula": "C2H6+acetylperoxy=>C2H5+CH3CO3H",
+        "time_scale": -23.940216779454506,
+        "reverse_reaction": "445"
+    },
+    "445": {
+        "formula": "C2H5+CH3CO3H=>C2H6+acetylperoxy",
+        "time_scale": -24.1622948510064,
+        "reverse_reaction": "444"
+    },
+    "446": {
+        "formula": "CH3CO3H=>acetyloxy+OH",
+        "time_scale": -13.828867030384906,
+        "reverse_reaction": "447"
+    },
+    "447": {
+        "formula": "acetyloxy+OH=>CH3CO3H",
+        "time_scale": -24.28438781512321,
+        "reverse_reaction": "446"
+    },
+    "448": {
+        "formula": "acetyloxy+M=>CH3+CO2+M",
+        "time_scale": -13.772412631966295,
+        "reverse_reaction": "449"
+    },
+    "449": {
+        "formula": "CH3+CO2+M=>acetyloxy+M",
+        "time_scale": -29.36328815834413,
+        "reverse_reaction": "448"
+    },
+    "450": {
+        "formula": "ketene+H=>vinoxy",
+        "time_scale": -22.491139389155073,
+        "reverse_reaction": "451"
+    },
+    "451": {
+        "formula": "vinoxy=>ketene+H",
+        "time_scale": -18.15072960714819,
+        "reverse_reaction": "450"
+    },
+    "452": {
+        "formula": "vinoxy+O2=>CH2O+CO+OH",
+        "time_scale": -8.672775481629762,
+        "reverse_reaction": "453"
+    },
+    "453": {
+        "formula": "CH2O+CO+OH=>vinoxy+O2",
+        "time_scale": -42.624088000754995,
+        "reverse_reaction": "452"
+    },
+    "454": {
+        "formula": "ketene+H=>CH3+CO",
+        "time_scale": -20.156201989168594,
+        "reverse_reaction": "455"
+    },
+    "455": {
+        "formula": "CH3+CO=>ketene+H",
+        "time_scale": -26.752230845308496,
+        "reverse_reaction": "454"
+    },
+    "456": {
+        "formula": "ketene+H=>HCCO+H2",
+        "time_scale": -20.443257679579204,
+        "reverse_reaction": "457"
+    },
+    "457": {
+        "formula": "HCCO+H2=>ketene+H",
+        "time_scale": -25.076305251613075,
+        "reverse_reaction": "456"
+    },
+    "458": {
+        "formula": "ketene+O=>CH2+CO2",
+        "time_scale": -21.313421371440857,
+        "reverse_reaction": "459"
+    },
+    "459": {
+        "formula": "CH2+CO2=>ketene+O",
+        "time_scale": -49.40375997363746,
+        "reverse_reaction": "458"
+    },
+    "460": {
+        "formula": "ketene+O=>HCCO+OH",
+        "time_scale": -22.792439519277984,
+        "reverse_reaction": "461"
+    },
+    "461": {
+        "formula": "HCCO+OH=>ketene+O",
+        "time_scale": -28.69135743887815,
+        "reverse_reaction": "460"
+    },
+    "462": {
+        "formula": "ketene+OH=>HCCO+H2O",
+        "time_scale": -17.05050244630096,
+        "reverse_reaction": "463"
+    },
+    "463": {
+        "formula": "HCCO+H2O=>ketene+OH",
+        "time_scale": -25.035143128766617,
+        "reverse_reaction": "462"
+    },
+    "464": {
+        "formula": "ketene+OH=>CH2OH+CO",
+        "time_scale": -16.73739724786344,
+        "reverse_reaction": "465"
+    },
+    "465": {
+        "formula": "CH2OH+CO=>ketene+OH",
+        "time_scale": -30.16619252216717,
+        "reverse_reaction": "464"
+    },
+    "466": {
+        "formula": "HCCO+OH=>H2+CO+CO",
+        "time_scale": -24.178529756681293,
+        "reverse_reaction": "467"
+    },
+    "467": {
+        "formula": "H2+CO+CO=>HCCO+OH",
+        "time_scale": -55.58543251013099,
+        "reverse_reaction": "466"
+    },
+    "468": {
+        "formula": "HCCO+O=>H+CO+CO",
+        "time_scale": -27.9999511892971,
+        "reverse_reaction": "469"
+    },
+    "469": {
+        "formula": "H+CO+CO=>HCCO+O",
+        "time_scale": -60.67272429031297,
+        "reverse_reaction": "468"
+    },
+    "470": {
+        "formula": "HCCO+O2=>OH+CO+CO",
+        "time_scale": -16.821621002111996,
+        "reverse_reaction": "471"
+    },
+    "471": {
+        "formula": "OH+CO+CO=>HCCO+O2",
+        "time_scale": -56.89066581100207,
+        "reverse_reaction": "470"
+    },
+    "472": {
+        "formula": "C2H3+H(+M)=>C2H4(+M)",
+        "time_scale": -24.004158317702302,
+        "reverse_reaction": "473"
+    },
+    "473": {
+        "formula": "C2H4(+M)=>C2H3+H(+M)",
+        "time_scale": -32.77537115931515,
+        "reverse_reaction": "472"
+    },
+    "474": {
+        "formula": "C2H4(+M)=>C2H2+H2(+M)",
+        "time_scale": -27.457850642350316,
+        "reverse_reaction": "475"
+    },
+    "475": {
+        "formula": "C2H2+H2(+M)=>C2H4(+M)",
+        "time_scale": -31.61211222346901,
+        "reverse_reaction": "474"
+    },
+    "476": {
+        "formula": "C2H4+H=>C2H3+H2",
+        "time_scale": -21.084475464591364,
+        "reverse_reaction": "477"
+    },
+    "477": {
+        "formula": "C2H3+H2=>C2H4+H",
+        "time_scale": -24.038064846914907,
+        "reverse_reaction": "476"
+    },
+    "478": {
+        "formula": "C2H4+O=>CH3+HCO",
+        "time_scale": -18.75285904049662,
+        "reverse_reaction": "479"
+    },
+    "479": {
+        "formula": "CH3+HCO=>C2H4+O",
+        "time_scale": -34.544865491207574,
+        "reverse_reaction": "478"
+    },
+    "480": {
+        "formula": "C2H4+O=>vinoxy+H",
+        "time_scale": -18.987783424951264,
+        "reverse_reaction": "481"
+    },
+    "481": {
+        "formula": "vinoxy+H=>C2H4+O",
+        "time_scale": -27.84503141829102,
+        "reverse_reaction": "480"
+    },
+    "482": {
+        "formula": "C2H4+OH=>C2H3+H2O",
+        "time_scale": -16.14726395280885,
+        "reverse_reaction": "483"
+    },
+    "483": {
+        "formula": "C2H3+H2O=>C2H4+OH",
+        "time_scale": -22.452446445563933,
+        "reverse_reaction": "482"
+    },
+    "484": {
+        "formula": "C2H4+CH3=>C2H3+CH4",
+        "time_scale": -19.539221601000136,
+        "reverse_reaction": "485"
+    },
+    "485": {
+        "formula": "C2H3+CH4=>C2H4+CH3",
+        "time_scale": -24.337687639669525,
+        "reverse_reaction": "484"
+    },
+    "486": {
+        "formula": "C2H4+O2=>C2H3+HO2",
+        "time_scale": -22.135289207101767,
+        "reverse_reaction": "487"
+    },
+    "487": {
+        "formula": "C2H3+HO2=>C2H4+O2",
+        "time_scale": -17.571841671866824,
+        "reverse_reaction": "486"
+    },
+    "488": {
+        "formula": "C2H4+CH3O=>C2H3+CH3OH",
+        "time_scale": -19.773859818711053,
+        "reverse_reaction": "489"
+    },
+    "489": {
+        "formula": "C2H3+CH3OH=>C2H4+CH3O",
+        "time_scale": -24.882850997987333,
+        "reverse_reaction": "488"
+    },
+    "490": {
+        "formula": "C2H4+CH3OO=>C2H3+CH3OOH",
+        "time_scale": -16.92084934241039,
+        "reverse_reaction": "491"
+    },
+    "491": {
+        "formula": "C2H3+CH3OOH=>C2H4+CH3OO",
+        "time_scale": -18.0532931693715,
+        "reverse_reaction": "490"
+    },
+    "492": {
+        "formula": "C2H4+CH3CH2OO=>C2H3+CH3CH2OOH",
+        "time_scale": -17.220995640768624,
+        "reverse_reaction": "493"
+    },
+    "493": {
+        "formula": "C2H3+CH3CH2OOH=>C2H4+CH3CH2OO",
+        "time_scale": -17.935455743228918,
+        "reverse_reaction": "492"
+    },
+    "494": {
+        "formula": "C2H4+acetylperoxy=>C2H3+CH3CO3H",
+        "time_scale": -23.800556440468466,
+        "reverse_reaction": "495"
+    },
+    "495": {
+        "formula": "C2H3+CH3CO3H=>C2H4+acetylperoxy",
+        "time_scale": -27.789743360899415,
+        "reverse_reaction": "494"
+    },
+    "496": {
+        "formula": "C2H4+CH3OO=>oxirane+CH3O",
+        "time_scale": -16.7920060884276,
+        "reverse_reaction": "497"
+    },
+    "497": {
+        "formula": "oxirane+CH3O=>C2H4+CH3OO",
+        "time_scale": -30.90068037319572,
+        "reverse_reaction": "496"
+    },
+    "498": {
+        "formula": "C2H4+CH3CH2OO=>oxirane+ethoxy",
+        "time_scale": -17.092152386785834,
+        "reverse_reaction": "499"
+    },
+    "499": {
+        "formula": "oxirane+ethoxy=>C2H4+CH3CH2OO",
+        "time_scale": -33.37914141012374,
+        "reverse_reaction": "498"
+    },
+    "500": {
+        "formula": "C2H4+HO2=>oxirane+OH",
+        "time_scale": -15.5043808474633,
+        "reverse_reaction": "501"
+    },
+    "501": {
+        "formula": "oxirane+OH=>C2H4+HO2",
+        "time_scale": -27.978171335239868,
+        "reverse_reaction": "500"
+    },
+    "502": {
+        "formula": "C2H2+H(+M)=>C2H3(+M)",
+        "time_scale": -21.434862525328906,
+        "reverse_reaction": "503"
+    },
+    "503": {
+        "formula": "C2H3(+M)=>C2H2+H(+M)",
+        "time_scale": -20.234190326533238,
+        "reverse_reaction": "502"
+    },
+    "504": {
+        "formula": "C2H3+O2=>HCO+CH2O",
+        "time_scale": -11.813219597313363,
+        "reverse_reaction": "505"
+    },
+    "505": {
+        "formula": "HCO+CH2O=>C2H3+O2",
+        "time_scale": -46.40064019911686,
+        "reverse_reaction": "504"
+    },
+    "506": {
+        "formula": "C2H3+O2=>HO2+C2H2",
+        "time_scale": -13.43879821800051,
+        "reverse_reaction": "507"
+    },
+    "507": {
+        "formula": "HO2+C2H2=>C2H3+O2",
+        "time_scale": -18.84723572317417,
+        "reverse_reaction": "506"
+    },
+    "508": {
+        "formula": "C2H3+O2=>O+vinoxy",
+        "time_scale": -12.410797456268728,
+        "reverse_reaction": "509"
+    },
+    "509": {
+        "formula": "O+vinoxy=>C2H3+O2",
+        "time_scale": -24.44485742759468,
+        "reverse_reaction": "508"
+    },
+    "510": {
+        "formula": "CH3+C2H3=>CH4+C2H2",
+        "time_scale": -24.034864237571178,
+        "reverse_reaction": "511"
+    },
+    "511": {
+        "formula": "CH4+C2H2=>CH3+C2H3",
+        "time_scale": -38.80521531664863,
+        "reverse_reaction": "510"
+    },
+    "512": {
+        "formula": "C2H3+H=>C2H2+H2",
+        "time_scale": -24.441545301895225,
+        "reverse_reaction": "513"
+    },
+    "513": {
+        "formula": "C2H2+H2=>C2H3+H",
+        "time_scale": -37.367019724626765,
+        "reverse_reaction": "512"
+    },
+    "514": {
+        "formula": "C2H3+OH=>C2H2+H2O",
+        "time_scale": -22.54333697670582,
+        "reverse_reaction": "515"
+    },
+    "515": {
+        "formula": "C2H2+H2O=>C2H3+OH",
+        "time_scale": -38.820404509868986,
+        "reverse_reaction": "514"
+    },
+    "516": {
+        "formula": "C2H2+O2=>HCCO+OH",
+        "time_scale": -17.209377462027724,
+        "reverse_reaction": "517"
+    },
+    "517": {
+        "formula": "HCCO+OH=>C2H2+O2",
+        "time_scale": -38.282092936164716,
+        "reverse_reaction": "516"
+    },
+    "518": {
+        "formula": "C2H2+O=>CH2+CO",
+        "time_scale": -22.524660428541456,
+        "reverse_reaction": "519"
+    },
+    "519": {
+        "formula": "CH2+CO=>C2H2+O",
+        "time_scale": -45.29181440133642,
+        "reverse_reaction": "518"
+    },
+    "520": {
+        "formula": "C2H2+O=>HCCO+H",
+        "time_scale": -22.235686130501307,
+        "reverse_reaction": "521"
+    },
+    "521": {
+        "formula": "HCCO+H=>C2H2+O",
+        "time_scale": -35.91212989676259,
+        "reverse_reaction": "520"
+    },
+    "522": {
+        "formula": "C2H2+OH=>ketene+H",
+        "time_scale": -21.153339173093563,
+        "reverse_reaction": "523"
+    },
+    "523": {
+        "formula": "ketene+H=>C2H2+OH",
+        "time_scale": -28.930865019754965,
+        "reverse_reaction": "522"
+    },
+    "524": {
+        "formula": "C2H2+OH=>CH3+CO",
+        "time_scale": -22.02039531713978,
+        "reverse_reaction": "525"
+    },
+    "525": {
+        "formula": "CH3+CO=>C2H2+OH",
+        "time_scale": -36.39395001994108,
+        "reverse_reaction": "524"
+    },
+    "526": {
+        "formula": "OH+C2H2=>H+ethynol",
+        "time_scale": -22.995558302602266,
+        "reverse_reaction": "527"
+    },
+    "527": {
+        "formula": "H+ethynol=>OH+C2H2",
+        "time_scale": -30.902613509665397,
+        "reverse_reaction": "526"
+    },
+    "528": {
+        "formula": "H+ethynol=>H+ketene",
+        "time_scale": -30.155163693377094,
+        "reverse_reaction": "529"
+    },
+    "529": {
+        "formula": "H+ketene=>H+ethynol",
+        "time_scale": -30.025634332975365,
+        "reverse_reaction": "528"
+    },
+    "530": {
+        "formula": "ethanol(+M)=>CH2OH+CH3(+M)",
+        "time_scale": -32.74595812301924,
+        "reverse_reaction": "531"
+    },
+    "531": {
+        "formula": "CH2OH+CH3(+M)=>ethanol(+M)",
+        "time_scale": -25.19493391558295,
+        "reverse_reaction": "530"
+    },
+    "532": {
+        "formula": "ethanol(+M)=>C2H5+OH(+M)",
+        "time_scale": -34.67305713010413,
+        "reverse_reaction": "533"
+    },
+    "533": {
+        "formula": "C2H5+OH(+M)=>ethanol(+M)",
+        "time_scale": -18.037349151309723,
+        "reverse_reaction": "532"
+    },
+    "534": {
+        "formula": "ethanol(+M)=>C2H4+H2O(+M)",
+        "time_scale": -28.554747803326727,
+        "reverse_reaction": "535"
+    },
+    "535": {
+        "formula": "C2H4+H2O(+M)=>ethanol(+M)",
+        "time_scale": -28.43865547358576,
+        "reverse_reaction": "534"
+    },
+    "536": {
+        "formula": "ethanol(+M)=>acetaldehyde+H2(+M)",
+        "time_scale": -38.47209260321798,
+        "reverse_reaction": "537"
+    },
+    "537": {
+        "formula": "acetaldehyde+H2(+M)=>ethanol(+M)",
+        "time_scale": -39.05543622970745,
+        "reverse_reaction": "536"
+    },
+    "538": {
+        "formula": "ethanol+O2=>CH2CH2OH+HO2",
+        "time_scale": -28.893690922580927,
+        "reverse_reaction": "539"
+    },
+    "539": {
+        "formula": "CH2CH2OH+HO2=>ethanol+O2",
+        "time_scale": -22.046724199932587,
+        "reverse_reaction": "538"
+    },
+    "540": {
+        "formula": "ethanol+O2=>CH3CHOH+HO2",
+        "time_scale": -28.127599995617842,
+        "reverse_reaction": "541"
+    },
+    "541": {
+        "formula": "CH3CHOH+HO2=>ethanol+O2",
+        "time_scale": -25.37239354350116,
+        "reverse_reaction": "540"
+    },
+    "542": {
+        "formula": "ethanol+OH=>CH2CH2OH+H2O",
+        "time_scale": -23.662541604211636,
+        "reverse_reaction": "543"
+    },
+    "543": {
+        "formula": "CH2CH2OH+H2O=>ethanol+OH",
+        "time_scale": -27.684204909555486,
+        "reverse_reaction": "542"
+    },
+    "544": {
+        "formula": "ethanol+OH=>CH3CHOH+H2O",
+        "time_scale": -23.37238066801087,
+        "reverse_reaction": "545"
+    },
+    "545": {
+        "formula": "CH3CHOH+H2O=>ethanol+OH",
+        "time_scale": -31.48580424388659,
+        "reverse_reaction": "544"
+    },
+    "546": {
+        "formula": "ethanol+OH=>ethoxy+H2O",
+        "time_scale": -23.293634122266745,
+        "reverse_reaction": "547"
+    },
+    "547": {
+        "formula": "ethoxy+H2O=>ethanol+OH",
+        "time_scale": -21.34869433797645,
+        "reverse_reaction": "546"
+    },
+    "548": {
+        "formula": "ethanol+H=>CH2CH2OH+H2",
+        "time_scale": -27.69817497347888,
+        "reverse_reaction": "549"
+    },
+    "549": {
+        "formula": "CH2CH2OH+H2=>ethanol+H",
+        "time_scale": -28.368245168391372,
+        "reverse_reaction": "548"
+    },
+    "550": {
+        "formula": "ethanol+H=>CH3CHOH+H2",
+        "time_scale": -27.03480272091536,
+        "reverse_reaction": "551"
+    },
+    "551": {
+        "formula": "CH3CHOH+H2=>ethanol+H",
+        "time_scale": -31.79663318635978,
+        "reverse_reaction": "550"
+    },
+    "552": {
+        "formula": "ethanol+H=>ethoxy+H2",
+        "time_scale": -27.481923287219903,
+        "reverse_reaction": "553"
+    },
+    "553": {
+        "formula": "ethoxy+H2=>ethanol+H",
+        "time_scale": -22.18539039249844,
+        "reverse_reaction": "552"
+    },
+    "554": {
+        "formula": "ethanol+HO2=>CH2CH2OH+H2O2",
+        "time_scale": -24.378708070179172,
+        "reverse_reaction": "555"
+    },
+    "555": {
+        "formula": "CH2CH2OH+H2O2=>ethanol+HO2",
+        "time_scale": -23.088363025463366,
+        "reverse_reaction": "554"
+    },
+    "556": {
+        "formula": "ethanol+HO2=>CH3CHOH+H2O2",
+        "time_scale": -22.873611284760546,
+        "reverse_reaction": "557"
+    },
+    "557": {
+        "formula": "CH3CHOH+H2O2=>ethanol+HO2",
+        "time_scale": -25.6750265105766,
+        "reverse_reaction": "556"
+    },
+    "558": {
+        "formula": "ethanol+HO2=>ethoxy+H2O2",
+        "time_scale": -26.01757862625835,
+        "reverse_reaction": "559"
+    },
+    "559": {
+        "formula": "ethoxy+H2O2=>ethanol+HO2",
+        "time_scale": -18.760630491908366,
+        "reverse_reaction": "558"
+    },
+    "560": {
+        "formula": "ethanol+CH3OO=>CH2CH2OH+CH3OOH",
+        "time_scale": -25.79517656512532,
+        "reverse_reaction": "561"
+    },
+    "561": {
+        "formula": "CH2CH2OH+CH3OOH=>ethanol+CH3OO",
+        "time_scale": -24.64410120467447,
+        "reverse_reaction": "560"
+    },
+    "562": {
+        "formula": "ethanol+CH3OO=>CH3CHOH+CH3OOH",
+        "time_scale": -24.29007977970669,
+        "reverse_reaction": "563"
+    },
+    "563": {
+        "formula": "CH3CHOH+CH3OOH=>ethanol+CH3OO",
+        "time_scale": -27.23076468978786,
+        "reverse_reaction": "562"
+    },
+    "564": {
+        "formula": "ethanol+CH3OO=>ethoxy+CH3OOH",
+        "time_scale": -27.434047121204493,
+        "reverse_reaction": "565"
+    },
+    "565": {
+        "formula": "ethoxy+CH3OOH=>ethanol+CH3OO",
+        "time_scale": -20.31636867112,
+        "reverse_reaction": "564"
+    },
+    "566": {
+        "formula": "ethanol+O=>CH2CH2OH+OH",
+        "time_scale": -28.265316050177603,
+        "reverse_reaction": "567"
+    },
+    "567": {
+        "formula": "CH2CH2OH+OH=>ethanol+O",
+        "time_scale": -30.20125659265631,
+        "reverse_reaction": "566"
+    },
+    "568": {
+        "formula": "ethanol+O=>CH3CHOH+OH",
+        "time_scale": -27.320586164247814,
+        "reverse_reaction": "569"
+    },
+    "569": {
+        "formula": "CH3CHOH+OH=>ethanol+O",
+        "time_scale": -33.34828697725834,
+        "reverse_reaction": "568"
+    },
+    "570": {
+        "formula": "ethanol+O=>ethoxy+OH",
+        "time_scale": -27.856436460536646,
+        "reverse_reaction": "571"
+    },
+    "571": {
+        "formula": "ethoxy+OH=>ethanol+O",
+        "time_scale": -23.825773913381017,
+        "reverse_reaction": "570"
+    },
+    "572": {
+        "formula": "ethanol+CH3=>CH2CH2OH+CH4",
+        "time_scale": -27.925600200059087,
+        "reverse_reaction": "573"
+    },
+    "573": {
+        "formula": "CH2CH2OH+CH4=>ethanol+CH3",
+        "time_scale": -30.440547051317214,
+        "reverse_reaction": "572"
+    },
+    "574": {
+        "formula": "ethanol+CH3=>CH3CHOH+CH4",
+        "time_scale": -27.627497098792354,
+        "reverse_reaction": "575"
+    },
+    "575": {
+        "formula": "CH3CHOH+CH4=>ethanol+CH3",
+        "time_scale": -34.23420422058238,
+        "reverse_reaction": "574"
+    },
+    "576": {
+        "formula": "ethanol+CH3=>ethoxy+CH4",
+        "time_scale": -28.011492326057116,
+        "reverse_reaction": "577"
+    },
+    "577": {
+        "formula": "ethoxy+CH4=>ethanol+CH3",
+        "time_scale": -24.559836087681187,
+        "reverse_reaction": "576"
+    },
+    "578": {
+        "formula": "ethanol+C2H5=>CH2CH2OH+C2H6",
+        "time_scale": -30.140314997338265,
+        "reverse_reaction": "579"
+    },
+    "579": {
+        "formula": "CH2CH2OH+C2H6=>ethanol+C2H5",
+        "time_scale": -31.623904658806207,
+        "reverse_reaction": "578"
+    },
+    "580": {
+        "formula": "ethanol+C2H5=>CH3CHOH+C2H6",
+        "time_scale": -29.13160217065368,
+        "reverse_reaction": "581"
+    },
+    "581": {
+        "formula": "CH3CHOH+C2H6=>ethanol+C2H5",
+        "time_scale": -34.706952102653574,
+        "reverse_reaction": "580"
+    },
+    "582": {
+        "formula": "C2H4+OH=>CH2CH2OH",
+        "time_scale": -14.973272259204336,
+        "reverse_reaction": "583"
+    },
+    "583": {
+        "formula": "CH2CH2OH=>C2H4+OH",
+        "time_scale": -19.11102789428913,
+        "reverse_reaction": "582"
+    },
+    "584": {
+        "formula": "CH3CHOH+M=>acetaldehyde+H+M",
+        "time_scale": -23.417278531051938,
+        "reverse_reaction": "585"
+    },
+    "585": {
+        "formula": "acetaldehyde+H+M=>CH3CHOH+M",
+        "time_scale": -19.23879169209798,
+        "reverse_reaction": "584"
+    },
+    "586": {
+        "formula": "O2C2H4OH=>CH2CH2OH+O2",
+        "time_scale": -14.45496086177113,
+        "reverse_reaction": "587"
+    },
+    "587": {
+        "formula": "CH2CH2OH+O2=>O2C2H4OH",
+        "time_scale": -14.339967357312409,
+        "reverse_reaction": "586"
+    },
+    "588": {
+        "formula": "O2C2H4OH=>OH+CH2O+CH2O",
+        "time_scale": -15.006018309980957,
+        "reverse_reaction": "589"
+    },
+    "589": {
+        "formula": "OH+CH2O+CH2O=>O2C2H4OH",
+        "time_scale": -37.204769691528526,
+        "reverse_reaction": "588"
+    },
+    "590": {
+        "formula": "CH3CHOH+O2=>acetaldehyde+HO2",
+        "time_scale": -18.052915404122164,
+        "reverse_reaction": "591"
+    },
+    "591": {
+        "formula": "acetaldehyde+HO2=>CH3CHOH+O2",
+        "time_scale": -18.08219387154631,
+        "reverse_reaction": "590"
+    },
+    "592": {
+        "formula": "acetone(+M)=>acetyl+CH3(+M)",
+        "time_scale": -24.354790409147085,
+        "reverse_reaction": "593"
+    },
+    "593": {
+        "formula": "acetyl+CH3(+M)=>acetone(+M)",
+        "time_scale": -21.395632227870582,
+        "reverse_reaction": "592"
+    },
+    "594": {
+        "formula": "acetone+OH=>propen2oxy+H2O",
+        "time_scale": -16.81791257059146,
+        "reverse_reaction": "595"
+    },
+    "595": {
+        "formula": "propen2oxy+H2O=>acetone+OH",
+        "time_scale": -21.781429402162104,
+        "reverse_reaction": "594"
+    },
+    "596": {
+        "formula": "acetone+H=>propen2oxy+H2",
+        "time_scale": -20.325962393339452,
+        "reverse_reaction": "597"
+    },
+    "597": {
+        "formula": "propen2oxy+H2=>acetone+H",
+        "time_scale": -21.93788611447859,
+        "reverse_reaction": "596"
+    },
+    "598": {
+        "formula": "acetone+O=>propen2oxy+OH",
+        "time_scale": -21.80912047960938,
+        "reverse_reaction": "599"
+    },
+    "599": {
+        "formula": "propen2oxy+OH=>acetone+O",
+        "time_scale": -24.686914548314345,
+        "reverse_reaction": "598"
+    },
+    "600": {
+        "formula": "acetone+CH3=>propen2oxy+CH4",
+        "time_scale": -20.81913455313385,
+        "reverse_reaction": "601"
+    },
+    "601": {
+        "formula": "propen2oxy+CH4=>acetone+CH3",
+        "time_scale": -24.275934930618813,
+        "reverse_reaction": "600"
+    },
+    "602": {
+        "formula": "acetone+CH3O=>propen2oxy+CH3OH",
+        "time_scale": -20.671498286266658,
+        "reverse_reaction": "603"
+    },
+    "603": {
+        "formula": "propen2oxy+CH3OH=>acetone+CH3O",
+        "time_scale": -24.43882380435872,
+        "reverse_reaction": "602"
+    },
+    "604": {
+        "formula": "acetone+O2=>propen2oxy+HO2",
+        "time_scale": -20.24898293760952,
+        "reverse_reaction": "605"
+    },
+    "605": {
+        "formula": "propen2oxy+HO2=>acetone+O2",
+        "time_scale": -14.343869741189927,
+        "reverse_reaction": "604"
+    },
+    "606": {
+        "formula": "acetone+HO2=>propen2oxy+H2O2",
+        "time_scale": -17.27518962781944,
+        "reverse_reaction": "607"
+    },
+    "607": {
+        "formula": "propen2oxy+H2O2=>acetone+HO2",
+        "time_scale": -16.926698109331188,
+        "reverse_reaction": "606"
+    },
+    "608": {
+        "formula": "acetone+CH3OO=>propen2oxy+CH3OOH",
+        "time_scale": -18.69165812276651,
+        "reverse_reaction": "609"
+    },
+    "609": {
+        "formula": "propen2oxy+CH3OOH=>acetone+CH3OO",
+        "time_scale": -18.482436288543273,
+        "reverse_reaction": "608"
+    },
+    "610": {
+        "formula": "propen2oxy=>ketene+CH3",
+        "time_scale": -12.220036257280443,
+        "reverse_reaction": "611"
+    },
+    "611": {
+        "formula": "ketene+CH3=>propen2oxy",
+        "time_scale": -18.173845055027055,
+        "reverse_reaction": "610"
+    },
+    "612": {
+        "formula": "ipropyl+O=>acetone+H",
+        "time_scale": -20.775023787637483,
+        "reverse_reaction": "613"
+    },
+    "613": {
+        "formula": "acetone+H=>ipropyl+O",
+        "time_scale": -43.451613320953925,
+        "reverse_reaction": "612"
+    },
+    "614": {
+        "formula": "acetone+H=>ipropyloxy",
+        "time_scale": -21.561014646656893,
+        "reverse_reaction": "615"
+    },
+    "615": {
+        "formula": "ipropyloxy=>acetone+H",
+        "time_scale": -11.524298788875253,
+        "reverse_reaction": "614"
+    },
+    "616": {
+        "formula": "ipropyloxy+O2=>acetone+HO2",
+        "time_scale": -13.315032041755474,
+        "reverse_reaction": "617"
+    },
+    "617": {
+        "formula": "acetone+HO2=>ipropyloxy+O2",
+        "time_scale": -27.559513205915223,
+        "reverse_reaction": "616"
+    },
+    "618": {
+        "formula": "C2H3+HCO=>acrolein",
+        "time_scale": -25.844333796654563,
+        "reverse_reaction": "619"
+    },
+    "619": {
+        "formula": "acrolein=>C2H3+HCO",
+        "time_scale": -26.750022778086525,
+        "reverse_reaction": "618"
+    },
+    "620": {
+        "formula": "acrolein+H=>CH2CHCO+H2",
+        "time_scale": -18.503684483547467,
+        "reverse_reaction": "621"
+    },
+    "621": {
+        "formula": "CH2CHCO+H2=>acrolein+H",
+        "time_scale": -27.91001211511761,
+        "reverse_reaction": "620"
+    },
+    "622": {
+        "formula": "acrolein+O=>CH2CHCO+OH",
+        "time_scale": -19.42366242502846,
+        "reverse_reaction": "623"
+    },
+    "623": {
+        "formula": "CH2CHCO+OH=>acrolein+O",
+        "time_scale": -30.095860404165002,
+        "reverse_reaction": "622"
+    },
+    "624": {
+        "formula": "acrolein+H=>C2H4+HCO",
+        "time_scale": -18.397006808027264,
+        "reverse_reaction": "625"
+    },
+    "625": {
+        "formula": "C2H4+HCO=>acrolein+H",
+        "time_scale": -26.262530668207894,
+        "reverse_reaction": "624"
+    },
+    "626": {
+        "formula": "acrolein+O=>ketene+HCO+H",
+        "time_scale": -18.945202436543692,
+        "reverse_reaction": "627"
+    },
+    "627": {
+        "formula": "ketene+HCO+H=>acrolein+O",
+        "time_scale": -40.00838407206686,
+        "reverse_reaction": "626"
+    },
+    "628": {
+        "formula": "acrolein+OH=>CH2CHCO+H2O",
+        "time_scale": -16.336333528403834,
+        "reverse_reaction": "629"
+    },
+    "629": {
+        "formula": "CH2CHCO+H2O=>acrolein+OH",
+        "time_scale": -29.0942542704058,
+        "reverse_reaction": "628"
+    },
+    "630": {
+        "formula": "acrolein+O2=>CH2CHCO+HO2",
+        "time_scale": -17.508088785516907,
+        "reverse_reaction": "631"
+    },
+    "631": {
+        "formula": "CH2CHCO+HO2=>acrolein+O2",
+        "time_scale": -19.397379499529944,
+        "reverse_reaction": "630"
+    },
+    "632": {
+        "formula": "acrolein+HO2=>CH2CHCO+H2O2",
+        "time_scale": -14.259210820545634,
+        "reverse_reaction": "633"
+    },
+    "633": {
+        "formula": "CH2CHCO+H2O2=>acrolein+HO2",
+        "time_scale": -21.70512321248881,
+        "reverse_reaction": "632"
+    },
+    "634": {
+        "formula": "acrolein+CH3=>CH2CHCO+CH4",
+        "time_scale": -18.794884812095223,
+        "reverse_reaction": "635"
+    },
+    "635": {
+        "formula": "CH2CHCO+CH4=>acrolein+CH3",
+        "time_scale": -30.04608910001137,
+        "reverse_reaction": "634"
+    },
+    "636": {
+        "formula": "acrolein+C2H3=>CH2CHCO+C2H4",
+        "time_scale": -22.786927982453033,
+        "reverse_reaction": "637"
+    },
+    "637": {
+        "formula": "CH2CHCO+C2H4=>acrolein+C2H3",
+        "time_scale": -29.23966623169963,
+        "reverse_reaction": "636"
+    },
+    "638": {
+        "formula": "acrolein+CH3O=>CH2CHCO+CH3OH",
+        "time_scale": -18.35008511857551,
+        "reverse_reaction": "639"
+    },
+    "639": {
+        "formula": "CH2CHCO+CH3OH=>acrolein+CH3O",
+        "time_scale": -29.911814547097258,
+        "reverse_reaction": "638"
+    },
+    "640": {
+        "formula": "acrolein+CH3OO=>CH2CHCO+CH3OOH",
+        "time_scale": -15.675679315492784,
+        "reverse_reaction": "641"
+    },
+    "641": {
+        "formula": "CH2CHCO+CH3OOH=>acrolein+CH3OO",
+        "time_scale": -23.260861391700157,
+        "reverse_reaction": "640"
+    },
+    "642": {
+        "formula": "C2H3+CO=>CH2CHCO",
+        "time_scale": -20.63721003496092,
+        "reverse_reaction": "643"
+    },
+    "643": {
+        "formula": "CH2CHCO=>C2H3+CO",
+        "time_scale": -15.22274424325446,
+        "reverse_reaction": "642"
+    },
+    "644": {
+        "formula": "CH2CHCO+O2=>vinoxy+CO2",
+        "time_scale": -14.248009528788007,
+        "reverse_reaction": "645"
+    },
+    "645": {
+        "formula": "vinoxy+CO2=>CH2CHCO+O2",
+        "time_scale": -57.78791833938622,
+        "reverse_reaction": "644"
+    },
+    "646": {
+        "formula": "CH2CHCO+O=>C2H3+CO2",
+        "time_scale": -25.719571352428165,
+        "reverse_reaction": "647"
+    },
+    "647": {
+        "formula": "C2H3+CO2=>CH2CHCO+O",
+        "time_scale": -57.22542019170312,
+        "reverse_reaction": "646"
+    },
+    "648": {
+        "formula": "C2H5+HCO=>propanal",
+        "time_scale": -22.372412024135222,
+        "reverse_reaction": "649"
+    },
+    "649": {
+        "formula": "propanal=>C2H5+HCO",
+        "time_scale": -25.49128547588651,
+        "reverse_reaction": "648"
+    },
+    "650": {
+        "formula": "propanal+H=>propionyl+H2",
+        "time_scale": -20.2516191568976,
+        "reverse_reaction": "651"
+    },
+    "651": {
+        "formula": "propionyl+H2=>propanal+H",
+        "time_scale": -32.034906099631506,
+        "reverse_reaction": "650"
+    },
+    "652": {
+        "formula": "propanal+O=>propionyl+OH",
+        "time_scale": -21.392528350487776,
+        "reverse_reaction": "653"
+    },
+    "653": {
+        "formula": "propionyl+OH=>propanal+O",
+        "time_scale": -34.44168564078818,
+        "reverse_reaction": "652"
+    },
+    "654": {
+        "formula": "propanal+OH=>propionyl+H2O",
+        "time_scale": -17.083229592680766,
+        "reverse_reaction": "655"
+    },
+    "655": {
+        "formula": "propionyl+H2O=>propanal+OH",
+        "time_scale": -32.21810964584651,
+        "reverse_reaction": "654"
+    },
+    "656": {
+        "formula": "propanal+CH3=>propionyl+CH4",
+        "time_scale": -20.71516083040317,
+        "reverse_reaction": "657"
+    },
+    "657": {
+        "formula": "propionyl+CH4=>propanal+CH3",
+        "time_scale": -34.343324429483076,
+        "reverse_reaction": "656"
+    },
+    "658": {
+        "formula": "propanal+HO2=>propionyl+H2O2",
+        "time_scale": -16.775774486048658,
+        "reverse_reaction": "659"
+    },
+    "659": {
+        "formula": "propionyl+H2O2=>propanal+HO2",
+        "time_scale": -26.598646189155545,
+        "reverse_reaction": "658"
+    },
+    "660": {
+        "formula": "propanal+CH3O=>propionyl+CH3OH",
+        "time_scale": -20.27036113688332,
+        "reverse_reaction": "661"
+    },
+    "661": {
+        "formula": "propionyl+CH3OH=>propanal+CH3O",
+        "time_scale": -34.20904987656864,
+        "reverse_reaction": "660"
+    },
+    "662": {
+        "formula": "propanal+CH3OO=>propionyl+CH3OOH",
+        "time_scale": -17.59595533380073,
+        "reverse_reaction": "663"
+    },
+    "663": {
+        "formula": "propionyl+CH3OOH=>propanal+CH3OO",
+        "time_scale": -27.558096721171726,
+        "reverse_reaction": "662"
+    },
+    "664": {
+        "formula": "propanal+C2H5=>propionyl+C2H6",
+        "time_scale": -21.32788692861047,
+        "reverse_reaction": "665"
+    },
+    "665": {
+        "formula": "propionyl+C2H6=>propanal+C2H5",
+        "time_scale": -33.92469333789977,
+        "reverse_reaction": "664"
+    },
+    "666": {
+        "formula": "propanal+ethoxy=>propionyl+ethanol",
+        "time_scale": -22.497294029576302,
+        "reverse_reaction": "667"
+    },
+    "667": {
+        "formula": "propionyl+ethanol=>propanal+ethoxy",
+        "time_scale": -39.57711386702836,
+        "reverse_reaction": "666"
+    },
+    "668": {
+        "formula": "propanal+CH3CH2OO=>propionyl+CH3CH2OOH",
+        "time_scale": -17.89610163215896,
+        "reverse_reaction": "669"
+    },
+    "669": {
+        "formula": "propionyl+CH3CH2OOH=>propanal+CH3CH2OO",
+        "time_scale": -27.44025929502932,
+        "reverse_reaction": "668"
+    },
+    "670": {
+        "formula": "propanal+O2=>propionyl+HO2",
+        "time_scale": -19.428364803825158,
+        "reverse_reaction": "671"
+    },
+    "671": {
+        "formula": "propionyl+HO2=>propanal+O2",
+        "time_scale": -23.694614829001917,
+        "reverse_reaction": "670"
+    },
+    "672": {
+        "formula": "propanal+acetylperoxy=>propionyl+CH3CO3H",
+        "time_scale": -20.728650070526086,
+        "reverse_reaction": "673"
+    },
+    "673": {
+        "formula": "propionyl+CH3CO3H=>propanal+acetylperoxy",
+        "time_scale": -33.54753455136713,
+        "reverse_reaction": "672"
+    },
+    "674": {
+        "formula": "propanal+C2H3=>propionyl+C2H4",
+        "time_scale": -24.7173043276653,
+        "reverse_reaction": "675"
+    },
+    "675": {
+        "formula": "propionyl+C2H4=>propanal+C2H3",
+        "time_scale": -33.54700188807562,
+        "reverse_reaction": "674"
+    },
+    "676": {
+        "formula": "C2H5+CO=>propionyl",
+        "time_scale": -17.1652882624416,
+        "reverse_reaction": "677"
+    },
+    "677": {
+        "formula": "propionyl=>C2H5+CO",
+        "time_scale": -16.3409662522187,
+        "reverse_reaction": "676"
+    },
+    "678": {
+        "formula": "CH3OCH3(+M)=>CH3+CH3O(+M)",
+        "time_scale": -31.617967373972682,
+        "reverse_reaction": "679"
+    },
+    "679": {
+        "formula": "CH3+CH3O(+M)=>CH3OCH3(+M)",
+        "time_scale": -18.72588336514232,
+        "reverse_reaction": "678"
+    },
+    "680": {
+        "formula": "CH3OCH3+OH=>CH3OCH2+H2O",
+        "time_scale": -23.598563811501336,
+        "reverse_reaction": "681"
+    },
+    "681": {
+        "formula": "CH3OCH2+H2O=>CH3OCH3+OH",
+        "time_scale": -30.968795046944056,
+        "reverse_reaction": "680"
+    },
+    "682": {
+        "formula": "CH3OCH3+H=>CH3OCH2+H2",
+        "time_scale": -27.336456201242104,
+        "reverse_reaction": "683"
+    },
+    "683": {
+        "formula": "CH3OCH2+H2=>CH3OCH3+H",
+        "time_scale": -31.355094326253596,
+        "reverse_reaction": "682"
+    },
+    "684": {
+        "formula": "CH3OCH3+O=>CH3OCH2+OH",
+        "time_scale": -28.039736632950834,
+        "reverse_reaction": "685"
+    },
+    "685": {
+        "formula": "CH3OCH2+OH=>CH3OCH3+O",
+        "time_scale": -33.32424510552844,
+        "reverse_reaction": "684"
+    },
+    "686": {
+        "formula": "CH3OCH3+HO2=>CH3OCH2+H2O2",
+        "time_scale": -23.978186512224912,
+        "reverse_reaction": "687"
+    },
+    "687": {
+        "formula": "CH3OCH2+H2O2=>CH3OCH3+HO2",
+        "time_scale": -26.03640939760776,
+        "reverse_reaction": "686"
+    },
+    "688": {
+        "formula": "CH3OCH3+CH3OO=>CH3OCH2+CH3OOH",
+        "time_scale": -25.394655007170837,
+        "reverse_reaction": "689"
+    },
+    "689": {
+        "formula": "CH3OCH2+CH3OOH=>CH3OCH3+CH3OO",
+        "time_scale": -27.59214757681892,
+        "reverse_reaction": "688"
+    },
+    "690": {
+        "formula": "CH3OCH3+CH3=>CH3OCH2+CH4",
+        "time_scale": -28.297726910761202,
+        "reverse_reaction": "691"
+    },
+    "691": {
+        "formula": "CH3OCH2+CH4=>CH3OCH3+CH3",
+        "time_scale": -34.16124169211823,
+        "reverse_reaction": "690"
+    },
+    "692": {
+        "formula": "CH3OCH3+O2=>CH3OCH2+HO2",
+        "time_scale": -26.741748785484223,
+        "reverse_reaction": "693"
+    },
+    "693": {
+        "formula": "CH3OCH2+HO2=>CH3OCH3+O2",
+        "time_scale": -23.243349992933897,
+        "reverse_reaction": "692"
+    },
+    "694": {
+        "formula": "CH3OCH3+CH3O=>CH3OCH2+CH3OH",
+        "time_scale": -27.259453998078904,
+        "reverse_reaction": "695"
+    },
+    "695": {
+        "formula": "CH3OCH2+CH3OH=>CH3OCH3+CH3O",
+        "time_scale": -33.43349392004322,
+        "reverse_reaction": "694"
+    },
+    "696": {
+        "formula": "CH3OCH3+formylperoxy=>CH3OCH2+formylooh",
+        "time_scale": -28.648369917561897,
+        "reverse_reaction": "697"
+    },
+    "697": {
+        "formula": "CH3OCH2+formylooh=>CH3OCH3+formylperoxy",
+        "time_scale": -34.05392119739769,
+        "reverse_reaction": "696"
+    },
+    "698": {
+        "formula": "CH3OCH2=>CH2O+CH3",
+        "time_scale": -20.700523682516792,
+        "reverse_reaction": "699"
+    },
+    "699": {
+        "formula": "CH2O+CH3=>CH3OCH2",
+        "time_scale": -20.698995760692828,
+        "reverse_reaction": "698"
+    },
+    "700": {
+        "formula": "CH3OCH2+CH3O=>CH3OCH3+CH2O",
+        "time_scale": -28.792983391191054,
+        "reverse_reaction": "701"
+    },
+    "701": {
+        "formula": "CH3OCH3+CH2O=>CH3OCH2+CH3O",
+        "time_scale": -41.68353947819738,
+        "reverse_reaction": "700"
+    },
+    "702": {
+        "formula": "CH3OCH2+CH2O=>CH3OCH3+HCO",
+        "time_scale": -25.77073353823828,
+        "reverse_reaction": "703"
+    },
+    "703": {
+        "formula": "CH3OCH3+HCO=>CH3OCH2+CH2O",
+        "time_scale": -32.84160487625884,
+        "reverse_reaction": "702"
+    },
+    "704": {
+        "formula": "CH3OCH2+acetaldehyde=>CH3OCH3+acetyl",
+        "time_scale": -27.43294532616791,
+        "reverse_reaction": "705"
+    },
+    "705": {
+        "formula": "CH3OCH3+acetyl=>CH3OCH2+acetaldehyde",
+        "time_scale": -32.494977086049765,
+        "reverse_reaction": "704"
+    },
+    "706": {
+        "formula": "npropyloo+C3H8=>npropylooh+npropyl",
+        "time_scale": -9.978987953389948,
+        "reverse_reaction": "707"
+    },
+    "707": {
+        "formula": "npropylooh+npropyl=>npropyloo+C3H8",
+        "time_scale": -16.11713206490565,
+        "reverse_reaction": "706"
+    },
+    "708": {
+        "formula": "ipropyloo+C3H8=>ipropylooh+npropyl",
+        "time_scale": -9.789069453240755,
+        "reverse_reaction": "709"
+    },
+    "709": {
+        "formula": "ipropylooh+npropyl=>ipropyloo+C3H8",
+        "time_scale": -15.916856728297,
+        "reverse_reaction": "708"
+    },
+    "710": {
+        "formula": "npropyloo+C3H8=>npropylooh+ipropyl",
+        "time_scale": -9.745024752328018,
+        "reverse_reaction": "711"
+    },
+    "711": {
+        "formula": "npropylooh+ipropyl=>npropyloo+C3H8",
+        "time_scale": -16.7544679668932,
+        "reverse_reaction": "710"
+    },
+    "712": {
+        "formula": "ipropyloo+C3H8=>ipropylooh+ipropyl",
+        "time_scale": -9.555106252178824,
+        "reverse_reaction": "713"
+    },
+    "713": {
+        "formula": "ipropylooh+ipropyl=>ipropyloo+C3H8",
+        "time_scale": -16.55419263028455,
+        "reverse_reaction": "712"
+    },
+    "714": {
+        "formula": "npropylooh=>npropyloxy+OH",
+        "time_scale": -9.693621370924644,
+        "reverse_reaction": "715"
+    },
+    "715": {
+        "formula": "npropyloxy+OH=>npropylooh",
+        "time_scale": -20.6193595852977,
+        "reverse_reaction": "714"
+    },
+    "716": {
+        "formula": "ipropylooh=>ipropyloxy+OH",
+        "time_scale": -9.612221775907893,
+        "reverse_reaction": "717"
+    },
+    "717": {
+        "formula": "ipropyloxy+OH=>ipropylooh",
+        "time_scale": -19.772213893574037,
+        "reverse_reaction": "716"
+    },
+    "718": {
+        "formula": "C3H8(+M)=>CH3+C2H5(+M)",
+        "time_scale": -17.197966832205964,
+        "reverse_reaction": "719"
+    },
+    "719": {
+        "formula": "CH3+C2H5(+M)=>C3H8(+M)",
+        "time_scale": -18.214721634592035,
+        "reverse_reaction": "718"
+    },
+    "720": {
+        "formula": "npropyl+H=>C3H8",
+        "time_scale": -19.40692626844478,
+        "reverse_reaction": "721"
+    },
+    "721": {
+        "formula": "C3H8=>npropyl+H",
+        "time_scale": -23.138112307341483,
+        "reverse_reaction": "720"
+    },
+    "722": {
+        "formula": "ipropyl+H=>C3H8",
+        "time_scale": -19.409738739265045,
+        "reverse_reaction": "723"
+    },
+    "723": {
+        "formula": "C3H8=>ipropyl+H",
+        "time_scale": -22.269625675112263,
+        "reverse_reaction": "722"
+    },
+    "724": {
+        "formula": "C3H8+O2=>ipropyl+HO2",
+        "time_scale": -12.947382864447688,
+        "reverse_reaction": "725"
+    },
+    "725": {
+        "formula": "ipropyl+HO2=>C3H8+O2",
+        "time_scale": -14.295261234978218,
+        "reverse_reaction": "724"
+    },
+    "726": {
+        "formula": "C3H8+O2=>npropyl+HO2",
+        "time_scale": -13.361291273299415,
+        "reverse_reaction": "727"
+    },
+    "727": {
+        "formula": "npropyl+HO2=>C3H8+O2",
+        "time_scale": -13.837870540780516,
+        "reverse_reaction": "726"
+    },
+    "728": {
+        "formula": "H+C3H8=>H2+ipropyl",
+        "time_scale": -11.891766730774751,
+        "reverse_reaction": "729"
+    },
+    "729": {
+        "formula": "H2+ipropyl=>H+C3H8",
+        "time_scale": -20.756682018859777,
+        "reverse_reaction": "728"
+    },
+    "730": {
+        "formula": "H+C3H8=>H2+npropyl",
+        "time_scale": -12.256352623462757,
+        "reverse_reaction": "731"
+    },
+    "731": {
+        "formula": "H2+npropyl=>H+C3H8",
+        "time_scale": -20.2499688084983,
+        "reverse_reaction": "730"
+    },
+    "732": {
+        "formula": "C3H8+O=>ipropyl+OH",
+        "time_scale": -12.585465357386566,
+        "reverse_reaction": "733"
+    },
+    "733": {
+        "formula": "ipropyl+OH=>C3H8+O",
+        "time_scale": -22.716250993037775,
+        "reverse_reaction": "732"
+    },
+    "734": {
+        "formula": "C3H8+O=>npropyl+OH",
+        "time_scale": -12.832157705098322,
+        "reverse_reaction": "735"
+    },
+    "735": {
+        "formula": "npropyl+OH=>C3H8+O",
+        "time_scale": -22.09164423770007,
+        "reverse_reaction": "734"
+    },
+    "736": {
+        "formula": "C3H8+OH=>npropyl+H2O",
+        "time_scale": -8.358939535087014,
+        "reverse_reaction": "737"
+    },
+    "737": {
+        "formula": "npropyl+H2O=>C3H8+OH",
+        "time_scale": -19.70414883055462,
+        "reverse_reaction": "736"
+    },
+    "738": {
+        "formula": "C3H8+OH=>ipropyl+H2O",
+        "time_scale": -8.367153507200548,
+        "reverse_reaction": "739"
+    },
+    "739": {
+        "formula": "ipropyl+H2O=>C3H8+OH",
+        "time_scale": -20.583661905717626,
+        "reverse_reaction": "738"
+    },
+    "740": {
+        "formula": "C3H8+HO2=>ipropyl+H2O2",
+        "time_scale": -8.656833153525946,
+        "reverse_reaction": "741"
+    },
+    "741": {
+        "formula": "ipropyl+H2O2=>C3H8+HO2",
+        "time_scale": -15.561333201985056,
+        "reverse_reaction": "740"
+    },
+    "742": {
+        "formula": "C3H8+HO2=>npropyl+H2O2",
+        "time_scale": -9.133040285001034,
+        "reverse_reaction": "743"
+    },
+    "743": {
+        "formula": "npropyl+H2O2=>C3H8+HO2",
+        "time_scale": -15.166241230410666,
+        "reverse_reaction": "742"
+    },
+    "744": {
+        "formula": "CH3+C3H8=>CH4+ipropyl",
+        "time_scale": -12.581173852627348,
+        "reverse_reaction": "745"
+    },
+    "745": {
+        "formula": "CH4+ipropyl=>CH3+C3H8",
+        "time_scale": -23.290965797058618,
+        "reverse_reaction": "744"
+    },
+    "746": {
+        "formula": "CH3+C3H8=>CH4+npropyl",
+        "time_scale": -13.145001307243012,
+        "reverse_reaction": "747"
+    },
+    "747": {
+        "formula": "CH4+npropyl=>CH3+C3H8",
+        "time_scale": -22.983494148624803,
+        "reverse_reaction": "746"
+    },
+    "748": {
+        "formula": "ipropyl+C3H8=>npropyl+C3H8",
+        "time_scale": -14.2732416836585,
+        "reverse_reaction": "749"
+    },
+    "749": {
+        "formula": "npropyl+C3H8=>ipropyl+C3H8",
+        "time_scale": -13.401942580609168,
+        "reverse_reaction": "748"
+    },
+    "750": {
+        "formula": "C2H3+C3H8=>C2H4+ipropyl",
+        "time_scale": -17.41869673349131,
+        "reverse_reaction": "751"
+    },
+    "751": {
+        "formula": "C2H4+ipropyl=>C2H3+C3H8",
+        "time_scale": -23.330022639253166,
+        "reverse_reaction": "750"
+    },
+    "752": {
+        "formula": "C2H3+C3H8=>C2H4+npropyl",
+        "time_scale": -17.41869673349131,
+        "reverse_reaction": "753"
+    },
+    "753": {
+        "formula": "C2H4+npropyl=>C2H3+C3H8",
+        "time_scale": -22.458723536203678,
+        "reverse_reaction": "752"
+    },
+    "754": {
+        "formula": "C2H5+C3H8=>C2H6+ipropyl",
+        "time_scale": -13.946774960972396,
+        "reverse_reaction": "755"
+    },
+    "755": {
+        "formula": "C2H6+ipropyl=>C2H5+C3H8",
+        "time_scale": -23.625209715612854,
+        "reverse_reaction": "754"
+    },
+    "756": {
+        "formula": "C2H5+C3H8=>C2H6+npropyl",
+        "time_scale": -13.946774960972396,
+        "reverse_reaction": "757"
+    },
+    "757": {
+        "formula": "C2H6+npropyl=>C2H5+C3H8",
+        "time_scale": -22.753910612563367,
+        "reverse_reaction": "756"
+    },
+    "758": {
+        "formula": "C3H8+allyl=>npropyl+C3H6",
+        "time_scale": -15.790750696532017,
+        "reverse_reaction": "759"
+    },
+    "759": {
+        "formula": "npropyl+C3H6=>C3H8+allyl",
+        "time_scale": -16.752562186074613,
+        "reverse_reaction": "758"
+    },
+    "760": {
+        "formula": "C3H8+allyl=>ipropyl+C3H6",
+        "time_scale": -14.34492897828411,
+        "reverse_reaction": "761"
+    },
+    "761": {
+        "formula": "ipropyl+C3H6=>C3H8+allyl",
+        "time_scale": -16.178039570876173,
+        "reverse_reaction": "760"
+    },
+    "762": {
+        "formula": "C3H8+CH3O=>npropyl+CH3OH",
+        "time_scale": -12.849236806090115,
+        "reverse_reaction": "763"
+    },
+    "763": {
+        "formula": "npropyl+CH3OH=>C3H8+CH3O",
+        "time_scale": -22.998254788077237,
+        "reverse_reaction": "762"
+    },
+    "764": {
+        "formula": "C3H8+CH3O=>ipropyl+CH3OH",
+        "time_scale": -12.849236806090115,
+        "reverse_reaction": "765"
+    },
+    "765": {
+        "formula": "ipropyl+CH3OH=>C3H8+CH3O",
+        "time_scale": -23.86955389112678,
+        "reverse_reaction": "764"
+    },
+    "766": {
+        "formula": "CH3OO+C3H8=>CH3OOH+npropyl",
+        "time_scale": -10.549508779949132,
+        "reverse_reaction": "767"
+    },
+    "767": {
+        "formula": "CH3OOH+npropyl=>CH3OO+C3H8",
+        "time_scale": -16.721979409622712,
+        "reverse_reaction": "766"
+    },
+    "768": {
+        "formula": "CH3OO+C3H8=>CH3OOH+ipropyl",
+        "time_scale": -10.073301648474045,
+        "reverse_reaction": "769"
+    },
+    "769": {
+        "formula": "CH3OOH+ipropyl=>CH3OO+C3H8",
+        "time_scale": -17.11707138119713,
+        "reverse_reaction": "768"
+    },
+    "770": {
+        "formula": "CH3CH2OO+C3H8=>CH3CH2OOH+npropyl",
+        "time_scale": -10.849655078307874,
+        "reverse_reaction": "771"
+    },
+    "771": {
+        "formula": "CH3CH2OOH+npropyl=>CH3CH2OO+C3H8",
+        "time_scale": -16.604141983480122,
+        "reverse_reaction": "770"
+    },
+    "772": {
+        "formula": "CH3CH2OO+C3H8=>CH3CH2OOH+ipropyl",
+        "time_scale": -10.373447946832789,
+        "reverse_reaction": "773"
+    },
+    "773": {
+        "formula": "CH3CH2OOH+ipropyl=>CH3CH2OO+C3H8",
+        "time_scale": -16.99923395505453,
+        "reverse_reaction": "772"
+    },
+    "774": {
+        "formula": "C3H8+acetylperoxy=>ipropyl+CH3CO3H",
+        "time_scale": -13.426191394655925,
+        "reverse_reaction": "775"
+    },
+    "775": {
+        "formula": "ipropyl+CH3CO3H=>C3H8+acetylperoxy",
+        "time_scale": -23.326704220848484,
+        "reverse_reaction": "774"
+    },
+    "776": {
+        "formula": "C3H8+acetylperoxy=>npropyl+CH3CO3H",
+        "time_scale": -13.660154595717856,
+        "reverse_reaction": "777"
+    },
+    "777": {
+        "formula": "npropyl+CH3CO3H=>C3H8+acetylperoxy",
+        "time_scale": -22.68936831886092,
+        "reverse_reaction": "776"
+    },
+    "778": {
+        "formula": "C3H8+formylperoxy=>npropyl+formylooh",
+        "time_scale": -13.860597081490546,
+        "reverse_reaction": "779"
+    },
+    "779": {
+        "formula": "npropyl+formylooh=>C3H8+formylperoxy",
+        "time_scale": -23.24112642135033,
+        "reverse_reaction": "778"
+    },
+    "780": {
+        "formula": "C3H8+formylperoxy=>ipropyl+formylooh",
+        "time_scale": -13.428967500125587,
+        "reverse_reaction": "781"
+    },
+    "781": {
+        "formula": "ipropyl+formylooh=>C3H8+formylperoxy",
+        "time_scale": -23.680795943034855,
+        "reverse_reaction": "780"
+    },
+    "782": {
+        "formula": "H+C3H6=>ipropyl",
+        "time_scale": -15.307269042226842,
+        "reverse_reaction": "783"
+    },
+    "783": {
+        "formula": "ipropyl=>H+C3H6",
+        "time_scale": -14.22209799219693,
+        "reverse_reaction": "782"
+    },
+    "784": {
+        "formula": "ipropyl+H=>C2H5+CH3",
+        "time_scale": -20.108708743601063,
+        "reverse_reaction": "785"
+    },
+    "785": {
+        "formula": "C2H5+CH3=>ipropyl+H",
+        "time_scale": -23.985350481834356,
+        "reverse_reaction": "784"
+    },
+    "786": {
+        "formula": "ipropyl+OH=>C3H6+H2O",
+        "time_scale": -17.351362121117067,
+        "reverse_reaction": "787"
+    },
+    "787": {
+        "formula": "C3H6+H2O=>ipropyl+OH",
+        "time_scale": -33.51292850551407,
+        "reverse_reaction": "786"
+    },
+    "788": {
+        "formula": "ipropyl+O=>acetaldehyde+CH3",
+        "time_scale": -20.775023787637483,
+        "reverse_reaction": "789"
+    },
+    "789": {
+        "formula": "acetaldehyde+CH3=>ipropyl+O",
+        "time_scale": -43.13658747872073,
+        "reverse_reaction": "788"
+    },
+    "790": {
+        "formula": "npropyl=>CH3+C2H4",
+        "time_scale": -12.404544522164086,
+        "reverse_reaction": "791"
+    },
+    "791": {
+        "formula": "CH3+C2H4=>npropyl",
+        "time_scale": -18.59570567813315,
+        "reverse_reaction": "790"
+    },
+    "792": {
+        "formula": "npropyl=>H+C3H6",
+        "time_scale": -13.78490901117637,
+        "reverse_reaction": "793"
+    },
+    "793": {
+        "formula": "H+C3H6=>npropyl",
+        "time_scale": -15.74137916425561,
+        "reverse_reaction": "792"
+    },
+    "794": {
+        "formula": "propanal+npropyl=>propionyl+C3H8",
+        "time_scale": -20.20556403949521,
+        "reverse_reaction": "795"
+    },
+    "795": {
+        "formula": "propionyl+C3H8=>propanal+npropyl",
+        "time_scale": -23.995234797197075,
+        "reverse_reaction": "794"
+    },
+    "796": {
+        "formula": "propanal+ipropyl=>propionyl+C3H8",
+        "time_scale": -20.208376510315485,
+        "reverse_reaction": "797"
+    },
+    "797": {
+        "formula": "propionyl+C3H8=>propanal+ipropyl",
+        "time_scale": -23.126748164967854,
+        "reverse_reaction": "796"
+    },
+    "798": {
+        "formula": "propanal+allyl=>propionyl+C3H6",
+        "time_scale": -20.593178943294653,
+        "reverse_reaction": "799"
+    },
+    "799": {
+        "formula": "propionyl+C3H6=>propanal+allyl",
+        "time_scale": -25.344661190536083,
+        "reverse_reaction": "798"
+    },
+    "800": {
+        "formula": "allyl+H(+M)=>C3H6(+M)",
+        "time_scale": -19.493854778583017,
+        "reverse_reaction": "801"
+    },
+    "801": {
+        "formula": "C3H6(+M)=>allyl+H(+M)",
+        "time_scale": -24.186852307025973,
+        "reverse_reaction": "800"
+    },
+    "802": {
+        "formula": "C2H3+CH3(+M)=>C3H6(+M)",
+        "time_scale": -22.23132518365004,
+        "reverse_reaction": "803"
+    },
+    "803": {
+        "formula": "C3H6(+M)=>C2H3+CH3(+M)",
+        "time_scale": -26.76784702237258,
+        "reverse_reaction": "802"
+    },
+    "804": {
+        "formula": "C3H6=>propen1yl+H",
+        "time_scale": -32.323568267873654,
+        "reverse_reaction": "805"
+    },
+    "805": {
+        "formula": "propen1yl+H=>C3H6",
+        "time_scale": -25.628484906509616,
+        "reverse_reaction": "804"
+    },
+    "806": {
+        "formula": "C3H6=>propen2yl+H",
+        "time_scale": -31.60385064654691,
+        "reverse_reaction": "807"
+    },
+    "807": {
+        "formula": "propen2yl+H=>C3H6",
+        "time_scale": -26.229684685676755,
+        "reverse_reaction": "806"
+    },
+    "808": {
+        "formula": "C3H6+O=>C2H5+HCO",
+        "time_scale": -16.492490924557643,
+        "reverse_reaction": "809"
+    },
+    "809": {
+        "formula": "C2H5+HCO=>C3H6+O",
+        "time_scale": -34.267271024964245,
+        "reverse_reaction": "808"
+    },
+    "810": {
+        "formula": "C3H6+O=>ketene+CH3+H",
+        "time_scale": -16.72762699353219,
+        "reverse_reaction": "811"
+    },
+    "811": {
+        "formula": "ketene+CH3+H=>C3H6+O",
+        "time_scale": -34.15997577176494,
+        "reverse_reaction": "810"
+    },
+    "812": {
+        "formula": "C3H6+O=>CH3CHCO+H+H",
+        "time_scale": -16.72762699353219,
+        "reverse_reaction": "813"
+    },
+    "813": {
+        "formula": "CH3CHCO+H+H=>C3H6+O",
+        "time_scale": -34.97973035108299,
+        "reverse_reaction": "812"
+    },
+    "814": {
+        "formula": "C3H6+O=>allyl+OH",
+        "time_scale": -17.340798606789686,
+        "reverse_reaction": "815"
+    },
+    "815": {
+        "formula": "allyl+OH=>C3H6+O",
+        "time_scale": -25.638473649848578,
+        "reverse_reaction": "814"
+    },
+    "816": {
+        "formula": "C3H6+O=>propen1yl+OH",
+        "time_scale": -19.01487929507749,
+        "reverse_reaction": "817"
+    },
+    "817": {
+        "formula": "propen1yl+OH=>C3H6+O",
+        "time_scale": -25.310468505215724,
+        "reverse_reaction": "816"
+    },
+    "818": {
+        "formula": "C3H6+O=>propen2yl+OH",
+        "time_scale": -18.86755592198148,
+        "reverse_reaction": "819"
+    },
+    "819": {
+        "formula": "propen2yl+OH=>C3H6+O",
+        "time_scale": -26.484062532613596,
+        "reverse_reaction": "818"
+    },
+    "820": {
+        "formula": "C3H6+HO2=>allyl+H2O2",
+        "time_scale": -12.89672871303176,
+        "reverse_reaction": "821"
+    },
+    "821": {
+        "formula": "allyl+H2O2=>C3H6+HO2",
+        "time_scale": -17.968118168897544,
+        "reverse_reaction": "820"
+    },
+    "822": {
+        "formula": "C3H6+HO2=>propen1yl+H2O2",
+        "time_scale": -18.210530636000932,
+        "reverse_reaction": "823"
+    },
+    "823": {
+        "formula": "propen1yl+H2O2=>C3H6+HO2",
+        "time_scale": -21.279834258945833,
+        "reverse_reaction": "822"
+    },
+    "824": {
+        "formula": "C3H6+HO2=>propen2yl+H2O2",
+        "time_scale": -17.15652306781862,
+        "reverse_reaction": "825"
+    },
+    "825": {
+        "formula": "propen2yl+H2O2=>C3H6+HO2",
+        "time_scale": -21.546744091257402,
+        "reverse_reaction": "824"
+    },
+    "826": {
+        "formula": "C3H6+H=>C2H4+CH3",
+        "time_scale": -17.28001913102067,
+        "reverse_reaction": "827"
+    },
+    "827": {
+        "formula": "C2H4+CH3=>C3H6+H",
+        "time_scale": -21.514710133910498,
+        "reverse_reaction": "826"
+    },
+    "828": {
+        "formula": "C3H6+H=>allyl+H2",
+        "time_scale": -16.569486080894162,
+        "reverse_reaction": "829"
+    },
+    "829": {
+        "formula": "allyl+H2=>C3H6+H",
+        "time_scale": -23.601290776387053,
+        "reverse_reaction": "828"
+    },
+    "830": {
+        "formula": "C3H6+H=>propen2yl+H2",
+        "time_scale": -18.660006737627487,
+        "reverse_reaction": "831"
+    },
+    "831": {
+        "formula": "propen2yl+H2=>C3H6+H",
+        "time_scale": -25.010643000693097,
+        "reverse_reaction": "830"
+    },
+    "832": {
+        "formula": "C3H6+H=>propen1yl+H2",
+        "time_scale": -19.19505103918189,
+        "reverse_reaction": "833"
+    },
+    "833": {
+        "formula": "propen1yl+H2=>C3H6+H",
+        "time_scale": -24.22476990175362,
+        "reverse_reaction": "832"
+    },
+    "834": {
+        "formula": "C3H6+O2=>allyl+HO2",
+        "time_scale": -15.120599330153832,
+        "reverse_reaction": "835"
+    },
+    "835": {
+        "formula": "allyl+HO2=>C3H6+O2",
+        "time_scale": -14.635367108088891,
+        "reverse_reaction": "834"
+    },
+    "836": {
+        "formula": "C3H6+O2=>propen1yl+HO2",
+        "time_scale": -23.155094330399645,
+        "reverse_reaction": "837"
+    },
+    "837": {
+        "formula": "propen1yl+HO2=>C3H6+O2",
+        "time_scale": -20.667776275414727,
+        "reverse_reaction": "836"
+    },
+    "838": {
+        "formula": "C3H6+O2=>propen2yl+HO2",
+        "time_scale": -22.57027355081669,
+        "reverse_reaction": "839"
+    },
+    "839": {
+        "formula": "propen2yl+HO2=>C3H6+O2",
+        "time_scale": -21.40387289632565,
+        "reverse_reaction": "838"
+    },
+    "840": {
+        "formula": "C3H6+CH3=>allyl+CH4",
+        "time_scale": -17.430620764241116,
+        "reverse_reaction": "841"
+    },
+    "841": {
+        "formula": "allyl+CH4=>C3H6+CH3",
+        "time_scale": -26.307302116079928,
+        "reverse_reaction": "840"
+    },
+    "842": {
+        "formula": "C3H6+CH3=>propen1yl+CH4",
+        "time_scale": -20.05782798954756,
+        "reverse_reaction": "843"
+    },
+    "843": {
+        "formula": "propen1yl+CH4=>C3H6+CH3",
+        "time_scale": -26.93242350846534,
+        "reverse_reaction": "842"
+    },
+    "844": {
+        "formula": "C3H6+CH3=>propen2yl+CH4",
+        "time_scale": -19.863115841100097,
+        "reverse_reaction": "845"
+    },
+    "845": {
+        "formula": "propen2yl+CH4=>C3H6+CH3",
+        "time_scale": -28.058628760511755,
+        "reverse_reaction": "844"
+    },
+    "846": {
+        "formula": "C3H6+C2H5=>allyl+C2H6",
+        "time_scale": -18.494233167637862,
+        "reverse_reaction": "847"
+    },
+    "847": {
+        "formula": "allyl+C2H6=>C3H6+C2H5",
+        "time_scale": -26.339557329686233,
+        "reverse_reaction": "846"
+    },
+    "848": {
+        "formula": "C3H6+acetylperoxy=>allyl+CH3CO3H",
+        "time_scale": -18.259778173436622,
+        "reverse_reaction": "849"
+    },
+    "849": {
+        "formula": "allyl+CH3CO3H=>C3H6+acetylperoxy",
+        "time_scale": -26.327180407036906,
+        "reverse_reaction": "848"
+    },
+    "850": {
+        "formula": "C3H6+CH3OO=>allyl+CH3OOH",
+        "time_scale": -15.127083436711217,
+        "reverse_reaction": "851"
+    },
+    "851": {
+        "formula": "allyl+CH3OOH=>C3H6+CH3OO",
+        "time_scale": -20.337742576841695,
+        "reverse_reaction": "850"
+    },
+    "852": {
+        "formula": "C3H6+HO2=>propen1ol+OH",
+        "time_scale": -13.110570241671365,
+        "reverse_reaction": "853"
+    },
+    "853": {
+        "formula": "propen1ol+OH=>C3H6+HO2",
+        "time_scale": -34.40138643947475,
+        "reverse_reaction": "852"
+    },
+    "854": {
+        "formula": "C3H6+CH3CH2OO=>allyl+CH3CH2OOH",
+        "time_scale": -15.427229735069519,
+        "reverse_reaction": "855"
+    },
+    "855": {
+        "formula": "allyl+CH3CH2OOH=>C3H6+CH3CH2OO",
+        "time_scale": -20.21990515069913,
+        "reverse_reaction": "854"
+    },
+    "856": {
+        "formula": "C3H6+npropyloo=>allyl+npropylooh",
+        "time_scale": -14.578611531109226,
+        "reverse_reaction": "857"
+    },
+    "857": {
+        "formula": "allyl+npropylooh=>C3H6+npropyloo",
+        "time_scale": -19.754944153081713,
+        "reverse_reaction": "856"
+    },
+    "858": {
+        "formula": "C3H6+ipropyloo=>allyl+ipropylooh",
+        "time_scale": -14.388693030960171,
+        "reverse_reaction": "859"
+    },
+    "859": {
+        "formula": "allyl+ipropylooh=>C3H6+ipropyloo",
+        "time_scale": -19.554668816473075,
+        "reverse_reaction": "858"
+    },
+    "860": {
+        "formula": "allyl+O=>acrolein+H",
+        "time_scale": -21.064541765895445,
+        "reverse_reaction": "861"
+    },
+    "861": {
+        "formula": "acrolein+H=>allyl+O",
+        "time_scale": -37.110015849250345,
+        "reverse_reaction": "860"
+    },
+    "862": {
+        "formula": "allyl+OH=>acrolein+H+H",
+        "time_scale": -24.149549347751776,
+        "reverse_reaction": "863"
+    },
+    "863": {
+        "formula": "acrolein+H+H=>allyl+OH",
+        "time_scale": -27.204350859600552,
+        "reverse_reaction": "862"
+    },
+    "864": {
+        "formula": "allyl+O2=>acetyl+CH2O",
+        "time_scale": -14.724579853708596,
+        "reverse_reaction": "865"
+    },
+    "865": {
+        "formula": "acetyl+CH2O=>allyl+O2",
+        "time_scale": -48.07403899364244,
+        "reverse_reaction": "864"
+    },
+    "866": {
+        "formula": "allyl+O2=>acrolein+OH",
+        "time_scale": -15.710829573496442,
+        "reverse_reaction": "867"
+    },
+    "867": {
+        "formula": "acrolein+OH=>allyl+O2",
+        "time_scale": -39.15257536472673,
+        "reverse_reaction": "866"
+    },
+    "868": {
+        "formula": "allyl+HCO=>C3H6+CO",
+        "time_scale": -21.199735736769473,
+        "reverse_reaction": "869"
+    },
+    "869": {
+        "formula": "C3H6+CO=>allyl+HCO",
+        "time_scale": -29.894413445987944,
+        "reverse_reaction": "868"
+    },
+    "870": {
+        "formula": "allyl=>propen2yl",
+        "time_scale": -23.53100450034744,
+        "reverse_reaction": "871"
+    },
+    "871": {
+        "formula": "propen2yl=>allyl",
+        "time_scale": -22.849836067923402,
+        "reverse_reaction": "870"
+    },
+    "872": {
+        "formula": "allyl=>propen1yl",
+        "time_scale": -24.46337442516186,
+        "reverse_reaction": "873"
+    },
+    "873": {
+        "formula": "propen1yl=>allyl",
+        "time_scale": -22.461288592243942,
+        "reverse_reaction": "872"
+    },
+    "874": {
+        "formula": "C2H2+CH3=>allyl",
+        "time_scale": -25.70752436181436,
+        "reverse_reaction": "875"
+    },
+    "875": {
+        "formula": "allyl=>C2H2+CH3",
+        "time_scale": -24.35037647329858,
+        "reverse_reaction": "874"
+    },
+    "876": {
+        "formula": "allyl+CH3OO=>allyloxy+CH3O",
+        "time_scale": -14.23829386383579,
+        "reverse_reaction": "877"
+    },
+    "877": {
+        "formula": "allyloxy+CH3O=>allyl+CH3OO",
+        "time_scale": -26.66503088091524,
+        "reverse_reaction": "876"
+    },
+    "878": {
+        "formula": "allyl+C2H5=>C2H4+C3H6",
+        "time_scale": -20.388986047500737,
+        "reverse_reaction": "879"
+    },
+    "879": {
+        "formula": "C2H4+C3H6=>allyl+C2H5",
+        "time_scale": -26.525203890629708,
+        "reverse_reaction": "878"
+    },
+    "880": {
+        "formula": "C2H2+CH3=>propen1yl",
+        "time_scale": -21.479755369212363,
+        "reverse_reaction": "881"
+    },
+    "881": {
+        "formula": "propen1yl=>C2H2+CH3",
+        "time_scale": -18.120521647778666,
+        "reverse_reaction": "880"
+    },
+    "882": {
+        "formula": "propen1yl+O=>C2H4+HCO",
+        "time_scale": -26.24041461848848,
+        "reverse_reaction": "883"
+    },
+    "883": {
+        "formula": "C2H4+HCO=>propen1yl+O",
+        "time_scale": -52.15349839494482,
+        "reverse_reaction": "882"
+    },
+    "884": {
+        "formula": "propen1yl+OH=>C2H4+HCO+H",
+        "time_scale": -23.595084444928414,
+        "reverse_reaction": "885"
+    },
+    "885": {
+        "formula": "C2H4+HCO+H=>propen1yl+OH",
+        "time_scale": -36.51749564987821,
+        "reverse_reaction": "884"
+    },
+    "886": {
+        "formula": "propen1yl+O2=>acetaldehyde+HCO",
+        "time_scale": -14.274593017533553,
+        "reverse_reaction": "887"
+    },
+    "887": {
+        "formula": "acetaldehyde+HCO=>propen1yl+O2",
+        "time_scale": -51.634977568524434,
+        "reverse_reaction": "886"
+    },
+    "888": {
+        "formula": "propen1yl+HO2=>C2H4+HCO+OH",
+        "time_scale": -17.87800387472766,
+        "reverse_reaction": "889"
+    },
+    "889": {
+        "formula": "C2H4+HCO+OH=>propen1yl+HO2",
+        "time_scale": -46.979594052676866,
+        "reverse_reaction": "888"
+    },
+    "890": {
+        "formula": "propen1yl+HCO=>C3H6+CO",
+        "time_scale": -26.19951733030655,
+        "reverse_reaction": "891"
+    },
+    "891": {
+        "formula": "C3H6+CO=>propen1yl+HCO",
+        "time_scale": -36.8962808724461,
+        "reverse_reaction": "890"
+    },
+    "892": {
+        "formula": "C2H2+CH3=>propen2yl",
+        "time_scale": -26.49522132673597,
+        "reverse_reaction": "893"
+    },
+    "893": {
+        "formula": "propen2yl=>C2H2+CH3",
+        "time_scale": -24.456905005796152,
+        "reverse_reaction": "892"
+    },
+    "894": {
+        "formula": "propen2yl=>propen1yl",
+        "time_scale": -25.009840060732092,
+        "reverse_reaction": "895"
+    },
+    "895": {
+        "formula": "propen1yl=>propen2yl",
+        "time_scale": -23.688922660238212,
+        "reverse_reaction": "894"
+    },
+    "896": {
+        "formula": "propen2yl+O=>CH3+ketene",
+        "time_scale": -26.262064656488214,
+        "reverse_reaction": "897"
+    },
+    "897": {
+        "formula": "CH3+ketene=>propen2yl+O",
+        "time_scale": -49.068579395594455,
+        "reverse_reaction": "896"
+    },
+    "898": {
+        "formula": "propen2yl+OH=>CH3+ketene+H",
+        "time_scale": -23.61673448292815,
+        "reverse_reaction": "899"
+    },
+    "899": {
+        "formula": "CH3+ketene+H=>propen2yl+OH",
+        "time_scale": -33.43257665052879,
+        "reverse_reaction": "898"
+    },
+    "900": {
+        "formula": "propen2yl+O2=>acetyl+CH2O",
+        "time_scale": -14.296243055533285,
+        "reverse_reaction": "901"
+    },
+    "901": {
+        "formula": "acetyl+CH2O=>propen2yl+O2",
+        "time_scale": -48.32687062789116,
+        "reverse_reaction": "900"
+    },
+    "902": {
+        "formula": "propen2yl+HO2=>CH3+ketene+OH",
+        "time_scale": -17.899653912727395,
+        "reverse_reaction": "903"
+    },
+    "903": {
+        "formula": "CH3+ketene+OH=>propen2yl+HO2",
+        "time_scale": -43.89467505332732,
+        "reverse_reaction": "902"
+    },
+    "904": {
+        "formula": "propen2yl+HCO=>C3H6+CO",
+        "time_scale": -26.22116736830628,
+        "reverse_reaction": "905"
+    },
+    "905": {
+        "formula": "C3H6+CO=>propen2yl+HCO",
+        "time_scale": -35.59701350995195,
+        "reverse_reaction": "904"
+    },
+    "906": {
+        "formula": "npropyl+HO2=>npropyloxy+OH",
+        "time_scale": -12.43421046508896,
+        "reverse_reaction": "907"
+    },
+    "907": {
+        "formula": "npropyloxy+OH=>npropyl+HO2",
+        "time_scale": -29.068342899786366,
+        "reverse_reaction": "906"
+    },
+    "908": {
+        "formula": "ipropyl+HO2=>ipropyloxy+OH",
+        "time_scale": -12.437022935909171,
+        "reverse_reaction": "909"
+    },
+    "909": {
+        "formula": "ipropyloxy+OH=>ipropyl+HO2",
+        "time_scale": -28.265403012941416,
+        "reverse_reaction": "908"
+    },
+    "910": {
+        "formula": "CH3OO+npropyl=>CH3O+npropyloxy",
+        "time_scale": -13.850678960036245,
+        "reverse_reaction": "911"
+    },
+    "911": {
+        "formula": "CH3O+npropyloxy=>CH3OO+npropyl",
+        "time_scale": -32.11969519172502,
+        "reverse_reaction": "910"
+    },
+    "912": {
+        "formula": "CH3OO+ipropyl=>CH3O+ipropyloxy",
+        "time_scale": -13.853491430856494,
+        "reverse_reaction": "913"
+    },
+    "913": {
+        "formula": "CH3O+ipropyloxy=>CH3OO+ipropyl",
+        "time_scale": -31.316755304880083,
+        "reverse_reaction": "912"
+    },
+    "914": {
+        "formula": "npropyloo+CH2O=>npropylooh+HCO",
+        "time_scale": -13.111251328146585,
+        "reverse_reaction": "915"
+    },
+    "915": {
+        "formula": "npropylooh+HCO=>npropyloo+CH2O",
+        "time_scale": -22.34528871765844,
+        "reverse_reaction": "914"
+    },
+    "916": {
+        "formula": "npropyloo+acetaldehyde=>npropylooh+acetyl",
+        "time_scale": -14.672457638222191,
+        "reverse_reaction": "917"
+    },
+    "917": {
+        "formula": "npropylooh+acetyl=>npropyloo+acetaldehyde",
+        "time_scale": -21.897655449594854,
+        "reverse_reaction": "916"
+    },
+    "918": {
+        "formula": "ipropyloo+CH2O=>ipropylooh+HCO",
+        "time_scale": -12.92133282799754,
+        "reverse_reaction": "919"
+    },
+    "919": {
+        "formula": "ipropylooh+HCO=>ipropyloo+CH2O",
+        "time_scale": -22.145013381049807,
+        "reverse_reaction": "918"
+    },
+    "920": {
+        "formula": "ipropyloo+acetaldehyde=>ipropylooh+acetyl",
+        "time_scale": -14.482539138073161,
+        "reverse_reaction": "921"
+    },
+    "921": {
+        "formula": "ipropylooh+acetyl=>ipropyloo+acetaldehyde",
+        "time_scale": -21.697380112986213,
+        "reverse_reaction": "920"
+    },
+    "922": {
+        "formula": "npropyloo+HO2=>npropylooh+O2",
+        "time_scale": -10.191259980146125,
+        "reverse_reaction": "923"
+    },
+    "923": {
+        "formula": "npropylooh+O2=>npropyloo+HO2",
+        "time_scale": -15.852824824184033,
+        "reverse_reaction": "922"
+    },
+    "924": {
+        "formula": "ipropyloo+HO2=>ipropylooh+O2",
+        "time_scale": -10.001341479997032,
+        "reverse_reaction": "925"
+    },
+    "925": {
+        "formula": "ipropylooh+O2=>ipropyloo+HO2",
+        "time_scale": -15.6525494875753,
+        "reverse_reaction": "924"
+    },
+    "926": {
+        "formula": "C2H4+npropyloo=>C2H3+npropylooh",
+        "time_scale": -20.119389798141146,
+        "reverse_reaction": "927"
+    },
+    "927": {
+        "formula": "C2H3+npropylooh=>C2H4+npropyloo",
+        "time_scale": -21.217507106944176,
+        "reverse_reaction": "926"
+    },
+    "928": {
+        "formula": "C2H4+ipropyloo=>C2H3+ipropylooh",
+        "time_scale": -19.929471297992112,
+        "reverse_reaction": "929"
+    },
+    "929": {
+        "formula": "C2H3+ipropylooh=>C2H4+ipropyloo",
+        "time_scale": -21.017231770335535,
+        "reverse_reaction": "928"
+    },
+    "930": {
+        "formula": "CH3OH+npropyloo=>CH2OH+npropylooh",
+        "time_scale": -19.217277735967272,
+        "reverse_reaction": "931"
+    },
+    "931": {
+        "formula": "CH2OH+npropylooh=>CH3OH+npropyloo",
+        "time_scale": -24.595632670134027,
+        "reverse_reaction": "930"
+    },
+    "932": {
+        "formula": "CH3OH+ipropyloo=>CH2OH+ipropylooh",
+        "time_scale": -19.02735923581829,
+        "reverse_reaction": "933"
+    },
+    "933": {
+        "formula": "CH2OH+ipropylooh=>CH3OH+ipropyloo",
+        "time_scale": -24.39535733352545,
+        "reverse_reaction": "932"
+    },
+    "934": {
+        "formula": "acrolein+npropyloo=>CH2CHCO+npropylooh",
+        "time_scale": -15.7234950570858,
+        "reverse_reaction": "935"
+    },
+    "935": {
+        "formula": "CH2CHCO+npropylooh=>acrolein+npropyloo",
+        "time_scale": -23.274350615135603,
+        "reverse_reaction": "934"
+    },
+    "936": {
+        "formula": "acrolein+ipropyloo=>CH2CHCO+ipropylooh",
+        "time_scale": -15.533576556936758,
+        "reverse_reaction": "937"
+    },
+    "937": {
+        "formula": "CH2CHCO+ipropylooh=>acrolein+ipropyloo",
+        "time_scale": -23.074075278527026,
+        "reverse_reaction": "936"
+    },
+    "938": {
+        "formula": "CH4+npropyloo=>CH3+npropylooh",
+        "time_scale": -20.63954294643978,
+        "reverse_reaction": "939"
+    },
+    "939": {
+        "formula": "CH3+npropylooh=>CH4+npropyloo",
+        "time_scale": -16.93919421657343,
+        "reverse_reaction": "938"
+    },
+    "940": {
+        "formula": "CH4+ipropyloo=>CH3+ipropylooh",
+        "time_scale": -20.449624446290738,
+        "reverse_reaction": "941"
+    },
+    "941": {
+        "formula": "CH3+ipropylooh=>CH4+ipropyloo",
+        "time_scale": -16.738918879964785,
+        "reverse_reaction": "940"
+    },
+    "942": {
+        "formula": "npropyloo+CH3OO=>npropyloxy+CH3O+O2",
+        "time_scale": -11.960019292006393,
+        "reverse_reaction": "943"
+    },
+    "943": {
+        "formula": "npropyloxy+CH3O+O2=>npropyloo+CH3OO",
+        "time_scale": -30.18220614740872,
+        "reverse_reaction": "942"
+    },
+    "944": {
+        "formula": "ipropyloo+CH3OO=>ipropyloxy+CH3O+O2",
+        "time_scale": -11.770100791857338,
+        "reverse_reaction": "945"
+    },
+    "945": {
+        "formula": "ipropyloxy+CH3O+O2=>ipropyloo+CH3OO",
+        "time_scale": -29.21618471409309,
+        "reverse_reaction": "944"
+    },
+    "946": {
+        "formula": "H2+npropyloo=>H+npropylooh",
+        "time_scale": -19.975260777942143,
+        "reverse_reaction": "947"
+    },
+    "947": {
+        "formula": "H+npropylooh=>H2+npropyloo",
+        "time_scale": -18.11978870442165,
+        "reverse_reaction": "946"
+    },
+    "948": {
+        "formula": "H2+ipropyloo=>H+ipropylooh",
+        "time_scale": -19.785342277793106,
+        "reverse_reaction": "949"
+    },
+    "949": {
+        "formula": "H+ipropylooh=>H2+ipropyloo",
+        "time_scale": -17.919513367813014,
+        "reverse_reaction": "948"
+    },
+    "950": {
+        "formula": "ipropyloo+C2H6=>ipropylooh+C2H5",
+        "time_scale": -20.069131636978163,
+        "reverse_reaction": "951"
+    },
+    "951": {
+        "formula": "ipropylooh+C2H5=>ipropyloo+C2H6",
+        "time_scale": -17.38978326044257,
+        "reverse_reaction": "950"
+    },
+    "952": {
+        "formula": "npropyloo+C2H6=>npropylooh+C2H5",
+        "time_scale": -20.259050137127197,
+        "reverse_reaction": "953"
+    },
+    "953": {
+        "formula": "npropylooh+C2H5=>npropyloo+C2H6",
+        "time_scale": -17.590058597051208,
+        "reverse_reaction": "952"
+    },
+    "954": {
+        "formula": "ipropyloo+propanal=>ipropylooh+propionyl",
+        "time_scale": -17.22140641445404,
+        "reverse_reaction": "955"
+    },
+    "955": {
+        "formula": "ipropylooh+propionyl=>ipropyloo+propanal",
+        "time_scale": -27.13886444720805,
+        "reverse_reaction": "954"
+    },
+    "956": {
+        "formula": "npropyloo+propanal=>npropylooh+propionyl",
+        "time_scale": -17.411324914603075,
+        "reverse_reaction": "957"
+    },
+    "957": {
+        "formula": "npropylooh+propionyl=>npropyloo+propanal",
+        "time_scale": -27.339139783816613,
+        "reverse_reaction": "956"
+    },
+    "958": {
+        "formula": "ipropyloo+acetylperoxy=>ipropyloxy+acetyloxy+O2",
+        "time_scale": -14.902795528582777,
+        "reverse_reaction": "959"
+    },
+    "959": {
+        "formula": "ipropyloxy+acetyloxy+O2=>ipropyloo+acetylperoxy",
+        "time_scale": -37.75073722760956,
+        "reverse_reaction": "958"
+    },
+    "960": {
+        "formula": "npropyloo+acetylperoxy=>npropyloxy+acetyloxy+O2",
+        "time_scale": -15.09271402873182,
+        "reverse_reaction": "961"
+    },
+    "961": {
+        "formula": "npropyloxy+acetyloxy+O2=>npropyloo+acetylperoxy",
+        "time_scale": -38.71675866092519,
+        "reverse_reaction": "960"
+    },
+    "962": {
+        "formula": "ipropyloo+CH3CH2OO=>ipropyloxy+ethoxy+O2",
+        "time_scale": -12.070247090215691,
+        "reverse_reaction": "963"
+    },
+    "963": {
+        "formula": "ipropyloxy+ethoxy+O2=>ipropyloo+CH3CH2OO",
+        "time_scale": -31.694645751021113,
+        "reverse_reaction": "962"
+    },
+    "964": {
+        "formula": "npropyloo+CH3CH2OO=>npropyloxy+ethoxy+O2",
+        "time_scale": -12.260165590364728,
+        "reverse_reaction": "965"
+    },
+    "965": {
+        "formula": "npropyloxy+ethoxy+O2=>npropyloo+CH3CH2OO",
+        "time_scale": -32.66066718433675,
+        "reverse_reaction": "964"
+    },
+    "966": {
+        "formula": "ipropyloo+ipropyloo=>O2+ipropyloxy+ipropyloxy",
+        "time_scale": -11.03171038610625,
+        "reverse_reaction": "967"
+    },
+    "967": {
+        "formula": "O2+ipropyloxy+ipropyloxy=>ipropyloo+ipropyloo",
+        "time_scale": -30.68269696997312,
+        "reverse_reaction": "966"
+    },
+    "968": {
+        "formula": "npropyloo+npropyloo=>O2+npropyloxy+npropyloxy",
+        "time_scale": -11.411547386404385,
+        "reverse_reaction": "969"
+    },
+    "969": {
+        "formula": "O2+npropyloxy+npropyloxy=>npropyloo+npropyloo",
+        "time_scale": -32.61473983660441,
+        "reverse_reaction": "968"
+    },
+    "970": {
+        "formula": "ipropyloo+npropyloo=>ipropyloxy+npropyloxy+O2",
+        "time_scale": -11.22162888625532,
+        "reverse_reaction": "971"
+    },
+    "971": {
+        "formula": "ipropyloxy+npropyloxy+O2=>ipropyloo+npropyloo",
+        "time_scale": -31.64871840328876,
+        "reverse_reaction": "970"
+    },
+    "972": {
+        "formula": "ipropyloo+CH3=>ipropyloxy+CH3O",
+        "time_scale": -13.665085951328336,
+        "reverse_reaction": "973"
+    },
+    "973": {
+        "formula": "ipropyloxy+CH3O=>ipropyloo+CH3",
+        "time_scale": -31.12758899647417,
+        "reverse_reaction": "972"
+    },
+    "974": {
+        "formula": "ipropyloo+C2H5=>ipropyloxy+ethoxy",
+        "time_scale": -14.15210706993609,
+        "reverse_reaction": "975"
+    },
+    "975": {
+        "formula": "ipropyloxy+ethoxy=>ipropyloo+C2H5",
+        "time_scale": -33.785445361690925,
+        "reverse_reaction": "974"
+    },
+    "976": {
+        "formula": "ipropyloo+ipropyl=>ipropyloxy+ipropyloxy",
+        "time_scale": -13.115101025105405,
+        "reverse_reaction": "977"
+    },
+    "977": {
+        "formula": "ipropyloxy+ipropyloxy=>ipropyloo+ipropyl",
+        "time_scale": -32.78326756076011,
+        "reverse_reaction": "976"
+    },
+    "978": {
+        "formula": "ipropyloo+npropyl=>ipropyloxy+npropyloxy",
+        "time_scale": -13.11228855428517,
+        "reverse_reaction": "979"
+    },
+    "979": {
+        "formula": "ipropyloxy+npropyloxy=>ipropyloo+npropyl",
+        "time_scale": -33.58620744760506,
+        "reverse_reaction": "978"
+    },
+    "980": {
+        "formula": "ipropyloo+allyl=>ipropyloxy+allyloxy",
+        "time_scale": -13.499903458084779,
+        "reverse_reaction": "981"
+    },
+    "981": {
+        "formula": "ipropyloxy+allyloxy=>ipropyloo+allyl",
+        "time_scale": -28.13154313679514,
+        "reverse_reaction": "980"
+    },
+    "982": {
+        "formula": "npropyloo+CH3=>npropyloxy+CH3O",
+        "time_scale": -13.855004451477392,
+        "reverse_reaction": "983"
+    },
+    "983": {
+        "formula": "npropyloxy+CH3O=>npropyloo+CH3",
+        "time_scale": -32.093610429789805,
+        "reverse_reaction": "982"
+    },
+    "984": {
+        "formula": "npropyloo+C2H5=>npropyloxy+ethoxy",
+        "time_scale": -14.342025570085127,
+        "reverse_reaction": "985"
+    },
+    "985": {
+        "formula": "npropyloxy+ethoxy=>npropyloo+C2H5",
+        "time_scale": -34.75146679500656,
+        "reverse_reaction": "984"
+    },
+    "986": {
+        "formula": "npropyloo+ipropyl=>npropyloxy+ipropyloxy",
+        "time_scale": -13.305019525254476,
+        "reverse_reaction": "987"
+    },
+    "987": {
+        "formula": "npropyloxy+ipropyloxy=>npropyloo+ipropyl",
+        "time_scale": -33.749288994075755,
+        "reverse_reaction": "986"
+    },
+    "988": {
+        "formula": "npropyloo+npropyl=>npropyloxy+npropyloxy",
+        "time_scale": -13.302207054434236,
+        "reverse_reaction": "989"
+    },
+    "989": {
+        "formula": "npropyloxy+npropyloxy=>npropyloo+npropyl",
+        "time_scale": -34.5522288809207,
+        "reverse_reaction": "988"
+    },
+    "990": {
+        "formula": "npropyloo+allyl=>npropyloxy+allyloxy",
+        "time_scale": -13.68982195823382,
+        "reverse_reaction": "991"
+    },
+    "991": {
+        "formula": "npropyloxy+allyloxy=>npropyloo+allyl",
+        "time_scale": -29.09756457011078,
+        "reverse_reaction": "990"
+    },
+    "992": {
+        "formula": "C2H5+CH2O=>npropyloxy",
+        "time_scale": -16.581982986564878,
+        "reverse_reaction": "993"
+    },
+    "993": {
+        "formula": "npropyloxy=>C2H5+CH2O",
+        "time_scale": -9.661066005375769,
+        "reverse_reaction": "992"
+    },
+    "994": {
+        "formula": "propanal+H=>npropyloxy",
+        "time_scale": -21.944268631221018,
+        "reverse_reaction": "995"
+    },
+    "995": {
+        "formula": "npropyloxy=>propanal+H",
+        "time_scale": -12.53977095918478,
+        "reverse_reaction": "994"
+    },
+    "996": {
+        "formula": "CH3+acetaldehyde=>ipropyloxy",
+        "time_scale": -19.291866809603214,
+        "reverse_reaction": "997"
+    },
+    "997": {
+        "formula": "ipropyloxy=>CH3+acetaldehyde",
+        "time_scale": -9.570176794054772,
+        "reverse_reaction": "996"
+    },
+    "998": {
+        "formula": "allyloxy+O2=>acrolein+HO2",
+        "time_scale": -12.008556960994998,
+        "reverse_reaction": "999"
+    },
+    "999": {
+        "formula": "acrolein+HO2=>allyloxy+O2",
+        "time_scale": -24.658449532137848,
+        "reverse_reaction": "998"
+    },
+    "1000": {
+        "formula": "propen1ol=>C2H4+CH2O",
+        "time_scale": -20.490057697580568,
+        "reverse_reaction": "1001"
+    },
+    "1001": {
+        "formula": "C2H4+CH2O=>propen1ol",
+        "time_scale": -22.24104107726831,
+        "reverse_reaction": "1000"
+    },
+    "1002": {
+        "formula": "propen1ol+OH=>CH2O+C2H3+H2O",
+        "time_scale": -17.843742793114544,
+        "reverse_reaction": "1003"
+    },
+    "1003": {
+        "formula": "CH2O+C2H3+H2O=>propen1ol+OH",
+        "time_scale": -25.899908665556506,
+        "reverse_reaction": "1002"
+    },
+    "1004": {
+        "formula": "propen1ol+H=>CH2O+C2H3+H2",
+        "time_scale": -21.85446531220053,
+        "reverse_reaction": "1005"
+    },
+    "1005": {
+        "formula": "CH2O+C2H3+H2=>propen1ol+H",
+        "time_scale": -26.55903807421099,
+        "reverse_reaction": "1004"
+    },
+    "1006": {
+        "formula": "propen1ol+O=>CH2O+C2H3+OH",
+        "time_scale": -22.089832208686808,
+        "reverse_reaction": "1007"
+    },
+    "1007": {
+        "formula": "CH2O+C2H3+OH=>propen1ol+O",
+        "time_scale": -28.060275318263564,
+        "reverse_reaction": "1006"
+    },
+    "1008": {
+        "formula": "propen1ol+HO2=>CH2O+C2H3+H2O2",
+        "time_scale": -17.471256352000644,
+        "reverse_reaction": "1009"
+    },
+    "1009": {
+        "formula": "CH2O+C2H3+H2O2=>propen1ol+HO2",
+        "time_scale": -20.21541387438319,
+        "reverse_reaction": "1008"
+    },
+    "1010": {
+        "formula": "propen1ol+CH3OO=>CH2O+C2H3+CH3OOH",
+        "time_scale": -20.232675282526525,
+        "reverse_reaction": "1011"
+    },
+    "1011": {
+        "formula": "CH2O+C2H3+CH3OOH=>propen1ol+CH3OO",
+        "time_scale": -23.116102489173784,
+        "reverse_reaction": "1010"
+    },
+    "1012": {
+        "formula": "propen1ol+CH3=>CH2O+C2H3+CH4",
+        "time_scale": -22.989902214284896,
+        "reverse_reaction": "1013"
+    },
+    "1013": {
+        "formula": "CH2O+C2H3+CH4=>propen1ol+CH3",
+        "time_scale": -29.539351632641104,
+        "reverse_reaction": "1012"
+    },
+    "1014": {
+        "formula": "C3H6+OH=>allyl+H2O",
+        "time_scale": -13.23752828935951,
+        "reverse_reaction": "1015"
+    },
+    "1015": {
+        "formula": "allyl+H2O=>C3H6+OH",
+        "time_scale": -23.62092609528404,
+        "reverse_reaction": "1014"
+    },
+    "1016": {
+        "formula": "C3H6+OH=>propen1yl+H2O",
+        "time_scale": -14.274476053659974,
+        "reverse_reaction": "1017"
+    },
+    "1017": {
+        "formula": "propen1yl+H2O=>C3H6+OH",
+        "time_scale": -22.655788026663593,
+        "reverse_reaction": "1016"
+    },
+    "1018": {
+        "formula": "C3H6+OH=>propen2yl+H2O",
+        "time_scale": -14.296755012435856,
+        "reverse_reaction": "1019"
+    },
+    "1019": {
+        "formula": "propen2yl+H2O=>C3H6+OH",
+        "time_scale": -23.998984385933355,
+        "reverse_reaction": "1018"
+    },
+    "1020": {
+        "formula": "C3H6+OH=>allyl-alcohol+H",
+        "time_scale": -16.683191196552144,
+        "reverse_reaction": "1021"
+    },
+    "1021": {
+        "formula": "allyl-alcohol+H=>C3H6+OH",
+        "time_scale": -23.88256518970969,
+        "reverse_reaction": "1020"
+    },
+    "1022": {
+        "formula": "C3H6+OH=>ethenol+CH3",
+        "time_scale": -15.20634310838477,
+        "reverse_reaction": "1023"
+    },
+    "1023": {
+        "formula": "ethenol+CH3=>C3H6+OH",
+        "time_scale": -26.050319658968203,
+        "reverse_reaction": "1022"
+    },
+    "1024": {
+        "formula": "C3H6+OH=>propen1ol+H",
+        "time_scale": -16.169737278282064,
+        "reverse_reaction": "1025"
+    },
+    "1025": {
+        "formula": "propen1ol+H=>C3H6+OH",
+        "time_scale": -21.281374503085456,
+        "reverse_reaction": "1024"
+    },
+    "1026": {
+        "formula": "C3H6+OH=>propen2ol+H",
+        "time_scale": -16.40567212198116,
+        "reverse_reaction": "1027"
+    },
+    "1027": {
+        "formula": "propen2ol+H=>C3H6+OH",
+        "time_scale": -26.203684966606467,
+        "reverse_reaction": "1026"
+    },
+    "1028": {
+        "formula": "C3H6+OH=>acetaldehyde+CH3",
+        "time_scale": -16.64973590058481,
+        "reverse_reaction": "1029"
+    },
+    "1029": {
+        "formula": "acetaldehyde+CH3=>C3H6+OH",
+        "time_scale": -24.93545597013673,
+        "reverse_reaction": "1028"
+    },
+    "1030": {
+        "formula": "allyl+HO2=>prod_2",
+        "time_scale": -13.023141231227061,
+        "reverse_reaction": "1031"
+    },
+    "1031": {
+        "formula": "prod_2=>allyl+HO2",
+        "time_scale": -14.815430553079743,
+        "reverse_reaction": "1030"
+    },
+    "1032": {
+        "formula": "allyl+HO2=>acrolein+H2O",
+        "time_scale": -16.93710589067678,
+        "reverse_reaction": "1033"
+    },
+    "1033": {
+        "formula": "acrolein+H2O=>allyl+HO2",
+        "time_scale": -51.247481709896846,
+        "reverse_reaction": "1032"
+    },
+    "1034": {
+        "formula": "allyl+HO2=>allyloxy+OH",
+        "time_scale": -13.673152740738297,
+        "reverse_reaction": "1035"
+    },
+    "1035": {
+        "formula": "allyloxy+OH=>allyl+HO2",
+        "time_scale": -24.465005960826005,
+        "reverse_reaction": "1034"
+    },
+    "1036": {
+        "formula": "prod_2=>acrolein+H2O",
+        "time_scale": -14.310190324333124,
+        "reverse_reaction": "1037"
+    },
+    "1037": {
+        "formula": "acrolein+H2O=>prod_2",
+        "time_scale": -46.828276821700506,
+        "reverse_reaction": "1036"
+    },
+    "1038": {
+        "formula": "prod_2=>allyloxy+OH",
+        "time_scale": -10.503322470180626,
+        "reverse_reaction": "1039"
+    },
+    "1039": {
+        "formula": "allyloxy+OH=>prod_2",
+        "time_scale": -19.502886368415652,
+        "reverse_reaction": "1038"
+    },
+    "1040": {
+        "formula": "allyloxy=>C2H3+CH2O",
+        "time_scale": -11.818060708746597,
+        "reverse_reaction": "1041"
+    },
+    "1041": {
+        "formula": "C2H3+CH2O=>allyloxy",
+        "time_scale": -19.989791752983294,
+        "reverse_reaction": "1040"
+    },
+    "1042": {
+        "formula": "allyloxy=>vinoxylmethyl",
+        "time_scale": -10.34366827740584,
+        "reverse_reaction": "1043"
+    },
+    "1043": {
+        "formula": "vinoxylmethyl=>allyloxy",
+        "time_scale": -10.378647407457155,
+        "reverse_reaction": "1042"
+    },
+    "1044": {
+        "formula": "allyloxy=>formylethyl",
+        "time_scale": -11.408426892745023,
+        "reverse_reaction": "1045"
+    },
+    "1045": {
+        "formula": "formylethyl=>allyloxy",
+        "time_scale": -16.836021029417385,
+        "reverse_reaction": "1044"
+    },
+    "1046": {
+        "formula": "allyloxy=>acrolein+H",
+        "time_scale": -10.729047183195664,
+        "reverse_reaction": "1047"
+    },
+    "1047": {
+        "formula": "acrolein+H=>allyloxy",
+        "time_scale": -19.17117444796052,
+        "reverse_reaction": "1046"
+    },
+    "1048": {
+        "formula": "allyloxy=>C2H4+HCO",
+        "time_scale": -11.53968659863939,
+        "reverse_reaction": "1049"
+    },
+    "1049": {
+        "formula": "C2H4+HCO=>allyloxy",
+        "time_scale": -27.84733772358488,
+        "reverse_reaction": "1048"
+    },
+    "1050": {
+        "formula": "vinoxylmethyl=>C2H3+CH2O",
+        "time_scale": -12.35545146888524,
+        "reverse_reaction": "1051"
+    },
+    "1051": {
+        "formula": "C2H3+CH2O=>vinoxylmethyl",
+        "time_scale": -20.492203383070624,
+        "reverse_reaction": "1050"
+    },
+    "1052": {
+        "formula": "vinoxylmethyl=>formylethyl",
+        "time_scale": -12.663254376843696,
+        "reverse_reaction": "1053"
+    },
+    "1053": {
+        "formula": "formylethyl=>vinoxylmethyl",
+        "time_scale": -18.055869383464742,
+        "reverse_reaction": "1052"
+    },
+    "1054": {
+        "formula": "vinoxylmethyl=>acrolein+H",
+        "time_scale": -11.60705410621074,
+        "reverse_reaction": "1055"
+    },
+    "1055": {
+        "formula": "acrolein+H=>vinoxylmethyl",
+        "time_scale": -20.01420224092428,
+        "reverse_reaction": "1054"
+    },
+    "1056": {
+        "formula": "vinoxylmethyl=>C2H4+HCO",
+        "time_scale": -12.42347819338137,
+        "reverse_reaction": "1057"
+    },
+    "1057": {
+        "formula": "C2H4+HCO=>vinoxylmethyl",
+        "time_scale": -28.696150188275542,
+        "reverse_reaction": "1056"
+    },
+    "1058": {
+        "formula": "formylethyl=>C2H3+CH2O",
+        "time_scale": -18.722736656396776,
+        "reverse_reaction": "1059"
+    },
+    "1059": {
+        "formula": "C2H3+CH2O=>formylethyl",
+        "time_scale": -21.466873563961116,
+        "reverse_reaction": "1058"
+    },
+    "1060": {
+        "formula": "formylethyl=>acrolein+H",
+        "time_scale": -15.340402536638061,
+        "reverse_reaction": "1061"
+    },
+    "1061": {
+        "formula": "acrolein+H=>formylethyl",
+        "time_scale": -18.354935664730554,
+        "reverse_reaction": "1060"
+    },
+    "1062": {
+        "formula": "formylethyl=>C2H4+HCO",
+        "time_scale": -11.385101499361603,
+        "reverse_reaction": "1063"
+    },
+    "1063": {
+        "formula": "C2H4+HCO=>formylethyl",
+        "time_scale": -22.26515848763473,
+        "reverse_reaction": "1062"
+    },
+    "1064": {
+        "formula": "C2H3+CH2O=>acrolein+H",
+        "time_scale": -19.862106290473395,
+        "reverse_reaction": "1065"
+    },
+    "1065": {
+        "formula": "acrolein+H=>C2H3+CH2O",
+        "time_scale": -20.13250251100155,
+        "reverse_reaction": "1064"
+    },
+    "1066": {
+        "formula": "C2H3+CH2O=>C2H4+HCO",
+        "time_scale": -20.716241164750137,
+        "reverse_reaction": "1067"
+    },
+    "1067": {
+        "formula": "C2H4+HCO=>C2H3+CH2O",
+        "time_scale": -28.852161245458923,
+        "reverse_reaction": "1066"
+    },
+    "1068": {
+        "formula": "O2+npropyl=>npropyloo",
+        "time_scale": -7.2830048908469776,
+        "reverse_reaction": "1069"
+    },
+    "1069": {
+        "formula": "npropyloo=>O2+npropyl",
+        "time_scale": -7.329834267133421,
+        "reverse_reaction": "1068"
+    },
+    "1070": {
+        "formula": "O2+npropyl=>QOOH_2",
+        "time_scale": -12.201538229771405,
+        "reverse_reaction": "1071"
+    },
+    "1071": {
+        "formula": "QOOH_2=>O2+npropyl",
+        "time_scale": -15.915986981096925,
+        "reverse_reaction": "1070"
+    },
+    "1072": {
+        "formula": "O2+npropyl=>QOOH_1",
+        "time_scale": -10.026224664615034,
+        "reverse_reaction": "1073"
+    },
+    "1073": {
+        "formula": "QOOH_1=>O2+npropyl",
+        "time_scale": -10.342775342619415,
+        "reverse_reaction": "1072"
+    },
+    "1074": {
+        "formula": "O2+npropyl=>HO2+C3H6",
+        "time_scale": -10.388777092660916,
+        "reverse_reaction": "1075"
+    },
+    "1075": {
+        "formula": "HO2+C3H6=>O2+npropyl",
+        "time_scale": -16.55301255211805,
+        "reverse_reaction": "1074"
+    },
+    "1076": {
+        "formula": "O2+npropyl=>OH+propoxide",
+        "time_scale": -11.419518404655822,
+        "reverse_reaction": "1077"
+    },
+    "1077": {
+        "formula": "OH+propoxide=>O2+npropyl",
+        "time_scale": -30.208022979900935,
+        "reverse_reaction": "1076"
+    },
+    "1078": {
+        "formula": "npropyloo=>QOOH_2",
+        "time_scale": -10.433848949489326,
+        "reverse_reaction": "1079"
+    },
+    "1079": {
+        "formula": "QOOH_2=>npropyloo",
+        "time_scale": -14.101468324528401,
+        "reverse_reaction": "1078"
+    },
+    "1080": {
+        "formula": "npropyloo=>QOOH_1",
+        "time_scale": -8.076882844011022,
+        "reverse_reaction": "1081"
+    },
+    "1081": {
+        "formula": "QOOH_1=>npropyloo",
+        "time_scale": -8.346604145728959,
+        "reverse_reaction": "1080"
+    },
+    "1082": {
+        "formula": "npropyloo=>HO2+C3H6",
+        "time_scale": -9.149638140452437,
+        "reverse_reaction": "1083"
+    },
+    "1083": {
+        "formula": "HO2+C3H6=>npropyloo",
+        "time_scale": -15.26704422362313,
+        "reverse_reaction": "1082"
+    },
+    "1084": {
+        "formula": "npropyloo=>OH+propoxide",
+        "time_scale": -10.343620974585326,
+        "reverse_reaction": "1085"
+    },
+    "1085": {
+        "formula": "OH+propoxide=>npropyloo",
+        "time_scale": -29.085296173543995,
+        "reverse_reaction": "1084"
+    },
+    "1086": {
+        "formula": "QOOH_2=>QOOH_1",
+        "time_scale": -15.876122291182474,
+        "reverse_reaction": "1087"
+    },
+    "1087": {
+        "formula": "QOOH_1=>QOOH_2",
+        "time_scale": -12.478224217861335,
+        "reverse_reaction": "1086"
+    },
+    "1088": {
+        "formula": "QOOH_2=>HO2+C3H6",
+        "time_scale": -11.540639148598789,
+        "reverse_reaction": "1089"
+    },
+    "1089": {
+        "formula": "HO2+C3H6=>QOOH_2",
+        "time_scale": -13.990425856730404,
+        "reverse_reaction": "1088"
+    },
+    "1090": {
+        "formula": "QOOH_2=>OH+propoxide",
+        "time_scale": -10.475892170495108,
+        "reverse_reaction": "1091"
+    },
+    "1091": {
+        "formula": "OH+propoxide=>QOOH_2",
+        "time_scale": -25.5499479944147,
+        "reverse_reaction": "1090"
+    },
+    "1092": {
+        "formula": "QOOH_1=>HO2+C3H6",
+        "time_scale": -12.78144495810454,
+        "reverse_reaction": "1093"
+    },
+    "1093": {
+        "formula": "HO2+C3H6=>QOOH_1",
+        "time_scale": -18.629129739557296,
+        "reverse_reaction": "1092"
+    },
+    "1094": {
+        "formula": "QOOH_1=>OH+propoxide",
+        "time_scale": -13.86263617181568,
+        "reverse_reaction": "1095"
+    },
+    "1095": {
+        "formula": "OH+propoxide=>QOOH_1",
+        "time_scale": -32.33459006905641,
+        "reverse_reaction": "1094"
+    },
+    "1096": {
+        "formula": "O2+ipropyl=>ipropyloo",
+        "time_scale": -6.8002179449852,
+        "reverse_reaction": "1097"
+    },
+    "1097": {
+        "formula": "ipropyloo=>O2+ipropyl",
+        "time_scale": -6.817397896773033,
+        "reverse_reaction": "1096"
+    },
+    "1098": {
+        "formula": "O2+ipropyl=>QOOH_3",
+        "time_scale": -11.648127146770868,
+        "reverse_reaction": "1099"
+    },
+    "1099": {
+        "formula": "QOOH_3=>O2+ipropyl",
+        "time_scale": -14.475529412598961,
+        "reverse_reaction": "1098"
+    },
+    "1100": {
+        "formula": "O2+ipropyl=>HO2+C3H6",
+        "time_scale": -9.031382175607432,
+        "reverse_reaction": "1101"
+    },
+    "1101": {
+        "formula": "HO2+C3H6=>O2+ipropyl",
+        "time_scale": -14.324318532015239,
+        "reverse_reaction": "1100"
+    },
+    "1102": {
+        "formula": "O2+ipropyl=>OH+propoxide",
+        "time_scale": -11.162859699556757,
+        "reverse_reaction": "1103"
+    },
+    "1103": {
+        "formula": "OH+propoxide=>O2+ipropyl",
+        "time_scale": -29.08006517175254,
+        "reverse_reaction": "1102"
+    },
+    "1104": {
+        "formula": "ipropyloo=>QOOH_3",
+        "time_scale": -10.742394835037778,
+        "reverse_reaction": "1105"
+    },
+    "1105": {
+        "formula": "QOOH_3=>ipropyloo",
+        "time_scale": -13.552617149078038,
+        "reverse_reaction": "1104"
+    },
+    "1106": {
+        "formula": "ipropyloo=>HO2+C3H6",
+        "time_scale": -8.29178040421392,
+        "reverse_reaction": "1107"
+    },
+    "1107": {
+        "formula": "HO2+C3H6=>ipropyloo",
+        "time_scale": -13.567536808833895,
+        "reverse_reaction": "1106"
+    },
+    "1108": {
+        "formula": "ipropyloo=>OH+propoxide",
+        "time_scale": -10.895371810600121,
+        "reverse_reaction": "1109"
+    },
+    "1109": {
+        "formula": "OH+propoxide=>ipropyloo",
+        "time_scale": -28.795397331008072,
+        "reverse_reaction": "1108"
+    },
+    "1110": {
+        "formula": "QOOH_3=>HO2+C3H6",
+        "time_scale": -12.209880201174766,
+        "reverse_reaction": "1111"
+    },
+    "1111": {
+        "formula": "HO2+C3H6=>QOOH_3",
+        "time_scale": -14.67541429175448,
+        "reverse_reaction": "1110"
+    },
+    "1112": {
+        "formula": "QOOH_3=>OH+propoxide",
+        "time_scale": -10.767951640698742,
+        "reverse_reaction": "1113"
+    },
+    "1113": {
+        "formula": "OH+propoxide=>QOOH_3",
+        "time_scale": -25.85775484706643,
+        "reverse_reaction": "1112"
+    },
+    "1114": {
+        "formula": "HO2+C3H6=>OH+propoxide",
+        "time_scale": -13.469006887195349,
+        "reverse_reaction": "1115"
+    },
+    "1115": {
+        "formula": "OH+propoxide=>HO2+C3H6",
+        "time_scale": -26.093276002983323,
+        "reverse_reaction": "1114"
+    },
+    "1116": {
+        "formula": "O2+QOOH_1=>well_1",
+        "time_scale": -7.6490600852498885,
+        "reverse_reaction": "1117"
+    },
+    "1117": {
+        "formula": "well_1=>O2+QOOH_1",
+        "time_scale": -7.731719162229348,
+        "reverse_reaction": "1116"
+    },
+    "1118": {
+        "formula": "O2+QOOH_1=>OH+OH+frag_1",
+        "time_scale": -10.551654222881627,
+        "reverse_reaction": "1119"
+    },
+    "1119": {
+        "formula": "OH+OH+frag_1=>O2+QOOH_1",
+        "time_scale": -48.43716607579067,
+        "reverse_reaction": "1118"
+    },
+    "1120": {
+        "formula": "O2+QOOH_1=>HO2+prod_2",
+        "time_scale": -11.157378263553774,
+        "reverse_reaction": "1121"
+    },
+    "1121": {
+        "formula": "HO2+prod_2=>O2+QOOH_1",
+        "time_scale": -18.312120144794267,
+        "reverse_reaction": "1120"
+    },
+    "1122": {
+        "formula": "O2+QOOH_1=>OH+prod_3",
+        "time_scale": -12.440137905922956,
+        "reverse_reaction": "1123"
+    },
+    "1123": {
+        "formula": "OH+prod_3=>O2+QOOH_1",
+        "time_scale": -31.33728202943607,
+        "reverse_reaction": "1122"
+    },
+    "1124": {
+        "formula": "O2+QOOH_2=>well_2",
+        "time_scale": -10.42483306002707,
+        "reverse_reaction": "1125"
+    },
+    "1125": {
+        "formula": "well_2=>O2+QOOH_2",
+        "time_scale": -10.441875678374258,
+        "reverse_reaction": "1124"
+    },
+    "1126": {
+        "formula": "O2+QOOH_2=>well_3",
+        "time_scale": -14.36780533866163,
+        "reverse_reaction": "1127"
+    },
+    "1127": {
+        "formula": "well_3=>O2+QOOH_2",
+        "time_scale": -14.456205869488262,
+        "reverse_reaction": "1126"
+    },
+    "1128": {
+        "formula": "O2+QOOH_2=>well_5",
+        "time_scale": -17.73463169591189,
+        "reverse_reaction": "1129"
+    },
+    "1129": {
+        "formula": "well_5=>O2+QOOH_2",
+        "time_scale": -18.423733757801685,
+        "reverse_reaction": "1128"
+    },
+    "1130": {
+        "formula": "O2+QOOH_2=>OH+prod_3",
+        "time_scale": -18.111731563514358,
+        "reverse_reaction": "1131"
+    },
+    "1131": {
+        "formula": "OH+prod_3=>O2+QOOH_2",
+        "time_scale": -33.61097761370633,
+        "reverse_reaction": "1130"
+    },
+    "1132": {
+        "formula": "O2+QOOH_2=>OH+OH+frag_4",
+        "time_scale": -17.53928918449391,
+        "reverse_reaction": "1133"
+    },
+    "1133": {
+        "formula": "OH+OH+frag_4=>O2+QOOH_2",
+        "time_scale": -57.783061891193626,
+        "reverse_reaction": "1132"
+    },
+    "1134": {
+        "formula": "O2+QOOH_2=>OH+OH+frag_5",
+        "time_scale": -14.376989621422451,
+        "reverse_reaction": "1135"
+    },
+    "1135": {
+        "formula": "OH+OH+frag_5=>O2+QOOH_2",
+        "time_scale": -55.57697698150687,
+        "reverse_reaction": "1134"
+    },
+    "1136": {
+        "formula": "O2+QOOH_2=>HO2+prod_2",
+        "time_scale": -13.610396620686634,
+        "reverse_reaction": "1137"
+    },
+    "1137": {
+        "formula": "HO2+prod_2=>O2+QOOH_2",
+        "time_scale": -17.36724042860599,
+        "reverse_reaction": "1136"
+    },
+    "1138": {
+        "formula": "O2+QOOH_2=>HO2+prod_6",
+        "time_scale": -14.312298294083723,
+        "reverse_reaction": "1139"
+    },
+    "1139": {
+        "formula": "HO2+prod_6=>O2+QOOH_2",
+        "time_scale": -30.1857459750959,
+        "reverse_reaction": "1138"
+    },
+    "1140": {
+        "formula": "O2+QOOH_2=>HO2+prod_7",
+        "time_scale": -17.268355267567507,
+        "reverse_reaction": "1141"
+    },
+    "1141": {
+        "formula": "HO2+prod_7=>O2+QOOH_2",
+        "time_scale": -32.57193794551048,
+        "reverse_reaction": "1140"
+    },
+    "1142": {
+        "formula": "O2+QOOH_2=>O2+QOOH_3",
+        "time_scale": -15.474042556126115,
+        "reverse_reaction": "1143"
+    },
+    "1143": {
+        "formula": "O2+QOOH_3=>O2+QOOH_2",
+        "time_scale": -15.458295173678017,
+        "reverse_reaction": "1142"
+    },
+    "1144": {
+        "formula": "O2+QOOH_3=>well_2",
+        "time_scale": -14.485113996303928,
+        "reverse_reaction": "1145"
+    },
+    "1145": {
+        "formula": "well_2=>O2+QOOH_3",
+        "time_scale": -14.517903997099213,
+        "reverse_reaction": "1144"
+    },
+    "1146": {
+        "formula": "O2+QOOH_3=>well_3",
+        "time_scale": -10.910143684617033,
+        "reverse_reaction": "1147"
+    },
+    "1147": {
+        "formula": "well_3=>O2+QOOH_3",
+        "time_scale": -11.014291597891761,
+        "reverse_reaction": "1146"
+    },
+    "1148": {
+        "formula": "O2+QOOH_3=>well_5",
+        "time_scale": -14.500635655946105,
+        "reverse_reaction": "1149"
+    },
+    "1149": {
+        "formula": "well_5=>O2+QOOH_3",
+        "time_scale": -15.205485100283997,
+        "reverse_reaction": "1148"
+    },
+    "1150": {
+        "formula": "O2+QOOH_3=>OH+prod_3",
+        "time_scale": -15.101875194556406,
+        "reverse_reaction": "1151"
+    },
+    "1151": {
+        "formula": "OH+prod_3=>O2+QOOH_3",
+        "time_scale": -30.61686862719648,
+        "reverse_reaction": "1150"
+    },
+    "1152": {
+        "formula": "O2+QOOH_3=>OH+OH+frag_4",
+        "time_scale": -14.35547685018698,
+        "reverse_reaction": "1153"
+    },
+    "1153": {
+        "formula": "OH+OH+frag_4=>O2+QOOH_3",
+        "time_scale": -54.614996939334794,
+        "reverse_reaction": "1152"
+    },
+    "1154": {
+        "formula": "O2+QOOH_3=>OH+OH+frag_5",
+        "time_scale": -18.189722448252322,
+        "reverse_reaction": "1155"
+    },
+    "1155": {
+        "formula": "OH+OH+frag_5=>O2+QOOH_3",
+        "time_scale": -59.40545719078484,
+        "reverse_reaction": "1154"
+    },
+    "1156": {
+        "formula": "O2+QOOH_3=>HO2+prod_2",
+        "time_scale": -16.265920134946093,
+        "reverse_reaction": "1157"
+    },
+    "1157": {
+        "formula": "HO2+prod_2=>O2+QOOH_3",
+        "time_scale": -20.038511325313547,
+        "reverse_reaction": "1156"
+    },
+    "1158": {
+        "formula": "O2+QOOH_3=>HO2+prod_6",
+        "time_scale": -18.034333808382822,
+        "reverse_reaction": "1159"
+    },
+    "1159": {
+        "formula": "HO2+prod_6=>O2+QOOH_3",
+        "time_scale": -33.9235288718431,
+        "reverse_reaction": "1158"
+    },
+    "1160": {
+        "formula": "O2+QOOH_3=>HO2+prod_7",
+        "time_scale": -14.208118117519124,
+        "reverse_reaction": "1161"
+    },
+    "1161": {
+        "formula": "HO2+prod_7=>O2+QOOH_3",
+        "time_scale": -29.527448177910188,
+        "reverse_reaction": "1160"
+    },
+    "1162": {
+        "formula": "well_1=>OH+prod_1",
+        "time_scale": -8.423734415556078,
+        "reverse_reaction": "1163"
+    },
+    "1163": {
+        "formula": "OH+prod_1=>well_1",
+        "time_scale": -33.367915138465136,
+        "reverse_reaction": "1162"
+    },
+    "1164": {
+        "formula": "well_1=>HO2+prod_2",
+        "time_scale": -10.028870926190935,
+        "reverse_reaction": "1165"
+    },
+    "1165": {
+        "formula": "HO2+prod_2=>well_1",
+        "time_scale": -17.10095373045197,
+        "reverse_reaction": "1164"
+    },
+    "1166": {
+        "formula": "well_1=>OH+prod_3",
+        "time_scale": -11.310595157678582,
+        "reverse_reaction": "1167"
+    },
+    "1167": {
+        "formula": "OH+prod_3=>well_1",
+        "time_scale": -30.12508020421224,
+        "reverse_reaction": "1166"
+    },
+    "1168": {
+        "formula": "well_2=>well_3",
+        "time_scale": -11.887676289413585,
+        "reverse_reaction": "1169"
+    },
+    "1169": {
+        "formula": "well_3=>well_2",
+        "time_scale": -11.95903420189303,
+        "reverse_reaction": "1168"
+    },
+    "1170": {
+        "formula": "well_2=>well_5",
+        "time_scale": -16.257815778206762,
+        "reverse_reaction": "1171"
+    },
+    "1171": {
+        "formula": "well_5=>well_2",
+        "time_scale": -16.92987522174937,
+        "reverse_reaction": "1170"
+    },
+    "1172": {
+        "formula": "well_2=>OH+prod_3",
+        "time_scale": -17.143439351167135,
+        "reverse_reaction": "1173"
+    },
+    "1173": {
+        "formula": "OH+prod_3=>well_2",
+        "time_scale": -32.625642783011926,
+        "reverse_reaction": "1172"
+    },
+    "1174": {
+        "formula": "well_2=>OH+prod_4",
+        "time_scale": -16.15496040945614,
+        "reverse_reaction": "1175"
+    },
+    "1175": {
+        "formula": "OH+prod_4=>well_2",
+        "time_scale": -42.74177206340925,
+        "reverse_reaction": "1174"
+    },
+    "1176": {
+        "formula": "well_2=>OH+prod_5",
+        "time_scale": -12.624042713219179,
+        "reverse_reaction": "1177"
+    },
+    "1177": {
+        "formula": "OH+prod_5=>well_2",
+        "time_scale": -38.49117246163621,
+        "reverse_reaction": "1176"
+    },
+    "1178": {
+        "formula": "well_2=>HO2+prod_2",
+        "time_scale": -12.101746434796908,
+        "reverse_reaction": "1179"
+    },
+    "1179": {
+        "formula": "HO2+prod_2=>well_2",
+        "time_scale": -15.841547624369076,
+        "reverse_reaction": "1178"
+    },
+    "1180": {
+        "formula": "well_2=>HO2+prod_6",
+        "time_scale": -12.873391013665456,
+        "reverse_reaction": "1181"
+    },
+    "1181": {
+        "formula": "HO2+prod_6=>well_2",
+        "time_scale": -28.729796076330448,
+        "reverse_reaction": "1180"
+    },
+    "1182": {
+        "formula": "well_2=>HO2+prod_7",
+        "time_scale": -16.19156782316571,
+        "reverse_reaction": "1183"
+    },
+    "1183": {
+        "formula": "HO2+prod_7=>well_2",
+        "time_scale": -31.478107882761492,
+        "reverse_reaction": "1182"
+    },
+    "1184": {
+        "formula": "well_3=>well_5",
+        "time_scale": -11.913638694648162,
+        "reverse_reaction": "1185"
+    },
+    "1185": {
+        "formula": "well_5=>well_3",
+        "time_scale": -12.514340225711326,
+        "reverse_reaction": "1184"
+    },
+    "1186": {
+        "formula": "well_3=>OH+prod_3",
+        "time_scale": -13.345125778247521,
+        "reverse_reaction": "1187"
+    },
+    "1187": {
+        "formula": "OH+prod_3=>well_3",
+        "time_scale": -28.755971297612867,
+        "reverse_reaction": "1186"
+    },
+    "1188": {
+        "formula": "well_3=>OH+prod_4",
+        "time_scale": -11.925492637645055,
+        "reverse_reaction": "1189"
+    },
+    "1189": {
+        "formula": "OH+prod_4=>well_3",
+        "time_scale": -38.44094637911872,
+        "reverse_reaction": "1188"
+    },
+    "1190": {
+        "formula": "well_3=>OH+prod_5",
+        "time_scale": -16.429123323119953,
+        "reverse_reaction": "1191"
+    },
+    "1191": {
+        "formula": "OH+prod_5=>well_3",
+        "time_scale": -42.22489515905754,
+        "reverse_reaction": "1190"
+    },
+    "1192": {
+        "formula": "well_3=>HO2+prod_2",
+        "time_scale": -14.584548110777662,
+        "reverse_reaction": "1193"
+    },
+    "1193": {
+        "formula": "HO2+prod_2=>well_3",
+        "time_scale": -18.252991387870388,
+        "reverse_reaction": "1192"
+    },
+    "1194": {
+        "formula": "well_3=>HO2+prod_6",
+        "time_scale": -16.564748170884883,
+        "reverse_reaction": "1195"
+    },
+    "1195": {
+        "formula": "HO2+prod_6=>well_3",
+        "time_scale": -32.34979532107043,
+        "reverse_reaction": "1194"
+    },
+    "1196": {
+        "formula": "well_3=>HO2+prod_7",
+        "time_scale": -12.216108562817904,
+        "reverse_reaction": "1197"
+    },
+    "1197": {
+        "formula": "HO2+prod_7=>well_3",
+        "time_scale": -27.431290709934242,
+        "reverse_reaction": "1196"
+    },
+    "1198": {
+        "formula": "well_5=>OH+prod_3",
+        "time_scale": -12.051716319611389,
+        "reverse_reaction": "1199"
+    },
+    "1199": {
+        "formula": "OH+prod_3=>well_5",
+        "time_scale": -26.86186030791357,
+        "reverse_reaction": "1198"
+    },
+    "1200": {
+        "formula": "well_5=>OH+prod_4",
+        "time_scale": -17.006496014052544,
+        "reverse_reaction": "1201"
+    },
+    "1201": {
+        "formula": "OH+prod_4=>well_5",
+        "time_scale": -42.92124822446305,
+        "reverse_reaction": "1200"
+    },
+    "1202": {
+        "formula": "well_5=>OH+prod_5",
+        "time_scale": -21.08608692107283,
+        "reverse_reaction": "1203"
+    },
+    "1203": {
+        "formula": "OH+prod_5=>well_5",
+        "time_scale": -46.281157225947254,
+        "reverse_reaction": "1202"
+    },
+    "1204": {
+        "formula": "well_5=>HO2+prod_2",
+        "time_scale": -13.539227637514653,
+        "reverse_reaction": "1205"
+    },
+    "1205": {
+        "formula": "HO2+prod_2=>well_5",
+        "time_scale": -16.60696938354421,
+        "reverse_reaction": "1204"
+    },
+    "1206": {
+        "formula": "well_5=>HO2+prod_6",
+        "time_scale": -21.012637698305568,
+        "reverse_reaction": "1207"
+    },
+    "1207": {
+        "formula": "HO2+prod_6=>well_5",
+        "time_scale": -36.19698331742795,
+        "reverse_reaction": "1206"
+    },
+    "1208": {
+        "formula": "well_5=>HO2+prod_7",
+        "time_scale": -16.915211249887285,
+        "reverse_reaction": "1209"
+    },
+    "1209": {
+        "formula": "HO2+prod_7=>well_5",
+        "time_scale": -31.529691865940457,
+        "reverse_reaction": "1208"
+    },
+    "1210": {
+        "formula": "prod_6=>propen1oxy+OH",
+        "time_scale": -12.857625097955486,
+        "reverse_reaction": "1211"
+    },
+    "1211": {
+        "formula": "propen1oxy+OH=>prod_6",
+        "time_scale": -16.31477146713568,
+        "reverse_reaction": "1210"
+    },
+    "1212": {
+        "formula": "prod_7=>propen2oxy+OH",
+        "time_scale": -12.211650168683404,
+        "reverse_reaction": "1213"
+    },
+    "1213": {
+        "formula": "propen2oxy+OH=>prod_7",
+        "time_scale": -18.23266588723813,
+        "reverse_reaction": "1212"
+    },
+    "1214": {
+        "formula": "prod_1=>frag_1+OH",
+        "time_scale": -8.67863371011504,
+        "reverse_reaction": "1215"
+    },
+    "1215": {
+        "formula": "frag_1+OH=>prod_1",
+        "time_scale": -21.53730576313861,
+        "reverse_reaction": "1214"
+    },
+    "1216": {
+        "formula": "prod_3=>frag_3+OH",
+        "time_scale": -11.61391954514909,
+        "reverse_reaction": "1217"
+    },
+    "1217": {
+        "formula": "frag_3+OH=>prod_3",
+        "time_scale": -15.203367714385944,
+        "reverse_reaction": "1216"
+    },
+    "1218": {
+        "formula": "prod_4=>frag_4+OH",
+        "time_scale": -12.325046208060794,
+        "reverse_reaction": "1219"
+    },
+    "1219": {
+        "formula": "frag_4+OH=>prod_4",
+        "time_scale": -25.964964642463258,
+        "reverse_reaction": "1218"
+    },
+    "1220": {
+        "formula": "prod_5=>frag_5+OH",
+        "time_scale": -13.030188323653721,
+        "reverse_reaction": "1221"
+    },
+    "1221": {
+        "formula": "frag_5+OH=>prod_5",
+        "time_scale": -28.34600331697695,
+        "reverse_reaction": "1220"
+    },
+    "1222": {
+        "formula": "frag_1=>vinoxy+CH2O",
+        "time_scale": -8.672855056148723,
+        "reverse_reaction": "1223"
+    },
+    "1223": {
+        "formula": "vinoxy+CH2O=>frag_1",
+        "time_scale": -15.930347263398891,
+        "reverse_reaction": "1222"
+    },
+    "1224": {
+        "formula": "frag_4=>acetyl+CH2O",
+        "time_scale": -12.321013887825698,
+        "reverse_reaction": "1225"
+    },
+    "1225": {
+        "formula": "acetyl+CH2O=>frag_4",
+        "time_scale": -19.362668473745554,
+        "reverse_reaction": "1224"
+    },
+    "1226": {
+        "formula": "frag_5=>CH3+glyoxal",
+        "time_scale": -16.290799606132797,
+        "reverse_reaction": "1227"
+    },
+    "1227": {
+        "formula": "CH3+glyoxal=>frag_5",
+        "time_scale": -21.940925047338027,
+        "reverse_reaction": "1226"
+    },
+    "1228": {
+        "formula": "frag_5=>HCO+acetaldehyde",
+        "time_scale": -13.011298466200714,
+        "reverse_reaction": "1229"
+    },
+    "1229": {
+        "formula": "HCO+acetaldehyde=>frag_5",
+        "time_scale": -21.10557797687486,
+        "reverse_reaction": "1228"
+    }
+}
