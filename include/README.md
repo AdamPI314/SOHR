@@ -1,4 +1,6 @@
 # job.job_type
+* INITIATION
+* MISC
 * write_concentration_at_time_to_file
 * solve_ODEs_for_concentration_using_LSODE
 * solve_ODEs_for_concentration_using_SSA
