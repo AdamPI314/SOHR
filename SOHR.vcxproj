@@ -92,12 +92,6 @@
     <ClCompile Include="src\tools\species_group\species_group.cpp" />
     <ClCompile Include="src\tools\union_find\unionFind.cpp" />
   </ItemGroup>
-  <PropertyGroup Label="Globals">
-    <VCProjectVersion>15.0</VCProjectVersion>
-    <ProjectGuid>{7E189593-A582-41D3-9347-CF752130521D}</ProjectGuid>
-    <RootNamespace>boosttest1</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
-  </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
