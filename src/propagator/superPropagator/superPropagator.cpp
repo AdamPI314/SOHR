@@ -905,6 +905,20 @@ namespace propagator_sr {
 			x[boost::lexical_cast<std::size_t>(key1.first)] = key1.second.get_value<double>();
 		}
 
+		//normalized initial concentration
+		if (this->pgt_pt.get<std::string>("propagator.normalize_initial_concentration") == "yes") {
+			//renormalization
+			double total_conc = 0.0;
+			for (std::size_t i = 0; i < nkk; ++i) {
+				total_conc += x[i];
+			}//for
+			if (total_conc > 0) {
+				for (std::size_t i = 0; i < nkk; ++i) {
+					x[i] /= total_conc;
+				}//for
+			}
+		}//if
+
 	}//read_configuration
 
 
@@ -941,7 +955,7 @@ namespace propagator_sr {
 		}
 		else if ((lsodestore.mf == 21) || (lsodestore.mf == 22))
 		{
-			lrw_lsode = 22 + 9 * neq + neq*neq + 1;
+			lrw_lsode = 22 + 9 * neq + neq * neq + 1;
 			liw_lsode = 20 + neq + 1;
 			fout << "  lrw_lsode =   " << lrw_lsode << std::endl;
 			fout << "  liw_lsode =   " << liw_lsode << std::endl;
@@ -978,7 +992,7 @@ namespace propagator_sr {
 
 			if ((lsodestore.jt == 1) || (lsodestore.jt == 2))
 			{
-				lrs_pgtsode = 22 + 9 * neq + neq*neq;
+				lrs_pgtsode = 22 + 9 * neq + neq * neq;
 				fout << "  lrs_pgtsode =   " << lrs_pgtsode << std::endl;
 				fout << std::endl << "  Please make sure that the values of constants 'lrw' is bigger than " << std::max(lrn_pgtsode, lrs_pgtsode) << std::endl;
 			}
@@ -1027,7 +1041,7 @@ namespace propagator_sr {
 
 		//set the reaction rate of fast reactions to be zero
 		//set_chattering_reaction_rates_to_zero_pgt();
-	}
+}
 
 
 #ifdef __CHEMKIN_AVAILABLE_
@@ -1070,7 +1084,7 @@ namespace propagator_sr {
 			for (int i = 0; i < nkk; ++i) {
 				concentration_data_pgt[i][k] = c_t[i];
 			}
-	}
+		}
 	}
 
 #endif // __CHEMKIN_AVAILABLE_
@@ -1349,7 +1363,7 @@ namespace propagator_sr {
 		double diff = in_time - time_data_pgt.back();
 		if (diff > 0) {
 			in_time = time_data_pgt.back();
-			return spe_drc_int_pgt[index]->interp(in_time) + diff*spe_drc_data_pgt[index].back();
+			return spe_drc_int_pgt[index]->interp(in_time) + diff * spe_drc_data_pgt[index].back();
 		}
 		else {
 			return spe_drc_int_pgt[index]->interp(in_time);

@@ -506,10 +506,15 @@ void driver::evaluate_ignition_delay_time_once(const std::string &main_cwd, cons
 	fileIO::fileIO::read_generate_uncertainties_w2f_nominal(uncertainties,
 		main_cwd + std::string("/input/uncertainties.inp"));
 
-		pgt::dlsodePropagator pgt_obj(uncertainties, main_cwd);
+	pgt::dlsodePropagator pgt_obj(uncertainties, main_cwd);
 
-		double target_time_db = pgt_obj.return_temperature_target_time();
-		std::cout << target_time_db << std::endl;
+	double ignition_time_db = pgt_obj.return_temperature_target_time();
+
+	std::ofstream fout(main_cwd + std::string("/output/ign_local.csv"));
+	std::cout << ignition_time_db << std::endl;
+	fout << ignition_time_db << std::endl;
+
+	fout.clear(); fout.close();
 }
 
 #endif // __NO_USE_MPI_
