@@ -511,8 +511,8 @@ void driver::evaluate_ignition_delay_time_once(const std::string &main_cwd, cons
 	double ignition_time_db = pgt_obj.return_temperature_target_time();
 
 	std::ofstream fout(main_cwd + std::string("/output/ign_local.csv"));
-	std::cout << ignition_time_db << std::endl;
-	fout << ignition_time_db << std::endl;
+	std::cout << std::setprecision(std::numeric_limits<double>::max_digits10 + 1) << ignition_time_db << std::endl;
+	fout << std::setprecision(std::numeric_limits<double>::max_digits10 + 1) << ignition_time_db << std::endl;
 
 	fout.clear(); fout.close();
 }
