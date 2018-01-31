@@ -453,7 +453,6 @@ namespace propagator_sr {
 		//	chem_init(Temp, ckstore.pressure, neq-1, x_t, this->cwd_dl+std::string("/input/setting.cfg"));
 		this->read_configuration(Temp, ckstore.pressure, neq - 1, x_t);
 
-
 		//add temperature to initial conditions for lsode.
 		xgst[neq - 1] = Temp;
 		// Read time step 'dt(s)'.
