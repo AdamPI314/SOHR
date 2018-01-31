@@ -62,6 +62,8 @@ namespace driver {
 	void evaluate_path_AT_no_IT_over_time(const std::string &main_cwd, const boost::property_tree::ptree &pt);
 	/*AT represents arrival time. SP represents survial probability*/
 	void evaluate_path_AT_with_SP_over_time(const std::string &main_cwd, const boost::property_tree::ptree &pt);
+	/*write concentration at a time to file*/
+	void write_concentration_at_time_to_file(const std::string &main_cwd, const boost::property_tree::ptree &pt);
 	/*change initial concentrations, see how that will affect ignition delay time,
 	 save local uncertainties to file local_uncertainty.csv, save ignition delay time to ign.csv*/
 	void evaluate_ignition_delay_time_once(const std::string &main_cwd, const boost::property_tree::ptree &pt);
