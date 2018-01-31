@@ -498,6 +498,24 @@ void driver::evaluate_path_AT_with_SP_over_time(const std::string &main_cwd, con
 	fout2.close();
 }
 
+void driver::write_concentration_at_time_to_file(const std::string &main_cwd, const boost::property_tree::ptree &pt)
+{
+	std::vector<double> uncertainties;
+
+	fileIO::fileIO::read_generate_uncertainties_w2f_nominal(uncertainties,
+		main_cwd + std::string("/input/uncertainties.inp"));
+
+	pgt::dlsodePropagator pgt_obj(uncertainties, main_cwd);
+	if (pt.get<std::string>("propagator.convert_molar_concentration_to_mole_fraction") == std::string("yes"))
+	{
+		pgt_obj.convert_molar_concentration_to_mole_fraction();
+		pgt_obj.spe_concentration_w2f_pgt(pt.get<double>("time.tau") * pt.get<double>("pathway.end_t"),
+			pt.get<std::string>("pathway.end_t") + std::string("_dlsode_fraction"));
+	}
+	else
+		pgt_obj.spe_concentration_w2f_pgt(pt.get<double>("time.tau") * pt.get<double>("pathway.end_t"),
+			pt.get<std::string>("pathway.end_t") + std::string("_dlsode_M"));
+}
 
 /*change initial concentrations, see how that will affect ignition delay time,
 	save local uncertainties to file local_uncertainty.csv, save ignition delay time to ign.csv*/

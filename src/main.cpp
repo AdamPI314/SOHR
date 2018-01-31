@@ -44,6 +44,8 @@ int main(int argc, char **argv) {
 		driver::evaluate_path_AT_no_IT_over_time(main_cwd, pt);
 	else if (pt.get<std::string>("job.job_type") == std::string("evaluate_path_AT_with_SP_over_time"))
 		driver::evaluate_path_AT_with_SP_over_time(main_cwd, pt);
+	else if (pt.get<std::string>("job.job_type") == std::string("write_concentration_at_time_to_file"))
+		driver::write_concentration_at_time_to_file(main_cwd, pt);
 	else if (pt.get<std::string>("job.job_type") == std::string("evaluate_ignition_delay_time_once"))
 		driver::evaluate_ignition_delay_time_once(main_cwd, pt);
 
