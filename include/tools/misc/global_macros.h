@@ -29,8 +29,8 @@
 
 	#define __CHEMKIN_AVAILABLE_
 	#define __LSODE_AVAILABLE_
-	#define __NO_USE_MPI_
-	// #define __USE_MPI_
+	// #define __NO_USE_MPI_
+	#define __USE_MPI_
 #elif __unix 
     // all unices not caught above
 #elif __posix
