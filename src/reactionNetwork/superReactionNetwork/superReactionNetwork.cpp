@@ -197,11 +197,11 @@ namespace reactionNetwork_sr {
 
 		if (w2f == true)
 		{
-			rsp::relationshipParser::spe_information_s2f(species_v);
-			rsp::relationshipParser::spe_information_s2json(species_v);
+			rsp::relationshipParser::spe_information_s2f(species_v, cwd + std::string("/input/species_labelling.csv"));
+			rsp::relationshipParser::spe_information_s2json(species_v, cwd + std::string("/input/species_information.json"));
 
-			rsp::relationshipParser::reaction_information_s2f(species_v, reaction_v, reactionNetwork_chemkin_index_map);
-			rsp::relationshipParser::reaction_information_s2json(species_v, reaction_v, reactionNetwork_chemkin_index_map);
+			rsp::relationshipParser::reaction_information_s2f(species_v, reaction_v, reactionNetwork_chemkin_index_map, cwd + std::string("/input/reaction_labelling.csv"));
+			rsp::relationshipParser::reaction_information_s2json(species_v, reaction_v, reactionNetwork_chemkin_index_map, cwd + std::string("/input/reaction_information.json"));
 		}
 	}
 

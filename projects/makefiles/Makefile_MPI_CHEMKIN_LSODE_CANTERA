@@ -350,7 +350,7 @@ show:
 
 # execute the main program
 run:
-	$(MPI_ROOT_DIR)mpirun -np $(P) ./$(PROGRAM) -c ./input/cmd.cfg
+	$(MPI_ROOT_DIR)mpirun -np $(P) ./$(PROGRAM) -c ../SOHR_DATA/input/cmd.cfg
 
 ## End of the Makefile ##  Suggestions are welcome  ## All rights reserved ##
 ##############################################################

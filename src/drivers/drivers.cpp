@@ -27,7 +27,8 @@ void driver::parse_parameters(const int argc, char **argv, po::variables_map &vm
 	{
 		main_cwd = boost::filesystem::current_path().string();
 	}
-	//std::cout << "main_cwd:\t" << boost::filesystem::canonical(main_cwd) << std::endl;
+	main_cwd = boost::filesystem::canonical(main_cwd).string(); 
+	std::cout << "main_cwd:\t" << boost::filesystem::canonical(main_cwd) << std::endl;
 
 	// read pt
 	boost::property_tree::read_json(main_cwd + string("/input/setting.json"), pt, std::locale());
@@ -541,7 +542,6 @@ void driver::evaluate_ignition_delay_time_once(const std::string &main_cwd, cons
 
 void driver::INITIATION(const boost::mpi::communicator & world, const std::string & main_cwd)
 {
-
 	if (world.rank() == 0)
 	{
 		std::vector<rsp::element_info> element_v;
