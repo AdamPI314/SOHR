@@ -1,16 +1,18 @@
-      Subroutine chemkinInitialize()
+      Subroutine chemkinInitialize(infile, outfile)
       implicit none
       include "chemkin/ckvariables.f"
-      character*106 ctmp
+      character(len=106) ctmp
+      character(len=500) infile
+      character(len=500) outfile
 
       OPEN (LINKCK,FORM='UNFORMATTED',STATUS='UNKNOWN',
-     >FILE='./input/chem.bin')
+     >FILE=infile)
       CALL CKLEN(LINKCK,LOUT,LENICK,LENRCK,LENCCK)
       CALL CKINIT(LENICK,LENRCK,LENCCK,LINKCK,LOUT,ICKWRK,
      >RCKWRK,CCKWRK)
       CLOSE (LINKCK)
 
-      open(unit=51,file="./output/general_output.out")
+      open(unit=51,file=outfile)
       write(51,"(A)") "General output:"
       write(51,*) "   "
       write(51,*) " Number of Elements (NMM) = ", nmm

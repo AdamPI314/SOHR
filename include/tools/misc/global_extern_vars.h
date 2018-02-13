@@ -61,7 +61,7 @@ extern "C"
 
 
 	// Fortran Subroutine.
-	void chemkininitialize();
+	void chemkininitialize(const char* infile, const char* outfile);
 	//Returns universal gas constants and the pressure of one standard atmosphere
 	void ckrp(const int *ICKWRK, const double *RCKWRK, double *ru, double *ruc, double *pa);
 	void cknu(const int *KDIM, const int *ICKWRK, const double *RCKWRK, int *NUKI);

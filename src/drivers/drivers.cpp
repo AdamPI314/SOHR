@@ -66,7 +66,9 @@ void driver::generate_pathway_running_Monte_carlo_trajectory(const std::string &
 	int local_N = pt.get<int>("pathway.trajectoryNumber");
 
 	fileIO::fileIO::read_generate_uncertainties_w2f_nominal(uncertainties,
-		main_cwd + std::string("/input/uncertainties.inp"));
+			main_cwd + std::string("/input/uncertainties.inp"),
+			main_cwd + std::string("/output/uncertainties_random.csv"), 
+			main_cwd + std::string("/input/chem.out"));
 
 	rnk::concreteReactionNetwork rnk_obj(uncertainties, 0, main_cwd);
 	//rnk_obj.print_network();
@@ -100,7 +102,9 @@ void driver::generate_species_pathway_running_Monte_carlo_trajectory(const std::
 	int local_N = pt.get<int>("pathway.trajectoryNumber");
 
 	fileIO::fileIO::read_generate_uncertainties_w2f_nominal(uncertainties,
-		main_cwd + std::string("/input/uncertainties.inp"));
+			main_cwd + std::string("/input/uncertainties.inp"),
+			main_cwd + std::string("/output/uncertainties_random.csv"), 
+			main_cwd + std::string("/input/chem.out"));
 
 	rnk::concreteReactionNetwork rnk_obj(uncertainties, 0, main_cwd);
 	//rnk_obj.print_network();
@@ -136,7 +140,9 @@ void driver::evaluate_path_integral_over_time(const std::string &main_cwd, const
 	std::vector<std::vector<double>> time_Mat;
 
 	fileIO::fileIO::read_generate_uncertainties_w2f_nominal(uncertainties,
-		main_cwd + std::string("/input/uncertainties.inp"));
+			main_cwd + std::string("/input/uncertainties.inp"),
+			main_cwd + std::string("/output/uncertainties_random.csv"), 
+			main_cwd + std::string("/input/chem.out"));
 
 	//get the pathway name only on the processor 0
 	std::vector<std::string> pathway_vec_t;
@@ -223,7 +229,9 @@ void driver::evaluate_species_path_integral_over_time(const std::string &main_cw
 	std::vector<std::vector<double>> time_Mat;
 
 	fileIO::fileIO::read_generate_uncertainties_w2f_nominal(uncertainties,
-		main_cwd + std::string("/input/uncertainties.inp"));
+			main_cwd + std::string("/input/uncertainties.inp"),
+			main_cwd + std::string("/output/uncertainties_random.csv"), 
+			main_cwd + std::string("/input/chem.out"));
 
 	//get the pathway name only on the processor 0
 	std::vector<std::string> pathway_vec_t;
@@ -308,7 +316,9 @@ void driver::evaluate_path_AT_over_time(const std::string &main_cwd, const boost
 	std::vector<std::string> pathway_vec;
 
 	fileIO::fileIO::read_generate_uncertainties_w2f_nominal(uncertainties,
-		main_cwd + std::string("/input/uncertainties.inp"));
+			main_cwd + std::string("/input/uncertainties.inp"),
+			main_cwd + std::string("/output/uncertainties_random.csv"), 
+			main_cwd + std::string("/input/chem.out"));
 
 	//get the pathway name only on the processor 0
 	std::vector<std::string> pathway_vec_t;
@@ -372,7 +382,9 @@ void driver::evaluate_path_AT_no_IT_over_time(const std::string &main_cwd, const
 	std::vector<std::string> pathway_vec;
 
 	fileIO::fileIO::read_generate_uncertainties_w2f_nominal(uncertainties,
-		main_cwd + std::string("/input/uncertainties.inp"));
+			main_cwd + std::string("/input/uncertainties.inp"),
+			main_cwd + std::string("/output/uncertainties_random.csv"), 
+			main_cwd + std::string("/input/chem.out"));
 
 	//get the pathway name only on the processor 0
 	std::vector<std::string> pathway_vec_t;
@@ -436,7 +448,9 @@ void driver::evaluate_path_AT_with_SP_over_time(const std::string &main_cwd, con
 	std::vector<std::string> pathway_vec;
 
 	fileIO::fileIO::read_generate_uncertainties_w2f_nominal(uncertainties,
-		main_cwd + std::string("/input/uncertainties.inp"));
+			main_cwd + std::string("/input/uncertainties.inp"),
+			main_cwd + std::string("/output/uncertainties_random.csv"), 
+			main_cwd + std::string("/input/chem.out"));
 
 	//get the pathway name only on the processor 0
 	std::vector<std::string> pathway_vec_t;
@@ -504,7 +518,9 @@ void driver::write_concentration_at_time_to_file(const std::string &main_cwd, co
 	std::vector<double> uncertainties;
 
 	fileIO::fileIO::read_generate_uncertainties_w2f_nominal(uncertainties,
-		main_cwd + std::string("/input/uncertainties.inp"));
+			main_cwd + std::string("/input/uncertainties.inp"),
+			main_cwd + std::string("/output/uncertainties_random.csv"), 
+			main_cwd + std::string("/input/chem.out"));
 
 	pgt::dlsodePropagator pgt_obj(uncertainties, main_cwd);
 	if (pt.get<std::string>("propagator.convert_molar_concentration_to_mole_fraction") == std::string("yes"))
@@ -523,7 +539,9 @@ void driver::write_concentration_at_time_to_file(const std::string &main_cwd, co
 void driver::evaluate_ignition_delay_time_once(const std::string &main_cwd, const boost::property_tree::ptree &pt) {
 	std::vector<double> uncertainties;
 	fileIO::fileIO::read_generate_uncertainties_w2f_nominal(uncertainties,
-		main_cwd + std::string("/input/uncertainties.inp"));
+			main_cwd + std::string("/input/uncertainties.inp"),
+			main_cwd + std::string("/output/uncertainties_random.csv"), 
+			main_cwd + std::string("/input/chem.out"));
 
 	pgt::dlsodePropagator pgt_obj(uncertainties, main_cwd);
 
@@ -572,7 +590,9 @@ void driver::write_concentration_at_time_to_file(const boost::mpi::communicator 
 	if (world.rank() == 0)
 	{
 		fileIO::fileIO::read_generate_uncertainties_w2f_nominal(uncertainties,
-			main_cwd + std::string("/input/uncertainties.inp"));
+			main_cwd + std::string("/input/uncertainties.inp"),
+			main_cwd + std::string("/output/uncertainties_random.csv"), 
+			main_cwd + std::string("/input/chem.out"));
 	} //if
 
 	//boradcast
@@ -600,7 +620,9 @@ void driver::solve_ODEs_for_concentration_using_LSODE(const boost::mpi::communic
 	if (world.rank() == 0)
 	{
 		fileIO::fileIO::read_generate_uncertainties_w2f_nominal(uncertainties,
-			main_cwd + std::string("/input/uncertainties.inp"));
+			main_cwd + std::string("/input/uncertainties.inp"),
+			main_cwd + std::string("/output/uncertainties_random.csv"), 
+			main_cwd + std::string("/input/chem.out"));
 
 	} //if
 
@@ -628,7 +650,9 @@ void driver::solve_ODEs_for_concentration_using_SSA(const boost::mpi::communicat
 	if (world.rank() == 0)
 	{
 		fileIO::fileIO::read_generate_uncertainties_w2f_nominal(uncertainties,
-			main_cwd + std::string("/input/uncertainties.inp"));
+			main_cwd + std::string("/input/uncertainties.inp"),
+			main_cwd + std::string("/output/uncertainties_random.csv"), 
+			main_cwd + std::string("/input/chem.out"));
 	} //if
 
 	//boradcast
@@ -650,12 +674,14 @@ void driver::generate_pathway_running_Monte_carlo_trajectory(const boost::mpi::c
 	int P = world.size();
 	int local_N = get_num_block_decomposition_2(world.rank(), trajectoryNumber_total, P);
 
+	std::cout << "rank:\t" << world.rank() << std::endl;
 	if (world.rank() == 0)
 	{
 		fileIO::fileIO::read_generate_uncertainties_w2f_nominal(uncertainties,
-			main_cwd + std::string("/input/uncertainties.inp"));
+			main_cwd + std::string("/input/uncertainties.inp"),
+			main_cwd + std::string("/output/uncertainties_random.csv"), 
+			main_cwd + std::string("/input/chem.out"));
 	} //if
-
 	//boradcast
 	broadcast(world, uncertainties, 0);
 
@@ -705,7 +731,9 @@ void driver::generate_species_pathway_running_Monte_carlo_trajectory(const boost
 	if (world.rank() == 0)
 	{
 		fileIO::fileIO::read_generate_uncertainties_w2f_nominal(uncertainties,
-			main_cwd + std::string("/input/uncertainties.inp"));
+			main_cwd + std::string("/input/uncertainties.inp"),
+			main_cwd + std::string("/output/uncertainties_random.csv"), 
+			main_cwd + std::string("/input/chem.out"));
 	} //if
 
 	//boradcast
@@ -758,7 +786,9 @@ void driver::evaluate_path_integral_over_time(const boost::mpi::communicator &wo
 	if (world.rank() == 0)
 	{
 		fileIO::fileIO::read_generate_uncertainties_w2f_nominal(uncertainties,
-			main_cwd + std::string("/input/uncertainties.inp"));
+			main_cwd + std::string("/input/uncertainties.inp"),
+			main_cwd + std::string("/output/uncertainties_random.csv"), 
+			main_cwd + std::string("/input/chem.out"));
 
 		//get the pathway name only on the processor 0
 		std::vector<std::string> pathway_vec_t;
@@ -867,7 +897,9 @@ void driver::evaluate_species_path_integral_over_time(const boost::mpi::communic
 	if (world.rank() == 0)
 	{
 		fileIO::fileIO::read_generate_uncertainties_w2f_nominal(uncertainties,
-			main_cwd + std::string("/input/uncertainties.inp"));
+			main_cwd + std::string("/input/uncertainties.inp"),
+			main_cwd + std::string("/output/uncertainties_random.csv"), 
+			main_cwd + std::string("/input/chem.out"));
 
 		//get the pathway name only on the processor 0
 		std::vector<std::string> pathway_vec_t;
@@ -974,7 +1006,9 @@ void driver::evaluate_path_AT_over_time(const boost::mpi::communicator &world, c
 		std::vector<std::string> pathway_vec;
 
 		fileIO::fileIO::read_generate_uncertainties_w2f_nominal(uncertainties,
-			main_cwd + std::string("/input/uncertainties.inp"));
+			main_cwd + std::string("/input/uncertainties.inp"),
+			main_cwd + std::string("/output/uncertainties_random.csv"), 
+			main_cwd + std::string("/input/chem.out"));
 
 		//get the pathway name only on the processor 0
 		std::vector<std::string> pathway_vec_t;
@@ -1041,7 +1075,9 @@ void driver::evaluate_path_AT_no_IT_over_time(const boost::mpi::communicator &wo
 		std::vector<std::string> pathway_vec;
 
 		fileIO::fileIO::read_generate_uncertainties_w2f_nominal(uncertainties,
-			main_cwd + std::string("/input/uncertainties.inp"));
+			main_cwd + std::string("/input/uncertainties.inp"),
+			main_cwd + std::string("/output/uncertainties_random.csv"), 
+			main_cwd + std::string("/input/chem.out"));
 
 		//get the pathway name only on the processor 0
 		std::vector<std::string> pathway_vec_t;
@@ -1108,7 +1144,9 @@ void driver::evaluate_path_AT_with_SP_over_time(const boost::mpi::communicator &
 		std::vector<std::string> pathway_vec;
 
 		fileIO::fileIO::read_generate_uncertainties_w2f_nominal(uncertainties,
-			main_cwd + std::string("/input/uncertainties.inp"));
+			main_cwd + std::string("/input/uncertainties.inp"),
+			main_cwd + std::string("/output/uncertainties_random.csv"), 
+			main_cwd + std::string("/input/chem.out"));
 
 		//get the pathway name only on the processor 0
 		std::vector<std::string> pathway_vec_t;
@@ -1183,7 +1221,8 @@ void driver::speciation_evaluate_concentrations_for_different_sets_rate_coeffici
 	for (int ith_k = get_first_block_decomposition_2(world.rank(), number_of_Ks, P); ith_k <= get_last_block_decomposition_2(world.rank(), number_of_Ks, P); ++ith_k)
 	{
 		fileIO::fileIO::read_generate_uncertainties_w2f_random(uncertainties,
-			main_cwd + std::string("/input/uncertainties.inp"), main_cwd + std::string("/output/uncertainties_random.csv"),
+			main_cwd + std::string("/input/uncertainties.inp"),
+			main_cwd + std::string("/output/uncertainties_random.csv"),
 			main_cwd + std::string("/input/chem.out"), ith_k);
 
 		std::cout << "ith_k:\t" << ith_k << std::endl;
@@ -1216,7 +1255,9 @@ void driver::ODE_solver_MC_trajectory_single_core(const boost::mpi::communicator
 	if (world.rank() == 0)
 	{
 		fileIO::fileIO::read_generate_uncertainties_w2f_nominal(uncertainties,
-			main_cwd + std::string("/input/uncertainties.inp"));
+			main_cwd + std::string("/input/uncertainties.inp"),
+			main_cwd + std::string("/output/uncertainties_random.csv"), 
+			main_cwd + std::string("/input/chem.out"));
 
 	} //if
 
@@ -1250,7 +1291,10 @@ void driver::ODE_solver_MC_trajectory_s_ct_np_parallel(const boost::mpi::communi
 	if (world.rank() == 0)
 	{
 		//read in uncertainties
-		fileIO::fileIO::read_generate_uncertainties_w2f_nominal(uncertainties, (main_cwd + "/input/uncertainties.inp"));
+		fileIO::fileIO::read_generate_uncertainties_w2f_nominal(uncertainties,
+			main_cwd + std::string("/input/uncertainties.inp"),
+			main_cwd + std::string("/output/uncertainties_random.csv"), 
+			main_cwd + std::string("/input/chem.out"));
 
 		iterationNumber = pt.get<std::size_t>("SOHR_init.iterationNumber");
 		trajectoryNumber_total = pt.get<std::size_t>("pathway.trajectoryNumber");
@@ -1346,7 +1390,10 @@ void driver::ODE_solver_MC_trajectory_cv_parallel(const boost::mpi::communicator
 	if (world.rank() == 0)
 	{
 		//read in uncertainties
-		fileIO::fileIO::read_generate_uncertainties_w2f_nominal(uncertainties, (main_cwd + "/input/uncertainties.inp"));
+		fileIO::fileIO::read_generate_uncertainties_w2f_nominal(uncertainties,
+			main_cwd + std::string("/input/uncertainties.inp"),
+			main_cwd + std::string("/output/uncertainties_random.csv"), 
+			main_cwd + std::string("/input/chem.out"));
 
 		iterationNumber = pt.get<std::size_t>("SOHR_init.iterationNumber");
 		trajectoryNumber_total = pt.get<std::size_t>("pathway.trajectoryNumber");
@@ -1459,7 +1506,10 @@ void driver::ODE_solver_path_integral_parallel_s_ct_np_v1(const boost::mpi::comm
 	if (world.rank() == 0)
 	{
 		//read in uncertainties
-		fileIO::fileIO::read_generate_uncertainties_w2f_nominal(uncertainties, (main_cwd + "/input/uncertainties.inp"));
+		fileIO::fileIO::read_generate_uncertainties_w2f_nominal(uncertainties,
+			main_cwd + std::string("/input/uncertainties.inp"),
+			main_cwd + std::string("/output/uncertainties_random.csv"), 
+			main_cwd + std::string("/input/chem.out"));
 
 		std::vector<std::size_t> topN_vec;
 		for (auto key1 : pt.get_child("pathway.topN"))
@@ -1562,7 +1612,10 @@ void driver::ODE_solver_path_integral_parallel_s_ct_np_v2(const boost::mpi::comm
 	if (world.rank() == 0)
 	{
 		//read in uncertainties
-		fileIO::fileIO::read_generate_uncertainties_w2f_nominal(uncertainties, (main_cwd + "/input/uncertainties.inp"));
+		fileIO::fileIO::read_generate_uncertainties_w2f_nominal(uncertainties,
+			main_cwd + std::string("/input/uncertainties.inp"),
+			main_cwd + std::string("/output/uncertainties_random.csv"), 
+			main_cwd + std::string("/input/chem.out"));
 
 		std::vector<std::size_t> topN_vec;
 		for (auto key1 : pt.get_child("pathway.topN"))
@@ -1671,7 +1724,10 @@ void driver::ODE_solver_path_integral_parallel_s_ct_np_v3(const boost::mpi::comm
 	if (world.rank() == 0)
 	{
 		//read in uncertainties
-		fileIO::fileIO::read_generate_uncertainties_w2f_nominal(uncertainties, (main_cwd + "/input/uncertainties.inp"));
+		fileIO::fileIO::read_generate_uncertainties_w2f_nominal(uncertainties,
+			main_cwd + std::string("/input/uncertainties.inp"),
+			main_cwd + std::string("/output/uncertainties_random.csv"), 
+			main_cwd + std::string("/input/chem.out"));
 
 		std::vector<std::size_t> topN_vec;
 		for (auto key1 : pt.get_child("pathway.topN"))
@@ -1799,7 +1855,10 @@ void driver::ODE_solver_path_integral_parallel_s_ct_np_cc1_v1(const boost::mpi::
 	if (world.rank() == 0)
 	{
 		//read in uncertainties
-		fileIO::fileIO::read_generate_uncertainties_w2f_nominal(uncertainties, (main_cwd + "/input/uncertainties.inp"));
+		fileIO::fileIO::read_generate_uncertainties_w2f_nominal(uncertainties,
+			main_cwd + std::string("/input/uncertainties.inp"),
+			main_cwd + std::string("/output/uncertainties_random.csv"), 
+			main_cwd + std::string("/input/chem.out"));
 
 		std::vector<std::size_t> topN_vec;
 		for (auto key1 : pt.get_child("pathway.topN"))
@@ -1936,7 +1995,10 @@ void driver::ODE_solver_path_integral_parallel_cv_v9(const boost::mpi::communica
 	if (world.rank() == 0)
 	{
 		//read in uncertainties
-		fileIO::fileIO::read_generate_uncertainties_w2f_nominal(uncertainties, (main_cwd + "/input/uncertainties.inp"));
+		fileIO::fileIO::read_generate_uncertainties_w2f_nominal(uncertainties,
+			main_cwd + std::string("/input/uncertainties.inp"),
+			main_cwd + std::string("/output/uncertainties_random.csv"), 
+			main_cwd + std::string("/input/chem.out"));
 
 		std::vector<std::size_t> topN_vec;
 		for (auto key1 : pt.get_child("pathway.topN"))
@@ -2090,7 +2152,10 @@ void driver::ODE_solver_path_integral_parallel_cv_v10(const boost::mpi::communic
 	if (world.rank() == 0)
 	{
 		//read in uncertainties
-		fileIO::fileIO::read_generate_uncertainties_w2f_nominal(uncertainties, (main_cwd + "/input/uncertainties.inp"));
+		fileIO::fileIO::read_generate_uncertainties_w2f_nominal(uncertainties,
+			main_cwd + std::string("/input/uncertainties.inp"),
+			main_cwd + std::string("/output/uncertainties_random.csv"), 
+			main_cwd + std::string("/input/chem.out"));
 
 		std::vector<std::size_t> topN_vec;
 		for (auto key1 : pt.get_child("pathway.topN"))
@@ -2244,7 +2309,10 @@ void driver::ODE_solver_path_integral_parallel_cv_v11(const boost::mpi::communic
 	if (world.rank() == 0)
 	{
 		//read in uncertainties
-		fileIO::fileIO::read_generate_uncertainties_w2f_nominal(uncertainties, (main_cwd + "/input/uncertainties.inp"));
+		fileIO::fileIO::read_generate_uncertainties_w2f_nominal(uncertainties,
+			main_cwd + std::string("/input/uncertainties.inp"),
+			main_cwd + std::string("/output/uncertainties_random.csv"), 
+			main_cwd + std::string("/input/chem.out"));
 		for (auto key1 : pt.get_child("pathway.topN"))
 		{
 			topN_vec.push_back(key1.second.get_value<size_t>());
@@ -2420,7 +2488,10 @@ void driver::ODE_solver_path_integral_parallel_cv_ct_v1(const boost::mpi::commun
 	if (world.rank() == 0)
 	{
 		//read in uncertainties
-		fileIO::fileIO::read_generate_uncertainties_w2f_nominal(uncertainties, (main_cwd + "/input/uncertainties.inp"));
+		fileIO::fileIO::read_generate_uncertainties_w2f_nominal(uncertainties,
+			main_cwd + std::string("/input/uncertainties.inp"),
+			main_cwd + std::string("/output/uncertainties_random.csv"), 
+			main_cwd + std::string("/input/chem.out"));
 
 		std::vector<std::size_t> topN_vec;
 		for (auto key1 : pt.get_child("pathway.topN"))
@@ -2577,7 +2648,10 @@ void driver::ODE_solver_path_integral_parallel_cv_ct_v2(const boost::mpi::commun
 	if (world.rank() == 0)
 	{
 		//read in uncertainties
-		fileIO::fileIO::read_generate_uncertainties_w2f_nominal(uncertainties, (main_cwd + "/input/uncertainties.inp"));
+		fileIO::fileIO::read_generate_uncertainties_w2f_nominal(uncertainties,
+			main_cwd + std::string("/input/uncertainties.inp"),
+			main_cwd + std::string("/output/uncertainties_random.csv"), 
+			main_cwd + std::string("/input/chem.out"));
 		for (auto key1 : pt.get_child("pathway.topN"))
 		{
 			topN_vec.push_back(key1.second.get_value<size_t>());
@@ -2821,7 +2895,10 @@ void driver::ODE_solver_path_integral_parallel_cv_ct_v3(const boost::mpi::commun
 	if (world.rank() == 0)
 	{
 		//read in uncertainties
-		fileIO::fileIO::read_generate_uncertainties_w2f_nominal(uncertainties, (main_cwd + "/input/uncertainties.inp"));
+		fileIO::fileIO::read_generate_uncertainties_w2f_nominal(uncertainties,
+			main_cwd + std::string("/input/uncertainties.inp"),
+			main_cwd + std::string("/output/uncertainties_random.csv"), 
+			main_cwd + std::string("/input/chem.out"));
 		for (auto key1 : pt.get_child("pathway.topN"))
 		{
 			topN_vec.push_back(key1.second.get_value<size_t>());
@@ -3008,7 +3085,10 @@ void driver::ODE_solver_path_integral_parallel_cv_ct_v4(const boost::mpi::commun
 	if (world.rank() == 0)
 	{
 		//read in uncertainties
-		fileIO::fileIO::read_generate_uncertainties_w2f_nominal(uncertainties, (main_cwd + "/input/uncertainties.inp"));
+		fileIO::fileIO::read_generate_uncertainties_w2f_nominal(uncertainties,
+			main_cwd + std::string("/input/uncertainties.inp"),
+			main_cwd + std::string("/output/uncertainties_random.csv"), 
+			main_cwd + std::string("/input/chem.out"));
 		for (auto key1 : pt.get_child("pathway.topN"))
 		{
 			topN_vec.push_back(key1.second.get_value<size_t>());
@@ -3190,9 +3270,10 @@ void driver::M_matrix_R_matrix(const boost::mpi::communicator &world, const std:
 	if (world.rank() == 0)
 	{
 		//read in uncertainties
-		fileIO::fileIO::read_generate_uncertainties_w2f_nominal(uncertainties, (main_cwd + "/input/uncertainties.inp"));
-		//fileIO::fileIO::read_generate_uncertainties_w2f_random(uncertainties, main_cwd + std::string("/input/uncertainties.inp"));
-		//fileIO::fileIO::read_uncertainties_from_file(uncertainties, main_cwd + std::string("/input/uncertainties.inp"));
+		fileIO::fileIO::read_generate_uncertainties_w2f_nominal(uncertainties,
+			main_cwd + std::string("/input/uncertainties.inp"),
+			main_cwd + std::string("/output/uncertainties_random.csv"), 
+			main_cwd + std::string("/input/chem.out"));
 	}
 	//boradcast
 	broadcast(world, uncertainties, 0);
@@ -3257,9 +3338,10 @@ void driver::MISC(const boost::mpi::communicator &world, const std::string &main
 	if (world.rank() == 0)
 	{
 		//read in uncertainties
-		fileIO::fileIO::read_generate_uncertainties_w2f_nominal(uncertainties, (main_cwd + "/input/uncertainties.inp"));
-		//fileIO::fileIO::read_generate_uncertainties_w2f_random(uncertainties, main_cwd + std::string("/input/uncertainties.inp"));
-		//fileIO::fileIO::read_uncertainties_from_file(uncertainties, main_cwd + std::string("/input/uncertainties.inp"));
+		fileIO::fileIO::read_generate_uncertainties_w2f_nominal(uncertainties,
+			main_cwd + std::string("/input/uncertainties.inp"),
+			main_cwd + std::string("/output/uncertainties_random.csv"), 
+			main_cwd + std::string("/input/chem.out"));
 	}
 	//boradcast
 	broadcast(world, uncertainties, 0);

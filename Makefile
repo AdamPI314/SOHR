@@ -67,7 +67,7 @@
 # include /opt/cantera/v2.4.0/include/cantera/Cantera.mak
 
 #num of processors
-P=1
+P=12
 
 MY_CFLAGS =
 

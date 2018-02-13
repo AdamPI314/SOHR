@@ -1019,7 +1019,9 @@ namespace propagator_sr {
 	{
 #ifdef __LSODE_AVAILABLE_
 		//initiate chemkin
-		mechanism::kinetics::chemkin_init();
+		mechanism::kinetics::chemkin_init(
+			(this->cwd_pgt + std::string("/input/chem.bin")).c_str(),
+			(this->cwd_pgt + std::string("/output/general_output.csv")).c_str());
 #endif // __LSODE_AVAILABLE_
 
 #ifdef __USE_CANTERA_
