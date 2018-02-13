@@ -674,7 +674,6 @@ void driver::generate_pathway_running_Monte_carlo_trajectory(const boost::mpi::c
 	int P = world.size();
 	int local_N = get_num_block_decomposition_2(world.rank(), trajectoryNumber_total, P);
 
-	std::cout << "rank:\t" << world.rank() << std::endl;
 	if (world.rank() == 0)
 	{
 		fileIO::fileIO::read_generate_uncertainties_w2f_nominal(uncertainties,
@@ -699,7 +698,7 @@ void driver::generate_pathway_running_Monte_carlo_trajectory(const boost::mpi::c
 	//statistics
 	statistics stat;
 	std::string str_t;
-
+	
 	// generate pathway one trajectory
 	for (int i = 0; i < local_N; ++i)
 	{
