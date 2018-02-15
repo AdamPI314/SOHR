@@ -59,7 +59,9 @@ namespace reactionNetwork_sr {
 	{
 		this->propagator->find_chattering_group_using_union_find(this->species_network_v);
 
-		this->propagator->update_chattering_group_pairs_reactions(this->species_network_v, this->reaction_network_v, this->rnk_pt.get<std::string>("pathway.atom_followed"));
+		this->propagator->update_chattering_group_pairs_reactions(this->species_network_v,
+			this->reaction_network_v,
+			this->rnk_pt.get<std::string>("pathway.atom_followed"));
 
 		this->propagator->subtract_chattering_reaction_contribution_from_species_drc_pgt();
 
