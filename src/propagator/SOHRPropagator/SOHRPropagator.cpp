@@ -39,7 +39,7 @@ namespace propagator_sr {
 					this->pgt_pt.get<double>("time.max_time"));
 			}
 
-	}
+		}
 		// constant volume and constant temperature
 		else if (this->pgt_pt.get<std::string>("system.condition") == std::string("cv_ct")) {
 			if (this->pgt_pt.get<std::string>("system.initializer") == std::string("dlsode")) {
@@ -953,14 +953,14 @@ namespace propagator_sr {
 
 	void SOHRPropagator::update_spe_concentration_at_time(std::size_t time_index, std::size_t spe_index,
 		double delta_conc) {
-		this->concentration_data_pgt[spe_index][time_index] += delta_conc*this->P2C[spe_index];
+		this->concentration_data_pgt[spe_index][time_index] += delta_conc * this->P2C[spe_index];
 	}
 
 	void SOHRPropagator::update_spe_concentration_at_time_range(std::size_t init_time_index,
 		std::size_t end_time_index, std::size_t spe_index,
 		double delta_conc) {
 		for (std::size_t i = init_time_index + 1; i < end_time_index; ++i) {
-			this->concentration_data_pgt[spe_index][i] += delta_conc*this->P2C[spe_index];
+			this->concentration_data_pgt[spe_index][i] += delta_conc * this->P2C[spe_index];
 		}
 	}
 
@@ -1142,7 +1142,7 @@ namespace propagator_sr {
 			mechanism::kinetics::calculate_t_dot_cv(y_t, &Temp, &Temp_dot);
 
 			//new temperature
-			Temp += Temp_dot*(time_data_pgt[k] - time_data_pgt[k - 1]);
+			Temp += Temp_dot * (time_data_pgt[k] - time_data_pgt[k - 1]);
 			temperature_data_pgt[k] = Temp;
 
 			//convert molar concentration to mass fractions
@@ -1366,7 +1366,7 @@ namespace propagator_sr {
 
 	}
 
-	
+
 
 #if defined(__CHEMKIN_AVAILABLE_) && defined(__LSODE_AVAILABLE_)
 

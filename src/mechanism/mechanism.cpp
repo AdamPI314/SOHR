@@ -28,7 +28,7 @@ namespace mechanism {
 #ifdef __USE_CANTERA_
 		::canterainitialize();
 #endif
-}
+	}
 
 	void kinetics::rp(double * ru, double * ruc, double * pa)
 	{

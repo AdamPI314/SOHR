@@ -300,20 +300,20 @@ namespace reactionNetwork_sr {
 				pathway_prob_input_pathway_recursive_relation(tau_j, spe_vec, reaction_vec, N_subvolume, j_th + 1);
 
 			for (size_t i = 1; i < N_subvolume[j_th]; i += 2) {
-				tau_j = reaction_time_from_importance_sampling(tau_j_minus_1, spe_vec[j_th], a + i*h);
+				tau_j = reaction_time_from_importance_sampling(tau_j_minus_1, spe_vec[j_th], a + i * h);
 				s += 4 *
 					//prob_spe_will_react_in_a_time_range(tau_j_minus_1, pathway_end_time, spe_vec[j_th])*
 					reaction_spe_branching_ratio(tau_j, spe_vec[j_th], reaction_vec[j_th], spe_vec[j_th + 1])*
 					pathway_prob_input_pathway_recursive_relation(tau_j, spe_vec, reaction_vec, N_subvolume, j_th + 1);
 			}
 			for (size_t i = 2; i < N_subvolume[j_th] - 1; i += 2) {
-				tau_j = reaction_time_from_importance_sampling(tau_j_minus_1, spe_vec[j_th], a + i*h);
+				tau_j = reaction_time_from_importance_sampling(tau_j_minus_1, spe_vec[j_th], a + i * h);
 				s += 2 *
 					//prob_spe_will_react_in_a_time_range(tau_j_minus_1, pathway_end_time, spe_vec[j_th])*
 					reaction_spe_branching_ratio(tau_j, spe_vec[j_th], reaction_vec[j_th], spe_vec[j_th + 1])*
 					pathway_prob_input_pathway_recursive_relation(tau_j, spe_vec, reaction_vec, N_subvolume, j_th + 1);
 			}
-			return s*h / 3;
+			return s * h / 3;
 		}
 	}
 

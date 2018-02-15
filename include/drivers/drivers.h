@@ -69,7 +69,7 @@ namespace driver {
 	void evaluate_ignition_delay_time_once(const std::string &main_cwd, const boost::property_tree::ptree &pt);
 
 #endif // __NO_USE_MPI_
-	
+
 
 #if defined(__USE_MPI_)
 	/*

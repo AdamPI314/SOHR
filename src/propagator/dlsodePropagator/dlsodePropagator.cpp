@@ -76,7 +76,7 @@ namespace propagator_sr {
 			convert_molar_concentration_to_mole_fraction();
 
 #endif // defined(__CHEMKIN_AVAILABLE_) && defined(__LSODE_AVAILABLE_)
-		
+
 
 	}
 

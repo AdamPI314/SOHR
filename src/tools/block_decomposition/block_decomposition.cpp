@@ -9,11 +9,11 @@
 //amount of task N
 //number of processor p
 int get_first_block_decomposition_1(int i, int N, int p) {
-	int r = N%p;
-	return i*(int)floor(N / p) + std::min(i, r);
+	int r = N % p;
+	return i * (int)floor(N / p) + std::min(i, r);
 }
 int get_last_block_decomposition_1(int i, int N, int p) {
-	int r = N%p;
+	int r = N % p;
 	return (i + 1)*(int)floor(N / p) + std::min(i + 1, r) - 1;
 }
 int get_num_block_decomposition_1(int i, int N, int p) {
