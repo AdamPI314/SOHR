@@ -1292,7 +1292,7 @@ namespace propagator_sr {
 			if (chattering_group_k_int_pgt[i] != 0)
 				delete chattering_group_k_int_pgt[i];
 		}
-		//Removes all elements from the vector (which are destroyed), leaving the container with a size of 0.
+		//removes all elements from the vector (which are destroyed), leaving the container with a size of 0.
 		chattering_group_k_int_pgt.clear();
 		//creat the cubic spline and link it to std::vector<Linear_interp*> spe_drc_pgt;
 		for (std::size_t i = 0; i < chattering_group_k_int_data_pgt.size(); ++i)
