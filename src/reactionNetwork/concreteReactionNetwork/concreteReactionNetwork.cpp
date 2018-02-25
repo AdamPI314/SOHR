@@ -55,6 +55,33 @@ namespace reactionNetwork_sr {
 		delete this->propagator;
 	}
 
+	void concreteReactionNetwork::update_chattering_species_sink_reaction_k_index_s_coef_v()
+	{
+		for (auto c_g : this->sp_chattering_rnk->species_chattering_group_pairs_rxns) {
+			for (auto p_r_m : c_g) {
+				//auto s1_s2_p = p_r_m.first;
+				auto s_i = p_r_m.first.first;
+
+				auto rxn_c1_c2_set = p_r_m.second;
+				for (auto rxn_c1_c2 : rxn_c1_c2_set) {
+					auto r_j = rxn_c1_c2.r_idx;
+
+					// to see whther r_j in s_i's sink reaction list, if it is (it has to be, double check), set coef to be zero
+					for (auto &r_k_coef : this->species_network_v[s_i].reaction_k_index_s_coef_v) {
+						if (r_j != r_k_coef.first)
+							continue;
+						if (r_j == r_k_coef.first) {
+							//the sink reaction is a chattering reaction, set reaction_stoichiometric coefficient to be zero
+							r_k_coef.second = 0.0;
+						}
+					}
+
+
+				}//rxn_c1_c2_set
+			}//s1_s2_pair
+		}//chattrering_group
+	}
+
 	void concreteReactionNetwork::merge_chatterings()
 	{
 		this->propagator->find_chattering_group_using_union_find(this->species_network_v);
@@ -68,7 +95,10 @@ namespace reactionNetwork_sr {
 		this->propagator->update_drc_and_equilibrium_probability_of_chattering_group();
 
 		//set the reaction rate of fast reactions to be zero
-		this->propagator->set_chattering_reaction_rates_to_zero_pgt();
+		//this->propagator->set_chattering_reaction_rates_to_zero_pgt();
+
+		//update chattering species sink reaction coefficient
+		this->update_chattering_species_sink_reaction_k_index_s_coef_v();
 
 		//re construct the cubic spline
 		this->propagator->initiate_cubic_spline();

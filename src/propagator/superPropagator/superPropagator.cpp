@@ -600,6 +600,7 @@ namespace propagator_sr {
 
 	}
 
+
 	rsp::temperature_t superPropagator::return_target_temperature() const
 	{
 		return this->pgt_pt.get<rsp::temperature_t>("T.target_temperature");
@@ -1043,7 +1044,7 @@ namespace propagator_sr {
 
 		//set the reaction rate of fast reactions to be zero
 		//set_chattering_reaction_rates_to_zero_pgt();
-}
+	}
 
 
 #ifdef __CHEMKIN_AVAILABLE_
@@ -1115,9 +1116,9 @@ namespace propagator_sr {
 				spe_drc_int_data_pgt[i][j] = 0.5 * (spe_drc_data_pgt[i][j] + spe_drc_data_pgt[i][j - 1]) * (time_data_pgt[j] - time_data_pgt[j - 1]) + spe_drc_int_data_pgt[i][j - 1];
 
 			}
-		}//for]
+	}//for]
 
-	}//int_propensity_function_pgt()
+}//int_propensity_function_pgt()
 
 
 	bool superPropagator::init_spe_drc_pgt()
