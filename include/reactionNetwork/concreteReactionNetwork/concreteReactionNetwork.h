@@ -33,7 +33,7 @@ namespace reactionNetwork_sr {
 
 		//update species_v[i].reaction_k_index_s_coef_v, if a chattering reaction R_i is a sink reaction of
 		//chattering species S_j, set species_v[j].reaction_k_index_s_coef_v[some_i].coef to be zero
-		void update_chattering_species_sink_reaction_k_index_s_coef_v();
+		void update_chattering_species_sink_reaction_info_AND_reaction_sink_species_info(std::string atom_followed="C");
 
 		void merge_chatterings();
 		void update_species_chattering_group_id();

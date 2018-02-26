@@ -70,6 +70,9 @@ namespace species_group_sr {
 	public:
 		chattering();
 		~chattering();
+	public:
+		//whether two species in the same chattering groups or not
+		bool is_in_same_chattering_group(rsp::index_int_t s1, rsp::index_int_t s2);
 
 	};
 }

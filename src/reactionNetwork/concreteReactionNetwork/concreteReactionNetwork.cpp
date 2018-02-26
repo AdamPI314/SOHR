@@ -55,7 +55,7 @@ namespace reactionNetwork_sr {
 		delete this->propagator;
 	}
 
-	void concreteReactionNetwork::update_chattering_species_sink_reaction_k_index_s_coef_v()
+	void concreteReactionNetwork::update_chattering_species_sink_reaction_info_AND_reaction_sink_species_info(std::string atom_follwed)
 	{
 		for (auto c_g : this->sp_chattering_rnk->species_chattering_group_pairs_rxns) {
 			for (auto p_r_m : c_g) {
@@ -64,16 +64,56 @@ namespace reactionNetwork_sr {
 
 				auto rxn_c1_c2_set = p_r_m.second;
 				for (auto rxn_c1_c2 : rxn_c1_c2_set) {
-					auto r_j = rxn_c1_c2.r_idx;
+					auto r_m = rxn_c1_c2.r_idx;
 
 					// to see whther r_j in s_i's sink reaction list, if it is (it has to be, double check), set coef to be zero
-					for (auto &r_k_coef : this->species_network_v[s_i].reaction_k_index_s_coef_v) {
-						if (r_j != r_k_coef.first)
+					for (auto &r_n_coef : this->species_network_v[s_i].reaction_k_index_s_coef_v) {
+						if (r_m != r_n_coef.first)
 							continue;
-						if (r_j == r_k_coef.first) {
-							//the sink reaction is a chattering reaction, set reaction_stoichiometric coefficient to be zero
-							r_k_coef.second = 0.0;
-						}
+						if (r_m == r_n_coef.first) {
+							//legal reaction mean, there exsits at lease a pair of reactant and product (reactant, product)
+							//and [reactant, product] not in the same chattering group
+							bool is_legal_reaction = false;
+
+							//out species index and associated weight
+							//two methods, set both
+							//method 1)
+							for (auto &s_j_w : this->reaction_network_v[r_m].out_spe_index_weight_v_map[atom_follwed]) {
+								//in the same chattering group
+								if (this->sp_chattering_rnk->is_in_same_chattering_group(s_i, s_j_w.first)) {
+									//set s_i, through, r_j, to s_j, coef to be zero
+									s_j_w.second = 0.0;
+								}
+								//not in the same chattering group
+								else
+								{
+									is_legal_reaction = true;
+								}
+							
+							}//reaction's out species vector and associated weight
+
+							//method 2)
+							for (auto &s_j_w : this->reaction_network_v[r_m].out_spe_index_branching_ratio_map_map[atom_follwed]) {
+								//in the same chattering group
+								if (this->sp_chattering_rnk->is_in_same_chattering_group(s_i, s_j_w.first)) {
+									//set s_i, through, r_j, to s_j, coef to be zero
+									s_j_w.second = 0.0;
+								}
+								//not in the same chattering group
+								else
+								{
+									is_legal_reaction = true;
+								}
+
+							}//reaction's out species map and associated weight
+
+
+							//the sink reaction is a chattering reaction, the sink reaction has one chattering product
+							//no other "legal" product, (product containing atom_followed) 
+							//set reaction_stoichiometric coefficient to be zero
+							if (is_legal_reaction == false)
+								r_n_coef.second = 0.0;
+						}// species's out reactions and associated weight
 					}
 
 
@@ -98,7 +138,7 @@ namespace reactionNetwork_sr {
 		//this->propagator->set_chattering_reaction_rates_to_zero_pgt();
 
 		//update chattering species sink reaction coefficient
-		this->update_chattering_species_sink_reaction_k_index_s_coef_v();
+		this->update_chattering_species_sink_reaction_info_AND_reaction_sink_species_info();
 
 		//re construct the cubic spline
 		this->propagator->initiate_cubic_spline();

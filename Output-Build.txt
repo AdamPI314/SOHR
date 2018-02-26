@@ -1,0 +1,21 @@
+﻿1>------ Build started: Project: SOHR, Configuration: Debug x64 ------
+1>species_group.cpp
+1>concreteReactionNetwork.cpp
+1>d:\github\sohr\src\reactionnetwork\concretereactionnetwork\concretereactionnetwork.cpp(98): warning C4267: 'argument': conversion from 'size_t' to 'relationshipParser_sr::index_int_t', possible loss of data
+1>d:\github\sohr\src\reactionnetwork\concretereactionnetwork\concretereactionnetwork.cpp(360): warning C4267: 'argument': conversion from 'size_t' to 'reactionNetwork_sr::vertex_t', possible loss of data
+1>d:\github\sohr\src\reactionnetwork\concretereactionnetwork\concretereactionnetwork.cpp(365): warning C4267: 'argument': conversion from 'size_t' to 'relationshipParser_sr::index_int_t', possible loss of data
+1>d:\github\sohr\src\reactionnetwork\concretereactionnetwork\concretereactionnetwork.cpp(369): warning C4267: 'argument': conversion from 'size_t' to 'reactionNetwork_sr::vertex_t', possible loss of data
+1>d:\github\sohr\src\reactionnetwork\concretereactionnetwork\concretereactionnetwork.cpp(371): warning C4267: 'argument': conversion from 'size_t' to 'relationshipParser_sr::index_int_t', possible loss of data
+1>d:\github\sohr\src\reactionnetwork\concretereactionnetwork\concretereactionnetwork.cpp(375): warning C4267: 'argument': conversion from 'size_t' to 'reactionNetwork_sr::vertex_t', possible loss of data
+1>d:\github\sohr\src\reactionnetwork\concretereactionnetwork\concretereactionnetwork.cpp(378): warning C4267: 'argument': conversion from 'size_t' to 'relationshipParser_sr::index_int_t', possible loss of data
+1>d:\github\sohr\src\reactionnetwork\concretereactionnetwork\concretereactionnetwork.cpp(382): warning C4267: 'argument': conversion from 'size_t' to 'reactionNetwork_sr::vertex_t', possible loss of data
+1>d:\github\sohr\src\reactionnetwork\concretereactionnetwork\concretereactionnetwork.cpp(385): warning C4267: 'argument': conversion from 'size_t' to 'relationshipParser_sr::index_int_t', possible loss of data
+1>d:\github\sohr\src\reactionnetwork\concretereactionnetwork\concretereactionnetwork.cpp(409): warning C4267: 'argument': conversion from 'size_t' to 'reactionNetwork_sr::vertex_t', possible loss of data
+1>Generating Code...
+1>Skipping... (no relevant changes detected)
+1>main.cpp
+1>drivers.cpp
+1>SOHR.vcxproj -> D:\Github\SOHR\x64\Debug\SOHR.exe
+1>SOHR.vcxproj -> D:\Github\SOHR\x64\Debug\SOHR.pdb (Partial PDB)
+1>Done building project "SOHR.vcxproj".
+========== Build: 1 succeeded, 0 failed, 0 up-to-date, 0 skipped ==========
