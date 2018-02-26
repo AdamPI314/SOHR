@@ -84,12 +84,12 @@ namespace reactionNetwork_sr {
 									//set s_i, through, r_j, to s_j, coef to be zero
 									s_j_w.second = 0.0;
 								}
-								//not in the same chattering group
-								else
+								//not in the same chattering group, and the coefficient of the second > 0, "legal reaction"
+								else if (s_j_w.second > 0)
 								{
 									is_legal_reaction = true;
 								}
-							
+
 							}//reaction's out species vector and associated weight
 
 							//method 2)
@@ -99,8 +99,8 @@ namespace reactionNetwork_sr {
 									//set s_i, through, r_j, to s_j, coef to be zero
 									s_j_w.second = 0.0;
 								}
-								//not in the same chattering group
-								else
+								//not in the same chattering group, and the coefficient of the second > 0, means "legal reaction"
+								else if (s_j_w.second > 0)
 								{
 									is_legal_reaction = true;
 								}
@@ -138,7 +138,8 @@ namespace reactionNetwork_sr {
 		//this->propagator->set_chattering_reaction_rates_to_zero_pgt();
 
 		//update chattering species sink reaction coefficient
-		this->update_chattering_species_sink_reaction_info_AND_reaction_sink_species_info();
+		this->update_chattering_species_sink_reaction_info_AND_reaction_sink_species_info(
+			this->rnk_pt.get<std::string>("pathway.atom_followed"));
 
 		//re construct the cubic spline
 		this->propagator->initiate_cubic_spline();
