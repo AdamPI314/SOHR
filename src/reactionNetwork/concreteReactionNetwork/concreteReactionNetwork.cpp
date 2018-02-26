@@ -87,6 +87,7 @@ namespace reactionNetwork_sr {
 								//not in the same chattering group, and the coefficient of the second > 0, "legal reaction"
 								else if (s_j_w.second > 0)
 								{
+									std::cout << "\nout1\t" << s_i << "\t" << s_j_w.first << "\t" << s_j_w.second << "\n";
 									is_legal_reaction = true;
 								}
 
@@ -102,6 +103,7 @@ namespace reactionNetwork_sr {
 								//not in the same chattering group, and the coefficient of the second > 0, means "legal reaction"
 								else if (s_j_w.second > 0)
 								{
+									std::cout << "\nout2\t" << s_i << "\t" << s_j_w.first << "\t" << s_j_w.second << "\n";
 									is_legal_reaction = true;
 								}
 
