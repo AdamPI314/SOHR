@@ -16,7 +16,7 @@ namespace species_group_sr {
 			this->unique_chattering_species.find(s2) == this->unique_chattering_species.end())
 			return false;
 
-		return this->spe_idx_2_chattering_group_id_idx.at(s1) == this->spe_idx_2_chattering_group_id_idx.at(s2);
+		return this->spe_idx_2_chattering_group_id_idx.at(s1).first == this->spe_idx_2_chattering_group_id_idx.at(s2).first;
 	}
 	species_group_base::species_group_base()
 	{
