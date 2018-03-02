@@ -11,6 +11,7 @@ namespace reactionNetwork_sr {
 	namespace mt = misc_template;
 	namespace rsp = relationshipParser_sr;
 	namespace pgt = propagator_sr;
+	namespace rnk = reactionNetwork_sr;
 
 	class concreteReactionNetwork :public superReactionNetwork {
 
@@ -66,6 +67,12 @@ namespace reactionNetwork_sr {
 		* if reaction_time> tau, let it be, don't cut it off
 		*/
 		double chattering_group_reaction_time_from_importance_sampling_without_cutoff(rsp::my_time_t curr_time, vertex_t curr_group, double Y) override;
+		/*
+		* inside chattering group, randomly pick next species, for example, A<=>B chattering set,
+		* either pick A or B based on their SSA(or equilibrium) concentration
+		*/
+		std::vector<double> chattering_group_probability_vector(rsp::index_int_t chattering_group_id, double time) override;
+		rnk::vertex_t inside_chattering_group_random_pick_next_spe(rsp::index_int_t chattering_group_id, double time) override;
 
 	public:
 		//set Prob_max(tau^{j}|t+tau^{j-1};S^{j-1}), with pathway_end_time fixed

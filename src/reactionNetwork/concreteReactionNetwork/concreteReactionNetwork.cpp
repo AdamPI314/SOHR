@@ -256,6 +256,35 @@ namespace reactionNetwork_sr {
 		}
 	}
 
+	std::vector<double> concreteReactionNetwork::chattering_group_probability_vector(rsp::index_int_t chattering_group_id, double time)
+	{
+		//choose chattering species direction randomly based on drc at this time, actually going out from that species
+		std::vector<double> drc_prob(this->sp_chattering_rnk->species_chattering_group_mat[chattering_group_id].size(), 0.0);
+		for (std::size_t i = 0; i < drc_prob.size(); ++i) {
+			drc_prob[i] = this->evaluate_spe_drc_at_time(time,
+				this->sp_chattering_rnk->species_chattering_group_mat[chattering_group_id][i]);
+
+			//gonna take steady state concentration, or real concentration of species at this time into consideration
+			//can try steady state concentration vs. real equilibrium concentration
+			drc_prob[i] *= this->evaluate_spe_concentration_at_time(time,
+				this->sp_chattering_rnk->species_chattering_group_mat[chattering_group_id][i]);
+		}
+
+		return drc_prob;
+	}
+
+	rnk::vertex_t concreteReactionNetwork::inside_chattering_group_random_pick_next_spe(rsp::index_int_t chattering_group_id, double time)
+	{
+		//choose chattering species direction randomly based on drc at this time, actually going out from that species
+		auto drc_prob = this->chattering_group_probability_vector(chattering_group_id, time);
+
+		auto next_vertex1 = this->sp_chattering_rnk->species_chattering_group_mat[chattering_group_id][
+			rand->return_index_randomly_given_probability_vector(drc_prob)
+		];
+
+		return next_vertex1;
+	}
+
 	bool concreteReactionNetwork::set_spe_prob_max_at_a_time(double init_time, double end_time, size_t index_t)
 	{
 		//pro_max= 1-prob_min= 1-exp[-integrate_{init_time}^{end_time}{propensity function}];

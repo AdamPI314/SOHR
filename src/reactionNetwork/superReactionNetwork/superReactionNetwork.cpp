@@ -959,22 +959,8 @@ namespace reactionNetwork_sr {
 
 			//actually move two steps, (1) from one chattering species to another chattering species
 			//(2) from chattering species to the outside
-			/*step */
-			//choose chattering species direction randomly based on drc at this time, actually going out from that species
-			std::vector<double> drc_prob(this->sp_chattering_rnk->species_chattering_group_mat[chattering_group_id].size(), 0.0);
-			for (std::size_t i = 0; i < drc_prob.size(); ++i) {
-				drc_prob[i] = this->evaluate_spe_drc_at_time(time,
-					this->sp_chattering_rnk->species_chattering_group_mat[chattering_group_id][i]);
-
-				//gonna take steady state concentration, or real concentration of species at this time into consideration
-				//can try steady state concentration vs. real equilibrium concentration
-				drc_prob[i] *= this->evaluate_spe_concentration_at_time(time,
-					this->sp_chattering_rnk->species_chattering_group_mat[chattering_group_id][i]);
-			}
-
-			auto next_vertex1 = this->sp_chattering_rnk->species_chattering_group_mat[chattering_group_id][
-				rand->return_index_randomly_given_probability_vector(drc_prob)
-			];
+			/*step 1*/
+			auto next_vertex1 = this->inside_chattering_group_random_pick_next_spe(chattering_group_id, time);
 
 			curr_pathway += "R";
 			//negative reaction index represent chattering group number
@@ -1076,22 +1062,8 @@ namespace reactionNetwork_sr {
 
 			//actually move two steps, (1) from one chattering species to another chattering species
 			//(2) from chattering species to the outside
-			/*step */
-			//choose chattering species direction randomly based on drc at this time, actually going out from that species
-			std::vector<double> drc_prob(this->sp_chattering_rnk->species_chattering_group_mat[chattering_group_id].size(), 0.0);
-			for (std::size_t i = 0; i < drc_prob.size(); ++i) {
-				drc_prob[i] = this->evaluate_spe_drc_at_time(time,
-					this->sp_chattering_rnk->species_chattering_group_mat[chattering_group_id][i]);
-
-				//gonna take steady state concentration, or real concentration of species at this time into consideration
-				//can try steady state concentration vs. real equilibrium concentration
-				drc_prob[i] *= this->evaluate_spe_concentration_at_time(time,
-					this->sp_chattering_rnk->species_chattering_group_mat[chattering_group_id][i]);
-			}
-
-			auto next_vertex1 = this->sp_chattering_rnk->species_chattering_group_mat[chattering_group_id][
-				rand->return_index_randomly_given_probability_vector(drc_prob)
-			];
+			/*step 1*/
+			auto next_vertex1 = this->inside_chattering_group_random_pick_next_spe(chattering_group_id, time);
 
 			curr_pathway += "R";
 			//negative reaction index represent chattering group number

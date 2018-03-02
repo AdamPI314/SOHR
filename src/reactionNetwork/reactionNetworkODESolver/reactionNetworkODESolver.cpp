@@ -163,6 +163,16 @@ namespace reactionNetworkODESolver_sr {
 		return 0.0;
 	}
 
+	std::vector<double> reactionNetworkODESolver::chattering_group_probability_vector(rsp::index_int_t chattering_group_id, double time)
+	{
+		return std::vector<double>();
+	}
+
+	rnk::vertex_t reactionNetworkODESolver::inside_chattering_group_random_pick_next_spe(rsp::index_int_t chattering_group_id, double time)
+	{
+		return rnk::vertex_t();
+	}
+
 	void reactionNetworkODESolver::set_concentration_at_time_zero_to_initial_fraction_or_concentration() {
 		for (std::size_t i = 0; i < concentration_data_pgt.size(); ++i) {
 			concentration_data_pgt[i][0] = this->species_network_v[i].spe_conc;

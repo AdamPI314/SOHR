@@ -312,6 +312,13 @@ namespace reactionNetwork_sr {
 		* known the species, randomly pick next species based on their weight
 		*/
 		vertex_t spe_random_pick_next_spe(rsp::index_int_t curr_spe, std::string atom_followed = "H");
+		/*
+		* inside chattering group, randomly pick next species, for example, A<=>B chattering set,
+		* either pick A or B based on their SSA(or equilibrium) concentration
+		*/
+		virtual std::vector<double> chattering_group_probability_vector(rsp::index_int_t chattering_group_id, double time) = 0;
+		virtual vertex_t inside_chattering_group_random_pick_next_spe(rsp::index_int_t chattering_group_id, double time) = 0;
+
 
 	public:
 		//XS1R1S2--> X and S1R1S2
