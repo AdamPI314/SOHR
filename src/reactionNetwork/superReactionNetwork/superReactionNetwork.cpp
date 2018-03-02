@@ -1177,23 +1177,14 @@ namespace reactionNetwork_sr {
 
 					/*step 1*/
 					//based on drc at this time, calculate probability going out by that direction
-					std::vector<double> drc_prob(this->sp_chattering_rnk->species_chattering_group_mat[chattering_group_id].size(), 0.0);
-					for (std::size_t i = 0; i < drc_prob.size(); ++i) {
-						drc_prob[i] = this->evaluate_spe_drc_at_time(when_time,
-							this->sp_chattering_rnk->species_chattering_group_mat[chattering_group_id][i]);
-
-						//gonna take steady state concentration, or real concentration of species at this time into consideration
-						//can try steady state concentration vs. real equilibrium concentration
-						drc_prob[i] *= this->evaluate_spe_concentration_at_time(when_time,
-							this->sp_chattering_rnk->species_chattering_group_mat[chattering_group_id][i]);
-					}
-					double drc_prob_sum = std::accumulate(drc_prob.begin(), drc_prob.end(), 0.0);
+					auto drc_prob_unnormalized = this->chattering_group_probability_vector(chattering_group_id, when_time);
+					double drc_prob_sum = std::accumulate(drc_prob_unnormalized.begin(), drc_prob_unnormalized.end(), 0.0);
 					//make sure there is at least one direction out, there is no, dead end, return 0.0 probability
 					if (drc_prob_sum <= 0.0)
 						return 0.0;
 
 					//notice out species is spe_vec[i + 1], next_species1
-					pathway_prob *= drc_prob[this->sp_chattering_rnk->spe_idx_2_chattering_group_id_idx[spe_vec[i + 1]].second] / drc_prob_sum;
+					pathway_prob *= drc_prob_unnormalized[this->sp_chattering_rnk->spe_idx_2_chattering_group_id_idx[spe_vec[i + 1]].second] / drc_prob_sum;
 					/*step 1*/
 
 					/*step 2*/
@@ -1282,32 +1273,20 @@ namespace reactionNetwork_sr {
 
 					/*step 1*/
 					//based on drc at this time, calculate probability going out by that direction
-					std::vector<double> drc_prob(this->sp_chattering_rnk->species_chattering_group_mat[chattering_group_id].size(), 0.0);
-					for (std::size_t i = 0; i < drc_prob.size(); ++i) {
-						drc_prob[i] = this->evaluate_spe_drc_at_time(when_time,
-							this->sp_chattering_rnk->species_chattering_group_mat[chattering_group_id][i]);
-
-						//gonna take steady state concentration, or real concentration of species at this time into consideration
-						//can try steady state concentration vs. real equilibrium concentration
-						drc_prob[i] *= this->evaluate_spe_concentration_at_time(when_time,
-							this->sp_chattering_rnk->species_chattering_group_mat[chattering_group_id][i]);
-					}
-					double drc_prob_sum = std::accumulate(drc_prob.begin(), drc_prob.end(), 0.0);
+					auto drc_prob_unnormalized = this->chattering_group_probability_vector(chattering_group_id, when_time);
+					double drc_prob_sum = std::accumulate(drc_prob_unnormalized.begin(), drc_prob_unnormalized.end(), 0.0);
 					//make sure there is at least one direction out, there is no, dead end, return 0.0 probability
 					if (drc_prob_sum <= 0.0)
 						return 0.0;
-
 					//notice out species is spe_vec[i + 1], next_species1
-					pathway_prob *= drc_prob[this->sp_chattering_rnk->spe_idx_2_chattering_group_id_idx[spe_vec[i + 1]].second] / drc_prob_sum;
+					pathway_prob *= drc_prob_unnormalized[this->sp_chattering_rnk->spe_idx_2_chattering_group_id_idx[spe_vec[i + 1]].second] / drc_prob_sum;
 					/*step 1*/
 
 					/*step 2*/
 					pathway_prob *= spe_spe_branching_ratio(this->sp_all_species_group_rnk->out_species_rxns.at(spe_vec[i + 1]).at(spe_vec[i + 2]),
 						when_time, spe_vec[i + 1], spe_vec[i + 2], atom_followed, true);
 					/*step 2*/
-
 				}//boundary time problem
-
 				 //move two steps actually
 				i += 2;
 			}//if chattering case
