@@ -110,6 +110,8 @@ namespace reactionNetwork_sr {
 		boost::property_tree::ptree rnk_atom_scheme;
 		//follow hypothesized atom or not
 		bool follow_hypothesized_atom = false;
+		//condense chattering, total make A<=>B to be new species Z, condensing all reaction details
+		bool condense_chattering = false;
 
 	protected:
 		boost::uint32_t random_seed_for_this_core;
