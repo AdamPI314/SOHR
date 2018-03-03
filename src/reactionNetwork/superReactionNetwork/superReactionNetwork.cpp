@@ -1251,7 +1251,7 @@ namespace reactionNetwork_sr {
 		double when_time = init_time;
 
 		//start from the first reaction
-		for (size_t i = 0; i < spe_vec.size();)
+		for (size_t i = 0; i < spe_vec.size() - 1;)
 		{
 			int chattering_group_id = this->species_network_v[spe_vec[i]].chattering_group_id;
 
@@ -1381,7 +1381,7 @@ namespace reactionNetwork_sr {
 		double when_time = init_time;
 
 		//start from the first reaction
-		for (size_t i = 0; i < spe_vec.size();)
+		for (size_t i = 0; i < spe_vec.size() - 1;)
 		{
 			int chattering_group_id = this->species_network_v[spe_vec[i]].chattering_group_id;
 
