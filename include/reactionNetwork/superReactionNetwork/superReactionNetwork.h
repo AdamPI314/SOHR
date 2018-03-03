@@ -410,7 +410,7 @@ namespace reactionNetwork_sr {
 		* simulate in a specific time range once, knowing the initial species,  manually set which atom to follow, and return the pathway
 		*/
 		std::string pathway_sim_once(double init_time, double end_time, vertex_t init_spe, std::string atom_followed = "H");
-
+		when_where_t species_chattering_group_move_one_step(int chattering_group_id, double time, std::string &curr_pathway, std::string atom_followed = "H");
 		/*
 		only species, no reactions, or says all reactions a condensed into a single step transition, given P(H2,H3), it represents
 		suppose a single atom, here H, originates from H2, the probability it is delivered to, by whatever reactions

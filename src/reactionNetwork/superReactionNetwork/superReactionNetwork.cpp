@@ -943,8 +943,12 @@ namespace reactionNetwork_sr {
 		//update rate in the reaction network
 		update_reaction_rate(time, next_vertex1);
 
+		rsp::index_int_t next_reaction_index2 = spe_random_pick_next_reaction(next_vertex1);
 		//random pick next spe
-		vertex_t next_vertex2 = spe_random_pick_next_spe(next_vertex1, atom_followed);
+		vertex_t next_vertex2 = reaction_random_pick_next_spe(next_reaction_index2, atom_followed);
+
+		curr_pathway += "R";
+		curr_pathway += boost::lexical_cast<std::string>(next_reaction_index2);
 
 		curr_pathway += "S";
 		curr_pathway += boost::lexical_cast<std::string>(next_vertex2);
@@ -1033,6 +1037,47 @@ namespace reactionNetwork_sr {
 		return curr_pathway;
 	}
 
+	when_where_t superReactionNetwork::species_chattering_group_move_one_step(int chattering_group_id, double time, std::string & curr_pathway, std::string atom_followed)
+	{
+		//totally condense chattering, for A<=>B, make new species Z, adding up all internal possiblities
+		when_where_t when_where;
+
+		//actually move two steps, (1) from one chattering species to another chattering species
+		//(2) from chattering species to the outside
+		/*step 1*/
+		auto next_vertex1 = this->inside_chattering_group_random_pick_next_spe(chattering_group_id, time);
+
+		//if this->condense_chatterings == true 
+		//Just don't record chattering group as a reaction, don't record the internal species
+		if (this->condense_chatterings == false) {
+			curr_pathway += "R";
+			//negative reaction index represent chattering group number
+			//since there is no -1 * 0, which means, to the first chattering_group_id 0, negative 0 is still 0,
+			//negative sign will not show on pathway string, here we make it to be -1*(chattering_group_id+1)
+			curr_pathway += boost::lexical_cast<std::string>(-1 * (chattering_group_id + rsp::INDICATOR));
+
+			curr_pathway += "S";
+			curr_pathway += boost::lexical_cast<std::string>(next_vertex1);
+			/*step 1*/
+		}
+
+		/*step 2*/
+		//update rate in the reaction network
+		update_reaction_rate(time, next_vertex1);
+
+		//random pick next spe
+		vertex_t next_vertex2 = spe_random_pick_next_spe(next_vertex1, atom_followed);
+
+		curr_pathway += "S";
+		curr_pathway += boost::lexical_cast<std::string>(next_vertex2);
+
+		when_where.first = time;
+		when_where.second = next_vertex2;
+		/*step 2*/
+
+		return when_where;
+	}
+
 	when_where_t reactionNetwork_sr::superReactionNetwork::species_pathway_move_one_step(double time, vertex_t curr_spe, std::string & curr_pathway, std::string atom_followed)
 	{
 		//Monte-Carlo simulation
@@ -1080,7 +1125,7 @@ namespace reactionNetwork_sr {
 				return when_where;
 			}
 
-			when_where = this->chattering_group_move_one_step(chattering_group_id, time, curr_pathway, atom_followed);
+			when_where = this->species_chattering_group_move_one_step(chattering_group_id, time, curr_pathway, atom_followed);
 
 			return when_where;
 		}
