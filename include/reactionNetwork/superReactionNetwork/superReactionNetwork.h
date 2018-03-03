@@ -111,7 +111,7 @@ namespace reactionNetwork_sr {
 		//follow hypothesized atom or not
 		bool follow_hypothesized_atom = false;
 		//condense chattering, total make A<=>B to be new species Z, condensing all reaction details
-		bool condense_chattering = false;
+		bool condense_chatterings = false;
 
 	protected:
 		boost::uint32_t random_seed_for_this_core;
@@ -228,6 +228,8 @@ namespace reactionNetwork_sr {
 		void read_atom_scheme();
 		bool check_hypothesized_atom();
 		void update_hypothesized_atom_info(std::string hypothesized_atom = "HA1");
+		//condense chattering totally, in case of A<=>B chattering, making new species Z
+		bool check_condense_chatterings();
 	public:
 		void set_species_initial_concentration();
 
@@ -396,6 +398,7 @@ namespace reactionNetwork_sr {
 			double reaction_time, rsp::index_int_t curr_spe, rsp::index_int_t next_spe, std::string atom_followed = "H", bool update_reaction_rate = true);
 
 	public:
+		when_where_t chattering_group_move_one_step(int chattering_group_id, double time, std::string &curr_pathway, std::string atom_followed = "H");
 		/*
 		* return when it is, where we are, for MPI
 		* move one step
@@ -425,11 +428,13 @@ namespace reactionNetwork_sr {
 		* directly set the next reaction and next species the ones we want
 		*/
 		double pathway_prob_sim_move_one_step(double when_time, vertex_t curr_spe, rsp::index_int_t next_reaction, vertex_t next_spe, double &pathway_prob, std::string atom_followed = "H");
+		bool chattering_group_pathway_prob_sim_move_one_step(int chattering_group_id, const std::vector<rsp::index_int_t> &spe_vec, const std::vector<rsp::index_int_t> &reaction_vec, std::size_t &i, double &when_time, const double end_time, double & pathway_prob, std::string atom_followed = "H");
 		//input a pathway, return its pathway prob
 		double pathway_prob_input_pathway_sim_once(const double init_time, const double end_time, const std::vector<rsp::index_int_t> &spe_vec, const std::vector<rsp::index_int_t> &reaction_vec, std::string atom_followed = "H");
 
 		//species pathway
 		double species_pathway_prob_sim_move_one_step(double when_time, vertex_t curr_spe, vertex_t next_spe, double &pathway_prob, std::string atom_followed = "H");
+		bool species_chattering_group_pathway_prob_sim_move_one_step(int chattering_group_id, const std::vector<rsp::index_int_t> &spe_vec, std::size_t &i, double &when_time, const double end_time, double & pathway_prob, std::string atom_followed = "H");
 		double species_pathway_prob_input_pathway_sim_once(const double init_time, const double end_time, const std::vector<rsp::index_int_t> &spe_vec, const std::vector<rsp::index_int_t> &reaction_vec, std::string atom_followed = "H");
 
 	public:
