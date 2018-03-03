@@ -257,8 +257,6 @@ namespace reactionNetwork_sr {
 
 	bool superReactionNetwork::check_condense_chatterings()
 	{
-		if (this->rnk_pt.count("network.condense_chatterings") == 0)
-			return false;
 		if (this->rnk_pt.get<std::string>("network.condense_chatterings") == "yes") {
 			std::cout << "\ncondense chatterings.\n";
 			return true;
