@@ -259,8 +259,10 @@ namespace reactionNetwork_sr {
 	{
 		if (this->rnk_pt.count("network.condense_chatterings") == 0)
 			return false;
-		if (this->rnk_pt.get<std::string>("network.condense_chatterings") == "yes")
+		if (this->rnk_pt.get<std::string>("network.condense_chatterings") == "yes") {
+			std::cout << "\ncondense chatterings.\n";
 			return true;
+		}
 		return false;
 	}
 
