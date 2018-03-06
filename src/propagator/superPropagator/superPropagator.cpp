@@ -225,30 +225,27 @@ namespace propagator_sr {
 		//write to json file
 		boost::property_tree::ptree pt_root1;
 
+		int counter = 0;
 		for (auto x : this->sp_all_species_group_pgt->species_group_pairs_rxns) {
-			boost::property_tree::ptree pt_child1;
 
 			auto s1_s2 = x.first;
-
-			boost::property_tree::ptree pt_child2;
-
-			int counter = 0;
+						
 			auto vec = x.second;
 			for (auto rxn_c1_c2 : vec)
 			{
-				boost::property_tree::ptree pt_child3;
+				boost::property_tree::ptree pt_child1;
 
-				pt_child3.put("r_idx", rxn_c1_c2.r_idx);
-				pt_child3.put("c1", rxn_c1_c2.c1);
-				pt_child3.put("c2", rxn_c1_c2.c2);
-				pt_child3.put("r_name", reaction_network_v[rxn_c1_c2.r_idx].reaction_name);
+				pt_child1.put("from", s1_s2.first);
+				pt_child1.put("to", s1_s2.second);
 
-				pt_child2.put_child(boost::lexical_cast<std::string>(counter + 1), pt_child3);
+				pt_child1.put("r_idx", rxn_c1_c2.r_idx);
+				pt_child1.put("c1", rxn_c1_c2.c1);
+				pt_child1.put("c2", rxn_c1_c2.c2);
+				pt_child1.put("r_name", reaction_network_v[rxn_c1_c2.r_idx].reaction_name);
+
+				pt_root1.put_child(boost::lexical_cast<std::string>(counter + 1), pt_child1);
 				++counter;
 			}
-			pt_child1.put_child(boost::lexical_cast<std::string>(s1_s2.second), pt_child2);
-
-			pt_root1.add_child(boost::lexical_cast<std::string>(s1_s2.first), pt_child1);
 		}
 
 		std::ofstream fout_json;
