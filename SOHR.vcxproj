@@ -52,6 +52,7 @@
     <ClInclude Include="include\tools\misc\misc_template.h" />
     <ClInclude Include="include\tools\misc\tree_bundled.h" />
     <ClInclude Include="include\tools\my_debug\my_debug.h" />
+    <ClInclude Include="include\tools\pathway_constraint\pathway_constraint.h" />
     <ClInclude Include="include\tools\species_group\species_group.h" />
     <ClInclude Include="include\tools\union_find\unionFind.h" />
   </ItemGroup>
@@ -85,6 +86,7 @@
     <ClCompile Include="src\tools\map_reduce\map_reduce.cpp" />
     <ClCompile Include="src\tools\matrix\matrix_sr.cpp" />
     <ClCompile Include="src\tools\my_debug\my_debug.cpp" />
+    <ClCompile Include="src\tools\pathway_constraint\pathway_constraint.cpp" />
     <ClCompile Include="src\tools\species_group\species_group.cpp" />
     <ClCompile Include="src\tools\union_find\unionFind.cpp" />
   </ItemGroup>
