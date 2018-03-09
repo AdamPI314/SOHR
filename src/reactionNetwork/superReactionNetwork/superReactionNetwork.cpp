@@ -1165,6 +1165,7 @@ namespace reactionNetwork_sr {
 		}
 		else {
 			u_1 = 0.0;
+			//u_1 = INFINITESIMAL_DT;
 		}
 
 		when_time = reaction_time_from_importance_sampling(when_time, curr_spe, u_1);
@@ -1187,8 +1188,10 @@ namespace reactionNetwork_sr {
 			if (chattering_group_prob > 0.0) {
 				u_1 = rand->random_min_max(0, chattering_group_prob);
 			}
-			else
+			else {
 				u_1 = 0.0;
+				//u_1 = INFINITESIMAL_DT;
+			}				
 
 			when_time = chattering_group_reaction_time_from_importance_sampling_without_cutoff(when_time, chattering_group_id, u_1);
 
@@ -1198,8 +1201,11 @@ namespace reactionNetwork_sr {
 				auto drc_prob_unnormalized = this->chattering_group_probability_vector(chattering_group_id, when_time);
 				double drc_prob_sum = std::accumulate(drc_prob_unnormalized.begin(), drc_prob_unnormalized.end(), 0.0);
 				//make sure there is at least one direction out, there is no, dead end, return 0.0 probability
-				if (drc_prob_sum <= 0.0)
+				if (drc_prob_sum <= 0.0) {
+					pathway_prob = 0.0;
 					return false;
+				}
+
 
 				double chattering_group_total_prob = 0.0;
 				//don't know the species leaving the chattering group, gonna search
@@ -1294,6 +1300,7 @@ namespace reactionNetwork_sr {
 		}
 		else {
 			u_1 = 0.0;
+			//u_1 = INFINITESIMAL_DT;
 		}
 
 		when_time = reaction_time_from_importance_sampling(when_time, curr_spe, u_1);
@@ -1312,13 +1319,16 @@ namespace reactionNetwork_sr {
 		pathway_prob *= chattering_group_prob;
 
 		//avoid problems around boundary
-		if (when_time < (tau - INFINITESIMAL_DT)) {
+		if (when_time < (end_time - INFINITESIMAL_DT)) {
 			double u_1 = 1.0;
 			if (chattering_group_prob > 0.0) {
 				u_1 = rand->random_min_max(0, chattering_group_prob);
 			}
-			else
+			else {
 				u_1 = 0.0;
+				//u_1 = INFINITESIMAL_DT;
+			}
+
 
 			when_time = chattering_group_reaction_time_from_importance_sampling_without_cutoff(when_time, chattering_group_id, u_1);
 
@@ -1328,8 +1338,11 @@ namespace reactionNetwork_sr {
 				auto drc_prob_unnormalized = this->chattering_group_probability_vector(chattering_group_id, when_time);
 				double drc_prob_sum = std::accumulate(drc_prob_unnormalized.begin(), drc_prob_unnormalized.end(), 0.0);
 				//make sure there is at least one direction out, there is no, dead end, return 0.0 probability
-				if (drc_prob_sum <= 0.0)
+				if (drc_prob_sum <= 0.0) {
+					pathway_prob = 0.0;
 					return false;
+				}
+
 
 				double chattering_group_total_prob = 0.0;
 				//don't know the species leaving the chattering group, gonna search
@@ -1354,7 +1367,7 @@ namespace reactionNetwork_sr {
 				double drc_prob_sum = std::accumulate(drc_prob_unnormalized.begin(), drc_prob_unnormalized.end(), 0.0);
 				//make sure there is at least one direction out, there is no, dead end, return 0.0 probability
 				if (drc_prob_sum <= 0.0)
-					return 0.0;
+					return false;
 				//notice out species is spe_vec[i + 1], next_species1
 				pathway_prob *= drc_prob_unnormalized[this->sp_chattering_rnk->spe_idx_2_chattering_group_id_idx[spe_vec[i + 1]].second] / drc_prob_sum;
 				/*step 1*/
@@ -1425,6 +1438,7 @@ namespace reactionNetwork_sr {
 		}
 		else {
 			u_1 = 0.0;
+			//u_1 = INFINITESIMAL_DT;
 		}
 
 		when_time = reaction_time_from_importance_sampling(when_time, curr_spe, u_1);
@@ -1463,8 +1477,10 @@ namespace reactionNetwork_sr {
 					if (chattering_group_prob > 0.0) {
 						u_1 = rand->random_min_max(0, chattering_group_prob);
 					}
-					else
+					else {
 						u_1 = 0.0;
+						//u_1 = INFINITESIMAL_DT;
+					}
 
 					when_time = chattering_group_reaction_time_from_importance_sampling_without_cutoff(when_time, chattering_group_id, u_1);
 				}//boundary time problem
@@ -1517,8 +1533,11 @@ namespace reactionNetwork_sr {
 					if (chattering_group_prob > 0.0) {
 						u_1 = rand->random_min_max(0, chattering_group_prob);
 					}
-					else
+					else {
 						u_1 = 0.0;
+						//u_1 = INFINITESIMAL_DT;
+					}
+
 
 					when_time = chattering_group_reaction_time_from_importance_sampling_without_cutoff(when_time, chattering_group_id, u_1);
 
@@ -1569,8 +1588,10 @@ namespace reactionNetwork_sr {
 					if (chattering_group_prob > 0.0) {
 						u_1 = rand->random_min_max(0, chattering_group_prob);
 					}
-					else
+					else {
 						u_1 = 0.0;
+						//u_1 = INFINITESIMAL_DT;
+					}
 
 					when_time = chattering_group_reaction_time_from_importance_sampling_without_cutoff(when_time, chattering_group_id, u_1);
 				}//boundary time problem

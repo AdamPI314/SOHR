@@ -251,6 +251,8 @@ namespace reactionNetwork_sr {
 
 			if (reaction_time < sys_min_time)
 				return sys_min_time;
+			else if (reaction_time > tau)
+				return tau;
 			else
 				return reaction_time;
 		}
