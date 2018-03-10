@@ -434,7 +434,7 @@ namespace propagator_sr {
 		return this->sp_chattering_pgt;
 	}
 
-	void superPropagator::set_chattering_spe_pair_from_file_pgt()
+	void superPropagator::update_chattering_spe_pair_from_file_pgt()
 	{
 		std::vector<std::vector<rsp::index_int_t> > Matrix(2, std::vector<rsp::index_int_t>());
 
@@ -1037,7 +1037,7 @@ namespace propagator_sr {
 		boost::property_tree::read_json(this->cwd_pgt + std::string("/input/setting.json"), pgt_pt, std::locale());
 
 		//set fast reactions, read fast inter-conversion reaction pairs from "setting.json"
-		set_chattering_spe_pair_from_file_pgt();
+		update_chattering_spe_pair_from_file_pgt();
 
 		//set the reaction rate of fast reactions to be zero
 		//set_chattering_reaction_rates_to_zero_pgt();

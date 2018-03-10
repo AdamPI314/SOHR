@@ -3,6 +3,7 @@
 
 #include "../../tools/misc/misc_template.h"
 #include "../../random/random.h"
+#include "../../tools/pathway_constraint/pathway_constraint.h"
 
 //In the C and C++ programming languages, #pragma once is a non-standard but widely supported
 //preprocessor directive designed to cause the current source file to be included only once in a
@@ -112,6 +113,9 @@ namespace reactionNetwork_sr {
 		bool follow_hypothesized_atom = false;
 		//condense chattering, total make A<=>B to be new species Z, condensing all reaction details
 		bool condense_chatterings = false;
+		//apply pathway constraint, check/test this only when evaluate pathway probabilities
+		bool apply_pathway_constraint = false;
+		//
 
 	protected:
 		boost::uint32_t random_seed_for_this_core;
@@ -132,9 +136,11 @@ namespace reactionNetwork_sr {
 		std::set<vertex_t> terminal_species;
 	protected:
 		//shared pointer of all species
-		std::shared_ptr<species_group_sr::species_group_base> sp_all_species_group_rnk;
+		std::shared_ptr<species_group_sr::species_group_base> sp_all_species_group_rnk = nullptr;
 		//shared pointer of chattering
-		std::shared_ptr<species_group_sr::chattering> sp_chattering_rnk;
+		std::shared_ptr<species_group_sr::chattering> sp_chattering_rnk = nullptr;
+		//shared pointer of pathway constraint
+		std::shared_ptr<pathway_constraint_sr::pathway_constraint> sp_pathway_constarint_rnk = std::make_shared<pathway_constraint_sr::pathway_constraint>();
 	protected:
 		/*
 		 *	we have two spaces here, one is reaction mechanism space, in which
@@ -230,6 +236,9 @@ namespace reactionNetwork_sr {
 		void update_hypothesized_atom_info(std::string hypothesized_atom = "HA1");
 		//condense chattering totally, in case of A<=>B chattering, making new species Z
 		bool check_condense_chatterings();
+
+		void update_pathway_constraint_from_file_rnk();
+		bool check_apply_pathway_constraint();
 	public:
 		void set_species_initial_concentration();
 
@@ -392,6 +401,7 @@ namespace reactionNetwork_sr {
 		* output- reaction and spe branching ratio
 		* deal with fast reactions, next_spe is not a product of next_reaction, but inter-convert to one product of next_reaction rapidly
 		*/
+		double spe_out_by_a_reaction_branching_ratio(rsp::index_int_t curr_spe, rsp::index_int_t next_reaction);
 		/* use out_spe_index_branching_ratio_map_map, do not need to search for out species and calculate spe branching ratio each time*/
 		double reaction_spe_branching_ratio(double reaction_time, rsp::index_int_t curr_spe, rsp::index_int_t next_reaction, rsp::index_int_t next_spe, std::string atom_followed = "H", bool update_reaction_rate = true);
 		double spe_spe_branching_ratio(const std::vector<species_group_sr::rxn_c1_c2> &rxn_c1_c2_vec,

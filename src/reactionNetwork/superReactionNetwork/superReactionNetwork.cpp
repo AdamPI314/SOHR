@@ -53,6 +53,10 @@ namespace reactionNetwork_sr {
 		this->follow_hypothesized_atom = this->check_hypothesized_atom();
 		this->condense_chatterings = this->check_condense_chatterings();
 
+		//read reaction constraint or species constraint information from file, then set whether apply pathway constraint
+		this->update_pathway_constraint_from_file_rnk();
+		this->apply_pathway_constraint = this->check_apply_pathway_constraint();
+
 		//update super atom info
 		this->update_super_atom_info(rnk_pt.get<std::string>("pathway.super_atom"));
 		if (this->follow_hypothesized_atom) {
@@ -264,11 +268,65 @@ namespace reactionNetwork_sr {
 		return false;
 	}
 
+	void superReactionNetwork::update_pathway_constraint_from_file_rnk()
+	{
+		// check reaction constraint
+		for (auto key1 : this->rnk_pt.get_child("pathway.species_sink_reaction_constraint")) {
+
+			rsp::index_int_t species_idx = boost::lexical_cast<rsp::index_int_t>(std::stoi(key1.first));
+			std::unordered_set< rsp::index_int_t > reaction_set;
+			for (auto key2 : key1.second) {
+				rsp::index_int_t x = key2.second.get_value<rsp::index_int_t>();
+				//std::cout << x;
+				reaction_set.insert(x);
+			}
+
+			this->sp_pathway_constarint_rnk->species_sink_reaction_set_map[species_idx] = reaction_set;
+		}
+
+		if (this->sp_pathway_constarint_rnk->species_sink_reaction_set_map.size() > 0)
+			this->sp_pathway_constarint_rnk->species_sink_through_reaction_constraint = true;
+		else
+			this->sp_pathway_constarint_rnk->species_sink_through_reaction_constraint = true;
+
+		// check species constraint
+		for (auto key1 : this->rnk_pt.get_child("pathway.reaction_out_species_constraint")) {
+
+			rsp::index_int_t reaction_idx = boost::lexical_cast<rsp::index_int_t>(std::stoi(key1.first));
+			std::unordered_set< rsp::index_int_t > species_set;
+			for (auto key2 : key1.second) {
+				rsp::index_int_t x = key2.second.get_value<rsp::index_int_t>();
+				//std::cout << x;
+				species_set.insert(x);
+			}
+
+			this->sp_pathway_constarint_rnk->reaction_out_species_set_map[reaction_idx] = species_set;
+		}
+		if (this->sp_pathway_constarint_rnk->reaction_out_species_set_map.size() > 0)
+			this->sp_pathway_constarint_rnk->reaction_out_species_constraint = true;
+		else
+			this->sp_pathway_constarint_rnk->reaction_out_species_constraint = false;
+
+	}
+
+	bool superReactionNetwork::check_apply_pathway_constraint()
+	{
+		// two conditions, 1) pathway.apply_pathway_constraint set to be yes,
+		// 2) either "reaction_constraint" is set or "species_constraint" is et
+		if (this->rnk_pt.get<std::string>("pathway.apply_pathway_constraint") == std::string("yes")) {
+			if (this->sp_pathway_constarint_rnk->species_sink_through_reaction_constraint == true || this->sp_pathway_constarint_rnk->reaction_out_species_constraint == true)
+				return true;
+		}
+
+		return false;
+	}
+
 	void superReactionNetwork::set_species_initial_concentration()
 	{
 		//read with json_parser as property_tree
 		for (auto key1 : this->rnk_pt.get_child("chem_init.species_index_concentration")) {
-			this->species_network_v[boost::lexical_cast<std::size_t>(key1.first)].spe_conc = key1.second.get_value<double>()*this->rnk_pt.get<double>("SOHR_init.massConservationFactor");
+			this->species_network_v[boost::lexical_cast<std::size_t>(key1.first)].spe_conc =
+				key1.second.get_value<double>()*this->rnk_pt.get<double>("SOHR_init.massConservationFactor");
 		}
 
 		if (this->rnk_pt.get<std::string>("propagator.normalize_initial_concentration") == "yes") {
@@ -862,25 +920,71 @@ namespace reactionNetwork_sr {
 
 	}
 
-	double reactionNetwork_sr::superReactionNetwork::reaction_spe_branching_ratio(double reaction_time, rsp::index_int_t curr_spe, rsp::index_int_t next_reaction, rsp::index_int_t next_spe, std::string atom_followed, bool update_reaction_rate)
+	double superReactionNetwork::spe_out_by_a_reaction_branching_ratio(rsp::index_int_t curr_spe, rsp::index_int_t next_reaction)
 	{
-		//update rate in the reaction network
-		if (update_reaction_rate == true)
-			this->update_reaction_rate(reaction_time, curr_spe);
+
+		//pathway constraint case and current species is on the list
+		if (this->apply_pathway_constraint == true && this->sp_pathway_constarint_rnk->species_sink_reaction_set_map.count(curr_spe) > 0) {
+			if (this->sp_pathway_constarint_rnk->species_sink_through_reaction_constraint == false)
+				return 0.0;
+
+			//current reaction not on the list
+			if (this->sp_pathway_constarint_rnk->species_sink_reaction_set_map.at(curr_spe).count(next_reaction) == 0)
+				return 0.0;
+
+			// calculate this actually
+			double prob_total = 0.0, prob_target_reaction = 0.0;
+			for (std::size_t i = 0; i < this->species_network_v[curr_spe].reaction_k_index_s_coef_v.size(); ++i) {//for
+				auto r_idx = this->species_network_v[curr_spe].reaction_k_index_s_coef_v[i].first;
+				//found next reaction
+				if (r_idx == next_reaction) {
+					prob_target_reaction = this->species_network_v[curr_spe].reaction_k_index_s_coef_v[i].second* //s_coef_product
+						this->reaction_network_v[r_idx].reaction_rate; //reaction rate
+					prob_total += prob_target_reaction;
+				}
+				//not found next reaction
+				else {
+					// not a candidate reaction
+					if (this->sp_pathway_constarint_rnk->species_sink_reaction_set_map.at(curr_spe).count(r_idx) == 0)
+						continue;
+					prob_total += this->species_network_v[curr_spe].reaction_k_index_s_coef_v[i].second* //s_coef_product
+						this->reaction_network_v[r_idx].reaction_rate; //reaction rate
+				}
+			}//for
+
+			double reaction_branching_ratio;
+			//it prob_total ==0.0, it must because I set it to be zero artificially
+			//it depends
+			if (prob_total == 0.0) {
+				reaction_branching_ratio = 1.0;
+			}
+			else {
+				reaction_branching_ratio = prob_target_reaction / prob_total;
+			}
+
+			return reaction_branching_ratio;
+
+		} // apply_pathway_constraint and current species is on the list
+
+
+		// ############################################################################
+		// don't apply_pathway_constraint case or current speices is not on the list
+		// ############################################################################
 
 		//probability
 		double prob_total = 0.0, prob_target_reaction = 0.0;
 		for (std::size_t i = 0; i < this->species_network_v[curr_spe].reaction_k_index_s_coef_v.size(); ++i) {//for
+			auto r_idx = this->species_network_v[curr_spe].reaction_k_index_s_coef_v[i].first;
 			//found next reaction
-			if (this->species_network_v[curr_spe].reaction_k_index_s_coef_v[i].first == next_reaction) {
+			if (r_idx == next_reaction) {
 				prob_target_reaction = this->species_network_v[curr_spe].reaction_k_index_s_coef_v[i].second* //s_coef_product
-					this->reaction_network_v[this->species_network_v[curr_spe].reaction_k_index_s_coef_v[i].first].reaction_rate; //reaction rate
+					this->reaction_network_v[r_idx].reaction_rate; //reaction rate
 				prob_total += prob_target_reaction;
 			}
 			//not found next reaction
 			else {
 				prob_total += this->species_network_v[curr_spe].reaction_k_index_s_coef_v[i].second* //s_coef_product
-					this->reaction_network_v[this->species_network_v[curr_spe].reaction_k_index_s_coef_v[i].first].reaction_rate; //reaction rate
+					this->reaction_network_v[r_idx].reaction_rate; //reaction rate
 			}
 		}//for
 
@@ -894,6 +998,16 @@ namespace reactionNetwork_sr {
 			reaction_branching_ratio = prob_target_reaction / prob_total;
 		}
 
+		return reaction_branching_ratio;
+	}
+
+	double reactionNetwork_sr::superReactionNetwork::reaction_spe_branching_ratio(double reaction_time, rsp::index_int_t curr_spe, rsp::index_int_t next_reaction, rsp::index_int_t next_spe, std::string atom_followed, bool update_reaction_rate)
+	{
+		//update rate in the reaction network
+		if (update_reaction_rate == true)
+			this->update_reaction_rate(reaction_time, curr_spe);
+
+		double reaction_branching_ratio = spe_out_by_a_reaction_branching_ratio(curr_spe, next_reaction);
 
 		double spe_branching_ratio = 0.0;
 		//next species found
@@ -1191,7 +1305,7 @@ namespace reactionNetwork_sr {
 			else {
 				u_1 = 0.0;
 				//u_1 = INFINITESIMAL_DT;
-			}				
+			}
 
 			when_time = chattering_group_reaction_time_from_importance_sampling_without_cutoff(when_time, chattering_group_id, u_1);
 
