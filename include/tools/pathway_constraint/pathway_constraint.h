@@ -20,6 +20,9 @@ namespace pathway_constraint_sr {
 		// reaction out species, have to be one species from this vector (from this list)
 		std::map<rsp::index_int_t, std::unordered_set<rsp::index_int_t> > reaction_out_species_set_map;
 
+		// must reaction species set, set the survial probability to 0.0, react probability to be 1.0
+		std::unordered_set<rsp::index_int_t> must_react_species_set;
+
 	public:
 		pathway_constraint();
 		~pathway_constraint();

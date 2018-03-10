@@ -307,6 +307,12 @@ namespace reactionNetwork_sr {
 		else
 			this->sp_pathway_constarint_rnk->reaction_out_species_constraint = false;
 
+		// must react species set
+		for (auto key1 : this->rnk_pt.get_child("pathway.must_react_species"))
+		{
+			this->sp_pathway_constarint_rnk->must_react_species_set.insert(key1.second.get_value<size_t>());
+		}
+
 	}
 
 	bool superReactionNetwork::check_apply_pathway_constraint()
@@ -913,6 +919,16 @@ namespace reactionNetwork_sr {
 
 	double superReactionNetwork::prob_spe_will_react_in_a_time_range(double init_time, double pathway_end_time, size_t curr_spe)
 	{
+		//pathway constraint case and current species is on the list
+		//in this case, we are making a assumption, that current species must react
+		if (this->apply_pathway_constraint == true && this->sp_pathway_constarint_rnk->must_react_species_set.count(curr_spe) > 0) {
+			return 1.0;
+		}
+
+		// ############################################################################
+		// don't apply_pathway_constraint case or current speices don't have to react
+		// ############################################################################
+
 		////set pathway end time
 		//set_pathway_end_time(pathway_end_time);
 		set_spe_prob_max_at_a_time(init_time, pathway_end_time, curr_spe);
