@@ -556,7 +556,7 @@ namespace propagator_sr {
 							transition_mat[this->sp_chattering_pgt->spe_idx_2_chattering_group_id_idx.at(s_idx_2).second]
 								[this->sp_chattering_pgt->spe_idx_2_chattering_group_id_idx.at(s_idx_1).second] = drc_tmp / s_coef_2;
 
-							// A sink term fot itself, only for using linear algebra
+							// A sink term for itself
 							transition_mat[this->sp_chattering_pgt->spe_idx_2_chattering_group_id_idx.at(s_idx_1).second]
 								[this->sp_chattering_pgt->spe_idx_2_chattering_group_id_idx.at(s_idx_1).second] -= drc_tmp / s_coef_2;
 
@@ -571,12 +571,12 @@ namespace propagator_sr {
 		// calculate equilibrium concentration based on transition matrix
 		std::vector<double> equil_ratio(transition_mat.size(), 0);
 
-		//// using transition matrix without sink terms
-		//double first_real_positive_eigenvalue;
-		//auto ok = matrix_sr::cal_equilibrium_ratio_from_transition_matrix(transition_mat, first_real_positive_eigenvalue, equil_ratio);
+		// using transition matrix without sink terms
+		double first_real_positive_eigenvalue;
+		auto ok = matrix_sr::cal_equilibrium_ratio_from_transition_matrix(transition_mat, first_real_positive_eigenvalue, equil_ratio);
 
-		// solve linear equation, with sink terms
-		auto ok = matrix_sr::gaussian_jordan(transition_mat, equil_ratio);
+		//// solve linear equation, with sink and source terms
+		//auto ok = matrix_sr::gaussian_jordan(transition_mat, equil_ratio);
 
 		if (ok == false)
 			return;
