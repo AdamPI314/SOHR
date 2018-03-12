@@ -229,7 +229,7 @@ namespace propagator_sr {
 		for (auto x : this->sp_all_species_group_pgt->species_group_pairs_rxns) {
 
 			auto s1_s2 = x.first;
-						
+
 			auto vec = x.second;
 			for (auto rxn_c1_c2 : vec)
 			{
@@ -486,6 +486,105 @@ namespace propagator_sr {
 		}//chattering group
 	}
 
+	void superPropagator::update_chattering_group_K_prob_of_groupID_at_timeIDX_using_reference_X(std::size_t group_i, std::size_t time_j)
+	{
+		//sum over all chattering species
+		this->chattering_group_k_data_pgt[group_i][time_j] = 0.0;
+
+		//calculate concentration at this time
+		double sum_conc = 0.0;
+		for (auto spe_idx : this->sp_chattering_pgt->species_chattering_group_mat[group_i]) {
+			auto s_g_idx = this->sp_chattering_pgt->spe_idx_2_super_group_idx[spe_idx];
+			//fast equilibrium concentration, concentration at this time
+			this->chattering_group_ss_prob_data_pgt[s_g_idx][time_j] =
+				this->evaluate_concentration_at_time(this->time_data_pgt[time_j], spe_idx);
+			sum_conc += this->chattering_group_ss_prob_data_pgt[s_g_idx][time_j];
+		}
+
+		//normalize within each chattering group
+		for (auto spe_idx : this->sp_chattering_pgt->species_chattering_group_mat[group_i]) {
+			auto s_g_idx = this->sp_chattering_pgt->spe_idx_2_super_group_idx[spe_idx];
+			//check zero
+			if (sum_conc > 0) {
+				this->chattering_group_ss_prob_data_pgt[s_g_idx][time_j] /= sum_conc;
+
+				//as soon as fast equilibrium concentration is normalized
+				//this->spe_drc_data_pgt[spe_idx][time_j] *= this->chattering_group_ss_prob_data_pgt[s_g_idx][time_j];
+				this->chattering_group_k_data_pgt[group_i][time_j] +=
+					this->spe_drc_data_pgt[spe_idx][time_j] * this->chattering_group_ss_prob_data_pgt[s_g_idx][time_j];
+			}
+			else {
+				this->chattering_group_ss_prob_data_pgt[s_g_idx][time_j] = 1.0 / this->sp_chattering_pgt->species_chattering_group_mat[group_i].size();
+
+				//as soon as fast equilibrium concentration is normalized
+				//this->spe_drc_data_pgt[spe_idx][time_j] *= this->chattering_group_ss_prob_data_pgt[s_g_idx][time_j];
+				this->chattering_group_k_data_pgt[group_i][time_j] +=
+					this->spe_drc_data_pgt[spe_idx][time_j] * this->chattering_group_ss_prob_data_pgt[s_g_idx][time_j];
+			}
+		}
+	}
+
+	void superPropagator::update_chattering_group_K_prob_of_groupID_at_timeIDX_using_reference_SSA(std::size_t group_i, std::size_t time_j)
+	{
+
+		auto spe_vec = this->sp_chattering_pgt->species_chattering_group_mat[group_i];
+		// transition matrix, to each group of species, calculate a transition matrix
+		std::vector<std::vector<double> > transition_mat(spe_vec.size(), std::vector<double>(spe_vec.size(), 0.0));
+
+		for (auto c_g : this->sp_chattering_pgt->species_chattering_group_pairs_rxns) {
+			for (auto p_r_m : c_g) {
+				auto s1_s2_p = p_r_m.first;
+
+				auto s_idx_1 = s1_s2_p.first;
+				auto s_idx_2 = s1_s2_p.second;
+
+				// both in group_i
+				if (this->sp_chattering_pgt->spe_idx_2_chattering_group_id_idx.at(s_idx_1).first == group_i &&
+					this->sp_chattering_pgt->spe_idx_2_chattering_group_id_idx.at(s_idx_2).first == group_i) {
+
+					auto rxn_c1_c2_set = p_r_m.second;
+					for (auto rxn_c1_c2 : rxn_c1_c2_set) {
+						auto rxn_idx = rxn_c1_c2.r_idx;
+						auto s_coef_1 = rxn_c1_c2.c1;
+						auto s_coef_2 = rxn_c1_c2.c2;
+
+						if (this->concentration_data_pgt[s_idx_1][time_j] != 0) {
+							auto drc_tmp = s_coef_1 *this->reaction_rate_data_pgt[rxn_idx][time_j] / this->concentration_data_pgt[s_idx_1][time_j];
+							// assume first order transition, if it is 5A==10B, too hard to deal with
+							// speaking of transition matrix, to a A==B system, 
+							// k_{AB} should be the matrix element on the left bottom corner
+							transition_mat[this->sp_chattering_pgt->spe_idx_2_chattering_group_id_idx.at(s_idx_2).second]
+								[this->sp_chattering_pgt->spe_idx_2_chattering_group_id_idx.at(s_idx_1).second] = drc_tmp / s_coef_2;
+
+						}//if
+
+					}//rxn_c1_c2_set
+				}
+			}//s1_s2_pair
+		}//chattrering_group
+
+
+		// calculate equilibrium concentration based on transition matrix
+		double first_real_positive_eigenvalue;
+		std::vector<double> equil_ratio;
+		auto ok = matrix_sr::cal_equilibrium_ratio_from_transition_matrix(transition_mat, first_real_positive_eigenvalue, equil_ratio);
+
+		if (ok == false)
+			return;
+
+		for (size_t i = 0; i < this->sp_chattering_pgt->species_chattering_group_mat[group_i].size(); ++i) {
+			auto spe_idx = this->sp_chattering_pgt->species_chattering_group_mat[group_i][i];
+			// super group index
+			auto s_g_idx = this->sp_chattering_pgt->spe_idx_2_super_group_idx[spe_idx];
+			chattering_group_ss_prob_data_pgt[s_g_idx][time_j] = equil_ratio[i];
+
+			// as soon as fast equilibrium concentration is normalized
+			this->chattering_group_k_data_pgt[group_i][time_j] +=
+				this->spe_drc_data_pgt[spe_idx][time_j] * this->chattering_group_ss_prob_data_pgt[s_g_idx][time_j];
+		}
+
+	}
+
 	void superPropagator::update_drc_and_equilibrium_probability_of_chattering_group()
 	{
 		this->chattering_group_k_data_pgt.clear();
@@ -503,42 +602,11 @@ namespace propagator_sr {
 		//if there is a fast transition between A and B, there we modify the k3, k3=k2/(k1+k2) * k3
 		for (std::size_t group_i = 0; group_i < this->sp_chattering_pgt->species_chattering_group_mat.size(); ++group_i) {
 			for (std::size_t time_j = 0; time_j < this->time_data_pgt.size(); ++time_j) {
-				//sum over all chattering species
-				this->chattering_group_k_data_pgt[group_i][time_j] = 0.0;
 
-				//calculate concentration at this time
-				double sum_conc = 0.0;
-				for (auto spe_idx : this->sp_chattering_pgt->species_chattering_group_mat[group_i]) {
-					auto s_g_idx = this->sp_chattering_pgt->spe_idx_2_super_group_idx[spe_idx];
-					//fast equilibrium concentration, concentration at this time
-					this->chattering_group_ss_prob_data_pgt[s_g_idx][time_j] =
-						this->evaluate_concentration_at_time(this->time_data_pgt[time_j], spe_idx);
-					sum_conc += this->chattering_group_ss_prob_data_pgt[s_g_idx][time_j];
-				}
+				//update_chattering_group_K_prob_of_groupID_at_timeIDX_using_reference_X(group_i, time_j);
+				update_chattering_group_K_prob_of_groupID_at_timeIDX_using_reference_SSA(group_i, time_j);
 
-				//normalize within each chattering group
-				for (auto spe_idx : this->sp_chattering_pgt->species_chattering_group_mat[group_i]) {
-					auto s_g_idx = this->sp_chattering_pgt->spe_idx_2_super_group_idx[spe_idx];
-					//check zero
-					if (sum_conc > 0) {
-						this->chattering_group_ss_prob_data_pgt[s_g_idx][time_j] /= sum_conc;
-
-						//as soon as fast equilibrium concentration is normalized
-						//this->spe_drc_data_pgt[spe_idx][time_j] *= this->chattering_group_ss_prob_data_pgt[s_g_idx][time_j];
-						this->chattering_group_k_data_pgt[group_i][time_j] +=
-							this->spe_drc_data_pgt[spe_idx][time_j] * this->chattering_group_ss_prob_data_pgt[s_g_idx][time_j];
-					}
-					else {
-						this->chattering_group_ss_prob_data_pgt[s_g_idx][time_j] = 1.0 / this->sp_chattering_pgt->species_chattering_group_mat[group_i].size();
-
-						//as soon as fast equilibrium concentration is normalized
-						//this->spe_drc_data_pgt[spe_idx][time_j] *= this->chattering_group_ss_prob_data_pgt[s_g_idx][time_j];
-						this->chattering_group_k_data_pgt[group_i][time_j] +=
-							this->spe_drc_data_pgt[spe_idx][time_j] * this->chattering_group_ss_prob_data_pgt[s_g_idx][time_j];
-					}
-				}
-
-			}//time
+			}//time j
 		}//chattering group
 
 		//chattering group destruction rate constant,pseudo first order destructive rate constant
@@ -565,7 +633,7 @@ namespace propagator_sr {
 		fout.clear(); fout.close();
 
 		//print out a specific group ss prob
-		std::size_t group_i_tmp = 0;
+		std::size_t group_i_tmp = 3;
 		fout.open((this->cwd_pgt + std::string("/output/chattering_group_ss_prob_") + tag + std::string(".csv")).c_str());
 		for (size_t time_i = 0; time_i < chattering_group_ss_prob_data_pgt[0].size(); ++time_i) {
 			for (std::size_t j = 0; j < this->sp_chattering_pgt->species_chattering_group_mat[group_i_tmp].size(); ++j) {
@@ -1041,7 +1109,7 @@ namespace propagator_sr {
 
 		//set the reaction rate of fast reactions to be zero
 		//set_chattering_reaction_rates_to_zero_pgt();
-	}
+}
 
 
 #ifdef __CHEMKIN_AVAILABLE_
@@ -1113,9 +1181,9 @@ namespace propagator_sr {
 				spe_drc_int_data_pgt[i][j] = 0.5 * (spe_drc_data_pgt[i][j] + spe_drc_data_pgt[i][j - 1]) * (time_data_pgt[j] - time_data_pgt[j - 1]) + spe_drc_int_data_pgt[i][j - 1];
 
 			}
-	}//for]
+		}//for]
 
-}//int_propensity_function_pgt()
+	}//int_propensity_function_pgt()
 
 
 	bool superPropagator::init_spe_drc_pgt()
@@ -1444,7 +1512,7 @@ namespace propagator_sr {
 
 
 
-}//namespace propagator_sr
+	}//namespace propagator_sr
 
 
 #endif
