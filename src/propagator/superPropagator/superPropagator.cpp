@@ -539,8 +539,8 @@ namespace propagator_sr {
 				auto s_idx_2 = s1_s2_p.second;
 
 				// both in group_i
-				if (this->sp_chattering_pgt->spe_idx_2_chattering_group_id_idx.at(s_idx_1).first == group_i &&
-					this->sp_chattering_pgt->spe_idx_2_chattering_group_id_idx.at(s_idx_2).first == group_i) {
+				if (this->sp_chattering_pgt->spe_idx_2_chattering_group_id_idx.at(s_idx_1).first == (rsp::index_int_t)group_i &&
+					this->sp_chattering_pgt->spe_idx_2_chattering_group_id_idx.at(s_idx_2).first == (rsp::index_int_t)group_i) {
 
 					auto rxn_c1_c2_set = p_r_m.second;
 					for (auto rxn_c1_c2 : rxn_c1_c2_set) {
@@ -556,6 +556,10 @@ namespace propagator_sr {
 							transition_mat[this->sp_chattering_pgt->spe_idx_2_chattering_group_id_idx.at(s_idx_2).second]
 								[this->sp_chattering_pgt->spe_idx_2_chattering_group_id_idx.at(s_idx_1).second] = drc_tmp / s_coef_2;
 
+							// A sink term fot itself, only for using linear algebra
+							transition_mat[this->sp_chattering_pgt->spe_idx_2_chattering_group_id_idx.at(s_idx_1).second]
+								[this->sp_chattering_pgt->spe_idx_2_chattering_group_id_idx.at(s_idx_1).second] -= drc_tmp / s_coef_2;
+
 						}//if
 
 					}//rxn_c1_c2_set
@@ -565,9 +569,14 @@ namespace propagator_sr {
 
 
 		// calculate equilibrium concentration based on transition matrix
-		double first_real_positive_eigenvalue;
-		std::vector<double> equil_ratio;
-		auto ok = matrix_sr::cal_equilibrium_ratio_from_transition_matrix(transition_mat, first_real_positive_eigenvalue, equil_ratio);
+		std::vector<double> equil_ratio(transition_mat.size(), 0);
+
+		//// using transition matrix without sink terms
+		//double first_real_positive_eigenvalue;
+		//auto ok = matrix_sr::cal_equilibrium_ratio_from_transition_matrix(transition_mat, first_real_positive_eigenvalue, equil_ratio);
+
+		// solve linear equation, with sink terms
+		auto ok = matrix_sr::gaussian_jordan(transition_mat, equil_ratio);
 
 		if (ok == false)
 			return;

@@ -25,6 +25,9 @@ namespace matrix_sr {
 	// calculate equilibrium concentration/ratios from transition matrix
 	bool cal_equilibrium_ratio_from_transition_matrix(std::vector<std::vector<double> > &transition_mat, double &first_positive_eigenvalue, std::vector<double> &equil_ratio);
 
+	// solve linear equation
+	bool gaussian_jordan(std::vector<std::vector<double>>& A, std::vector<double> &b);
+
 }
 
 

@@ -7,6 +7,7 @@
 #include <complex> // std::complex, std::imag
 
 #include "../../../include/tools/matrix/eigen_unsym.h"
+#include "../../../include/tools/matrix/gaussj.h"
 
 namespace matrix_sr {
 
@@ -161,6 +162,29 @@ namespace matrix_sr {
 		return true;
 	}
 
+	bool gaussian_jordan(std::vector<std::vector<double>>& A, std::vector<double> &b) {
+		std::size_t m = A.size();
+		//b.assign(m, 0.0);
+
+		MatDoub mat_tmp(m, m, 0.0);
+		for (std::size_t i = 0; i < m; ++i) {
+			for (std::size_t j = 0; j < m; ++j) {
+				mat_tmp[i][j] = A[i][j];
+			}
+		}
+
+		MatDoub b_tmp(m, 1, 0.0);
+		for (std::size_t i = 0; i < m; ++i)
+			b_tmp[i][0] = b[i];
+
+		gaussj(mat_tmp, b_tmp);
+
+		for (std::size_t i = 0; i < m; ++i)
+			b[i] = b_tmp[i][0];
+
+		return true;
+	}
+
 	//matrix_sr::size_t_matrix_t m1;
 	//m1.resize(5);
 	//m1[0] = { 0,1,1,1,1 };
@@ -234,5 +258,6 @@ namespace matrix_sr {
 	//}
 
 }
+
 
 #endif // !__MATRIX_SR_CPP_
