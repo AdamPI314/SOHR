@@ -177,10 +177,26 @@ namespace matrix_sr {
 		for (std::size_t i = 0; i < m; ++i)
 			b_tmp[i][0] = b[i];
 
-		gaussj(mat_tmp, b_tmp);
+		auto ok = gaussj_return(mat_tmp, b_tmp);
+		double sum_b = 0.0;
+		if (ok == true) {
+			for (std::size_t i = 0; i < m; ++i) {
+				b[i] = b_tmp[i][0];
+				sum_b += b[i];
+			}
+		}
 
-		for (std::size_t i = 0; i < m; ++i)
-			b[i] = b_tmp[i][0];
+		// normalize
+		if (ok == false || sum_b == 0) {
+			for (std::size_t i = 0; i < m; ++i) {
+				b[i] = 1.0 / m;
+			}
+		}
+		else {
+			for (std::size_t i = 0; i < m; ++i) {
+				b[i] /= sum_b;
+			}
+		}
 
 		return true;
 	}

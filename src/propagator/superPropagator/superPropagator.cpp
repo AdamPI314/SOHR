@@ -560,9 +560,9 @@ namespace propagator_sr {
 							transition_mat[this->sp_chattering_pgt->spe_idx_2_chattering_group_id_idx.at(s_idx_2).second]
 								[this->sp_chattering_pgt->spe_idx_2_chattering_group_id_idx.at(s_idx_1).second] = drc_tmp / s_coef_2;
 
-							//// A sink term for itself, only for linear algebra
-							//transition_mat[this->sp_chattering_pgt->spe_idx_2_chattering_group_id_idx.at(s_idx_1).second]
-							//	[this->sp_chattering_pgt->spe_idx_2_chattering_group_id_idx.at(s_idx_1).second] -= drc_tmp;
+							// A sink term for itself, only for linear algebra
+							transition_mat[this->sp_chattering_pgt->spe_idx_2_chattering_group_id_idx.at(s_idx_1).second]
+								[this->sp_chattering_pgt->spe_idx_2_chattering_group_id_idx.at(s_idx_1).second] -= drc_tmp;
 
 						}//if
 
@@ -597,29 +597,29 @@ namespace propagator_sr {
 				}//rxn_c1_c2_vector
 			}
 
-			//// source term, s1 not in group, s2 in group, calculate b vector
-			//if (s1_c_g_id == -1 && s2_c_g_id == (rsp::index_int_t)group_i) {
-			//	// means this is a sink term for current species
-			//	auto rxn_c1_c2_vec = s_p_rxn_c1_c2.second;
-			//	for (auto rxn_c1_c2 : rxn_c1_c2_vec) {
-			//		auto rxn_idx = rxn_c1_c2.r_idx;
-			//		//auto s_coef_1 = rxn_c1_c2.c1;
-			//		auto s_coef_2 = rxn_c1_c2.c2;
-			//		if (this->concentration_data_pgt[s_idx_1][time_j] != 0) {
-			//			auto drc_tmp = s_coef_2 * this->reaction_rate_data_pgt[rxn_idx][time_j];
-			//			b_vector[this->sp_chattering_pgt->spe_idx_2_chattering_group_id_idx.at(s_idx_2).second] += drc_tmp;
-			//		}//if
-			//	}//rxn_c1_c2_vector
-			//}
+			// source term, s1 not in group, s2 in group, calculate b vector
+			if (s1_c_g_id == -1 && s2_c_g_id == (rsp::index_int_t)group_i) {
+				// means this is a sink term for current species
+				auto rxn_c1_c2_vec = s_p_rxn_c1_c2.second;
+				for (auto rxn_c1_c2 : rxn_c1_c2_vec) {
+					auto rxn_idx = rxn_c1_c2.r_idx;
+					//auto s_coef_1 = rxn_c1_c2.c1;
+					auto s_coef_2 = rxn_c1_c2.c2;
+					if (this->concentration_data_pgt[s_idx_1][time_j] != 0) {
+						auto drc_tmp = s_coef_2 * this->reaction_rate_data_pgt[rxn_idx][time_j];
+						b_vector[this->sp_chattering_pgt->spe_idx_2_chattering_group_id_idx.at(s_idx_2).second] += drc_tmp;
+					}//if
+				}//rxn_c1_c2_vector
+			}
 
 		}
 
-		// using transition matrix without sink terms
-		double first_real_positive_eigenvalue;
-		auto ok = matrix_sr::cal_equilibrium_ratio_from_transition_matrix(transition_mat, first_real_positive_eigenvalue, b_vector);
+		//// using transition matrix without sink terms
+		//double first_real_positive_eigenvalue;
+		//auto ok = matrix_sr::cal_equilibrium_ratio_from_transition_matrix(transition_mat, first_real_positive_eigenvalue, b_vector);
 
-		//// solve linear equation, with sink and source terms
-		//auto ok = matrix_sr::gaussian_jordan(transition_mat, b_vector);
+		// solve linear equation, with sink and source terms
+		auto ok = matrix_sr::gaussian_jordan(transition_mat, b_vector);
 
 		if (ok == false)
 			return;
