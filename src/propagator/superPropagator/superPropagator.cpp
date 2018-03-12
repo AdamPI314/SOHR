@@ -530,7 +530,11 @@ namespace propagator_sr {
 		auto spe_vec = this->sp_chattering_pgt->species_chattering_group_mat[group_i];
 		// transition matrix, to each group of species, calculate a transition matrix
 		std::vector<std::vector<double> > transition_mat(spe_vec.size(), std::vector<double>(spe_vec.size(), 0.0));
+		// calculate equilibrium concentration based on transition matrix
+		// initially represent b vector in equation K X = b
+		std::vector<double> b_vector(transition_mat.size(), 0);
 
+		// inside chattering group
 		for (auto c_g : this->sp_chattering_pgt->species_chattering_group_pairs_rxns) {
 			for (auto p_r_m : c_g) {
 				auto s1_s2_p = p_r_m.first;
@@ -549,34 +553,73 @@ namespace propagator_sr {
 						auto s_coef_2 = rxn_c1_c2.c2;
 
 						if (this->concentration_data_pgt[s_idx_1][time_j] != 0) {
-							auto drc_tmp = s_coef_1 *this->reaction_rate_data_pgt[rxn_idx][time_j] / this->concentration_data_pgt[s_idx_1][time_j];
+							auto drc_tmp = s_coef_1 * this->reaction_rate_data_pgt[rxn_idx][time_j] / this->concentration_data_pgt[s_idx_1][time_j];
 							// assume first order transition, if it is 5A==10B, too hard to deal with
 							// speaking of transition matrix, to a A==B system, 
 							// k_{AB} should be the matrix element on the left bottom corner
 							transition_mat[this->sp_chattering_pgt->spe_idx_2_chattering_group_id_idx.at(s_idx_2).second]
 								[this->sp_chattering_pgt->spe_idx_2_chattering_group_id_idx.at(s_idx_1).second] = drc_tmp / s_coef_2;
 
-							// A sink term for itself
+							// A sink term for itself, only for linear algebra
 							transition_mat[this->sp_chattering_pgt->spe_idx_2_chattering_group_id_idx.at(s_idx_1).second]
-								[this->sp_chattering_pgt->spe_idx_2_chattering_group_id_idx.at(s_idx_1).second] -= drc_tmp / s_coef_2;
+								[this->sp_chattering_pgt->spe_idx_2_chattering_group_id_idx.at(s_idx_1).second] -= drc_tmp;
 
 						}//if
 
 					}//rxn_c1_c2_set
 				}
 			}//s1_s2_pair
-		}//chattrering_group
+		}//inside chattrering_group
 
+		// outside chattering group
+		for (auto s_p_rxn_c1_c2 : this->sp_all_species_group_pgt->species_group_pairs_rxns) {
+			auto s1_s2_p = s_p_rxn_c1_c2.first;
 
-		// calculate equilibrium concentration based on transition matrix
-		std::vector<double> equil_ratio(transition_mat.size(), 0);
+			auto s_idx_1 = s1_s2_p.first;
+			auto s_idx_2 = s1_s2_p.second;
 
-		// using transition matrix without sink terms
-		double first_real_positive_eigenvalue;
-		auto ok = matrix_sr::cal_equilibrium_ratio_from_transition_matrix(transition_mat, first_real_positive_eigenvalue, equil_ratio);
+			// sink terms, s1 in group, s2 not in group
+			auto s1_c_g_id = this->sp_chattering_pgt->get_chattering_group_id(s_idx_1);
+			auto s2_c_g_id = this->sp_chattering_pgt->get_chattering_group_id(s_idx_2);
+			if (s1_c_g_id == (rsp::index_int_t)group_i && s2_c_g_id == -1) {
+				// means this is a sink term for current species
+				auto rxn_c1_c2_vec = s_p_rxn_c1_c2.second;
+				for (auto rxn_c1_c2 : rxn_c1_c2_vec) {
+					auto rxn_idx = rxn_c1_c2.r_idx;
+					auto s_coef_1 = rxn_c1_c2.c1;
+					//auto s_coef_2 = rxn_c1_c2.c2;
+					if (this->concentration_data_pgt[s_idx_1][time_j] != 0) {
+						auto drc_tmp = s_coef_1 * this->reaction_rate_data_pgt[rxn_idx][time_j] / this->concentration_data_pgt[s_idx_1][time_j];
+						// A sink term for itself, only for linear algebra
+						transition_mat[this->sp_chattering_pgt->spe_idx_2_chattering_group_id_idx.at(s_idx_1).second]
+							[this->sp_chattering_pgt->spe_idx_2_chattering_group_id_idx.at(s_idx_1).second] -= drc_tmp;
+					}//if
+				}//rxn_c1_c2_vector
+			}
 
-		//// solve linear equation, with sink and source terms
-		//auto ok = matrix_sr::gaussian_jordan(transition_mat, equil_ratio);
+			// source term, s1 not in group, s2 in group, calculate b vector
+			if (s1_c_g_id == -1 && s2_c_g_id == (rsp::index_int_t)group_i) {
+				// means this is a sink term for current species
+				auto rxn_c1_c2_vec = s_p_rxn_c1_c2.second;
+				for (auto rxn_c1_c2 : rxn_c1_c2_vec) {
+					auto rxn_idx = rxn_c1_c2.r_idx;
+					//auto s_coef_1 = rxn_c1_c2.c1;
+					auto s_coef_2 = rxn_c1_c2.c2;
+					if (this->concentration_data_pgt[s_idx_1][time_j] != 0) {
+						auto drc_tmp = s_coef_2 * this->reaction_rate_data_pgt[rxn_idx][time_j];
+						b_vector[this->sp_chattering_pgt->spe_idx_2_chattering_group_id_idx.at(s_idx_2).second] += drc_tmp;
+					}//if
+				}//rxn_c1_c2_vector
+			}
+
+		}
+
+		//// using transition matrix without sink terms
+		//double first_real_positive_eigenvalue;
+		//auto ok = matrix_sr::cal_equilibrium_ratio_from_transition_matrix(transition_mat, first_real_positive_eigenvalue, b_vector);
+
+		// solve linear equation, with sink and source terms
+		auto ok = matrix_sr::gaussian_jordan(transition_mat, b_vector);
 
 		if (ok == false)
 			return;
@@ -585,7 +628,7 @@ namespace propagator_sr {
 			auto spe_idx = this->sp_chattering_pgt->species_chattering_group_mat[group_i][i];
 			// super group index
 			auto s_g_idx = this->sp_chattering_pgt->spe_idx_2_super_group_idx[spe_idx];
-			chattering_group_ss_prob_data_pgt[s_g_idx][time_j] = equil_ratio[i];
+			chattering_group_ss_prob_data_pgt[s_g_idx][time_j] = b_vector[i];
 
 			// as soon as fast equilibrium concentration is normalized
 			this->chattering_group_k_data_pgt[group_i][time_j] +=
@@ -1118,7 +1161,7 @@ namespace propagator_sr {
 
 		//set the reaction rate of fast reactions to be zero
 		//set_chattering_reaction_rates_to_zero_pgt();
-}
+	}
 
 
 #ifdef __CHEMKIN_AVAILABLE_
@@ -1521,7 +1564,7 @@ namespace propagator_sr {
 
 
 
-	}//namespace propagator_sr
+}//namespace propagator_sr
 
 
 #endif

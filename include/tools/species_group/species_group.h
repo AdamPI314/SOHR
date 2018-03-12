@@ -74,6 +74,8 @@ namespace species_group_sr {
 		//whether two species in the same chattering groups or not
 		bool is_in_same_chattering_group(rsp::index_int_t s1, rsp::index_int_t s2);
 
+		rsp::index_int_t get_chattering_group_id(rsp::index_int_t s_idx);
+
 	};
 }
 

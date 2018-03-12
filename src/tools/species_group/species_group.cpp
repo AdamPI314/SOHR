@@ -18,6 +18,15 @@ namespace species_group_sr {
 
 		return this->spe_idx_2_chattering_group_id_idx.at(s1).first == this->spe_idx_2_chattering_group_id_idx.at(s2).first;
 	}
+	rsp::index_int_t chattering::get_chattering_group_id(rsp::index_int_t s_idx)
+	{
+		// not in any chattering group
+		if (this->unique_chattering_species.find(s_idx) == this->unique_chattering_species.end())
+			return -1;
+
+
+		return rsp::index_int_t(spe_idx_2_chattering_group_id_idx.at(s_idx).first);
+	}
 	species_group_base::species_group_base()
 	{
 	}
