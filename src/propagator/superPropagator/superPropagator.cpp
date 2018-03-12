@@ -553,16 +553,17 @@ namespace propagator_sr {
 						auto s_coef_2 = rxn_c1_c2.c2;
 
 						if (this->concentration_data_pgt[s_idx_1][time_j] != 0) {
-							auto drc_tmp = s_coef_1 * this->reaction_rate_data_pgt[rxn_idx][time_j] / this->concentration_data_pgt[s_idx_1][time_j];
+							// auto drc_tmp = s_coef_1 * this->reaction_rate_data_pgt[rxn_idx][time_j] / this->concentration_data_pgt[s_idx_1][time_j];
+							auto drc_tmp = this->reaction_rate_data_pgt[rxn_idx][time_j] / this->concentration_data_pgt[s_idx_1][time_j];
 							// assume first order transition, if it is 5A==10B, too hard to deal with
 							// speaking of transition matrix, to a A==B system, 
 							// k_{AB} should be the matrix element on the left bottom corner
 							transition_mat[this->sp_chattering_pgt->spe_idx_2_chattering_group_id_idx.at(s_idx_2).second]
-								[this->sp_chattering_pgt->spe_idx_2_chattering_group_id_idx.at(s_idx_1).second] = drc_tmp / s_coef_2;
+								[this->sp_chattering_pgt->spe_idx_2_chattering_group_id_idx.at(s_idx_1).second] = drc_tmp * s_coef_2;
 
 							// A sink term for itself, only for linear algebra
 							transition_mat[this->sp_chattering_pgt->spe_idx_2_chattering_group_id_idx.at(s_idx_1).second]
-								[this->sp_chattering_pgt->spe_idx_2_chattering_group_id_idx.at(s_idx_1).second] -= drc_tmp;
+								[this->sp_chattering_pgt->spe_idx_2_chattering_group_id_idx.at(s_idx_1).second] -= drc_tmp * s_coef_1;
 
 						}//if
 
@@ -589,10 +590,11 @@ namespace propagator_sr {
 					auto s_coef_1 = rxn_c1_c2.c1;
 					//auto s_coef_2 = rxn_c1_c2.c2;
 					if (this->concentration_data_pgt[s_idx_1][time_j] != 0) {
-						auto drc_tmp = s_coef_1 * this->reaction_rate_data_pgt[rxn_idx][time_j] / this->concentration_data_pgt[s_idx_1][time_j];
+						// auto drc_tmp = s_coef_1 * this->reaction_rate_data_pgt[rxn_idx][time_j] / this->concentration_data_pgt[s_idx_1][time_j];
+						auto drc_tmp = this->reaction_rate_data_pgt[rxn_idx][time_j] / this->concentration_data_pgt[s_idx_1][time_j];
 						// A sink term for itself, only for linear algebra
 						transition_mat[this->sp_chattering_pgt->spe_idx_2_chattering_group_id_idx.at(s_idx_1).second]
-							[this->sp_chattering_pgt->spe_idx_2_chattering_group_id_idx.at(s_idx_1).second] -= drc_tmp;
+							[this->sp_chattering_pgt->spe_idx_2_chattering_group_id_idx.at(s_idx_1).second] -= drc_tmp * s_coef_1;
 					}//if
 				}//rxn_c1_c2_vector
 			}
@@ -606,8 +608,9 @@ namespace propagator_sr {
 					//auto s_coef_1 = rxn_c1_c2.c1;
 					auto s_coef_2 = rxn_c1_c2.c2;
 					if (this->concentration_data_pgt[s_idx_1][time_j] != 0) {
-						auto drc_tmp = s_coef_2 * this->reaction_rate_data_pgt[rxn_idx][time_j];
-						b_vector[this->sp_chattering_pgt->spe_idx_2_chattering_group_id_idx.at(s_idx_2).second] += drc_tmp;
+						// auto drc_tmp = s_coef_2 * this->reaction_rate_data_pgt[rxn_idx][time_j];
+						auto drc_tmp = this->reaction_rate_data_pgt[rxn_idx][time_j];
+						b_vector[this->sp_chattering_pgt->spe_idx_2_chattering_group_id_idx.at(s_idx_2).second] += drc_tmp * s_coef_2;
 					}//if
 				}//rxn_c1_c2_vector
 			}
