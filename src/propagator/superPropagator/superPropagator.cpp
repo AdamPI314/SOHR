@@ -560,9 +560,9 @@ namespace propagator_sr {
 							transition_mat[this->sp_chattering_pgt->spe_idx_2_chattering_group_id_idx.at(s_idx_2).second]
 								[this->sp_chattering_pgt->spe_idx_2_chattering_group_id_idx.at(s_idx_1).second] = drc_tmp / s_coef_2;
 
-							// A sink term for itself, only for linear algebra
-							transition_mat[this->sp_chattering_pgt->spe_idx_2_chattering_group_id_idx.at(s_idx_1).second]
-								[this->sp_chattering_pgt->spe_idx_2_chattering_group_id_idx.at(s_idx_1).second] -= drc_tmp;
+							//// A sink term for itself, only for linear algebra
+							//transition_mat[this->sp_chattering_pgt->spe_idx_2_chattering_group_id_idx.at(s_idx_1).second]
+							//	[this->sp_chattering_pgt->spe_idx_2_chattering_group_id_idx.at(s_idx_1).second] -= drc_tmp;
 
 						}//if
 
