@@ -1615,8 +1615,15 @@ namespace reactionNetwork_sr {
 					when_time = chattering_group_reaction_time_from_importance_sampling_without_cutoff(when_time, chattering_group_id, u_1);
 				}//boundary time problem
 
-				 //move two steps actually
-				i += 2;
+				if (this->condense_chatterings == true) {
+					//move one step actually
+					i += 1;
+				}
+				else {
+					//move two steps instead
+					i += 2;
+				}
+
 			}//if chattering case
 		}
 
@@ -1678,8 +1685,15 @@ namespace reactionNetwork_sr {
 
 				}//boundary time problem
 
-				 //move two steps actually
-				i += 2;
+				if (this->condense_chatterings == true) {
+					//move one step actually
+					i += 1;
+				}
+				else {
+					//move two steps instead
+					i += 2;
+				}
+
 			}//if chattering case
 
 		}
@@ -1726,8 +1740,15 @@ namespace reactionNetwork_sr {
 					when_time = chattering_group_reaction_time_from_importance_sampling_without_cutoff(when_time, chattering_group_id, u_1);
 				}//boundary time problem
 
-				 //move two steps actually
-				i += 2;
+				if (this->condense_chatterings == true) {
+					//move one step actually
+					i += 1;
+				}
+				else {
+					//move two steps instead
+					i += 2;
+				}
+
 			}//if chattering case
 		}
 
