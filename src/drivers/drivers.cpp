@@ -364,7 +364,8 @@ void driver::evaluate_path_AT_over_time(const std::string &main_cwd, const boost
 			fout << setprecision(PRINT_PRECISION) << path_AT_vec[i][j];
 			if (j != (path_AT_vec[0].size() - 1))
 			{
-				fout << ",";
+				//fout << ",";
+				fout << "\n";
 			}
 		}
 		fout << std::endl;
@@ -430,7 +431,8 @@ void driver::evaluate_path_AT_no_IT_over_time(const std::string &main_cwd, const
 			fout << setprecision(PRINT_PRECISION) << path_AT_vec[i][j];
 			if (j != (path_AT_vec[0].size() - 1))
 			{
-				fout << ",";
+				//fout << ",";
+				fout << "\n";
 			}
 		}
 		fout << std::endl;
@@ -499,8 +501,10 @@ void driver::evaluate_path_AT_with_SP_over_time(const std::string &main_cwd, con
 			fout2 << setprecision(PRINT_PRECISION) << path_AT_prob_mat[i][j];
 			if (j != (path_AT_mat[0].size() - 1))
 			{
-				fout1 << ",";
-				fout2 << ",";
+				//fout1 << ",";
+				//fout2 << ",";
+				fout1 << "\n";
+				fout2 << "\n";
 			}
 		}
 		fout1 << std::endl;
@@ -1057,7 +1061,8 @@ void driver::evaluate_path_AT_over_time(const boost::mpi::communicator &world, c
 				fout << setprecision(PRINT_PRECISION) << path_AT_vec[i][j];
 				if (j != (path_AT_vec[0].size() - 1))
 				{
-					fout << ",";
+					//fout << ",";
+					fout << "\n";
 				}
 			}
 			fout << std::endl;
@@ -1126,7 +1131,8 @@ void driver::evaluate_path_AT_no_IT_over_time(const boost::mpi::communicator &wo
 				fout << setprecision(PRINT_PRECISION) << path_AT_vec[i][j];
 				if (j != (path_AT_vec[0].size() - 1))
 				{
-					fout << ",";
+					//fout << ",";
+					fout << "\n";
 				}
 			}
 			fout << std::endl;
@@ -1198,8 +1204,10 @@ void driver::evaluate_path_AT_with_SP_over_time(const boost::mpi::communicator &
 				fout2 << setprecision(PRINT_PRECISION) << path_AT_prob_mat[i][j];
 				if (j != (path_AT_mat[0].size() - 1))
 				{
-					fout1 << ",";
-					fout2 << ",";
+					//fout1 << ",";
+					//fout2 << ",";
+					fout1 << "\n";
+					fout2 << "\n";
 				}
 			}
 			fout1 << std::endl;
