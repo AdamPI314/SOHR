@@ -357,15 +357,15 @@ void driver::evaluate_path_AT_over_time(const std::string &main_cwd, const boost
 	}
 
 	std::ofstream fout((main_cwd + std::string("/output/species_pathway_AT.csv")).c_str(), std::ofstream::out);
-	for (size_t i = 0; i < path_AT_vec.size(); ++i)
+	for (size_t j = 0; j < path_AT_vec[0].size(); ++j)
 	{
-		for (size_t j = 0; j < path_AT_vec[0].size(); ++j)
+		for (size_t i = 0; i < path_AT_vec.size(); ++i)
 		{
 			fout << setprecision(PRINT_PRECISION) << path_AT_vec[i][j];
-			if (j != (path_AT_vec[0].size() - 1))
+			if (i != (path_AT_vec[0].size() - 1))
 			{
-				//fout << ",";
-				fout << "\n";
+				fout << ",";
+				//fout << "\n";
 			}
 		}
 		fout << std::endl;
@@ -424,15 +424,15 @@ void driver::evaluate_path_AT_no_IT_over_time(const std::string &main_cwd, const
 	}
 
 	std::ofstream fout((main_cwd + std::string("/output/species_pathway_AT_no_IT.csv")).c_str(), std::ofstream::out);
-	for (size_t i = 0; i < path_AT_vec.size(); ++i)
+	for (size_t j = 0; j < path_AT_vec[0].size(); ++j)
 	{
-		for (size_t j = 0; j < path_AT_vec[0].size(); ++j)
+		for (size_t i = 0; i < path_AT_vec.size(); ++i)
 		{
 			fout << setprecision(PRINT_PRECISION) << path_AT_vec[i][j];
-			if (j != (path_AT_vec[0].size() - 1))
+			if (i != (path_AT_vec[0].size() - 1))
 			{
-				//fout << ",";
-				fout << "\n";
+				fout << ",";
+				//fout << "\n";
 			}
 		}
 		fout << std::endl;
@@ -493,18 +493,18 @@ void driver::evaluate_path_AT_with_SP_over_time(const std::string &main_cwd, con
 
 	std::ofstream fout1((main_cwd + std::string("/output/species_pathway_AT_with_SP.csv")).c_str(), std::ofstream::out);
 	std::ofstream fout2((main_cwd + std::string("/output/species_pathway_SP.csv")).c_str(), std::ofstream::out);
-	for (size_t i = 0; i < path_AT_mat.size(); ++i)
+	for (size_t j = 0; j < path_AT_mat[0].size(); ++j)
 	{
-		for (size_t j = 0; j < path_AT_mat[0].size(); ++j)
+		for (size_t i = 0; i < path_AT_mat.size(); ++i)
 		{
 			fout1 << setprecision(PRINT_PRECISION) << path_AT_mat[i][j];
 			fout2 << setprecision(PRINT_PRECISION) << path_AT_prob_mat[i][j];
-			if (j != (path_AT_mat[0].size() - 1))
+			if (i != (path_AT_mat[0].size() - 1))
 			{
-				//fout1 << ",";
-				//fout2 << ",";
-				fout1 << "\n";
-				fout2 << "\n";
+				fout1 << ",";
+				fout2 << ",";
+				//fout1 << "\n";
+				//fout2 << "\n";
 			}
 		}
 		fout1 << std::endl;
@@ -1054,15 +1054,15 @@ void driver::evaluate_path_AT_over_time(const boost::mpi::communicator &world, c
 		}
 
 		std::ofstream fout((main_cwd + std::string("/output/species_pathway_AT.csv")).c_str(), std::ofstream::out);
-		for (size_t i = 0; i < path_AT_vec.size(); ++i)
+		for (size_t j = 0; j < path_AT_vec[0].size(); ++j)
 		{
-			for (size_t j = 0; j < path_AT_vec[0].size(); ++j)
+			for (size_t i = 0; i < path_AT_vec.size(); ++i)
 			{
 				fout << setprecision(PRINT_PRECISION) << path_AT_vec[i][j];
-				if (j != (path_AT_vec[0].size() - 1))
+				if (i != (path_AT_vec[0].size() - 1))
 				{
-					//fout << ",";
-					fout << "\n";
+					fout << ",";
+					//fout << "\n";
 				}
 			}
 			fout << std::endl;
@@ -1124,15 +1124,15 @@ void driver::evaluate_path_AT_no_IT_over_time(const boost::mpi::communicator &wo
 		}
 
 		std::ofstream fout((main_cwd + std::string("/output/species_pathway_AT_no_IT.csv")).c_str(), std::ofstream::out);
-		for (size_t i = 0; i < path_AT_vec.size(); ++i)
+		for (size_t j = 0; j < path_AT_vec[0].size(); ++j)
 		{
-			for (size_t j = 0; j < path_AT_vec[0].size(); ++j)
+			for (size_t i = 0; i < path_AT_vec.size(); ++i)
 			{
 				fout << setprecision(PRINT_PRECISION) << path_AT_vec[i][j];
-				if (j != (path_AT_vec[0].size() - 1))
+				if (i != (path_AT_vec[0].size() - 1))
 				{
-					//fout << ",";
-					fout << "\n";
+					fout << ",";
+					//fout << "\n";
 				}
 			}
 			fout << std::endl;
@@ -1196,18 +1196,18 @@ void driver::evaluate_path_AT_with_SP_over_time(const boost::mpi::communicator &
 
 		std::ofstream fout1((main_cwd + std::string("/output/species_pathway_AT_with_SP.csv")).c_str(), std::ofstream::out);
 		std::ofstream fout2((main_cwd + std::string("/output/species_pathway_SP.csv")).c_str(), std::ofstream::out);
-		for (size_t i = 0; i < path_AT_mat.size(); ++i)
+		for (size_t j = 0; j < path_AT_mat[0].size(); ++j)
 		{
-			for (size_t j = 0; j < path_AT_mat[0].size(); ++j)
+			for (size_t i = 0; i < path_AT_mat.size(); ++i)
 			{
 				fout1 << setprecision(PRINT_PRECISION) << path_AT_mat[i][j];
 				fout2 << setprecision(PRINT_PRECISION) << path_AT_prob_mat[i][j];
-				if (j != (path_AT_mat[0].size() - 1))
+				if (i != (path_AT_mat[0].size() - 1))
 				{
-					//fout1 << ",";
-					//fout2 << ",";
-					fout1 << "\n";
-					fout2 << "\n";
+					fout1 << ",";
+					fout2 << ",";
+					//fout1 << "\n";
+					//fout2 << "\n";
 				}
 			}
 			fout1 << std::endl;
