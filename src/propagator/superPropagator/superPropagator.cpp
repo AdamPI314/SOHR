@@ -659,8 +659,8 @@ namespace propagator_sr {
 		for (std::size_t group_i = 0; group_i < this->sp_chattering_pgt->species_chattering_group_mat.size(); ++group_i) {
 			for (std::size_t time_j = 0; time_j < this->time_data_pgt.size(); ++time_j) {
 
-				//update_chattering_group_K_prob_of_groupID_at_timeIDX_using_reference_X(group_i, time_j);
-				update_chattering_group_K_prob_of_groupID_at_timeIDX_using_SSA(group_i, time_j);
+				update_chattering_group_K_prob_of_groupID_at_timeIDX_using_reference_X(group_i, time_j);
+				//update_chattering_group_K_prob_of_groupID_at_timeIDX_using_SSA(group_i, time_j);
 
 			}//time j
 		}//chattering group
