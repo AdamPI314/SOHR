@@ -173,7 +173,7 @@ namespace propagator_sr {
 		//set fast transition A=B's pseudo-first order rate constant given list of chattering species pair
 
 		void update_chattering_group_K_prob_of_groupID_at_timeIDX_using_reference_X(std::size_t group_i, std::size_t time_j);
-		void update_chattering_group_K_prob_of_groupID_at_timeIDX_using_reference_SSA(std::size_t group_i, std::size_t time_j);
+		void update_chattering_group_K_prob_of_groupID_at_timeIDX_using_SSA(std::size_t group_i, std::size_t time_j);
 		void update_drc_and_equilibrium_probability_of_chattering_group();
 		//set the reaction rate of fast reactions to be zero
 		void set_chattering_reaction_rates_to_zero_pgt();

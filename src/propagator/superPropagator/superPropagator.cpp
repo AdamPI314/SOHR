@@ -524,7 +524,7 @@ namespace propagator_sr {
 		}
 	}
 
-	void superPropagator::update_chattering_group_K_prob_of_groupID_at_timeIDX_using_reference_SSA(std::size_t group_i, std::size_t time_j)
+	void superPropagator::update_chattering_group_K_prob_of_groupID_at_timeIDX_using_SSA(std::size_t group_i, std::size_t time_j)
 	{
 
 		auto spe_vec = this->sp_chattering_pgt->species_chattering_group_mat[group_i];
@@ -609,8 +609,9 @@ namespace propagator_sr {
 					auto s_coef_2 = rxn_c1_c2.c2;
 					if (this->concentration_data_pgt[s_idx_1][time_j] != 0) {
 						// auto drc_tmp = s_coef_2 * this->reaction_rate_data_pgt[rxn_idx][time_j];
+						// should be negative
 						auto drc_tmp = this->reaction_rate_data_pgt[rxn_idx][time_j];
-						b_vector[this->sp_chattering_pgt->spe_idx_2_chattering_group_id_idx.at(s_idx_2).second] += drc_tmp * s_coef_2;
+						b_vector[this->sp_chattering_pgt->spe_idx_2_chattering_group_id_idx.at(s_idx_2).second] -= drc_tmp * s_coef_2;
 					}//if
 				}//rxn_c1_c2_vector
 			}
@@ -659,7 +660,7 @@ namespace propagator_sr {
 			for (std::size_t time_j = 0; time_j < this->time_data_pgt.size(); ++time_j) {
 
 				//update_chattering_group_K_prob_of_groupID_at_timeIDX_using_reference_X(group_i, time_j);
-				update_chattering_group_K_prob_of_groupID_at_timeIDX_using_reference_SSA(group_i, time_j);
+				update_chattering_group_K_prob_of_groupID_at_timeIDX_using_SSA(group_i, time_j);
 
 			}//time j
 		}//chattering group
