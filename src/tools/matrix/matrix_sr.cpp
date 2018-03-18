@@ -166,22 +166,51 @@ namespace matrix_sr {
 		std::size_t m = A.size();
 		//b.assign(m, 0.0);
 
-		MatDoub mat_tmp(m, m, 0.0);
+		MatDoub A_mat(m, m, 0.0);
 		for (std::size_t i = 0; i < m; ++i) {
 			for (std::size_t j = 0; j < m; ++j) {
-				mat_tmp[i][j] = A[i][j];
+				A_mat[i][j] = A[i][j];
 			}
 		}
 
-		MatDoub b_tmp(m, 1, 0.0);
+		MatDoub b_vec(m, 1, 0.0);
 		for (std::size_t i = 0; i < m; ++i)
-			b_tmp[i][0] = b[i];
+			b_vec[i][0] = b[i];
 
-		auto ok = gaussj_return(mat_tmp, b_tmp);
+		auto ok = gaussj_return(A_mat, b_vec);
+
+		while (ok == false && (A_mat.nrows() > 1)) {
+			std::size_t n_mat = A_mat.nrows() - 1;
+
+			// set the last variable to be 1.0, move the contribution from the varible to b vector
+			MatDoub A_mat_tmp(n_mat, n_mat, 0.0);
+			for (std::size_t i = 0; i < n_mat; ++i) {
+				for (std::size_t j = 0; j < n_mat; ++j) {
+					A_mat_tmp[i][j] = A[i][j];
+				}
+			}
+
+			MatDoub b_vec_tmp(n_mat, 1, 0.0);
+			for (std::size_t i = 0; i < n_mat; ++i)
+				b_vec_tmp[i][0] = b[i];
+
+			// set current the value of current b_vec to be 1.0, move the contribution of it to the b_vec
+			b_vec[n_mat][0] = 1.0;
+			for (std::size_t i = 0; i < n_mat; ++i)
+				b_vec_tmp[i][0] -= (A[i][n_mat] * 1.0);
+
+			ok = gaussj_return(A_mat_tmp, b_vec_tmp);
+
+			if (ok == true) {
+				for (std::size_t i = 0; i < n_mat; ++i)
+					b_vec[i][0] = b_vec_tmp[i][0];
+			}
+		}
+
 		double sum_b = 0.0;
 		if (ok == true) {
 			for (std::size_t i = 0; i < m; ++i) {
-				b[i] = b_tmp[i][0];
+				b[i] = b_vec[i][0];
 				sum_b += b[i];
 			}
 		}

@@ -8,9 +8,13 @@
 #include <cstdlib>
 #include "../include/drivers/drivers.h"
 #include "../include/tools/my_debug/my_debug.h"
-//#include "../include/tools/matrix/matrix_sr.h"
+#include "../include/tools/matrix/matrix_sr.h"
 
 int main(int argc, char **argv) {
+
+	//std::vector<std::vector<double> > A = { {3, -1}, {-3, 1} };
+	//std::vector<double> b = { 0, 0 };
+	//auto ok = matrix_sr::gaussian_jordan(A, b);
 
 	/*************************************************************************************************/
 	/*

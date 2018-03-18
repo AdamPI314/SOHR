@@ -572,51 +572,51 @@ namespace propagator_sr {
 			}//s1_s2_pair
 		}//inside chattrering_group
 
-		// outside chattering group
-		for (auto s_p_rxn_c1_c2 : this->sp_all_species_group_pgt->species_group_pairs_rxns) {
-			auto s1_s2_p = s_p_rxn_c1_c2.first;
+		//// outside chattering group
+		//for (auto s_p_rxn_c1_c2 : this->sp_all_species_group_pgt->species_group_pairs_rxns) {
+		//	auto s1_s2_p = s_p_rxn_c1_c2.first;
 
-			auto s_idx_1 = s1_s2_p.first;
-			auto s_idx_2 = s1_s2_p.second;
+		//	auto s_idx_1 = s1_s2_p.first;
+		//	auto s_idx_2 = s1_s2_p.second;
 
-			// sink terms, s1 in group, s2 not in group
-			auto s1_c_g_id = this->sp_chattering_pgt->get_chattering_group_id(s_idx_1);
-			auto s2_c_g_id = this->sp_chattering_pgt->get_chattering_group_id(s_idx_2);
-			if (s1_c_g_id == (rsp::index_int_t)group_i && s2_c_g_id == -1) {
-				// means this is a sink term for current species
-				auto rxn_c1_c2_vec = s_p_rxn_c1_c2.second;
-				for (auto rxn_c1_c2 : rxn_c1_c2_vec) {
-					auto rxn_idx = rxn_c1_c2.r_idx;
-					auto s_coef_1 = rxn_c1_c2.c1;
-					//auto s_coef_2 = rxn_c1_c2.c2;
-					if (this->concentration_data_pgt[s_idx_1][time_j] != 0) {
-						// auto drc_tmp = s_coef_1 * this->reaction_rate_data_pgt[rxn_idx][time_j] / this->concentration_data_pgt[s_idx_1][time_j];
-						auto drc_tmp = this->reaction_rate_data_pgt[rxn_idx][time_j] / this->concentration_data_pgt[s_idx_1][time_j];
-						// A sink term for itself, only for linear algebra
-						transition_mat[this->sp_chattering_pgt->spe_idx_2_chattering_group_id_idx.at(s_idx_1).second]
-							[this->sp_chattering_pgt->spe_idx_2_chattering_group_id_idx.at(s_idx_1).second] -= drc_tmp * s_coef_1;
-					}//if
-				}//rxn_c1_c2_vector
-			}
+		//	// sink terms, s1 in group, s2 not in group
+		//	auto s1_c_g_id = this->sp_chattering_pgt->get_chattering_group_id(s_idx_1);
+		//	auto s2_c_g_id = this->sp_chattering_pgt->get_chattering_group_id(s_idx_2);
+		//	if (s1_c_g_id == (rsp::index_int_t)group_i && s2_c_g_id == -1) {
+		//		// means this is a sink term for current species
+		//		auto rxn_c1_c2_vec = s_p_rxn_c1_c2.second;
+		//		for (auto rxn_c1_c2 : rxn_c1_c2_vec) {
+		//			auto rxn_idx = rxn_c1_c2.r_idx;
+		//			auto s_coef_1 = rxn_c1_c2.c1;
+		//			//auto s_coef_2 = rxn_c1_c2.c2;
+		//			if (this->concentration_data_pgt[s_idx_1][time_j] != 0) {
+		//				// auto drc_tmp = s_coef_1 * this->reaction_rate_data_pgt[rxn_idx][time_j] / this->concentration_data_pgt[s_idx_1][time_j];
+		//				auto drc_tmp = this->reaction_rate_data_pgt[rxn_idx][time_j] / this->concentration_data_pgt[s_idx_1][time_j];
+		//				// A sink term for itself, only for linear algebra
+		//				transition_mat[this->sp_chattering_pgt->spe_idx_2_chattering_group_id_idx.at(s_idx_1).second]
+		//					[this->sp_chattering_pgt->spe_idx_2_chattering_group_id_idx.at(s_idx_1).second] -= drc_tmp * s_coef_1;
+		//			}//if
+		//		}//rxn_c1_c2_vector
+		//	}
 
-			// source term, s1 not in group, s2 in group, calculate b vector
-			if (s1_c_g_id == -1 && s2_c_g_id == (rsp::index_int_t)group_i) {
-				// means this is a sink term for current species
-				auto rxn_c1_c2_vec = s_p_rxn_c1_c2.second;
-				for (auto rxn_c1_c2 : rxn_c1_c2_vec) {
-					auto rxn_idx = rxn_c1_c2.r_idx;
-					//auto s_coef_1 = rxn_c1_c2.c1;
-					auto s_coef_2 = rxn_c1_c2.c2;
-					if (this->concentration_data_pgt[s_idx_1][time_j] != 0) {
-						// auto drc_tmp = s_coef_2 * this->reaction_rate_data_pgt[rxn_idx][time_j];
-						// should be negative
-						auto drc_tmp = this->reaction_rate_data_pgt[rxn_idx][time_j];
-						b_vector[this->sp_chattering_pgt->spe_idx_2_chattering_group_id_idx.at(s_idx_2).second] -= drc_tmp * s_coef_2;
-					}//if
-				}//rxn_c1_c2_vector
-			}
+		//	// source term, s1 not in group, s2 in group, calculate b vector
+		//	if (s1_c_g_id == -1 && s2_c_g_id == (rsp::index_int_t)group_i) {
+		//		// means this is a sink term for current species
+		//		auto rxn_c1_c2_vec = s_p_rxn_c1_c2.second;
+		//		for (auto rxn_c1_c2 : rxn_c1_c2_vec) {
+		//			auto rxn_idx = rxn_c1_c2.r_idx;
+		//			//auto s_coef_1 = rxn_c1_c2.c1;
+		//			auto s_coef_2 = rxn_c1_c2.c2;
+		//			if (this->concentration_data_pgt[s_idx_1][time_j] != 0) {
+		//				// auto drc_tmp = s_coef_2 * this->reaction_rate_data_pgt[rxn_idx][time_j];
+		//				// should be negative
+		//				auto drc_tmp = this->reaction_rate_data_pgt[rxn_idx][time_j];
+		//				b_vector[this->sp_chattering_pgt->spe_idx_2_chattering_group_id_idx.at(s_idx_2).second] -= drc_tmp * s_coef_2;
+		//			}//if
+		//		}//rxn_c1_c2_vector
+		//	}
 
-		}
+		//}
 
 		//// using transition matrix without sink terms
 		//double first_real_positive_eigenvalue;
@@ -659,8 +659,8 @@ namespace propagator_sr {
 		for (std::size_t group_i = 0; group_i < this->sp_chattering_pgt->species_chattering_group_mat.size(); ++group_i) {
 			for (std::size_t time_j = 0; time_j < this->time_data_pgt.size(); ++time_j) {
 
-				update_chattering_group_K_prob_of_groupID_at_timeIDX_using_reference_X(group_i, time_j);
-				//update_chattering_group_K_prob_of_groupID_at_timeIDX_using_SSA(group_i, time_j);
+				//update_chattering_group_K_prob_of_groupID_at_timeIDX_using_reference_X(group_i, time_j);
+				update_chattering_group_K_prob_of_groupID_at_timeIDX_using_SSA(group_i, time_j);
 
 			}//time j
 		}//chattering group
