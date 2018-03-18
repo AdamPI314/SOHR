@@ -623,6 +623,17 @@ namespace propagator_sr {
 		//auto ok = matrix_sr::cal_equilibrium_ratio_from_transition_matrix(transition_mat, first_real_positive_eigenvalue, b_vector);
 
 		// solve linear equation, with sink and source terms
+		if (time_j == 10) {
+			for (std::size_t i = 0; i < transition_mat.size(); ++i) {
+				for (std::size_t j = 0; j < transition_mat[0].size(); ++j) {
+					std::cout << transition_mat[i][j] << ",";
+				}
+				std::cout << std::endl;
+			}
+			for (std::size_t i = 0; i < b_vector.size(); ++i)
+				std::cout << b_vector[i] << ",";
+			std::cout << "\n";
+		}
 		auto ok = matrix_sr::gaussian_jordan(transition_mat, b_vector);
 
 		if (ok == false)
@@ -1208,7 +1219,7 @@ namespace propagator_sr {
 			for (int i = 0; i < nkk; ++i) {
 				concentration_data_pgt[i][k] = c_t[i];
 			}
-		}
+}
 	}
 
 #endif // __CHEMKIN_AVAILABLE_
@@ -1568,7 +1579,7 @@ namespace propagator_sr {
 
 
 
-}//namespace propagator_sr
+	}//namespace propagator_sr
 
 
 #endif
