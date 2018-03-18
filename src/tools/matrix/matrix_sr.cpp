@@ -196,8 +196,13 @@ namespace matrix_sr {
 
 			// set current the value of current b_vec to be 1.0, move the contribution of it to the b_vec
 			b_vec[n_mat][0] = 1.0;
-			for (std::size_t i = 0; i < n_mat; ++i)
-				b_vec_tmp[i][0] -= (A[i][n_mat] * 1.0);
+			//for (std::size_t i = 0; i < n_mat; ++i)
+			//	b_vec_tmp[i][0] -= (A[i][n_mat] * 1.0);
+			for (std::size_t i = 0; i < n_mat; ++i) {
+				for (std::size_t j = n_mat; j < m; ++j) {
+					b_vec_tmp[i][0] -= (A[i][j] * 1.0);
+				}
+			}
 
 			ok = gaussj_return(A_mat_tmp, b_vec_tmp);
 
