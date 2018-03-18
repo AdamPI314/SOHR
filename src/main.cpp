@@ -12,9 +12,14 @@
 
 int main(int argc, char **argv) {
 
-	//std::vector<std::vector<double> > A = { {3, -1}, {-3, 1} };
-	//std::vector<double> b = { 0, 0 };
-	//auto ok = matrix_sr::gaussian_jordan(A, b);
+	std::vector<std::vector<double> > A = {
+		{ -9.99059e+07,22328.8,948016,0 },
+		{ 2.99177e+08,-8792.35,9.3985e+07,0 },
+		{ 540357,3998.16,-1.87788e+08,127123 },
+		{ 0,0,4.68432e+08,-42374.2 }
+	};
+	std::vector<double> b = { 0, 0 , 0, 0 };
+	auto ok = matrix_sr::gaussian_jordan(A, b);
 
 	/*************************************************************************************************/
 	/*

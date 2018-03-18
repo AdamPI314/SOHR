@@ -180,7 +180,12 @@ namespace matrix_sr {
 		auto ok = gaussj_return(A_mat, b_vec);
 
 		std::size_t n_mat = A_mat.nrows() - 1;
-		while (ok == false && (n_mat >= 1)) {
+
+		double sum_b_tmp = 0.0;
+		for (std::size_t i = 0; i <= n_mat; ++i)
+			sum_b_tmp += b_vec[i][0];
+
+		while ((ok == false || sum_b_tmp == 0) && (n_mat >= 1)) {
 
 			// set the last variable to be 1.0, move the contribution from the varible to b vector
 			MatDoub A_mat_tmp(n_mat, n_mat, 0.0);
@@ -212,6 +217,9 @@ namespace matrix_sr {
 				break;
 			}
 			n_mat -= 1;
+			sum_b_tmp = 0.0;
+			for (std::size_t i = 0; i <= n_mat; ++i)
+				sum_b_tmp += b_vec[i][0];
 		}
 
 		double sum_b = 0.0;

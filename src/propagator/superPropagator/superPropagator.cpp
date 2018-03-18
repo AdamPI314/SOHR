@@ -191,7 +191,7 @@ namespace propagator_sr {
 					species_group_sr::rxn_c1_c2 r_c1_c2;
 					r_c1_c2.r_idx = r_idx;
 					r_c1_c2.c1 = c1;
-					r_c1_c2.c2 = c2;
+					r_c1_c2.c2 = c2 / species_network_v[s_idx2].spe_component.at(atom_followed);
 
 					pairs_rxns_map_tmp[s1_s2_p].push_back(r_c1_c2);
 
@@ -414,7 +414,7 @@ namespace propagator_sr {
 							species_group_sr::rxn_c1_c2 r_c1_c2;
 							r_c1_c2.r_idx = r_idx;
 							r_c1_c2.c1 = c1;
-							r_c1_c2.c2 = c2;
+							r_c1_c2.c2 = c2 / species_network_v[s_idx2].spe_component.at(atom_followed);
 
 							pairs_rxns_map_tmp[s1_s2_p].insert(r_c1_c2);
 						}//if these two species are both in current chattering group
