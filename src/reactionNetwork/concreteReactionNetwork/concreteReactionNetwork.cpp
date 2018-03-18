@@ -93,7 +93,7 @@ namespace reactionNetwork_sr {
 							}//reaction's out species vector and associated weight
 
 							//method 2)
-							for (auto &s_j_w : this->reaction_network_v[r_m].out_spe_index_branching_ratio_map_map[atom_follwed]) {
+							for (auto &s_j_w : this->reaction_network_v[r_m].out_spe_index_branching_ratio_map_map_with_constraint[atom_follwed]) {
 								//in the same chattering group
 								if (this->sp_chattering_rnk->is_in_same_chattering_group(s_i, s_j_w.first)) {
 									//set s_i, through, r_j, to s_j, coef to be zero

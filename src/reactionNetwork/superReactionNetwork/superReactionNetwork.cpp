@@ -65,7 +65,7 @@ namespace reactionNetwork_sr {
 		}
 		set_spe_out_reaction_info();
 		set_reaction_out_spe_info();
-		set_out_spe_index_branching_ratio_map_map();
+		set_out_spe_index_branching_ratio_map_map_with_constraint();
 
 		//set terminal species
 		set_terminal_spe();
@@ -307,6 +307,16 @@ namespace reactionNetwork_sr {
 		else
 			this->sp_pathway_constarint_rnk->reaction_out_species_constraint = false;
 
+		// general not allowed out species constraint
+		for (auto key1 : this->rnk_pt.get_child("pathway.not_allowed_out_species"))
+		{
+			this->sp_pathway_constarint_rnk->not_allowed_out_species_set.insert(key1.second.get_value<size_t>());
+		}
+		if (this->sp_pathway_constarint_rnk->must_react_species_set.size() > 0)
+			this->sp_pathway_constarint_rnk->not_allowed_out_species_constraint = true;
+		else
+			this->sp_pathway_constarint_rnk->not_allowed_out_species_constraint = false;
+
 		// must react species set
 		for (auto key1 : this->rnk_pt.get_child("pathway.must_react_species"))
 		{
@@ -320,7 +330,9 @@ namespace reactionNetwork_sr {
 		// two conditions, 1) pathway.apply_pathway_constraint set to be yes,
 		// 2) either "reaction_constraint" is set or "species_constraint" is et
 		if (this->rnk_pt.get<std::string>("pathway.apply_pathway_constraint") == std::string("yes")) {
-			if (this->sp_pathway_constarint_rnk->species_sink_through_reaction_constraint == true || this->sp_pathway_constarint_rnk->reaction_out_species_constraint == true)
+			if (this->sp_pathway_constarint_rnk->species_sink_through_reaction_constraint == true ||
+				this->sp_pathway_constarint_rnk->reaction_out_species_constraint == true ||
+				this->sp_pathway_constarint_rnk->not_allowed_out_species_constraint == true)
 				return true;
 		}
 
@@ -390,7 +402,7 @@ namespace reactionNetwork_sr {
 				auto rxn_idx = y.first;
 
 				// search all out species
-				for (auto s : reaction_network_v[rxn_idx].out_spe_index_branching_ratio_map_map.at(atom_followed)) {
+				for (auto s : reaction_network_v[rxn_idx].out_spe_index_branching_ratio_map_map_with_constraint.at(atom_followed)) {
 					if (s.second > 0) {
 						no_out_spe = false;
 						break;
@@ -513,36 +525,75 @@ namespace reactionNetwork_sr {
 		}
 	}
 
-	void superReactionNetwork::set_out_spe_index_branching_ratio_map_map(std::string atom_followed)
+	void superReactionNetwork::set_out_spe_index_branching_ratio_map_map_with_constraint(std::string atom_followed)
 	{
 
 		for (std::size_t r_index = 0; r_index < this->reaction_network_v.size(); ++r_index) {
+			// remember to check constraint first
+			
 			double prob_total = 0.0;
-			//calcualte out spe total weight for a reaction
-			for (std::size_t i = 0; i < reaction_network_v[r_index].out_spe_index_weight_v_map[atom_followed].size(); ++i) {
-				prob_total += reaction_network_v[r_index].out_spe_index_weight_v_map[atom_followed][i].second;
+			////calcualte out spe total weight for a reaction
+			//for (std::size_t i = 0; i < reaction_network_v[r_index].out_spe_index_weight_v_map[atom_followed].size(); ++i) {
+			//	prob_total += reaction_network_v[r_index].out_spe_index_weight_v_map[atom_followed][i].second;
+			//}
+
+			for (auto s_i_w : reaction_network_v[r_index].out_spe_index_weight_v_map[atom_followed]) {
+				auto s_idx = s_i_w.first;
+				auto w = s_i_w.second;
+
+				// not allowed out species constraint
+				if (this->sp_pathway_constarint_rnk->not_allowed_out_species_constraint == true &&
+					this->sp_pathway_constarint_rnk->not_allowed_out_species_set.count(s_idx) > 0)
+					continue;
+				// reaction out species constraint
+				if (this->sp_pathway_constarint_rnk->reaction_out_species_constraint == true &&
+					this->sp_pathway_constarint_rnk->reaction_out_species_set_map.count(r_index) > 0 &&
+					this->sp_pathway_constarint_rnk->reaction_out_species_set_map.at(r_index).count(s_idx) == 0)
+					continue;
+
+				//otherwise, take this out species into account
+				prob_total += w;
 			}
+
 			double reverse_p_t = 0.0;
 			if (prob_total > 0.0)
 				reverse_p_t = 1.0 / prob_total;
 			//calculate the fraction
-			for (std::size_t i = 0; i < reaction_network_v[r_index].out_spe_index_weight_v_map[atom_followed].size(); ++i) {
-				reaction_network_v[r_index].out_spe_index_branching_ratio_map_map[atom_followed]
-					[reaction_network_v[r_index].out_spe_index_weight_v_map[atom_followed][i].first] =
-					reaction_network_v[r_index].out_spe_index_weight_v_map[atom_followed][i].second * reverse_p_t;
+			for (auto s_i_w : reaction_network_v[r_index].out_spe_index_weight_v_map[atom_followed]) {
+				auto s_idx = s_i_w.first;
+				auto w = s_i_w.second;
+
+				// not allowed out species constraint
+				if (this->sp_pathway_constarint_rnk->not_allowed_out_species_constraint == true &&
+					this->sp_pathway_constarint_rnk->not_allowed_out_species_set.count(s_idx) > 0) {
+					reaction_network_v[r_index].out_spe_index_branching_ratio_map_map_with_constraint[atom_followed][s_idx] = 0;
+					continue;
+				}
+				// reaction out species constraint
+				if (this->sp_pathway_constarint_rnk->reaction_out_species_constraint == true &&
+					this->sp_pathway_constarint_rnk->reaction_out_species_set_map.count(r_index) > 0 &&
+					this->sp_pathway_constarint_rnk->reaction_out_species_set_map.at(r_index).count(s_idx) == 0)
+				{
+					reaction_network_v[r_index].out_spe_index_branching_ratio_map_map_with_constraint[atom_followed][s_idx] = 0;
+					continue;
+				}
+
+				//otherwise, take this out species into account
+				reaction_network_v[r_index].out_spe_index_branching_ratio_map_map_with_constraint[atom_followed][s_idx] = w * reverse_p_t;
 			}
+
 		}
 
 	}
 
-	void superReactionNetwork::set_out_spe_index_branching_ratio_map_map()
+	void superReactionNetwork::set_out_spe_index_branching_ratio_map_map_with_constraint()
 	{
 		for (auto x : this->element_v)
-			this->set_out_spe_index_branching_ratio_map_map(x.ele_name);
+			this->set_out_spe_index_branching_ratio_map_map_with_constraint(x.ele_name);
 		//super atom
-		this->set_out_spe_index_branching_ratio_map_map(rnk_pt.get<std::string>("pathway.super_atom"));
+		this->set_out_spe_index_branching_ratio_map_map_with_constraint(rnk_pt.get<std::string>("pathway.super_atom"));
 		if (this->follow_hypothesized_atom) {
-			this->set_out_spe_index_branching_ratio_map_map(rnk_pt.get<std::string>("pathway.atom_followed"));
+			this->set_out_spe_index_branching_ratio_map_map_with_constraint(rnk_pt.get<std::string>("pathway.atom_followed"));
 		}
 	}
 
@@ -1027,8 +1078,8 @@ namespace reactionNetwork_sr {
 
 		double spe_branching_ratio = 0.0;
 		//next species found
-		if (this->reaction_network_v[next_reaction].out_spe_index_branching_ratio_map_map[atom_followed].count(next_spe) > 0)
-			spe_branching_ratio = this->reaction_network_v[next_reaction].out_spe_index_branching_ratio_map_map[atom_followed].at(next_spe);
+		if (this->reaction_network_v[next_reaction].out_spe_index_branching_ratio_map_map_with_constraint[atom_followed].count(next_spe) > 0)
+			spe_branching_ratio = this->reaction_network_v[next_reaction].out_spe_index_branching_ratio_map_map_with_constraint[atom_followed].at(next_spe);
 
 		return reaction_branching_ratio * spe_branching_ratio;
 	}

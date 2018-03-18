@@ -290,8 +290,8 @@ namespace reactionNetwork_sr {
 		bool set_reaction_out_spe_info(std::string atom_followed);
 		void set_reaction_out_spe_info();
 
-		void set_out_spe_index_branching_ratio_map_map(std::string atom_followed);
-		void set_out_spe_index_branching_ratio_map_map();
+		void set_out_spe_index_branching_ratio_map_map_with_constraint(std::string atom_followed);
+		void set_out_spe_index_branching_ratio_map_map_with_constraint();
 
 
 	public:

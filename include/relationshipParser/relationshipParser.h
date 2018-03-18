@@ -205,7 +205,7 @@ namespace relationshipParser_sr {
 		std::map<std::string, std::vector<spe_index_weight_t > >  out_spe_index_weight_v_map;
 
 		// out species, branching ratio, by follow a atom
-		std::map<std::string, std::map<std::size_t, double> > out_spe_index_branching_ratio_map_map;
+		std::map<std::string, std::map<std::size_t, double> > out_spe_index_branching_ratio_map_map_with_constraint;
 
 		reaction_info_base() :reaction_direction(both), reaction_rate(0.0) {}
 
