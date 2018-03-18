@@ -287,7 +287,7 @@ namespace reactionNetwork_sr {
 		if (this->sp_pathway_constarint_rnk->species_sink_reaction_set_map.size() > 0)
 			this->sp_pathway_constarint_rnk->species_sink_through_reaction_constraint = true;
 		else
-			this->sp_pathway_constarint_rnk->species_sink_through_reaction_constraint = true;
+			this->sp_pathway_constarint_rnk->species_sink_through_reaction_constraint = false;
 
 		// check species constraint
 		for (auto key1 : this->rnk_pt.get_child("pathway.reaction_out_species_constraint")) {
@@ -312,7 +312,7 @@ namespace reactionNetwork_sr {
 		{
 			this->sp_pathway_constarint_rnk->not_allowed_out_species_set.insert(key1.second.get_value<size_t>());
 		}
-		if (this->sp_pathway_constarint_rnk->must_react_species_set.size() > 0)
+		if (this->sp_pathway_constarint_rnk->not_allowed_out_species_set.size() > 0)
 			this->sp_pathway_constarint_rnk->not_allowed_out_species_constraint = true;
 		else
 			this->sp_pathway_constarint_rnk->not_allowed_out_species_constraint = false;
