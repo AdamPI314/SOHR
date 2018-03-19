@@ -846,9 +846,12 @@ namespace reactionNetwork_sr {
 	vertex_t superReactionNetwork::reaction_random_pick_next_spe(rsp::index_int_t reaction_index, std::string atom_followed)
 	{
 		//probability vector
-		std::vector<double> prob(this->reaction_network_v[reaction_index].out_spe_index_weight_v_map[atom_followed].size());
-		for (std::size_t i = 0; i < this->reaction_network_v[reaction_index].out_spe_index_weight_v_map[atom_followed].size(); ++i) {
-			prob[i] = this->reaction_network_v[reaction_index].out_spe_index_weight_v_map[atom_followed][i].second;
+		std::vector<double> prob(this->reaction_network_v[reaction_index].out_spe_index_weight_v_map.at(atom_followed).size());
+		for (std::size_t i = 0; i < this->reaction_network_v[reaction_index].out_spe_index_weight_v_map.at(atom_followed).size(); ++i) {
+			//prob[i] = this->reaction_network_v[reaction_index].out_spe_index_weight_v_map[atom_followed][i].second;
+
+			auto s_i = this->reaction_network_v[reaction_index].out_spe_index_weight_v_map.at(atom_followed)[i].first;
+			prob[i] = this->reaction_network_v[reaction_index].out_spe_index_branching_ratio_map_map_with_constraint.at(atom_followed).at(s_i);
 		}
 
 		return this->reaction_network_v[reaction_index].out_spe_index_weight_v_map[atom_followed][
