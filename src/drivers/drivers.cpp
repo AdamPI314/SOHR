@@ -173,6 +173,8 @@ void driver::evaluate_path_integral_over_time(const std::string &main_cwd, const
 	rnk::concreteReactionNetwork rnk_obj(uncertainties, 0, main_cwd);
 
 	double tau = pt.get<double>("time.tau");
+	bool spe_branching = pt.get<bool>("pathway.spe_branching");
+	bool terminal_sp = pt.get<bool>("pathway.terminal_sp");
 
 	// evaluate path integral on each core
 	double p_p_db = 0.0;
@@ -187,7 +189,8 @@ void driver::evaluate_path_integral_over_time(const std::string &main_cwd, const
 			{
 				rnk_obj.parse_pathway_to_vector(pathway_vec[i], spe_vec, reaction_vec);
 				p_p_db = rnk_obj.pathway_prob_input_pathway_sim_once(0.0, time_Mat[i][j] * tau,
-					spe_vec, reaction_vec, pt.get<std::string>("pathway.atom_followed"));
+					spe_vec, reaction_vec, pt.get<std::string>("pathway.atom_followed"),
+					spe_branching, terminal_sp);
 				prob_Mat[i][j] += p_p_db / trajectoryNumber_local;
 			}
 		}
@@ -536,7 +539,7 @@ void driver::write_concentration_at_time_to_file(const std::string &main_cwd, co
 
 		pgt_obj.spe_concentration_w2f_pgt(pt.get<double>("time.tau") * pt.get<double>("pathway.end_t"),
 			pt.get<std::string>("pathway.end_t") + std::string("_dlsode_fraction"));
-	}
+}
 	else
 		pgt_obj.spe_concentration_w2f_pgt(pt.get<double>("time.tau") * pt.get<double>("pathway.end_t"),
 			pt.get<std::string>("pathway.end_t") + std::string("_dlsode_M"));
@@ -835,6 +838,8 @@ void driver::evaluate_path_integral_over_time(const boost::mpi::communicator &wo
 	rnk::concreteReactionNetwork rnk_obj(uncertainties, world.rank(), main_cwd);
 
 	double tau = pt.get<double>("time.tau");
+	bool spe_branching = pt.get<bool>("pathway.spe_branching");
+	bool terminal_sp = pt.get<bool>("pathway.terminal_sp");
 
 	// evaluate path integral on each core
 	double pathway_prob_db_t = 0.0;
@@ -849,7 +854,8 @@ void driver::evaluate_path_integral_over_time(const boost::mpi::communicator &wo
 			{
 				rnk_obj.parse_pathway_to_vector(pathway_vec[i], spe_vec, reaction_vec);
 				pathway_prob_db_t = rnk_obj.pathway_prob_input_pathway_sim_once(0.0, time_Mat[i][j] * tau,
-					spe_vec, reaction_vec, pt.get<std::string>("pathway.atom_followed"));
+					spe_vec, reaction_vec, pt.get<std::string>("pathway.atom_followed"),
+					spe_branching, terminal_sp);
 				prob_Mat[i][j] += pathway_prob_db_t / trajectoryNumber_total;
 			}
 		}
