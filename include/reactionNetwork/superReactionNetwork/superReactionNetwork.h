@@ -125,6 +125,7 @@ namespace reactionNetwork_sr {
 
 	protected:
 		std::vector<rsp::element_info> element_v;
+		std::string super_atom = "X";
 	protected:
 		//species and species information
 		std::vector<rsp::spe_info_base> species_network_v;
@@ -439,16 +440,15 @@ namespace reactionNetwork_sr {
 		* force the next reaction to be  next_reaction, next species to be next_spe, because what we want is just pathway probability
 		* directly set the next reaction and next species the ones we want
 		*/
-		std::tuple<double, double, double> pathway_prob_sim_move_one_step(double when_time, vertex_t curr_spe, rsp::index_int_t next_reaction, vertex_t next_spe, std::string atom_followed = "H");
-		bool chattering_group_pathway_prob_sim_move_one_step(int chattering_group_id, const std::vector<rsp::index_int_t> &spe_vec, const std::vector<rsp::index_int_t> &reaction_vec, std::size_t &i, double &when_time, const double end_time, double & pathway_prob, std::string atom_followed = "H");
-		//input a pathway, return its pathway prob
-		double pathway_prob_input_pathway_sim_once(const double init_time, const double end_time, const std::vector<rsp::index_int_t> &spe_vec, const std::vector<rsp::index_int_t> &reaction_vec, std::string atom_followed = "H");
+		//primitive pathway, reactions are not condensed (merged)
+		std::pair<double, double> pathway_prob_sim_move_one_step(double &when_time, vertex_t curr_spe, rsp::index_int_t next_reaction, vertex_t next_spe, std::string atom_followed = "H");
+		// with or without species branching ratio, "spe_branching" indicates species branching ratios
+		bool chattering_group_pathway_prob_sim_move_one_step(int chattering_group_id, const std::vector<rsp::index_int_t> &spe_vec, const std::vector<rsp::index_int_t> &reaction_vec, std::size_t &i, double &when_time, const double end_time, double & pathway_prob, std::string atom_followed = "H", bool spe_branching=true);
+		//input a pathway, return its pathway prob, terminal_sp represents the "survival probability of the terminal species", "spe_branching" indicates species branching ratios
+		double pathway_prob_input_pathway_sim_once(const double init_time, const double end_time, const std::vector<rsp::index_int_t> &spe_vec, const std::vector<rsp::index_int_t> &reaction_vec, std::string atom_followed = "H", bool spe_branching = true, bool terminal_sp = true);
 
-		//calculate the number of species produced along a pathway on the fly, for example, OH species
-		double weighted_number_of_species_input_pathway_sim_once(const double init_time, const double end_time, const std::vector<rsp::index_int_t> &spe_vec, const std::vector<rsp::index_int_t> &reaction_vec, const rsp::index_int_t target_spe = 10, std::string atom_followed = "H");
-
-		//species pathway
-		std::pair<double, double> species_pathway_prob_sim_move_one_step(double when_time, vertex_t curr_spe, vertex_t next_spe, std::string atom_followed = "H");
+		//merged pathway, reaction are condensed (merged)
+		double species_pathway_prob_sim_move_one_step(double &when_time, vertex_t curr_spe, vertex_t next_spe, std::string atom_followed = "H");
 		bool species_chattering_group_pathway_prob_sim_move_one_step(int chattering_group_id, const std::vector<rsp::index_int_t> &spe_vec, std::size_t &i, double &when_time, const double end_time, double & pathway_prob, std::string atom_followed = "H");
 		double species_pathway_prob_input_pathway_sim_once(const double init_time, const double end_time, const std::vector<rsp::index_int_t> &spe_vec, const std::vector<rsp::index_int_t> &reaction_vec, std::string atom_followed = "H");
 
@@ -516,8 +516,7 @@ namespace reactionNetwork_sr {
 		std::set<std::string> heuristic_path_string_vector_sorted_based_on_path_length(std::string atom_followed = "H", std::size_t n = 1, std::size_t topN = 10);
 		//sorted by pathway probability, here topN is a const for all species because of matrix multiplication, matrix power N is the same for all species
 		std::set<std::string> heuristic_path_string_vector_sorted_based_on_path_prob(std::string atom_followed = "H", std::size_t n = 1, std::size_t topN = 10, double end_time_ratio = 1.0);
-
-
+		
 		//path weight for path sorting
 		//method 1, by path length
 		double calculate_path_weight_path_length(std::string path);
