@@ -402,6 +402,8 @@ namespace reactionNetwork_sr {
 		* deal with fast reactions, next_spe is not a product of next_reaction, but inter-convert to one product of next_reaction rapidly
 		*/
 		double spe_out_by_a_reaction_branching_ratio(rsp::index_int_t curr_spe, rsp::index_int_t next_reaction);
+		// return reaction branching ratio and species branching ratio seperately
+		std::pair<double, double> reaction_spe_branching_ratio_separately(double reaction_time, rsp::index_int_t curr_spe, rsp::index_int_t next_reaction, rsp::index_int_t next_spe, std::string atom_followed = "H", bool update_reaction_rate = true);
 		/* use out_spe_index_branching_ratio_map_map, do not need to search for out species and calculate spe branching ratio each time*/
 		double reaction_spe_branching_ratio(double reaction_time, rsp::index_int_t curr_spe, rsp::index_int_t next_reaction, rsp::index_int_t next_spe, std::string atom_followed = "H", bool update_reaction_rate = true);
 		double spe_spe_branching_ratio(const std::vector<species_group_sr::rxn_c1_c2> &rxn_c1_c2_vec,
@@ -433,17 +435,20 @@ namespace reactionNetwork_sr {
 
 	public:
 		/*
-		* return where we are, when it is, for MPI ,for pathway probability
+		* return the time when, rection branching ratio, species branching ratio, for MPI ,for pathway probability
 		* force the next reaction to be  next_reaction, next species to be next_spe, because what we want is just pathway probability
 		* directly set the next reaction and next species the ones we want
 		*/
-		double pathway_prob_sim_move_one_step(double when_time, vertex_t curr_spe, rsp::index_int_t next_reaction, vertex_t next_spe, double &pathway_prob, std::string atom_followed = "H");
+		std::tuple<double, double, double> pathway_prob_sim_move_one_step(double when_time, vertex_t curr_spe, rsp::index_int_t next_reaction, vertex_t next_spe, std::string atom_followed = "H");
 		bool chattering_group_pathway_prob_sim_move_one_step(int chattering_group_id, const std::vector<rsp::index_int_t> &spe_vec, const std::vector<rsp::index_int_t> &reaction_vec, std::size_t &i, double &when_time, const double end_time, double & pathway_prob, std::string atom_followed = "H");
 		//input a pathway, return its pathway prob
 		double pathway_prob_input_pathway_sim_once(const double init_time, const double end_time, const std::vector<rsp::index_int_t> &spe_vec, const std::vector<rsp::index_int_t> &reaction_vec, std::string atom_followed = "H");
 
+		//calculate the number of species produced along a pathway on the fly, for example, OH species
+		double weighted_number_of_species_input_pathway_sim_once(const double init_time, const double end_time, const std::vector<rsp::index_int_t> &spe_vec, const std::vector<rsp::index_int_t> &reaction_vec, const rsp::index_int_t target_spe = 10, std::string atom_followed = "H");
+
 		//species pathway
-		double species_pathway_prob_sim_move_one_step(double when_time, vertex_t curr_spe, vertex_t next_spe, double &pathway_prob, std::string atom_followed = "H");
+		std::pair<double, double> species_pathway_prob_sim_move_one_step(double when_time, vertex_t curr_spe, vertex_t next_spe, std::string atom_followed = "H");
 		bool species_chattering_group_pathway_prob_sim_move_one_step(int chattering_group_id, const std::vector<rsp::index_int_t> &spe_vec, std::size_t &i, double &when_time, const double end_time, double & pathway_prob, std::string atom_followed = "H");
 		double species_pathway_prob_input_pathway_sim_once(const double init_time, const double end_time, const std::vector<rsp::index_int_t> &spe_vec, const std::vector<rsp::index_int_t> &reaction_vec, std::string atom_followed = "H");
 
