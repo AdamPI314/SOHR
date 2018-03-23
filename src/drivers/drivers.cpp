@@ -173,6 +173,12 @@ void driver::evaluate_path_integral_over_time(const std::string &main_cwd, const
 	rnk::concreteReactionNetwork rnk_obj(uncertainties, 0, main_cwd);
 
 	double tau = pt.get<double>("time.tau");
+	double begin_t = pt.get<double>("pathway.begin_t");
+	double end_t = pt.get<double>("pathway.end_t");
+	bool fixed_begin_t = true;
+	if (pt.get<std::string>("pathway.fixed_t0_or_tf") == "tf")
+		fixed_begin_t = false;
+
 	bool spe_branching = pt.get<bool>("pathway.spe_branching");
 	bool terminal_sp = pt.get<bool>("pathway.terminal_sp");
 
@@ -188,9 +194,15 @@ void driver::evaluate_path_integral_over_time(const std::string &main_cwd, const
 			for (size_t k = 0; k < trajectoryNumber_local; ++k)
 			{
 				rnk_obj.parse_pathway_to_vector(pathway_vec[i], spe_vec, reaction_vec);
-				p_p_db = rnk_obj.pathway_prob_input_pathway_sim_once(0.0, time_Mat[i][j] * tau,
-					spe_vec, reaction_vec, pt.get<std::string>("pathway.atom_followed"),
-					spe_branching, terminal_sp);
+				// fixed_t0_or_tf, fix t_0 or t_f
+				if (fixed_begin_t == true)
+					p_p_db = rnk_obj.pathway_prob_input_pathway_sim_once(begin_t * tau, time_Mat[i][j] * tau,
+						spe_vec, reaction_vec, pt.get<std::string>("pathway.atom_followed"),
+						spe_branching, terminal_sp);
+				else
+					p_p_db = rnk_obj.pathway_prob_input_pathway_sim_once(time_Mat[i][j] * tau, end_t * tau,
+						spe_vec, reaction_vec, pt.get<std::string>("pathway.atom_followed"),
+						spe_branching, terminal_sp);
 				prob_Mat[i][j] += p_p_db / trajectoryNumber_local;
 			}
 		}
@@ -265,6 +277,11 @@ void driver::evaluate_species_path_integral_over_time(const std::string &main_cw
 	rnk::concreteReactionNetwork rnk_obj(uncertainties, 0, main_cwd);
 
 	double tau = pt.get<double>("time.tau");
+	double begin_t = pt.get<double>("pathway.begin_t");
+	double end_t = pt.get<double>("pathway.end_t");
+	bool fixed_begin_t = true;
+	if (pt.get<std::string>("pathway.fixed_t0_or_tf") == "tf")
+		fixed_begin_t = false;
 
 	// evaluate path integral on each core
 	double p_p_db = 0.0;
@@ -278,8 +295,12 @@ void driver::evaluate_species_path_integral_over_time(const std::string &main_cw
 			for (size_t k = 0; k < trajectoryNumber_local; ++k)
 			{
 				rnk_obj.parse_pathway_to_vector(pathway_vec[i], spe_vec, reaction_vec);
-				p_p_db = rnk_obj.species_pathway_prob_input_pathway_sim_once(0.0, time_Mat[i][j] * tau,
-					spe_vec, reaction_vec, pt.get<std::string>("pathway.atom_followed"));
+				if (fixed_begin_t == true)
+					p_p_db = rnk_obj.species_pathway_prob_input_pathway_sim_once(begin_t * tau, time_Mat[i][j] * tau,
+						spe_vec, reaction_vec, pt.get<std::string>("pathway.atom_followed"));
+				else
+					p_p_db = rnk_obj.species_pathway_prob_input_pathway_sim_once(time_Mat[i][j] * tau, end_t * tau,
+						spe_vec, reaction_vec, pt.get<std::string>("pathway.atom_followed"));
 				prob_Mat[i][j] += p_p_db / trajectoryNumber_local;
 			}
 		}
@@ -539,7 +560,7 @@ void driver::write_concentration_at_time_to_file(const std::string &main_cwd, co
 
 		pgt_obj.spe_concentration_w2f_pgt(pt.get<double>("time.tau") * pt.get<double>("pathway.end_t"),
 			pt.get<std::string>("pathway.end_t") + std::string("_dlsode_fraction"));
-}
+	}
 	else
 		pgt_obj.spe_concentration_w2f_pgt(pt.get<double>("time.tau") * pt.get<double>("pathway.end_t"),
 			pt.get<std::string>("pathway.end_t") + std::string("_dlsode_M"));
@@ -838,6 +859,12 @@ void driver::evaluate_path_integral_over_time(const boost::mpi::communicator &wo
 	rnk::concreteReactionNetwork rnk_obj(uncertainties, world.rank(), main_cwd);
 
 	double tau = pt.get<double>("time.tau");
+	double begin_t = pt.get<double>("pathway.begin_t");
+	double end_t = pt.get<double>("pathway.end_t");
+	bool fixed_begin_t = true;
+	if (pt.get<std::string>("pathway.fixed_t0_or_tf") == "tf")
+		fixed_begin_t = false;
+
 	bool spe_branching = pt.get<bool>("pathway.spe_branching");
 	bool terminal_sp = pt.get<bool>("pathway.terminal_sp");
 
@@ -853,9 +880,14 @@ void driver::evaluate_path_integral_over_time(const boost::mpi::communicator &wo
 			for (size_t k = 0; k < trajectoryNumber_local; ++k)
 			{
 				rnk_obj.parse_pathway_to_vector(pathway_vec[i], spe_vec, reaction_vec);
-				pathway_prob_db_t = rnk_obj.pathway_prob_input_pathway_sim_once(0.0, time_Mat[i][j] * tau,
-					spe_vec, reaction_vec, pt.get<std::string>("pathway.atom_followed"),
-					spe_branching, terminal_sp);
+				if (fixed_begin_t == true)
+					pathway_prob_db_t = rnk_obj.pathway_prob_input_pathway_sim_once(begin_t * tau, time_Mat[i][j] * tau,
+						spe_vec, reaction_vec, pt.get<std::string>("pathway.atom_followed"),
+						spe_branching, terminal_sp);
+				else
+					pathway_prob_db_t = rnk_obj.pathway_prob_input_pathway_sim_once(time_Mat[i][j] * tau, end_t * tau,
+						spe_vec, reaction_vec, pt.get<std::string>("pathway.atom_followed"),
+						spe_branching, terminal_sp);
 				prob_Mat[i][j] += pathway_prob_db_t / trajectoryNumber_total;
 			}
 		}
@@ -952,6 +984,11 @@ void driver::evaluate_species_path_integral_over_time(const boost::mpi::communic
 	rnk::concreteReactionNetwork rnk_obj(uncertainties, world.rank(), main_cwd);
 
 	double tau = pt.get<double>("time.tau");
+	double begin_t = pt.get<double>("pathway.begin_t");
+	double end_t = pt.get<double>("pathway.end_t");
+	bool fixed_begin_t = true;
+	if (pt.get<std::string>("pathway.fixed_t0_or_tf") == "tf")
+		fixed_begin_t = false;
 
 	// evaluate path integral on each core
 	double pathway_prob_db_t = 0.0;
@@ -965,8 +1002,12 @@ void driver::evaluate_species_path_integral_over_time(const boost::mpi::communic
 			for (size_t k = 0; k < trajectoryNumber_local; ++k)
 			{
 				rnk_obj.parse_pathway_to_vector(pathway_vec[i], spe_vec, reaction_vec);
-				pathway_prob_db_t = rnk_obj.species_pathway_prob_input_pathway_sim_once(0.0, time_Mat[i][j] * tau,
-					spe_vec, reaction_vec, pt.get<std::string>("pathway.atom_followed"));
+				if (fixed_begin_t == true)
+					pathway_prob_db_t = rnk_obj.species_pathway_prob_input_pathway_sim_once(begin_t * tau, time_Mat[i][j] * tau,
+						spe_vec, reaction_vec, pt.get<std::string>("pathway.atom_followed"));
+				else
+					pathway_prob_db_t = rnk_obj.species_pathway_prob_input_pathway_sim_once(time_Mat[i][j] * tau, end_t * tau,
+						spe_vec, reaction_vec, pt.get<std::string>("pathway.atom_followed"));
 				prob_Mat[i][j] += pathway_prob_db_t / trajectoryNumber_total;
 			}
 		}
@@ -3377,7 +3418,7 @@ void driver::MISC(const boost::mpi::communicator &world, const std::string &main
 		//std::cout << result << std::endl;
 
 		std::cout << "MISC\n";
-	}
+}
 }
 
 #endif // __USE_MPI_
