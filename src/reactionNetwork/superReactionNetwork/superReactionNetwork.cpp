@@ -93,7 +93,7 @@ namespace reactionNetwork_sr {
 		set_min_time(this->rnk_pt.get<cf_parser::my_time_t>("time.min_time"));
 		set_max_time(this->rnk_pt.get<cf_parser::my_time_t>("time.max_time"));
 		set_sys_min_time(this->rnk_pt.get<cf_parser::my_time_t>("time.sys_min_time"));
-		set_tau(this->rnk_pt.get<cf_parser::my_time_t>("time.tau"));
+		set_absolute_end_t(this->rnk_pt.get<cf_parser::my_time_t>("time.end_t") * this->rnk_pt.get<cf_parser::my_time_t>("time.tau"));
 
 		return true;
 	}
@@ -972,7 +972,7 @@ namespace reactionNetwork_sr {
 		}
 	}
 
-	double superReactionNetwork::prob_spe_will_react_in_a_time_range(double init_time, double pathway_end_time, size_t curr_spe)
+	double superReactionNetwork::prob_spe_will_react_in_a_time_range(double init_time, double end_time, size_t curr_spe)
 	{
 		//pathway constraint case and current species is on the list
 		//in this case, we are making a assumption, that current species must react
@@ -986,7 +986,7 @@ namespace reactionNetwork_sr {
 
 		////set pathway end time
 		//set_pathway_end_time(pathway_end_time);
-		set_spe_prob_max_at_a_time(init_time, pathway_end_time, curr_spe);
+		set_spe_prob_max_at_a_time(init_time, end_time, curr_spe);
 		return species_network_v[curr_spe].prob_max;
 
 	}
@@ -1171,7 +1171,7 @@ namespace reactionNetwork_sr {
 		//none chattering case
 		if (chattering_group_id == -1) {
 			time = reaction_time_from_importance_sampling_without_cutoff(time, curr_spe, u_1);
-			if (time > this->tau) {
+			if (time > this->absolute_end_t) {
 				//if curr_vertex is a terminal species, should return here
 				when_where.first = time;
 				return when_where;
@@ -1202,7 +1202,7 @@ namespace reactionNetwork_sr {
 			time = chattering_group_reaction_time_from_importance_sampling_without_cutoff(time, chattering_group_id, u_1);
 
 			//time out of range, stop and return
-			if (time > this->tau) {
+			if (time > this->absolute_end_t) {
 				when_where.first = time;
 				return when_where;
 			}
@@ -1218,7 +1218,7 @@ namespace reactionNetwork_sr {
 	std::string superReactionNetwork::pathway_sim_once(double init_time, double end_time, vertex_t init_spe, std::string atom_followed)
 	{
 		//set the pathway end time
-		set_tau(end_time);
+		set_absolute_end_t(end_time);
 		std::string curr_pathway;
 		when_where_t when_where(init_time, init_spe);
 
@@ -1226,7 +1226,7 @@ namespace reactionNetwork_sr {
 		curr_pathway += "S";
 		curr_pathway += boost::lexical_cast<std::string>(init_spe);
 
-		while (when_where.first < tau) {
+		while (when_where.first < absolute_end_t) {
 			when_where = pathway_move_one_step(when_where.first, when_where.second, curr_pathway, atom_followed);
 		}
 
@@ -1289,7 +1289,7 @@ namespace reactionNetwork_sr {
 		//none chattering case
 		if (chattering_group_id == -1) {
 			time = reaction_time_from_importance_sampling_without_cutoff(time, curr_spe, u_1);
-			if (time > this->tau) {
+			if (time > this->absolute_end_t) {
 				//if curr_vertex is a terminal species, should return here
 				when_where.first = time;
 				return when_where;
@@ -1316,7 +1316,7 @@ namespace reactionNetwork_sr {
 			time = chattering_group_reaction_time_from_importance_sampling_without_cutoff(time, chattering_group_id, u_1);
 
 			//time out of range, stop and return
-			if (time > this->tau) {
+			if (time > this->absolute_end_t) {
 				when_where.first = time;
 				return when_where;
 			}
@@ -1331,7 +1331,7 @@ namespace reactionNetwork_sr {
 	std::string reactionNetwork_sr::superReactionNetwork::species_pathway_sim_once(double init_time, double end_time, vertex_t init_spe, std::string atom_followed)
 	{
 		//set the pathway end time
-		set_tau(end_time);
+		set_absolute_end_t(end_time);
 		std::string curr_pathway;
 		when_where_t when_where(init_time, init_spe);
 
@@ -1339,7 +1339,7 @@ namespace reactionNetwork_sr {
 		curr_pathway += "S";
 		curr_pathway += boost::lexical_cast<std::string>(init_spe);
 
-		while (when_where.first < tau) {
+		while (when_where.first < absolute_end_t) {
 			when_where = species_pathway_move_one_step(when_where.first, when_where.second, curr_pathway, atom_followed);
 		}
 
@@ -1348,11 +1348,12 @@ namespace reactionNetwork_sr {
 
 	std::pair<double, double> superReactionNetwork::pathway_prob_sim_move_one_step(double &when_time, vertex_t curr_spe, rsp::index_int_t next_reaction, vertex_t next_spe, std::string atom_followed)
 	{
-		if (when_time >= (tau - INFINITESIMAL_DT)) {
-			return std::make_pair(1.0, 1.0);
+		if (when_time >= (absolute_end_t - INFINITESIMAL_DT)) {
+			//return std::make_pair(1.0, 1.0);
+			return std::make_pair(0.0, 0.0);
 		}
 
-		this->set_spe_prob_max_at_a_time(when_time, tau, curr_spe);
+		this->set_spe_prob_max_at_a_time(when_time, absolute_end_t, curr_spe);
 
 		double u_1;
 		if (species_network_v[curr_spe].prob_max > 0.0) {
@@ -1378,7 +1379,7 @@ namespace reactionNetwork_sr {
 		pathway_prob *= chattering_group_prob;
 
 		//avoid problems around boundary
-		if (when_time < (tau - INFINITESIMAL_DT)) {
+		if (when_time < (absolute_end_t - INFINITESIMAL_DT)) {
 			double u_1 = 1.0;
 			if (chattering_group_prob > 0.0) {
 				u_1 = rand->random_min_max(0, chattering_group_prob);
@@ -1444,14 +1445,26 @@ namespace reactionNetwork_sr {
 				i += 2;
 			}
 
+			return true;
 		}//boundary time problem
-		return true;
+		else {
+			// gotta to change i
+			if (this->condense_chatterings == true) {
+				//move one step actually
+				i += 1;
+			}
+			else {
+				//move two steps instead
+				i += 2;
+			}
+			return false;
+		}
 	}
 
 	double superReactionNetwork::pathway_prob_input_pathway_sim_once(double const init_time, const double end_time, const std::vector<rsp::index_int_t> &spe_vec, const std::vector<rsp::index_int_t> &reaction_vec, std::string atom_followed, bool spe_branching, bool terminal_sp)
 	{
 		//set pathway end time
-		set_tau(end_time);
+		set_absolute_end_t(end_time);
 
 		//basically, we assume there must be a reaction at the beginning, so should multiply be the 1-P_min(tau=0|t;S^{0})
 		double pathway_prob = 1.0;
@@ -1498,11 +1511,12 @@ namespace reactionNetwork_sr {
 
 	double reactionNetwork_sr::superReactionNetwork::species_pathway_prob_sim_move_one_step(double &when_time, vertex_t curr_spe, vertex_t next_spe, std::string atom_followed)
 	{
-		if (when_time >= (tau - INFINITESIMAL_DT)) {
-			return 1.0;
+		if (when_time >= (absolute_end_t - INFINITESIMAL_DT)) {
+			//return 1.0;
+			return 0.0;
 		}
 
-		this->set_spe_prob_max_at_a_time(when_time, tau, curr_spe);
+		this->set_spe_prob_max_at_a_time(when_time, absolute_end_t, curr_spe);
 
 		double u_1;
 		if (species_network_v[curr_spe].prob_max > 0.0) {
@@ -1539,7 +1553,6 @@ namespace reactionNetwork_sr {
 				u_1 = 0.0;
 				//u_1 = INFINITESIMAL_DT;
 			}
-
 
 			when_time = chattering_group_reaction_time_from_importance_sampling_without_cutoff(when_time, chattering_group_id, u_1);
 
@@ -1591,14 +1604,26 @@ namespace reactionNetwork_sr {
 				i += 2;
 			}
 
+			return true;
 		}//boundary time problem
-		return true;
+		else {
+			// gotta to change i
+			if (this->condense_chatterings == true) {
+				//move one step actually
+				i += 1;
+			}
+			else {
+				//move two steps instead
+				i += 2;
+			}
+			return false;
+		}
 	}
 
 	double reactionNetwork_sr::superReactionNetwork::species_pathway_prob_input_pathway_sim_once(const double init_time, const double end_time, const std::vector<rsp::index_int_t>& spe_vec, const std::vector<rsp::index_int_t>& reaction_vec, std::string atom_followed)
 	{
 		//set pathway end time
-		set_tau(end_time);
+		set_absolute_end_t(end_time);
 
 		//basically, we assume there must be a reaction at the beginning, so should multiply be the 1-P_min(tau=0|t;S^{0})
 		double pathway_prob = 1.0;
@@ -1636,12 +1661,11 @@ namespace reactionNetwork_sr {
 
 	double superReactionNetwork::pathway_AT_sim_move_one_step(double when_time, vertex_t curr_spe)
 	{
-		if (when_time >= (tau - INFINITESIMAL_DT)) {
+		if (when_time >= (absolute_end_t - INFINITESIMAL_DT)) {
 			return when_time;
-
 		}
 
-		this->set_spe_prob_max_at_a_time(when_time, tau, curr_spe);
+		this->set_spe_prob_max_at_a_time(when_time, absolute_end_t, curr_spe);
 
 		double u_1;
 		if (species_network_v[curr_spe].prob_max > 0.0) {
@@ -1660,7 +1684,7 @@ namespace reactionNetwork_sr {
 	double superReactionNetwork::pathway_AT_input_pathway_sim_once(const double init_time, const double end_time, const std::vector<rsp::index_int_t>& spe_vec, const std::vector<rsp::index_int_t>& reaction_vec)
 	{
 		//set pathway end time
-		set_tau(end_time);
+		set_absolute_end_t(end_time);
 
 		//basically, we assume there must be a reaction at the beginning, so should multiply be the 1-P_min(tau=0|t;S^{0})
 		double when_time = init_time;
@@ -1683,7 +1707,7 @@ namespace reactionNetwork_sr {
 				double chattering_group_prob = prob_chattering_group_will_react_in_a_time_range(when_time, end_time, chattering_group_id);
 
 				//avoid problems around boundary
-				if (when_time < (tau - INFINITESIMAL_DT)) {
+				if (when_time < (absolute_end_t - INFINITESIMAL_DT)) {
 					double u_1 = 1.0;
 					if (chattering_group_prob > 0.0) {
 						u_1 = rand->random_min_max(0, chattering_group_prob);
@@ -1714,7 +1738,7 @@ namespace reactionNetwork_sr {
 	double superReactionNetwork::pathway_AT_no_IT_input_pathway_sim_once(const double init_time, const double end_time, const std::vector<rsp::index_int_t>& spe_vec, const std::vector<rsp::index_int_t>& reaction_vec)
 	{
 		//set pathway end time
-		set_tau(end_time);
+		set_absolute_end_t(end_time);
 
 		//basically, we assume there must be a reaction at the beginning, so should multiply be the 1-P_min(tau=0|t;S^{0})
 		double when_time = init_time;
@@ -1746,7 +1770,7 @@ namespace reactionNetwork_sr {
 				double chattering_group_prob = prob_chattering_group_will_react_in_a_time_range(when_time, end_time, chattering_group_id);
 
 				//avoid problems around boundary
-				if (when_time < (tau - INFINITESIMAL_DT)) {
+				if (when_time < (absolute_end_t - INFINITESIMAL_DT)) {
 					double u_1 = 1.0;
 					if (chattering_group_prob > 0.0) {
 						u_1 = rand->random_min_max(0, chattering_group_prob);
@@ -1785,7 +1809,7 @@ namespace reactionNetwork_sr {
 	std::pair<double, double> superReactionNetwork::pathway_AT_with_SP_input_pathway_sim_once(const double init_time, const double end_time, const std::vector<rsp::index_int_t>& spe_vec, const std::vector<rsp::index_int_t>& reaction_vec)
 	{
 		//set pathway end time
-		set_tau(end_time);
+		set_absolute_end_t(end_time);
 
 		//basically, we assume there must be a reaction at the beginning, so should multiply be the 1-P_min(tau=0|t;S^{0})
 		double when_time = init_time;
@@ -1808,7 +1832,7 @@ namespace reactionNetwork_sr {
 				double chattering_group_prob = prob_chattering_group_will_react_in_a_time_range(when_time, end_time, chattering_group_id);
 
 				//avoid problems around boundary
-				if (when_time < (tau - INFINITESIMAL_DT)) {
+				if (when_time < (absolute_end_t - INFINITESIMAL_DT)) {
 					double u_1 = 1.0;
 					if (chattering_group_prob > 0.0) {
 						u_1 = rand->random_min_max(0, chattering_group_prob);

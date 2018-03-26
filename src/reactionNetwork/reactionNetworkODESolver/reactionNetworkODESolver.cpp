@@ -151,8 +151,8 @@ namespace reactionNetworkODESolver_sr {
 
 			if (reaction_time < sys_min_time)
 				return sys_min_time;
-			else if (reaction_time > tau)
-				return tau;
+			else if (reaction_time > absolute_end_t)
+				return absolute_end_t;
 			else
 				return reaction_time;
 		}

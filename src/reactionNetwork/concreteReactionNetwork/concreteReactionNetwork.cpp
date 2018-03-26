@@ -227,8 +227,8 @@ namespace reactionNetwork_sr {
 
 			if (reaction_time < sys_min_time)
 				return sys_min_time;
-			else if (reaction_time > tau)
-				return tau;
+			else if (reaction_time > absolute_end_t)
+				return absolute_end_t;
 			else
 				return reaction_time;
 		}
@@ -236,7 +236,7 @@ namespace reactionNetwork_sr {
 
 	double concreteReactionNetwork::chattering_group_reaction_time_from_importance_sampling_without_cutoff(rsp::my_time_t curr_time, vertex_t curr_group, double Y)
 	{
-		if (curr_time >= this->tau) {
+		if (curr_time >= this->absolute_end_t) {
 			return curr_time;
 		}
 		else {
@@ -251,8 +251,8 @@ namespace reactionNetwork_sr {
 
 			if (reaction_time < sys_min_time)
 				return sys_min_time;
-			else if (reaction_time > tau)
-				return tau;
+			else if (reaction_time > absolute_end_t)
+				return absolute_end_t;
 			else
 				return reaction_time;
 		}
@@ -363,7 +363,7 @@ namespace reactionNetwork_sr {
 		*/
 		if (j_th == reaction_vec.size()) {
 			//std::cout<<"j_th:\t"<<j_th<<"\t"<<get_spe_prob_min_at_a_time(tau_j_minus_1, pathway_end_time, spe_vec.back())<<std::endl;
-			return get_spe_prob_min_at_a_time(tau_j_minus_1, tau, spe_vec.back());
+			return get_spe_prob_min_at_a_time(tau_j_minus_1, absolute_end_t, spe_vec.back());
 		}
 		else {
 			/*
@@ -385,7 +385,7 @@ namespace reactionNetwork_sr {
 
 			//need to do the transformation essential to importance sampling
 			//be careful, the prob_spe_will_react_in_a_time_range is taken cared in this integral range!!!
-			double a = 0.0, b = get_spe_prob_max_at_a_time(tau_j_minus_1, tau, spe_vec[j_th]);
+			double a = 0.0, b = get_spe_prob_max_at_a_time(tau_j_minus_1, absolute_end_t, spe_vec[j_th]);
 			double h = (b - a) / N_subvolume[j_th];
 
 			//basically says reaction occur at time_a and time_b immediately, so the next recursive relation start from this time point a
