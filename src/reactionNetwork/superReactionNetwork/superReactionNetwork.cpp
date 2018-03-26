@@ -93,7 +93,7 @@ namespace reactionNetwork_sr {
 		set_min_time(this->rnk_pt.get<cf_parser::my_time_t>("time.min_time"));
 		set_max_time(this->rnk_pt.get<cf_parser::my_time_t>("time.max_time"));
 		set_sys_min_time(this->rnk_pt.get<cf_parser::my_time_t>("time.sys_min_time"));
-		set_absolute_end_t(this->rnk_pt.get<cf_parser::my_time_t>("time.end_t") * this->rnk_pt.get<cf_parser::my_time_t>("time.tau"));
+		set_absolute_end_t(this->rnk_pt.get<cf_parser::my_time_t>("pathway.end_t") * this->rnk_pt.get<cf_parser::my_time_t>("time.tau"));
 
 		return true;
 	}
