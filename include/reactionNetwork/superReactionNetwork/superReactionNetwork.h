@@ -171,7 +171,8 @@ namespace reactionNetwork_sr {
 
 	protected:
 		//reference time of the whole system, to a combustion system, tau is the ignition delay time
-		rsp::my_time_t tau;
+		//absolute end time for either monte carlo Markov Chain or pathway probability simulation
+		rsp::my_time_t absolute_end_t;
 
 
 	protected:
@@ -247,7 +248,7 @@ namespace reactionNetwork_sr {
 		void set_min_time(rsp::my_time_t min_time_in) { this->min_time = min_time_in; }
 		void set_max_time(rsp::my_time_t max_time_in) { this->max_time = max_time_in; }
 		void set_sys_min_time(rsp::my_time_t sys_min_time_in) { this->sys_min_time = sys_min_time_in; }
-		void set_tau(rsp::my_time_t end_time_in) { this->tau = end_time_in; }
+		void set_absolute_end_t(rsp::my_time_t end_time_in) { this->absolute_end_t = end_time_in; }
 
 		rsp::my_time_t get_max_time() const;
 
@@ -390,7 +391,7 @@ namespace reactionNetwork_sr {
 
 	public:
 		//prob that a spe will react in time range
-		double prob_spe_will_react_in_a_time_range(double init_time, double pathway_end_time, size_t curr_spe);
+		double prob_spe_will_react_in_a_time_range(double init_time, double end_time, size_t curr_spe);
 		virtual double prob_chattering_group_will_react_in_a_time_range(double init_time, double pathway_end_time, size_t curr_chattering_group) = 0;
 
 	public:
