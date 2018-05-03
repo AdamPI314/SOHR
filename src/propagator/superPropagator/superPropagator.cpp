@@ -113,6 +113,14 @@ namespace propagator_sr {
 		std::fill(chattering_group_k_pgt.begin(), chattering_group_k_pgt.end(), (Linear_interp*)(0));
 	}
 
+	void superPropagator::smooth_lsode(const int neq, double * xgst, double tolerance)
+	{
+		for (int i = 0; i < neq; ++i) {
+			if (xgst[i] < tolerance)
+				xgst[i] = 0;
+		}
+	}
+
 #if defined(__CHEMKIN_AVAILABLE_)
 
 	void superPropagator::update_c_CDOT_DDOT_FWDR_REVR_at_cv(double * const Temp, double * const rhomass, const double * const y_t, double * pressure, double * c_t, double * x_t, double * CDOT_t, double * DDOT_t, double * FWDR_t, double * REVR_t)
@@ -1192,7 +1200,7 @@ namespace propagator_sr {
 
 		//set the reaction rate of fast reactions to be zero
 		//set_chattering_reaction_rates_to_zero_pgt();
-	}
+}
 
 
 #ifdef __CHEMKIN_AVAILABLE_
