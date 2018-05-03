@@ -203,6 +203,8 @@ namespace propagator_sr {
 		// Read 'lsode' parameters.
 		double dt = 0;
 		this->initialize_lsode(dt);
+		// tolerance for lsode smooth
+		double tolerance = lsodestore.atol;
 
 		//convert mole fractions to mass fractions
 		mechanism::kinetics::xty(x_t, y_t);
@@ -245,7 +247,7 @@ namespace propagator_sr {
 
 			//ODE::solver::cppdlsodev(&ti, &tout, &neq, xgst);
 			ODE::solver::cppdlsodav(&ti, &tout, &neq, xgst);
-			smooth_lsode(neq, xgst, 1.0e-50);
+			smooth_lsode(neq, xgst, tolerance);
 			//update mass fractions
 			for (int i = 0; i < nkk; ++i)
 				y_t[i] = xgst[i];
