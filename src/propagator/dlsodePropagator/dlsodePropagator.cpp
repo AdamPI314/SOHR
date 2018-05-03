@@ -319,6 +319,8 @@ namespace propagator_sr {
 		// Read 'lsode' parameters.
 		double dt = 0;
 		this->initialize_lsode(dt);
+		// tolerance for lsode smooth
+		double tolerance = lsodestore.atol;
 
 		//convert mole fractions to mass fractions
 		mechanism::kinetics::xty(x_t, y_t);
@@ -347,31 +349,20 @@ namespace propagator_sr {
 		//while (tout < end_time)
 		do
 		{
-			//convert mass fractions to molar fractions
-			mechanism::kinetics::ytx(y_t, x_t);
-			//Returns the pressure of the gas mixture given mass density, temperature(s) and mass fractions.
-			mechanism::kinetics::py(&ckstore.rhomass, &Temp, y_t, &ckstore.pressure);
-			//molar concentration
-			mechanism::kinetics::ytcr(&ckstore.rhomass, &Temp, y_t, c_t);
-
-			//Returns the molar creation and destruction rates of the species given mass density, temperature(s)
-			//and mass fractions
-			mechanism::kinetics::cdyr(&ckstore.rhomass, &Temp, y_t, CDOT_t, DDOT_t);
-
-			//Returns the forward and reverse reaction rates for reactions given pressure, temperature(s) and mole fractions.
-			mechanism::kinetics::kfkr(&ckstore.pressure, &Temp, x_t, FWDR_t, REVR_t);
-
 			//[ print out
 			if (((tout >= critical_time) && (print_Count%lsodestore.deltaN2 == 0)) || ((end_time - ti) < 0.001*dt)) {
+				update_c_CDOT_DDOT_FWDR_REVR_at_cv(&Temp, &ckstore.rhomass, y_t, &ckstore.pressure, c_t, x_t, CDOT_t, DDOT_t, FWDR_t, REVR_t);
 				update_temporary_data_pgt(nkk, neq, ti, c_t, CDOT_t, DDOT_t, FWDR_t, REVR_t, xgst);
 			}
 			else if ((print_Count%lsodestore.deltaN1 == 0) || ((end_time - ti) < 0.001*dt)) {
+				update_c_CDOT_DDOT_FWDR_REVR_at_cv(&Temp, &ckstore.rhomass, y_t, &ckstore.pressure, c_t, x_t, CDOT_t, DDOT_t, FWDR_t, REVR_t);
 				update_temporary_data_pgt(nkk, neq, ti, c_t, CDOT_t, DDOT_t, FWDR_t, REVR_t, xgst);
 			}
 			//] print out
 
 			//ODE::solver::cppdlsodevt(&ti, &tout, &neq, xgst);
 			ODE::solver::cppdlsodavt(&ti, &tout, &neq, xgst);
+			smooth_lsode(neq, xgst, tolerance);
 			//update mass fractions
 			for (int i = 0; i < nkk; ++i)
 				y_t[i] = xgst[i];
@@ -443,6 +434,8 @@ namespace propagator_sr {
 		// Read 'lsode' parameters.
 		double dt = 0;
 		this->initialize_lsode(dt);
+		// tolerance for lsode smooth
+		double tolerance = lsodestore.atol;
 
 		//convert mole fractions to mass fractions
 		mechanism::kinetics::xty(x_t, y_t);
@@ -495,6 +488,7 @@ namespace propagator_sr {
 
 			//ODE::solver::cppdlsodev(&ti, &tout, &neq, xgst);
 			ODE::solver::cppdlsodav(&ti, &tout, &neq, xgst);
+			smooth_lsode(neq, xgst, tolerance);
 			//update mass fractions
 			for (int i = 0; i < nkk; ++i)
 				y_t[i] = xgst[i];
@@ -565,7 +559,8 @@ namespace propagator_sr {
 		//time step
 		double dt = 0;
 		initialize_lsode(dt);
-		//	lsode_init(dt, this->cwd_dl+std::string("/input/setting.cfg"));
+		// tolerance for lsode smooth
+		double tolerance = lsodestore.atol;
 
 		//convert mole fractions to mass fractions
 		mechanism::kinetics::xty(x_t, y_t);
@@ -619,6 +614,7 @@ namespace propagator_sr {
 
 			//ODE::solver::cppdlsodev(&ti, &tout, &neq, xgst);
 			ODE::solver::cppdlsodav(&ti, &tout, &neq, xgst);
+			smooth_lsode(neq, xgst, tolerance);
 			//update mass fractions
 			for (int i = 0; i < nkk; ++i)
 				y_t[i] = xgst[i];
@@ -690,7 +686,8 @@ namespace propagator_sr {
 		//time step
 		double dt = 0;
 		initialize_lsode(dt);
-		//	lsode_init(dt, this->cwd_dl+std::string("/input/setting.cfg"));
+		// tolerance for lsode smooth
+		double tolerance = lsodestore.atol;
 
 		//convert mole fractions to mass fractions
 		mechanism::kinetics::xty(x_t, y_t);
@@ -744,6 +741,7 @@ namespace propagator_sr {
 
 			//ODE::solver::cppdlsodep(&ti, &tout, &neq, xgst);
 			ODE::solver::cppdlsodap(&ti, &tout, &neq, xgst);
+			smooth_lsode(neq, xgst, tolerance);
 			//update mass fractions
 			for (int i = 0; i < nkk; ++i)
 				y_t[i] = xgst[i];
@@ -813,7 +811,8 @@ namespace propagator_sr {
 		//time step
 		double dt = 0;
 		initialize_lsode(dt);
-		//	lsode_init(dt, this->cwd_dl+std::string("/input/setting.cfg"));
+		// tolerance for lsode smooth
+		double tolerance = lsodestore.atol;
 
 		//convert mole fractions to mass fractions
 		mechanism::kinetics::xty(x_t, y_t);
@@ -869,6 +868,7 @@ namespace propagator_sr {
 
 			//ODE::solver::cppdlsodep(&ti, &tout, &neq, xgst);
 			ODE::solver::cppdlsodap(&ti, &tout, &neq, xgst);
+			smooth_lsode(neq, xgst, tolerance);
 			//update mass fractions
 			for (int i = 0; i < nkk; ++i)
 				y_t[i] = xgst[i];
@@ -939,7 +939,8 @@ namespace propagator_sr {
 		//time step
 		double dt = 0;
 		initialize_lsode(dt);
-		//	lsode_init(dt, this->cwd_dl+std::string("/input/setting.cfg"));
+		// tolerance for lsode smooth
+		double tolerance = lsodestore.atol;
 
 		//convert mole fractions to mass fractions
 		mechanism::kinetics::xty(x_t, y_t);
@@ -994,6 +995,7 @@ namespace propagator_sr {
 
 			//ODE::solver::cppdlsodep(&ti, &tout, &neq, xgst);
 			ODE::solver::cppdlsodap(&ti, &tout, &neq, xgst);
+			smooth_lsode(neq, xgst, tolerance);
 			//update mass fractions
 			for (int i = 0; i < nkk; ++i)
 				y_t[i] = xgst[i];
@@ -1065,7 +1067,8 @@ namespace propagator_sr {
 		//time step
 		double dt = 0;
 		initialize_lsode(dt);
-		//	lsode_init(dt, this->cwd_dl+std::string("/input/setting.cfg"));
+		// tolerance for lsode smooth
+		double tolerance = lsodestore.atol;
 
 		//convert mole fractions to mass fractions
 		mechanism::kinetics::xty(x_t, y_t);
@@ -1120,6 +1123,7 @@ namespace propagator_sr {
 
 			//ODE::solver::cppdlsodept(&ti, &tout, &neq, xgst);
 			ODE::solver::cppdlsodapt(&ti, &tout, &neq, xgst);
+			smooth_lsode(neq, xgst, tolerance);
 			//update mass fractions
 			for (int i = 0; i < nkk; ++i)
 				y_t[i] = xgst[i];
@@ -1188,8 +1192,9 @@ namespace propagator_sr {
 		// Read 'lsode' parameters.
 		//time step
 		double dt = 0;
-		//	lsode_init(dt, this->cwd_dl+std::string("/input/setting.cfg"));
 		initialize_lsode(dt);
+		// tolerance for lsode smooth
+		double tolerance = lsodestore.atol;
 
 		//initialize the 1st order ode.
 		for (int i = 0; i < nkk; ++i)
@@ -1233,6 +1238,7 @@ namespace propagator_sr {
 
 			//ODE::solver::cppdlsodest(&ti, &tout, &neq, xgst);
 			ODE::solver::cppdlsodast(&ti, &tout, &neq, xgst);
+			smooth_lsode(neq, xgst, tolerance);
 			//update  molar concentration
 			for (int i = 0; i < nkk; ++i)
 				c_t[i] = xgst[i];
@@ -1302,8 +1308,9 @@ namespace propagator_sr {
 		// Read 'lsode' parameters.
 		//time step
 		double dt = 0;
-		//	lsode_init(dt, this->cwd_dl+std::string("/input/setting.cfg"));
 		initialize_lsode(dt);
+		// tolerance for lsode smooth
+		double tolerance = lsodestore.atol;
 
 		//initialize the 1st order ode.
 		for (int i = 0; i < nkk; ++i)
@@ -1346,6 +1353,7 @@ namespace propagator_sr {
 
 			//ODE::solver::cppdlsodest(&ti, &tout, &neq, xgst);
 			ODE::solver::cppdlsodastcc1(&ti, &tout, &neq, xgst);
+			smooth_lsode(neq, xgst, tolerance);
 			//update  molar concentration
 			for (int i = 0; i < nkk; ++i)
 				c_t[i] = xgst[i];
@@ -1415,8 +1423,9 @@ namespace propagator_sr {
 		// Read 'lsode' parameters.
 		//time step
 		double dt = 0;
-		//	lsode_init(dt, this->cwd_dl+std::string("/input/setting.cfg"));
 		initialize_lsode(dt);
+		// tolerance for lsode smooth
+		double tolerance = lsodestore.atol;
 
 		//initialize the 1st order ode.
 		for (int i = 0; i < nkk; ++i)
@@ -1459,6 +1468,7 @@ namespace propagator_sr {
 
 			//ODE::solver::cppdlsodest(&ti, &tout, &neq, xgst);
 			ODE::solver::cppdlsodastcc2(&ti, &tout, &neq, xgst);
+			smooth_lsode(neq, xgst, tolerance);
 			//update  molar concentration
 			for (int i = 0; i < nkk; ++i)
 				c_t[i] = xgst[i];
