@@ -245,7 +245,7 @@ namespace propagator_sr {
 
 			//ODE::solver::cppdlsodev(&ti, &tout, &neq, xgst);
 			ODE::solver::cppdlsodav(&ti, &tout, &neq, xgst);
-			smooth_lsode(neq, xgst, 1.0e-16);
+			smooth_lsode(neq, xgst, 1.0e-50);
 			//update mass fractions
 			for (int i = 0; i < nkk; ++i)
 				y_t[i] = xgst[i];
