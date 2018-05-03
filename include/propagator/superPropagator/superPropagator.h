@@ -140,13 +140,31 @@ namespace propagator_sr {
 		void initialize_cubic_spline_pointer();
 	public:
 		void smooth_lsode(const int neq, double * xgst, double tolerance);
-		// c --> molar concentration, x --> molar fraction, y --> mass fractions
-		void update_c_CDOT_DDOT_FWDR_REVR_at_cv(double * const Temp, 
-			double * const rhomass, 
+		// c --> molar concentration, x --> molar fraction, y --> mass fractions, at const volume
+		void update_c_CDOT_DDOT_FWDR_REVR_at_cv(double * const Temp,
+			double * const rhomass,
 			const double * const y_t,
 			double * pressure,
 			double * c_t,
 			double * x_t,
+			double * CDOT_t,
+			double * DDOT_t,
+			double * FWDR_t,
+			double * REVR_t);
+		// c --> molar concentration, x --> molar fraction, y --> mass fractions, at const pressure
+		void update_c_CDOT_DDOT_FWDR_REVR_at_cp(double * const Temp,
+			double * const pressure,
+			const double * const y_t,
+			double * rhomass,
+			double * c_t,
+			double * x_t,
+			double * CDOT_t,
+			double * DDOT_t,
+			double * FWDR_t,
+			double * REVR_t);
+		// c --> molar concentration, x --> molar fraction, y --> mass fractions, at no pressure condition
+		void update_CDOT_DDOT_FWDR_REVR_at_np(double * const Temp,
+			const double * const c_t,
 			double * CDOT_t,
 			double * DDOT_t,
 			double * FWDR_t,

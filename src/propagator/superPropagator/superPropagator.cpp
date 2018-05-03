@@ -139,6 +139,33 @@ namespace propagator_sr {
 		mechanism::kinetics::kfkr(pressure, Temp, x_t, FWDR_t, REVR_t);
 	}
 
+	void superPropagator::update_c_CDOT_DDOT_FWDR_REVR_at_cp(double * const Temp, double * const pressure, const double * const y_t, double * rhomass, double * c_t, double * x_t, double * CDOT_t, double * DDOT_t, double * FWDR_t, double * REVR_t)
+	{
+		//convert mass fractions to molar fractions
+		mechanism::kinetics::ytx(y_t, x_t);
+		//Returns the 'ckstore.rhomass' of the gas mixture given mass density, temperature(s) and pressure
+		mechanism::kinetics::rhoy(pressure, Temp, y_t, rhomass);
+		mechanism::kinetics::ytcr(rhomass, Temp, y_t, c_t);
+
+		//Returns the molar creation and destruction rates of the species given mass density, temperature(s)
+		//and mass fractions
+		mechanism::kinetics::cdyr(rhomass, Temp, y_t, CDOT_t, DDOT_t);
+
+		//Returns the forward and reverse reaction rates for reactions given pressure, temperature(s) and mole fractions.
+		mechanism::kinetics::kfkr(pressure, Temp, x_t, FWDR_t, REVR_t);
+	}
+
+	void superPropagator::update_CDOT_DDOT_FWDR_REVR_at_np(double * const Temp, const double * const c_t, double * CDOT_t, double * DDOT_t, double * FWDR_t, double * REVR_t)
+	{
+		//Returns the molar creation and destruction rates of the species given temperature(s) and molar concentration
+		mechanism::kinetics::cdc(Temp, c_t, CDOT_t, DDOT_t);
+
+		// Shirong Bai wrote a fortron subroutine to calculate the reaction rates given temperature and molar concentration
+		// Applicable for reactions with rate constant independent of pressure
+		// where sr stands for Shirong
+		mechanism::kinetics::kfkrsr(Temp, c_t, FWDR_t, REVR_t);
+	}
+
 	void superPropagator::update_temporary_data_pgt(const int nkk, const int neq, const double ti, double * const c_t, const double * const CDOT_t, const double * const DDOT_t, const double * const FWDR_t, const double * const REVR_t, const double * const xgst)
 	{
 		double reaction_rate_tmp = 0.0;
@@ -171,7 +198,7 @@ namespace propagator_sr {
 				else if (reactionNetwork_chemkin_index_map[i][j] < 0)
 					//Fortran style index to C/C++ style index
 					reaction_rate_tmp += REVR_t[abs(reactionNetwork_chemkin_index_map[i][j]) - 1];
-			}//for2
+}//for2
 			reaction_rate_data_pgt[i].push_back(reaction_rate_tmp);
 
 		}//for1
@@ -1164,7 +1191,7 @@ namespace propagator_sr {
 				fout << "  The program should not use this 'jt' value. Please check \"include/fortran_lib/dlsode/opkdmain.f\" for more information.\n" << std::endl;
 			}
 			fout << std::endl;
-		}
+	}
 
 		fout.close();
 
@@ -1200,7 +1227,7 @@ namespace propagator_sr {
 
 		//set the reaction rate of fast reactions to be zero
 		//set_chattering_reaction_rates_to_zero_pgt();
-}
+	}
 
 
 #ifdef __CHEMKIN_AVAILABLE_
@@ -1243,7 +1270,7 @@ namespace propagator_sr {
 			for (int i = 0; i < nkk; ++i) {
 				concentration_data_pgt[i][k] = c_t[i];
 			}
-		}
+	}
 	}
 
 #endif // __CHEMKIN_AVAILABLE_

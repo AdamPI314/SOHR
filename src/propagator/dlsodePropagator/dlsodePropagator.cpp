@@ -464,24 +464,13 @@ namespace propagator_sr {
 		//while (Temp<end_temperature)
 		while ((Temp < end_temperature) || (temperature_data_pgt.back() < end_temperature))
 		{
-			//convert mass fractions to molar fractions
-			mechanism::kinetics::ytx(y_t, x_t);
-			//Returns the pressure of the gas mixture given mass density, temperature(s) and mass fractions.
-			mechanism::kinetics::py(&ckstore.rhomass, &Temp, y_t, &ckstore.pressure);
-			mechanism::kinetics::ytcr(&ckstore.rhomass, &Temp, y_t, c_t);
-
-			//Returns the molar creation and destruction rates of the species given mass density, temperature(s)
-			//and mass fractions
-			mechanism::kinetics::cdyr(&ckstore.rhomass, &Temp, y_t, CDOT_t, DDOT_t);
-
-			//Returns the forward and reverse reaction rates for reactions given pressure, temperature(s) and mole fractions.
-			mechanism::kinetics::kfkr(&ckstore.pressure, &Temp, x_t, FWDR_t, REVR_t);
-
 			//[ print out
 			if ((Temp >= critical_temperature_t) && (print_Count%lsodestore.deltaN2 == 0)) {
+				update_c_CDOT_DDOT_FWDR_REVR_at_cv(&Temp, &ckstore.rhomass, y_t, &ckstore.pressure, c_t, x_t, CDOT_t, DDOT_t, FWDR_t, REVR_t);
 				update_temporary_data_pgt(nkk, neq, ti, c_t, CDOT_t, DDOT_t, FWDR_t, REVR_t, xgst);
 			}
 			else if (print_Count%lsodestore.deltaN1 == 0) {
+				update_c_CDOT_DDOT_FWDR_REVR_at_cv(&Temp, &ckstore.rhomass, y_t, &ckstore.pressure, c_t, x_t, CDOT_t, DDOT_t, FWDR_t, REVR_t);
 				update_temporary_data_pgt(nkk, neq, ti, c_t, CDOT_t, DDOT_t, FWDR_t, REVR_t, xgst);
 			}
 			//] print out
@@ -590,24 +579,14 @@ namespace propagator_sr {
 		while (Temp != Temp_t)
 		{
 			Temp_t = Temp;
-			//convert mass fractions to molar fractions
-			mechanism::kinetics::ytx(y_t, x_t);
-			//Returns the pressure of the gas mixture given mass density, temperature(s) and mass fractions.
-			mechanism::kinetics::py(&ckstore.rhomass, &Temp, y_t, &ckstore.pressure);
-			mechanism::kinetics::ytcr(&ckstore.rhomass, &Temp, y_t, c_t);
-
-			//Returns the molar creation and destruction rates of the species given mass density, temperature(s)
-			//and mass fractions
-			mechanism::kinetics::cdyr(&ckstore.rhomass, &Temp, y_t, CDOT_t, DDOT_t);
-
-			//Returns the forward and reverse reaction rates for reactions given pressure, temperature(s) and mole fractions.
-			mechanism::kinetics::kfkr(&ckstore.pressure, &Temp, x_t, FWDR_t, REVR_t);
 
 			//[ print out
 			if ((Temp >= critical_temperature_t) && (print_Count%lsodestore.deltaN2 == 0)) {
+				update_c_CDOT_DDOT_FWDR_REVR_at_cv(&Temp, &ckstore.rhomass, y_t, &ckstore.pressure, c_t, x_t, CDOT_t, DDOT_t, FWDR_t, REVR_t);
 				update_temporary_data_pgt(nkk, neq, ti, c_t, CDOT_t, DDOT_t, FWDR_t, REVR_t, xgst);
 			}
 			else if (print_Count%lsodestore.deltaN1 == 0) {
+				update_c_CDOT_DDOT_FWDR_REVR_at_cv(&Temp, &ckstore.rhomass, y_t, &ckstore.pressure, c_t, x_t, CDOT_t, DDOT_t, FWDR_t, REVR_t);
 				update_temporary_data_pgt(nkk, neq, ti, c_t, CDOT_t, DDOT_t, FWDR_t, REVR_t, xgst);
 			}
 			//] print out
@@ -715,26 +694,15 @@ namespace propagator_sr {
 
 		while (tout < end_time)
 		{
-			//convert mass fractions to molar fractions
-			mechanism::kinetics::ytx(y_t, x_t);
-			//Returns the 'ckstore.rhomass' of the gas mixture given mass density, temperature(s) and pressure
-			mechanism::kinetics::rhoy(&ckstore.pressure, &Temp, y_t, &ckstore.rhomass);
-			mechanism::kinetics::ytcr(&ckstore.rhomass, &Temp, y_t, c_t);
-
-			//Returns the molar creation and destruction rates of the species given mass density, temperature(s)
-			//and mass fractions
-			mechanism::kinetics::cdyr(&ckstore.rhomass, &Temp, y_t, CDOT_t, DDOT_t);
-
-			//Returns the forward and reverse reaction rates for reactions given pressure, temperature(s) and mole fractions.
-			mechanism::kinetics::kfkr(&ckstore.pressure, &Temp, x_t, FWDR_t, REVR_t);
-
 			//destruction relative rate Constant of species
 			//[ print out
 			//int NPrecision=16;
 			if ((tout >= critical_time) && (print_Count%lsodestore.deltaN2 == 0)) {
+				update_c_CDOT_DDOT_FWDR_REVR_at_cp(&Temp, &ckstore.pressure, y_t, &ckstore.rhomass, c_t, x_t, CDOT_t, DDOT_t, FWDR_t, REVR_t);
 				update_temporary_data_pgt(nkk, neq, ti, c_t, CDOT_t, DDOT_t, FWDR_t, REVR_t, xgst);
 			}
 			else if (print_Count%lsodestore.deltaN1 == 0) {
+				update_c_CDOT_DDOT_FWDR_REVR_at_cp(&Temp, &ckstore.pressure, y_t, &ckstore.rhomass, c_t, x_t, CDOT_t, DDOT_t, FWDR_t, REVR_t);
 				update_temporary_data_pgt(nkk, neq, ti, c_t, CDOT_t, DDOT_t, FWDR_t, REVR_t, xgst);
 			}
 			//] print out
@@ -841,27 +809,16 @@ namespace propagator_sr {
 		//while (Temp<end_temperature)
 		while ((Temp < end_temperature) || (temperature_data_pgt.back() < end_temperature))
 		{
-			//convert mass fractions to molar fractions
-			mechanism::kinetics::ytx(y_t, x_t);
-			//Returns the 'ckstore.rhomass' of the gas mixture given mass density, temperature(s) and pressure
-			mechanism::kinetics::rhoy(&ckstore.pressure, &Temp, y_t, &ckstore.rhomass);
-			mechanism::kinetics::ytcr(&ckstore.rhomass, &Temp, y_t, c_t);
-
-			//Returns the molar creation and destruction rates of the species given mass density, temperature(s)
-			//and mass fractions
-			mechanism::kinetics::cdyr(&ckstore.rhomass, &Temp, y_t, CDOT_t, DDOT_t);
-
-			//Returns the forward and reverse reaction rates for reactions given pressure, temperature(s) and mole fractions.
-			mechanism::kinetics::kfkr(&ckstore.pressure, &Temp, x_t, FWDR_t, REVR_t);
-
 			//destruction relative rate Constant of species
 			//[ print out
 			//int NPrecision=16;
 			//std::fill(vec_for_rr_tmp.begin(), vec_for_rr_tmp.end(), 0);
 			if ((Temp >= critical_temperature_t) && (print_Count%lsodestore.deltaN2 == 0)) {
+				update_c_CDOT_DDOT_FWDR_REVR_at_cp(&Temp, &ckstore.pressure, y_t, &ckstore.rhomass, c_t, x_t, CDOT_t, DDOT_t, FWDR_t, REVR_t);
 				update_temporary_data_pgt(nkk, neq, ti, c_t, CDOT_t, DDOT_t, FWDR_t, REVR_t, xgst);
 			}
 			else if (print_Count%lsodestore.deltaN1 == 0) {
+				update_c_CDOT_DDOT_FWDR_REVR_at_cp(&Temp, &ckstore.pressure, y_t, &ckstore.rhomass, c_t, x_t, CDOT_t, DDOT_t, FWDR_t, REVR_t);
 				update_temporary_data_pgt(nkk, neq, ti, c_t, CDOT_t, DDOT_t, FWDR_t, REVR_t, xgst);
 			}
 			//] print out
@@ -971,24 +928,14 @@ namespace propagator_sr {
 		while (Temp != Temp_t)
 		{
 			Temp_t = Temp;
-			//convert mass fractions to molar fractions
-			mechanism::kinetics::ytx(y_t, x_t);
-			//Returns the 'ckstore.rhomass' of the gas mixture given mass density, temperature(s) and pressure
-			mechanism::kinetics::rhoy(&ckstore.pressure, &Temp, y_t, &ckstore.rhomass);
-			mechanism::kinetics::ytcr(&ckstore.rhomass, &Temp, y_t, c_t);
-
-			//Returns the molar creation and destruction rates of the species given mass density, temperature(s)
-			//and mass fractions
-			mechanism::kinetics::cdyr(&ckstore.rhomass, &Temp, y_t, CDOT_t, DDOT_t);
-
-			//Returns the forward and reverse reaction rates for reactions given pressure, temperature(s) and mole fractions.
-			mechanism::kinetics::kfkr(&ckstore.pressure, &Temp, x_t, FWDR_t, REVR_t);
 
 			//[ print out
 			if ((Temp >= critical_temperature_t) && (print_Count%lsodestore.deltaN2 == 0)) {
+				update_c_CDOT_DDOT_FWDR_REVR_at_cp(&Temp, &ckstore.pressure, y_t, &ckstore.rhomass, c_t, x_t, CDOT_t, DDOT_t, FWDR_t, REVR_t);
 				update_temporary_data_pgt(nkk, neq, ti, c_t, CDOT_t, DDOT_t, FWDR_t, REVR_t, xgst);
 			}
 			else if (print_Count%lsodestore.deltaN1 == 0) {
+				update_c_CDOT_DDOT_FWDR_REVR_at_cp(&Temp, &ckstore.pressure, y_t, &ckstore.rhomass, c_t, x_t, CDOT_t, DDOT_t, FWDR_t, REVR_t);
 				update_temporary_data_pgt(nkk, neq, ti, c_t, CDOT_t, DDOT_t, FWDR_t, REVR_t, xgst);
 			}
 			//] print out
@@ -1097,26 +1044,15 @@ namespace propagator_sr {
 		//while (tout < end_time)
 		do
 		{
-			//convert mass fractions to molar fractions
-			mechanism::kinetics::ytx(y_t, x_t);
-			//Returns the 'ckstore.rhomass' of the gas mixture given mass density, temperature(s) and pressure
-			mechanism::kinetics::rhoy(&ckstore.pressure, &Temp, y_t, &ckstore.rhomass);
-			mechanism::kinetics::ytcr(&ckstore.rhomass, &Temp, y_t, c_t);
-
-			//Returns the molar creation and destruction rates of the species given mass density, temperature(s)
-			//and mass fractions
-			mechanism::kinetics::cdyr(&ckstore.rhomass, &Temp, y_t, CDOT_t, DDOT_t);
-
-			//Returns the forward and reverse reaction rates for reactions given pressure, temperature(s) and mole fractions.
-			mechanism::kinetics::kfkr(&ckstore.pressure, &Temp, x_t, FWDR_t, REVR_t);
-
 			//destruction relative rate Constant of species
 			//[ print out
 			//int NPrecision=16;
 			if (((tout >= critical_time) && (print_Count%lsodestore.deltaN2 == 0)) || ((end_time - ti) < 0.001*dt)) {
+				update_c_CDOT_DDOT_FWDR_REVR_at_cp(&Temp, &ckstore.pressure, y_t, &ckstore.rhomass, c_t, x_t, CDOT_t, DDOT_t, FWDR_t, REVR_t);
 				update_temporary_data_pgt(nkk, neq, ti, c_t, CDOT_t, DDOT_t, FWDR_t, REVR_t, xgst);
 			}
 			else if ((print_Count%lsodestore.deltaN1 == 0) || ((end_time - ti) < 0.001*dt)) {
+				update_c_CDOT_DDOT_FWDR_REVR_at_cp(&Temp, &ckstore.pressure, y_t, &ckstore.rhomass, c_t, x_t, CDOT_t, DDOT_t, FWDR_t, REVR_t);
 				update_temporary_data_pgt(nkk, neq, ti, c_t, CDOT_t, DDOT_t, FWDR_t, REVR_t, xgst);
 			}
 			//] print out
@@ -1218,20 +1154,14 @@ namespace propagator_sr {
 		//while (tout < end_time)
 		do
 		{
-			//Returns the molar creation and destruction rates of the species given temperature(s) and molar concentration
-			mechanism::kinetics::cdc(&Temp, c_t, CDOT_t, DDOT_t);
-
-			// Shirong Bai wrote a fortron subroutine to calculate the reaction rates given temperature and molar concentration
-			// Applicable for reactions with rate constant independent of pressure
-			// where sr stands for Shirong
-			mechanism::kinetics::kfkrsr(&Temp, c_t, FWDR_t, REVR_t);
-
 			//[ print out
 			//int NPrecision=16;
 			if (((tout >= critical_time) && (print_Count%lsodestore.deltaN2 == 0)) || ((end_time - ti) < 0.001*dt)) {
+				update_CDOT_DDOT_FWDR_REVR_at_np(&Temp, c_t, CDOT_t, DDOT_t, FWDR_t, REVR_t);
 				update_temporary_data_pgt(nkk, neq, ti, c_t, CDOT_t, DDOT_t, FWDR_t, REVR_t, xgst);
 			}
 			else if ((print_Count%lsodestore.deltaN1 == 0) || ((end_time - ti) < 0.001*dt)) {
+				update_CDOT_DDOT_FWDR_REVR_at_np(&Temp, c_t, CDOT_t, DDOT_t, FWDR_t, REVR_t);
 				update_temporary_data_pgt(nkk, neq, ti, c_t, CDOT_t, DDOT_t, FWDR_t, REVR_t, xgst);
 			}
 			//] print out
@@ -1331,22 +1261,14 @@ namespace propagator_sr {
 		//while (tout < end_time)
 		do
 		{
-			//Returns the molar creation and destruction rates of the species given temperature(s) and molar concentration
-			//The difference is how to treat the auto-catylytic reactions
-			mechanism::kinetics::cdc(&Temp, c_t, CDOT_t, DDOT_t);
-			//this->cal_spe_destruction_rate(&Temp, c_t, CDOT_t, DDOT_t);
-
-			// Shirong Bai wrote a fortron subroutine to calculate the reaction rates given temperature and molar concentration
-			// Applicable for reactions with rate constant independent of pressure
-			// where sr stands for Shirong
-			mechanism::kinetics::kfkrsr(&Temp, c_t, FWDR_t, REVR_t);
-
 			//[ print out
 			//int NPrecision=16;
 			if (((tout >= critical_time) && (print_Count%lsodestore.deltaN2 == 0)) || ((end_time - ti) < 0.001*dt)) {
+				update_CDOT_DDOT_FWDR_REVR_at_np(&Temp, c_t, CDOT_t, DDOT_t, FWDR_t, REVR_t);
 				update_temporary_data_pgt(nkk, neq, ti, c_t, CDOT_t, DDOT_t, FWDR_t, REVR_t, xgst);
 			}
 			else if ((print_Count%lsodestore.deltaN1 == 0) || ((end_time - ti) < 0.001*dt)) {
+				update_CDOT_DDOT_FWDR_REVR_at_np(&Temp, c_t, CDOT_t, DDOT_t, FWDR_t, REVR_t);
 				update_temporary_data_pgt(nkk, neq, ti, c_t, CDOT_t, DDOT_t, FWDR_t, REVR_t, xgst);
 			}
 			//] print out
@@ -1446,22 +1368,14 @@ namespace propagator_sr {
 		//while (tout < end_time)
 		do
 		{
-			//Returns the molar creation and destruction rates of the species given temperature(s) and molar concentration
-			//The difference is how to treat the auto-catylytic reactions
-			mechanism::kinetics::cdc(&Temp, c_t, CDOT_t, DDOT_t);
-			//this->cal_spe_destruction_rate(&Temp, c_t, CDOT_t, DDOT_t);
-
-			// Shirong Bai wrote a fortron subroutine to calculate the reaction rates given temperature and molar concentration
-			// Applicable for reactions with rate constant independent of pressure
-			// where sr stands for Shirong
-			mechanism::kinetics::kfkrsr(&Temp, c_t, FWDR_t, REVR_t);
-
 			//[ print out
 			//int NPrecision=16;
 			if (((tout >= critical_time) && (print_Count%lsodestore.deltaN2 == 0)) || ((end_time - ti) < 0.001*dt)) {
+				update_CDOT_DDOT_FWDR_REVR_at_np(&Temp, c_t, CDOT_t, DDOT_t, FWDR_t, REVR_t);
 				update_temporary_data_pgt(nkk, neq, ti, c_t, CDOT_t, DDOT_t, FWDR_t, REVR_t, xgst);
 			}
 			else if ((print_Count%lsodestore.deltaN1 == 0) || ((end_time - ti) < 0.001*dt)) {
+				update_CDOT_DDOT_FWDR_REVR_at_np(&Temp, c_t, CDOT_t, DDOT_t, FWDR_t, REVR_t);
 				update_temporary_data_pgt(nkk, neq, ti, c_t, CDOT_t, DDOT_t, FWDR_t, REVR_t, xgst);
 			}
 			//] print out
