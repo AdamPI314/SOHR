@@ -139,6 +139,17 @@ namespace propagator_sr {
 		//initialize the pointer, kind of template method
 		void initialize_cubic_spline_pointer();
 	public:
+		// c --> molar concentration, x --> molar fraction, y --> mass fractions
+		void update_c_CDOT_DDOT_FWDR_REVR_at_cv(double * const Temp, 
+			double * const rhomass, 
+			const double * const y_t,
+			double * pressure,
+			double * c_t,
+			double * x_t,
+			double * CDOT_t,
+			double * DDOT_t,
+			double * FWDR_t,
+			double * REVR_t);
 		void update_temporary_data_pgt(const int nkk, const int neq,
 			const double ti,
 			double * const c_t,

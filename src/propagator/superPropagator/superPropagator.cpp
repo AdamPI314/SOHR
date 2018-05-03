@@ -115,6 +115,22 @@ namespace propagator_sr {
 
 #if defined(__CHEMKIN_AVAILABLE_)
 
+	void superPropagator::update_c_CDOT_DDOT_FWDR_REVR_at_cv(double * const Temp, double * const rhomass, const double * const y_t, double * pressure, double * c_t, double * x_t, double * CDOT_t, double * DDOT_t, double * FWDR_t, double * REVR_t)
+	{
+		//convert mass fractions to molar fractions
+		mechanism::kinetics::ytx(y_t, x_t);
+		//Returns the pressure of the gas mixture given mass density, temperature(s) and mass fractions.
+		mechanism::kinetics::py(rhomass, Temp, y_t, pressure);
+		//molar concentration
+		mechanism::kinetics::ytcr(rhomass, Temp, y_t, c_t);
+
+		//Returns the molar creation and destruction rates of the species given mass density, temperature(s)
+		//and mass fractions
+		mechanism::kinetics::cdyr(rhomass, Temp, y_t, CDOT_t, DDOT_t);
+		//Returns the forward and reverse reaction rates for reactions given pressure, temperature(s) and mole fractions.
+		mechanism::kinetics::kfkr(pressure, Temp, x_t, FWDR_t, REVR_t);
+	}
+
 	void superPropagator::update_temporary_data_pgt(const int nkk, const int neq, const double ti, double * const c_t, const double * const CDOT_t, const double * const DDOT_t, const double * const FWDR_t, const double * const REVR_t, const double * const xgst)
 	{
 		double reaction_rate_tmp = 0.0;

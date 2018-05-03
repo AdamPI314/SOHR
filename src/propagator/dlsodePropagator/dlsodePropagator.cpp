@@ -231,27 +231,28 @@ namespace propagator_sr {
 		//while (tout < end_time)
 		do
 		{
-			//convert mass fractions to molar fractions
-			mechanism::kinetics::ytx(y_t, x_t);
-			//Returns the pressure of the gas mixture given mass density, temperature(s) and mass fractions.
-			mechanism::kinetics::py(&ckstore.rhomass, &Temp, y_t, &ckstore.pressure);
-			//molar concentration
-			mechanism::kinetics::ytcr(&ckstore.rhomass, &Temp, y_t, c_t);
+			////convert mass fractions to molar fractions
+			//mechanism::kinetics::ytx(y_t, x_t);
+			////Returns the pressure of the gas mixture given mass density, temperature(s) and mass fractions.
+			//mechanism::kinetics::py(&ckstore.rhomass, &Temp, y_t, &ckstore.pressure);
+			////molar concentration
+			//mechanism::kinetics::ytcr(&ckstore.rhomass, &Temp, y_t, c_t);
 
-			//Returns the molar creation and destruction rates of the species given mass density, temperature(s)
-			//and mass fractions
-			mechanism::kinetics::cdyr(&ckstore.rhomass, &Temp, y_t, CDOT_t, DDOT_t);
+			////Returns the molar creation and destruction rates of the species given mass density, temperature(s)
+			////and mass fractions
+			//mechanism::kinetics::cdyr(&ckstore.rhomass, &Temp, y_t, CDOT_t, DDOT_t);
 
-			//Returns the forward and reverse reaction rates for reactions given pressure, temperature(s) and mole fractions.
-			mechanism::kinetics::kfkr(&ckstore.pressure, &Temp, x_t, FWDR_t, REVR_t);
+			////Returns the forward and reverse reaction rates for reactions given pressure, temperature(s) and mole fractions.
+			//mechanism::kinetics::kfkr(&ckstore.pressure, &Temp, x_t, FWDR_t, REVR_t);
 
 			//destruction relative rate Constant of species
 			//[ print out
 			if (((tout >= critical_time) && (print_Count%lsodestore.deltaN2 == 0)) || ((end_time - ti) < 0.001*dt)) {
+				update_c_CDOT_DDOT_FWDR_REVR_at_cv(&Temp, &ckstore.rhomass, y_t, &ckstore.pressure, c_t, x_t, CDOT_t, DDOT_t, FWDR_t, REVR_t);
 				update_temporary_data_pgt(nkk, neq, ti, c_t, CDOT_t, DDOT_t, FWDR_t, REVR_t, xgst);
 			}
 			else if ((print_Count%lsodestore.deltaN1 == 0) || ((end_time - ti) < 0.001*dt)) {
-				//print out every * dt
+				update_c_CDOT_DDOT_FWDR_REVR_at_cv(&Temp, &ckstore.rhomass, y_t, &ckstore.pressure, c_t, x_t, CDOT_t, DDOT_t, FWDR_t, REVR_t);
 				update_temporary_data_pgt(nkk, neq, ti, c_t, CDOT_t, DDOT_t, FWDR_t, REVR_t, xgst);
 			}
 			//] print out
