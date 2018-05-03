@@ -166,7 +166,6 @@ namespace propagator_sr {
 		//number of reaction in reaction network space
 		std::size_t num_reaction = std::distance(reactionNetwork_chemkin_index_map.begin(), reactionNetwork_chemkin_index_map.end());
 
-
 		//set new rate constant
 		int I_t = 1;	double R_A = 0.0;
 		//cout<<"\nPre-exponential Constant, old and new: "<<endl;
@@ -186,10 +185,8 @@ namespace propagator_sr {
 		//in which nkk is number of species
 		//number of equations neq=nkk+1
 		const int nkk = mechanism::kinetics::nkk(), neq = mechanism::kinetics::nkk() + 1, nii = mechanism::kinetics::nii();
-
 		//initial conditions for lsode.
 		double* xgst = new double[neq];	for (int i = 0; i < neq; ++i) xgst[i] = 0.0;
-
 		//molar fraction
 		double* x_t = new double[nkk]; double* y_t = new double[nkk];
 		for (int i = 0; i < nkk; ++i) { x_t[i] = 0.0; y_t[i] = 0.0; }
@@ -199,7 +196,6 @@ namespace propagator_sr {
 		double Temp;
 		//	chem_init(Temp, ckstore.pressure, neq-1, x_t, this->cwd_dl+std::string("/input/setting.cfg"));
 		this->read_configuration(Temp, ckstore.pressure, neq - 1, x_t);
-
 
 		//add temperature to initial conditions for lsode.
 		xgst[neq - 1] = Temp;
@@ -327,7 +323,6 @@ namespace propagator_sr {
 		//	chem_init(Temp, ckstore.pressure, neq-1, x_t, this->cwd_dl+std::string("/input/setting.cfg"));
 		this->read_configuration(Temp, ckstore.pressure, neq - 1, x_t);
 
-
 		//add temperature to initial conditions for lsode.
 		xgst[neq - 1] = Temp;
 		// Read time step 'dt(s)'.
@@ -418,7 +413,6 @@ namespace propagator_sr {
 
 		//number of reaction in reaction network space
 		std::size_t num_reaction = std::distance(reactionNetwork_chemkin_index_map.begin(), reactionNetwork_chemkin_index_map.end());
-
 
 		//set new rate constant
 		int I_t = 1;	double R_A = 0.0;
@@ -790,7 +784,6 @@ namespace propagator_sr {
 
 		//number of reaction in reaction network space
 		std::size_t num_reaction = std::distance(reactionNetwork_chemkin_index_map.begin(), reactionNetwork_chemkin_index_map.end());
-
 
 		//set new rate constant
 		int I_t = 1;	double R_A = 0.0;
