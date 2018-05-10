@@ -179,8 +179,12 @@ void driver::evaluate_path_integral_over_time(const std::string &main_cwd, const
 	if (pt.get<std::string>("pathway.fixed_t0_or_tf") == "tf")
 		fixed_begin_t = false;
 
-	bool spe_branching = pt.get<bool>("pathway.spe_branching");
-	bool terminal_sp = pt.get<bool>("pathway.terminal_sp");
+	bool spe_branching = false;
+	if (pt.get<std::string>("pathway.spe_branching") == "true" || pt.get<std::string>("pathway.spe_branching") == "yes")
+		spe_branching = true;
+	bool terminal_sp = false;
+	if (pt.get<std::string>("pathway.terminal_sp") == "true" || pt.get<std::string>("pathway.terminal_sp") == "yes")
+		terminal_sp = true;
 
 	// evaluate path integral on each core
 	double p_p_db = 0.0;
@@ -865,8 +869,12 @@ void driver::evaluate_path_integral_over_time(const boost::mpi::communicator &wo
 	if (pt.get<std::string>("pathway.fixed_t0_or_tf") == "tf")
 		fixed_begin_t = false;
 
-	bool spe_branching = pt.get<bool>("pathway.spe_branching");
-	bool terminal_sp = pt.get<bool>("pathway.terminal_sp");
+	bool spe_branching = false;
+	if (pt.get<std::string>("pathway.spe_branching") == "true" || pt.get<std::string>("pathway.spe_branching") == "yes")
+		spe_branching = true;
+	bool terminal_sp = false;
+	if (pt.get<std::string>("pathway.terminal_sp") == "true" || pt.get<std::string>("pathway.terminal_sp") == "yes")
+		terminal_sp = true;
 
 	// evaluate path integral on each core
 	double pathway_prob_db_t = 0.0;
@@ -3418,7 +3426,7 @@ void driver::MISC(const boost::mpi::communicator &world, const std::string &main
 		//std::cout << result << std::endl;
 
 		std::cout << "MISC\n";
-}
+	}
 }
 
 #endif // __USE_MPI_
