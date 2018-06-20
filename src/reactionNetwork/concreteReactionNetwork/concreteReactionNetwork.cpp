@@ -263,13 +263,12 @@ namespace reactionNetwork_sr {
 		//choose chattering species direction randomly based on drc at this time, actually going out from that species
 		std::vector<double> drc_prob_unnormalized(this->sp_chattering_rnk->species_chattering_group_mat[chattering_group_id].size(), 0.0);
 		for (std::size_t i = 0; i < drc_prob_unnormalized.size(); ++i) {
-			drc_prob_unnormalized[i] = this->evaluate_spe_drc_at_time(time,
-				this->sp_chattering_rnk->species_chattering_group_mat[chattering_group_id][i]);
+			auto spe_idx = this->sp_chattering_rnk->species_chattering_group_mat[chattering_group_id][i];
+			drc_prob_unnormalized[i] = this->evaluate_spe_drc_at_time(time, spe_idx);
 
 			//gonna take steady state concentration, or real concentration of species at this time into consideration
 			//can try steady state concentration vs. real equilibrium concentration
-			drc_prob_unnormalized[i] *= this->evaluate_spe_concentration_at_time(time,
-				this->sp_chattering_rnk->species_chattering_group_mat[chattering_group_id][i]);
+			drc_prob_unnormalized[i] *= this->evaluate_spe_concentration_at_time(time, spe_idx);
 		}
 
 		return drc_prob_unnormalized;
