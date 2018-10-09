@@ -63,8 +63,7 @@
 # -l<library> - link with library lib<library>.a
 
 # Cantera makefile template
-# include /usr/include/cantera/Cantera.mak
-# include /opt/cantera/v2.4.0/include/cantera/Cantera.mak
+include /opt/cantera/v2.4.0/include/cantera/Cantera.mak
 
 #num of processors
 P=12
@@ -99,12 +98,10 @@ LDFLAGS   =
 
 # Fortran Source directory
 FSRC_ROOT_DIR = ./fortran_lib
-# FSRCDIRS   = $(FSRC_ROOT_DIR) $(FSRC_ROOT_DIR)/dlsode $(FSRC_ROOT_DIR)/chemkin $(FSRC_ROOT_DIR)/cantera
-FSRCDIRS   = $(FSRC_ROOT_DIR) $(FSRC_ROOT_DIR)/dlsode $(FSRC_ROOT_DIR)/chemkin
+FSRCDIRS   = $(FSRC_ROOT_DIR) $(FSRC_ROOT_DIR)/dlsode $(FSRC_ROOT_DIR)/chemkin $(FSRC_ROOT_DIR)/cantera
 
 # CXX Source directory
-# SRCDIRS   = . ./src ./src/drivers ./src/tools/debug ./src/relationshipParser ./src/srkin ./src/time ./src/mechanism ./src/odeSolver ./src/statistics ./src/cubicSpline ./src/fileIO/commandLineConfigFileReader ./src/fileIO/CSVFileReader ./src/fileIO/fileIO ./src/pathwayHandler ./src/propagator/superPropagator ./src/propagator/dlsodePropagator ./src/propagator/ssaPropagator ./src/propagator/SOHRPropagator ./src/tools/map_reduce ./src/tools/block_decomposition ./src/tools/sr_libs ./src/tools/matrix ./src/tools/union_find ./src/tools/species_group ./src/tools/pathway_constraint ./src/random ./src/reactionNetwork/superReactionNetwork ./src/reactionNetwork/concreteReactionNetwork ./src/reactionNetwork/reactionNetworkODESolver ./src/search_algorithm/eppstein_algorithm $(FSRC_ROOT_DIR)/cantera $(BOOST_REGEX_DIR)
-SRCDIRS   = . ./src ./src/drivers ./src/tools/debug ./src/relationshipParser ./src/srkin ./src/time ./src/mechanism ./src/odeSolver ./src/statistics ./src/cubicSpline ./src/fileIO/commandLineConfigFileReader ./src/fileIO/CSVFileReader ./src/fileIO/fileIO ./src/pathwayHandler ./src/propagator/superPropagator ./src/propagator/dlsodePropagator ./src/propagator/ssaPropagator ./src/propagator/SOHRPropagator ./src/tools/map_reduce ./src/tools/block_decomposition ./src/tools/sr_libs ./src/tools/matrix ./src/tools/union_find ./src/tools/species_group ./src/tools/pathway_constraint ./src/random ./src/reactionNetwork/superReactionNetwork ./src/reactionNetwork/concreteReactionNetwork ./src/reactionNetwork/reactionNetworkODESolver ./src/search_algorithm/eppstein_algorithm $(BOOST_REGEX_DIR)
+SRCDIRS   = . ./src ./src/drivers ./src/tools/debug ./src/relationshipParser ./src/srkin ./src/time ./src/mechanism ./src/odeSolver ./src/statistics ./src/cubicSpline ./src/fileIO/commandLineConfigFileReader ./src/fileIO/CSVFileReader ./src/fileIO/fileIO ./src/pathwayHandler ./src/propagator/superPropagator ./src/propagator/dlsodePropagator ./src/propagator/ssaPropagator ./src/propagator/SOHRPropagator ./src/tools/map_reduce ./src/tools/block_decomposition ./src/tools/sr_libs ./src/tools/matrix ./src/tools/union_find ./src/tools/species_group ./src/tools/pathway_constraint ./src/random ./src/reactionNetwork/superReactionNetwork ./src/reactionNetwork/concreteReactionNetwork ./src/reactionNetwork/reactionNetworkODESolver ./src/search_algorithm/eppstein_algorithm $(FSRC_ROOT_DIR)/cantera $(BOOST_REGEX_DIR)
 
 # The executable file name.
 # If not specified, current directory name or `a.out' will be used.
@@ -128,8 +125,7 @@ HDREXTS = .h .H .hh .hpp .HPP .h++ .hxx .hp
 CFLAGS  = -g -Ofast
 CXXFLAGS= -g -Ofast
 # -w: ignore waring, add cantera libs
-# FFLAGS	= -g -cpp -ffpe-trap=invalid,zero,overflow,underflow -w -Ofast $(CANTERA_INCLUDES) $(CANTERA_FORTRAN_LIBS)
-FFLAGS	= -g -cpp -ffpe-trap=invalid,zero,overflow,underflow -w -Ofast
+FFLAGS	= -g -cpp -ffpe-trap=invalid,zero,overflow,underflow -w -Ofast $(CANTERA_INCLUDES) $(CANTERA_FORTRAN_LIBS)
 
 # The C program compiler.
 #CC     = gcc
@@ -181,9 +177,7 @@ SRC_CXX = $(filter-out %.c,$(SOURCES))
 
 # Don't compile ckstrt.f
 FSOURCES_ALL = $(foreach d,$(FSRCDIRS),$(wildcard $(addprefix $(d)/*,$(FSRCEXTS))))
-# FSOURCES = $(filter-out %ckstrt.f %ckvariables.f %opkddemos.f %math.f %test.f, $(FSOURCES_ALL))
-# filter out cantera related files
-FSOURCES = $(filter-out %ckstrt.f %ckvariables.f %opkddemos.f %math.f %test.f %use_cantera.f %cantera_ode_solver.f, $(FSOURCES_ALL))
+FSOURCES = $(filter-out %ckstrt.f %ckvariables.f %opkddemos.f %math.f %test.f, $(FSOURCES_ALL))
 
 
 OBJS    = $(addsuffix .o, $(basename $(SOURCES)))
